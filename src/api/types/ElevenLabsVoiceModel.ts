@@ -9,11 +9,15 @@ export type ElevenLabsVoiceModel =
     | "eleven_multilingual_v2"
     | "eleven_turbo_v2"
     | "eleven_turbo_v2_5"
-    | "eleven_monolingual_v1";
+    | "eleven_monolingual_v1"
+    | "eleven_flash_v2_5"
+    | "eleven_flash_v2"
 
 export const ElevenLabsVoiceModel = {
     ElevenMultilingualV2: "eleven_multilingual_v2",
     ElevenTurboV2: "eleven_turbo_v2",
     ElevenTurboV25: "eleven_turbo_v2_5",
+    ElevenFlashV25: "eleven_flash_v2_5",
+    ElevenFlashV2: "eleven_flash_v2",
     ElevenMonolingualV1: "eleven_monolingual_v1",
 } as const;
