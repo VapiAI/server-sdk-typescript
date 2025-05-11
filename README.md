@@ -8,7 +8,7 @@ The Vapi TypeScript library provides convenient access to the Vapi API from Type
 ## Installation
 
 ```sh
-npm i -s @vapi-ai/server-sdk
+npm i @vapi-ai/server-sdk
 ```
 
 ## Usage
