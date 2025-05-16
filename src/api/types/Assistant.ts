@@ -4,7 +4,7 @@
 
 export interface Assistant {
     type: "assistant";
-    assistantId: string;
+    id: string;
     name: string;
     /** This is for metadata you want to store on the task. */
     metadata?: Record<string, unknown>;
