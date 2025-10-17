@@ -21,5 +21,5 @@ export interface CompliancePlan {
 }
 
 export namespace CompliancePlan {
-    export type RecordingConsentPlan = Vapi.RecordingConsentHangUpToDeclinePlan | Vapi.RecordingConsentVerbalPlan;
+    export type RecordingConsentPlan = Vapi.RecordingConsentPlanStayOnLine | Vapi.RecordingConsentPlanVerbal;
 }

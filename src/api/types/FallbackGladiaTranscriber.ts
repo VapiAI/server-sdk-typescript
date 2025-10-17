@@ -7,7 +7,9 @@ import * as Vapi from "../index.js";
 export interface FallbackGladiaTranscriber {
     /** This is the transcription provider that will be used. */
     provider: "gladia";
+    /** This is the Gladia model that will be used. Default is 'fast' */
     model?: FallbackGladiaTranscriber.Model;
+    /** Defines how the transcription model detects the audio language. Default value is 'automatic single language'. */
     languageBehaviour?: FallbackGladiaTranscriber.LanguageBehaviour;
     /** Defines the language to use for the transcription. Required when languageBehaviour is 'manual'. */
     language?: FallbackGladiaTranscriber.Language;

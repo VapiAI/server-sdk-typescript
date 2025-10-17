@@ -41,6 +41,14 @@ export interface Session {
     phoneNumberId?: string;
     /** This is the phone number configuration for this session. */
     phoneNumber?: Vapi.ImportTwilioPhoneNumberDto;
+    /**
+     * These are the artifacts that were extracted from the session messages.
+     * They are only available after the session has completed.
+     * The artifact plan from the assistant or active assistant of squad is used to generate the artifact.
+     * Currently the only supported fields of assistant artifact plan are:
+     * - structuredOutputIds
+     */
+    artifact?: Vapi.Artifact;
 }
 
 export namespace Session {

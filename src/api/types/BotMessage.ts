@@ -17,4 +17,6 @@ export interface BotMessage {
     source?: string;
     /** The duration of the message in seconds. */
     duration?: number;
+    /** Stable speaker label for diarized user speakers (e.g., "Speaker 1"). */
+    speakerLabel?: string;
 }

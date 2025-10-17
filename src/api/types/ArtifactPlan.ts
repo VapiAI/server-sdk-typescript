@@ -43,6 +43,8 @@ export interface ArtifactPlan {
      * @default false
      */
     videoRecordingEnabled?: boolean;
+    /** This determines whether the artifact contains the full message history, even after handoff context engineering. Defaults to false. */
+    fullMessageHistoryEnabled?: boolean;
     /**
      * This determines whether the SIP packet capture is enabled. Defaults to true. Only relevant for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`.
      *

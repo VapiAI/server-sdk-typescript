@@ -30,6 +30,12 @@ export interface OpenAiWebChatRequest {
     input: OpenAiWebChatRequest.Input;
     /** Whether to stream the response or not. */
     stream?: boolean;
+    /**
+     * This is a flag to indicate end of session. When true, the session will be marked as completed and the chat will be ended.
+     * Used to end session to send End-of-session report to the customer.
+     * When flag is set to true, any messages sent will not be processed and session will directly be marked as completed.
+     */
+    sessionEnd?: boolean;
 }
 
 export namespace OpenAiWebChatRequest {

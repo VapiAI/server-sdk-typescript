@@ -7,6 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as Vapi from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as errors from "../../../../errors/index.js";
+import { toJson } from "../../../../core/json.js";
 
 export declare namespace Calls {
     export interface Options {
@@ -45,7 +46,20 @@ export class Calls {
      * @param {Calls.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.calls.list()
+     *     await client.calls.list({
+     *         id: "id",
+     *         assistantId: "assistantId",
+     *         phoneNumberId: "phoneNumberId",
+     *         limit: 1.1,
+     *         createdAtGt: "2024-01-15T09:30:00Z",
+     *         createdAtLt: "2024-01-15T09:30:00Z",
+     *         createdAtGe: "2024-01-15T09:30:00Z",
+     *         createdAtLe: "2024-01-15T09:30:00Z",
+     *         updatedAtGt: "2024-01-15T09:30:00Z",
+     *         updatedAtLt: "2024-01-15T09:30:00Z",
+     *         updatedAtGe: "2024-01-15T09:30:00Z",
+     *         updatedAtLe: "2024-01-15T09:30:00Z"
+     *     })
      */
     public list(
         request: Vapi.CallsListRequest = {},
@@ -239,6 +253,220 @@ export class Calls {
     }
 
     /**
+     * @param {Vapi.CallControllerFindAllPaginatedRequest} request
+     * @param {Calls.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.calls.callControllerFindAllPaginated({
+     *         assistantId: "assistantId",
+     *         assistantName: "assistantName",
+     *         id: "id",
+     *         costLe: 1.1,
+     *         costGe: 1.1,
+     *         cost: 1.1,
+     *         successEvaluation: "successEvaluation",
+     *         endedReason: "endedReason",
+     *         phoneNumberId: "phoneNumberId",
+     *         page: 1.1,
+     *         sortOrder: "ASC",
+     *         limit: 1.1,
+     *         createdAtGt: "2024-01-15T09:30:00Z",
+     *         createdAtLt: "2024-01-15T09:30:00Z",
+     *         createdAtGe: "2024-01-15T09:30:00Z",
+     *         createdAtLe: "2024-01-15T09:30:00Z",
+     *         updatedAtGt: "2024-01-15T09:30:00Z",
+     *         updatedAtLt: "2024-01-15T09:30:00Z",
+     *         updatedAtGe: "2024-01-15T09:30:00Z",
+     *         updatedAtLe: "2024-01-15T09:30:00Z"
+     *     })
+     */
+    public callControllerFindAllPaginated(
+        request: Vapi.CallControllerFindAllPaginatedRequest = {},
+        requestOptions?: Calls.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.CallPaginatedResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__callControllerFindAllPaginated(request, requestOptions));
+    }
+
+    private async __callControllerFindAllPaginated(
+        request: Vapi.CallControllerFindAllPaginatedRequest = {},
+        requestOptions?: Calls.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.CallPaginatedResponse>> {
+        const {
+            assistantOverrides,
+            customer,
+            assistantId,
+            assistantName,
+            id,
+            idAny,
+            costLe,
+            costGe,
+            cost,
+            successEvaluation,
+            endedReason,
+            phoneNumberId,
+            structuredOutputs,
+            page,
+            sortOrder,
+            limit,
+            createdAtGt,
+            createdAtLt,
+            createdAtGe,
+            createdAtLe,
+            updatedAtGt,
+            updatedAtLt,
+            updatedAtGe,
+            updatedAtLe,
+        } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (assistantOverrides !== undefined) {
+            _queryParams["assistantOverrides"] = toJson(assistantOverrides);
+        }
+
+        if (customer !== undefined) {
+            _queryParams["customer"] = toJson(customer);
+        }
+
+        if (assistantId !== undefined) {
+            _queryParams["assistantId"] = assistantId;
+        }
+
+        if (assistantName !== undefined) {
+            _queryParams["assistantName"] = assistantName;
+        }
+
+        if (id !== undefined) {
+            _queryParams["id"] = id;
+        }
+
+        if (idAny !== undefined) {
+            if (Array.isArray(idAny)) {
+                _queryParams["idAny"] = idAny.map((item) => item);
+            } else {
+                _queryParams["idAny"] = idAny;
+            }
+        }
+
+        if (costLe !== undefined) {
+            _queryParams["costLe"] = costLe?.toString() ?? null;
+        }
+
+        if (costGe !== undefined) {
+            _queryParams["costGe"] = costGe?.toString() ?? null;
+        }
+
+        if (cost !== undefined) {
+            _queryParams["cost"] = cost?.toString() ?? null;
+        }
+
+        if (successEvaluation !== undefined) {
+            _queryParams["successEvaluation"] = successEvaluation;
+        }
+
+        if (endedReason !== undefined) {
+            _queryParams["endedReason"] = endedReason;
+        }
+
+        if (phoneNumberId !== undefined) {
+            _queryParams["phoneNumberId"] = phoneNumberId;
+        }
+
+        if (structuredOutputs !== undefined) {
+            _queryParams["structuredOutputs"] = toJson(structuredOutputs);
+        }
+
+        if (page !== undefined) {
+            _queryParams["page"] = page?.toString() ?? null;
+        }
+
+        if (sortOrder !== undefined) {
+            _queryParams["sortOrder"] = sortOrder;
+        }
+
+        if (limit !== undefined) {
+            _queryParams["limit"] = limit?.toString() ?? null;
+        }
+
+        if (createdAtGt !== undefined) {
+            _queryParams["createdAtGt"] = createdAtGt;
+        }
+
+        if (createdAtLt !== undefined) {
+            _queryParams["createdAtLt"] = createdAtLt;
+        }
+
+        if (createdAtGe !== undefined) {
+            _queryParams["createdAtGe"] = createdAtGe;
+        }
+
+        if (createdAtLe !== undefined) {
+            _queryParams["createdAtLe"] = createdAtLe;
+        }
+
+        if (updatedAtGt !== undefined) {
+            _queryParams["updatedAtGt"] = updatedAtGt;
+        }
+
+        if (updatedAtLt !== undefined) {
+            _queryParams["updatedAtLt"] = updatedAtLt;
+        }
+
+        if (updatedAtGe !== undefined) {
+            _queryParams["updatedAtGe"] = updatedAtGe;
+        }
+
+        if (updatedAtLe !== undefined) {
+            _queryParams["updatedAtLe"] = updatedAtLe;
+        }
+
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "v2/call",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.CallPaginatedResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.VapiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.VapiTimeoutError("Timeout exceeded when calling GET /v2/call.");
+            case "unknown":
+                throw new errors.VapiError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * @param {string} id
      * @param {Calls.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -300,17 +528,23 @@ export class Calls {
 
     /**
      * @param {string} id
+     * @param {Vapi.DeleteCallDto} request
      * @param {Calls.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.calls.delete("id")
      */
-    public delete(id: string, requestOptions?: Calls.RequestOptions): core.HttpResponsePromise<Vapi.Call> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    public delete(
+        id: string,
+        request: Vapi.DeleteCallDto = {},
+        requestOptions?: Calls.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.Call> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
     private async __delete(
         id: string,
+        request: Vapi.DeleteCallDto = {},
         requestOptions?: Calls.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.Call>> {
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -327,7 +561,10 @@ export class Calls {
             ),
             method: "DELETE",
             headers: _headers,
+            contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

@@ -39,6 +39,11 @@ export interface CustomLlmModel {
     headers?: Record<string, string>;
     /** These is the URL we'll use for the OpenAI client's `baseURL`. Ex. https://openrouter.ai/api/v1 */
     url: string;
+    /**
+     * This determines whether the transcriber's word level confidence is sent in requests to the custom provider. Default is false.
+     * This only works for Deepgram transcribers.
+     */
+    wordLevelConfidenceEnabled?: boolean;
     /** This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds. */
     timeoutSeconds?: number;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */

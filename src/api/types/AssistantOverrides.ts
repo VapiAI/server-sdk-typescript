@@ -70,6 +70,7 @@ export interface AssistantOverrides {
     credentials?: AssistantOverrides.Credentials.Item[];
     /** This is a set of actions that will be performed on certain events. */
     hooks?: AssistantOverrides.Hooks.Item[];
+    "tools:append"?: AssistantOverrides.ToolsAppend.Item[];
     /**
      * These are values that will be used to replace the template variables in the assistant messages and other text-based fields.
      * This uses LiquidJS syntax. https://liquidjs.com/tutorials/intro-to-liquid.html
@@ -316,7 +317,9 @@ export namespace AssistantOverrides {
             | "chat.deleted"
             | "session.created"
             | "session.updated"
-            | "session.deleted";
+            | "session.deleted"
+            | "call.deleted"
+            | "call.delete.failed";
         export const Item = {
             ConversationUpdate: "conversation-update",
             EndOfCallReport: "end-of-call-report",
@@ -341,6 +344,8 @@ export namespace AssistantOverrides {
             SessionCreated: "session.created",
             SessionUpdated: "session.updated",
             SessionDeleted: "session.deleted",
+            CallDeleted: "call.deleted",
+            CallDeleteFailed: "call.delete.failed",
         } as const;
     }
 
@@ -414,5 +419,31 @@ export namespace AssistantOverrides {
             | Vapi.CallHookAssistantSpeechInterrupted
             | Vapi.CallHookCustomerSpeechInterrupted
             | Vapi.CallHookCustomerSpeechTimeout;
+    }
+
+    export type ToolsAppend = ToolsAppend.Item[];
+
+    export namespace ToolsAppend {
+        export type Item =
+            | Vapi.CreateApiRequestToolDto
+            | Vapi.CreateBashToolDto
+            | Vapi.CreateComputerToolDto
+            | Vapi.CreateDtmfToolDto
+            | Vapi.CreateEndCallToolDto
+            | Vapi.CreateFunctionToolDto
+            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
+            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
+            | Vapi.CreateGoHighLevelContactCreateToolDto
+            | Vapi.CreateGoHighLevelContactGetToolDto
+            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
+            | Vapi.CreateGoogleCalendarCreateEventToolDto
+            | Vapi.CreateGoogleSheetsRowAppendToolDto
+            | Vapi.CreateHandoffToolDto
+            | Vapi.CreateMcpToolDto
+            | Vapi.CreateQueryToolDto
+            | Vapi.CreateSlackSendMessageToolDto
+            | Vapi.CreateSmsToolDto
+            | Vapi.CreateTextEditorToolDto
+            | Vapi.CreateTransferCallToolDto;
     }
 }

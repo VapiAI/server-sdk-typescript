@@ -33,8 +33,19 @@ export interface FallbackDeepgramTranscriber {
      * @default 0.4
      */
     confidenceThreshold?: number;
-    preflightThreshold?: number;
+    /** Eager end-of-turn confidence required to fire a eager end-of-turn event. Setting a value here will enable EagerEndOfTurn and SpeechResumed events. It is disabled by default. Only used with Flux models. */
+    eagerEotThreshold?: number;
+    /**
+     * End-of-turn confidence required to finish a turn. Only used with Flux models.
+     *
+     * @default 0.7
+     */
     eotThreshold?: number;
+    /**
+     * A turn will be finished when this much time has passed after speech, regardless of EOT confidence. Only used with Flux models.
+     *
+     * @default 5000
+     */
     eotTimeoutMs?: number;
     /** These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here. */
     keywords?: string[];

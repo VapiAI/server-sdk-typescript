@@ -15,7 +15,17 @@
 <dd>
 
 ```typescript
-await client.assistants.list();
+await client.assistants.list({
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -265,7 +275,17 @@ await client.assistants.update("id");
 <dd>
 
 ```typescript
-await client.squads.list();
+await client.squads.list({
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -519,7 +539,20 @@ await client.squads.update("id", {
 <dd>
 
 ```typescript
-await client.calls.list();
+await client.calls.list({
+    id: "id",
+    assistantId: "assistantId",
+    phoneNumberId: "phoneNumberId",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -602,6 +635,75 @@ await client.calls.create();
 </dl>
 </details>
 
+<details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">callControllerFindAllPaginated</a>({ ...params }) -> Vapi.CallPaginatedResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.calls.callControllerFindAllPaginated({
+    assistantId: "assistantId",
+    assistantName: "assistantName",
+    id: "id",
+    costLe: 1.1,
+    costGe: 1.1,
+    cost: 1.1,
+    successEvaluation: "successEvaluation",
+    endedReason: "endedReason",
+    phoneNumberId: "phoneNumberId",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.CallControllerFindAllPaginatedRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Calls.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">get</a>(id) -> Vapi.Call</code></summary>
 <dl>
 <dd>
@@ -650,7 +752,7 @@ await client.calls.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">delete</a>(id) -> Vapi.Call</code></summary>
+<details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">delete</a>(id, { ...params }) -> Vapi.Call</code></summary>
 <dl>
 <dd>
 
@@ -680,6 +782,14 @@ await client.calls.delete("id");
 <dd>
 
 **id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Vapi.DeleteCallDto`
 
 </dd>
 </dl>
@@ -769,7 +879,23 @@ await client.calls.update("id");
 <dd>
 
 ```typescript
-await client.chats.list();
+await client.chats.list({
+    assistantId: "assistantId",
+    squadId: "squadId",
+    workflowId: "workflowId",
+    sessionId: "sessionId",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -1030,7 +1156,21 @@ await client.chats.createResponse({
 <dd>
 
 ```typescript
-await client.campaigns.campaignControllerFindAll();
+await client.campaigns.campaignControllerFindAll({
+    id: "id",
+    status: "scheduled",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -1284,7 +1424,23 @@ await client.campaigns.campaignControllerUpdate("id");
 <dd>
 
 ```typescript
-await client.sessions.list();
+await client.sessions.list({
+    name: "name",
+    assistantId: "assistantId",
+    squadId: "squadId",
+    workflowId: "workflowId",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -1534,7 +1690,17 @@ await client.sessions.update("id");
 <dd>
 
 ```typescript
-await client.phoneNumbers.list();
+await client.phoneNumbers.list({
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -1602,6 +1768,67 @@ await client.phoneNumbers.create({
 <dd>
 
 **request:** `Vapi.PhoneNumbersCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PhoneNumbers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.phoneNumbers.<a href="/src/api/resources/phoneNumbers/client/Client.ts">phoneNumberControllerFindAllPaginated</a>({ ...params }) -> Vapi.PhoneNumberPaginatedResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.phoneNumbers.phoneNumberControllerFindAllPaginated({
+    search: "search",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.PhoneNumberControllerFindAllPaginatedRequest`
 
 </dd>
 </dl>
@@ -1787,7 +2014,17 @@ await client.phoneNumbers.update("id", {});
 <dd>
 
 ```typescript
-await client.tools.list();
+await client.tools.list({
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -2285,7 +2522,21 @@ await client.files.update("id");
 <dd>
 
 ```typescript
-await client.structuredOutputs.structuredOutputControllerFindAll();
+await client.structuredOutputs.structuredOutputControllerFindAll({
+    id: "id",
+    name: "name",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -2542,7 +2793,20 @@ await client.structuredOutputs.structuredOutputControllerUpdate("id", {
 <dd>
 
 ```typescript
-await client.eval.evalControllerGetPaginated();
+await client.eval.evalControllerGetPaginated({
+    id: "id",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -2893,7 +3157,20 @@ await client.eval.evalControllerRemoveRun("id");
 <dd>
 
 ```typescript
-await client.eval.evalControllerGetRunsPaginated();
+await client.eval.evalControllerGetRunsPaginated({
+    id: "id",
+    page: 1.1,
+    sortOrder: "ASC",
+    limit: 1.1,
+    createdAtGt: "2024-01-15T09:30:00Z",
+    createdAtLt: "2024-01-15T09:30:00Z",
+    createdAtGe: "2024-01-15T09:30:00Z",
+    createdAtLe: "2024-01-15T09:30:00Z",
+    updatedAtGt: "2024-01-15T09:30:00Z",
+    updatedAtLt: "2024-01-15T09:30:00Z",
+    updatedAtGe: "2024-01-15T09:30:00Z",
+    updatedAtLe: "2024-01-15T09:30:00Z",
+});
 ```
 
 </dd>
@@ -2998,6 +3275,21 @@ await client.eval.evalControllerRun({
 await client.providerResources.providerResourceControllerGetProviderResourcesPaginated(
     "11labs",
     "pronunciation-dictionary",
+    {
+        id: "id",
+        resourceId: "resourceId",
+        page: 1.1,
+        sortOrder: "ASC",
+        limit: 1.1,
+        createdAtGt: "2024-01-15T09:30:00Z",
+        createdAtLt: "2024-01-15T09:30:00Z",
+        createdAtGe: "2024-01-15T09:30:00Z",
+        createdAtLe: "2024-01-15T09:30:00Z",
+        updatedAtGt: "2024-01-15T09:30:00Z",
+        updatedAtLt: "2024-01-15T09:30:00Z",
+        updatedAtGe: "2024-01-15T09:30:00Z",
+        updatedAtLe: "2024-01-15T09:30:00Z",
+    },
 );
 ```
 

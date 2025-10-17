@@ -76,10 +76,12 @@ export namespace XaiModel {
     /**
      * This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
      */
-    export type Model = "grok-beta" | "grok-2" | "grok-3";
+    export type Model = "grok-beta" | "grok-2" | "grok-3" | "grok-4-fast-reasoning" | "grok-4-fast-non-reasoning";
     export const Model = {
         GrokBeta: "grok-beta",
         Grok2: "grok-2",
         Grok3: "grok-3",
+        Grok4FastReasoning: "grok-4-fast-reasoning",
+        Grok4FastNonReasoning: "grok-4-fast-non-reasoning",
     } as const;
 }

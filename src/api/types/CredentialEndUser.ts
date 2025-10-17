@@ -5,4 +5,5 @@
 export interface CredentialEndUser {
     endUserId: string;
     organizationId: string;
+    tags?: Record<string, unknown>;
 }

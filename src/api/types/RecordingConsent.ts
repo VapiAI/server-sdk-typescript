@@ -5,8 +5,9 @@
 export interface RecordingConsent {
     /** This is the type of recording consent. */
     type: Record<string, unknown>;
-    /** This is whether the user granted recording consent. */
-    granted: boolean;
-    /** This is the date and time the recording consent was granted. */
-    grantedAt: string;
+    /**
+     * This is the date and time the recording consent was granted.
+     * If not specified, it means the recording consent was not granted.
+     */
+    grantedAt?: string;
 }

@@ -21,8 +21,19 @@ describe("Squads", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -68,6 +79,16 @@ describe("Squads", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -85,8 +106,8 @@ describe("Squads", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -94,6 +115,7 @@ describe("Squads", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -123,7 +145,17 @@ describe("Squads", () => {
         ];
         server.mockEndpoint().get("/squad").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.squads.list();
+        const response = await client.squads.list({
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual([
             {
                 name: "name",
@@ -135,8 +167,19 @@ describe("Squads", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -218,6 +261,22 @@ describe("Squads", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -243,8 +302,8 @@ describe("Squads", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -254,6 +313,7 @@ describe("Squads", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -306,6 +366,26 @@ describe("Squads", () => {
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -319,6 +399,26 @@ describe("Squads", () => {
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -341,10 +441,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -355,14 +455,13 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -435,6 +534,16 @@ describe("Squads", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -452,8 +561,8 @@ describe("Squads", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -476,6 +585,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -592,6 +702,26 @@ describe("Squads", () => {
                     ],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -618,6 +748,26 @@ describe("Squads", () => {
                         ],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -653,10 +803,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -667,7 +817,6 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -676,6 +825,7 @@ describe("Squads", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -807,6 +957,22 @@ describe("Squads", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -834,8 +1000,8 @@ describe("Squads", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -865,6 +1031,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -992,6 +1159,26 @@ describe("Squads", () => {
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1005,6 +1192,26 @@ describe("Squads", () => {
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1027,10 +1234,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1041,14 +1248,13 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -1121,6 +1327,16 @@ describe("Squads", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -1138,8 +1354,8 @@ describe("Squads", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -1162,6 +1378,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1269,6 +1486,26 @@ describe("Squads", () => {
                     ],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1295,6 +1532,26 @@ describe("Squads", () => {
                         ],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1330,10 +1587,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1344,7 +1601,6 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -1353,6 +1609,7 @@ describe("Squads", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -1484,6 +1741,22 @@ describe("Squads", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -1511,8 +1784,8 @@ describe("Squads", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -1542,6 +1815,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1669,6 +1943,26 @@ describe("Squads", () => {
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1682,6 +1976,26 @@ describe("Squads", () => {
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1704,10 +2018,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1718,14 +2032,13 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -1798,6 +2111,16 @@ describe("Squads", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -1815,8 +2138,8 @@ describe("Squads", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -1839,6 +2162,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1946,6 +2270,26 @@ describe("Squads", () => {
                     ],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1972,6 +2316,26 @@ describe("Squads", () => {
                         ],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -2007,10 +2371,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2021,7 +2385,6 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -2030,6 +2393,7 @@ describe("Squads", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -2161,6 +2525,22 @@ describe("Squads", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -2188,8 +2568,8 @@ describe("Squads", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -2219,6 +2599,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2346,6 +2727,26 @@ describe("Squads", () => {
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -2359,6 +2760,26 @@ describe("Squads", () => {
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -2381,10 +2802,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2395,14 +2816,13 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -2475,6 +2895,16 @@ describe("Squads", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -2492,8 +2922,8 @@ describe("Squads", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -2516,6 +2946,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2632,6 +3063,26 @@ describe("Squads", () => {
                     ],
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -2658,6 +3109,26 @@ describe("Squads", () => {
                         ],
                     },
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -2693,10 +3164,10 @@ describe("Squads", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2707,7 +3178,6 @@ describe("Squads", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -2716,6 +3186,7 @@ describe("Squads", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -2847,6 +3318,22 @@ describe("Squads", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -2874,8 +3361,8 @@ describe("Squads", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -2905,6 +3392,7 @@ describe("Squads", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,

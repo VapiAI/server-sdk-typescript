@@ -10,7 +10,7 @@ export interface HumeVoice {
     /** This is the voice provider that will be used. */
     provider: "hume";
     /** This is the model that will be used. */
-    model?: "octave";
+    model?: HumeVoice.Model;
     /** The ID of the particular voice you want to use. */
     voiceId: string;
     /** Indicates whether the chosen voice is a preset Hume AI voice or a custom voice. */
@@ -26,4 +26,15 @@ export interface HumeVoice {
     description?: string;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
+}
+
+export namespace HumeVoice {
+    /**
+     * This is the model that will be used.
+     */
+    export type Model = "octave" | "octave2";
+    export const Model = {
+        Octave: "octave",
+        Octave2: "octave2",
+    } as const;
 }

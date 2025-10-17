@@ -20,10 +20,10 @@ describe("Assistants", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -34,14 +34,13 @@ describe("Assistants", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -130,8 +129,8 @@ describe("Assistants", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -154,6 +153,7 @@ describe("Assistants", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -248,7 +248,17 @@ describe("Assistants", () => {
         ];
         server.mockEndpoint().get("/assistant").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.assistants.list();
+        const response = await client.assistants.list({
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual([
             {
                 transcriber: {
@@ -258,10 +268,10 @@ describe("Assistants", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -272,7 +282,6 @@ describe("Assistants", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -281,6 +290,7 @@ describe("Assistants", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -436,8 +446,8 @@ describe("Assistants", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -467,6 +477,7 @@ describe("Assistants", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -595,10 +606,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -609,14 +620,13 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
                 },
             },
             model: {
-                messages: [{ role: "assistant" }],
+                messages: [{ content: undefined, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
@@ -727,8 +737,8 @@ describe("Assistants", () => {
                         voiceId: "andrew",
                         fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: { key: "value" },
@@ -766,6 +776,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -880,10 +891,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -894,7 +905,6 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
@@ -903,6 +913,7 @@ describe("Assistants", () => {
             model: {
                 messages: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -1098,8 +1109,8 @@ describe("Assistants", () => {
                             ],
                         },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: {
@@ -1164,6 +1175,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -1307,10 +1319,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -1321,14 +1333,13 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
                 },
             },
             model: {
-                messages: [{ role: "assistant" }],
+                messages: [{ content: undefined, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
@@ -1439,8 +1450,8 @@ describe("Assistants", () => {
                         voiceId: "andrew",
                         fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: { key: "value" },
@@ -1478,6 +1489,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -1585,10 +1597,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -1599,7 +1611,6 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
@@ -1608,6 +1619,7 @@ describe("Assistants", () => {
             model: {
                 messages: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -1803,8 +1815,8 @@ describe("Assistants", () => {
                             ],
                         },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: {
@@ -1869,6 +1881,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -2012,10 +2025,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -2026,14 +2039,13 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
                 },
             },
             model: {
-                messages: [{ role: "assistant" }],
+                messages: [{ content: undefined, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
@@ -2144,8 +2156,8 @@ describe("Assistants", () => {
                         voiceId: "andrew",
                         fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: { key: "value" },
@@ -2183,6 +2195,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -2290,10 +2303,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -2304,7 +2317,6 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
@@ -2313,6 +2325,7 @@ describe("Assistants", () => {
             model: {
                 messages: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -2508,8 +2521,8 @@ describe("Assistants", () => {
                             ],
                         },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: {
@@ -2574,6 +2587,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -2717,10 +2731,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -2731,14 +2745,13 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
                 },
             },
             model: {
-                messages: [{ role: "assistant" }],
+                messages: [{ content: undefined, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
@@ -2849,8 +2862,8 @@ describe("Assistants", () => {
                         voiceId: "andrew",
                         fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: { key: "value" },
@@ -2888,6 +2901,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -3002,10 +3016,10 @@ describe("Assistants", () => {
                 formatTurns: true,
                 endOfTurnConfidenceThreshold: 0.7,
                 minEndOfTurnSilenceWhenConfident: 160,
-                wordFinalizationMaxWaitTime: 160,
                 maxTurnSilence: 400,
                 realtimeUrl: "realtimeUrl",
                 wordBoost: ["wordBoost"],
+                keytermsPrompt: ["keytermsPrompt"],
                 endUtteranceSilenceThreshold: 1.1,
                 disablePartialTranscripts: true,
                 fallbackPlan: {
@@ -3016,7 +3030,6 @@ describe("Assistants", () => {
                             formatTurns: true,
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
-                            wordFinalizationMaxWaitTime: 160,
                             maxTurnSilence: 400,
                         },
                     ],
@@ -3025,6 +3038,7 @@ describe("Assistants", () => {
             model: {
                 messages: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -3220,8 +3234,8 @@ describe("Assistants", () => {
                             ],
                         },
                     },
-                    type: "hang-up-to-decline",
-                    waitSeconds: 2,
+                    type: "stay-on-line",
+                    waitSeconds: 3,
                 },
             },
             metadata: {
@@ -3286,6 +3300,7 @@ describe("Assistants", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,

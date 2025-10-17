@@ -31,5 +31,7 @@ export namespace ClientMessage {
         | Vapi.ClientMessageChatDeleted
         | Vapi.ClientMessageSessionCreated
         | Vapi.ClientMessageSessionUpdated
-        | Vapi.ClientMessageSessionDeleted;
+        | Vapi.ClientMessageSessionDeleted
+        | Vapi.ClientMessageCallDeleted
+        | Vapi.ClientMessageCallDeleteFailed;
 }

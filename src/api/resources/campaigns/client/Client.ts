@@ -45,7 +45,21 @@ export class Campaigns {
      * @param {Campaigns.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.campaigns.campaignControllerFindAll()
+     *     await client.campaigns.campaignControllerFindAll({
+     *         id: "id",
+     *         status: "scheduled",
+     *         page: 1.1,
+     *         sortOrder: "ASC",
+     *         limit: 1.1,
+     *         createdAtGt: "2024-01-15T09:30:00Z",
+     *         createdAtLt: "2024-01-15T09:30:00Z",
+     *         createdAtGe: "2024-01-15T09:30:00Z",
+     *         createdAtLe: "2024-01-15T09:30:00Z",
+     *         updatedAtGt: "2024-01-15T09:30:00Z",
+     *         updatedAtLt: "2024-01-15T09:30:00Z",
+     *         updatedAtGe: "2024-01-15T09:30:00Z",
+     *         updatedAtLe: "2024-01-15T09:30:00Z"
+     *     })
      */
     public campaignControllerFindAll(
         request: Vapi.CampaignControllerFindAllRequest = {},

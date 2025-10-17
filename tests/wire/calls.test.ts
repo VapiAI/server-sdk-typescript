@@ -52,6 +52,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -71,7 +72,7 @@ describe("Calls", () => {
                 monitor: { listenUrl: "listenUrl", controlUrl: "controlUrl" },
                 artifact: {
                     messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
-                    messagesOpenAIFormatted: [{ role: "assistant" }],
+                    messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
                     transcript: "transcript",
                     pcapUrl: "pcapUrl",
                     logUrl: "logUrl",
@@ -80,9 +81,7 @@ describe("Calls", () => {
                     structuredOutputs: { key: "value" },
                     transfers: ["transfers"],
                 },
-                compliance: {
-                    recordingConsent: { type: { key: "value" }, granted: true, grantedAt: "2024-01-15T09:30:00Z" },
-                },
+                compliance: { recordingConsent: { type: { key: "value" } } },
                 campaignId: "campaignId",
                 assistantId: "assistantId",
                 assistant: {
@@ -92,8 +91,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -155,8 +165,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -164,6 +174,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -192,8 +203,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -239,6 +261,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -256,8 +288,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -265,6 +297,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -291,6 +324,26 @@ describe("Calls", () => {
                     name: "name",
                     members: [{}],
                     membersOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -309,6 +362,26 @@ describe("Calls", () => {
                     nodes: [
                         {
                             type: "conversation",
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                        },
+                                    ],
+                                },
+                            },
                             voice: {
                                 cachingEnabled: true,
                                 provider: "azure",
@@ -327,8 +400,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     voice: {
                         cachingEnabled: true,
@@ -341,6 +425,7 @@ describe("Calls", () => {
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     voicemailDetection: { provider: "google" },
+                    maxDurationSeconds: 600,
                     name: "name",
                     edges: [{ from: "from", to: "to" }],
                     globalPrompt: "globalPrompt",
@@ -361,14 +446,15 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     artifactPlan: {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -412,6 +498,26 @@ describe("Calls", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -437,7 +543,20 @@ describe("Calls", () => {
         ];
         server.mockEndpoint().get("/call").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.calls.list();
+        const response = await client.calls.list({
+            id: "id",
+            assistantId: "assistantId",
+            phoneNumberId: "phoneNumberId",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual([
             {
                 type: "inboundPhoneCall",
@@ -496,6 +615,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -536,6 +656,7 @@ describe("Calls", () => {
                     ],
                     messagesOpenAIFormatted: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -556,8 +677,6 @@ describe("Calls", () => {
                         type: {
                             key: "value",
                         },
-                        granted: true,
-                        grantedAt: "2024-01-15T09:30:00Z",
                     },
                 },
                 campaignId: "campaignId",
@@ -569,8 +688,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -674,8 +804,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -685,6 +815,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -725,8 +856,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -808,6 +950,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -833,8 +991,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -844,6 +1002,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -882,6 +1041,26 @@ describe("Calls", () => {
                     name: "name",
                     members: [{}],
                     membersOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -913,6 +1092,26 @@ describe("Calls", () => {
                     nodes: [
                         {
                             type: "conversation",
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                        },
+                                    ],
+                                },
+                            },
                             voice: {
                                 cachingEnabled: true,
                                 provider: "azure",
@@ -940,8 +1139,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     voice: {
                         cachingEnabled: true,
@@ -981,6 +1191,7 @@ describe("Calls", () => {
                     voicemailDetection: {
                         provider: "google",
                     },
+                    maxDurationSeconds: 600,
                     name: "name",
                     edges: [
                         {
@@ -1018,14 +1229,15 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     artifactPlan: {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1097,6 +1309,26 @@ describe("Calls", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1158,6 +1390,7 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: { key: "value" },
                 },
             ],
             phoneCallTransport: "sip",
@@ -1221,6 +1454,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -1240,7 +1474,7 @@ describe("Calls", () => {
             monitor: { listenUrl: "listenUrl", controlUrl: "controlUrl" },
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
-                messagesOpenAIFormatted: [{ role: "assistant" }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -1258,9 +1492,7 @@ describe("Calls", () => {
                 structuredOutputs: { key: "value" },
                 transfers: ["transfers"],
             },
-            compliance: {
-                recordingConsent: { type: { key: "value" }, granted: true, grantedAt: "2024-01-15T09:30:00Z" },
-            },
+            compliance: { recordingConsent: { type: { key: "value" }, grantedAt: "2024-01-15T09:30:00Z" } },
             campaignId: "campaignId",
             assistantId: "assistantId",
             assistant: {
@@ -1271,10 +1503,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1285,14 +1517,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -1381,8 +1612,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -1405,6 +1636,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1500,10 +1732,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1514,14 +1746,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -1594,6 +1825,16 @@ describe("Calls", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -1611,8 +1852,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -1635,6 +1876,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1733,8 +1975,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -1780,6 +2033,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -1797,8 +2060,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -1806,6 +2069,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1833,6 +2097,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -1850,10 +2134,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1864,7 +2148,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -1883,6 +2166,7 @@ describe("Calls", () => {
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 voicemailDetection: { beepMaxAwaitSeconds: 1.1, provider: "google", type: "audio" },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [{ from: "from", to: "to" }],
                 globalPrompt: "globalPrompt",
@@ -1905,8 +2189,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -1919,6 +2203,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2052,8 +2337,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -2099,6 +2395,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -2116,8 +2422,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -2125,6 +2431,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -2187,6 +2494,9 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: {
+                        key: "value",
+                    },
                 },
             ],
             phoneCallTransport: "sip",
@@ -2254,6 +2564,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -2296,6 +2607,7 @@ describe("Calls", () => {
                 ],
                 messagesOpenAIFormatted: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -2329,7 +2641,6 @@ describe("Calls", () => {
                     type: {
                         key: "value",
                     },
-                    granted: true,
                     grantedAt: "2024-01-15T09:30:00Z",
                 },
             },
@@ -2343,10 +2654,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2357,7 +2668,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -2366,6 +2676,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -2521,8 +2832,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -2552,6 +2863,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2669,10 +2981,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2683,7 +2995,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -2692,6 +3003,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -2823,6 +3135,22 @@ describe("Calls", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -2850,8 +3178,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -2881,6 +3209,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -3001,8 +3330,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -3084,6 +3424,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -3109,8 +3465,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -3120,6 +3476,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -3159,6 +3516,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -3189,10 +3566,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -3203,7 +3580,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -3257,6 +3633,7 @@ describe("Calls", () => {
                     provider: "google",
                     type: "audio",
                 },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [
                     {
@@ -3300,8 +3677,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -3319,6 +3696,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -3489,8 +3867,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -3572,6 +3961,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -3597,8 +4002,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -3608,6 +4013,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -3658,6 +4064,478 @@ describe("Calls", () => {
         });
     });
 
+    test("CallController_findAllPaginated", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            results: [
+                {
+                    type: "inboundPhoneCall",
+                    costs: [{ type: "transport", minutes: 1.1, cost: 1.1 }],
+                    messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
+                    phoneCallTransport: "sip",
+                    status: "scheduled",
+                    endedReason: "call-start-error-neither-assistant-nor-server-set",
+                    destination: { type: "number", number: "number" },
+                    id: "id",
+                    orgId: "orgId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    startedAt: "2024-01-15T09:30:00Z",
+                    endedAt: "2024-01-15T09:30:00Z",
+                    cost: 1.1,
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                    },
+                    campaignId: "campaignId",
+                    assistantId: "assistantId",
+                    assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        },
+                        firstMessage: "Hello! How can I help you today?",
+                        maxDurationSeconds: 600,
+                        backgroundSound: "off",
+                        modelOutputInMessagesEnabled: false,
+                        credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    },
+                    assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        },
+                        firstMessage: "Hello! How can I help you today?",
+                        maxDurationSeconds: 600,
+                        backgroundSound: "off",
+                        modelOutputInMessagesEnabled: false,
+                        credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    },
+                    squadId: "squadId",
+                    squad: { members: [{}] },
+                    workflowId: "workflowId",
+                    workflow: {
+                        nodes: [
+                            {
+                                type: "conversation",
+                                transcriber: {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    fallbackPlan: {
+                                        transcribers: [
+                                            {
+                                                provider: "assembly-ai",
+                                                confidenceThreshold: 0.4,
+                                                formatTurns: true,
+                                                endOfTurnConfidenceThreshold: 0.7,
+                                                minEndOfTurnSilenceWhenConfident: 160,
+                                                maxTurnSilence: 400,
+                                            },
+                                        ],
+                                    },
+                                },
+                                voice: {
+                                    cachingEnabled: true,
+                                    provider: "azure",
+                                    voiceId: "andrew",
+                                    fallbackPlan: {
+                                        voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
+                                    },
+                                },
+                                name: "name",
+                            },
+                        ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        },
+                        backgroundSound: "off",
+                        credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        maxDurationSeconds: 600,
+                        name: "name",
+                        edges: [{ from: "from", to: "to" }],
+                    },
+                    phoneNumberId: "phoneNumberId",
+                    phoneNumber: { twilioPhoneNumber: "twilioPhoneNumber", twilioAccountSid: "twilioAccountSid" },
+                    customerId: "customerId",
+                    name: "name",
+                    schedulePlan: { earliestAt: "2024-01-15T09:30:00Z" },
+                    transport: { key: "value" },
+                },
+            ],
+            metadata: {
+                itemsPerPage: 1.1,
+                totalItems: 1.1,
+                currentPage: 1.1,
+                itemsBeyondRetention: true,
+                createdAtLe: "2024-01-15T09:30:00Z",
+                createdAtGe: "2024-01-15T09:30:00Z",
+            },
+        };
+        server.mockEndpoint().get("/v2/call").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.calls.callControllerFindAllPaginated({
+            assistantId: "assistantId",
+            assistantName: "assistantName",
+            id: "id",
+            costLe: 1.1,
+            costGe: 1.1,
+            cost: 1.1,
+            successEvaluation: "successEvaluation",
+            endedReason: "endedReason",
+            phoneNumberId: "phoneNumberId",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
+        expect(response).toEqual({
+            results: [
+                {
+                    type: "inboundPhoneCall",
+                    costs: [
+                        {
+                            type: "transport",
+                            minutes: 1.1,
+                            cost: 1.1,
+                        },
+                    ],
+                    messages: [
+                        {
+                            role: "role",
+                            message: "message",
+                            time: 1.1,
+                            endTime: 1.1,
+                            secondsFromStart: 1.1,
+                        },
+                    ],
+                    phoneCallTransport: "sip",
+                    status: "scheduled",
+                    endedReason: "call-start-error-neither-assistant-nor-server-set",
+                    destination: {
+                        type: "number",
+                        number: "number",
+                    },
+                    id: "id",
+                    orgId: "orgId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    startedAt: "2024-01-15T09:30:00Z",
+                    endedAt: "2024-01-15T09:30:00Z",
+                    cost: 1.1,
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                    },
+                    campaignId: "campaignId",
+                    assistantId: "assistantId",
+                    assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        cachingEnabled: true,
+                                        provider: "azure",
+                                        voiceId: "andrew",
+                                    },
+                                ],
+                            },
+                        },
+                        firstMessage: "Hello! How can I help you today?",
+                        maxDurationSeconds: 600,
+                        backgroundSound: "off",
+                        modelOutputInMessagesEnabled: false,
+                        credentials: [
+                            {
+                                provider: "11labs",
+                                apiKey: "apiKey",
+                            },
+                        ],
+                    },
+                    assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        cachingEnabled: true,
+                                        provider: "azure",
+                                        voiceId: "andrew",
+                                    },
+                                ],
+                            },
+                        },
+                        firstMessage: "Hello! How can I help you today?",
+                        maxDurationSeconds: 600,
+                        backgroundSound: "off",
+                        modelOutputInMessagesEnabled: false,
+                        credentials: [
+                            {
+                                provider: "11labs",
+                                apiKey: "apiKey",
+                            },
+                        ],
+                    },
+                    squadId: "squadId",
+                    squad: {
+                        members: [{}],
+                    },
+                    workflowId: "workflowId",
+                    workflow: {
+                        nodes: [
+                            {
+                                type: "conversation",
+                                transcriber: {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    fallbackPlan: {
+                                        transcribers: [
+                                            {
+                                                provider: "assembly-ai",
+                                                confidenceThreshold: 0.4,
+                                                formatTurns: true,
+                                                endOfTurnConfidenceThreshold: 0.7,
+                                                minEndOfTurnSilenceWhenConfident: 160,
+                                                maxTurnSilence: 400,
+                                            },
+                                        ],
+                                    },
+                                },
+                                voice: {
+                                    cachingEnabled: true,
+                                    provider: "azure",
+                                    voiceId: "andrew",
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                cachingEnabled: true,
+                                                provider: "azure",
+                                                voiceId: "andrew",
+                                            },
+                                        ],
+                                    },
+                                },
+                                name: "name",
+                            },
+                        ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
+                        voice: {
+                            cachingEnabled: true,
+                            provider: "azure",
+                            voiceId: "andrew",
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        cachingEnabled: true,
+                                        provider: "azure",
+                                        voiceId: "andrew",
+                                    },
+                                ],
+                            },
+                        },
+                        backgroundSound: "off",
+                        credentials: [
+                            {
+                                provider: "11labs",
+                                apiKey: "apiKey",
+                            },
+                        ],
+                        maxDurationSeconds: 600,
+                        name: "name",
+                        edges: [
+                            {
+                                from: "from",
+                                to: "to",
+                            },
+                        ],
+                    },
+                    phoneNumberId: "phoneNumberId",
+                    phoneNumber: {
+                        twilioPhoneNumber: "twilioPhoneNumber",
+                        twilioAccountSid: "twilioAccountSid",
+                    },
+                    customerId: "customerId",
+                    name: "name",
+                    schedulePlan: {
+                        earliestAt: "2024-01-15T09:30:00Z",
+                    },
+                    transport: {
+                        key: "value",
+                    },
+                },
+            ],
+            metadata: {
+                itemsPerPage: 1.1,
+                totalItems: 1.1,
+                currentPage: 1.1,
+                itemsBeyondRetention: true,
+                createdAtLe: "2024-01-15T09:30:00Z",
+                createdAtGe: "2024-01-15T09:30:00Z",
+            },
+        });
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ token: "test", environment: server.baseUrl });
@@ -3676,6 +4554,7 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: { key: "value" },
                 },
             ],
             phoneCallTransport: "sip",
@@ -3739,6 +4618,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -3758,7 +4638,7 @@ describe("Calls", () => {
             monitor: { listenUrl: "listenUrl", controlUrl: "controlUrl" },
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
-                messagesOpenAIFormatted: [{ role: "assistant" }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -3776,9 +4656,7 @@ describe("Calls", () => {
                 structuredOutputs: { key: "value" },
                 transfers: ["transfers"],
             },
-            compliance: {
-                recordingConsent: { type: { key: "value" }, granted: true, grantedAt: "2024-01-15T09:30:00Z" },
-            },
+            compliance: { recordingConsent: { type: { key: "value" }, grantedAt: "2024-01-15T09:30:00Z" } },
             campaignId: "campaignId",
             assistantId: "assistantId",
             assistant: {
@@ -3789,10 +4667,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -3803,14 +4681,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -3899,8 +4776,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -3923,6 +4800,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -4018,10 +4896,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -4032,14 +4910,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -4112,6 +4989,16 @@ describe("Calls", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -4129,8 +5016,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -4153,6 +5040,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -4251,8 +5139,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -4298,6 +5197,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -4315,8 +5224,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -4324,6 +5233,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -4351,6 +5261,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -4368,10 +5298,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -4382,7 +5312,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -4401,6 +5330,7 @@ describe("Calls", () => {
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 voicemailDetection: { beepMaxAwaitSeconds: 1.1, provider: "google", type: "audio" },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [{ from: "from", to: "to" }],
                 globalPrompt: "globalPrompt",
@@ -4423,8 +5353,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -4437,6 +5367,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -4570,8 +5501,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -4617,6 +5559,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -4634,8 +5586,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -4643,6 +5595,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -4698,6 +5651,9 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: {
+                        key: "value",
+                    },
                 },
             ],
             phoneCallTransport: "sip",
@@ -4765,6 +5721,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -4807,6 +5764,7 @@ describe("Calls", () => {
                 ],
                 messagesOpenAIFormatted: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -4840,7 +5798,6 @@ describe("Calls", () => {
                     type: {
                         key: "value",
                     },
-                    granted: true,
                     grantedAt: "2024-01-15T09:30:00Z",
                 },
             },
@@ -4854,10 +5811,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -4868,7 +5825,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -4877,6 +5833,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -5032,8 +5989,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -5063,6 +6020,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -5180,10 +6138,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -5194,7 +6152,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -5203,6 +6160,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -5334,6 +6292,22 @@ describe("Calls", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -5361,8 +6335,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -5392,6 +6366,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -5512,8 +6487,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -5595,6 +6581,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -5620,8 +6622,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -5631,6 +6633,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -5670,6 +6673,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -5700,10 +6723,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -5714,7 +6737,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -5768,6 +6790,7 @@ describe("Calls", () => {
                     provider: "google",
                     type: "audio",
                 },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [
                     {
@@ -5811,8 +6834,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -5830,6 +6853,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -6000,8 +7024,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -6083,6 +7118,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -6108,8 +7159,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -6119,6 +7170,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -6172,7 +7224,7 @@ describe("Calls", () => {
     test("delete", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ token: "test", environment: server.baseUrl });
-
+        const rawRequestBody = {};
         const rawResponseBody = {
             type: "inboundPhoneCall",
             costs: [{ type: "transport", provider: "daily", minutes: 1.1, cost: 1.1 }],
@@ -6187,6 +7239,7 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: { key: "value" },
                 },
             ],
             phoneCallTransport: "sip",
@@ -6250,6 +7303,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -6269,7 +7323,7 @@ describe("Calls", () => {
             monitor: { listenUrl: "listenUrl", controlUrl: "controlUrl" },
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
-                messagesOpenAIFormatted: [{ role: "assistant" }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -6287,9 +7341,7 @@ describe("Calls", () => {
                 structuredOutputs: { key: "value" },
                 transfers: ["transfers"],
             },
-            compliance: {
-                recordingConsent: { type: { key: "value" }, granted: true, grantedAt: "2024-01-15T09:30:00Z" },
-            },
+            compliance: { recordingConsent: { type: { key: "value" }, grantedAt: "2024-01-15T09:30:00Z" } },
             campaignId: "campaignId",
             assistantId: "assistantId",
             assistant: {
@@ -6300,10 +7352,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -6314,14 +7366,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -6410,8 +7461,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -6434,6 +7485,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -6529,10 +7581,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -6543,14 +7595,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -6623,6 +7674,16 @@ describe("Calls", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -6640,8 +7701,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -6664,6 +7725,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -6762,8 +7824,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -6809,6 +7882,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -6826,8 +7909,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -6835,6 +7918,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -6862,6 +7946,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -6879,10 +7983,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -6893,7 +7997,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -6912,6 +8015,7 @@ describe("Calls", () => {
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 voicemailDetection: { beepMaxAwaitSeconds: 1.1, provider: "google", type: "audio" },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [{ from: "from", to: "to" }],
                 globalPrompt: "globalPrompt",
@@ -6934,8 +8038,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -6948,6 +8052,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -7081,8 +8186,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -7128,6 +8244,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -7145,8 +8271,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -7154,6 +8280,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -7185,7 +8312,14 @@ describe("Calls", () => {
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             transport: { key: "value" },
         };
-        server.mockEndpoint().delete("/call/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server
+            .mockEndpoint()
+            .delete("/call/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
         const response = await client.calls.delete("id");
         expect(response).toEqual({
@@ -7209,6 +8343,9 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: {
+                        key: "value",
+                    },
                 },
             ],
             phoneCallTransport: "sip",
@@ -7276,6 +8413,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -7318,6 +8456,7 @@ describe("Calls", () => {
                 ],
                 messagesOpenAIFormatted: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -7351,7 +8490,6 @@ describe("Calls", () => {
                     type: {
                         key: "value",
                     },
-                    granted: true,
                     grantedAt: "2024-01-15T09:30:00Z",
                 },
             },
@@ -7365,10 +8503,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -7379,7 +8517,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -7388,6 +8525,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -7543,8 +8681,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -7574,6 +8712,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -7691,10 +8830,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -7705,7 +8844,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -7714,6 +8852,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -7845,6 +8984,22 @@ describe("Calls", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -7872,8 +9027,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -7903,6 +9058,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -8023,8 +9179,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -8106,6 +9273,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -8131,8 +9314,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -8142,6 +9325,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -8181,6 +9365,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -8211,10 +9415,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -8225,7 +9429,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -8279,6 +9482,7 @@ describe("Calls", () => {
                     provider: "google",
                     type: "audio",
                 },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [
                     {
@@ -8322,8 +9526,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -8341,6 +9545,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -8511,8 +9716,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -8594,6 +9810,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -8619,8 +9851,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -8630,6 +9862,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -8698,6 +9931,7 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: { key: "value" },
                 },
             ],
             phoneCallTransport: "sip",
@@ -8761,6 +9995,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -8780,7 +10015,7 @@ describe("Calls", () => {
             monitor: { listenUrl: "listenUrl", controlUrl: "controlUrl" },
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
-                messagesOpenAIFormatted: [{ role: "assistant" }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -8798,9 +10033,7 @@ describe("Calls", () => {
                 structuredOutputs: { key: "value" },
                 transfers: ["transfers"],
             },
-            compliance: {
-                recordingConsent: { type: { key: "value" }, granted: true, grantedAt: "2024-01-15T09:30:00Z" },
-            },
+            compliance: { recordingConsent: { type: { key: "value" }, grantedAt: "2024-01-15T09:30:00Z" } },
             campaignId: "campaignId",
             assistantId: "assistantId",
             assistant: {
@@ -8811,10 +10044,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -8825,14 +10058,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -8921,8 +10153,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -8945,6 +10177,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -9040,10 +10273,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -9054,14 +10287,13 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -9134,6 +10366,16 @@ describe("Calls", () => {
                 observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                ],
                 variableValues: { key: "value" },
                 name: "name",
                 voicemailMessage: "voicemailMessage",
@@ -9151,8 +10393,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -9175,6 +10417,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -9273,8 +10516,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -9320,6 +10574,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -9337,8 +10601,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -9346,6 +10610,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -9373,6 +10638,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -9390,10 +10675,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -9404,7 +10689,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -9423,6 +10707,7 @@ describe("Calls", () => {
                 hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                 voicemailDetection: { beepMaxAwaitSeconds: 1.1, provider: "google", type: "audio" },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [{ from: "from", to: "to" }],
                 globalPrompt: "globalPrompt",
@@ -9445,8 +10730,8 @@ describe("Calls", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -9459,6 +10744,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -9592,8 +10878,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -9639,6 +10936,16 @@ describe("Calls", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -9656,8 +10963,8 @@ describe("Calls", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -9665,6 +10972,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -9727,6 +11035,9 @@ describe("Calls", () => {
                     isFiltered: true,
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
+                    metadata: {
+                        key: "value",
+                    },
                 },
             ],
             phoneCallTransport: "sip",
@@ -9794,6 +11105,7 @@ describe("Calls", () => {
                 recordingFormat: "wav;l16",
                 recordingUseCustomStorageEnabled: true,
                 videoRecordingEnabled: false,
+                fullMessageHistoryEnabled: false,
                 pcapEnabled: true,
                 pcapS3PathPrefix: "/pcaps",
                 pcapUseCustomStorageEnabled: true,
@@ -9836,6 +11148,7 @@ describe("Calls", () => {
                 ],
                 messagesOpenAIFormatted: [
                     {
+                        content: undefined,
                         role: "assistant",
                     },
                 ],
@@ -9869,7 +11182,6 @@ describe("Calls", () => {
                     type: {
                         key: "value",
                     },
-                    granted: true,
                     grantedAt: "2024-01-15T09:30:00Z",
                 },
             },
@@ -9883,10 +11195,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -9897,7 +11209,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -9906,6 +11217,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -10061,8 +11373,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -10092,6 +11404,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -10209,10 +11522,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -10223,7 +11536,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -10232,6 +11544,7 @@ describe("Calls", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -10363,6 +11676,22 @@ describe("Calls", () => {
                         ],
                     },
                 ],
+                "tools:append": [
+                    {
+                        type: "apiRequest",
+                        method: "POST",
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        url: "url",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                ],
                 variableValues: {
                     key: "value",
                 },
@@ -10390,8 +11719,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -10421,6 +11750,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -10541,8 +11871,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -10624,6 +11965,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -10649,8 +12006,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -10660,6 +12017,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -10699,6 +12057,26 @@ describe("Calls", () => {
                 nodes: [
                     {
                         type: "conversation",
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -10729,10 +12107,10 @@ describe("Calls", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -10743,7 +12121,6 @@ describe("Calls", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -10797,6 +12174,7 @@ describe("Calls", () => {
                     provider: "google",
                     type: "audio",
                 },
+                maxDurationSeconds: 600,
                 name: "name",
                 edges: [
                     {
@@ -10840,8 +12218,8 @@ describe("Calls", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 analysisPlan: {
@@ -10859,6 +12237,7 @@ describe("Calls", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -11029,8 +12408,19 @@ describe("Calls", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -11112,6 +12502,22 @@ describe("Calls", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -11137,8 +12543,8 @@ describe("Calls", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -11148,6 +12554,7 @@ describe("Calls", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,

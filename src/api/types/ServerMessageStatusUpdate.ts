@@ -60,7 +60,15 @@ export namespace ServerMessageStatusUpdate {
     /**
      * This is the status of the call.
      */
-    export type Status = "scheduled" | "queued" | "ringing" | "in-progress" | "forwarding" | "ended";
+    export type Status =
+        | "scheduled"
+        | "queued"
+        | "ringing"
+        | "in-progress"
+        | "forwarding"
+        | "ended"
+        | "not-found"
+        | "deletion-failed";
     export const Status = {
         Scheduled: "scheduled",
         Queued: "queued",
@@ -68,6 +76,8 @@ export namespace ServerMessageStatusUpdate {
         InProgress: "in-progress",
         Forwarding: "forwarding",
         Ended: "ended",
+        NotFound: "not-found",
+        DeletionFailed: "deletion-failed",
     } as const;
     /**
      * This is the reason the call ended. This is only sent if the status is "ended".
@@ -96,8 +106,9 @@ export namespace ServerMessageStatusUpdate {
         | "call.start.error-subscription-insufficient-credits"
         | "call.start.error-subscription-upgrade-failed"
         | "call.start.error-subscription-concurrency-limit-reached"
+        | "call.start.error-enterprise-feature-not-available-recording-consent"
         | "assistant-not-valid"
-        | "database-error"
+        | "call.start.error-vapifault-database-error"
         | "assistant-not-found"
         | "pipeline-error-openai-voice-failed"
         | "pipeline-error-cartesia-voice-failed"
@@ -573,6 +584,7 @@ export namespace ServerMessageStatusUpdate {
         | "call.in-progress.error-transfer-failed"
         | "customer-busy"
         | "customer-ended-call"
+        | "customer-ended-call-before-warm-transfer"
         | "customer-ended-call-after-warm-transfer-attempt"
         | "customer-did-not-answer"
         | "customer-did-not-give-microphone-permission"
@@ -596,7 +608,8 @@ export namespace ServerMessageStatusUpdate {
         | "twilio-failed-to-connect-call"
         | "twilio-reported-customer-misdialed"
         | "vonage-rejected"
-        | "voicemail";
+        | "voicemail"
+        | "call-deleted";
     export const EndedReason = {
         CallStartErrorNeitherAssistantNorServerSet: "call-start-error-neither-assistant-nor-server-set",
         AssistantRequestFailed: "assistant-request-failed",
@@ -621,8 +634,10 @@ export namespace ServerMessageStatusUpdate {
         CallStartErrorSubscriptionInsufficientCredits: "call.start.error-subscription-insufficient-credits",
         CallStartErrorSubscriptionUpgradeFailed: "call.start.error-subscription-upgrade-failed",
         CallStartErrorSubscriptionConcurrencyLimitReached: "call.start.error-subscription-concurrency-limit-reached",
+        CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent:
+            "call.start.error-enterprise-feature-not-available-recording-consent",
         AssistantNotValid: "assistant-not-valid",
-        DatabaseError: "database-error",
+        CallStartErrorVapifaultDatabaseError: "call.start.error-vapifault-database-error",
         AssistantNotFound: "assistant-not-found",
         PipelineErrorOpenaiVoiceFailed: "pipeline-error-openai-voice-failed",
         PipelineErrorCartesiaVoiceFailed: "pipeline-error-cartesia-voice-failed",
@@ -1310,6 +1325,7 @@ export namespace ServerMessageStatusUpdate {
         CallInProgressErrorTransferFailed: "call.in-progress.error-transfer-failed",
         CustomerBusy: "customer-busy",
         CustomerEndedCall: "customer-ended-call",
+        CustomerEndedCallBeforeWarmTransfer: "customer-ended-call-before-warm-transfer",
         CustomerEndedCallAfterWarmTransferAttempt: "customer-ended-call-after-warm-transfer-attempt",
         CustomerDidNotAnswer: "customer-did-not-answer",
         CustomerDidNotGiveMicrophonePermission: "customer-did-not-give-microphone-permission",
@@ -1339,6 +1355,7 @@ export namespace ServerMessageStatusUpdate {
         TwilioReportedCustomerMisdialed: "twilio-reported-customer-misdialed",
         VonageRejected: "vonage-rejected",
         Voicemail: "voicemail",
+        CallDeleted: "call-deleted",
     } as const;
     export type Messages = Messages.Item[];
 

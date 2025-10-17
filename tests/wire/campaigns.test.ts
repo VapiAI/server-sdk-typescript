@@ -44,7 +44,21 @@ describe("Campaigns", () => {
         };
         server.mockEndpoint().get("/campaign").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.campaigns.campaignControllerFindAll();
+        const response = await client.campaigns.campaignControllerFindAll({
+            id: "id",
+            status: "scheduled",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -100,6 +114,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -160,6 +194,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -224,6 +278,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -273,6 +347,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -337,6 +431,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -386,6 +500,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -450,6 +584,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -506,6 +660,26 @@ describe("Campaigns", () => {
                     numberE164CheckEnabled: true,
                     extension: "extension",
                     assistantOverrides: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",

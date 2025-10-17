@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { VapiClient } from "../../src/Client";
+import * as Vapi from "../../src/api/index";
 
 describe("ProviderResources", () => {
     test("ProviderResourceController_getProviderResourcesPaginated", async () => {
@@ -51,6 +52,21 @@ describe("ProviderResources", () => {
         const response = await client.providerResources.providerResourceControllerGetProviderResourcesPaginated(
             "11labs",
             "pronunciation-dictionary",
+            {
+                id: "id",
+                resourceId: "resourceId",
+                page: 1.1,
+                sortOrder: "ASC",
+                limit: 1.1,
+                createdAtGt: "2024-01-15T09:30:00Z",
+                createdAtLt: "2024-01-15T09:30:00Z",
+                createdAtGe: "2024-01-15T09:30:00Z",
+                createdAtLe: "2024-01-15T09:30:00Z",
+                updatedAtGt: "2024-01-15T09:30:00Z",
+                updatedAtLt: "2024-01-15T09:30:00Z",
+                updatedAtGe: "2024-01-15T09:30:00Z",
+                updatedAtLe: "2024-01-15T09:30:00Z",
+            },
         );
         expect(response).toEqual({
             results: [
@@ -140,7 +156,7 @@ describe("ProviderResources", () => {
         });
     });
 
-    test("ProviderResourceController_getProviderResource", async () => {
+    test("ProviderResourceController_getProviderResource (3f67e63e)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ token: "test", environment: server.baseUrl });
 
@@ -197,7 +213,33 @@ describe("ProviderResources", () => {
         });
     });
 
-    test("ProviderResourceController_deleteProviderResource", async () => {
+    test("ProviderResourceController_getProviderResource (5407a9f5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/provider/11labs/pronunciation-dictionary/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.providerResources.providerResourceControllerGetProviderResource(
+                "11labs",
+                "pronunciation-dictionary",
+                "id",
+            );
+        }).rejects.toThrow(
+            new Vapi.NotFoundError({
+                key: "value",
+            }),
+        );
+    });
+
+    test("ProviderResourceController_deleteProviderResource (3f67e63e)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ token: "test", environment: server.baseUrl });
 
@@ -254,7 +296,33 @@ describe("ProviderResources", () => {
         });
     });
 
-    test("ProviderResourceController_updateProviderResource", async () => {
+    test("ProviderResourceController_deleteProviderResource (5407a9f5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/provider/11labs/pronunciation-dictionary/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.providerResources.providerResourceControllerDeleteProviderResource(
+                "11labs",
+                "pronunciation-dictionary",
+                "id",
+            );
+        }).rejects.toThrow(
+            new Vapi.NotFoundError({
+                key: "value",
+            }),
+        );
+    });
+
+    test("ProviderResourceController_updateProviderResource (3f67e63e)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ token: "test", environment: server.baseUrl });
 
@@ -309,5 +377,31 @@ describe("ProviderResources", () => {
                 description: "This is a test dictionary",
             },
         });
+    });
+
+    test("ProviderResourceController_updateProviderResource (5407a9f5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/provider/11labs/pronunciation-dictionary/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.providerResources.providerResourceControllerUpdateProviderResource(
+                "11labs",
+                "pronunciation-dictionary",
+                "id",
+            );
+        }).rejects.toThrow(
+            new Vapi.NotFoundError({
+                key: "value",
+            }),
+        );
     });
 });

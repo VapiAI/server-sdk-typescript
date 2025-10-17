@@ -4,20 +4,24 @@
 
 import * as Vapi from "../index.js";
 
-export interface RecordingConsentVerbalPlan {
-    /** This is the message asking for consent to record the call. */
+export interface RecordingConsentPlanStayOnLine {
+    /**
+     * This is the message asking for consent to record the call.
+     * If the type is `stay-on-line`, the message should ask the user to hang up if they do not consent.
+     * If the type is `verbal`, the message should ask the user to verbally consent or decline.
+     */
     message: string;
     /**
      * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
      * Use a different voice for the consent message for a better user experience.
      */
-    voice?: RecordingConsentVerbalPlan.Voice;
-    type: "verbal";
-    /** Tool to execute if user verbally declines recording consent */
-    declineTool: Record<string, unknown>;
+    voice?: RecordingConsentPlanStayOnLine.Voice;
+    type: "stay-on-line";
+    /** Number of seconds to wait before transferring to the assistant if user stays on the call */
+    waitSeconds?: number;
 }
 
-export namespace RecordingConsentVerbalPlan {
+export namespace RecordingConsentPlanStayOnLine {
     /**
      * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
      * Use a different voice for the consent message for a better user experience.

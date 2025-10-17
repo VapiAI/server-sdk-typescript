@@ -33,6 +33,7 @@ export namespace ServerMessage {
         | Vapi.ServerMessageAssistantRequest
         | Vapi.ServerMessageConversationUpdate
         | Vapi.ServerMessageEndOfCallReport
+        | Vapi.ServerMessageHandoffDestinationRequest
         | Vapi.ServerMessageHang
         | Vapi.ServerMessageKnowledgeBaseRequest
         | Vapi.ServerMessageModelOutput
@@ -52,5 +53,7 @@ export namespace ServerMessage {
         | Vapi.ServerMessageChatDeleted
         | Vapi.ServerMessageSessionCreated
         | Vapi.ServerMessageSessionUpdated
-        | Vapi.ServerMessageSessionDeleted;
+        | Vapi.ServerMessageSessionDeleted
+        | Vapi.ServerMessageCallDeleted
+        | Vapi.ServerMessageCallDeleteFailed;
 }

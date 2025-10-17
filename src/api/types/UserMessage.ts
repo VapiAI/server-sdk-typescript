@@ -21,4 +21,6 @@ export interface UserMessage {
     detectedThreats?: string[];
     /** The original message before filtering (only included if content was filtered). */
     originalMessage?: string;
+    /** The metadata associated with the message. Currently used to store the transcriber's word level confidence. */
+    metadata?: Record<string, unknown>;
 }

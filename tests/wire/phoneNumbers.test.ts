@@ -48,7 +48,17 @@ describe("PhoneNumbers", () => {
         ];
         server.mockEndpoint().get("/phone-number").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.phoneNumbers.list();
+        const response = await client.phoneNumbers.list({
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual([
             {
                 fallbackDestination: {
@@ -247,6 +257,114 @@ describe("PhoneNumbers", () => {
             },
             number: "number",
             credentialId: "credentialId",
+        });
+    });
+
+    test("PhoneNumberController_findAllPaginated", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            results: [
+                {
+                    fallbackDestination: { type: "number", number: "number" },
+                    hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
+                    provider: "byo-phone-number",
+                    numberE164CheckEnabled: true,
+                    id: "id",
+                    orgId: "orgId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "active",
+                    name: "name",
+                    assistantId: "assistantId",
+                    workflowId: "workflowId",
+                    squadId: "squadId",
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                    },
+                    number: "number",
+                    credentialId: "credentialId",
+                },
+            ],
+            metadata: {
+                itemsPerPage: 1.1,
+                totalItems: 1.1,
+                currentPage: 1.1,
+                itemsBeyondRetention: true,
+                createdAtLe: "2024-01-15T09:30:00Z",
+                createdAtGe: "2024-01-15T09:30:00Z",
+            },
+        };
+        server.mockEndpoint().get("/v2/phone-number").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.phoneNumbers.phoneNumberControllerFindAllPaginated({
+            search: "search",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
+        expect(response).toEqual({
+            results: [
+                {
+                    fallbackDestination: {
+                        type: "number",
+                        number: "number",
+                    },
+                    hooks: [
+                        {
+                            on: "call.ringing",
+                            do: [
+                                {
+                                    type: "transfer",
+                                },
+                            ],
+                        },
+                    ],
+                    provider: "byo-phone-number",
+                    numberE164CheckEnabled: true,
+                    id: "id",
+                    orgId: "orgId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "active",
+                    name: "name",
+                    assistantId: "assistantId",
+                    workflowId: "workflowId",
+                    squadId: "squadId",
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                        },
+                    },
+                    number: "number",
+                    credentialId: "credentialId",
+                },
+            ],
+            metadata: {
+                itemsPerPage: 1.1,
+                totalItems: 1.1,
+                currentPage: 1.1,
+                itemsBeyondRetention: true,
+                createdAtLe: "2024-01-15T09:30:00Z",
+                createdAtGe: "2024-01-15T09:30:00Z",
+            },
         });
     });
 

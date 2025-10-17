@@ -35,11 +35,6 @@ export interface AssemblyAiTranscriber {
      * @default 160
      */
     minEndOfTurnSilenceWhenConfident?: number;
-    /**
-     * This is the maximum wait time for word finalization in milliseconds.
-     * Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
-     * @default 160
-     */
     wordFinalizationMaxWaitTime?: number;
     /**
      * This is the maximum turn silence time in milliseconds.
@@ -51,6 +46,12 @@ export interface AssemblyAiTranscriber {
     realtimeUrl?: string;
     /** Add up to 2500 characters of custom vocabulary. */
     wordBoost?: string[];
+    /**
+     * Keyterms prompting improves recognition accuracy for specific words and phrases.
+     * Can include up to 100 keyterms, each up to 50 characters.
+     * Costs an additional $0.04/hour when enabled.
+     */
+    keytermsPrompt?: string[];
     /** The duration of the end utterance silence threshold in milliseconds. */
     endUtteranceSilenceThreshold?: number;
     /**

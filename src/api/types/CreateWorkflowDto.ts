@@ -41,6 +41,14 @@ export interface CreateWorkflowDto {
     credentials?: CreateWorkflowDto.Credentials.Item[];
     /** This is the voicemail detection plan for the workflow. */
     voicemailDetection?: CreateWorkflowDto.VoicemailDetection;
+    /**
+     * This is the maximum duration of the call in seconds.
+     *
+     * After this duration, the call will automatically end.
+     *
+     * Default is 1800 (30 minutes), max is 43200 (12 hours), and min is 10 seconds.
+     */
+    maxDurationSeconds?: number;
     name: string;
     edges: Vapi.Edge[];
     globalPrompt?: string;

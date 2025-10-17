@@ -45,7 +45,17 @@ export class PhoneNumbers {
      * @param {PhoneNumbers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.phoneNumbers.list()
+     *     await client.phoneNumbers.list({
+     *         limit: 1.1,
+     *         createdAtGt: "2024-01-15T09:30:00Z",
+     *         createdAtLt: "2024-01-15T09:30:00Z",
+     *         createdAtGe: "2024-01-15T09:30:00Z",
+     *         createdAtLe: "2024-01-15T09:30:00Z",
+     *         updatedAtGt: "2024-01-15T09:30:00Z",
+     *         updatedAtLt: "2024-01-15T09:30:00Z",
+     *         updatedAtGe: "2024-01-15T09:30:00Z",
+     *         updatedAtLe: "2024-01-15T09:30:00Z"
+     *     })
      */
     public list(
         request: Vapi.PhoneNumbersListRequest = {},
@@ -218,6 +228,150 @@ export class PhoneNumbers {
                 });
             case "timeout":
                 throw new errors.VapiTimeoutError("Timeout exceeded when calling POST /phone-number.");
+            case "unknown":
+                throw new errors.VapiError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {Vapi.PhoneNumberControllerFindAllPaginatedRequest} request
+     * @param {PhoneNumbers.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.phoneNumbers.phoneNumberControllerFindAllPaginated({
+     *         search: "search",
+     *         page: 1.1,
+     *         sortOrder: "ASC",
+     *         limit: 1.1,
+     *         createdAtGt: "2024-01-15T09:30:00Z",
+     *         createdAtLt: "2024-01-15T09:30:00Z",
+     *         createdAtGe: "2024-01-15T09:30:00Z",
+     *         createdAtLe: "2024-01-15T09:30:00Z",
+     *         updatedAtGt: "2024-01-15T09:30:00Z",
+     *         updatedAtLt: "2024-01-15T09:30:00Z",
+     *         updatedAtGe: "2024-01-15T09:30:00Z",
+     *         updatedAtLe: "2024-01-15T09:30:00Z"
+     *     })
+     */
+    public phoneNumberControllerFindAllPaginated(
+        request: Vapi.PhoneNumberControllerFindAllPaginatedRequest = {},
+        requestOptions?: PhoneNumbers.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.PhoneNumberPaginatedResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__phoneNumberControllerFindAllPaginated(request, requestOptions),
+        );
+    }
+
+    private async __phoneNumberControllerFindAllPaginated(
+        request: Vapi.PhoneNumberControllerFindAllPaginatedRequest = {},
+        requestOptions?: PhoneNumbers.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.PhoneNumberPaginatedResponse>> {
+        const {
+            search,
+            page,
+            sortOrder,
+            limit,
+            createdAtGt,
+            createdAtLt,
+            createdAtGe,
+            createdAtLe,
+            updatedAtGt,
+            updatedAtLt,
+            updatedAtGe,
+            updatedAtLe,
+        } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (search !== undefined) {
+            _queryParams["search"] = search;
+        }
+
+        if (page !== undefined) {
+            _queryParams["page"] = page?.toString() ?? null;
+        }
+
+        if (sortOrder !== undefined) {
+            _queryParams["sortOrder"] = sortOrder;
+        }
+
+        if (limit !== undefined) {
+            _queryParams["limit"] = limit?.toString() ?? null;
+        }
+
+        if (createdAtGt !== undefined) {
+            _queryParams["createdAtGt"] = createdAtGt;
+        }
+
+        if (createdAtLt !== undefined) {
+            _queryParams["createdAtLt"] = createdAtLt;
+        }
+
+        if (createdAtGe !== undefined) {
+            _queryParams["createdAtGe"] = createdAtGe;
+        }
+
+        if (createdAtLe !== undefined) {
+            _queryParams["createdAtLe"] = createdAtLe;
+        }
+
+        if (updatedAtGt !== undefined) {
+            _queryParams["updatedAtGt"] = updatedAtGt;
+        }
+
+        if (updatedAtLt !== undefined) {
+            _queryParams["updatedAtLt"] = updatedAtLt;
+        }
+
+        if (updatedAtGe !== undefined) {
+            _queryParams["updatedAtGe"] = updatedAtGe;
+        }
+
+        if (updatedAtLe !== undefined) {
+            _queryParams["updatedAtLe"] = updatedAtLe;
+        }
+
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "v2/phone-number",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.PhoneNumberPaginatedResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.VapiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.VapiTimeoutError("Timeout exceeded when calling GET /v2/phone-number.");
             case "unknown":
                 throw new errors.VapiError({
                     message: _response.error.errorMessage,

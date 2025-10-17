@@ -40,7 +40,20 @@ describe("Eval", () => {
         };
         server.mockEndpoint().get("/eval").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.eval.evalControllerGetPaginated();
+        const response = await client.eval.evalControllerGetPaginated({
+            id: "id",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -318,8 +331,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -381,8 +405,8 @@ describe("Eval", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -390,6 +414,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -418,8 +443,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -465,6 +501,16 @@ describe("Eval", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -482,8 +528,8 @@ describe("Eval", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -491,6 +537,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -565,8 +612,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -670,8 +728,8 @@ describe("Eval", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -681,6 +739,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -721,8 +780,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -804,6 +874,22 @@ describe("Eval", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -829,8 +915,8 @@ describe("Eval", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -840,6 +926,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -927,8 +1014,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -990,8 +1088,8 @@ describe("Eval", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -999,6 +1097,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1027,8 +1126,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -1074,6 +1184,16 @@ describe("Eval", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -1091,8 +1211,8 @@ describe("Eval", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -1100,6 +1220,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1174,8 +1295,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -1279,8 +1411,8 @@ describe("Eval", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -1290,6 +1422,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1330,8 +1463,19 @@ describe("Eval", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -1413,6 +1557,22 @@ describe("Eval", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -1438,8 +1598,8 @@ describe("Eval", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -1449,6 +1609,7 @@ describe("Eval", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1560,7 +1721,20 @@ describe("Eval", () => {
         };
         server.mockEndpoint().get("/eval/run").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.eval.evalControllerGetRunsPaginated();
+        const response = await client.eval.evalControllerGetRunsPaginated({
+            id: "id",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual({
             results: [
                 {

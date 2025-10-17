@@ -314,7 +314,9 @@ export namespace Assistant {
             | "chat.deleted"
             | "session.created"
             | "session.updated"
-            | "session.deleted";
+            | "session.deleted"
+            | "call.deleted"
+            | "call.delete.failed";
         export const Item = {
             ConversationUpdate: "conversation-update",
             EndOfCallReport: "end-of-call-report",
@@ -339,6 +341,8 @@ export namespace Assistant {
             SessionCreated: "session.created",
             SessionUpdated: "session.updated",
             SessionDeleted: "session.deleted",
+            CallDeleted: "call.deleted",
+            CallDeleteFailed: "call.delete.failed",
         } as const;
     }
 

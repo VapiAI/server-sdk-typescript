@@ -22,6 +22,26 @@ describe("Sessions", () => {
                     expirationSeconds: 86400,
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -52,7 +72,23 @@ describe("Sessions", () => {
         };
         server.mockEndpoint().get("/session").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.sessions.list();
+        const response = await client.sessions.list({
+            name: "name",
+            assistantId: "assistantId",
+            squadId: "squadId",
+            workflowId: "workflowId",
+            page: 1.1,
+            sortOrder: "ASC",
+            limit: 1.1,
+            createdAtGt: "2024-01-15T09:30:00Z",
+            createdAtLt: "2024-01-15T09:30:00Z",
+            createdAtGe: "2024-01-15T09:30:00Z",
+            createdAtLe: "2024-01-15T09:30:00Z",
+            updatedAtGt: "2024-01-15T09:30:00Z",
+            updatedAtLt: "2024-01-15T09:30:00Z",
+            updatedAtGe: "2024-01-15T09:30:00Z",
+            updatedAtLe: "2024-01-15T09:30:00Z",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -65,6 +101,26 @@ describe("Sessions", () => {
                     expirationSeconds: 86400,
                     assistantId: "assistantId",
                     assistant: {
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                    },
+                                ],
+                            },
+                        },
                         voice: {
                             cachingEnabled: true,
                             provider: "azure",
@@ -141,10 +197,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -155,14 +211,13 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -251,8 +306,8 @@ describe("Sessions", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -275,6 +330,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -373,8 +429,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -420,6 +487,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -437,8 +514,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -446,6 +523,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -479,8 +557,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -526,6 +615,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -543,8 +642,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -552,6 +651,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -609,6 +709,26 @@ describe("Sessions", () => {
                     headers: { key: "value" },
                     backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
                 },
+            },
+            artifact: {
+                messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
+                recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: { key: "value" },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: { key: "value" },
+                transfers: ["transfers"],
             },
         };
         server
@@ -638,10 +758,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -652,7 +772,6 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -661,6 +780,7 @@ describe("Sessions", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -816,8 +936,8 @@ describe("Sessions", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -847,6 +967,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -967,8 +1088,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -1050,6 +1182,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -1075,8 +1223,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -1086,6 +1234,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1138,8 +1287,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -1221,6 +1381,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -1246,8 +1422,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -1257,6 +1433,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1345,6 +1522,47 @@ describe("Sessions", () => {
                         baseDelaySeconds: 1,
                     },
                 },
+            },
+            artifact: {
+                messages: [
+                    {
+                        role: "role",
+                        message: "message",
+                        time: 1.1,
+                        endTime: 1.1,
+                        secondsFromStart: 1.1,
+                    },
+                ],
+                messagesOpenAIFormatted: [
+                    {
+                        content: undefined,
+                        role: "assistant",
+                    },
+                ],
+                recording: {
+                    stereoUrl: "stereoUrl",
+                    videoUrl: "videoUrl",
+                    videoRecordingStartDelaySeconds: 1.1,
+                },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: {
+                    key: "value",
+                },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: {
+                    key: "value",
+                },
+                transfers: ["transfers"],
             },
         });
     });
@@ -1370,10 +1588,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1384,14 +1602,13 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -1480,8 +1697,8 @@ describe("Sessions", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -1504,6 +1721,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -1602,8 +1820,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -1649,6 +1878,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -1666,8 +1905,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -1675,6 +1914,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1708,8 +1948,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -1755,6 +2006,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -1772,8 +2033,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -1781,6 +2042,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -1839,6 +2101,26 @@ describe("Sessions", () => {
                     backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
                 },
             },
+            artifact: {
+                messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
+                recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: { key: "value" },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: { key: "value" },
+                transfers: ["transfers"],
+            },
         };
         server.mockEndpoint().get("/session/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -1860,10 +2142,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -1874,7 +2156,6 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -1883,6 +2164,7 @@ describe("Sessions", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -2038,8 +2320,8 @@ describe("Sessions", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -2069,6 +2351,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2189,8 +2472,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -2272,6 +2566,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -2297,8 +2607,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -2308,6 +2618,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -2360,8 +2671,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -2443,6 +2765,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -2468,8 +2806,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -2479,6 +2817,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -2567,6 +2906,47 @@ describe("Sessions", () => {
                         baseDelaySeconds: 1,
                     },
                 },
+            },
+            artifact: {
+                messages: [
+                    {
+                        role: "role",
+                        message: "message",
+                        time: 1.1,
+                        endTime: 1.1,
+                        secondsFromStart: 1.1,
+                    },
+                ],
+                messagesOpenAIFormatted: [
+                    {
+                        content: undefined,
+                        role: "assistant",
+                    },
+                ],
+                recording: {
+                    stereoUrl: "stereoUrl",
+                    videoUrl: "videoUrl",
+                    videoRecordingStartDelaySeconds: 1.1,
+                },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: {
+                    key: "value",
+                },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: {
+                    key: "value",
+                },
+                transfers: ["transfers"],
             },
         });
     });
@@ -2592,10 +2972,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -2606,14 +2986,13 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -2702,8 +3081,8 @@ describe("Sessions", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -2726,6 +3105,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -2824,8 +3204,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -2871,6 +3262,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -2888,8 +3289,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -2897,6 +3298,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -2930,8 +3332,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -2977,6 +3390,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -2994,8 +3417,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -3003,6 +3426,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -3061,6 +3485,26 @@ describe("Sessions", () => {
                     backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
                 },
             },
+            artifact: {
+                messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
+                recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: { key: "value" },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: { key: "value" },
+                transfers: ["transfers"],
+            },
         };
         server.mockEndpoint().delete("/session/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -3082,10 +3526,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -3096,7 +3540,6 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -3105,6 +3548,7 @@ describe("Sessions", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -3260,8 +3704,8 @@ describe("Sessions", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -3291,6 +3735,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -3411,8 +3856,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -3494,6 +3950,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -3519,8 +3991,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -3530,6 +4002,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -3582,8 +4055,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -3665,6 +4149,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -3690,8 +4190,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -3701,6 +4201,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -3790,6 +4291,47 @@ describe("Sessions", () => {
                     },
                 },
             },
+            artifact: {
+                messages: [
+                    {
+                        role: "role",
+                        message: "message",
+                        time: 1.1,
+                        endTime: 1.1,
+                        secondsFromStart: 1.1,
+                    },
+                ],
+                messagesOpenAIFormatted: [
+                    {
+                        content: undefined,
+                        role: "assistant",
+                    },
+                ],
+                recording: {
+                    stereoUrl: "stereoUrl",
+                    videoUrl: "videoUrl",
+                    videoRecordingStartDelaySeconds: 1.1,
+                },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: {
+                    key: "value",
+                },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: {
+                    key: "value",
+                },
+                transfers: ["transfers"],
+            },
         });
     });
 
@@ -3814,10 +4356,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -3828,14 +4370,13 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
                     },
                 },
                 model: {
-                    messages: [{ role: "assistant" }],
+                    messages: [{ content: undefined, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
@@ -3924,8 +4465,8 @@ describe("Sessions", () => {
                             voiceId: "andrew",
                             fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: { key: "value" },
@@ -3948,6 +4489,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -4046,8 +4588,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -4093,6 +4646,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -4110,8 +4673,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -4119,6 +4682,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -4152,8 +4716,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: { model: "claude-3-opus-20240229", provider: "anthropic" },
                     voice: {
@@ -4199,6 +4774,16 @@ describe("Sessions", () => {
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
                     hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
+                        },
+                    ],
                     variableValues: { key: "value" },
                     name: "name",
                     voicemailMessage: "voicemailMessage",
@@ -4216,8 +4801,8 @@ describe("Sessions", () => {
                                     voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
@@ -4225,6 +4810,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -4282,6 +4868,26 @@ describe("Sessions", () => {
                     headers: { key: "value" },
                     backoffPlan: { type: { key: "value" }, maxRetries: 0, baseDelaySeconds: 1 },
                 },
+            },
+            artifact: {
+                messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
+                messagesOpenAIFormatted: [{ content: undefined, role: "assistant" }],
+                recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: { key: "value" },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: { key: "value" },
+                transfers: ["transfers"],
             },
         };
         server
@@ -4311,10 +4917,10 @@ describe("Sessions", () => {
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
-                    wordFinalizationMaxWaitTime: 160,
                     maxTurnSilence: 400,
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
                     endUtteranceSilenceThreshold: 1.1,
                     disablePartialTranscripts: true,
                     fallbackPlan: {
@@ -4325,7 +4931,6 @@ describe("Sessions", () => {
                                 formatTurns: true,
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
-                                wordFinalizationMaxWaitTime: 160,
                                 maxTurnSilence: 400,
                             },
                         ],
@@ -4334,6 +4939,7 @@ describe("Sessions", () => {
                 model: {
                     messages: [
                         {
+                            content: undefined,
                             role: "assistant",
                         },
                     ],
@@ -4489,8 +5095,8 @@ describe("Sessions", () => {
                                 ],
                             },
                         },
-                        type: "hang-up-to-decline",
-                        waitSeconds: 2,
+                        type: "stay-on-line",
+                        waitSeconds: 3,
                     },
                 },
                 metadata: {
@@ -4520,6 +5126,7 @@ describe("Sessions", () => {
                     recordingFormat: "wav;l16",
                     recordingUseCustomStorageEnabled: true,
                     videoRecordingEnabled: false,
+                    fullMessageHistoryEnabled: false,
                     pcapEnabled: true,
                     pcapS3PathPrefix: "/pcaps",
                     pcapUseCustomStorageEnabled: true,
@@ -4640,8 +5247,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -4723,6 +5341,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -4748,8 +5382,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -4759,6 +5393,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -4811,8 +5446,19 @@ describe("Sessions", () => {
                         formatTurns: true,
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
-                        wordFinalizationMaxWaitTime: 160,
                         maxTurnSilence: 400,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                },
+                            ],
+                        },
                     },
                     model: {
                         model: "claude-3-opus-20240229",
@@ -4894,6 +5540,22 @@ describe("Sessions", () => {
                             ],
                         },
                     ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                            },
+                        },
+                    ],
                     variableValues: {
                         key: "value",
                     },
@@ -4919,8 +5581,8 @@ describe("Sessions", () => {
                                     ],
                                 },
                             },
-                            type: "hang-up-to-decline",
-                            waitSeconds: 2,
+                            type: "stay-on-line",
+                            waitSeconds: 3,
                         },
                     },
                     metadata: {
@@ -4930,6 +5592,7 @@ describe("Sessions", () => {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
                         videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
                         pcapEnabled: true,
                         pcapS3PathPrefix: "/pcaps",
                         pcapUseCustomStorageEnabled: true,
@@ -5018,6 +5681,47 @@ describe("Sessions", () => {
                         baseDelaySeconds: 1,
                     },
                 },
+            },
+            artifact: {
+                messages: [
+                    {
+                        role: "role",
+                        message: "message",
+                        time: 1.1,
+                        endTime: 1.1,
+                        secondsFromStart: 1.1,
+                    },
+                ],
+                messagesOpenAIFormatted: [
+                    {
+                        content: undefined,
+                        role: "assistant",
+                    },
+                ],
+                recording: {
+                    stereoUrl: "stereoUrl",
+                    videoUrl: "videoUrl",
+                    videoRecordingStartDelaySeconds: 1.1,
+                },
+                transcript: "transcript",
+                pcapUrl: "pcapUrl",
+                logUrl: "logUrl",
+                nodes: [{}],
+                variableValues: {
+                    key: "value",
+                },
+                performanceMetrics: {
+                    turnLatencies: [{}],
+                    modelLatencyAverage: 1.1,
+                    voiceLatencyAverage: 1.1,
+                    transcriberLatencyAverage: 1.1,
+                    endpointingLatencyAverage: 1.1,
+                    turnLatencyAverage: 1.1,
+                },
+                structuredOutputs: {
+                    key: "value",
+                },
+                transfers: ["transfers"],
             },
         });
     });

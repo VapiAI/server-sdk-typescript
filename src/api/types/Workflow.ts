@@ -41,6 +41,14 @@ export interface Workflow {
     credentials?: Workflow.Credentials.Item[];
     /** This is the voicemail detection plan for the workflow. */
     voicemailDetection?: Workflow.VoicemailDetection;
+    /**
+     * This is the maximum duration of the call in seconds.
+     *
+     * After this duration, the call will automatically end.
+     *
+     * Default is 1800 (30 minutes), max is 43200 (12 hours), and min is 10 seconds.
+     */
+    maxDurationSeconds?: number;
     id: string;
     orgId: string;
     createdAt: string;

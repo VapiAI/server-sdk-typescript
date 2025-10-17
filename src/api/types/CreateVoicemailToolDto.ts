@@ -14,6 +14,12 @@ export interface CreateVoicemailToolDto {
     /** The type of tool. "voicemail" for Voicemail tool. */
     type: "voicemail";
     /**
+     * This is the flag that enables beep detection for voicemail detection and applies only for twilio based calls.
+     *
+     * @default false
+     */
+    beepDetectionEnabled?: boolean;
+    /**
      * This is the plan to reject a tool call based on the conversation state.
      *
      * // Example 1: Reject endCall if user didn't say goodbye
