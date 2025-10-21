@@ -10,7 +10,7 @@ export interface MakeTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: MakeTool.Messages.Item[];
+    messages?: Vapi.MakeToolMessagesItem[];
     /** The type of tool. "make" for Make tool. */
     type: "make";
     /** This is the unique identifier for the tool. */
@@ -103,16 +103,4 @@ export interface MakeTool {
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
     metadata: Vapi.MakeToolMetadata;
-}
-
-export namespace MakeTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

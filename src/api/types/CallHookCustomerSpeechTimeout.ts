@@ -8,7 +8,7 @@ export interface CallHookCustomerSpeechTimeout {
     /** Must be either "customer.speech.timeout" or match the pattern "customer.speech.timeout[property=value]" */
     on: string;
     /** This is the set of actions to perform when the hook triggers */
-    do: CallHookCustomerSpeechTimeout.Do.Item[];
+    do: Vapi.CallHookCustomerSpeechTimeoutDoItem[];
     /** This is the set of filters that must match for the hook to trigger */
     options?: Vapi.CustomerSpeechTimeoutOptions;
     /**
@@ -18,12 +18,4 @@ export interface CallHookCustomerSpeechTimeout {
      * @default UUID
      */
     name?: string;
-}
-
-export namespace CallHookCustomerSpeechTimeout {
-    export type Do = Do.Item[];
-
-    export namespace Do {
-        export type Item = Vapi.SayHookAction | Vapi.ToolCallHookAction;
-    }
 }

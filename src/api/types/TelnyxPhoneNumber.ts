@@ -13,9 +13,9 @@ export interface TelnyxPhoneNumber {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: TelnyxPhoneNumber.FallbackDestination;
+    fallbackDestination?: Vapi.TelnyxPhoneNumberFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: TelnyxPhoneNumber.Hooks.Item[];
+    hooks?: Vapi.TelnyxPhoneNumberHooksItem[];
     provider: "telnyx";
     /** This is the unique identifier for the phone number. */
     id: string;
@@ -26,7 +26,7 @@ export interface TelnyxPhoneNumber {
     /** This is the ISO 8601 date-time string of when the phone number was last updated. */
     updatedAt: string;
     /** This is the status of the phone number. */
-    status?: TelnyxPhoneNumber.Status;
+    status?: Vapi.TelnyxPhoneNumberStatus;
     /** This is the name of the phone number. This is just for your own reference. */
     name?: string;
     /**
@@ -61,31 +61,4 @@ export interface TelnyxPhoneNumber {
     number: string;
     /** This is the credential you added in dashboard.vapi.ai/keys. This is used to configure the number to send inbound calls to Vapi, make outbound calls and do live call updates like transfers and hangups. */
     credentialId: string;
-}
-
-export namespace TelnyxPhoneNumber {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
-
-    /**
-     * This is the status of the phone number.
-     */
-    export type Status = "active" | "activating" | "blocked";
-    export const Status = {
-        Active: "active",
-        Activating: "activating",
-        Blocked: "blocked",
-    } as const;
 }

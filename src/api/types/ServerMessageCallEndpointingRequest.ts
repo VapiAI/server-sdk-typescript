@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageCallEndpointingRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageCallEndpointingRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageCallEndpointingRequestPhoneNumber;
     /**
      * This is the type of the message. "call.endpointing.request" is sent when using `assistant.startSpeakingPlan.smartEndpointingPlan={ "provider": "custom-endpointing-model" }`.
      *
@@ -37,7 +37,7 @@ export interface ServerMessageCallEndpointingRequest {
      */
     type: "call.endpointing.request";
     /** This is the conversation history at the time of the endpointing request. */
-    messages?: ServerMessageCallEndpointingRequest.Messages.Item[];
+    messages?: Vapi.ServerMessageCallEndpointingRequestMessagesItem[];
     /** This is just `messages` formatted for OpenAI. */
     messagesOpenAIFormatted: Vapi.OpenAiMessage[];
     /** This is the timestamp of the message. */
@@ -56,26 +56,4 @@ export interface ServerMessageCallEndpointingRequest {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessageCallEndpointingRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.UserMessage
-            | Vapi.SystemMessage
-            | Vapi.BotMessage
-            | Vapi.ToolCallMessage
-            | Vapi.ToolCallResultMessage;
-    }
 }

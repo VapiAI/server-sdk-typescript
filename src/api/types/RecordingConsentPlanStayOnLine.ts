@@ -15,33 +15,8 @@ export interface RecordingConsentPlanStayOnLine {
      * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
      * Use a different voice for the consent message for a better user experience.
      */
-    voice?: RecordingConsentPlanStayOnLine.Voice;
+    voice?: Vapi.RecordingConsentPlanStayOnLineVoice;
     type: "stay-on-line";
     /** Number of seconds to wait before transferring to the assistant if user stays on the call */
     waitSeconds?: number;
-}
-
-export namespace RecordingConsentPlanStayOnLine {
-    /**
-     * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
-     * Use a different voice for the consent message for a better user experience.
-     */
-    export type Voice =
-        | Vapi.AzureVoice
-        | Vapi.CartesiaVoice
-        | Vapi.CustomVoice
-        | Vapi.DeepgramVoice
-        | Vapi.ElevenLabsVoice
-        | Vapi.HumeVoice
-        | Vapi.LmntVoice
-        | Vapi.NeuphonicVoice
-        | Vapi.OpenAiVoice
-        | Vapi.PlayHtVoice
-        | Vapi.RimeAiVoice
-        | Vapi.SmallestAiVoice
-        | Vapi.TavusVoice
-        | Vapi.VapiVoice
-        | Vapi.SesameVoice
-        | Vapi.InworldVoice
-        | Vapi.MinimaxVoice;
 }

@@ -10,7 +10,7 @@ export interface CreateBashToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateBashToolDto.Messages.Item[];
+    messages?: Vapi.CreateBashToolDtoMessagesItem[];
     type: "bash";
     /** The sub type of tool. */
     subType: "bash_20241022";
@@ -108,16 +108,4 @@ export interface CreateBashToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateBashToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

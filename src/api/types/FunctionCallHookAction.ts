@@ -10,7 +10,7 @@ export interface FunctionCallHookAction {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: FunctionCallHookAction.Messages.Item[];
+    messages?: Vapi.FunctionCallHookActionMessagesItem[];
     /** The type of tool. "function" for Function tool. */
     type: "function";
     /**
@@ -117,16 +117,4 @@ export interface FunctionCallHookAction {
     rejectionPlan?: Vapi.ToolRejectionPlan;
     /** This is the function definition of the tool. */
     function?: Vapi.OpenAiFunction;
-}
-
-export namespace FunctionCallHookAction {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

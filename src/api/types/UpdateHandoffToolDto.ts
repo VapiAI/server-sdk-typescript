@@ -10,7 +10,7 @@ export interface UpdateHandoffToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateHandoffToolDto.Messages.Item[];
+    messages?: Vapi.UpdateHandoffToolDtoMessagesItem[];
     /**
      * These are the destinations that the call can be handed off to.
      *
@@ -180,7 +180,7 @@ export interface UpdateHandoffToolDto {
      *
      * The properties `customerAreaCode`, `customerIntent`, and `customerSentiment` will be passed to the server in the webhook request body.
      */
-    destinations?: UpdateHandoffToolDto.Destinations.Item[];
+    destinations?: Vapi.UpdateHandoffToolDtoDestinationsItem[];
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -364,22 +364,4 @@ export interface UpdateHandoffToolDto {
      * ```
      */
     function?: Vapi.OpenAiFunction;
-}
-
-export namespace UpdateHandoffToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Destinations = Destinations.Item[];
-
-    export namespace Destinations {
-        export type Item = Vapi.HandoffDestinationAssistant | Vapi.HandoffDestinationDynamic;
-    }
 }

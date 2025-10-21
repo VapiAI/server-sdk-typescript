@@ -13,9 +13,9 @@ export interface UpdateTwilioPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: UpdateTwilioPhoneNumberDto.FallbackDestination;
+    fallbackDestination?: Vapi.UpdateTwilioPhoneNumberDtoFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: UpdateTwilioPhoneNumberDto.Hooks.Item[];
+    hooks?: Vapi.UpdateTwilioPhoneNumberDtoHooksItem[];
     /**
      * Controls whether Vapi sets the messaging webhook URL on the Twilio number during import.
      *
@@ -65,21 +65,4 @@ export interface UpdateTwilioPhoneNumberDto {
     twilioApiKey?: string;
     /** This is the Twilio API Secret for the phone number. */
     twilioApiSecret?: string;
-}
-
-export namespace UpdateTwilioPhoneNumberDto {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
 }

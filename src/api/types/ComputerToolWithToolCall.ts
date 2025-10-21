@@ -10,7 +10,7 @@ export interface ComputerToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: ComputerToolWithToolCall.Messages.Item[];
+    messages?: Vapi.ComputerToolWithToolCallMessagesItem[];
     /** The type of tool. "computer" for Computer tool. */
     type: "computer";
     /** The sub type of tool. */
@@ -116,16 +116,4 @@ export interface ComputerToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace ComputerToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

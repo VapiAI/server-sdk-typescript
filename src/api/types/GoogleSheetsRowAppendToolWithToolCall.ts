@@ -10,7 +10,7 @@ export interface GoogleSheetsRowAppendToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: GoogleSheetsRowAppendToolWithToolCall.Messages.Item[];
+    messages?: Vapi.GoogleSheetsRowAppendToolWithToolCallMessagesItem[];
     /** The type of tool. "google.sheets.row.append" for Google Sheets Row Append tool. */
     type: "google.sheets.row.append";
     toolCall: Vapi.ToolCall;
@@ -95,16 +95,4 @@ export interface GoogleSheetsRowAppendToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace GoogleSheetsRowAppendToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

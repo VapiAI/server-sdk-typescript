@@ -10,7 +10,7 @@ export interface TransferSuccessfulToolUserEditable {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: TransferSuccessfulToolUserEditable.Messages.Item[];
+    messages?: Vapi.TransferSuccessfulToolUserEditableMessagesItem[];
     /** The type of tool. "transferSuccessful" for Transfer Successful tool. This tool can only be used during warm-transfer-experimental by the transfer assistant to confirm that the transfer should proceed and finalize the handoff to the destination. */
     type: "transferSuccessful";
     /**
@@ -94,16 +94,4 @@ export interface TransferSuccessfulToolUserEditable {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace TransferSuccessfulToolUserEditable {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

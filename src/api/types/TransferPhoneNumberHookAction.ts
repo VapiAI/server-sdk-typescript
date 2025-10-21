@@ -8,12 +8,5 @@ export interface TransferPhoneNumberHookAction {
     /** This is the type of action - must be "transfer" */
     type: "transfer";
     /** This is the destination details for the transfer - can be a phone number or SIP URI */
-    destination?: TransferPhoneNumberHookAction.Destination;
-}
-
-export namespace TransferPhoneNumberHookAction {
-    /**
-     * This is the destination details for the transfer - can be a phone number or SIP URI
-     */
-    export type Destination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
+    destination?: Vapi.TransferPhoneNumberHookActionDestination;
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface CustomEndpointingModelSmartEndpointingPlan {
     /** This is the provider for the smart endpointing plan. Use `custom-endpointing-model` for custom endpointing providers that are not natively supported. */
-    provider: CustomEndpointingModelSmartEndpointingPlan.Provider;
+    provider: Vapi.CustomEndpointingModelSmartEndpointingPlanProvider;
     /**
      * This is where the endpointing request will be sent. If not provided, will be sent to `assistant.server`. If that does not exist either, will be sent to `org.server`.
      *
@@ -38,16 +38,4 @@ export interface CustomEndpointingModelSmartEndpointingPlan {
      * The timeout is the number of seconds to wait before considering the user's speech as finished. The endpointing timeout is automatically reset each time a new transcript is received (and another `call.endpointing.request` is sent).
      */
     server?: Vapi.Server;
-}
-
-export namespace CustomEndpointingModelSmartEndpointingPlan {
-    /**
-     * This is the provider for the smart endpointing plan. Use `custom-endpointing-model` for custom endpointing providers that are not natively supported.
-     */
-    export type Provider = "vapi" | "livekit" | "custom-endpointing-model";
-    export const Provider = {
-        Vapi: "vapi",
-        Livekit: "livekit",
-        CustomEndpointingModel: "custom-endpointing-model",
-    } as const;
 }

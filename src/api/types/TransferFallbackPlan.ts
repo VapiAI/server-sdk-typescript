@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface TransferFallbackPlan {
     /** This is the message the assistant will deliver to the customer if the transfer fails. */
-    message: TransferFallbackPlan.Message;
+    message: Vapi.TransferFallbackPlanMessage;
     /**
      * This controls what happens after delivering the failure message to the customer.
      * - true: End the call after delivering the failure message (default)
@@ -15,11 +15,4 @@ export interface TransferFallbackPlan {
      * @default true
      */
     endCallEnabled?: boolean;
-}
-
-export namespace TransferFallbackPlan {
-    /**
-     * This is the message the assistant will deliver to the customer if the transfer fails.
-     */
-    export type Message = string | Vapi.CustomMessage;
 }

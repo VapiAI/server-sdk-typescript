@@ -10,7 +10,7 @@ export interface FallbackHumeVoice {
     /** This is the voice provider that will be used. */
     provider: "hume";
     /** This is the model that will be used. */
-    model?: FallbackHumeVoice.Model;
+    model?: Vapi.FallbackHumeVoiceModel;
     /** The ID of the particular voice you want to use. */
     voiceId: string;
     /** Indicates whether the chosen voice is a preset Hume AI voice or a custom voice. */
@@ -24,15 +24,4 @@ export interface FallbackHumeVoice {
     description?: string;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackHumeVoice {
-    /**
-     * This is the model that will be used.
-     */
-    export type Model = "octave" | "octave2";
-    export const Model = {
-        Octave: "octave",
-        Octave2: "octave2",
-    } as const;
 }

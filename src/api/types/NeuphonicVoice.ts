@@ -12,7 +12,7 @@ export interface NeuphonicVoice {
     /** This is the provider-specific ID that will be used. */
     voiceId: string;
     /** This is the model that will be used. Defaults to 'neu_fast' if not specified. */
-    model?: NeuphonicVoice.Model;
+    model?: Vapi.NeuphonicVoiceModel;
     /** This is the language (ISO 639-1) that is enforced for the model. */
     language: Record<string, unknown>;
     /** This is the speed multiplier that will be used. */
@@ -21,15 +21,4 @@ export interface NeuphonicVoice {
     chunkPlan?: Vapi.ChunkPlan;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
-}
-
-export namespace NeuphonicVoice {
-    /**
-     * This is the model that will be used. Defaults to 'neu_fast' if not specified.
-     */
-    export type Model = "neu_hq" | "neu_fast";
-    export const Model = {
-        NeuHq: "neu_hq",
-        NeuFast: "neu_fast",
-    } as const;
 }

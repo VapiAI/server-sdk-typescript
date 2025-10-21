@@ -10,7 +10,7 @@ export interface SmsTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: SmsTool.Messages.Item[];
+    messages?: Vapi.SmsToolMessagesItem[];
     type: "sms";
     /** This is the unique identifier for the tool. */
     id: string;
@@ -101,16 +101,4 @@ export interface SmsTool {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace SmsTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

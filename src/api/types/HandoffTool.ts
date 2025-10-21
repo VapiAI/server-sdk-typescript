@@ -10,7 +10,7 @@ export interface HandoffTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: HandoffTool.Messages.Item[];
+    messages?: Vapi.HandoffToolMessagesItem[];
     type: "handoff";
     /**
      * These are the destinations that the call can be handed off to.
@@ -181,7 +181,7 @@ export interface HandoffTool {
      *
      * The properties `customerAreaCode`, `customerIntent`, and `customerSentiment` will be passed to the server in the webhook request body.
      */
-    destinations?: HandoffTool.Destinations.Item[];
+    destinations?: Vapi.HandoffToolDestinationsItem[];
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -373,22 +373,4 @@ export interface HandoffTool {
      * ```
      */
     function?: Vapi.OpenAiFunction;
-}
-
-export namespace HandoffTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Destinations = Destinations.Item[];
-
-    export namespace Destinations {
-        export type Item = Vapi.HandoffDestinationAssistant | Vapi.HandoffDestinationDynamic;
-    }
 }

@@ -6,22 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface NodeArtifact {
     /** These are the messages that were spoken during the node. */
-    messages?: NodeArtifact.Messages.Item[];
+    messages?: Vapi.NodeArtifactMessagesItem[];
     /** This is the node name. */
     nodeName?: string;
     /** These are the variable values that were extracted from the node. */
     variableValues?: Record<string, unknown>;
-}
-
-export namespace NodeArtifact {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.UserMessage
-            | Vapi.SystemMessage
-            | Vapi.BotMessage
-            | Vapi.ToolCallMessage
-            | Vapi.ToolCallResultMessage;
-    }
 }

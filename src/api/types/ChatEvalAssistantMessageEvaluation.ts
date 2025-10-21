@@ -15,21 +15,10 @@ export interface ChatEvalAssistantMessageEvaluation {
      * This is the judge plan that instructs how to evaluate the assistant message.
      * The assistant message can be evaluated against fixed content (exact match or RegEx) or with an LLM-as-judge by defining the evaluation criteria in a prompt.
      */
-    judgePlan: ChatEvalAssistantMessageEvaluation.JudgePlan;
+    judgePlan: Vapi.ChatEvalAssistantMessageEvaluationJudgePlan;
     /**
      * This is the plan for how the overall evaluation will proceed after the assistant message is evaluated.
      * This lets you configure whether to stop the evaluation if this message fails, and whether to override any content for future turns
      */
     continuePlan?: Vapi.AssistantMessageEvaluationContinuePlan;
-}
-
-export namespace ChatEvalAssistantMessageEvaluation {
-    /**
-     * This is the judge plan that instructs how to evaluate the assistant message.
-     * The assistant message can be evaluated against fixed content (exact match or RegEx) or with an LLM-as-judge by defining the evaluation criteria in a prompt.
-     */
-    export type JudgePlan =
-        | Vapi.AssistantMessageJudgePlanExact
-        | Vapi.AssistantMessageJudgePlanRegex
-        | Vapi.AssistantMessageJudgePlanAi;
 }

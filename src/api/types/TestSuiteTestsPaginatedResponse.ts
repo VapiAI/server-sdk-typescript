@@ -6,15 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface TestSuiteTestsPaginatedResponse {
     /** A list of test suite tests. */
-    results: TestSuiteTestsPaginatedResponse.Results.Item[];
+    results: Vapi.TestSuiteTestsPaginatedResponseResultsItem[];
     /** Metadata about the pagination. */
     metadata: Vapi.PaginationMeta;
-}
-
-export namespace TestSuiteTestsPaginatedResponse {
-    export type Results = Results.Item[];
-
-    export namespace Results {
-        export type Item = Vapi.TestSuiteTestVoice | Vapi.TestSuiteTestChat;
-    }
 }

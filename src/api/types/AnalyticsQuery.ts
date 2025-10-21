@@ -6,9 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface AnalyticsQuery {
     /** This is the table you want to query. */
-    table: AnalyticsQuery.Table;
+    table: Vapi.AnalyticsQueryTable;
     /** This is the list of columns you want to group by. */
-    groupBy?: AnalyticsQuery.GroupBy.Item[];
+    groupBy?: Vapi.AnalyticsQueryGroupByItem[];
     /** This is the list of variable value keys you want to group by. */
     groupByVariableValue?: Vapi.VariableValueGroupBy[];
     /** This is the name of the query. This will be used to identify the query in the response. */
@@ -17,27 +17,4 @@ export interface AnalyticsQuery {
     timeRange?: Vapi.TimeRange;
     /** This is the list of operations you want to perform. */
     operations: Vapi.AnalyticsOperation[];
-}
-
-export namespace AnalyticsQuery {
-    /**
-     * This is the table you want to query.
-     */
-    export type Table = "call" | "subscription";
-    export const Table = {
-        Call: "call",
-        Subscription: "subscription",
-    } as const;
-    export type GroupBy = GroupBy.Item[];
-
-    export namespace GroupBy {
-        export type Item = "type" | "assistantId" | "endedReason" | "analysis.successEvaluation" | "status";
-        export const Item = {
-            Type: "type",
-            AssistantId: "assistantId",
-            EndedReason: "endedReason",
-            AnalysisSuccessEvaluation: "analysis.successEvaluation",
-            Status: "status",
-        } as const;
-    }
 }

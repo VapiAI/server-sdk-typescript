@@ -27,19 +27,5 @@ export interface OpenAiVoicemailDetectionPlan {
      * - 'transcript': Uses ASR/transcript-based detection
      * @default 'audio' (audio detection)
      */
-    type?: OpenAiVoicemailDetectionPlan.Type;
-}
-
-export namespace OpenAiVoicemailDetectionPlan {
-    /**
-     * This is the detection type to use for voicemail detection.
-     * - 'audio': Uses native audio models (default)
-     * - 'transcript': Uses ASR/transcript-based detection
-     * @default 'audio' (audio detection)
-     */
-    export type Type = "audio" | "transcript";
-    export const Type = {
-        Audio: "audio",
-        Transcript: "transcript",
-    } as const;
+    type?: Vapi.OpenAiVoicemailDetectionPlanType;
 }

@@ -10,7 +10,7 @@ export interface CreateOutputToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateOutputToolDto.Messages.Item[];
+    messages?: Vapi.CreateOutputToolDtoMessagesItem[];
     /** The type of tool. "output" for Output tool. */
     type: "output";
     /**
@@ -94,16 +94,4 @@ export interface CreateOutputToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateOutputToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

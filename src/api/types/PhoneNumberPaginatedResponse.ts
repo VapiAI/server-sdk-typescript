@@ -6,20 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface PhoneNumberPaginatedResponse {
     /** A list of phone numbers, which can be of any provider type. */
-    results: PhoneNumberPaginatedResponse.Results.Item[];
+    results: Vapi.PhoneNumberPaginatedResponseResultsItem[];
     /** Metadata about the pagination. */
     metadata: Vapi.PaginationMeta;
-}
-
-export namespace PhoneNumberPaginatedResponse {
-    export type Results = Results.Item[];
-
-    export namespace Results {
-        export type Item =
-            | Vapi.ByoPhoneNumber
-            | Vapi.TwilioPhoneNumber
-            | Vapi.VonagePhoneNumber
-            | Vapi.VapiPhoneNumber
-            | Vapi.TelnyxPhoneNumber;
-    }
 }

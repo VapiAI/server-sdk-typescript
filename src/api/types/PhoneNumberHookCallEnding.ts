@@ -10,12 +10,5 @@ export interface PhoneNumberHookCallEnding {
     /** Optional filters to decide when to trigger - restricted to assistant-request related ended reasons */
     filters?: Vapi.PhoneNumberCallEndingHookFilter[];
     /** This is the action to perform when the hook triggers */
-    do?: PhoneNumberHookCallEnding.Do;
-}
-
-export namespace PhoneNumberHookCallEnding {
-    /**
-     * This is the action to perform when the hook triggers
-     */
-    export type Do = Vapi.TransferPhoneNumberHookAction | Vapi.SayPhoneNumberHookAction;
+    do?: Vapi.PhoneNumberHookCallEndingDo;
 }

@@ -16,7 +16,7 @@ export interface Session {
     /** This is a user-defined name for the session. Maximum length is 40 characters. */
     name?: string;
     /** This is the current status of the session. Can be either 'active' or 'completed'. */
-    status?: Session.Status;
+    status?: Vapi.SessionStatus;
     /** Session expiration time in seconds. Defaults to 24 hours (86400 seconds) if not set. */
     expirationSeconds?: number;
     /** This is the ID of the assistant associated with this session. Use this when referencing an existing assistant. */
@@ -34,7 +34,7 @@ export interface Session {
      */
     squad?: Vapi.CreateSquadDto;
     /** This is an array of chat messages in the session. */
-    messages?: Session.Messages.Item[];
+    messages?: Vapi.SessionMessagesItem[];
     /** This is the customer information associated with this session. */
     customer?: Vapi.CreateCustomerDto;
     /** This is the ID of the phone number associated with this session. */
@@ -49,25 +49,4 @@ export interface Session {
      * - structuredOutputIds
      */
     artifact?: Vapi.Artifact;
-}
-
-export namespace Session {
-    /**
-     * This is the current status of the session. Can be either 'active' or 'completed'.
-     */
-    export type Status = "active" | "completed";
-    export const Status = {
-        Active: "active",
-        Completed: "completed",
-    } as const;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.SystemMessage
-            | Vapi.UserMessage
-            | Vapi.AssistantMessage
-            | Vapi.ToolMessage
-            | Vapi.DeveloperMessage;
-    }
 }

@@ -8,7 +8,7 @@ export interface EvalAnthropicModel {
     /** This is the provider of the model (`anthropic`). */
     provider: "anthropic";
     /** This is the specific model that will be used. */
-    model: EvalAnthropicModel.Model;
+    model: Vapi.EvalAnthropicModelModel;
     /**
      * This is the optional configuration for Anthropic's thinking feature.
      *
@@ -23,35 +23,4 @@ export interface EvalAnthropicModel {
      * If your Judge instructions return `true` or `false` takes only 1 token (as per the OpenAI Tokenizer), and therefore is recommended to set it to a low number to force the model to return a short response.
      */
     maxTokens?: number;
-}
-
-export namespace EvalAnthropicModel {
-    /**
-     * This is the specific model that will be used.
-     */
-    export type Model =
-        | "claude-3-opus-20240229"
-        | "claude-3-sonnet-20240229"
-        | "claude-3-haiku-20240307"
-        | "claude-3-5-sonnet-20240620"
-        | "claude-3-5-sonnet-20241022"
-        | "claude-3-5-haiku-20241022"
-        | "claude-3-7-sonnet-20250219"
-        | "claude-opus-4-20250514"
-        | "claude-sonnet-4-20250514"
-        | "claude-sonnet-4-5-20250929"
-        | "claude-haiku-4-5-20251001";
-    export const Model = {
-        Claude3Opus20240229: "claude-3-opus-20240229",
-        Claude3Sonnet20240229: "claude-3-sonnet-20240229",
-        Claude3Haiku20240307: "claude-3-haiku-20240307",
-        Claude35Sonnet20240620: "claude-3-5-sonnet-20240620",
-        Claude35Sonnet20241022: "claude-3-5-sonnet-20241022",
-        Claude35Haiku20241022: "claude-3-5-haiku-20241022",
-        Claude37Sonnet20250219: "claude-3-7-sonnet-20250219",
-        ClaudeOpus420250514: "claude-opus-4-20250514",
-        ClaudeSonnet420250514: "claude-sonnet-4-20250514",
-        ClaudeSonnet4520250929: "claude-sonnet-4-5-20250929",
-        ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
-    } as const;
 }

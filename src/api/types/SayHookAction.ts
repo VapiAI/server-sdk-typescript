@@ -11,17 +11,7 @@ export interface SayHookAction {
      * This is the prompt for the assistant to generate a response based on existing conversation.
      * Can be a string or an array of chat messages.
      */
-    prompt?: SayHookAction.Prompt;
+    prompt?: Vapi.SayHookActionPrompt;
     /** This is the message to say */
     exact?: Record<string, unknown>;
-}
-
-export namespace SayHookAction {
-    /**
-     * This is the prompt for the assistant to generate a response based on existing conversation.
-     * Can be a string or an array of chat messages.
-     */
-    export type Prompt =
-        | string
-        | (Vapi.SystemMessage | Vapi.UserMessage | Vapi.AssistantMessage | Vapi.ToolMessage | Vapi.DeveloperMessage)[];
 }

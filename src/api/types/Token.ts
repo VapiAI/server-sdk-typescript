@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface Token {
     /** This is the tag for the token. It represents its scope. */
-    tag?: Token.Tag;
+    tag?: Vapi.TokenTag;
     /** This is the unique identifier for the token. */
     id: string;
     /** This is unique identifier for the org that this token belongs to. */
@@ -21,15 +21,4 @@ export interface Token {
     name?: string;
     /** This are the restrictions for the token. */
     restrictions?: Vapi.TokenRestrictions;
-}
-
-export namespace Token {
-    /**
-     * This is the tag for the token. It represents its scope.
-     */
-    export type Tag = "private" | "public";
-    export const Tag = {
-        Private: "private",
-        Public: "public",
-    } as const;
 }

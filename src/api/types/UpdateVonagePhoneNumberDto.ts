@@ -13,9 +13,9 @@ export interface UpdateVonagePhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: UpdateVonagePhoneNumberDto.FallbackDestination;
+    fallbackDestination?: Vapi.UpdateVonagePhoneNumberDtoFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: UpdateVonagePhoneNumberDto.Hooks.Item[];
+    hooks?: Vapi.UpdateVonagePhoneNumberDtoHooksItem[];
     /** This is the name of the phone number. This is just for your own reference. */
     name?: string;
     /**
@@ -50,21 +50,4 @@ export interface UpdateVonagePhoneNumberDto {
     number?: string;
     /** This is the credential you added in dashboard.vapi.ai/keys. This is used to configure the number to send inbound calls to Vapi, make outbound calls and do live call updates like transfers and hangups. */
     credentialId?: string;
-}
-
-export namespace UpdateVonagePhoneNumberDto {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
 }

@@ -10,10 +10,10 @@ export interface CreateTransferCallToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateTransferCallToolDto.Messages.Item[];
+    messages?: Vapi.CreateTransferCallToolDtoMessagesItem[];
     type: "transferCall";
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
-    destinations?: CreateTransferCallToolDto.Destinations.Item[];
+    destinations?: Vapi.CreateTransferCallToolDtoDestinationsItem[];
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -95,25 +95,4 @@ export interface CreateTransferCallToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateTransferCallToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Destinations = Destinations.Item[];
-
-    export namespace Destinations {
-        export type Item =
-            | Vapi.TransferDestinationAssistant
-            | Vapi.TransferDestinationNumber
-            | Vapi.TransferDestinationSip;
-    }
 }

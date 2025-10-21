@@ -10,7 +10,7 @@ export interface UpdateGoogleSheetsRowAppendToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateGoogleSheetsRowAppendToolDto.Messages.Item[];
+    messages?: Vapi.UpdateGoogleSheetsRowAppendToolDtoMessagesItem[];
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -92,16 +92,4 @@ export interface UpdateGoogleSheetsRowAppendToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace UpdateGoogleSheetsRowAppendToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

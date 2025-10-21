@@ -10,7 +10,7 @@ export interface GhlToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: GhlToolWithToolCall.Messages.Item[];
+    messages?: Vapi.GhlToolWithToolCallMessagesItem[];
     /** The type of tool. "ghl" for GHL tool. */
     type: "ghl";
     toolCall: Vapi.ToolCall;
@@ -96,16 +96,4 @@ export interface GhlToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace GhlToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

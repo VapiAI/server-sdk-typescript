@@ -5,36 +5,15 @@
 import * as Vapi from "../index.js";
 
 export interface CredentialWebhookDto {
-    type: CredentialWebhookDto.Type;
-    operation: CredentialWebhookDto.Operation;
+    type: Vapi.CredentialWebhookDtoType;
+    operation: Vapi.CredentialWebhookDtoOperation;
     from: string;
     connectionId: string;
-    authMode: CredentialWebhookDto.AuthMode;
+    authMode: Vapi.CredentialWebhookDtoAuthMode;
     providerConfigKey: string;
     provider: string;
     environment: string;
     success: boolean;
     endUser: Vapi.CredentialEndUser;
     error?: Vapi.CredentialSessionError;
-}
-
-export namespace CredentialWebhookDto {
-    export type Type = "auth" | "sync" | "forward";
-    export const Type = {
-        Auth: "auth",
-        Sync: "sync",
-        Forward: "forward",
-    } as const;
-    export type Operation = "creation" | "override" | "refresh";
-    export const Operation = {
-        Creation: "creation",
-        Override: "override",
-        Refresh: "refresh",
-    } as const;
-    export type AuthMode = "OAUTH2" | "API_KEY" | "BASIC";
-    export const AuthMode = {
-        Oauth2: "OAUTH2",
-        ApiKey: "API_KEY",
-        Basic: "BASIC",
-    } as const;
 }

@@ -10,7 +10,7 @@ export interface VapiVoice {
     /** This is the voice provider that will be used. */
     provider: "vapi";
     /** The voices provided by Vapi */
-    voiceId: VapiVoice.VoiceId;
+    voiceId: Vapi.VapiVoiceVoiceId;
     /**
      * This is the speed multiplier that will be used.
      *
@@ -21,35 +21,4 @@ export interface VapiVoice {
     chunkPlan?: Vapi.ChunkPlan;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
-}
-
-export namespace VapiVoice {
-    /**
-     * The voices provided by Vapi
-     */
-    export type VoiceId =
-        | "Elliot"
-        | "Kylie"
-        | "Rohan"
-        | "Lily"
-        | "Savannah"
-        | "Hana"
-        | "Neha"
-        | "Cole"
-        | "Harry"
-        | "Paige"
-        | "Spencer";
-    export const VoiceId = {
-        Elliot: "Elliot",
-        Kylie: "Kylie",
-        Rohan: "Rohan",
-        Lily: "Lily",
-        Savannah: "Savannah",
-        Hana: "Hana",
-        Neha: "Neha",
-        Cole: "Cole",
-        Harry: "Harry",
-        Paige: "Paige",
-        Spencer: "Spencer",
-    } as const;
 }

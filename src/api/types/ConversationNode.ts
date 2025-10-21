@@ -21,25 +21,25 @@ export interface ConversationNode {
      *
      * This overrides `workflow.model`.
      */
-    model?: ConversationNode.Model;
+    model?: Vapi.ConversationNodeModel;
     /**
      * This is the transcriber for the node.
      *
      * This overrides `workflow.transcriber`.
      */
-    transcriber?: ConversationNode.Transcriber;
+    transcriber?: Vapi.ConversationNodeTranscriber;
     /**
      * This is the voice for the node.
      *
      * This overrides `workflow.voice`.
      */
-    voice?: ConversationNode.Voice;
+    voice?: Vapi.ConversationNodeVoice;
     /**
      * These are the tools that the conversation node can use during the call. To use existing tools, use `toolIds`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: ConversationNode.Tools.Item[];
+    tools?: Vapi.ConversationNodeToolsItem[];
     /**
      * These are the tools that the conversation node can use during the call. To use transient tools, use `tools`.
      *
@@ -104,82 +104,4 @@ export interface ConversationNode {
     isStart?: boolean;
     /** This is for metadata you want to store on the task. */
     metadata?: Record<string, unknown>;
-}
-
-export namespace ConversationNode {
-    /**
-     * This is the model for the node.
-     *
-     * This overrides `workflow.model`.
-     */
-    export type Model =
-        | Vapi.WorkflowOpenAiModel
-        | Vapi.WorkflowAnthropicModel
-        | Vapi.WorkflowGoogleModel
-        | Vapi.WorkflowCustomModel;
-    /**
-     * This is the transcriber for the node.
-     *
-     * This overrides `workflow.transcriber`.
-     */
-    export type Transcriber =
-        | Vapi.AssemblyAiTranscriber
-        | Vapi.AzureSpeechTranscriber
-        | Vapi.CustomTranscriber
-        | Vapi.DeepgramTranscriber
-        | Vapi.ElevenLabsTranscriber
-        | Vapi.GladiaTranscriber
-        | Vapi.GoogleTranscriber
-        | Vapi.SpeechmaticsTranscriber
-        | Vapi.TalkscriberTranscriber
-        | Vapi.OpenAiTranscriber
-        | Vapi.CartesiaTranscriber;
-    /**
-     * This is the voice for the node.
-     *
-     * This overrides `workflow.voice`.
-     */
-    export type Voice =
-        | Vapi.AzureVoice
-        | Vapi.CartesiaVoice
-        | Vapi.CustomVoice
-        | Vapi.DeepgramVoice
-        | Vapi.ElevenLabsVoice
-        | Vapi.HumeVoice
-        | Vapi.LmntVoice
-        | Vapi.NeuphonicVoice
-        | Vapi.OpenAiVoice
-        | Vapi.PlayHtVoice
-        | Vapi.RimeAiVoice
-        | Vapi.SmallestAiVoice
-        | Vapi.TavusVoice
-        | Vapi.VapiVoice
-        | Vapi.SesameVoice
-        | Vapi.InworldVoice
-        | Vapi.MinimaxVoice;
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageWorkflowNodeStarted {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageWorkflowNodeStarted.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageWorkflowNodeStartedPhoneNumber;
     /** This is the type of the message. "workflow.node.started" is sent when the active node changes. */
     type: "workflow.node.started";
     /** This is the timestamp of the message. */
@@ -19,16 +19,4 @@ export interface ClientMessageWorkflowNodeStarted {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the active node. */
     node: Record<string, unknown>;
-}
-
-export namespace ClientMessageWorkflowNodeStarted {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

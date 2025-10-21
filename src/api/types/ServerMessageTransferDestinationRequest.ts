@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageTransferDestinationRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageTransferDestinationRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageTransferDestinationRequestPhoneNumber;
     /** This is the type of the message. "transfer-destination-request" is sent when the model is requesting transfer but destination is unknown. */
     type: "transfer-destination-request";
     /** This is the timestamp of the message. */
@@ -25,16 +25,4 @@ export interface ServerMessageTransferDestinationRequest {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessageTransferDestinationRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

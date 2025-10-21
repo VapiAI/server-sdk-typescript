@@ -10,36 +10,14 @@ export interface EvalRunResult {
      * The status is only 'pass' or 'fail' for an eval run result.
      * Currently, An eval is considered `pass` only if all the Assistant Judge messages are evaluated to pass.
      */
-    status: EvalRunResult.Status;
+    status: Vapi.EvalRunResultStatus;
     /**
      * This is the messages of the eval run result.
      * It contains the user/system messages
      */
-    messages: EvalRunResult.Messages.Item[];
+    messages: Vapi.EvalRunResultMessagesItem[];
     /** This is the start time of the eval run result. */
     startedAt: string;
     /** This is the end time of the eval run result. */
     endedAt: string;
-}
-
-export namespace EvalRunResult {
-    /**
-     * This is the status of the eval run result.
-     * The status is only 'pass' or 'fail' for an eval run result.
-     * Currently, An eval is considered `pass` only if all the Assistant Judge messages are evaluated to pass.
-     */
-    export type Status = "pass" | "fail";
-    export const Status = {
-        Pass: "pass",
-        Fail: "fail",
-    } as const;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ChatEvalUserMessageMock
-            | Vapi.ChatEvalSystemMessageMock
-            | Vapi.ChatEvalToolResponseMessageMock
-            | Vapi.ChatEvalAssistantMessageMock;
-    }
 }

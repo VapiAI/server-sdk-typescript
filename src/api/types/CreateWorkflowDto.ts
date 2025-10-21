@@ -5,25 +5,25 @@
 import * as Vapi from "../index.js";
 
 export interface CreateWorkflowDto {
-    nodes: CreateWorkflowDto.Nodes.Item[];
+    nodes: Vapi.CreateWorkflowDtoNodesItem[];
     /**
      * This is the model for the workflow.
      *
      * This can be overridden at node level using `nodes[n].model`.
      */
-    model?: CreateWorkflowDto.Model;
+    model?: Vapi.CreateWorkflowDtoModel;
     /**
      * This is the transcriber for the workflow.
      *
      * This can be overridden at node level using `nodes[n].transcriber`.
      */
-    transcriber?: CreateWorkflowDto.Transcriber;
+    transcriber?: Vapi.CreateWorkflowDtoTranscriber;
     /**
      * This is the voice for the workflow.
      *
      * This can be overridden at node level using `nodes[n].voice`.
      */
-    voice?: CreateWorkflowDto.Voice;
+    voice?: Vapi.CreateWorkflowDtoVoice;
     /**
      * This is the plan for observability of workflow's calls.
      *
@@ -34,13 +34,13 @@ export interface CreateWorkflowDto {
      * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
-    backgroundSound?: CreateWorkflowDto.BackgroundSound;
+    backgroundSound?: Vapi.CreateWorkflowDtoBackgroundSound;
     /** This is a set of actions that will be performed on certain events. */
-    hooks?: CreateWorkflowDto.Hooks.Item[];
+    hooks?: Vapi.CreateWorkflowDtoHooksItem[];
     /** These are dynamic credentials that will be used for the workflow calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials. */
-    credentials?: CreateWorkflowDto.Credentials.Item[];
+    credentials?: Vapi.CreateWorkflowDtoCredentialsItem[];
     /** This is the voicemail detection plan for the workflow. */
-    voicemailDetection?: CreateWorkflowDto.VoicemailDetection;
+    voicemailDetection?: Vapi.CreateWorkflowDtoVoicemailDetection;
     /**
      * This is the maximum duration of the call in seconds.
      *
@@ -119,143 +119,4 @@ export interface CreateWorkflowDto {
      * If unspecified, it will hang up.
      */
     voicemailMessage?: string;
-}
-
-export namespace CreateWorkflowDto {
-    export type Nodes = Nodes.Item[];
-
-    export namespace Nodes {
-        export type Item = Vapi.ConversationNode | Vapi.ToolNode;
-    }
-
-    /**
-     * This is the model for the workflow.
-     *
-     * This can be overridden at node level using `nodes[n].model`.
-     */
-    export type Model =
-        | Vapi.WorkflowOpenAiModel
-        | Vapi.WorkflowAnthropicModel
-        | Vapi.WorkflowGoogleModel
-        | Vapi.WorkflowCustomModel;
-    /**
-     * This is the transcriber for the workflow.
-     *
-     * This can be overridden at node level using `nodes[n].transcriber`.
-     */
-    export type Transcriber =
-        | Vapi.AssemblyAiTranscriber
-        | Vapi.AzureSpeechTranscriber
-        | Vapi.CustomTranscriber
-        | Vapi.DeepgramTranscriber
-        | Vapi.ElevenLabsTranscriber
-        | Vapi.GladiaTranscriber
-        | Vapi.GoogleTranscriber
-        | Vapi.SpeechmaticsTranscriber
-        | Vapi.TalkscriberTranscriber
-        | Vapi.OpenAiTranscriber
-        | Vapi.CartesiaTranscriber;
-    /**
-     * This is the voice for the workflow.
-     *
-     * This can be overridden at node level using `nodes[n].voice`.
-     */
-    export type Voice =
-        | Vapi.AzureVoice
-        | Vapi.CartesiaVoice
-        | Vapi.CustomVoice
-        | Vapi.DeepgramVoice
-        | Vapi.ElevenLabsVoice
-        | Vapi.HumeVoice
-        | Vapi.LmntVoice
-        | Vapi.NeuphonicVoice
-        | Vapi.OpenAiVoice
-        | Vapi.PlayHtVoice
-        | Vapi.RimeAiVoice
-        | Vapi.SmallestAiVoice
-        | Vapi.TavusVoice
-        | Vapi.VapiVoice
-        | Vapi.SesameVoice
-        | Vapi.InworldVoice
-        | Vapi.MinimaxVoice;
-    /**
-     * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
-     * You can also provide a custom sound by providing a URL to an audio file.
-     */
-    export type BackgroundSound = ("off" | "office") | string;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item =
-            | Vapi.CallHookCallEnding
-            | Vapi.CallHookAssistantSpeechInterrupted
-            | Vapi.CallHookCustomerSpeechInterrupted
-            | Vapi.CallHookCustomerSpeechTimeout;
-    }
-
-    export type Credentials = Credentials.Item[];
-
-    export namespace Credentials {
-        export type Item =
-            | Vapi.CreateElevenLabsCredentialDto
-            | Vapi.CreateAnthropicCredentialDto
-            | Vapi.CreateAnyscaleCredentialDto
-            | Vapi.CreateAssemblyAiCredentialDto
-            | Vapi.CreateAzureOpenAiCredentialDto
-            | Vapi.CreateAzureCredentialDto
-            | Vapi.CreateByoSipTrunkCredentialDto
-            | Vapi.CreateCartesiaCredentialDto
-            | Vapi.CreateCerebrasCredentialDto
-            | Vapi.CreateCloudflareCredentialDto
-            | Vapi.CreateCustomLlmCredentialDto
-            | Vapi.CreateDeepgramCredentialDto
-            | Vapi.CreateDeepInfraCredentialDto
-            | Vapi.CreateDeepSeekCredentialDto
-            | Vapi.CreateGcpCredentialDto
-            | Vapi.CreateGladiaCredentialDto
-            | Vapi.CreateGoHighLevelCredentialDto
-            | Vapi.CreateGoogleCredentialDto
-            | Vapi.CreateGroqCredentialDto
-            | Vapi.CreateInflectionAiCredentialDto
-            | Vapi.CreateLangfuseCredentialDto
-            | Vapi.CreateLmntCredentialDto
-            | Vapi.CreateMakeCredentialDto
-            | Vapi.CreateOpenAiCredentialDto
-            | Vapi.CreateOpenRouterCredentialDto
-            | Vapi.CreatePerplexityAiCredentialDto
-            | Vapi.CreatePlayHtCredentialDto
-            | Vapi.CreateRimeAiCredentialDto
-            | Vapi.CreateRunpodCredentialDto
-            | Vapi.CreateS3CredentialDto
-            | Vapi.CreateSupabaseCredentialDto
-            | Vapi.CreateSmallestAiCredentialDto
-            | Vapi.CreateTavusCredentialDto
-            | Vapi.CreateTogetherAiCredentialDto
-            | Vapi.CreateTwilioCredentialDto
-            | Vapi.CreateVonageCredentialDto
-            | Vapi.CreateWebhookCredentialDto
-            | Vapi.CreateCustomCredentialDto
-            | Vapi.CreateXAiCredentialDto
-            | Vapi.CreateNeuphonicCredentialDto
-            | Vapi.CreateHumeCredentialDto
-            | Vapi.CreateMistralCredentialDto
-            | Vapi.CreateSpeechmaticsCredentialDto
-            | Vapi.CreateTrieveCredentialDto
-            | Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto
-            | Vapi.CreateGoogleCalendarOAuth2AuthorizationCredentialDto
-            | Vapi.CreateGoogleSheetsOAuth2AuthorizationCredentialDto
-            | Vapi.CreateSlackOAuth2AuthorizationCredentialDto
-            | Vapi.CreateGoHighLevelMcpCredentialDto
-            | Vapi.CreateInworldCredentialDto
-            | Vapi.CreateMinimaxCredentialDto;
-    }
-
-    /**
-     * This is the voicemail detection plan for the workflow.
-     */
-    export type VoicemailDetection =
-        | Vapi.GoogleVoicemailDetectionPlan
-        | Vapi.OpenAiVoicemailDetectionPlan
-        | Vapi.TwilioVoicemailDetectionPlan
-        | Vapi.VapiVoicemailDetectionPlan;
 }

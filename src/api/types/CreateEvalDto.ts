@@ -12,7 +12,7 @@ export interface CreateEvalDto {
      *
      * Evaluation Messages are used as checkpoints in the flow where the model's response to previous conversation needs to be evaluated to check the content and tool calls
      */
-    messages: CreateEvalDto.Messages.Item[];
+    messages: Vapi.CreateEvalDtoMessagesItem[];
     /**
      * This is the name of the eval.
      * It helps identify what the eval is checking for.
@@ -28,17 +28,4 @@ export interface CreateEvalDto {
      * Currently it is fixed to `chat.mockConversation`.
      */
     type: "chat.mockConversation";
-}
-
-export namespace CreateEvalDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ChatEvalAssistantMessageMock
-            | Vapi.ChatEvalSystemMessageMock
-            | Vapi.ChatEvalToolResponseMessageMock
-            | Vapi.ChatEvalUserMessageMock
-            | Vapi.ChatEvalAssistantMessageEvaluation;
-    }
 }

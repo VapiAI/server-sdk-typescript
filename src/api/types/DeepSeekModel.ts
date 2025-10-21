@@ -12,7 +12,7 @@ export interface DeepSeekModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: DeepSeekModel.Tools.Item[];
+    tools?: Vapi.DeepSeekModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface DeepSeekModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
-    model: DeepSeekModel.Model;
+    model: Vapi.DeepSeekModelModel;
     provider: "deep-seek";
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
     temperature?: number;
@@ -44,41 +44,4 @@ export interface DeepSeekModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace DeepSeekModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
-     */
-    export type Model = "deepseek-chat" | "deepseek-reasoner";
-    export const Model = {
-        DeepseekChat: "deepseek-chat",
-        DeepseekReasoner: "deepseek-reasoner",
-    } as const;
 }

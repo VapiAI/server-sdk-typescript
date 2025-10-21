@@ -10,8 +10,8 @@ export interface UpdateApiRequestToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateApiRequestToolDto.Messages.Item[];
-    method?: UpdateApiRequestToolDto.Method;
+    messages?: Vapi.UpdateApiRequestToolDtoMessagesItem[];
+    method?: Vapi.UpdateApiRequestToolDtoMethod;
     /**
      * This is the timeout in seconds for the request. Defaults to 20 seconds.
      *
@@ -277,25 +277,4 @@ export interface UpdateApiRequestToolDto {
      * Note: Both `aliases` and `schema` can be used together.
      */
     variableExtractionPlan?: Vapi.VariableExtractionPlan;
-}
-
-export namespace UpdateApiRequestToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Method = "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
-    export const Method = {
-        Post: "POST",
-        Get: "GET",
-        Put: "PUT",
-        Patch: "PATCH",
-        Delete: "DELETE",
-    } as const;
 }

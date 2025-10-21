@@ -10,11 +10,11 @@ import * as Vapi from "../../../../index.js";
  */
 export interface UpdateAssistantDto {
     /** These are the options for the assistant's transcriber. */
-    transcriber?: UpdateAssistantDto.Transcriber;
+    transcriber?: Vapi.UpdateAssistantDtoTranscriber;
     /** These are the options for the assistant's LLM. */
-    model?: UpdateAssistantDto.Model;
+    model?: Vapi.UpdateAssistantDtoModel;
     /** These are the options for the assistant's voice. */
-    voice?: UpdateAssistantDto.Voice;
+    voice?: Vapi.UpdateAssistantDtoVoice;
     /**
      * This is the first message that the assistant will say. This can also be a URL to a containerized audio file (mp3, wav, etc.).
      *
@@ -32,17 +32,17 @@ export interface UpdateAssistantDto {
      *
      * @default 'assistant-speaks-first'
      */
-    firstMessageMode?: UpdateAssistantDto.FirstMessageMode;
+    firstMessageMode?: Vapi.UpdateAssistantDtoFirstMessageMode;
     /**
      * These are the settings to configure or disable voicemail detection. Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool].
      * This uses Twilio's built-in detection while the VoicemailTool relies on the model to detect if a voicemail was reached.
      * You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled while VoicemailTool is not.
      */
-    voicemailDetection?: UpdateAssistantDto.VoicemailDetection;
+    voicemailDetection?: Vapi.UpdateAssistantDtoVoicemailDetection;
     /** These are the messages that will be sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input,workflow.node.started. You can check the shape of the messages in ClientMessage schema. */
-    clientMessages?: UpdateAssistantDto.ClientMessages.Item[];
+    clientMessages?: Vapi.UpdateAssistantDtoClientMessagesItem[];
     /** These are the messages that will be sent to your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-calls,transfer-destination-request,handoff-destination-request,user-interrupted. You can check the shape of the messages in ServerMessage schema. */
-    serverMessages?: UpdateAssistantDto.ServerMessages.Item[];
+    serverMessages?: Vapi.UpdateAssistantDtoServerMessagesItem[];
     /**
      * This is the maximum number of seconds that the call will last. When the call reaches this duration, it will be ended.
      *
@@ -53,7 +53,7 @@ export interface UpdateAssistantDto {
      * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
-    backgroundSound?: UpdateAssistantDto.BackgroundSound;
+    backgroundSound?: Vapi.UpdateAssistantDtoBackgroundSound;
     /**
      * This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
      *
@@ -71,9 +71,9 @@ export interface UpdateAssistantDto {
      */
     observabilityPlan?: Vapi.LangfuseObservabilityPlan;
     /** These are dynamic credentials that will be used for the assistant calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials. */
-    credentials?: UpdateAssistantDto.Credentials.Item[];
+    credentials?: Vapi.UpdateAssistantDtoCredentialsItem[];
     /** This is a set of actions that will be performed on certain events. */
-    hooks?: UpdateAssistantDto.Hooks.Item[];
+    hooks?: Vapi.UpdateAssistantDtoHooksItem[];
     /**
      * This is the name of the assistant.
      *
@@ -156,261 +156,4 @@ export interface UpdateAssistantDto {
      */
     server?: Vapi.Server;
     keypadInputPlan?: Vapi.KeypadInputPlan;
-}
-
-export namespace UpdateAssistantDto {
-    /**
-     * These are the options for the assistant's transcriber.
-     */
-    export type Transcriber =
-        | Vapi.AssemblyAiTranscriber
-        | Vapi.AzureSpeechTranscriber
-        | Vapi.CustomTranscriber
-        | Vapi.DeepgramTranscriber
-        | Vapi.ElevenLabsTranscriber
-        | Vapi.GladiaTranscriber
-        | Vapi.GoogleTranscriber
-        | Vapi.SpeechmaticsTranscriber
-        | Vapi.TalkscriberTranscriber
-        | Vapi.OpenAiTranscriber
-        | Vapi.CartesiaTranscriber;
-    /**
-     * These are the options for the assistant's LLM.
-     */
-    export type Model =
-        | Vapi.AnthropicModel
-        | Vapi.AnyscaleModel
-        | Vapi.CerebrasModel
-        | Vapi.CustomLlmModel
-        | Vapi.DeepInfraModel
-        | Vapi.DeepSeekModel
-        | Vapi.GoogleModel
-        | Vapi.GroqModel
-        | Vapi.InflectionAiModel
-        | Vapi.OpenAiModel
-        | Vapi.OpenRouterModel
-        | Vapi.PerplexityAiModel
-        | Vapi.TogetherAiModel
-        | Vapi.XaiModel;
-    /**
-     * These are the options for the assistant's voice.
-     */
-    export type Voice =
-        | Vapi.AzureVoice
-        | Vapi.CartesiaVoice
-        | Vapi.CustomVoice
-        | Vapi.DeepgramVoice
-        | Vapi.ElevenLabsVoice
-        | Vapi.HumeVoice
-        | Vapi.LmntVoice
-        | Vapi.NeuphonicVoice
-        | Vapi.OpenAiVoice
-        | Vapi.PlayHtVoice
-        | Vapi.RimeAiVoice
-        | Vapi.SmallestAiVoice
-        | Vapi.TavusVoice
-        | Vapi.VapiVoice
-        | Vapi.SesameVoice
-        | Vapi.InworldVoice
-        | Vapi.MinimaxVoice;
-    /**
-     * This is the mode for the first message. Default is 'assistant-speaks-first'.
-     *
-     * Use:
-     * - 'assistant-speaks-first' to have the assistant speak first.
-     * - 'assistant-waits-for-user' to have the assistant wait for the user to speak first.
-     * - 'assistant-speaks-first-with-model-generated-message' to have the assistant speak first with a message generated by the model based on the conversation state. (`assistant.model.messages` at call start, `call.messages` at squad transfer points).
-     *
-     * @default 'assistant-speaks-first'
-     */
-    export type FirstMessageMode =
-        | "assistant-speaks-first"
-        | "assistant-speaks-first-with-model-generated-message"
-        | "assistant-waits-for-user";
-    export const FirstMessageMode = {
-        AssistantSpeaksFirst: "assistant-speaks-first",
-        AssistantSpeaksFirstWithModelGeneratedMessage: "assistant-speaks-first-with-model-generated-message",
-        AssistantWaitsForUser: "assistant-waits-for-user",
-    } as const;
-    /**
-     * These are the settings to configure or disable voicemail detection. Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool].
-     * This uses Twilio's built-in detection while the VoicemailTool relies on the model to detect if a voicemail was reached.
-     * You can use neither of them, one of them, or both of them. By default, Twilio built-in detection is enabled while VoicemailTool is not.
-     */
-    export type VoicemailDetection =
-        | Vapi.GoogleVoicemailDetectionPlan
-        | Vapi.OpenAiVoicemailDetectionPlan
-        | Vapi.TwilioVoicemailDetectionPlan
-        | Vapi.VapiVoicemailDetectionPlan;
-    export type ClientMessages = ClientMessages.Item[];
-
-    export namespace ClientMessages {
-        export type Item =
-            | "conversation-update"
-            | "function-call"
-            | "function-call-result"
-            | "hang"
-            | "language-changed"
-            | "metadata"
-            | "model-output"
-            | "speech-update"
-            | "status-update"
-            | "transcript"
-            | "tool-calls"
-            | "tool-calls-result"
-            | "tool.completed"
-            | "transfer-update"
-            | "user-interrupted"
-            | "voice-input"
-            | "workflow.node.started";
-        export const Item = {
-            ConversationUpdate: "conversation-update",
-            FunctionCall: "function-call",
-            FunctionCallResult: "function-call-result",
-            Hang: "hang",
-            LanguageChanged: "language-changed",
-            Metadata: "metadata",
-            ModelOutput: "model-output",
-            SpeechUpdate: "speech-update",
-            StatusUpdate: "status-update",
-            Transcript: "transcript",
-            ToolCalls: "tool-calls",
-            ToolCallsResult: "tool-calls-result",
-            ToolCompleted: "tool.completed",
-            TransferUpdate: "transfer-update",
-            UserInterrupted: "user-interrupted",
-            VoiceInput: "voice-input",
-            WorkflowNodeStarted: "workflow.node.started",
-        } as const;
-    }
-
-    export type ServerMessages = ServerMessages.Item[];
-
-    export namespace ServerMessages {
-        export type Item =
-            | "conversation-update"
-            | "end-of-call-report"
-            | "function-call"
-            | "hang"
-            | "language-changed"
-            | "language-change-detected"
-            | "model-output"
-            | "phone-call-control"
-            | "speech-update"
-            | "status-update"
-            | "transcript"
-            | 'transcript[transcriptType="final"]'
-            | "tool-calls"
-            | "transfer-destination-request"
-            | "handoff-destination-request"
-            | "transfer-update"
-            | "user-interrupted"
-            | "voice-input"
-            | "chat.created"
-            | "chat.deleted"
-            | "session.created"
-            | "session.updated"
-            | "session.deleted"
-            | "call.deleted"
-            | "call.delete.failed";
-        export const Item = {
-            ConversationUpdate: "conversation-update",
-            EndOfCallReport: "end-of-call-report",
-            FunctionCall: "function-call",
-            Hang: "hang",
-            LanguageChanged: "language-changed",
-            LanguageChangeDetected: "language-change-detected",
-            ModelOutput: "model-output",
-            PhoneCallControl: "phone-call-control",
-            SpeechUpdate: "speech-update",
-            StatusUpdate: "status-update",
-            Transcript: "transcript",
-            TranscriptTranscriptTypeFinal: 'transcript[transcriptType="final"]',
-            ToolCalls: "tool-calls",
-            TransferDestinationRequest: "transfer-destination-request",
-            HandoffDestinationRequest: "handoff-destination-request",
-            TransferUpdate: "transfer-update",
-            UserInterrupted: "user-interrupted",
-            VoiceInput: "voice-input",
-            ChatCreated: "chat.created",
-            ChatDeleted: "chat.deleted",
-            SessionCreated: "session.created",
-            SessionUpdated: "session.updated",
-            SessionDeleted: "session.deleted",
-            CallDeleted: "call.deleted",
-            CallDeleteFailed: "call.delete.failed",
-        } as const;
-    }
-
-    /**
-     * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
-     * You can also provide a custom sound by providing a URL to an audio file.
-     */
-    export type BackgroundSound = ("off" | "office") | string;
-    export type Credentials = Credentials.Item[];
-
-    export namespace Credentials {
-        export type Item =
-            | Vapi.CreateElevenLabsCredentialDto
-            | Vapi.CreateAnthropicCredentialDto
-            | Vapi.CreateAnyscaleCredentialDto
-            | Vapi.CreateAssemblyAiCredentialDto
-            | Vapi.CreateAzureOpenAiCredentialDto
-            | Vapi.CreateAzureCredentialDto
-            | Vapi.CreateByoSipTrunkCredentialDto
-            | Vapi.CreateCartesiaCredentialDto
-            | Vapi.CreateCerebrasCredentialDto
-            | Vapi.CreateCloudflareCredentialDto
-            | Vapi.CreateCustomLlmCredentialDto
-            | Vapi.CreateDeepgramCredentialDto
-            | Vapi.CreateDeepInfraCredentialDto
-            | Vapi.CreateDeepSeekCredentialDto
-            | Vapi.CreateGcpCredentialDto
-            | Vapi.CreateGladiaCredentialDto
-            | Vapi.CreateGoHighLevelCredentialDto
-            | Vapi.CreateGoogleCredentialDto
-            | Vapi.CreateGroqCredentialDto
-            | Vapi.CreateInflectionAiCredentialDto
-            | Vapi.CreateLangfuseCredentialDto
-            | Vapi.CreateLmntCredentialDto
-            | Vapi.CreateMakeCredentialDto
-            | Vapi.CreateOpenAiCredentialDto
-            | Vapi.CreateOpenRouterCredentialDto
-            | Vapi.CreatePerplexityAiCredentialDto
-            | Vapi.CreatePlayHtCredentialDto
-            | Vapi.CreateRimeAiCredentialDto
-            | Vapi.CreateRunpodCredentialDto
-            | Vapi.CreateS3CredentialDto
-            | Vapi.CreateSupabaseCredentialDto
-            | Vapi.CreateSmallestAiCredentialDto
-            | Vapi.CreateTavusCredentialDto
-            | Vapi.CreateTogetherAiCredentialDto
-            | Vapi.CreateTwilioCredentialDto
-            | Vapi.CreateVonageCredentialDto
-            | Vapi.CreateWebhookCredentialDto
-            | Vapi.CreateCustomCredentialDto
-            | Vapi.CreateXAiCredentialDto
-            | Vapi.CreateNeuphonicCredentialDto
-            | Vapi.CreateHumeCredentialDto
-            | Vapi.CreateMistralCredentialDto
-            | Vapi.CreateSpeechmaticsCredentialDto
-            | Vapi.CreateTrieveCredentialDto
-            | Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto
-            | Vapi.CreateGoogleCalendarOAuth2AuthorizationCredentialDto
-            | Vapi.CreateGoogleSheetsOAuth2AuthorizationCredentialDto
-            | Vapi.CreateSlackOAuth2AuthorizationCredentialDto
-            | Vapi.CreateGoHighLevelMcpCredentialDto
-            | Vapi.CreateInworldCredentialDto
-            | Vapi.CreateMinimaxCredentialDto;
-    }
-
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item =
-            | Vapi.CallHookCallEnding
-            | Vapi.CallHookAssistantSpeechInterrupted
-            | Vapi.CallHookCustomerSpeechInterrupted
-            | Vapi.CallHookCustomerSpeechTimeout;
-    }
 }

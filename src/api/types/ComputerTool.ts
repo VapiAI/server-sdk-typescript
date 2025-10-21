@@ -10,7 +10,7 @@ export interface ComputerTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: ComputerTool.Messages.Item[];
+    messages?: Vapi.ComputerToolMessagesItem[];
     type: "computer";
     /** The sub type of tool. */
     subType: "computer_20241022";
@@ -122,16 +122,4 @@ export interface ComputerTool {
     displayHeightPx: number;
     /** Optional display number */
     displayNumber?: number;
-}
-
-export namespace ComputerTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

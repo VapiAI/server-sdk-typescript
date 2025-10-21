@@ -10,7 +10,7 @@ export interface GoHighLevelContactGetToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: GoHighLevelContactGetToolWithToolCall.Messages.Item[];
+    messages?: Vapi.GoHighLevelContactGetToolWithToolCallMessagesItem[];
     /** The type of tool. "gohighlevel.contact.get" for GoHighLevel Contact Get tool. */
     type: "gohighlevel.contact.get";
     toolCall: Vapi.ToolCall;
@@ -95,16 +95,4 @@ export interface GoHighLevelContactGetToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace GoHighLevelContactGetToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

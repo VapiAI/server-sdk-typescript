@@ -10,7 +10,7 @@ export interface SlackSendMessageTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: SlackSendMessageTool.Messages.Item[];
+    messages?: Vapi.SlackSendMessageToolMessagesItem[];
     type: "slack.message.send";
     /** This is the unique identifier for the tool. */
     id: string;
@@ -101,16 +101,4 @@ export interface SlackSendMessageTool {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace SlackSendMessageTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

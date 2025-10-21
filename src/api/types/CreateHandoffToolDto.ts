@@ -10,7 +10,7 @@ export interface CreateHandoffToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateHandoffToolDto.Messages.Item[];
+    messages?: Vapi.CreateHandoffToolDtoMessagesItem[];
     type: "handoff";
     /**
      * These are the destinations that the call can be handed off to.
@@ -181,7 +181,7 @@ export interface CreateHandoffToolDto {
      *
      * The properties `customerAreaCode`, `customerIntent`, and `customerSentiment` will be passed to the server in the webhook request body.
      */
-    destinations?: CreateHandoffToolDto.Destinations.Item[];
+    destinations?: Vapi.CreateHandoffToolDtoDestinationsItem[];
     /**
      * This is the optional function definition that will be passed to the LLM.
      * If this is not defined, we will construct this based on the other properties.
@@ -365,22 +365,4 @@ export interface CreateHandoffToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateHandoffToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Destinations = Destinations.Item[];
-
-    export namespace Destinations {
-        export type Item = Vapi.HandoffDestinationAssistant | Vapi.HandoffDestinationDynamic;
-    }
 }

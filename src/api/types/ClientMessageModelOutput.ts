@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageModelOutput {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageModelOutput.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageModelOutputPhoneNumber;
     /** This is the type of the message. "model-output" is sent as the model outputs tokens. */
     type: "model-output";
     /** This is the timestamp of the message. */
@@ -19,16 +19,4 @@ export interface ClientMessageModelOutput {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the output of the model. It can be a token or tool call. */
     output: Record<string, unknown>;
-}
-
-export namespace ClientMessageModelOutput {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

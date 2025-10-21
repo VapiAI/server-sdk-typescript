@@ -10,7 +10,7 @@ export interface FunctionToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: FunctionToolWithToolCall.Messages.Item[];
+    messages?: Vapi.FunctionToolWithToolCallMessagesItem[];
     /** The type of tool. "function" for Function tool. */
     type: "function";
     /**
@@ -118,16 +118,4 @@ export interface FunctionToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace FunctionToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

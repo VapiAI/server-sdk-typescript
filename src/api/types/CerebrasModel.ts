@@ -12,7 +12,7 @@ export interface CerebrasModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: CerebrasModel.Tools.Item[];
+    tools?: Vapi.CerebrasModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface CerebrasModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
-    model: CerebrasModel.Model;
+    model: Vapi.CerebrasModelModel;
     provider: "cerebras";
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
     temperature?: number;
@@ -44,41 +44,4 @@ export interface CerebrasModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace CerebrasModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
-     */
-    export type Model = "llama3.1-8b" | "llama-3.3-70b";
-    export const Model = {
-        Llama318B: "llama3.1-8b",
-        Llama3370B: "llama-3.3-70b",
-    } as const;
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageCallDeleteFailed {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageCallDeleteFailed.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageCallDeleteFailedPhoneNumber;
     /** This is the type of the message. "call.deleted" is sent when a call is deleted. */
     type: "call.delete.failed";
     /** This is the timestamp of the message. */
@@ -17,16 +17,4 @@ export interface ClientMessageCallDeleteFailed {
     customer?: Vapi.CreateCustomerDto;
     /** This is the assistant that the message is associated with. */
     assistant?: Vapi.CreateAssistantDto;
-}
-
-export namespace ClientMessageCallDeleteFailed {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -12,7 +12,7 @@ export interface Eval {
      *
      * Evaluation Messages are used as checkpoints in the flow where the model's response to previous conversation needs to be evaluated to check the content and tool calls
      */
-    messages: Eval.Messages.Item[];
+    messages: Vapi.EvalMessagesItem[];
     id: string;
     orgId: string;
     createdAt: string;
@@ -32,17 +32,4 @@ export interface Eval {
      * Currently it is fixed to `chat.mockConversation`.
      */
     type: "chat.mockConversation";
-}
-
-export namespace Eval {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ChatEvalAssistantMessageMock
-            | Vapi.ChatEvalSystemMessageMock
-            | Vapi.ChatEvalToolResponseMessageMock
-            | Vapi.ChatEvalUserMessageMock
-            | Vapi.ChatEvalAssistantMessageEvaluation;
-    }
 }

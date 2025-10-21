@@ -10,46 +10,11 @@ export interface FallbackSmallestAiVoice {
     /** This is the voice provider that will be used. */
     provider: "smallest-ai";
     /** This is the provider-specific ID that will be used. */
-    voiceId: FallbackSmallestAiVoice.VoiceId;
+    voiceId: Vapi.FallbackSmallestAiVoiceId;
     /** Smallest AI voice model to use. Defaults to 'lightning' when not specified. */
     model?: "lightning";
     /** This is the speed multiplier that will be used. */
     speed?: number;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackSmallestAiVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     */
-    export type VoiceId =
-        | (
-              | "emily"
-              | "jasmine"
-              | "arman"
-              | "james"
-              | "mithali"
-              | "aravind"
-              | "raj"
-              | "diya"
-              | "raman"
-              | "ananya"
-              | "isha"
-              | "william"
-              | "aarav"
-              | "monika"
-              | "niharika"
-              | "deepika"
-              | "raghav"
-              | "kajal"
-              | "radhika"
-              | "mansi"
-              | "nisha"
-              | "saurabh"
-              | "pooja"
-              | "saina"
-              | "sanya"
-          )
-        | string;
 }

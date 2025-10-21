@@ -12,7 +12,7 @@ export interface GoogleModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: GoogleModel.Tools.Item[];
+    tools?: Vapi.GoogleModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface GoogleModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** This is the Google model that will be used. */
-    model: GoogleModel.Model;
+    model: Vapi.GoogleModelModel;
     provider: "google";
     /**
      * This is the session configuration for the Gemini Flash 2.0 Multimodal Live API.
@@ -49,67 +49,4 @@ export interface GoogleModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace GoogleModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This is the Google model that will be used.
-     */
-    export type Model =
-        | "gemini-2.5-pro"
-        | "gemini-2.5-flash"
-        | "gemini-2.5-flash-lite"
-        | "gemini-2.0-flash-thinking-exp"
-        | "gemini-2.0-pro-exp-02-05"
-        | "gemini-2.0-flash"
-        | "gemini-2.0-flash-lite"
-        | "gemini-2.0-flash-exp"
-        | "gemini-2.0-flash-realtime-exp"
-        | "gemini-1.5-flash"
-        | "gemini-1.5-flash-002"
-        | "gemini-1.5-pro"
-        | "gemini-1.5-pro-002"
-        | "gemini-1.0-pro";
-    export const Model = {
-        Gemini25Pro: "gemini-2.5-pro",
-        Gemini25Flash: "gemini-2.5-flash",
-        Gemini25FlashLite: "gemini-2.5-flash-lite",
-        Gemini20FlashThinkingExp: "gemini-2.0-flash-thinking-exp",
-        Gemini20ProExp0205: "gemini-2.0-pro-exp-02-05",
-        Gemini20Flash: "gemini-2.0-flash",
-        Gemini20FlashLite: "gemini-2.0-flash-lite",
-        Gemini20FlashExp: "gemini-2.0-flash-exp",
-        Gemini20FlashRealtimeExp: "gemini-2.0-flash-realtime-exp",
-        Gemini15Flash: "gemini-1.5-flash",
-        Gemini15Flash002: "gemini-1.5-flash-002",
-        Gemini15Pro: "gemini-1.5-pro",
-        Gemini15Pro002: "gemini-1.5-pro-002",
-        Gemini10Pro: "gemini-1.0-pro",
-    } as const;
 }

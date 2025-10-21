@@ -12,7 +12,7 @@ export interface AnthropicModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: AnthropicModel.Tools.Item[];
+    tools?: Vapi.AnthropicModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface AnthropicModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** The specific Anthropic/Claude model that will be used. */
-    model: AnthropicModel.Model;
+    model: Vapi.AnthropicModelModel;
     /** The provider identifier for Anthropic. */
     provider: "anthropic";
     /**
@@ -51,61 +51,4 @@ export interface AnthropicModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace AnthropicModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * The specific Anthropic/Claude model that will be used.
-     */
-    export type Model =
-        | "claude-3-opus-20240229"
-        | "claude-3-sonnet-20240229"
-        | "claude-3-haiku-20240307"
-        | "claude-3-5-sonnet-20240620"
-        | "claude-3-5-sonnet-20241022"
-        | "claude-3-5-haiku-20241022"
-        | "claude-3-7-sonnet-20250219"
-        | "claude-opus-4-20250514"
-        | "claude-sonnet-4-20250514"
-        | "claude-sonnet-4-5-20250929"
-        | "claude-haiku-4-5-20251001";
-    export const Model = {
-        Claude3Opus20240229: "claude-3-opus-20240229",
-        Claude3Sonnet20240229: "claude-3-sonnet-20240229",
-        Claude3Haiku20240307: "claude-3-haiku-20240307",
-        Claude35Sonnet20240620: "claude-3-5-sonnet-20240620",
-        Claude35Sonnet20241022: "claude-3-5-sonnet-20241022",
-        Claude35Haiku20241022: "claude-3-5-haiku-20241022",
-        Claude37Sonnet20250219: "claude-3-7-sonnet-20250219",
-        ClaudeOpus420250514: "claude-opus-4-20250514",
-        ClaudeSonnet420250514: "claude-sonnet-4-20250514",
-        ClaudeSonnet4520250929: "claude-sonnet-4-5-20250929",
-        ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
-    } as const;
 }

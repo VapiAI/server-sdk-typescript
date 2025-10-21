@@ -12,63 +12,13 @@ export interface CartesiaVoice {
     /** The ID of the particular voice you want to use. */
     voiceId: string;
     /** This is the model that will be used. This is optional and will default to the correct model for the voiceId. */
-    model?: CartesiaVoice.Model;
+    model?: Vapi.CartesiaVoiceModel;
     /** This is the language that will be used. This is optional and will default to the correct language for the voiceId. */
-    language?: CartesiaVoice.Language;
+    language?: Vapi.CartesiaVoiceLanguage;
     /** Experimental controls for Cartesia voice generation */
     experimentalControls?: Vapi.CartesiaExperimentalControls;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
-}
-
-export namespace CartesiaVoice {
-    /**
-     * This is the model that will be used. This is optional and will default to the correct model for the voiceId.
-     */
-    export type Model = "sonic-2" | "sonic-english" | "sonic-multilingual" | "sonic-preview" | "sonic";
-    export const Model = {
-        Sonic2: "sonic-2",
-        SonicEnglish: "sonic-english",
-        SonicMultilingual: "sonic-multilingual",
-        SonicPreview: "sonic-preview",
-        Sonic: "sonic",
-    } as const;
-    /**
-     * This is the language that will be used. This is optional and will default to the correct language for the voiceId.
-     */
-    export type Language =
-        | "en"
-        | "de"
-        | "es"
-        | "fr"
-        | "ja"
-        | "pt"
-        | "zh"
-        | "hi"
-        | "it"
-        | "ko"
-        | "nl"
-        | "pl"
-        | "ru"
-        | "sv"
-        | "tr";
-    export const Language = {
-        En: "en",
-        De: "de",
-        Es: "es",
-        Fr: "fr",
-        Ja: "ja",
-        Pt: "pt",
-        Zh: "zh",
-        Hi: "hi",
-        It: "it",
-        Ko: "ko",
-        Nl: "nl",
-        Pl: "pl",
-        Ru: "ru",
-        Sv: "sv",
-        Tr: "tr",
-    } as const;
 }

@@ -8,31 +8,10 @@ export interface GroupCondition {
     /** This is the type discriminator for group condition */
     type: "group";
     /** This is the logical operator for combining conditions in this group */
-    operator: GroupCondition.Operator;
+    operator: Vapi.GroupConditionOperator;
     /**
      * This is the list of nested conditions to evaluate.
      * Supports recursive nesting of groups for complex logic.
      */
-    conditions: GroupCondition.Conditions.Item[];
-}
-
-export namespace GroupCondition {
-    /**
-     * This is the logical operator for combining conditions in this group
-     */
-    export type Operator = "AND" | "OR";
-    export const Operator = {
-        And: "AND",
-        Or: "OR",
-    } as const;
-    export type Conditions = Conditions.Item[];
-
-    export namespace Conditions {
-        export type Item =
-            | Vapi.RegexCondition
-            | Vapi.LiquidCondition
-            /**
-             * This is the GroupCondition object but Swagger does not display nested schemas correctly. */
-            | Vapi.GroupCondition;
-    }
+    conditions: Vapi.GroupConditionConditionsItem[];
 }
