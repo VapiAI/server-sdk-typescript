@@ -17,9 +17,5 @@ export interface CompliancePlan {
     pciEnabled?: boolean;
     /** This is the security filter plan for the assistant. It allows filtering of transcripts for security threats before sending to LLM. */
     securityFilterPlan?: Vapi.SecurityFilterPlan;
-    recordingConsentPlan?: CompliancePlan.RecordingConsentPlan;
-}
-
-export namespace CompliancePlan {
-    export type RecordingConsentPlan = Vapi.RecordingConsentPlanStayOnLine | Vapi.RecordingConsentPlanVerbal;
+    recordingConsentPlan?: Vapi.CompliancePlanRecordingConsentPlan;
 }

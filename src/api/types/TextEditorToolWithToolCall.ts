@@ -10,7 +10,7 @@ export interface TextEditorToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: TextEditorToolWithToolCall.Messages.Item[];
+    messages?: Vapi.TextEditorToolWithToolCallMessagesItem[];
     /** The type of tool. "textEditor" for Text Editor tool. */
     type: "textEditor";
     /** The sub type of tool. */
@@ -110,16 +110,4 @@ export interface TextEditorToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace TextEditorToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

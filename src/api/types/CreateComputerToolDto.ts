@@ -10,7 +10,7 @@ export interface CreateComputerToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateComputerToolDto.Messages.Item[];
+    messages?: Vapi.CreateComputerToolDtoMessagesItem[];
     type: "computer";
     /** The sub type of tool. */
     subType: "computer_20241022";
@@ -114,16 +114,4 @@ export interface CreateComputerToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateComputerToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

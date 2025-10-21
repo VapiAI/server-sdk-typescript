@@ -16,7 +16,7 @@ export interface UpdateOrgDto {
     /** This is the name of the org. This is just for your own reference. */
     name?: string;
     /** This is the channel of the org. There is the cluster the API traffic for the org will be directed. */
-    channel?: UpdateOrgDto.Channel;
+    channel?: Vapi.UpdateOrgDtoChannel;
     /** This is the monthly billing limit for the org. To go beyond $1000/mo, please contact us at support@vapi.ai. */
     billingLimit?: number;
     /**
@@ -40,15 +40,4 @@ export interface UpdateOrgDto {
      * This is due to the compliance requirements of PCI. Other providers may not meet these requirements.
      */
     compliancePlan?: Vapi.CompliancePlan;
-}
-
-export namespace UpdateOrgDto {
-    /**
-     * This is the channel of the org. There is the cluster the API traffic for the org will be directed.
-     */
-    export type Channel = "default" | "weekly";
-    export const Channel = {
-        Default: "default",
-        Weekly: "weekly",
-    } as const;
 }

@@ -7,9 +7,9 @@ import * as Vapi from "../index.js";
 export interface AzureCredential {
     provider: "azure";
     /** This is the service being used in Azure. */
-    service: AzureCredential.Service;
+    service: Vapi.AzureCredentialService;
     /** This is the region of the Azure resource. */
-    region?: AzureCredential.Region;
+    region?: Vapi.AzureCredentialRegion;
     /** This is not returned in the API. */
     apiKey?: string;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
@@ -26,57 +26,4 @@ export interface AzureCredential {
     name?: string;
     /** This is the bucket plan that can be provided to store call artifacts in Azure Blob Storage. */
     bucketPlan?: Vapi.AzureBlobStorageBucketPlan;
-}
-
-export namespace AzureCredential {
-    /**
-     * This is the service being used in Azure.
-     */
-    export type Service = "speech" | "blob_storage";
-    export const Service = {
-        Speech: "speech",
-        BlobStorage: "blob_storage",
-    } as const;
-    /**
-     * This is the region of the Azure resource.
-     */
-    export type Region =
-        | "australia"
-        | "canadaeast"
-        | "canadacentral"
-        | "eastus2"
-        | "eastus"
-        | "france"
-        | "india"
-        | "japaneast"
-        | "japanwest"
-        | "uaenorth"
-        | "northcentralus"
-        | "norway"
-        | "southcentralus"
-        | "swedencentral"
-        | "switzerland"
-        | "uk"
-        | "westus"
-        | "westus3";
-    export const Region = {
-        Australia: "australia",
-        Canadaeast: "canadaeast",
-        Canadacentral: "canadacentral",
-        Eastus2: "eastus2",
-        Eastus: "eastus",
-        France: "france",
-        India: "india",
-        Japaneast: "japaneast",
-        Japanwest: "japanwest",
-        Uaenorth: "uaenorth",
-        Northcentralus: "northcentralus",
-        Norway: "norway",
-        Southcentralus: "southcentralus",
-        Swedencentral: "swedencentral",
-        Switzerland: "switzerland",
-        Uk: "uk",
-        Westus: "westus",
-        Westus3: "westus3",
-    } as const;
 }

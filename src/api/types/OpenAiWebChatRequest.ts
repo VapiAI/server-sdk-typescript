@@ -27,7 +27,7 @@ export interface OpenAiWebChatRequest {
      * This is the input text for the chat.
      * Can be a string or an array of chat messages.
      */
-    input: OpenAiWebChatRequest.Input;
+    input: Vapi.OpenAiWebChatRequestInput;
     /** Whether to stream the response or not. */
     stream?: boolean;
     /**
@@ -36,14 +36,4 @@ export interface OpenAiWebChatRequest {
      * When flag is set to true, any messages sent will not be processed and session will directly be marked as completed.
      */
     sessionEnd?: boolean;
-}
-
-export namespace OpenAiWebChatRequest {
-    /**
-     * This is the input text for the chat.
-     * Can be a string or an array of chat messages.
-     */
-    export type Input =
-        | string
-        | (Vapi.SystemMessage | Vapi.UserMessage | Vapi.AssistantMessage | Vapi.ToolMessage | Vapi.DeveloperMessage)[];
 }

@@ -29,7 +29,7 @@ export interface CreateStructuredOutputDto {
      * If model is not specified, GPT-4.1 will be used by default for extraction, utilizing default system and user prompts.
      * If messages or required fields are not specified, the default system and user prompts will be used.
      */
-    model?: CreateStructuredOutputDto.Model;
+    model?: Vapi.CreateStructuredOutputDtoModel;
     /** This is the name of the structured output. */
     name: string;
     /**
@@ -62,27 +62,4 @@ export interface CreateStructuredOutputDto {
      * When linked to workflows, this structured output will be available for extraction during those workflow's execution.
      */
     workflowIds?: string[];
-}
-
-export namespace CreateStructuredOutputDto {
-    /**
-     * This is the model that will be used to extract the structured output.
-     *
-     * To provide your own custom system and user prompts for structured output extraction, populate the messages array with your system and user messages. You can specify liquid templating in your system and user messages.
-     * Between the system or user messages, you must reference either 'transcript' or 'messages' with the '{{}}' syntax to access the conversation history.
-     * Between the system or user messages, you must reference a variation of the structured output with the '{{}}' syntax to access the structured output definition.
-     * i.e.:
-     * {{structuredOutput}}
-     * {{structuredOutput.name}}
-     * {{structuredOutput.description}}
-     * {{structuredOutput.schema}}
-     *
-     * If model is not specified, GPT-4.1 will be used by default for extraction, utilizing default system and user prompts.
-     * If messages or required fields are not specified, the default system and user prompts will be used.
-     */
-    export type Model =
-        | Vapi.WorkflowOpenAiModel
-        | Vapi.WorkflowAnthropicModel
-        | Vapi.WorkflowGoogleModel
-        | Vapi.WorkflowCustomModel;
 }

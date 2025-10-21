@@ -12,12 +12,12 @@ export interface Subscription {
     /** This is the timestamp when the subscription was last updated. */
     updatedAt: string;
     /** This is the type / tier of the subscription. */
-    type: Subscription.Type;
+    type: Vapi.SubscriptionType;
     /**
      * This is the status of the subscription. Past due subscriptions are subscriptions
      * with past due payments.
      */
-    status: Subscription.Status;
+    status: Vapi.SubscriptionStatus;
     /**
      * This is the number of credits the subscription currently has.
      *
@@ -101,41 +101,9 @@ export interface Subscription {
     /** This is the chat retention days for the subscription. */
     chatRetentionDays?: number;
     /** This is the minutes_included reset frequency for the subscription. */
-    minutesIncludedResetFrequency?: Subscription.MinutesIncludedResetFrequency;
+    minutesIncludedResetFrequency?: Vapi.SubscriptionMinutesIncludedResetFrequency;
     /** This is the Role Based Access Control (RBAC) enabled flag for the subscription. */
     rbacEnabled?: boolean;
     /** This is the platform fee for the subscription. */
     platformFee?: number;
-}
-
-export namespace Subscription {
-    /**
-     * This is the type / tier of the subscription.
-     */
-    export type Type = "pay-as-you-go" | "enterprise" | "agency" | "startup" | "growth" | "scale";
-    export const Type = {
-        PayAsYouGo: "pay-as-you-go",
-        Enterprise: "enterprise",
-        Agency: "agency",
-        Startup: "startup",
-        Growth: "growth",
-        Scale: "scale",
-    } as const;
-    /**
-     * This is the status of the subscription. Past due subscriptions are subscriptions
-     * with past due payments.
-     */
-    export type Status = "active" | "frozen";
-    export const Status = {
-        Active: "active",
-        Frozen: "frozen",
-    } as const;
-    /**
-     * This is the minutes_included reset frequency for the subscription.
-     */
-    export type MinutesIncludedResetFrequency = "monthly" | "annually";
-    export const MinutesIncludedResetFrequency = {
-        Monthly: "monthly",
-        Annually: "annually",
-    } as const;
 }

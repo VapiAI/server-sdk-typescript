@@ -13,9 +13,9 @@ export interface CreateByoPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: CreateByoPhoneNumberDto.FallbackDestination;
+    fallbackDestination?: Vapi.CreateByoPhoneNumberDtoFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: CreateByoPhoneNumberDto.Hooks.Item[];
+    hooks?: Vapi.CreateByoPhoneNumberDtoHooksItem[];
     provider: "byo-phone-number";
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
@@ -67,21 +67,4 @@ export interface CreateByoPhoneNumberDto {
      * 3. org.server
      */
     server?: Vapi.Server;
-}
-
-export namespace CreateByoPhoneNumberDto {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
 }

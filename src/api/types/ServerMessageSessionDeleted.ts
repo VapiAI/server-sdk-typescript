@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageSessionDeleted {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageSessionDeleted.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageSessionDeletedPhoneNumber;
     /** This is the type of the message. "session.deleted" is sent when a session is deleted. */
     type: "session.deleted";
     /** This is the timestamp of the message. */
@@ -27,16 +27,4 @@ export interface ServerMessageSessionDeleted {
     chat?: Vapi.Chat;
     /** This is the session that was deleted. */
     session: Vapi.Session;
-}
-
-export namespace ServerMessageSessionDeleted {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -12,19 +12,7 @@ export interface ResponseOutputMessage {
     /** The role of the output message */
     role: "assistant";
     /** The status of the message */
-    status: ResponseOutputMessage.Status;
+    status: Vapi.ResponseOutputMessageStatus;
     /** The type of the output message */
     type: "message";
-}
-
-export namespace ResponseOutputMessage {
-    /**
-     * The status of the message
-     */
-    export type Status = "in_progress" | "completed" | "incomplete";
-    export const Status = {
-        InProgress: "in_progress",
-        Completed: "completed",
-        Incomplete: "incomplete",
-    } as const;
 }

@@ -22,26 +22,10 @@ export interface SecurityFilterPlan {
      * - 'replace': Replace threatening patterns with replacement text
      * @default 'sanitize'
      */
-    mode?: SecurityFilterPlan.Mode;
+    mode?: Vapi.SecurityFilterPlanMode;
     /**
      * Text to use when replacing filtered content.
      * @default '[FILTERED]'
      */
     replacementText?: string;
-}
-
-export namespace SecurityFilterPlan {
-    /**
-     * Mode of operation when a security threat is detected.
-     * - 'sanitize': Remove or replace the threatening content
-     * - 'reject': Replace the entire transcript with replacement text
-     * - 'replace': Replace threatening patterns with replacement text
-     * @default 'sanitize'
-     */
-    export type Mode = "sanitize" | "reject" | "replace";
-    export const Mode = {
-        Sanitize: "sanitize",
-        Reject: "reject",
-        Replace: "replace",
-    } as const;
 }

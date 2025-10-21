@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface Artifact {
     /** These are the messages that were spoken during the call. */
-    messages?: Artifact.Messages.Item[];
+    messages?: Vapi.ArtifactMessagesItem[];
     /** These are the messages that were spoken during the call, formatted for OpenAI. */
     messagesOpenAIFormatted?: Vapi.OpenAiMessage[];
     /** This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
@@ -38,17 +38,4 @@ export interface Artifact {
     structuredOutputs?: Record<string, unknown>;
     /** These are the transfer records from warm transfers, including destinations, transcripts, and status. */
     transfers?: string[];
-}
-
-export namespace Artifact {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.UserMessage
-            | Vapi.SystemMessage
-            | Vapi.BotMessage
-            | Vapi.ToolCallMessage
-            | Vapi.ToolCallResultMessage;
-    }
 }

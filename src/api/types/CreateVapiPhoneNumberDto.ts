@@ -13,9 +13,9 @@ export interface CreateVapiPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: CreateVapiPhoneNumberDto.FallbackDestination;
+    fallbackDestination?: Vapi.CreateVapiPhoneNumberDtoFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: CreateVapiPhoneNumberDto.Hooks.Item[];
+    hooks?: Vapi.CreateVapiPhoneNumberDtoHooksItem[];
     provider: "vapi";
     /** This is the area code of the phone number to purchase. */
     numberDesiredAreaCode?: string;
@@ -61,21 +61,4 @@ export interface CreateVapiPhoneNumberDto {
      * 3. org.server
      */
     server?: Vapi.Server;
-}
-
-export namespace CreateVapiPhoneNumberDto {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
 }

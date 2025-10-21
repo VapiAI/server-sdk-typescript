@@ -5,57 +5,12 @@
 import * as Vapi from "../index.js";
 
 export interface UpdateToolTemplateDto {
-    details?: UpdateToolTemplateDto.Details;
-    providerDetails?: UpdateToolTemplateDto.ProviderDetails;
+    details?: Vapi.UpdateToolTemplateDtoDetails;
+    providerDetails?: Vapi.UpdateToolTemplateDtoProviderDetails;
     metadata?: Vapi.ToolTemplateMetadata;
-    visibility?: UpdateToolTemplateDto.Visibility;
+    visibility?: Vapi.UpdateToolTemplateDtoVisibility;
     type: "tool";
     /** The name of the template. This is just for your own reference. */
     name?: string;
-    provider?: UpdateToolTemplateDto.Provider;
-}
-
-export namespace UpdateToolTemplateDto {
-    export type Details =
-        | Vapi.CreateApiRequestToolDto
-        | Vapi.CreateBashToolDto
-        | Vapi.CreateComputerToolDto
-        | Vapi.CreateDtmfToolDto
-        | Vapi.CreateEndCallToolDto
-        | Vapi.CreateFunctionToolDto
-        | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-        | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-        | Vapi.CreateGoHighLevelContactCreateToolDto
-        | Vapi.CreateGoHighLevelContactGetToolDto
-        | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-        | Vapi.CreateGoogleCalendarCreateEventToolDto
-        | Vapi.CreateGoogleSheetsRowAppendToolDto
-        | Vapi.CreateHandoffToolDto
-        | Vapi.CreateMcpToolDto
-        | Vapi.CreateQueryToolDto
-        | Vapi.CreateSlackSendMessageToolDto
-        | Vapi.CreateSmsToolDto
-        | Vapi.CreateTextEditorToolDto
-        | Vapi.CreateTransferCallToolDto;
-    export type ProviderDetails =
-        | Vapi.MakeToolProviderDetails
-        | Vapi.GhlToolProviderDetails
-        | Vapi.FunctionToolProviderDetails
-        | Vapi.GoogleCalendarCreateEventToolProviderDetails
-        | Vapi.GoogleSheetsRowAppendToolProviderDetails
-        | Vapi.GoHighLevelCalendarAvailabilityToolProviderDetails
-        | Vapi.GoHighLevelCalendarEventCreateToolProviderDetails
-        | Vapi.GoHighLevelContactCreateToolProviderDetails
-        | Vapi.GoHighLevelContactGetToolProviderDetails;
-    export type Visibility = "public" | "private";
-    export const Visibility = {
-        Public: "public",
-        Private: "private",
-    } as const;
-    export type Provider = "make" | "gohighlevel" | "function";
-    export const Provider = {
-        Make: "make",
-        Gohighlevel: "gohighlevel",
-        Function: "function",
-    } as const;
+    provider?: Vapi.UpdateToolTemplateDtoProvider;
 }

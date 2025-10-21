@@ -6,11 +6,11 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageToolCalls {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageToolCalls.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageToolCallsPhoneNumber;
     /** This is the type of the message. "tool-calls" is sent to call a tool. */
     type?: "tool-calls";
     /** This is the list of tools calls that the model is requesting along with the original tool configuration. */
-    toolWithToolCallList: ClientMessageToolCalls.ToolWithToolCallList.Item[];
+    toolWithToolCallList: Vapi.ClientMessageToolCallsToolWithToolCallListItem[];
     /** This is the timestamp of the message. */
     timestamp?: number;
     /** This is the call that the message is associated with. */
@@ -21,28 +21,4 @@ export interface ClientMessageToolCalls {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the list of tool calls that the model is requesting. */
     toolCallList: Vapi.ToolCall[];
-}
-
-export namespace ClientMessageToolCalls {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    export type ToolWithToolCallList = ToolWithToolCallList.Item[];
-
-    export namespace ToolWithToolCallList {
-        export type Item =
-            | Vapi.FunctionToolWithToolCall
-            | Vapi.GhlToolWithToolCall
-            | Vapi.MakeToolWithToolCall
-            | Vapi.BashToolWithToolCall
-            | Vapi.ComputerToolWithToolCall
-            | Vapi.TextEditorToolWithToolCall
-            | Vapi.GoogleCalendarCreateEventToolWithToolCall;
-    }
 }

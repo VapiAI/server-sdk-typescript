@@ -10,7 +10,7 @@ export interface BashToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: BashToolWithToolCall.Messages.Item[];
+    messages?: Vapi.BashToolWithToolCallMessagesItem[];
     /** The type of tool. "bash" for Bash tool. */
     type: "bash";
     /** The sub type of tool. */
@@ -110,16 +110,4 @@ export interface BashToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace BashToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

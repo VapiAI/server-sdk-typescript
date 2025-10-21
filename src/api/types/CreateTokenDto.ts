@@ -6,20 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface CreateTokenDto {
     /** This is the tag for the token. It represents its scope. */
-    tag?: CreateTokenDto.Tag;
+    tag?: Vapi.CreateTokenDtoTag;
     /** This is the name of the token. This is just for your own reference. */
     name?: string;
     /** This are the restrictions for the token. */
     restrictions?: Vapi.TokenRestrictions;
-}
-
-export namespace CreateTokenDto {
-    /**
-     * This is the tag for the token. It represents its scope.
-     */
-    export type Tag = "private" | "public";
-    export const Tag = {
-        Private: "private",
-        Public: "public",
-    } as const;
 }

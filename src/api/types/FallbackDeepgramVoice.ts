@@ -10,9 +10,9 @@ export interface FallbackDeepgramVoice {
     /** This is the voice provider that will be used. */
     provider: "deepgram";
     /** This is the provider-specific ID that will be used. */
-    voiceId: FallbackDeepgramVoice.VoiceId;
+    voiceId: Vapi.FallbackDeepgramVoiceId;
     /** This is the model that will be used. Defaults to 'aura-2' when not specified. */
-    model?: FallbackDeepgramVoice.Model;
+    model?: Vapi.FallbackDeepgramVoiceModel;
     /**
      * If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
      *
@@ -23,131 +23,4 @@ export interface FallbackDeepgramVoice {
     mipOptOut?: boolean;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackDeepgramVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     */
-    export type VoiceId =
-        | "asteria"
-        | "luna"
-        | "stella"
-        | "athena"
-        | "hera"
-        | "orion"
-        | "arcas"
-        | "perseus"
-        | "angus"
-        | "orpheus"
-        | "helios"
-        | "zeus"
-        | "thalia"
-        | "andromeda"
-        | "helena"
-        | "apollo"
-        | "aries"
-        | "amalthea"
-        | "atlas"
-        | "aurora"
-        | "callista"
-        | "cora"
-        | "cordelia"
-        | "delia"
-        | "draco"
-        | "electra"
-        | "harmonia"
-        | "hermes"
-        | "hyperion"
-        | "iris"
-        | "janus"
-        | "juno"
-        | "jupiter"
-        | "mars"
-        | "minerva"
-        | "neptune"
-        | "odysseus"
-        | "ophelia"
-        | "pandora"
-        | "phoebe"
-        | "pluto"
-        | "saturn"
-        | "selene"
-        | "theia"
-        | "vesta"
-        | "celeste"
-        | "estrella"
-        | "nestor"
-        | "sirio"
-        | "carina"
-        | "alvaro"
-        | "diana"
-        | "aquila"
-        | "selena"
-        | "javier";
-    export const VoiceId = {
-        Asteria: "asteria",
-        Luna: "luna",
-        Stella: "stella",
-        Athena: "athena",
-        Hera: "hera",
-        Orion: "orion",
-        Arcas: "arcas",
-        Perseus: "perseus",
-        Angus: "angus",
-        Orpheus: "orpheus",
-        Helios: "helios",
-        Zeus: "zeus",
-        Thalia: "thalia",
-        Andromeda: "andromeda",
-        Helena: "helena",
-        Apollo: "apollo",
-        Aries: "aries",
-        Amalthea: "amalthea",
-        Atlas: "atlas",
-        Aurora: "aurora",
-        Callista: "callista",
-        Cora: "cora",
-        Cordelia: "cordelia",
-        Delia: "delia",
-        Draco: "draco",
-        Electra: "electra",
-        Harmonia: "harmonia",
-        Hermes: "hermes",
-        Hyperion: "hyperion",
-        Iris: "iris",
-        Janus: "janus",
-        Juno: "juno",
-        Jupiter: "jupiter",
-        Mars: "mars",
-        Minerva: "minerva",
-        Neptune: "neptune",
-        Odysseus: "odysseus",
-        Ophelia: "ophelia",
-        Pandora: "pandora",
-        Phoebe: "phoebe",
-        Pluto: "pluto",
-        Saturn: "saturn",
-        Selene: "selene",
-        Theia: "theia",
-        Vesta: "vesta",
-        Celeste: "celeste",
-        Estrella: "estrella",
-        Nestor: "nestor",
-        Sirio: "sirio",
-        Carina: "carina",
-        Alvaro: "alvaro",
-        Diana: "diana",
-        Aquila: "aquila",
-        Selena: "selena",
-        Javier: "javier",
-    } as const;
-    /**
-     * This is the model that will be used. Defaults to 'aura-2' when not specified.
-     */
-    export type Model = "aura" | "aura-2";
-    export const Model = {
-        Aura: "aura",
-        Aura2: "aura-2",
-    } as const;
 }

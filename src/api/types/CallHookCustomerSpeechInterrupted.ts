@@ -8,13 +8,5 @@ export interface CallHookCustomerSpeechInterrupted {
     /** This is the event that triggers this hook */
     on: "customer.speech.interrupted";
     /** This is the set of actions to perform when the hook triggers */
-    do: CallHookCustomerSpeechInterrupted.Do.Item[];
-}
-
-export namespace CallHookCustomerSpeechInterrupted {
-    export type Do = Do.Item[];
-
-    export namespace Do {
-        export type Item = Vapi.SayHookAction | Vapi.ToolCallHookAction;
-    }
+    do: Vapi.CallHookCustomerSpeechInterruptedDoItem[];
 }

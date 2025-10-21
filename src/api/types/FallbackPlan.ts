@@ -6,29 +6,5 @@ import * as Vapi from "../index.js";
 
 export interface FallbackPlan {
     /** This is the list of voices to fallback to in the event that the primary voice provider fails. */
-    voices: FallbackPlan.Voices.Item[];
-}
-
-export namespace FallbackPlan {
-    export type Voices = Voices.Item[];
-
-    export namespace Voices {
-        export type Item =
-            | Vapi.FallbackAzureVoice
-            | Vapi.FallbackCartesiaVoice
-            | Vapi.FallbackHumeVoice
-            | Vapi.FallbackCustomVoice
-            | Vapi.FallbackDeepgramVoice
-            | Vapi.FallbackElevenLabsVoice
-            | Vapi.FallbackVapiVoice
-            | Vapi.FallbackLmntVoice
-            | Vapi.FallbackOpenAiVoice
-            | Vapi.FallbackPlayHtVoice
-            | Vapi.FallbackRimeAiVoice
-            | Vapi.FallbackSmallestAiVoice
-            | Vapi.FallbackTavusVoice
-            | Vapi.FallbackNeuphonicVoice
-            | Vapi.FallbackSesameVoice
-            | Vapi.FallbackInworldVoice;
-    }
+    voices: Vapi.FallbackPlanVoicesItem[];
 }

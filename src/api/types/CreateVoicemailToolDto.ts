@@ -10,7 +10,7 @@ export interface CreateVoicemailToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateVoicemailToolDto.Messages.Item[];
+    messages?: Vapi.CreateVoicemailToolDtoMessagesItem[];
     /** The type of tool. "voicemail" for Voicemail tool. */
     type: "voicemail";
     /**
@@ -100,16 +100,4 @@ export interface CreateVoicemailToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateVoicemailToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

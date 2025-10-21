@@ -6,27 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageResponseTransferDestinationRequest {
     /** This is the destination you'd like the call to be transferred to. */
-    destination?: ServerMessageResponseTransferDestinationRequest.Destination;
+    destination?: Vapi.ServerMessageResponseTransferDestinationRequestDestination;
     /** This is the message that will be spoken to the user as the tool is running. */
-    message?: ServerMessageResponseTransferDestinationRequest.Message;
+    message?: Vapi.ServerMessageResponseTransferDestinationRequestMessage;
     /** This is the error message if the transfer should not be made. */
     error?: string;
-}
-
-export namespace ServerMessageResponseTransferDestinationRequest {
-    /**
-     * This is the destination you'd like the call to be transferred to.
-     */
-    export type Destination =
-        | Vapi.TransferDestinationAssistant
-        | Vapi.TransferDestinationNumber
-        | Vapi.TransferDestinationSip;
-    /**
-     * This is the message that will be spoken to the user as the tool is running.
-     */
-    export type Message =
-        | Vapi.ToolMessageStart
-        | Vapi.ToolMessageComplete
-        | Vapi.ToolMessageFailed
-        | Vapi.ToolMessageDelayed;
 }

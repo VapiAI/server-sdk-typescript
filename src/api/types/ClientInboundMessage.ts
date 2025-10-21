@@ -6,17 +6,5 @@ import * as Vapi from "../index.js";
 
 export interface ClientInboundMessage {
     /** These are the messages that can be sent from client-side SDKs to control the call. */
-    message: ClientInboundMessage.Message;
-}
-
-export namespace ClientInboundMessage {
-    /**
-     * These are the messages that can be sent from client-side SDKs to control the call.
-     */
-    export type Message =
-        | Vapi.ClientInboundMessageAddMessage
-        | Vapi.ClientInboundMessageControl
-        | Vapi.ClientInboundMessageSay
-        | Vapi.ClientInboundMessageEndCall
-        | Vapi.ClientInboundMessageTransfer;
+    message: Vapi.ClientInboundMessageMessage;
 }

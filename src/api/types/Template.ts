@@ -5,14 +5,14 @@
 import * as Vapi from "../index.js";
 
 export interface Template {
-    details?: Template.Details;
-    providerDetails?: Template.ProviderDetails;
+    details?: Vapi.TemplateDetails;
+    providerDetails?: Vapi.TemplateProviderDetails;
     metadata?: Vapi.ToolTemplateMetadata;
-    visibility?: Template.Visibility;
+    visibility?: Vapi.TemplateVisibility;
     type: "tool";
     /** The name of the template. This is just for your own reference. */
     name?: string;
-    provider?: Template.Provider;
+    provider?: Vapi.TemplateProvider;
     /** The unique identifier for the template. */
     id: string;
     /** The unique identifier for the organization that this template belongs to. */
@@ -21,49 +21,4 @@ export interface Template {
     createdAt: string;
     /** The ISO 8601 date-time string of when the template was last updated. */
     updatedAt: string;
-}
-
-export namespace Template {
-    export type Details =
-        | Vapi.CreateApiRequestToolDto
-        | Vapi.CreateBashToolDto
-        | Vapi.CreateComputerToolDto
-        | Vapi.CreateDtmfToolDto
-        | Vapi.CreateEndCallToolDto
-        | Vapi.CreateFunctionToolDto
-        | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-        | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-        | Vapi.CreateGoHighLevelContactCreateToolDto
-        | Vapi.CreateGoHighLevelContactGetToolDto
-        | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-        | Vapi.CreateGoogleCalendarCreateEventToolDto
-        | Vapi.CreateGoogleSheetsRowAppendToolDto
-        | Vapi.CreateHandoffToolDto
-        | Vapi.CreateMcpToolDto
-        | Vapi.CreateQueryToolDto
-        | Vapi.CreateSlackSendMessageToolDto
-        | Vapi.CreateSmsToolDto
-        | Vapi.CreateTextEditorToolDto
-        | Vapi.CreateTransferCallToolDto;
-    export type ProviderDetails =
-        | Vapi.MakeToolProviderDetails
-        | Vapi.GhlToolProviderDetails
-        | Vapi.FunctionToolProviderDetails
-        | Vapi.GoogleCalendarCreateEventToolProviderDetails
-        | Vapi.GoogleSheetsRowAppendToolProviderDetails
-        | Vapi.GoHighLevelCalendarAvailabilityToolProviderDetails
-        | Vapi.GoHighLevelCalendarEventCreateToolProviderDetails
-        | Vapi.GoHighLevelContactCreateToolProviderDetails
-        | Vapi.GoHighLevelContactGetToolProviderDetails;
-    export type Visibility = "public" | "private";
-    export const Visibility = {
-        Public: "public",
-        Private: "private",
-    } as const;
-    export type Provider = "make" | "gohighlevel" | "function";
-    export const Provider = {
-        Make: "make",
-        Gohighlevel: "gohighlevel",
-        Function: "function",
-    } as const;
 }

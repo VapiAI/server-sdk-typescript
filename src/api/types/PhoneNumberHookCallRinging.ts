@@ -8,13 +8,5 @@ export interface PhoneNumberHookCallRinging {
     /** This is the event to trigger the hook on */
     on: "call.ringing";
     /** Only the first action will be executed. Additional actions will be ignored. */
-    do: PhoneNumberHookCallRinging.Do.Item[];
-}
-
-export namespace PhoneNumberHookCallRinging {
-    export type Do = Do.Item[];
-
-    export namespace Do {
-        export type Item = Vapi.TransferPhoneNumberHookAction | Vapi.SayPhoneNumberHookAction;
-    }
+    do: Vapi.PhoneNumberHookCallRingingDoItem[];
 }

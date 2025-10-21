@@ -6,11 +6,11 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageConversationUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageConversationUpdate.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageConversationUpdatePhoneNumber;
     /** This is the type of the message. "conversation-update" is sent when an update is committed to the conversation history. */
     type: "conversation-update";
     /** This is the most up-to-date conversation history at the time the message is sent. */
-    messages?: ServerMessageConversationUpdate.Messages.Item[];
+    messages?: Vapi.ServerMessageConversationUpdateMessagesItem[];
     /** This is the most up-to-date conversation history at the time the message is sent, formatted for OpenAI. */
     messagesOpenAIFormatted: Vapi.OpenAiMessage[];
     /** This is the timestamp of the message. */
@@ -29,26 +29,4 @@ export interface ServerMessageConversationUpdate {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessageConversationUpdate {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.UserMessage
-            | Vapi.SystemMessage
-            | Vapi.BotMessage
-            | Vapi.ToolCallMessage
-            | Vapi.ToolCallResultMessage;
-    }
 }

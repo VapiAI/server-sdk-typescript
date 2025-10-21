@@ -5,24 +5,5 @@
 import * as Vapi from "../index.js";
 
 export interface FallbackTranscriberPlan {
-    transcribers: FallbackTranscriberPlan.Transcribers.Item[];
-}
-
-export namespace FallbackTranscriberPlan {
-    export type Transcribers = Transcribers.Item[];
-
-    export namespace Transcribers {
-        export type Item =
-            | Vapi.FallbackAssemblyAiTranscriber
-            | Vapi.FallbackAzureSpeechTranscriber
-            | Vapi.FallbackCustomTranscriber
-            | Vapi.FallbackDeepgramTranscriber
-            | Vapi.FallbackElevenLabsTranscriber
-            | Vapi.FallbackGladiaTranscriber
-            | Vapi.FallbackGoogleTranscriber
-            | Vapi.FallbackTalkscriberTranscriber
-            | Vapi.FallbackSpeechmaticsTranscriber
-            | Vapi.FallbackOpenAiTranscriber
-            | Vapi.FallbackCartesiaTranscriber;
-    }
+    transcribers: Vapi.FallbackTranscriberPlanTranscribersItem[];
 }

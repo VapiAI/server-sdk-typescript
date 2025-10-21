@@ -12,7 +12,7 @@ export interface CustomLlmModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: CustomLlmModel.Tools.Item[];
+    tools?: Vapi.CustomLlmModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -34,7 +34,7 @@ export interface CustomLlmModel {
      *
      * Default is `variable`.
      */
-    metadataSendMode?: CustomLlmModel.MetadataSendMode;
+    metadataSendMode?: Vapi.CustomLlmModelMetadataSendMode;
     /** Custom headers to send with requests. These headers can override default OpenAI headers except for Authorization (which should be specified using a custom-llm credential). */
     headers?: Record<string, string>;
     /** These is the URL we'll use for the OpenAI client's `baseURL`. Ex. https://openrouter.ai/api/v1 */
@@ -68,50 +68,4 @@ export interface CustomLlmModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace CustomLlmModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This determines whether metadata is sent in requests to the custom provider.
-     *
-     * - `off` will not send any metadata. payload will look like `{ messages }`
-     * - `variable` will send `assistant.metadata` as a variable on the payload. payload will look like `{ messages, metadata }`
-     * - `destructured` will send `assistant.metadata` fields directly on the payload. payload will look like `{ messages, ...metadata }`
-     *
-     * Further, `variable` and `destructured` will send `call`, `phoneNumber`, and `customer` objects in the payload.
-     *
-     * Default is `variable`.
-     */
-    export type MetadataSendMode = "off" | "variable" | "destructured";
-    export const MetadataSendMode = {
-        Off: "off",
-        Variable: "variable",
-        Destructured: "destructured",
-    } as const;
 }

@@ -1,3 +1,5 @@
+export * as assistants from "./assistants/index.js";
+export * from "./assistants/types/index.js";
 export * as calls from "./calls/index.js";
 export * from "./calls/types/index.js";
 export * as chats from "./chats/index.js";
@@ -16,7 +18,6 @@ export * as eval from "./eval/index.js";
 export * from "./eval/types/index.js";
 export * as providerResources from "./providerResources/index.js";
 export * from "./providerResources/types/index.js";
-export * as assistants from "./assistants/index.js";
 export * as squads from "./squads/index.js";
 export * as files from "./files/index.js";
 export * as analytics from "./analytics/index.js";

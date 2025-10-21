@@ -38,62 +38,12 @@ export interface FormatPlan {
      *
      * @default []
      */
-    replacements?: FormatPlan.Replacements.Item[];
+    replacements?: Vapi.FormatPlanReplacementsItem[];
     /**
      * List of formatters to apply. If not provided, all default formatters will be applied.
      * If provided, only the specified formatters will be applied.
      * Note: Some essential formatters like angle bracket removal will always be applied.
      * @default undefined
      */
-    formattersEnabled?: FormatPlan.FormattersEnabled.Item[];
-}
-
-export namespace FormatPlan {
-    export type Replacements = Replacements.Item[];
-
-    export namespace Replacements {
-        export type Item = Vapi.ExactReplacement | Vapi.RegexReplacement;
-    }
-
-    export type FormattersEnabled = FormattersEnabled.Item[];
-
-    export namespace FormattersEnabled {
-        export type Item =
-            | "markdown"
-            | "asterisk"
-            | "quote"
-            | "dash"
-            | "newline"
-            | "colon"
-            | "acronym"
-            | "dollarAmount"
-            | "email"
-            | "date"
-            | "time"
-            | "distance"
-            | "unit"
-            | "percentage"
-            | "phoneNumber"
-            | "number"
-            | "stripAsterisk";
-        export const Item = {
-            Markdown: "markdown",
-            Asterisk: "asterisk",
-            Quote: "quote",
-            Dash: "dash",
-            Newline: "newline",
-            Colon: "colon",
-            Acronym: "acronym",
-            DollarAmount: "dollarAmount",
-            Email: "email",
-            Date: "date",
-            Time: "time",
-            Distance: "distance",
-            Unit: "unit",
-            Percentage: "percentage",
-            PhoneNumber: "phoneNumber",
-            Number: "number",
-            StripAsterisk: "stripAsterisk",
-        } as const;
-    }
+    formattersEnabled?: Vapi.FormatPlanFormattersEnabledItem[];
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageVoiceRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageVoiceRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageVoiceRequestPhoneNumber;
     /**
      * This is the type of the message. "voice-request" is sent when using `assistant.voice={ "type": "custom-voice" }`.
      *
@@ -52,16 +52,4 @@ export interface ServerMessageVoiceRequest {
     text: string;
     /** This is the sample rate to be synthesized. */
     sampleRate: number;
-}
-
-export namespace ServerMessageVoiceRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

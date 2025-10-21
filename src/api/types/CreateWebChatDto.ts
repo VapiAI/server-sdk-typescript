@@ -27,7 +27,7 @@ export interface CreateWebChatDto {
      * This is the input text for the chat.
      * Can be a string or an array of chat messages.
      */
-    input: CreateWebChatDto.Input;
+    input: Vapi.CreateWebChatDtoInput;
     /**
      * This is a flag that determines whether the response should be streamed.
      * When true, the response will be sent as chunks of text.
@@ -39,14 +39,4 @@ export interface CreateWebChatDto {
      * When flag is set to true, any messages sent will not be processed and session will directly be marked as completed.
      */
     sessionEnd?: boolean;
-}
-
-export namespace CreateWebChatDto {
-    /**
-     * This is the input text for the chat.
-     * Can be a string or an array of chat messages.
-     */
-    export type Input =
-        | string
-        | (Vapi.SystemMessage | Vapi.UserMessage | Vapi.AssistantMessage | Vapi.ToolMessage | Vapi.DeveloperMessage)[];
 }

@@ -36,7 +36,7 @@ export interface OpenAiResponsesRequest {
      * Can be a string or an array of chat messages.
      * This field is REQUIRED for chat creation.
      */
-    input: OpenAiResponsesRequest.Input;
+    input: Vapi.OpenAiResponsesRequestInput;
     /** Whether to stream the response or not. */
     stream?: boolean;
     /**
@@ -52,15 +52,4 @@ export interface OpenAiResponsesRequest {
      * Cannot specify both sessionId and transport fields (phoneNumberId/customer) together.
      */
     transport?: Vapi.TwilioSmsChatTransport;
-}
-
-export namespace OpenAiResponsesRequest {
-    /**
-     * This is the input text for the chat.
-     * Can be a string or an array of chat messages.
-     * This field is REQUIRED for chat creation.
-     */
-    export type Input =
-        | string
-        | (Vapi.SystemMessage | Vapi.UserMessage | Vapi.AssistantMessage | Vapi.ToolMessage | Vapi.DeveloperMessage)[];
 }

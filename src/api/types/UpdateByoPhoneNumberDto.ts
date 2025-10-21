@@ -13,9 +13,9 @@ export interface UpdateByoPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: UpdateByoPhoneNumberDto.FallbackDestination;
+    fallbackDestination?: Vapi.UpdateByoPhoneNumberDtoFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: UpdateByoPhoneNumberDto.Hooks.Item[];
+    hooks?: Vapi.UpdateByoPhoneNumberDtoHooksItem[];
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
      *
@@ -66,21 +66,4 @@ export interface UpdateByoPhoneNumberDto {
      * You can add the SIP trunk or Carrier credential in the Provider Credentials page on the Dashboard to get the credentialId.
      */
     credentialId?: string;
-}
-
-export namespace UpdateByoPhoneNumberDto {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
 }

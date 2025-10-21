@@ -10,7 +10,7 @@ export interface ElevenLabsVoice {
     /** This is the voice provider that will be used. */
     provider: "11labs";
     /** This is the provider-specific ID that will be used. Ensure the Voice is present in your 11Labs Voice Library. */
-    voiceId: ElevenLabsVoice.VoiceId;
+    voiceId: Vapi.ElevenLabsVoiceId;
     /** Defines the stability for voice settings. */
     stability?: number;
     /** Defines the similarity boost for voice settings. */
@@ -32,7 +32,7 @@ export interface ElevenLabsVoice {
     /** Defines the auto mode for voice settings. Defaults to false. */
     autoMode?: boolean;
     /** This is the model that will be used. Defaults to 'eleven_turbo_v2' if not specified. */
-    model?: ElevenLabsVoice.Model;
+    model?: Vapi.ElevenLabsVoiceModel;
     /** This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5 supports language enforcement. For other models, an error will be returned if language code is provided. */
     language?: string;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
@@ -41,47 +41,4 @@ export interface ElevenLabsVoice {
     pronunciationDictionaryLocators?: Vapi.ElevenLabsPronunciationDictionaryLocator[];
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
-}
-
-export namespace ElevenLabsVoice {
-    /**
-     * This is the provider-specific ID that will be used. Ensure the Voice is present in your 11Labs Voice Library.
-     */
-    export type VoiceId =
-        | (
-              | "burt"
-              | "marissa"
-              | "andrea"
-              | "sarah"
-              | "phillip"
-              | "steve"
-              | "joseph"
-              | "myra"
-              | "paula"
-              | "ryan"
-              | "drew"
-              | "paul"
-              | "mrb"
-              | "matilda"
-              | "mark"
-          )
-        | string;
-    /**
-     * This is the model that will be used. Defaults to 'eleven_turbo_v2' if not specified.
-     */
-    export type Model =
-        | "eleven_multilingual_v2"
-        | "eleven_turbo_v2"
-        | "eleven_turbo_v2_5"
-        | "eleven_flash_v2"
-        | "eleven_flash_v2_5"
-        | "eleven_monolingual_v1";
-    export const Model = {
-        ElevenMultilingualV2: "eleven_multilingual_v2",
-        ElevenTurboV2: "eleven_turbo_v2",
-        ElevenTurboV25: "eleven_turbo_v2_5",
-        ElevenFlashV2: "eleven_flash_v2",
-        ElevenFlashV25: "eleven_flash_v2_5",
-        ElevenMonolingualV1: "eleven_monolingual_v1",
-    } as const;
 }

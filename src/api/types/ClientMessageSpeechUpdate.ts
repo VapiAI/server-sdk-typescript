@@ -6,13 +6,13 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageSpeechUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageSpeechUpdate.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageSpeechUpdatePhoneNumber;
     /** This is the type of the message. "speech-update" is sent whenever assistant or user start or stop speaking. */
     type: "speech-update";
     /** This is the status of the speech update. */
-    status: ClientMessageSpeechUpdate.Status;
+    status: Vapi.ClientMessageSpeechUpdateStatus;
     /** This is the role which the speech update is for. */
-    role: ClientMessageSpeechUpdate.Role;
+    role: Vapi.ClientMessageSpeechUpdateRole;
     /** This is the turn number of the speech update (0-indexed). */
     turn?: number;
     /** This is the timestamp of the message. */
@@ -23,32 +23,4 @@ export interface ClientMessageSpeechUpdate {
     customer?: Vapi.CreateCustomerDto;
     /** This is the assistant that the message is associated with. */
     assistant?: Vapi.CreateAssistantDto;
-}
-
-export namespace ClientMessageSpeechUpdate {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    /**
-     * This is the status of the speech update.
-     */
-    export type Status = "started" | "stopped";
-    export const Status = {
-        Started: "started",
-        Stopped: "stopped",
-    } as const;
-    /**
-     * This is the role which the speech update is for.
-     */
-    export type Role = "assistant" | "user";
-    export const Role = {
-        Assistant: "assistant",
-        User: "user",
-    } as const;
 }

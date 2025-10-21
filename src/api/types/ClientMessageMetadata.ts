@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageMetadata {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageMetadata.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageMetadataPhoneNumber;
     /** This is the type of the message. "metadata" is sent to forward metadata to the client. */
     type: "metadata";
     /** This is the timestamp of the message. */
@@ -19,16 +19,4 @@ export interface ClientMessageMetadata {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the metadata content */
     metadata: string;
-}
-
-export namespace ClientMessageMetadata {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

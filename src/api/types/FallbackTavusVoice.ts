@@ -10,7 +10,7 @@ export interface FallbackTavusVoice {
     /** This is the voice provider that will be used. */
     provider: "tavus";
     /** This is the provider-specific ID that will be used. */
-    voiceId: FallbackTavusVoice.VoiceId;
+    voiceId: Vapi.FallbackTavusVoiceVoiceId;
     /** This is the unique identifier for the persona that the replica will use in the conversation. */
     personaId?: string;
     /** This is the url that will receive webhooks with updates regarding the conversation state. */
@@ -25,11 +25,4 @@ export interface FallbackTavusVoice {
     properties?: Vapi.TavusConversationProperties;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackTavusVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     */
-    export type VoiceId = "r52da2535a" | string;
 }

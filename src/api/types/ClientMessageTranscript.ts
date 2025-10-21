@@ -6,9 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageTranscript {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageTranscript.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageTranscriptPhoneNumber;
     /** This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript. */
-    type: ClientMessageTranscript.Type;
+    type: Vapi.ClientMessageTranscriptType;
     /** This is the timestamp of the message. */
     timestamp?: number;
     /** This is the call that the message is associated with. */
@@ -18,9 +18,9 @@ export interface ClientMessageTranscript {
     /** This is the assistant that the message is associated with. */
     assistant?: Vapi.CreateAssistantDto;
     /** This is the role for which the transcript is for. */
-    role: ClientMessageTranscript.Role;
+    role: Vapi.ClientMessageTranscriptRole;
     /** This is the type of the transcript. */
-    transcriptType: ClientMessageTranscript.TranscriptType;
+    transcriptType: Vapi.ClientMessageTranscriptTranscriptType;
     /** This is the transcript content. */
     transcript: string;
     /** Indicates if the transcript was filtered for security reasons. */
@@ -29,40 +29,4 @@ export interface ClientMessageTranscript {
     detectedThreats?: string[];
     /** The original transcript before filtering (only included if content was filtered). */
     originalTranscript?: string;
-}
-
-export namespace ClientMessageTranscript {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    /**
-     * This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript.
-     */
-    export type Type = "transcript" | 'transcript[transcriptType="final"]';
-    export const Type = {
-        Transcript: "transcript",
-        TranscriptTranscriptTypeFinal: 'transcript[transcriptType="final"]',
-    } as const;
-    /**
-     * This is the role for which the transcript is for.
-     */
-    export type Role = "assistant" | "user";
-    export const Role = {
-        Assistant: "assistant",
-        User: "user",
-    } as const;
-    /**
-     * This is the type of the transcript.
-     */
-    export type TranscriptType = "partial" | "final";
-    export const TranscriptType = {
-        Partial: "partial",
-        Final: "final",
-    } as const;
 }

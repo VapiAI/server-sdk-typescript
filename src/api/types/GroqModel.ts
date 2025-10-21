@@ -12,7 +12,7 @@ export interface GroqModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: GroqModel.Tools.Item[];
+    tools?: Vapi.GroqModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface GroqModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
-    model: GroqModel.Model;
+    model: Vapi.GroqModelModel;
     provider: "groq";
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
     temperature?: number;
@@ -44,69 +44,4 @@ export interface GroqModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace GroqModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
-     */
-    export type Model =
-        | "openai/gpt-oss-20b"
-        | "openai/gpt-oss-120b"
-        | "deepseek-r1-distill-llama-70b"
-        | "llama-3.3-70b-versatile"
-        | "llama-3.1-405b-reasoning"
-        | "llama-3.1-8b-instant"
-        | "llama3-8b-8192"
-        | "llama3-70b-8192"
-        | "gemma2-9b-it"
-        | "moonshotai/kimi-k2-instruct-0905"
-        | "meta-llama/llama-4-maverick-17b-128e-instruct"
-        | "meta-llama/llama-4-scout-17b-16e-instruct"
-        | "mistral-saba-24b"
-        | "compound-beta"
-        | "compound-beta-mini";
-    export const Model = {
-        OpenaiGptOss20B: "openai/gpt-oss-20b",
-        OpenaiGptOss120B: "openai/gpt-oss-120b",
-        DeepseekR1DistillLlama70B: "deepseek-r1-distill-llama-70b",
-        Llama3370BVersatile: "llama-3.3-70b-versatile",
-        Llama31405BReasoning: "llama-3.1-405b-reasoning",
-        Llama318BInstant: "llama-3.1-8b-instant",
-        Llama38B8192: "llama3-8b-8192",
-        Llama370B8192: "llama3-70b-8192",
-        Gemma29BIt: "gemma2-9b-it",
-        MoonshotaiKimiK2Instruct0905: "moonshotai/kimi-k2-instruct-0905",
-        MetaLlamaLlama4Maverick17B128EInstruct: "meta-llama/llama-4-maverick-17b-128e-instruct",
-        MetaLlamaLlama4Scout17B16EInstruct: "meta-llama/llama-4-scout-17b-16e-instruct",
-        MistralSaba24B: "mistral-saba-24b",
-        CompoundBeta: "compound-beta",
-        CompoundBetaMini: "compound-beta-mini",
-    } as const;
 }

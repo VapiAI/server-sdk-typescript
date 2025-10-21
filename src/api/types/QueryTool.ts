@@ -10,7 +10,7 @@ export interface QueryTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: QueryTool.Messages.Item[];
+    messages?: Vapi.QueryToolMessagesItem[];
     type: "query";
     /** The knowledge bases to query */
     knowledgeBases?: Vapi.KnowledgeBase[];
@@ -103,16 +103,4 @@ export interface QueryTool {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace QueryTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

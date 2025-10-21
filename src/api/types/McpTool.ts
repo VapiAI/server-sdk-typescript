@@ -10,7 +10,7 @@ export interface McpTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: McpTool.Messages.Item[];
+    messages?: Vapi.McpToolMessagesItem[];
     type: "mcp";
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
@@ -113,16 +113,4 @@ export interface McpTool {
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
     metadata?: Vapi.McpToolMetadata;
-}
-
-export namespace McpTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

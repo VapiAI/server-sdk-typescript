@@ -22,7 +22,7 @@ export interface ArtifactPlan {
      *
      * @default 'wav;l16'
      */
-    recordingFormat?: ArtifactPlan.RecordingFormat;
+    recordingFormat?: Vapi.ArtifactPlanRecordingFormat;
     /**
      * This determines whether to use custom storage (S3 or GCP) for call recordings when storage credentials are configured.
      *
@@ -126,17 +126,4 @@ export interface ArtifactPlan {
      * @default '/'
      */
     loggingPath?: string;
-}
-
-export namespace ArtifactPlan {
-    /**
-     * This determines the format of the recording. Defaults to `wav;l16`.
-     *
-     * @default 'wav;l16'
-     */
-    export type RecordingFormat = "wav;l16" | "mp3";
-    export const RecordingFormat = {
-        WavL16: "wav;l16",
-        Mp3: "mp3",
-    } as const;
 }

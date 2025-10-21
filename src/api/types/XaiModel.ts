@@ -12,7 +12,7 @@ export interface XaiModel {
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: XaiModel.Tools.Item[];
+    tools?: Vapi.XaiModelToolsItem[];
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
@@ -22,7 +22,7 @@ export interface XaiModel {
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
-    model: XaiModel.Model;
+    model: Vapi.XaiModelModel;
     provider: "xai";
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
     temperature?: number;
@@ -44,44 +44,4 @@ export interface XaiModel {
      * @default 0
      */
     numFastTurns?: number;
-}
-
-export namespace XaiModel {
-    export type Tools = Tools.Item[];
-
-    export namespace Tools {
-        export type Item =
-            | Vapi.CreateApiRequestToolDto
-            | Vapi.CreateBashToolDto
-            | Vapi.CreateComputerToolDto
-            | Vapi.CreateDtmfToolDto
-            | Vapi.CreateEndCallToolDto
-            | Vapi.CreateFunctionToolDto
-            | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-            | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-            | Vapi.CreateGoHighLevelContactCreateToolDto
-            | Vapi.CreateGoHighLevelContactGetToolDto
-            | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-            | Vapi.CreateGoogleCalendarCreateEventToolDto
-            | Vapi.CreateGoogleSheetsRowAppendToolDto
-            | Vapi.CreateHandoffToolDto
-            | Vapi.CreateMcpToolDto
-            | Vapi.CreateQueryToolDto
-            | Vapi.CreateSlackSendMessageToolDto
-            | Vapi.CreateSmsToolDto
-            | Vapi.CreateTextEditorToolDto
-            | Vapi.CreateTransferCallToolDto;
-    }
-
-    /**
-     * This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b
-     */
-    export type Model = "grok-beta" | "grok-2" | "grok-3" | "grok-4-fast-reasoning" | "grok-4-fast-non-reasoning";
-    export const Model = {
-        GrokBeta: "grok-beta",
-        Grok2: "grok-2",
-        Grok3: "grok-3",
-        Grok4FastReasoning: "grok-4-fast-reasoning",
-        Grok4FastNonReasoning: "grok-4-fast-non-reasoning",
-    } as const;
 }

@@ -14,18 +14,5 @@ export interface ToolRejectionPlan {
      *
      * @default [] - Empty array means tool always executes
      */
-    conditions?: ToolRejectionPlan.Conditions.Item[];
-}
-
-export namespace ToolRejectionPlan {
-    export type Conditions = Conditions.Item[];
-
-    export namespace Conditions {
-        export type Item =
-            | Vapi.RegexCondition
-            | Vapi.LiquidCondition
-            /**
-             * This is the GroupCondition object but Swagger does not display nested schemas correctly. */
-            | Vapi.GroupCondition;
-    }
+    conditions?: Vapi.ToolRejectionPlanConditionsItem[];
 }

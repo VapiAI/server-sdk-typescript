@@ -10,7 +10,7 @@ export interface FallbackVapiVoice {
     /** This is the voice provider that will be used. */
     provider: "vapi";
     /** The voices provided by Vapi */
-    voiceId: FallbackVapiVoice.VoiceId;
+    voiceId: Vapi.FallbackVapiVoiceVoiceId;
     /**
      * This is the speed multiplier that will be used.
      *
@@ -19,35 +19,4 @@ export interface FallbackVapiVoice {
     speed?: number;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackVapiVoice {
-    /**
-     * The voices provided by Vapi
-     */
-    export type VoiceId =
-        | "Elliot"
-        | "Kylie"
-        | "Rohan"
-        | "Lily"
-        | "Savannah"
-        | "Hana"
-        | "Neha"
-        | "Cole"
-        | "Harry"
-        | "Paige"
-        | "Spencer";
-    export const VoiceId = {
-        Elliot: "Elliot",
-        Kylie: "Kylie",
-        Rohan: "Rohan",
-        Lily: "Lily",
-        Savannah: "Savannah",
-        Hana: "Hana",
-        Neha: "Neha",
-        Cole: "Cole",
-        Harry: "Harry",
-        Paige: "Paige",
-        Spencer: "Spencer",
-    } as const;
 }

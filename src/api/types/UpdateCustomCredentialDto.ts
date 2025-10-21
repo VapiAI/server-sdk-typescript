@@ -6,17 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface UpdateCustomCredentialDto {
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
-    authenticationPlan?: UpdateCustomCredentialDto.AuthenticationPlan;
+    authenticationPlan?: Vapi.UpdateCustomCredentialDtoAuthenticationPlan;
     /** This is the name of credential. This is just for your reference. */
     name?: string;
-}
-
-export namespace UpdateCustomCredentialDto {
-    /**
-     * This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.
-     */
-    export type AuthenticationPlan =
-        | Vapi.OAuth2AuthenticationPlan
-        | Vapi.HmacAuthenticationPlan
-        | Vapi.BearerAuthenticationPlan;
 }

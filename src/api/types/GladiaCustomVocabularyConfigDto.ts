@@ -6,15 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface GladiaCustomVocabularyConfigDto {
     /** Array of vocabulary items (strings or objects with value, pronunciations, intensity, language) */
-    vocabulary: GladiaCustomVocabularyConfigDto.Vocabulary.Item[];
+    vocabulary: Vapi.GladiaCustomVocabularyConfigDtoVocabularyItem[];
     /** Default intensity for vocabulary items (0.0 to 1.0) */
     defaultIntensity?: number;
-}
-
-export namespace GladiaCustomVocabularyConfigDto {
-    export type Vocabulary = Vocabulary.Item[];
-
-    export namespace Vocabulary {
-        export type Item = string | Vapi.GladiaVocabularyItemDto;
-    }
 }

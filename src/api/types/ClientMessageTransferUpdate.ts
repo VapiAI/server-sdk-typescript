@@ -6,11 +6,11 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageTransferUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageTransferUpdate.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageTransferUpdatePhoneNumber;
     /** This is the type of the message. "transfer-update" is sent whenever a transfer happens. */
     type: "transfer-update";
     /** This is the destination of the transfer. */
-    destination?: ClientMessageTransferUpdate.Destination;
+    destination?: Vapi.ClientMessageTransferUpdateDestination;
     /** This is the timestamp of the message. */
     timestamp?: number;
     /** This is the call that the message is associated with. */
@@ -27,23 +27,4 @@ export interface ClientMessageTransferUpdate {
     toStepRecord?: Record<string, unknown>;
     /** This is the step that the conversation moved from. = */
     fromStepRecord?: Record<string, unknown>;
-}
-
-export namespace ClientMessageTransferUpdate {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    /**
-     * This is the destination of the transfer.
-     */
-    export type Destination =
-        | Vapi.TransferDestinationAssistant
-        | Vapi.TransferDestinationNumber
-        | Vapi.TransferDestinationSip;
 }

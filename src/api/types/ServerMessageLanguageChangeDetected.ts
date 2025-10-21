@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageLanguageChangeDetected {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageLanguageChangeDetected.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageLanguageChangeDetectedPhoneNumber;
     /** This is the type of the message. "language-change-detected" is sent when the transcriber is automatically switched based on the detected language. */
     type: "language-change-detected";
     /** This is the timestamp of the message. */
@@ -27,16 +27,4 @@ export interface ServerMessageLanguageChangeDetected {
     chat?: Vapi.Chat;
     /** This is the language the transcriber is switched to. */
     language: string;
-}
-
-export namespace ServerMessageLanguageChangeDetected {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

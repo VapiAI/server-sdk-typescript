@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageToolCallsResult {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageToolCallsResult.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageToolCallsResultPhoneNumber;
     /** This is the type of the message. "tool-calls-result" is sent to forward the result of a tool call to the client. */
     type: "tool-calls-result";
     /** This is the timestamp of the message. */
@@ -19,16 +19,4 @@ export interface ClientMessageToolCallsResult {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the result of the tool call. */
     toolCallResult: Record<string, unknown>;
-}
-
-export namespace ClientMessageToolCallsResult {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -10,9 +10,9 @@ export interface RimeAiVoice {
     /** This is the voice provider that will be used. */
     provider: "rime-ai";
     /** This is the provider-specific ID that will be used. */
-    voiceId: RimeAiVoice.VoiceId;
+    voiceId: Vapi.RimeAiVoiceId;
     /** This is the model that will be used. Defaults to 'arcana' when not specified. */
-    model?: RimeAiVoice.Model;
+    model?: Vapi.RimeAiVoiceModel;
     /** This is the speed multiplier that will be used. */
     speed?: number;
     /** This is a flag that controls whether to add slight pauses using angle brackets. Example: "Hi. <200> I'd love to have a conversation with you." adds a 200ms pause between the first and second sentences. */
@@ -27,114 +27,4 @@ export interface RimeAiVoice {
     chunkPlan?: Vapi.ChunkPlan;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackPlan;
-}
-
-export namespace RimeAiVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     */
-    export type VoiceId =
-        | (
-              | "abbie"
-              | "allison"
-              | "ally"
-              | "alona"
-              | "amber"
-              | "ana"
-              | "antoine"
-              | "armon"
-              | "brenda"
-              | "brittany"
-              | "carol"
-              | "colin"
-              | "courtney"
-              | "elena"
-              | "elliot"
-              | "eva"
-              | "geoff"
-              | "gerald"
-              | "hank"
-              | "helen"
-              | "hera"
-              | "jen"
-              | "joe"
-              | "joy"
-              | "juan"
-              | "kendra"
-              | "kendrick"
-              | "kenneth"
-              | "kevin"
-              | "kris"
-              | "linda"
-              | "madison"
-              | "marge"
-              | "marina"
-              | "marissa"
-              | "marta"
-              | "maya"
-              | "nicholas"
-              | "nyles"
-              | "phil"
-              | "reba"
-              | "rex"
-              | "rick"
-              | "ritu"
-              | "rob"
-              | "rodney"
-              | "rohan"
-              | "rosco"
-              | "samantha"
-              | "sandy"
-              | "selena"
-              | "seth"
-              | "sharon"
-              | "stan"
-              | "tamra"
-              | "tanya"
-              | "tibur"
-              | "tj"
-              | "tyler"
-              | "viv"
-              | "yadira"
-              | "marsh"
-              | "bayou"
-              | "creek"
-              | "brook"
-              | "flower"
-              | "spore"
-              | "glacier"
-              | "gulch"
-              | "alpine"
-              | "cove"
-              | "lagoon"
-              | "tundra"
-              | "steppe"
-              | "mesa"
-              | "grove"
-              | "rainforest"
-              | "moraine"
-              | "wildflower"
-              | "peak"
-              | "boulder"
-              | "gypsum"
-              | "zest"
-              | "luna"
-              | "celeste"
-              | "orion"
-              | "ursa"
-              | "astra"
-              | "esther"
-              | "estelle"
-              | "andromeda"
-          )
-        | string;
-    /**
-     * This is the model that will be used. Defaults to 'arcana' when not specified.
-     */
-    export type Model = "arcana" | "mistv2" | "mist";
-    export const Model = {
-        Arcana: "arcana",
-        Mistv2: "mistv2",
-        Mist: "mist",
-    } as const;
 }

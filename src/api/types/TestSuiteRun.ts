@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface TestSuiteRun {
     /** This is the current status of the test suite run. */
-    status: TestSuiteRun.Status;
+    status: Vapi.TestSuiteRunStatus;
     /** This is the unique identifier for the test suite run. */
     id: string;
     /** This is the unique identifier for the organization this run belongs to. */
@@ -21,17 +21,4 @@ export interface TestSuiteRun {
     testResults: Vapi.TestSuiteRunTestResult[];
     /** This is the name of the test suite run. */
     name?: string;
-}
-
-export namespace TestSuiteRun {
-    /**
-     * This is the current status of the test suite run.
-     */
-    export type Status = "queued" | "in-progress" | "completed" | "failed";
-    export const Status = {
-        Queued: "queued",
-        InProgress: "in-progress",
-        Completed: "completed",
-        Failed: "failed",
-    } as const;
 }

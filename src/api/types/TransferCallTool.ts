@@ -10,10 +10,10 @@ export interface TransferCallTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: TransferCallTool.Messages.Item[];
+    messages?: Vapi.TransferCallToolMessagesItem[];
     type: "transferCall";
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
-    destinations?: TransferCallTool.Destinations.Item[];
+    destinations?: Vapi.TransferCallToolDestinationsItem[];
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -103,25 +103,4 @@ export interface TransferCallTool {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace TransferCallTool {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
-
-    export type Destinations = Destinations.Item[];
-
-    export namespace Destinations {
-        export type Item =
-            | Vapi.TransferDestinationAssistant
-            | Vapi.TransferDestinationNumber
-            | Vapi.TransferDestinationSip;
-    }
 }

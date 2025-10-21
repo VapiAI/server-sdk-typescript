@@ -6,32 +6,5 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessage {
     /** These are all the messages that can be sent to the client-side SDKs during the call. Configure the messages you'd like to receive in `assistant.clientMessages`. */
-    message: ClientMessage.Message;
-}
-
-export namespace ClientMessage {
-    /**
-     * These are all the messages that can be sent to the client-side SDKs during the call. Configure the messages you'd like to receive in `assistant.clientMessages`.
-     */
-    export type Message =
-        | Vapi.ClientMessageWorkflowNodeStarted
-        | Vapi.ClientMessageConversationUpdate
-        | Vapi.ClientMessageHang
-        | Vapi.ClientMessageMetadata
-        | Vapi.ClientMessageModelOutput
-        | Vapi.ClientMessageSpeechUpdate
-        | Vapi.ClientMessageTranscript
-        | Vapi.ClientMessageToolCalls
-        | Vapi.ClientMessageToolCallsResult
-        | Vapi.ClientMessageTransferUpdate
-        | Vapi.ClientMessageUserInterrupted
-        | Vapi.ClientMessageLanguageChangeDetected
-        | Vapi.ClientMessageVoiceInput
-        | Vapi.ClientMessageChatCreated
-        | Vapi.ClientMessageChatDeleted
-        | Vapi.ClientMessageSessionCreated
-        | Vapi.ClientMessageSessionUpdated
-        | Vapi.ClientMessageSessionDeleted
-        | Vapi.ClientMessageCallDeleted
-        | Vapi.ClientMessageCallDeleteFailed;
+    message: Vapi.ClientMessageMessage;
 }

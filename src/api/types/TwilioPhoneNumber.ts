@@ -13,9 +13,9 @@ export interface TwilioPhoneNumber {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: TwilioPhoneNumber.FallbackDestination;
+    fallbackDestination?: Vapi.TwilioPhoneNumberFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: TwilioPhoneNumber.Hooks.Item[];
+    hooks?: Vapi.TwilioPhoneNumberHooksItem[];
     provider: "twilio";
     /**
      * Controls whether Vapi sets the messaging webhook URL on the Twilio number during import.
@@ -35,7 +35,7 @@ export interface TwilioPhoneNumber {
     /** This is the ISO 8601 date-time string of when the phone number was last updated. */
     updatedAt: string;
     /** This is the status of the phone number. */
-    status?: TwilioPhoneNumber.Status;
+    status?: Vapi.TwilioPhoneNumberStatus;
     /** This is the Twilio Auth Token for the phone number. */
     twilioAuthToken?: string;
     /** This is the Twilio API Key for the phone number. */
@@ -76,31 +76,4 @@ export interface TwilioPhoneNumber {
     number: string;
     /** This is the Twilio Account SID for the phone number. */
     twilioAccountSid: string;
-}
-
-export namespace TwilioPhoneNumber {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
-
-    /**
-     * This is the status of the phone number.
-     */
-    export type Status = "active" | "activating" | "blocked";
-    export const Status = {
-        Active: "active",
-        Activating: "activating",
-        Blocked: "blocked",
-    } as const;
 }

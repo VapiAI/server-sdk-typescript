@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageAssistantRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageAssistantRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageAssistantRequestPhoneNumber;
     /** This is the type of the message. "assistant-request" is sent to fetch assistant configuration for an incoming call. */
     type: "assistant-request";
     /** This is the timestamp of the message. */
@@ -25,16 +25,4 @@ export interface ServerMessageAssistantRequest {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessageAssistantRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

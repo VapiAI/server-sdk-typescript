@@ -14,7 +14,7 @@ export interface TransferDestinationNumber {
      *
      * This accepts a string or a ToolMessageStart class. Latter is useful if you want to specify multiple messages for different languages through the `contents` field.
      */
-    message?: TransferDestinationNumber.Message;
+    message?: Vapi.TransferDestinationNumberMessage;
     type: "number";
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
@@ -53,17 +53,4 @@ export interface TransferDestinationNumber {
     transferPlan?: Vapi.TransferPlan;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
     description?: string;
-}
-
-export namespace TransferDestinationNumber {
-    /**
-     * This is spoken to the customer before connecting them to the destination.
-     *
-     * Usage:
-     * - If this is not provided and transfer tool messages is not provided, default is "Transferring the call now".
-     * - If set to "", nothing is spoken. This is useful when you want to silently transfer. This is especially useful when transferring between assistants in a squad. In this scenario, you likely also want to set `assistant.firstMessageMode=assistant-speaks-first-with-model-generated-message` for the destination assistant.
-     *
-     * This accepts a string or a ToolMessageStart class. Latter is useful if you want to specify multiple messages for different languages through the `contents` field.
-     */
-    export type Message = string | Vapi.CustomMessage;
 }

@@ -7,7 +7,7 @@ import * as Vapi from "../index.js";
 export interface CustomCredential {
     provider: "custom-credential";
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
-    authenticationPlan: CustomCredential.AuthenticationPlan;
+    authenticationPlan: Vapi.CustomCredentialAuthenticationPlan;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -20,14 +20,4 @@ export interface CustomCredential {
     authenticationSession: Vapi.Oauth2AuthenticationSession;
     /** This is the name of credential. This is just for your reference. */
     name?: string;
-}
-
-export namespace CustomCredential {
-    /**
-     * This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.
-     */
-    export type AuthenticationPlan =
-        | Vapi.OAuth2AuthenticationPlan
-        | Vapi.HmacAuthenticationPlan
-        | Vapi.BearerAuthenticationPlan;
 }

@@ -10,13 +10,13 @@ export interface FallbackPlayHtVoice {
     /** This is the voice provider that will be used. */
     provider: "playht";
     /** This is the provider-specific ID that will be used. */
-    voiceId: FallbackPlayHtVoice.VoiceId;
+    voiceId: Vapi.FallbackPlayHtVoiceId;
     /** This is the speed multiplier that will be used. */
     speed?: number;
     /** A floating point number between 0, exclusive, and 2, inclusive. If equal to null or not provided, the model's default temperature will be used. The temperature parameter controls variance. Lower temperatures result in more predictable results, higher temperatures allow each run to vary more, so the voice may sound less like the baseline voice. */
     temperature?: number;
     /** An emotion to be applied to the speech. */
-    emotion?: FallbackPlayHtVoice.Emotion;
+    emotion?: Vapi.FallbackPlayHtVoiceEmotion;
     /** A number between 1 and 6. Use lower numbers to reduce how unique your chosen voice will be compared to other voices. */
     voiceGuidance?: number;
     /** A number between 1 and 30. Use lower numbers to to reduce how strong your chosen emotion will be. Higher numbers will create a very emotional performance. */
@@ -24,138 +24,9 @@ export interface FallbackPlayHtVoice {
     /** A number between 1 and 2. This number influences how closely the generated speech adheres to the input text. Use lower values to create more fluid speech, but with a higher chance of deviating from the input text. Higher numbers will make the generated speech more accurate to the input text, ensuring that the words spoken align closely with the provided text. */
     textGuidance?: number;
     /** Playht voice model/engine to use. */
-    model?: FallbackPlayHtVoice.Model;
+    model?: Vapi.FallbackPlayHtVoiceModel;
     /** The language to use for the speech. */
-    language?: FallbackPlayHtVoice.Language;
+    language?: Vapi.FallbackPlayHtVoiceLanguage;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackPlayHtVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     */
-    export type VoiceId =
-        | ("jennifer" | "melissa" | "will" | "chris" | "matt" | "jack" | "ruby" | "davis" | "donna" | "michael")
-        | string;
-    /**
-     * An emotion to be applied to the speech.
-     */
-    export type Emotion =
-        | "female_happy"
-        | "female_sad"
-        | "female_angry"
-        | "female_fearful"
-        | "female_disgust"
-        | "female_surprised"
-        | "male_happy"
-        | "male_sad"
-        | "male_angry"
-        | "male_fearful"
-        | "male_disgust"
-        | "male_surprised";
-    export const Emotion = {
-        FemaleHappy: "female_happy",
-        FemaleSad: "female_sad",
-        FemaleAngry: "female_angry",
-        FemaleFearful: "female_fearful",
-        FemaleDisgust: "female_disgust",
-        FemaleSurprised: "female_surprised",
-        MaleHappy: "male_happy",
-        MaleSad: "male_sad",
-        MaleAngry: "male_angry",
-        MaleFearful: "male_fearful",
-        MaleDisgust: "male_disgust",
-        MaleSurprised: "male_surprised",
-    } as const;
-    /**
-     * Playht voice model/engine to use.
-     */
-    export type Model = "PlayHT2.0" | "PlayHT2.0-turbo" | "Play3.0-mini" | "PlayDialog";
-    export const Model = {
-        PlayHt20: "PlayHT2.0",
-        PlayHt20Turbo: "PlayHT2.0-turbo",
-        Play30Mini: "Play3.0-mini",
-        PlayDialog: "PlayDialog",
-    } as const;
-    /**
-     * The language to use for the speech.
-     */
-    export type Language =
-        | "afrikaans"
-        | "albanian"
-        | "amharic"
-        | "arabic"
-        | "bengali"
-        | "bulgarian"
-        | "catalan"
-        | "croatian"
-        | "czech"
-        | "danish"
-        | "dutch"
-        | "english"
-        | "french"
-        | "galician"
-        | "german"
-        | "greek"
-        | "hebrew"
-        | "hindi"
-        | "hungarian"
-        | "indonesian"
-        | "italian"
-        | "japanese"
-        | "korean"
-        | "malay"
-        | "mandarin"
-        | "polish"
-        | "portuguese"
-        | "russian"
-        | "serbian"
-        | "spanish"
-        | "swedish"
-        | "tagalog"
-        | "thai"
-        | "turkish"
-        | "ukrainian"
-        | "urdu"
-        | "xhosa";
-    export const Language = {
-        Afrikaans: "afrikaans",
-        Albanian: "albanian",
-        Amharic: "amharic",
-        Arabic: "arabic",
-        Bengali: "bengali",
-        Bulgarian: "bulgarian",
-        Catalan: "catalan",
-        Croatian: "croatian",
-        Czech: "czech",
-        Danish: "danish",
-        Dutch: "dutch",
-        English: "english",
-        French: "french",
-        Galician: "galician",
-        German: "german",
-        Greek: "greek",
-        Hebrew: "hebrew",
-        Hindi: "hindi",
-        Hungarian: "hungarian",
-        Indonesian: "indonesian",
-        Italian: "italian",
-        Japanese: "japanese",
-        Korean: "korean",
-        Malay: "malay",
-        Mandarin: "mandarin",
-        Polish: "polish",
-        Portuguese: "portuguese",
-        Russian: "russian",
-        Serbian: "serbian",
-        Spanish: "spanish",
-        Swedish: "swedish",
-        Tagalog: "tagalog",
-        Thai: "thai",
-        Turkish: "turkish",
-        Ukrainian: "ukrainian",
-        Urdu: "urdu",
-        Xhosa: "xhosa",
-    } as const;
 }

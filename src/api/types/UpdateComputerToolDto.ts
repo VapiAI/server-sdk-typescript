@@ -10,7 +10,7 @@ export interface UpdateComputerToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateComputerToolDto.Messages.Item[];
+    messages?: Vapi.UpdateComputerToolDtoMessagesItem[];
     /** The sub type of tool. */
     subType?: "computer_20241022";
     /**
@@ -113,16 +113,4 @@ export interface UpdateComputerToolDto {
     displayHeightPx?: number;
     /** Optional display number */
     displayNumber?: number;
-}
-
-export namespace UpdateComputerToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

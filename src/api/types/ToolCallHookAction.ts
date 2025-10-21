@@ -8,34 +8,7 @@ export interface ToolCallHookAction {
     /** This is the type of action - must be "tool" */
     type: "tool";
     /** This is the tool to call. To use an existing tool, send `toolId` instead. */
-    tool?: ToolCallHookAction.Tool;
+    tool?: Vapi.ToolCallHookActionTool;
     /** This is the tool to call. To use a transient tool, send `tool` instead. */
     toolId?: string;
-}
-
-export namespace ToolCallHookAction {
-    /**
-     * This is the tool to call. To use an existing tool, send `toolId` instead.
-     */
-    export type Tool =
-        | Vapi.CreateApiRequestToolDto
-        | Vapi.CreateBashToolDto
-        | Vapi.CreateComputerToolDto
-        | Vapi.CreateDtmfToolDto
-        | Vapi.CreateEndCallToolDto
-        | Vapi.CreateFunctionToolDto
-        | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-        | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-        | Vapi.CreateGoHighLevelContactCreateToolDto
-        | Vapi.CreateGoHighLevelContactGetToolDto
-        | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-        | Vapi.CreateGoogleCalendarCreateEventToolDto
-        | Vapi.CreateGoogleSheetsRowAppendToolDto
-        | Vapi.CreateHandoffToolDto
-        | Vapi.CreateMcpToolDto
-        | Vapi.CreateQueryToolDto
-        | Vapi.CreateSlackSendMessageToolDto
-        | Vapi.CreateSmsToolDto
-        | Vapi.CreateTextEditorToolDto
-        | Vapi.CreateTransferCallToolDto;
 }

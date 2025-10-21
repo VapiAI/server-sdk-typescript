@@ -10,7 +10,7 @@ export interface GoHighLevelCalendarAvailabilityToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: GoHighLevelCalendarAvailabilityToolWithToolCall.Messages.Item[];
+    messages?: Vapi.GoHighLevelCalendarAvailabilityToolWithToolCallMessagesItem[];
     /** The type of tool. "gohighlevel.calendar.availability.check" for GoHighLevel Calendar Availability Check tool. */
     type: "gohighlevel.calendar.availability.check";
     toolCall: Vapi.ToolCall;
@@ -95,16 +95,4 @@ export interface GoHighLevelCalendarAvailabilityToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace GoHighLevelCalendarAvailabilityToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

@@ -7,7 +7,7 @@ import * as Vapi from "../index.js";
 export interface HandoffDestinationAssistant {
     type: "assistant";
     /** This is the plan for manipulating the message context before handing off the call to the next assistant. */
-    contextEngineeringPlan?: HandoffDestinationAssistant.ContextEngineeringPlan;
+    contextEngineeringPlan?: Vapi.HandoffDestinationAssistantContextEngineeringPlan;
     /** This is the assistant to transfer the call to. You must provide either assistantName or assistantId. */
     assistantName?: string;
     /** This is the assistant id to transfer the call to. You must provide either assistantName or assistantId. */
@@ -18,14 +18,4 @@ export interface HandoffDestinationAssistant {
     variableExtractionPlan?: Vapi.VariableExtractionPlan;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
     description?: string;
-}
-
-export namespace HandoffDestinationAssistant {
-    /**
-     * This is the plan for manipulating the message context before handing off the call to the next assistant.
-     */
-    export type ContextEngineeringPlan =
-        | Vapi.ContextEngineeringPlanLastNMessages
-        | Vapi.ContextEngineeringPlanNone
-        | Vapi.ContextEngineeringPlanAll;
 }

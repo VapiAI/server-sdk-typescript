@@ -13,9 +13,9 @@ export interface VapiPhoneNumber {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: VapiPhoneNumber.FallbackDestination;
+    fallbackDestination?: Vapi.VapiPhoneNumberFallbackDestination;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: VapiPhoneNumber.Hooks.Item[];
+    hooks?: Vapi.VapiPhoneNumberHooksItem[];
     provider: "vapi";
     /** This is the unique identifier for the phone number. */
     id: string;
@@ -26,7 +26,7 @@ export interface VapiPhoneNumber {
     /** This is the ISO 8601 date-time string of when the phone number was last updated. */
     updatedAt: string;
     /** This is the status of the phone number. */
-    status?: VapiPhoneNumber.Status;
+    status?: Vapi.VapiPhoneNumberStatus;
     /** These are the digits of the phone number you purchased from Vapi. */
     number?: string;
     /** This is the name of the phone number. This is just for your own reference. */
@@ -73,31 +73,4 @@ export interface VapiPhoneNumber {
      * If not set, any username/password to the 401 challenge of the SIP INVITE will be accepted.
      */
     authentication?: Vapi.SipAuthentication;
-}
-
-export namespace VapiPhoneNumber {
-    /**
-     * This is the fallback destination an inbound call will be transferred to if:
-     * 1. `assistantId` is not set
-     * 2. `squadId` is not set
-     * 3. and, `assistant-request` message to the `serverUrl` fails
-     *
-     * If this is not set and above conditions are met, the inbound call is hung up with an error message.
-     */
-    export type FallbackDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
-    export type Hooks = Hooks.Item[];
-
-    export namespace Hooks {
-        export type Item = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
-    }
-
-    /**
-     * This is the status of the phone number.
-     */
-    export type Status = "active" | "activating" | "blocked";
-    export const Status = {
-        Active: "active",
-        Activating: "activating",
-        Blocked: "blocked",
-    } as const;
 }

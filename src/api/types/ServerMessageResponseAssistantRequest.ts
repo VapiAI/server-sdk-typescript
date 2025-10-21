@@ -10,7 +10,7 @@ export interface ServerMessageResponseAssistantRequest {
      *
      * If this is sent, `assistantId`, `assistant`, `squadId`, and `squad` are ignored.
      */
-    destination?: ServerMessageResponseAssistantRequest.Destination;
+    destination?: Vapi.ServerMessageResponseAssistantRequestDestination;
     /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
      *
@@ -75,13 +75,4 @@ export interface ServerMessageResponseAssistantRequest {
      * If this is sent, `assistantId`, `assistant`, `squadId`, `squad`, and `destination` are ignored.
      */
     error?: string;
-}
-
-export namespace ServerMessageResponseAssistantRequest {
-    /**
-     * This is the destination to transfer the inbound call to. This will immediately transfer without using any assistants.
-     *
-     * If this is sent, `assistantId`, `assistant`, `squadId`, and `squad` are ignored.
-     */
-    export type Destination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
 }

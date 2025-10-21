@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageUserInterrupted {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageUserInterrupted.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageUserInterruptedPhoneNumber;
     /** This is the type of the message. "user-interrupted" is sent when the user interrupts the assistant. */
     type: "user-interrupted";
     /** This is the timestamp of the message. */
@@ -17,16 +17,4 @@ export interface ClientMessageUserInterrupted {
     customer?: Vapi.CreateCustomerDto;
     /** This is the assistant that the message is associated with. */
     assistant?: Vapi.CreateAssistantDto;
-}
-
-export namespace ClientMessageUserInterrupted {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

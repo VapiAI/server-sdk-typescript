@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessagePhoneCallControl {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessagePhoneCallControl.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessagePhoneCallControlPhoneNumber;
     /**
      * This is the type of the message. "phone-call-control" is an advanced type of message.
      *
@@ -14,9 +14,9 @@ export interface ServerMessagePhoneCallControl {
      */
     type: "phone-call-control";
     /** This is the request to control the phone call. */
-    request: ServerMessagePhoneCallControl.Request;
+    request: Vapi.ServerMessagePhoneCallControlRequest;
     /** This is the destination to forward the call to if the request is "forward". */
-    destination?: ServerMessagePhoneCallControl.Destination;
+    destination?: Vapi.ServerMessagePhoneCallControlDestination;
     /** This is the timestamp of the message. */
     timestamp?: number;
     /**
@@ -33,28 +33,4 @@ export interface ServerMessagePhoneCallControl {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessagePhoneCallControl {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    /**
-     * This is the request to control the phone call.
-     */
-    export type Request = "forward" | "hang-up";
-    export const Request = {
-        Forward: "forward",
-        HangUp: "hang-up",
-    } as const;
-    /**
-     * This is the destination to forward the call to if the request is "forward".
-     */
-    export type Destination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
 }

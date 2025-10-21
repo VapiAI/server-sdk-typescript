@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageChatCreated {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageChatCreated.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageChatCreatedPhoneNumber;
     /** This is the type of the message. "chat.created" is sent when a new chat is created. */
     type: "chat.created";
     /** This is the timestamp of the message. */
@@ -25,16 +25,4 @@ export interface ServerMessageChatCreated {
     call?: Vapi.Call;
     /** This is the chat that was created. */
     chat: Vapi.Chat;
-}
-
-export namespace ServerMessageChatCreated {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -12,30 +12,9 @@ export interface UpdateSessionDto {
     /** This is the new name for the session. Maximum length is 40 characters. */
     name?: string;
     /** This is the new status for the session. */
-    status?: UpdateSessionDto.Status;
+    status?: Vapi.UpdateSessionDtoStatus;
     /** Session expiration time in seconds. Defaults to 24 hours (86400 seconds) if not set. */
     expirationSeconds?: number;
     /** This is the updated array of chat messages. */
-    messages?: UpdateSessionDto.Messages.Item[];
-}
-
-export namespace UpdateSessionDto {
-    /**
-     * This is the new status for the session.
-     */
-    export type Status = "active" | "completed";
-    export const Status = {
-        Active: "active",
-        Completed: "completed",
-    } as const;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.SystemMessage
-            | Vapi.UserMessage
-            | Vapi.AssistantMessage
-            | Vapi.ToolMessage
-            | Vapi.DeveloperMessage;
-    }
+    messages?: Vapi.UpdateSessionDtoMessagesItem[];
 }

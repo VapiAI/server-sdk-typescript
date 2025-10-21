@@ -9,7 +9,7 @@ export interface EvalRun {
      * This is the status of the eval run. When an eval run is created, the status is 'running'.
      * When the eval run is completed, the status is 'ended'.
      */
-    status: EvalRun.Status;
+    status: Vapi.EvalRunStatus;
     /**
      * This is the reason for the eval run to end.
      * When the eval run is completed normally i.e end of mock conversation, the status is 'mockConversation.done'.
@@ -18,11 +18,11 @@ export interface EvalRun {
      * When the eval run is cancelled by the user, the status is 'cancelled'.
      * When the eval run is cancelled by Vapi for any reason, the status is 'aborted'.
      */
-    endedReason: EvalRun.EndedReason;
+    endedReason: Vapi.EvalRunEndedReason;
     /** This is the transient eval that will be run */
     eval?: Vapi.CreateEvalDto;
     /** This is the target that will be run against the eval */
-    target: EvalRun.Target;
+    target: Vapi.EvalRunTarget;
     id: string;
     orgId: string;
     createdAt: string;
@@ -42,37 +42,4 @@ export interface EvalRun {
     type: "eval";
     /** This is the id of the eval that will be run. */
     evalId?: string;
-}
-
-export namespace EvalRun {
-    /**
-     * This is the status of the eval run. When an eval run is created, the status is 'running'.
-     * When the eval run is completed, the status is 'ended'.
-     */
-    export type Status = "running" | "ended" | "queued";
-    export const Status = {
-        Running: "running",
-        Ended: "ended",
-        Queued: "queued",
-    } as const;
-    /**
-     * This is the reason for the eval run to end.
-     * When the eval run is completed normally i.e end of mock conversation, the status is 'mockConversation.done'.
-     * When the eval fails due to an error like Chat error or incorrect configuration, the status is 'error'.
-     * When the eval runs for too long, due to model issues or tool call issues, the status is 'timeout'.
-     * When the eval run is cancelled by the user, the status is 'cancelled'.
-     * When the eval run is cancelled by Vapi for any reason, the status is 'aborted'.
-     */
-    export type EndedReason = "mockConversation.done" | "error" | "timeout" | "cancelled" | "aborted";
-    export const EndedReason = {
-        MockConversationDone: "mockConversation.done",
-        Error: "error",
-        Timeout: "timeout",
-        Cancelled: "cancelled",
-        Aborted: "aborted",
-    } as const;
-    /**
-     * This is the target that will be run against the eval
-     */
-    export type Target = Vapi.EvalRunTargetAssistant | Vapi.EvalRunTargetSquad;
 }

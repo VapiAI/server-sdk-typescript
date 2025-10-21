@@ -12,22 +12,11 @@ export interface FallbackNeuphonicVoice {
     /** This is the provider-specific ID that will be used. */
     voiceId: string;
     /** This is the model that will be used. Defaults to 'neu_fast' if not specified. */
-    model?: FallbackNeuphonicVoice.Model;
+    model?: Vapi.FallbackNeuphonicVoiceModel;
     /** This is the language (ISO 639-1) that is enforced for the model. */
     language: Record<string, unknown>;
     /** This is the speed multiplier that will be used. */
     speed?: number;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackNeuphonicVoice {
-    /**
-     * This is the model that will be used. Defaults to 'neu_fast' if not specified.
-     */
-    export type Model = "neu_hq" | "neu_fast";
-    export const Model = {
-        NeuHq: "neu_hq",
-        NeuFast: "neu_fast",
-    } as const;
 }

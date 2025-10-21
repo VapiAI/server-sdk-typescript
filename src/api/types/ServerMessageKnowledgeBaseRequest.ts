@@ -6,11 +6,11 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageKnowledgeBaseRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageKnowledgeBaseRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageKnowledgeBaseRequestPhoneNumber;
     /** This is the type of the message. "knowledge-base-request" is sent to request knowledge base documents. To enable, use `assistant.knowledgeBase.provider=custom-knowledge-base`. */
     type: "knowledge-base-request";
     /** These are the messages that are going to be sent to the `model` right after the `knowledge-base-request` webhook completes. */
-    messages?: ServerMessageKnowledgeBaseRequest.Messages.Item[];
+    messages?: Vapi.ServerMessageKnowledgeBaseRequestMessagesItem[];
     /** This is just `messages` formatted for OpenAI. */
     messagesOpenAIFormatted: Vapi.OpenAiMessage[];
     /** This is the timestamp of the message. */
@@ -29,26 +29,4 @@ export interface ServerMessageKnowledgeBaseRequest {
     call?: Vapi.Call;
     /** This is the chat object. */
     chat?: Vapi.Chat;
-}
-
-export namespace ServerMessageKnowledgeBaseRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.UserMessage
-            | Vapi.SystemMessage
-            | Vapi.BotMessage
-            | Vapi.ToolCallMessage
-            | Vapi.ToolCallResultMessage;
-    }
 }

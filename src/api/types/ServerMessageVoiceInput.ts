@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageVoiceInput {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageVoiceInput.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageVoiceInputPhoneNumber;
     /** This is the type of the message. "voice-input" is sent when a generation is requested from voice provider. */
     type: "voice-input";
     /** This is the timestamp of the message. */
@@ -27,16 +27,4 @@ export interface ServerMessageVoiceInput {
     chat?: Vapi.Chat;
     /** This is the voice input content */
     input: string;
-}
-
-export namespace ServerMessageVoiceInput {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -10,7 +10,7 @@ export interface CreateMcpToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: CreateMcpToolDto.Messages.Item[];
+    messages?: Vapi.CreateMcpToolDtoMessagesItem[];
     type: "mcp";
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
@@ -105,16 +105,4 @@ export interface CreateMcpToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace CreateMcpToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

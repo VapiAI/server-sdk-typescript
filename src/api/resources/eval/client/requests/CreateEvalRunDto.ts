@@ -16,14 +16,7 @@ export interface CreateEvalRunDto {
     /** This is the transient eval that will be run */
     eval?: Vapi.CreateEvalDto;
     /** This is the target that will be run against the eval */
-    target: CreateEvalRunDto.Target;
+    target: Vapi.CreateEvalRunDtoTarget;
     /** This is the id of the eval that will be run. */
     evalId?: string;
-}
-
-export namespace CreateEvalRunDto {
-    /**
-     * This is the target that will be run against the eval
-     */
-    export type Target = Vapi.EvalRunTargetAssistant | Vapi.EvalRunTargetSquad;
 }

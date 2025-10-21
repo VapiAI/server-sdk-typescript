@@ -12,22 +12,9 @@ export interface ResponseObject {
     /** Unix timestamp (in seconds) of when this Response was created */
     created_at: number;
     /** Status of the response */
-    status: ResponseObject.Status;
+    status: Vapi.ResponseObjectStatus;
     /** Error message if the response failed */
     error?: string | null;
     /** Output messages from the model */
     output: Vapi.ResponseOutputMessage[];
-}
-
-export namespace ResponseObject {
-    /**
-     * Status of the response
-     */
-    export type Status = "completed" | "failed" | "in_progress" | "incomplete";
-    export const Status = {
-        Completed: "completed",
-        Failed: "failed",
-        InProgress: "in_progress",
-        Incomplete: "incomplete",
-    } as const;
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageHang {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageHang.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageHangPhoneNumber;
     /**
      * This is the type of the message. "hang" is sent when the assistant is hanging due to a delay. The delay can be caused by many factors, such as:
      * - the model is too slow to respond
@@ -23,16 +23,4 @@ export interface ClientMessageHang {
     customer?: Vapi.CreateCustomerDto;
     /** This is the assistant that the message is associated with. */
     assistant?: Vapi.CreateAssistantDto;
-}
-
-export namespace ClientMessageHang {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

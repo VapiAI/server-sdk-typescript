@@ -9,19 +9,19 @@ export interface SpeechmaticsTranscriber {
     provider: "speechmatics";
     /** This is the model that will be used for the transcription. */
     model?: "default";
-    language?: SpeechmaticsTranscriber.Language;
+    language?: Vapi.SpeechmaticsTranscriberLanguage;
     /**
      * This is the operating point for the transcription. Choose between `standard` for faster turnaround with strong accuracy or `enhanced` for highest accuracy when precision is critical.
      *
      * @default 'enhanced'
      */
-    operatingPoint?: SpeechmaticsTranscriber.OperatingPoint;
+    operatingPoint?: Vapi.SpeechmaticsTranscriberOperatingPoint;
     /**
      * This is the region for the Speechmatics API. Choose between EU (Europe) and US (United States) regions for lower latency and data sovereignty compliance.
      *
      * @default 'eu'
      */
-    region?: SpeechmaticsTranscriber.Region;
+    region?: Vapi.SpeechmaticsTranscriberRegion;
     /**
      * This enables speaker diarization, which identifies and separates speakers in the transcription. Essential for multi-speaker conversations and conference calls.
      *
@@ -52,7 +52,7 @@ export interface SpeechmaticsTranscriber {
      *
      * @default 'written'
      */
-    numeralStyle?: SpeechmaticsTranscriber.NumeralStyle;
+    numeralStyle?: Vapi.SpeechmaticsTranscriberNumeralStyle;
     /**
      * This enables detection of non-speech audio events like music, applause, and laughter.
      *
@@ -91,152 +91,4 @@ export interface SpeechmaticsTranscriber {
     minimumSpeechDuration?: number;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
     fallbackPlan?: Vapi.FallbackTranscriberPlan;
-}
-
-export namespace SpeechmaticsTranscriber {
-    export type Language =
-        | "auto"
-        | "ar"
-        | "ba"
-        | "eu"
-        | "be"
-        | "bn"
-        | "bg"
-        | "yue"
-        | "ca"
-        | "hr"
-        | "cs"
-        | "da"
-        | "nl"
-        | "en"
-        | "eo"
-        | "et"
-        | "fi"
-        | "fr"
-        | "gl"
-        | "de"
-        | "el"
-        | "he"
-        | "hi"
-        | "hu"
-        | "id"
-        | "ia"
-        | "ga"
-        | "it"
-        | "ja"
-        | "ko"
-        | "lv"
-        | "lt"
-        | "ms"
-        | "mt"
-        | "cmn"
-        | "mr"
-        | "mn"
-        | "no"
-        | "fa"
-        | "pl"
-        | "pt"
-        | "ro"
-        | "ru"
-        | "sk"
-        | "sl"
-        | "es"
-        | "sw"
-        | "sv"
-        | "ta"
-        | "th"
-        | "tr"
-        | "uk"
-        | "ur"
-        | "ug"
-        | "vi"
-        | "cy";
-    export const Language = {
-        Auto: "auto",
-        Ar: "ar",
-        Ba: "ba",
-        Eu: "eu",
-        Be: "be",
-        Bn: "bn",
-        Bg: "bg",
-        Yue: "yue",
-        Ca: "ca",
-        Hr: "hr",
-        Cs: "cs",
-        Da: "da",
-        Nl: "nl",
-        En: "en",
-        Eo: "eo",
-        Et: "et",
-        Fi: "fi",
-        Fr: "fr",
-        Gl: "gl",
-        De: "de",
-        El: "el",
-        He: "he",
-        Hi: "hi",
-        Hu: "hu",
-        Id: "id",
-        Ia: "ia",
-        Ga: "ga",
-        It: "it",
-        Ja: "ja",
-        Ko: "ko",
-        Lv: "lv",
-        Lt: "lt",
-        Ms: "ms",
-        Mt: "mt",
-        Cmn: "cmn",
-        Mr: "mr",
-        Mn: "mn",
-        No: "no",
-        Fa: "fa",
-        Pl: "pl",
-        Pt: "pt",
-        Ro: "ro",
-        Ru: "ru",
-        Sk: "sk",
-        Sl: "sl",
-        Es: "es",
-        Sw: "sw",
-        Sv: "sv",
-        Ta: "ta",
-        Th: "th",
-        Tr: "tr",
-        Uk: "uk",
-        Ur: "ur",
-        Ug: "ug",
-        Vi: "vi",
-        Cy: "cy",
-    } as const;
-    /**
-     * This is the operating point for the transcription. Choose between `standard` for faster turnaround with strong accuracy or `enhanced` for highest accuracy when precision is critical.
-     *
-     * @default 'enhanced'
-     */
-    export type OperatingPoint = "standard" | "enhanced";
-    export const OperatingPoint = {
-        Standard: "standard",
-        Enhanced: "enhanced",
-    } as const;
-    /**
-     * This is the region for the Speechmatics API. Choose between EU (Europe) and US (United States) regions for lower latency and data sovereignty compliance.
-     *
-     * @default 'eu'
-     */
-    export type Region = "eu" | "us";
-    export const Region = {
-        Eu: "eu",
-        Us: "us",
-    } as const;
-    /**
-     * This controls how numbers are formatted in the transcription output.
-     *
-     * @default 'written'
-     */
-    export type NumeralStyle = "written" | "spoken";
-    export const NumeralStyle = {
-        Written: "written",
-        Spoken: "spoken",
-    } as const;
 }

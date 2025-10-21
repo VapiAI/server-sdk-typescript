@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ServerMessageHandoffDestinationRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ServerMessageHandoffDestinationRequest.PhoneNumber;
+    phoneNumber?: Vapi.ServerMessageHandoffDestinationRequestPhoneNumber;
     /** This is the type of the message. "handoff-destination-request" is sent when the model is requesting handoff but destination is unknown. */
     type: "handoff-destination-request";
     /** This is the timestamp of the message. */
@@ -27,16 +27,4 @@ export interface ServerMessageHandoffDestinationRequest {
     chat?: Vapi.Chat;
     /** This is the parameters of the handoff destination request. */
     parameters: Record<string, unknown>;
-}
-
-export namespace ServerMessageHandoffDestinationRequest {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

@@ -13,9 +13,9 @@ export interface FallbackOpenAiVoice {
      * This is the provider-specific ID that will be used.
      * Please note that ash, ballad, coral, sage, and verse may only be used with realtime models.
      */
-    voiceId: FallbackOpenAiVoice.VoiceId;
+    voiceId: Vapi.FallbackOpenAiVoiceId;
     /** This is the model that will be used for text-to-speech. */
-    model?: FallbackOpenAiVoice.Model;
+    model?: Vapi.FallbackOpenAiVoiceModel;
     /**
      * This is a prompt that allows you to control the voice of your generated audio.
      * Does not work with 'tts-1' or 'tts-1-hd' models.
@@ -25,21 +25,4 @@ export interface FallbackOpenAiVoice {
     speed?: number;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan;
-}
-
-export namespace FallbackOpenAiVoice {
-    /**
-     * This is the provider-specific ID that will be used.
-     * Please note that ash, ballad, coral, sage, and verse may only be used with realtime models.
-     */
-    export type VoiceId = ("alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer" | "marin" | "cedar") | string;
-    /**
-     * This is the model that will be used for text-to-speech.
-     */
-    export type Model = "tts-1" | "tts-1-hd" | "gpt-4o-mini-tts";
-    export const Model = {
-        Tts1: "tts-1",
-        Tts1Hd: "tts-1-hd",
-        Gpt4OMiniTts: "gpt-4o-mini-tts",
-    } as const;
 }

@@ -10,21 +10,5 @@ export interface ServerMessageResponse {
      *
      * Note: Most messages don't expect a response. Only "assistant-request", "tool-calls" and "transfer-destination-request" do.
      */
-    messageResponse: ServerMessageResponse.MessageResponse;
-}
-
-export namespace ServerMessageResponse {
-    /**
-     * This is the response that is expected from the server to the message.
-     *
-     * Note: Most messages don't expect a response. Only "assistant-request", "tool-calls" and "transfer-destination-request" do.
-     */
-    export type MessageResponse =
-        | Vapi.ServerMessageResponseAssistantRequest
-        | Vapi.ServerMessageResponseHandoffDestinationRequest
-        | Vapi.ServerMessageResponseKnowledgeBaseRequest
-        | Vapi.ServerMessageResponseToolCalls
-        | Vapi.ServerMessageResponseTransferDestinationRequest
-        | Vapi.ServerMessageResponseVoiceRequest
-        | Vapi.ServerMessageResponseCallEndpointingRequest;
+    messageResponse: Vapi.ServerMessageResponseMessageResponse;
 }

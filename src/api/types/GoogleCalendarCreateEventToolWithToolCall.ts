@@ -10,7 +10,7 @@ export interface GoogleCalendarCreateEventToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: GoogleCalendarCreateEventToolWithToolCall.Messages.Item[];
+    messages?: Vapi.GoogleCalendarCreateEventToolWithToolCallMessagesItem[];
     /** The type of tool. "google.calendar.event.create" for Google Calendar Create Event tool. */
     type: "google.calendar.event.create";
     toolCall: Vapi.ToolCall;
@@ -95,16 +95,4 @@ export interface GoogleCalendarCreateEventToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace GoogleCalendarCreateEventToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

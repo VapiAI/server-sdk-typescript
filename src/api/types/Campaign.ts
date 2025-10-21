@@ -6,9 +6,9 @@ import * as Vapi from "../index.js";
 
 export interface Campaign {
     /** This is the status of the campaign. */
-    status: Campaign.Status;
+    status: Vapi.CampaignStatus;
     /** This is the explanation for how the campaign ended. */
-    endedReason?: Campaign.EndedReason;
+    endedReason?: Vapi.CampaignEndedReason;
     /** This is the name of the campaign. This is just for your own reference. */
     name: string;
     /** This is the assistant ID that will be used for the campaign calls. Note: Either assistantId or workflowId can be used, but not both. */
@@ -41,28 +41,4 @@ export interface Campaign {
     callsCounterEndedVoicemail: number;
     /** This is the number of calls that have ended. */
     callsCounterEnded: number;
-}
-
-export namespace Campaign {
-    /**
-     * This is the status of the campaign.
-     */
-    export type Status = "scheduled" | "in-progress" | "ended";
-    export const Status = {
-        Scheduled: "scheduled",
-        InProgress: "in-progress",
-        Ended: "ended",
-    } as const;
-    /**
-     * This is the explanation for how the campaign ended.
-     */
-    export type EndedReason =
-        | "campaign.scheduled.ended-by-user"
-        | "campaign.in-progress.ended-by-user"
-        | "campaign.ended.success";
-    export const EndedReason = {
-        CampaignScheduledEndedByUser: "campaign.scheduled.ended-by-user",
-        CampaignInProgressEndedByUser: "campaign.in-progress.ended-by-user",
-        CampaignEndedSuccess: "campaign.ended.success",
-    } as const;
 }

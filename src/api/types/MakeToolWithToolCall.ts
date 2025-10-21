@@ -10,7 +10,7 @@ export interface MakeToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: MakeToolWithToolCall.Messages.Item[];
+    messages?: Vapi.MakeToolWithToolCallMessagesItem[];
     /** The type of tool. "make" for Make tool. */
     type: "make";
     toolCall: Vapi.ToolCall;
@@ -96,16 +96,4 @@ export interface MakeToolWithToolCall {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan;
-}
-
-export namespace MakeToolWithToolCall {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

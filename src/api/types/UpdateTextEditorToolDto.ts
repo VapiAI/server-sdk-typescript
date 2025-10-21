@@ -10,7 +10,7 @@ export interface UpdateTextEditorToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateTextEditorToolDto.Messages.Item[];
+    messages?: Vapi.UpdateTextEditorToolDtoMessagesItem[];
     /** The sub type of tool. */
     subType?: "text_editor_20241022";
     /**
@@ -107,16 +107,4 @@ export interface UpdateTextEditorToolDto {
     rejectionPlan?: Vapi.ToolRejectionPlan;
     /** The name of the tool, fixed to 'str_replace_editor' */
     name?: "str_replace_editor";
-}
-
-export namespace UpdateTextEditorToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

@@ -6,7 +6,7 @@ import * as Vapi from "../index.js";
 
 export interface ClientMessageSessionUpdated {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: ClientMessageSessionUpdated.PhoneNumber;
+    phoneNumber?: Vapi.ClientMessageSessionUpdatedPhoneNumber;
     /** This is the type of the message. "session.updated" is sent when a session is updated. */
     type: "session.updated";
     /** This is the timestamp of the message. */
@@ -19,16 +19,4 @@ export interface ClientMessageSessionUpdated {
     assistant?: Vapi.CreateAssistantDto;
     /** This is the session that was updated. */
     session: Vapi.Session;
-}
-
-export namespace ClientMessageSessionUpdated {
-    /**
-     * This is the phone number that the message is associated with.
-     */
-    export type PhoneNumber =
-        | Vapi.CreateByoPhoneNumberDto
-        | Vapi.CreateTwilioPhoneNumberDto
-        | Vapi.CreateVonagePhoneNumberDto
-        | Vapi.CreateVapiPhoneNumberDto
-        | Vapi.CreateTelnyxPhoneNumberDto;
 }

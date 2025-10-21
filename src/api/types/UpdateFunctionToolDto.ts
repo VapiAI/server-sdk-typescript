@@ -10,7 +10,7 @@ export interface UpdateFunctionToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: UpdateFunctionToolDto.Messages.Item[];
+    messages?: Vapi.UpdateFunctionToolDtoMessagesItem[];
     /**
      * This determines if the tool is async.
      *
@@ -115,16 +115,4 @@ export interface UpdateFunctionToolDto {
     rejectionPlan?: Vapi.ToolRejectionPlan;
     /** This is the function definition of the tool. */
     function?: Vapi.OpenAiFunction;
-}
-
-export namespace UpdateFunctionToolDto {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | Vapi.ToolMessageStart
-            | Vapi.ToolMessageComplete
-            | Vapi.ToolMessageFailed
-            | Vapi.ToolMessageDelayed;
-    }
 }

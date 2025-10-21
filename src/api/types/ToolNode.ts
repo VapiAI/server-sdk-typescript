@@ -17,7 +17,7 @@ export interface ToolNode {
      */
     type: "tool";
     /** This is the tool to call. To use an existing tool, send `toolId` instead. */
-    tool?: ToolNode.Tool;
+    tool?: Vapi.ToolNodeTool;
     /** This is the tool to call. To use a transient tool, send `tool` instead. */
     toolId?: string;
     name: string;
@@ -25,31 +25,4 @@ export interface ToolNode {
     isStart?: boolean;
     /** This is for metadata you want to store on the task. */
     metadata?: Record<string, unknown>;
-}
-
-export namespace ToolNode {
-    /**
-     * This is the tool to call. To use an existing tool, send `toolId` instead.
-     */
-    export type Tool =
-        | Vapi.CreateApiRequestToolDto
-        | Vapi.CreateBashToolDto
-        | Vapi.CreateComputerToolDto
-        | Vapi.CreateDtmfToolDto
-        | Vapi.CreateEndCallToolDto
-        | Vapi.CreateFunctionToolDto
-        | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-        | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-        | Vapi.CreateGoHighLevelContactCreateToolDto
-        | Vapi.CreateGoHighLevelContactGetToolDto
-        | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-        | Vapi.CreateGoogleCalendarCreateEventToolDto
-        | Vapi.CreateGoogleSheetsRowAppendToolDto
-        | Vapi.CreateHandoffToolDto
-        | Vapi.CreateMcpToolDto
-        | Vapi.CreateQueryToolDto
-        | Vapi.CreateSlackSendMessageToolDto
-        | Vapi.CreateSmsToolDto
-        | Vapi.CreateTextEditorToolDto
-        | Vapi.CreateTransferCallToolDto;
 }

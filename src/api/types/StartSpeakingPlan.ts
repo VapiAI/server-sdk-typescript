@@ -20,7 +20,7 @@ export interface StartSpeakingPlan {
      * @default 0.4
      */
     waitSeconds?: number;
-    smartEndpointingEnabled?: StartSpeakingPlan.SmartEndpointingEnabled;
+    smartEndpointingEnabled?: Vapi.StartSpeakingPlanSmartEndpointingEnabled;
     /**
      * This is the plan for smart endpointing. Pick between Vapi smart endpointing, LiveKit, or custom endpointing model (or nothing). We strongly recommend using livekit endpointing when working in English. LiveKit endpointing is not supported in other languages, yet.
      *
@@ -29,7 +29,7 @@ export interface StartSpeakingPlan {
      *
      * If this is not set, the system will automatically use the transcriber's built-in endpointing capabilities if available.
      */
-    smartEndpointingPlan?: StartSpeakingPlan.SmartEndpointingPlan;
+    smartEndpointingPlan?: Vapi.StartSpeakingPlanSmartEndpointingPlan;
     /**
      * These are the custom endpointing rules to set an endpointing timeout based on a regex on the customer's speech or the assistant's last message.
      *
@@ -49,7 +49,7 @@ export interface StartSpeakingPlan {
      *
      * @default []
      */
-    customEndpointingRules?: StartSpeakingPlan.CustomEndpointingRules.Item[];
+    customEndpointingRules?: Vapi.StartSpeakingPlanCustomEndpointingRulesItem[];
     /**
      * This determines how a customer speech is considered done (endpointing) using the transcription of customer's speech.
      *
@@ -59,28 +59,4 @@ export interface StartSpeakingPlan {
      * This plan will also be overridden by any matching `customEndpointingRules`.
      */
     transcriptionEndpointingPlan?: Vapi.TranscriptionEndpointingPlan;
-}
-
-export namespace StartSpeakingPlan {
-    export type SmartEndpointingEnabled = boolean | "livekit";
-    /**
-     * This is the plan for smart endpointing. Pick between Vapi smart endpointing, LiveKit, or custom endpointing model (or nothing). We strongly recommend using livekit endpointing when working in English. LiveKit endpointing is not supported in other languages, yet.
-     *
-     * If this is set, it will override and take precedence over `transcriptionEndpointingPlan`.
-     * This plan will still be overridden by any matching `customEndpointingRules`.
-     *
-     * If this is not set, the system will automatically use the transcriber's built-in endpointing capabilities if available.
-     */
-    export type SmartEndpointingPlan =
-        | Vapi.VapiSmartEndpointingPlan
-        | Vapi.LivekitSmartEndpointingPlan
-        | Vapi.CustomEndpointingModelSmartEndpointingPlan;
-    export type CustomEndpointingRules = CustomEndpointingRules.Item[];
-
-    export namespace CustomEndpointingRules {
-        export type Item =
-            | Vapi.AssistantCustomEndpointingRule
-            | Vapi.CustomerCustomEndpointingRule
-            | Vapi.BothCustomEndpointingRule;
-    }
 }
