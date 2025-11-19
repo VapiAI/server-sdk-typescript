@@ -1,1 +1,1 @@
-export { type AnalyticsQueryDto } from "./AnalyticsQueryDto.js";
+export type { AnalyticsQueryDto } from "./AnalyticsQueryDto.js";
