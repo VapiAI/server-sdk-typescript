@@ -19,6 +19,8 @@ export interface CreateApiRequestToolDto {
     timeoutSeconds?: number;
     /** The credential ID for API request authentication */
     credentialId?: string;
+    /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
+    encryptedPaths?: string[];
     /**
      * This is the name of the tool. This will be passed to the model.
      *

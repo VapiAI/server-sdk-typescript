@@ -15,6 +15,7 @@ describe("ToolsClient", () => {
                 method: "POST",
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                encryptedPaths: ["encryptedPaths"],
                 id: "id",
                 orgId: "orgId",
                 createdAt: "2024-01-15T09:30:00Z",
@@ -71,6 +72,7 @@ describe("ToolsClient", () => {
                 method: "POST",
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                encryptedPaths: ["encryptedPaths"],
                 id: "id",
                 orgId: "orgId",
                 createdAt: "2024-01-15T09:30:00Z",
@@ -170,6 +172,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -263,6 +266,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -373,6 +377,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -457,6 +462,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -567,6 +573,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -651,6 +658,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -761,6 +769,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -853,6 +862,7 @@ describe("ToolsClient", () => {
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
+            encryptedPaths: ["encryptedPaths"],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -942,6 +952,31 @@ describe("ToolsClient", () => {
                     },
                 ],
             },
+        });
+    });
+
+    test("ToolController_testCodeExecution", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            success: true,
+            result: { key: "value" },
+            error: "error",
+            logs: "logs",
+            executionTimeMs: 1.1,
+        };
+        server.mockEndpoint().post("/tool/code/test").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.tools.toolControllerTestCodeExecution();
+        expect(response).toEqual({
+            success: true,
+            result: {
+                key: "value",
+            },
+            error: "error",
+            logs: "logs",
+            executionTimeMs: 1.1,
         });
     });
 });

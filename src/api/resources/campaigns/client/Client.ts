@@ -163,9 +163,7 @@ export class CampaignsClient {
      *
      * @example
      *     await client.campaigns.campaignControllerCreate({
-     *         name: "Q2 Sales Campaign",
-     *         phoneNumberId: "phoneNumberId",
-     *         customers: [{}]
+     *         name: "Q2 Sales Campaign"
      *     })
      */
     public campaignControllerCreate(

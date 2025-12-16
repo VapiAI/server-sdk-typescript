@@ -16,6 +16,7 @@ describe("CallsClient", () => {
                 phoneCallTransport: "sip",
                 status: "scheduled",
                 endedReason: "call-start-error-neither-assistant-nor-server-set",
+                endedMessage: "endedMessage",
                 destination: {
                     message: "message",
                     type: "number",
@@ -43,6 +44,7 @@ describe("CallsClient", () => {
                     total: 1.1,
                     llmPromptTokens: 1.1,
                     llmCompletionTokens: 1.1,
+                    llmCachedPromptTokens: 1.1,
                     ttsCharacters: 1.1,
                 },
                 artifactPlan: {
@@ -96,6 +98,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -105,6 +108,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -271,6 +275,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -280,6 +285,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -471,6 +477,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -480,6 +487,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -533,6 +541,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -542,6 +551,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -733,6 +743,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                                 fallbackPlan: {
                                     transcribers: [
                                         {
@@ -742,6 +753,7 @@ describe("CallsClient", () => {
                                             endOfTurnConfidenceThreshold: 0.7,
                                             minEndOfTurnSilenceWhenConfident: 160,
                                             maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
                                         },
                                     ],
                                 },
@@ -757,7 +769,7 @@ describe("CallsClient", () => {
                             name: "name",
                         },
                     ],
-                    model: { provider: "openai", model: "gpt-5.1" },
+                    model: { provider: "openai", model: "gpt-5.2" },
                     transcriber: {
                         provider: "assembly-ai",
                         confidenceThreshold: 0.4,
@@ -765,6 +777,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -774,6 +787,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -941,6 +955,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -950,6 +965,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1030,6 +1046,7 @@ describe("CallsClient", () => {
                 phoneCallTransport: "sip",
                 status: "scheduled",
                 endedReason: "call-start-error-neither-assistant-nor-server-set",
+                endedMessage: "endedMessage",
                 destination: {
                     message: "message",
                     type: "number",
@@ -1059,6 +1076,7 @@ describe("CallsClient", () => {
                     total: 1.1,
                     llmPromptTokens: 1.1,
                     llmCompletionTokens: 1.1,
+                    llmCachedPromptTokens: 1.1,
                     ttsCharacters: 1.1,
                 },
                 artifactPlan: {
@@ -1159,6 +1177,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1168,6 +1187,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1388,6 +1408,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1397,6 +1418,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1654,6 +1676,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -1663,6 +1686,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1729,6 +1753,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1738,6 +1763,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1995,6 +2021,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                                 fallbackPlan: {
                                     transcribers: [
                                         {
@@ -2004,6 +2031,7 @@ describe("CallsClient", () => {
                                             endOfTurnConfidenceThreshold: 0.7,
                                             minEndOfTurnSilenceWhenConfident: 160,
                                             maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
                                         },
                                     ],
                                 },
@@ -2027,7 +2055,7 @@ describe("CallsClient", () => {
                     ],
                     model: {
                         provider: "openai",
-                        model: "gpt-5.1",
+                        model: "gpt-5.2",
                     },
                     transcriber: {
                         provider: "assembly-ai",
@@ -2036,6 +2064,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -2045,6 +2074,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -2286,6 +2316,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -2295,6 +2326,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -2389,11 +2421,13 @@ describe("CallsClient", () => {
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
                     metadata: { key: "value" },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -2433,20 +2467,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -2508,12 +2547,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2528,6 +2569,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -2775,6 +2817,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2789,12 +2832,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2809,6 +2854,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3077,6 +3123,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -3100,6 +3147,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -3109,6 +3157,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -3292,12 +3341,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3312,6 +3363,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3580,6 +3632,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -3603,6 +3656,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -3612,6 +3666,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -3625,15 +3680,17 @@ describe("CallsClient", () => {
                         name: "name",
                     },
                 ],
-                model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+                model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3648,6 +3705,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3692,6 +3750,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -3850,6 +3909,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -3872,6 +3932,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -3881,6 +3942,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -4104,11 +4166,13 @@ describe("CallsClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -4155,20 +4219,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -4284,12 +4353,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4304,6 +4375,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4649,6 +4721,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -4684,12 +4757,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4704,6 +4779,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5082,6 +5158,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5126,6 +5203,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -5135,6 +5213,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -5384,12 +5463,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -5404,6 +5485,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5782,6 +5864,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5826,6 +5909,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -5835,6 +5919,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -5858,18 +5943,20 @@ describe("CallsClient", () => {
                 ],
                 model: {
                     provider: "openai",
-                    model: "gpt-5.1",
+                    model: "gpt-5.2",
                     temperature: 1.1,
                     maxTokens: 1.1,
                 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -5884,6 +5971,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5961,6 +6049,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -6189,6 +6278,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -6228,6 +6318,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -6237,6 +6328,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -6512,6 +6604,7 @@ describe("CallsClient", () => {
                     phoneCallTransport: "sip",
                     status: "scheduled",
                     endedReason: "call-start-error-neither-assistant-nor-server-set",
+                    endedMessage: "endedMessage",
                     destination: { type: "number", number: "number" },
                     id: "id",
                     orgId: "orgId",
@@ -6541,6 +6634,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6550,6 +6644,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -6602,6 +6697,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6611,6 +6707,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -6665,6 +6762,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6674,6 +6772,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -6730,6 +6829,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                     fallbackPlan: {
                                         transcribers: [
                                             {
@@ -6739,6 +6839,7 @@ describe("CallsClient", () => {
                                                 endOfTurnConfidenceThreshold: 0.7,
                                                 minEndOfTurnSilenceWhenConfident: 160,
                                                 maxTurnSilence: 400,
+                                                vadAssistedEndpointingEnabled: true,
                                             },
                                         ],
                                     },
@@ -6761,6 +6862,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6770,6 +6872,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -6805,7 +6908,10 @@ describe("CallsClient", () => {
         };
         server.mockEndpoint().get("/v2/call").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.calls.callControllerFindAllPaginated();
+        const response = await client.calls.callControllerFindAllPaginated({
+            assistantIdAny: "assistant-1,assistant-2,assistant-3",
+            customerNumberAny: "+1234567890,+0987654321",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -6829,6 +6935,7 @@ describe("CallsClient", () => {
                     phoneCallTransport: "sip",
                     status: "scheduled",
                     endedReason: "call-start-error-neither-assistant-nor-server-set",
+                    endedMessage: "endedMessage",
                     destination: {
                         type: "number",
                         number: "number",
@@ -6861,6 +6968,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6870,6 +6978,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -6935,6 +7044,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -6944,6 +7054,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -7013,6 +7124,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -7022,6 +7134,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -7091,6 +7204,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                     fallbackPlan: {
                                         transcribers: [
                                             {
@@ -7100,6 +7214,7 @@ describe("CallsClient", () => {
                                                 endOfTurnConfidenceThreshold: 0.7,
                                                 minEndOfTurnSilenceWhenConfident: 160,
                                                 maxTurnSilence: 400,
+                                                vadAssistedEndpointingEnabled: true,
                                             },
                                         ],
                                     },
@@ -7128,6 +7243,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -7137,6 +7253,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -7216,11 +7333,13 @@ describe("CallsClient", () => {
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
                     metadata: { key: "value" },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -7260,20 +7379,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -7335,12 +7459,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -7355,6 +7481,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -7602,6 +7729,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -7616,12 +7744,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -7636,6 +7766,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -7904,6 +8035,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -7927,6 +8059,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -7936,6 +8069,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -8119,12 +8253,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -8139,6 +8275,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -8407,6 +8544,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -8430,6 +8568,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -8439,6 +8578,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -8452,15 +8592,17 @@ describe("CallsClient", () => {
                         name: "name",
                     },
                 ],
-                model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+                model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -8475,6 +8617,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -8519,6 +8662,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -8677,6 +8821,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -8699,6 +8844,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -8708,6 +8854,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -8926,11 +9073,13 @@ describe("CallsClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -8977,20 +9126,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -9106,12 +9260,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -9126,6 +9282,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -9471,6 +9628,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -9506,12 +9664,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -9526,6 +9686,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -9904,6 +10065,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -9948,6 +10110,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -9957,6 +10120,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -10206,12 +10370,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -10226,6 +10392,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -10604,6 +10771,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -10648,6 +10816,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -10657,6 +10826,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -10680,18 +10850,20 @@ describe("CallsClient", () => {
                 ],
                 model: {
                     provider: "openai",
-                    model: "gpt-5.1",
+                    model: "gpt-5.2",
                     temperature: 1.1,
                     maxTokens: 1.1,
                 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -10706,6 +10878,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -10783,6 +10956,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -11011,6 +11185,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -11050,6 +11225,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -11059,6 +11235,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -11340,11 +11517,13 @@ describe("CallsClient", () => {
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
                     metadata: { key: "value" },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -11384,20 +11563,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -11459,12 +11643,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -11479,6 +11665,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -11726,6 +11913,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -11740,12 +11928,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -11760,6 +11950,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -12028,6 +12219,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -12051,6 +12243,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -12060,6 +12253,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -12243,12 +12437,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -12263,6 +12459,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -12531,6 +12728,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -12554,6 +12752,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -12563,6 +12762,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -12576,15 +12776,17 @@ describe("CallsClient", () => {
                         name: "name",
                     },
                 ],
-                model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+                model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -12599,6 +12801,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -12643,6 +12846,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -12801,6 +13005,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -12823,6 +13028,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -12832,6 +13038,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -13057,11 +13264,13 @@ describe("CallsClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -13108,20 +13317,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -13237,12 +13451,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -13257,6 +13473,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -13602,6 +13819,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -13637,12 +13855,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -13657,6 +13877,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -14035,6 +14256,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -14079,6 +14301,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -14088,6 +14311,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -14337,12 +14561,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -14357,6 +14583,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -14735,6 +14962,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -14779,6 +15007,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -14788,6 +15017,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -14811,18 +15041,20 @@ describe("CallsClient", () => {
                 ],
                 model: {
                     provider: "openai",
-                    model: "gpt-5.1",
+                    model: "gpt-5.2",
                     temperature: 1.1,
                     maxTokens: 1.1,
                 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -14837,6 +15069,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -14914,6 +15147,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -15142,6 +15376,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -15181,6 +15416,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -15190,6 +15426,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -15471,11 +15708,13 @@ describe("CallsClient", () => {
                     detectedThreats: ["detectedThreats"],
                     originalMessage: "originalMessage",
                     metadata: { key: "value" },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -15515,20 +15754,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -15590,12 +15834,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -15610,6 +15856,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -15857,6 +16104,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -15871,12 +16119,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -15891,6 +16141,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -16159,6 +16410,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -16182,6 +16434,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -16191,6 +16444,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -16374,12 +16628,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -16394,6 +16650,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -16662,6 +16919,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -16685,6 +16943,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -16694,6 +16953,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -16707,15 +16967,17 @@ describe("CallsClient", () => {
                         name: "name",
                     },
                 ],
-                model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+                model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -16730,6 +16992,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -16774,6 +17037,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -16932,6 +17196,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -16954,6 +17219,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -16963,6 +17229,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -17188,11 +17455,13 @@ describe("CallsClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    speakerLabel: "speakerLabel",
                 },
             ],
             phoneCallTransport: "sip",
             status: "scheduled",
             endedReason: "call-start-error-neither-assistant-nor-server-set",
+            endedMessage: "endedMessage",
             destination: {
                 message: "message",
                 type: "number",
@@ -17239,20 +17508,25 @@ describe("CallsClient", () => {
                 total: 1.1,
                 llmPromptTokens: 1.1,
                 llmCompletionTokens: 1.1,
+                llmCachedPromptTokens: 1.1,
                 ttsCharacters: 1.1,
                 analysisCostBreakdown: {
                     summary: 1.1,
                     summaryPromptTokens: 1.1,
                     summaryCompletionTokens: 1.1,
+                    summaryCachedPromptTokens: 1.1,
                     structuredData: 1.1,
                     structuredDataPromptTokens: 1.1,
                     structuredDataCompletionTokens: 1.1,
+                    structuredDataCachedPromptTokens: 1.1,
                     successEvaluation: 1.1,
                     successEvaluationPromptTokens: 1.1,
                     successEvaluationCompletionTokens: 1.1,
+                    successEvaluationCachedPromptTokens: 1.1,
                     structuredOutput: 1.1,
                     structuredOutputPromptTokens: 1.1,
                     structuredOutputCompletionTokens: 1.1,
+                    structuredOutputCachedPromptTokens: 1.1,
                 },
             },
             artifactPlan: {
@@ -17368,12 +17642,14 @@ describe("CallsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -17388,6 +17664,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -17733,6 +18010,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -17768,12 +18046,14 @@ describe("CallsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -17788,6 +18068,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -18166,6 +18447,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -18210,6 +18492,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -18219,6 +18502,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -18468,12 +18752,14 @@ describe("CallsClient", () => {
             squadOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -18488,6 +18774,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -18866,6 +19153,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -18910,6 +19198,7 @@ describe("CallsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -18919,6 +19208,7 @@ describe("CallsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -18942,18 +19232,20 @@ describe("CallsClient", () => {
                 ],
                 model: {
                     provider: "openai",
-                    model: "gpt-5.1",
+                    model: "gpt-5.2",
                     temperature: 1.1,
                     maxTokens: 1.1,
                 },
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -18968,6 +19260,7 @@ describe("CallsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -19045,6 +19338,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -19273,6 +19567,7 @@ describe("CallsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -19312,6 +19607,7 @@ describe("CallsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -19321,6 +19617,7 @@ describe("CallsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },

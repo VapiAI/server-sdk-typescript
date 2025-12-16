@@ -20,6 +20,7 @@ describe("SquadsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -29,6 +30,7 @@ describe("SquadsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -229,6 +231,7 @@ describe("SquadsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -238,6 +241,7 @@ describe("SquadsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -509,6 +513,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -518,6 +523,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -570,6 +576,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -579,6 +586,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -628,12 +636,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -648,6 +658,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -916,6 +927,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -963,6 +975,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -972,6 +985,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1037,6 +1051,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -1046,6 +1061,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1108,12 +1124,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -1128,6 +1146,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -1506,6 +1525,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -1563,6 +1583,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -1572,6 +1593,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1624,6 +1646,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -1633,6 +1656,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -1682,12 +1706,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -1702,6 +1728,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -1970,6 +1997,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2010,6 +2038,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -2019,6 +2048,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -2084,6 +2114,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -2093,6 +2124,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -2155,12 +2187,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2175,6 +2209,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -2553,6 +2588,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -2610,6 +2646,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -2619,6 +2656,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -2671,6 +2709,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -2680,6 +2719,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -2729,12 +2769,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2749,6 +2791,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3017,6 +3060,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -3057,6 +3101,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -3066,6 +3111,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -3131,6 +3177,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -3140,6 +3187,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -3202,12 +3250,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3222,6 +3272,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3600,6 +3651,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -3657,6 +3709,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -3666,6 +3719,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -3718,6 +3772,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -3727,6 +3782,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -3776,12 +3832,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3796,6 +3854,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4064,6 +4123,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -4112,6 +4172,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -4121,6 +4182,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -4186,6 +4248,7 @@ describe("SquadsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -4195,6 +4258,7 @@ describe("SquadsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -4257,12 +4321,14 @@ describe("SquadsClient", () => {
             membersOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4277,6 +4343,7 @@ describe("SquadsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4655,6 +4722,7 @@ describe("SquadsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",

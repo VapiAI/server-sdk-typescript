@@ -15,5 +15,11 @@ export const FallbackVapiVoiceVoiceId = {
     Spencer: "Spencer",
     Leah: "Leah",
     Tara: "Tara",
+    Jess: "Jess",
+    Leo: "Leo",
+    Dan: "Dan",
+    Mia: "Mia",
+    Zac: "Zac",
+    Zoe: "Zoe",
 } as const;
 export type FallbackVapiVoiceVoiceId = (typeof FallbackVapiVoiceVoiceId)[keyof typeof FallbackVapiVoiceVoiceId];

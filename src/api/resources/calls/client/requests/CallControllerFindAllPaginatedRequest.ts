@@ -4,13 +4,20 @@ import type * as Vapi from "../../../../index.js";
 
 /**
  * @example
- *     {}
+ *     {
+ *         assistantIdAny: "assistant-1,assistant-2,assistant-3",
+ *         customerNumberAny: "+1234567890,+0987654321"
+ *     }
  */
 export interface CallControllerFindAllPaginatedRequest {
+    /** Filter by multiple assistant IDs. Provide as comma-separated values. */
+    assistantIdAny?: string;
     /** Filter by assistant overrides. Use variableValues to filter by template variables. */
     assistantOverrides?: Record<string, unknown>;
     /** Filter by customer properties. Supports filtering by number, name, externalId, and extension. */
     customer?: Record<string, unknown>;
+    /** Filter by any of the specified customer phone numbers (comma-separated). */
+    customerNumberAny?: string;
     /** This will return calls with the specified assistantId. */
     assistantId?: string;
     /** This will return calls where the transient assistant name exactly matches the specified value (case-insensitive). */
@@ -35,6 +42,8 @@ export interface CallControllerFindAllPaginatedRequest {
     endedReason?: string;
     /** This will return calls with the specified phoneNumberId. */
     phoneNumberId?: string;
+    /** This will return calls with any of the specified phoneNumberIds. */
+    phoneNumberIdAny?: string | string[];
     /** Filter calls by structured output values. Use structured output ID as key and filter operators as values. */
     structuredOutputs?: Record<string, Vapi.StructuredOutputFilterDto>;
     /** Filter calls by the first scorecard's normalized score. */

@@ -4,6 +4,7 @@ import type * as Vapi from "../../../index.js";
 
 export type ListToolsResponseItem =
     | Vapi.ApiRequestTool
+    | Vapi.CodeTool
     | Vapi.DtmfTool
     | Vapi.EndCallTool
     | Vapi.FunctionTool

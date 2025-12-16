@@ -27,20 +27,6 @@ export interface FallbackSpeechmaticsTranscriber {
      */
     enableDiarization?: boolean;
     /**
-     * This sets the maximum number of speakers to detect when diarization is enabled. Only used when enableDiarization is true.
-     *
-     * @default 2
-     */
-    maxSpeakers?: number;
-    /** Provides friendly speaker labels that map to diarization indices (Speaker 1 -> labels[0]). */
-    speakerLabels?: string[];
-    /**
-     * This enables partial transcripts during speech recognition. When false, only final transcripts are returned.
-     *
-     * @default true
-     */
-    enablePartials?: boolean;
-    /**
      * This sets the maximum delay in milliseconds for partial transcripts. Balances latency and accuracy.
      *
      * @default 3000
@@ -48,29 +34,11 @@ export interface FallbackSpeechmaticsTranscriber {
     maxDelay?: number;
     customVocabulary: Vapi.SpeechmaticsCustomVocabularyItem[];
     /**
-     * This controls how numbers are formatted in the transcription output.
+     * This controls how numbers, dates, currencies, and other entities are formatted in the transcription output.
      *
      * @default 'written'
      */
     numeralStyle?: Vapi.FallbackSpeechmaticsTranscriberNumeralStyle;
-    /**
-     * This enables detection of non-speech audio events like music, applause, and laughter.
-     *
-     * @default false
-     */
-    enableEntities?: boolean;
-    /**
-     * This enables automatic punctuation in the transcription output.
-     *
-     * @default true
-     */
-    enablePunctuation?: boolean;
-    /**
-     * This enables automatic capitalization in the transcription output.
-     *
-     * @default true
-     */
-    enableCapitalization?: boolean;
     /**
      * This is the sensitivity level for end-of-turn detection, which determines when a speaker has finished talking. Higher values are more sensitive.
      *
@@ -79,6 +47,8 @@ export interface FallbackSpeechmaticsTranscriber {
     endOfTurnSensitivity?: number;
     /**
      * This enables removal of disfluencies (um, uh) from the transcript to create cleaner, more professional output.
+     *
+     * This is only supported for the English language transcriber.
      *
      * @default false
      */

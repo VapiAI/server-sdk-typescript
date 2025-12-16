@@ -26,7 +26,9 @@ export class ChatsClient {
      * @param {ChatsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.chats.list()
+     *     await client.chats.list({
+     *         assistantIdAny: "assistant-1,assistant-2,assistant-3"
+     *     })
      */
     public list(
         request: Vapi.ListChatsRequest = {},
@@ -40,7 +42,9 @@ export class ChatsClient {
         requestOptions?: ChatsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.ChatPaginatedResponse>> {
         const {
+            id,
             assistantId,
+            assistantIdAny,
             squadId,
             sessionId,
             previousChatId,
@@ -57,8 +61,16 @@ export class ChatsClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (id != null) {
+            _queryParams.id = id;
+        }
+
         if (assistantId != null) {
             _queryParams.assistantId = assistantId;
+        }
+
+        if (assistantIdAny != null) {
+            _queryParams.assistantIdAny = assistantIdAny;
         }
 
         if (squadId != null) {
@@ -234,6 +246,179 @@ export class ChatsClient {
                 });
             case "timeout":
                 throw new errors.VapiTimeoutError("Timeout exceeded when calling POST /chat.");
+            case "unknown":
+                throw new errors.VapiError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {Vapi.ChatControllerChatsExportRequest} request
+     * @param {ChatsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.chats.chatControllerChatsExport({
+     *         assistantIdAny: "assistant-1,assistant-2,assistant-3"
+     *     })
+     */
+    public chatControllerChatsExport(
+        request: Vapi.ChatControllerChatsExportRequest = {},
+        requestOptions?: ChatsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__chatControllerChatsExport(request, requestOptions));
+    }
+
+    private async __chatControllerChatsExport(
+        request: Vapi.ChatControllerChatsExportRequest = {},
+        requestOptions?: ChatsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const {
+            id,
+            assistantId,
+            assistantIdAny,
+            squadId,
+            sessionId,
+            previousChatId,
+            columns,
+            email,
+            format,
+            page,
+            sortOrder,
+            limit,
+            createdAtGt,
+            createdAtLt,
+            createdAtGe,
+            createdAtLe,
+            updatedAtGt,
+            updatedAtLt,
+            updatedAtGe,
+            updatedAtLe,
+        } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (id != null) {
+            _queryParams.id = id;
+        }
+
+        if (assistantId != null) {
+            _queryParams.assistantId = assistantId;
+        }
+
+        if (assistantIdAny != null) {
+            _queryParams.assistantIdAny = assistantIdAny;
+        }
+
+        if (squadId != null) {
+            _queryParams.squadId = squadId;
+        }
+
+        if (sessionId != null) {
+            _queryParams.sessionId = sessionId;
+        }
+
+        if (previousChatId != null) {
+            _queryParams.previousChatId = previousChatId;
+        }
+
+        if (columns != null) {
+            _queryParams.columns = columns;
+        }
+
+        if (email != null) {
+            _queryParams.email = email;
+        }
+
+        if (format != null) {
+            _queryParams.format = format;
+        }
+
+        if (page != null) {
+            _queryParams.page = page.toString();
+        }
+
+        if (sortOrder != null) {
+            _queryParams.sortOrder = sortOrder;
+        }
+
+        if (limit != null) {
+            _queryParams.limit = limit.toString();
+        }
+
+        if (createdAtGt != null) {
+            _queryParams.createdAtGt = createdAtGt;
+        }
+
+        if (createdAtLt != null) {
+            _queryParams.createdAtLt = createdAtLt;
+        }
+
+        if (createdAtGe != null) {
+            _queryParams.createdAtGe = createdAtGe;
+        }
+
+        if (createdAtLe != null) {
+            _queryParams.createdAtLe = createdAtLe;
+        }
+
+        if (updatedAtGt != null) {
+            _queryParams.updatedAtGt = updatedAtGt;
+        }
+
+        if (updatedAtLt != null) {
+            _queryParams.updatedAtLt = updatedAtLt;
+        }
+
+        if (updatedAtGe != null) {
+            _queryParams.updatedAtGe = updatedAtGe;
+        }
+
+        if (updatedAtLe != null) {
+            _queryParams.updatedAtLe = updatedAtLe;
+        }
+
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "chat/export",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.VapiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.VapiTimeoutError("Timeout exceeded when calling GET /chat/export.");
             case "unknown":
                 throw new errors.VapiError({
                     message: _response.error.errorMessage,

@@ -8,6 +8,7 @@ import type * as Vapi from "../index.js";
 export type ToolCallHookActionTool =
     | Vapi.CreateApiRequestToolDto
     | Vapi.CreateBashToolDto
+    | Vapi.CreateCodeToolDto
     | Vapi.CreateComputerToolDto
     | Vapi.CreateDtmfToolDto
     | Vapi.CreateEndCallToolDto

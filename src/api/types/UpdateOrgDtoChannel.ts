@@ -2,7 +2,9 @@
 
 /** This is the channel of the org. There is the cluster the API traffic for the org will be directed. */
 export const UpdateOrgDtoChannel = {
+    Daily: "daily",
     Default: "default",
     Weekly: "weekly",
+    Intuit: "intuit",
 } as const;
 export type UpdateOrgDtoChannel = (typeof UpdateOrgDtoChannel)[keyof typeof UpdateOrgDtoChannel];

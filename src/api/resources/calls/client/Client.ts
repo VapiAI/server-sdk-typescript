@@ -229,7 +229,10 @@ export class CallsClient {
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.calls.callControllerFindAllPaginated()
+     *     await client.calls.callControllerFindAllPaginated({
+     *         assistantIdAny: "assistant-1,assistant-2,assistant-3",
+     *         customerNumberAny: "+1234567890,+0987654321"
+     *     })
      */
     public callControllerFindAllPaginated(
         request: Vapi.CallControllerFindAllPaginatedRequest = {},
@@ -243,8 +246,10 @@ export class CallsClient {
         requestOptions?: CallsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.CallPaginatedResponse>> {
         const {
+            assistantIdAny,
             assistantOverrides,
             customer,
+            customerNumberAny,
             assistantId,
             assistantName,
             squadId,
@@ -257,6 +262,7 @@ export class CallsClient {
             successEvaluation,
             endedReason,
             phoneNumberId,
+            phoneNumberIdAny,
             structuredOutputs,
             score,
             page,
@@ -272,12 +278,20 @@ export class CallsClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (assistantIdAny != null) {
+            _queryParams.assistantIdAny = assistantIdAny;
+        }
+
         if (assistantOverrides != null) {
             _queryParams.assistantOverrides = toJson(assistantOverrides);
         }
 
         if (customer != null) {
             _queryParams.customer = toJson(customer);
+        }
+
+        if (customerNumberAny != null) {
+            _queryParams.customerNumberAny = customerNumberAny;
         }
 
         if (assistantId != null) {
@@ -330,6 +344,14 @@ export class CallsClient {
 
         if (phoneNumberId != null) {
             _queryParams.phoneNumberId = phoneNumberId;
+        }
+
+        if (phoneNumberIdAny != null) {
+            if (Array.isArray(phoneNumberIdAny)) {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny.map((item) => item);
+            } else {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny;
+            }
         }
 
         if (structuredOutputs != null) {

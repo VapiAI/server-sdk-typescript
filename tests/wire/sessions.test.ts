@@ -31,6 +31,7 @@ describe("SessionsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -40,6 +41,7 @@ describe("SessionsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -102,7 +104,10 @@ describe("SessionsClient", () => {
         };
         server.mockEndpoint().get("/session").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.sessions.list();
+        const response = await client.sessions.list({
+            assistantIdAny: "assistant-1,assistant-2,assistant-3",
+            customerNumberAny: "+1234567890,+0987654321",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -134,6 +139,7 @@ describe("SessionsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -143,6 +149,7 @@ describe("SessionsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -240,7 +247,16 @@ describe("SessionsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             cost: 1.1,
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             name: "name",
             status: "active",
             expirationSeconds: 86400,
@@ -248,12 +264,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -268,6 +286,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -515,6 +534,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -538,6 +558,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -547,6 +568,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -739,6 +761,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -748,6 +771,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -960,6 +984,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -1021,6 +1046,7 @@ describe("SessionsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -1031,12 +1057,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -1051,6 +1079,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -1396,6 +1425,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -1440,6 +1470,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1449,6 +1480,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1714,6 +1746,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1723,6 +1756,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -2012,6 +2046,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -2091,6 +2126,19 @@ describe("SessionsClient", () => {
         });
     });
 
+    test("SessionController_sessionsExport", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().get("/session/export").respondWith().statusCode(200).build();
+
+        const response = await client.sessions.sessionControllerSessionsExport({
+            assistantIdAny: "assistant-1,assistant-2,assistant-3",
+            customerNumberAny: "+1234567890,+0987654321",
+        });
+        expect(response).toEqual(undefined);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -2101,7 +2149,16 @@ describe("SessionsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             cost: 1.1,
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             name: "name",
             status: "active",
             expirationSeconds: 86400,
@@ -2109,12 +2166,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2129,6 +2188,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -2376,6 +2436,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2399,6 +2460,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -2408,6 +2470,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -2600,6 +2663,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -2609,6 +2673,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -2821,6 +2886,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2877,6 +2943,7 @@ describe("SessionsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -2887,12 +2954,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2907,6 +2976,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3252,6 +3322,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -3296,6 +3367,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -3305,6 +3377,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -3570,6 +3643,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -3579,6 +3653,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -3868,6 +3943,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -3957,7 +4033,16 @@ describe("SessionsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             cost: 1.1,
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             name: "name",
             status: "active",
             expirationSeconds: 86400,
@@ -3965,12 +4050,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3985,6 +4072,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4232,6 +4320,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -4255,6 +4344,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -4264,6 +4354,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -4456,6 +4547,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -4465,6 +4557,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -4677,6 +4770,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -4733,6 +4827,7 @@ describe("SessionsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -4743,12 +4838,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4763,6 +4860,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5108,6 +5206,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5152,6 +5251,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -5161,6 +5261,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -5426,6 +5527,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -5435,6 +5537,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -5724,6 +5827,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5813,7 +5917,16 @@ describe("SessionsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             cost: 1.1,
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             name: "name",
             status: "active",
             expirationSeconds: 86400,
@@ -5821,12 +5934,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -5841,6 +5956,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -6088,6 +6204,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -6111,6 +6228,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -6120,6 +6238,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -6312,6 +6431,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -6321,6 +6441,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -6533,6 +6654,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -6596,6 +6718,7 @@ describe("SessionsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -6606,12 +6729,14 @@ describe("SessionsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -6626,6 +6751,7 @@ describe("SessionsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -6971,6 +7097,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -7015,6 +7142,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -7024,6 +7152,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -7289,6 +7418,7 @@ describe("SessionsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -7298,6 +7428,7 @@ describe("SessionsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -7587,6 +7718,7 @@ describe("SessionsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",

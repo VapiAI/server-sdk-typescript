@@ -19,6 +19,8 @@ export interface ApiRequestTool {
     timeoutSeconds?: number;
     /** The credential ID for API request authentication */
     credentialId?: string;
+    /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
+    encryptedPaths?: string[];
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */

@@ -26,7 +26,10 @@ export class SessionsClient {
      * @param {SessionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.sessions.list()
+     *     await client.sessions.list({
+     *         assistantIdAny: "assistant-1,assistant-2,assistant-3",
+     *         customerNumberAny: "+1234567890,+0987654321"
+     *     })
      */
     public list(
         request: Vapi.ListSessionsRequest = {},
@@ -40,8 +43,10 @@ export class SessionsClient {
         requestOptions?: SessionsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.SessionPaginatedResponse>> {
         const {
+            id,
             name,
             assistantId,
+            assistantIdAny,
             squadId,
             workflowId,
             numberE164CheckEnabled,
@@ -51,6 +56,9 @@ export class SessionsClient {
             sipUri,
             email,
             externalId,
+            customerNumberAny,
+            phoneNumberId,
+            phoneNumberIdAny,
             page,
             sortOrder,
             limit,
@@ -64,12 +72,20 @@ export class SessionsClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (id != null) {
+            _queryParams.id = id;
+        }
+
         if (name != null) {
             _queryParams.name = name;
         }
 
         if (assistantId != null) {
             _queryParams.assistantId = assistantId;
+        }
+
+        if (assistantIdAny != null) {
+            _queryParams.assistantIdAny = assistantIdAny;
         }
 
         if (squadId != null) {
@@ -106,6 +122,22 @@ export class SessionsClient {
 
         if (externalId != null) {
             _queryParams.externalId = externalId;
+        }
+
+        if (customerNumberAny != null) {
+            _queryParams.customerNumberAny = customerNumberAny;
+        }
+
+        if (phoneNumberId != null) {
+            _queryParams.phoneNumberId = phoneNumberId;
+        }
+
+        if (phoneNumberIdAny != null) {
+            if (Array.isArray(phoneNumberIdAny)) {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny.map((item) => item);
+            } else {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny;
+            }
         }
 
         if (page != null) {
@@ -265,6 +297,229 @@ export class SessionsClient {
                 });
             case "timeout":
                 throw new errors.VapiTimeoutError("Timeout exceeded when calling POST /session.");
+            case "unknown":
+                throw new errors.VapiError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {Vapi.SessionControllerSessionsExportRequest} request
+     * @param {SessionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.sessions.sessionControllerSessionsExport({
+     *         assistantIdAny: "assistant-1,assistant-2,assistant-3",
+     *         customerNumberAny: "+1234567890,+0987654321"
+     *     })
+     */
+    public sessionControllerSessionsExport(
+        request: Vapi.SessionControllerSessionsExportRequest = {},
+        requestOptions?: SessionsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__sessionControllerSessionsExport(request, requestOptions));
+    }
+
+    private async __sessionControllerSessionsExport(
+        request: Vapi.SessionControllerSessionsExportRequest = {},
+        requestOptions?: SessionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const {
+            id,
+            name,
+            assistantId,
+            assistantIdAny,
+            squadId,
+            workflowId,
+            numberE164CheckEnabled,
+            extension,
+            assistantOverrides,
+            number: number_,
+            sipUri,
+            email,
+            externalId,
+            customerNumberAny,
+            columns,
+            format,
+            phoneNumberId,
+            phoneNumberIdAny,
+            page,
+            sortOrder,
+            limit,
+            createdAtGt,
+            createdAtLt,
+            createdAtGe,
+            createdAtLe,
+            updatedAtGt,
+            updatedAtLt,
+            updatedAtGe,
+            updatedAtLe,
+        } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (id != null) {
+            _queryParams.id = id;
+        }
+
+        if (name != null) {
+            _queryParams.name = name;
+        }
+
+        if (assistantId != null) {
+            _queryParams.assistantId = assistantId;
+        }
+
+        if (assistantIdAny != null) {
+            _queryParams.assistantIdAny = assistantIdAny;
+        }
+
+        if (squadId != null) {
+            _queryParams.squadId = squadId;
+        }
+
+        if (workflowId != null) {
+            _queryParams.workflowId = workflowId;
+        }
+
+        if (numberE164CheckEnabled != null) {
+            _queryParams.numberE164CheckEnabled = numberE164CheckEnabled.toString();
+        }
+
+        if (extension != null) {
+            _queryParams.extension = extension;
+        }
+
+        if (assistantOverrides != null) {
+            _queryParams.assistantOverrides = assistantOverrides;
+        }
+
+        if (number_ != null) {
+            _queryParams.number = number_;
+        }
+
+        if (sipUri != null) {
+            _queryParams.sipUri = sipUri;
+        }
+
+        if (email != null) {
+            _queryParams.email = email;
+        }
+
+        if (externalId != null) {
+            _queryParams.externalId = externalId;
+        }
+
+        if (customerNumberAny != null) {
+            _queryParams.customerNumberAny = customerNumberAny;
+        }
+
+        if (columns != null) {
+            _queryParams.columns = columns;
+        }
+
+        if (format != null) {
+            _queryParams.format = format;
+        }
+
+        if (phoneNumberId != null) {
+            _queryParams.phoneNumberId = phoneNumberId;
+        }
+
+        if (phoneNumberIdAny != null) {
+            if (Array.isArray(phoneNumberIdAny)) {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny.map((item) => item);
+            } else {
+                _queryParams.phoneNumberIdAny = phoneNumberIdAny;
+            }
+        }
+
+        if (page != null) {
+            _queryParams.page = page.toString();
+        }
+
+        if (sortOrder != null) {
+            _queryParams.sortOrder = sortOrder;
+        }
+
+        if (limit != null) {
+            _queryParams.limit = limit.toString();
+        }
+
+        if (createdAtGt != null) {
+            _queryParams.createdAtGt = createdAtGt;
+        }
+
+        if (createdAtLt != null) {
+            _queryParams.createdAtLt = createdAtLt;
+        }
+
+        if (createdAtGe != null) {
+            _queryParams.createdAtGe = createdAtGe;
+        }
+
+        if (createdAtLe != null) {
+            _queryParams.createdAtLe = createdAtLe;
+        }
+
+        if (updatedAtGt != null) {
+            _queryParams.updatedAtGt = updatedAtGt;
+        }
+
+        if (updatedAtLt != null) {
+            _queryParams.updatedAtLt = updatedAtLt;
+        }
+
+        if (updatedAtGe != null) {
+            _queryParams.updatedAtGe = updatedAtGe;
+        }
+
+        if (updatedAtLe != null) {
+            _queryParams.updatedAtLe = updatedAtLe;
+        }
+
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "session/export",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.VapiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.VapiTimeoutError("Timeout exceeded when calling GET /session/export.");
             case "unknown":
                 throw new errors.VapiError({
                     message: _response.error.errorMessage,

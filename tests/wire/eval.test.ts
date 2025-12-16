@@ -323,6 +323,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -332,6 +333,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -498,6 +500,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -507,6 +510,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -744,6 +748,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -753,6 +758,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -973,6 +979,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -982,6 +989,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1288,6 +1296,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1297,6 +1306,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1463,6 +1473,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1472,6 +1483,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1709,6 +1721,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1718,6 +1731,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1938,6 +1952,7 @@ describe("EvalClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -1947,6 +1962,7 @@ describe("EvalClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },

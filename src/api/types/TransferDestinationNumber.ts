@@ -34,7 +34,9 @@ export interface TransferDestinationNumber {
      * This is the caller ID to use when transferring the call to the `number`.
      *
      * Usage:
-     * - If not provided, the caller ID will be the number the call is coming from. Example, +14151111111 calls in to and the assistant transfers out to +16470000000. +16470000000 will see +14151111111 as the caller.
+     * - If not provided, the caller ID will be the number the call is coming **from**.
+     *   Example: a customer with number +14151111111 calls in to and the assistant transfers out to +16470000000. +16470000000 will see +14151111111 as the caller.
+     *   For inbound calls, the caller ID is the customer's number. For outbound calls, the caller ID is the phone number of the assistant.
      * - To change this behavior, provide a `callerId`.
      * - Set to '{{customer.number}}' to always use the customer's number as the caller ID.
      * - Set to '{{phoneNumber.number}}' to always use the phone number of the assistant as the caller ID.

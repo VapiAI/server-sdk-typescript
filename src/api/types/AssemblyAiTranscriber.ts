@@ -40,6 +40,21 @@ export interface AssemblyAiTranscriber {
      * @default 400
      */
     maxTurnSilence?: number;
+    /**
+     * Use VAD to assist with endpointing decisions from the transcriber.
+     * When enabled, transcriber endpointing will be buffered if VAD detects the user is still speaking, preventing premature turn-taking.
+     * When disabled, transcriber endpointing will be used immediately regardless of VAD state, allowing for quicker but more aggressive turn-taking.
+     * Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
+     *
+     * @default true
+     */
+    vadAssistedEndpointingEnabled?: boolean;
+    /**
+     * This is the speech model used for the streaming session.
+     * Note: Keyterms prompting is not supported with multilingual streaming.
+     * @default 'universal-streaming-english'
+     */
+    speechModel?: Vapi.AssemblyAiTranscriberSpeechModel;
     /** The WebSocket URL that the transcriber connects to. */
     realtimeUrl?: string;
     /** Add up to 2500 characters of custom vocabulary. */

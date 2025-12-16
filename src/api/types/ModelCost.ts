@@ -21,6 +21,8 @@ export interface ModelCost {
     promptTokens: number;
     /** This is the number of completion tokens generated in the call. These should be total completion tokens used in the call for single assistant calls, while squad calls will have multiple model costs one for each assistant that was used. */
     completionTokens: number;
+    /** This is the number of cached prompt tokens used in the call. This is only applicable to certain providers (e.g., OpenAI, Azure OpenAI) that support prompt caching. Cached tokens are billed at a discounted rate. */
+    cachedPromptTokens?: number;
     /** This is the cost of the component in USD. */
     cost: number;
 }

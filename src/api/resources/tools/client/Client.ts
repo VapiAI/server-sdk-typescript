@@ -429,6 +429,74 @@ export class ToolsClient {
         }
     }
 
+    /**
+     * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.tools.toolControllerTestCodeExecution()
+     */
+    public toolControllerTestCodeExecution(
+        requestOptions?: ToolsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.ToolControllerTestCodeExecutionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__toolControllerTestCodeExecution(requestOptions));
+    }
+
+    private async __toolControllerTestCodeExecution(
+        requestOptions?: ToolsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.ToolControllerTestCodeExecutionResponse>> {
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "tool/code/test",
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.ToolControllerTestCodeExecutionResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.VapiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.VapiTimeoutError("Timeout exceeded when calling POST /tool/code/test.");
+            case "unknown":
+                throw new errors.VapiError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getAuthorizationHeader(): Promise<string> {
         return `Bearer ${await core.Supplier.get(this._options.token)}`;
     }

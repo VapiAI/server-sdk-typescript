@@ -14,7 +14,7 @@ export interface Token {
     /** This is the ISO 8601 date-time string of when the token was last updated. */
     updatedAt: string;
     /** This is the token key. */
-    value: string;
+    value?: string;
     /** This is the name of the token. This is just for your own reference. */
     name?: string;
     /** This are the restrictions for the token. */

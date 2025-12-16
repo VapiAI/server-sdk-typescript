@@ -40,8 +40,8 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
         {
             "X-Fern-Language": "JavaScript",
             "X-Fern-SDK-Name": "@vapi-ai/server-sdk",
-            "X-Fern-SDK-Version": "0.11.0",
-            "User-Agent": "@vapi-ai/server-sdk/0.11.0",
+            "X-Fern-SDK-Version": "0.12.0",
+            "User-Agent": "@vapi-ai/server-sdk/0.12.0",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
         },

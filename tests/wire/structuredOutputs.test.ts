@@ -11,7 +11,7 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             results: [
                 {
-                    model: { provider: "openai", model: "gpt-5.1" },
+                    model: { provider: "openai", model: "gpt-5.2" },
                     compliancePlan: { forceStoreOnHipaaEnabled: false },
                     id: "id",
                     orgId: "orgId",
@@ -41,7 +41,7 @@ describe("StructuredOutputsClient", () => {
                 {
                     model: {
                         provider: "openai",
-                        model: "gpt-5.1",
+                        model: "gpt-5.2",
                     },
                     compliancePlan: {
                         forceStoreOnHipaaEnabled: false,
@@ -75,7 +75,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "name", schema: { type: "string" } };
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -115,7 +115,7 @@ describe("StructuredOutputsClient", () => {
         expect(response).toEqual({
             model: {
                 provider: "openai",
-                model: "gpt-5.1",
+                model: "gpt-5.2",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -153,7 +153,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -189,7 +189,7 @@ describe("StructuredOutputsClient", () => {
         expect(response).toEqual({
             model: {
                 provider: "openai",
-                model: "gpt-5.1",
+                model: "gpt-5.2",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -227,7 +227,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -263,7 +263,7 @@ describe("StructuredOutputsClient", () => {
         expect(response).toEqual({
             model: {
                 provider: "openai",
-                model: "gpt-5.1",
+                model: "gpt-5.2",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -301,7 +301,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -339,7 +339,7 @@ describe("StructuredOutputsClient", () => {
         expect(response).toEqual({
             model: {
                 provider: "openai",
-                model: "gpt-5.1",
+                model: "gpt-5.2",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -377,7 +377,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { callIds: ["callIds"] };
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.1", temperature: 1.1, maxTokens: 1.1 },
+            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -414,7 +414,7 @@ describe("StructuredOutputsClient", () => {
         expect(response).toEqual({
             model: {
                 provider: "openai",
-                model: "gpt-5.1",
+                model: "gpt-5.2",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -445,29 +445,5 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         });
-    });
-
-    test("StructuredOutputController_suggest", async () => {
-        const server = mockServerPool.createServer();
-        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = { assistantId: "550e8400-e29b-41d4-a716-446655440000" };
-        const rawResponseBody = [{ key: "value" }];
-        server
-            .mockEndpoint()
-            .post("/structured-output/suggest")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.structuredOutputs.structuredOutputControllerSuggest({
-            assistantId: "550e8400-e29b-41d4-a716-446655440000",
-        });
-        expect(response).toEqual([
-            {
-                key: "value",
-            },
-        ]);
     });
 });

@@ -4,9 +4,14 @@ import type * as Vapi from "../../../../index.js";
 
 /**
  * @example
- *     {}
+ *     {
+ *         assistantIdAny: "assistant-1,assistant-2,assistant-3",
+ *         customerNumberAny: "+1234567890,+0987654321"
+ *     }
  */
 export interface ListSessionsRequest {
+    /** This is the unique identifier for the session to filter by. */
+    id?: string;
     /**
      * This is the name of the customer. This is just for your own reference.
      *
@@ -15,6 +20,8 @@ export interface ListSessionsRequest {
     name?: string;
     /** This is the ID of the assistant to filter sessions by. */
     assistantId?: string;
+    /** Filter by multiple assistant IDs. Provide as comma-separated values. */
+    assistantIdAny?: string;
     /** This is the ID of the squad to filter sessions by. */
     squadId?: string;
     /** This is the ID of the workflow to filter sessions by. */
@@ -46,6 +53,12 @@ export interface ListSessionsRequest {
     email?: string;
     /** This is the external ID of the customer. */
     externalId?: string;
+    /** Filter by any of the specified customer phone numbers (comma-separated). */
+    customerNumberAny?: string;
+    /** This will return sessions with the specified phoneNumberId. */
+    phoneNumberId?: string;
+    /** This will return sessions with any of the specified phoneNumberIds. */
+    phoneNumberIdAny?: string | string[];
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */

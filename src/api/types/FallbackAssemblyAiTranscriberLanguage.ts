@@ -2,6 +2,7 @@
 
 /** This is the language that will be set for the transcription. */
 export const FallbackAssemblyAiTranscriberLanguage = {
+    Multi: "multi",
     En: "en",
 } as const;
 export type FallbackAssemblyAiTranscriberLanguage =
