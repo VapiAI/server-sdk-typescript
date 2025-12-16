@@ -21,6 +21,8 @@ export interface CostBreakdown {
     llmPromptTokens?: number;
     /** This is the LLM completion tokens used for the call. */
     llmCompletionTokens?: number;
+    /** This is the LLM cached prompt tokens used for the call. */
+    llmCachedPromptTokens?: number;
     /** This is the TTS characters used for the call. */
     ttsCharacters?: number;
     /** This is the cost of the analysis. */

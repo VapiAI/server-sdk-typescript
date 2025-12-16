@@ -1,3 +1,4 @@
+export type { ChatControllerChatsExportRequest } from "./ChatControllerChatsExportRequest.js";
 export type { CreateChatDto } from "./CreateChatDto.js";
 export type { DeleteChatsRequest } from "./DeleteChatsRequest.js";
 export type { GetChatsRequest } from "./GetChatsRequest.js";

@@ -24,6 +24,14 @@ export interface TransferAssistant {
      */
     backgroundSound?: Vapi.TransferAssistantBackgroundSound;
     /**
+     * This is the plan for when the transfer assistant should start talking.
+     *
+     * You should configure this if the transfer assistant needs different endpointing behavior than the base assistant.
+     *
+     * If this is not set, the transfer assistant will inherit the start speaking plan from the base assistant.
+     */
+    startSpeakingPlan?: Vapi.StartSpeakingPlan;
+    /**
      * This is the mode for the first message. Default is 'assistant-speaks-first'.
      *
      * Use:

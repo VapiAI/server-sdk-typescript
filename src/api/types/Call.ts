@@ -24,6 +24,8 @@ export interface Call {
     status?: Vapi.CallStatus;
     /** This is the explanation for how the call ended. */
     endedReason?: Vapi.CallEndedReason;
+    /** This is the message that adds more context to the ended reason. It can be used to provide potential error messages or warnings. */
+    endedMessage?: string;
     /** This is the destination where the call ended up being transferred to. If the call was not transferred, this will be empty. */
     destination?: Vapi.CallDestination;
     /** This is the unique identifier for the call. */

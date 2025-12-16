@@ -20,4 +20,10 @@ export interface AssistantMessageJudgePlanAi {
      * @default 'ai'
      */
     type: Vapi.AssistantMessageJudgePlanAiType;
+    /**
+     * This is the flag to enable automatically adding the liquid variable {{messages}} to the model's messages array
+     * This is only applicable if the user has not provided any messages in the model's messages array
+     * @default true
+     */
+    autoIncludeMessageHistory?: boolean;
 }

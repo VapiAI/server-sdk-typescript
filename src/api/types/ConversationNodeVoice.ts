@@ -18,6 +18,7 @@ export type ConversationNodeVoice =
     | Vapi.NeuphonicVoice
     | Vapi.OpenAiVoice
     | Vapi.PlayHtVoice
+    | Vapi.WellSaidVoice
     | Vapi.RimeAiVoice
     | Vapi.SmallestAiVoice
     | Vapi.TavusVoice

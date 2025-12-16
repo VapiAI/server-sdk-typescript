@@ -3,16 +3,26 @@
 import type * as Vapi from "../index.js";
 
 export interface GetSessionPaginatedDto {
+    /** This is the unique identifier for the session to filter by. */
+    id?: string;
     /** This is the name of the session to filter by. */
     name?: string;
     /** This is the ID of the assistant to filter sessions by. */
     assistantId?: string;
+    /** Filter by multiple assistant IDs. Provide as comma-separated values. */
+    assistantIdAny?: string;
     /** This is the ID of the squad to filter sessions by. */
     squadId?: string;
     /** This is the ID of the workflow to filter sessions by. */
     workflowId?: string;
     /** This is the customer information to filter by. */
     customer?: Vapi.CreateCustomerDto;
+    /** Filter by any of the specified customer phone numbers (comma-separated). */
+    customerNumberAny?: string;
+    /** This will return sessions with the specified phoneNumberId. */
+    phoneNumberId?: string;
+    /** This will return sessions with any of the specified phoneNumberIds. */
+    phoneNumberIdAny?: string[];
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */

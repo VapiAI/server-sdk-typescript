@@ -23,10 +23,18 @@ export interface UpdateCampaignDto {
      */
     workflowId?: string;
     /**
-     * This is the phone number ID that will be used for the campaign calls.
+     * This is the squad ID that will be used for the campaign calls.
      * Can only be updated if campaign is not in progress or has ended.
      */
+    squadId?: string;
+    /**
+     * This is the phone number ID that will be used for the campaign calls.
+     * Can only be updated if campaign is not in progress or has ended.
+     * Note: `phoneNumberId` and `dialPlan` are mutually exclusive.
+     */
     phoneNumberId?: string;
+    /** This is a list of dial entries, each specifying a phone number and the customers to call using that number. Can only be updated if campaign is not in progress or has ended. Note: phoneNumberId and dialPlan are mutually exclusive. */
+    dialPlan?: Vapi.DialPlanEntry[];
     /**
      * This is the schedule plan for the campaign.
      * Can only be updated if campaign is not in progress or has ended.

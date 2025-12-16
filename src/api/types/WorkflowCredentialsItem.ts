@@ -53,4 +53,5 @@ export type WorkflowCredentialsItem =
     | Vapi.CreateSlackOAuth2AuthorizationCredentialDto
     | Vapi.CreateGoHighLevelMcpCredentialDto
     | Vapi.CreateInworldCredentialDto
-    | Vapi.CreateMinimaxCredentialDto;
+    | Vapi.CreateMinimaxCredentialDto
+    | Vapi.CreateWellSaidCredentialDto;

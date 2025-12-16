@@ -2,6 +2,7 @@
 
 /** This is the language that will be set for the transcription. */
 export const AssemblyAiTranscriberLanguage = {
+    Multi: "multi",
     En: "en",
 } as const;
 export type AssemblyAiTranscriberLanguage =

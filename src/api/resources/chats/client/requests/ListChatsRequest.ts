@@ -4,11 +4,17 @@ import type * as Vapi from "../../../../index.js";
 
 /**
  * @example
- *     {}
+ *     {
+ *         assistantIdAny: "assistant-1,assistant-2,assistant-3"
+ *     }
  */
 export interface ListChatsRequest {
+    /** This is the unique identifier for the chat to filter by. */
+    id?: string;
     /** This is the unique identifier for the assistant that will be used for the chat. */
     assistantId?: string;
+    /** Filter by multiple assistant IDs. Provide as comma-separated values. */
+    assistantIdAny?: string;
     /** This is the unique identifier for the squad that will be used for the chat. */
     squadId?: string;
     /** This is the unique identifier for the session that will be used for the chat. */

@@ -17,6 +17,8 @@ export interface Server {
      * @default false
      */
     staticIpAddressesEnabled?: boolean;
+    /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
+    encryptedPaths?: string[];
     /** This is where the request will be sent. */
     url?: string;
     /**

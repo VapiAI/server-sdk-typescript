@@ -20,6 +20,7 @@ describe("ChatsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -29,6 +30,7 @@ describe("ChatsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -81,6 +83,7 @@ describe("ChatsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -90,6 +93,7 @@ describe("ChatsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -164,7 +168,9 @@ describe("ChatsClient", () => {
         };
         server.mockEndpoint().get("/chat").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.chats.list();
+        const response = await client.chats.list({
+            assistantIdAny: "assistant-1,assistant-2,assistant-3",
+        });
         expect(response).toEqual({
             results: [
                 {
@@ -177,6 +183,7 @@ describe("ChatsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -186,6 +193,7 @@ describe("ChatsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -251,6 +259,7 @@ describe("ChatsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -260,6 +269,7 @@ describe("ChatsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -380,12 +390,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -400,6 +412,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -647,6 +660,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -661,12 +675,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -681,6 +697,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -949,6 +966,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -972,6 +990,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -981,6 +1000,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -1172,7 +1192,16 @@ describe("ChatsClient", () => {
             output: [{ role: "role", message: "message", time: 1.1, secondsFromStart: 1.1 }],
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             cost: 1.1,
         };
         server
@@ -1192,12 +1221,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -1212,6 +1243,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -1557,6 +1589,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -1592,12 +1625,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -1612,6 +1647,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -1990,6 +2026,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -2034,6 +2071,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -2043,6 +2081,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -2322,11 +2361,24 @@ describe("ChatsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
             cost: 1.1,
         });
+    });
+
+    test("ChatController_chatsExport", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().get("/chat/export").respondWith().statusCode(200).build();
+
+        const response = await client.chats.chatControllerChatsExport({
+            assistantIdAny: "assistant-1,assistant-2,assistant-3",
+        });
+        expect(response).toEqual(undefined);
     });
 
     test("get", async () => {
@@ -2338,12 +2390,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2358,6 +2412,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -2605,6 +2660,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2619,12 +2675,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -2639,6 +2697,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -2907,6 +2966,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -2930,6 +2990,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -2939,6 +3000,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -3130,7 +3192,16 @@ describe("ChatsClient", () => {
             output: [{ role: "role", message: "message", time: 1.1, secondsFromStart: 1.1 }],
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             cost: 1.1,
         };
         server.mockEndpoint().get("/chat/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
@@ -3143,12 +3214,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3163,6 +3236,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3508,6 +3582,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -3543,12 +3618,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -3563,6 +3640,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -3941,6 +4019,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -3985,6 +4064,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -3994,6 +4074,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -4273,6 +4354,7 @@ describe("ChatsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -4289,12 +4371,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4309,6 +4393,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4556,6 +4641,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -4570,12 +4656,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -4590,6 +4678,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -4858,6 +4947,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -4881,6 +4971,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -4890,6 +4981,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -5081,7 +5173,16 @@ describe("ChatsClient", () => {
             output: [{ role: "role", message: "message", time: 1.1, secondsFromStart: 1.1 }],
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            costs: [{ type: "model", model: { key: "value" }, promptTokens: 1.1, completionTokens: 1.1, cost: 1.1 }],
+            costs: [
+                {
+                    type: "model",
+                    model: { key: "value" },
+                    promptTokens: 1.1,
+                    completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
+                    cost: 1.1,
+                },
+            ],
             cost: 1.1,
         };
         server.mockEndpoint().delete("/chat/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
@@ -5094,12 +5195,14 @@ describe("ChatsClient", () => {
             assistant: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -5114,6 +5217,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5459,6 +5563,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5494,12 +5599,14 @@ describe("ChatsClient", () => {
             assistantOverrides: {
                 transcriber: {
                     provider: "assembly-ai",
-                    language: "en",
+                    language: "multi",
                     confidenceThreshold: 0.4,
                     formatTurns: true,
                     endOfTurnConfidenceThreshold: 0.7,
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
                     keytermsPrompt: ["keytermsPrompt"],
@@ -5514,6 +5621,7 @@ describe("ChatsClient", () => {
                                 endOfTurnConfidenceThreshold: 0.7,
                                 minEndOfTurnSilenceWhenConfident: 160,
                                 maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
                             },
                         ],
                     },
@@ -5892,6 +6000,7 @@ describe("ChatsClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -5936,6 +6045,7 @@ describe("ChatsClient", () => {
                         endOfTurnConfidenceThreshold: 0.7,
                         minEndOfTurnSilenceWhenConfident: 160,
                         maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
                         fallbackPlan: {
                             transcribers: [
                                 {
@@ -5945,6 +6055,7 @@ describe("ChatsClient", () => {
                                     endOfTurnConfidenceThreshold: 0.7,
                                     minEndOfTurnSilenceWhenConfident: 160,
                                     maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
                                 },
                             ],
                         },
@@ -6224,6 +6335,7 @@ describe("ChatsClient", () => {
                     },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
+                    cachedPromptTokens: 1.1,
                     cost: 1.1,
                 },
             ],

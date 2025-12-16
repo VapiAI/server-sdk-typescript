@@ -15,5 +15,11 @@ export const VapiVoiceVoiceId = {
     Spencer: "Spencer",
     Leah: "Leah",
     Tara: "Tara",
+    Jess: "Jess",
+    Leo: "Leo",
+    Dan: "Dan",
+    Mia: "Mia",
+    Zac: "Zac",
+    Zoe: "Zoe",
 } as const;
 export type VapiVoiceVoiceId = (typeof VapiVoiceVoiceId)[keyof typeof VapiVoiceVoiceId];

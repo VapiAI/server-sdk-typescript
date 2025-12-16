@@ -7,22 +7,30 @@ export interface AnalysisCostBreakdown {
     summaryPromptTokens?: number;
     /** This is the number of completion tokens used to summarize the call. */
     summaryCompletionTokens?: number;
+    /** This is the number of cached prompt tokens used to summarize the call. */
+    summaryCachedPromptTokens?: number;
     /** This is the cost to extract structured data from the call. */
     structuredData?: number;
     /** This is the number of prompt tokens used to extract structured data from the call. */
     structuredDataPromptTokens?: number;
     /** This is the number of completion tokens used to extract structured data from the call. */
     structuredDataCompletionTokens?: number;
+    /** This is the number of cached prompt tokens used to extract structured data from the call. */
+    structuredDataCachedPromptTokens?: number;
     /** This is the cost to evaluate if the call was successful. */
     successEvaluation?: number;
     /** This is the number of prompt tokens used to evaluate if the call was successful. */
     successEvaluationPromptTokens?: number;
     /** This is the number of completion tokens used to evaluate if the call was successful. */
     successEvaluationCompletionTokens?: number;
+    /** This is the number of cached prompt tokens used to evaluate if the call was successful. */
+    successEvaluationCachedPromptTokens?: number;
     /** This is the cost to evaluate structuredOutputs from the call. */
     structuredOutput?: number;
     /** This is the number of prompt tokens used to evaluate structuredOutputs from the call. */
     structuredOutputPromptTokens?: number;
     /** This is the number of completion tokens used to evaluate structuredOutputs from the call. */
     structuredOutputCompletionTokens?: number;
+    /** This is the number of cached prompt tokens used to evaluate structuredOutputs from the call. */
+    structuredOutputCachedPromptTokens?: number;
 }

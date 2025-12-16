@@ -618,7 +618,10 @@ await client.calls.create();
 <dd>
 
 ```typescript
-await client.calls.callControllerFindAllPaginated();
+await client.calls.callControllerFindAllPaginated({
+    assistantIdAny: "assistant-1,assistant-2,assistant-3",
+    customerNumberAny: "+1234567890,+0987654321"
+});
 
 ```
 </dd>
@@ -821,7 +824,9 @@ await client.calls.update({
 <dd>
 
 ```typescript
-await client.chats.list();
+await client.chats.list({
+    assistantIdAny: "assistant-1,assistant-2,assistant-3"
+});
 
 ```
 </dd>
@@ -903,6 +908,57 @@ await client.chats.create({
 <dd>
 
 **request:** `Vapi.CreateChatDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ChatsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chats.<a href="/src/api/resources/chats/client/Client.ts">chatControllerChatsExport</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.chats.chatControllerChatsExport({
+    assistantIdAny: "assistant-1,assistant-2,assistant-3"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.ChatControllerChatsExportRequest` 
     
 </dd>
 </dl>
@@ -1139,9 +1195,7 @@ await client.campaigns.campaignControllerFindAll();
 
 ```typescript
 await client.campaigns.campaignControllerCreate({
-    name: "Q2 Sales Campaign",
-    phoneNumberId: "phoneNumberId",
-    customers: [{}]
+    name: "Q2 Sales Campaign"
 });
 
 ```
@@ -1345,7 +1399,10 @@ await client.campaigns.campaignControllerUpdate({
 <dd>
 
 ```typescript
-await client.sessions.list();
+await client.sessions.list({
+    assistantIdAny: "assistant-1,assistant-2,assistant-3",
+    customerNumberAny: "+1234567890,+0987654321"
+});
 
 ```
 </dd>
@@ -1411,6 +1468,58 @@ await client.sessions.create();
 <dd>
 
 **request:** `Vapi.CreateSessionDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SessionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sessions.<a href="/src/api/resources/sessions/client/Client.ts">sessionControllerSessionsExport</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.sessions.sessionControllerSessionsExport({
+    assistantIdAny: "assistant-1,assistant-2,assistant-3",
+    customerNumberAny: "+1234567890,+0987654321"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.SessionControllerSessionsExportRequest` 
     
 </dd>
 </dl>
@@ -2145,6 +2254,47 @@ await client.tools.update({
 </dl>
 </details>
 
+<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">toolControllerTestCodeExecution</a>() -> Vapi.ToolControllerTestCodeExecutionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tools.toolControllerTestCodeExecution();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ToolsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Files
 <details><summary><code>client.files.<a href="/src/api/resources/files/client/Client.ts">list</a>() -> Vapi.File_[]</code></summary>
 <dl>
@@ -2681,71 +2831,6 @@ await client.structuredOutputs.structuredOutputControllerRun({
 <dd>
 
 **request:** `Vapi.StructuredOutputRunDto` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `StructuredOutputsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.structuredOutputs.<a href="/src/api/resources/structuredOutputs/client/Client.ts">structuredOutputControllerSuggest</a>({ ...params }) -> Record<string, unknown>[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Analyzes assistant configuration and generates contextual structured output recommendations
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.structuredOutputs.structuredOutputControllerSuggest({
-    assistantId: "550e8400-e29b-41d4-a716-446655440000"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Vapi.GenerateStructuredOutputSuggestionsDto` 
     
 </dd>
 </dl>

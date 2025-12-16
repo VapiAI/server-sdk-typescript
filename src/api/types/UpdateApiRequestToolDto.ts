@@ -18,6 +18,8 @@ export interface UpdateApiRequestToolDto {
     timeoutSeconds?: number;
     /** The credential ID for API request authentication */
     credentialId?: string;
+    /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
+    encryptedPaths?: string[];
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *

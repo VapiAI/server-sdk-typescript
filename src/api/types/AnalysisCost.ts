@@ -13,6 +13,8 @@ export interface AnalysisCost {
     promptTokens: number;
     /** This is the number of completion tokens generated in the analysis. */
     completionTokens: number;
+    /** This is the number of cached prompt tokens used in the analysis. This is only applicable to certain providers (e.g., OpenAI, Azure OpenAI) that support prompt caching. Cached tokens are billed at a discounted rate. */
+    cachedPromptTokens?: number;
     /** This is the cost of the component in USD. */
     cost: number;
 }

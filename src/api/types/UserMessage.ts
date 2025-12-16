@@ -21,4 +21,6 @@ export interface UserMessage {
     originalMessage?: string;
     /** The metadata associated with the message. Currently used to store the transcriber's word level confidence. */
     metadata?: Record<string, unknown>;
+    /** Stable speaker label for diarized user speakers (e.g., "Speaker 1"). */
+    speakerLabel?: string;
 }

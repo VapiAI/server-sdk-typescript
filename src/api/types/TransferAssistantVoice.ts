@@ -16,6 +16,7 @@ export type TransferAssistantVoice =
     | Vapi.NeuphonicVoice
     | Vapi.OpenAiVoice
     | Vapi.PlayHtVoice
+    | Vapi.WellSaidVoice
     | Vapi.RimeAiVoice
     | Vapi.SmallestAiVoice
     | Vapi.TavusVoice

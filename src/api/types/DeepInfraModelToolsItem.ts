@@ -5,6 +5,7 @@ import type * as Vapi from "../index.js";
 export type DeepInfraModelToolsItem =
     | Vapi.CreateApiRequestToolDto
     | Vapi.CreateBashToolDto
+    | Vapi.CreateCodeToolDto
     | Vapi.CreateComputerToolDto
     | Vapi.CreateDtmfToolDto
     | Vapi.CreateEndCallToolDto

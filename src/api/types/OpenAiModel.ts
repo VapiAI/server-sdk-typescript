@@ -41,6 +41,25 @@ export interface OpenAiModel {
      * @default `strip-unsupported-validation`
      */
     toolStrictCompatibilityMode?: Vapi.OpenAiModelToolStrictCompatibilityMode;
+    /**
+     * This controls the prompt cache retention policy for models that support extended caching (GPT-4.1, GPT-5 series).
+     *
+     * - `in_memory`: Default behavior, cache retained in GPU memory only
+     * - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
+     *
+     * Only applies to models: gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+     *
+     * @default undefined (uses API default which is 'in_memory')
+     */
+    promptCacheRetention?: Vapi.OpenAiModelPromptCacheRetention;
+    /**
+     * This is the prompt cache key for models that support extended caching (GPT-4.1, GPT-5 series).
+     *
+     * Providing a cache key allows you to share cached prefixes across requests.
+     *
+     * @default undefined
+     */
+    promptCacheKey?: string;
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
     temperature?: number;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */

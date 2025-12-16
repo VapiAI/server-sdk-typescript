@@ -18,6 +18,7 @@ export const SyncVoiceLibraryDtoProvidersItem = {
     Sesame: "sesame",
     Inworld: "inworld",
     Minimax: "minimax",
+    Wellsaid: "wellsaid",
     Orpheus: "orpheus",
 } as const;
 export type SyncVoiceLibraryDtoProvidersItem =

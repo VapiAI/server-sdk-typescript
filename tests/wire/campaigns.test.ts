@@ -16,7 +16,9 @@ describe("CampaignsClient", () => {
                     name: "Q2 Sales Campaign",
                     assistantId: "assistantId",
                     workflowId: "workflowId",
+                    squadId: "squadId",
                     phoneNumberId: "phoneNumberId",
+                    dialPlan: [{ phoneNumberId: "phoneNumberId", customers: [{}] }],
                     schedulePlan: { earliestAt: "2024-01-15T09:30:00Z" },
                     customers: [{}],
                     id: "id",
@@ -51,7 +53,14 @@ describe("CampaignsClient", () => {
                     name: "Q2 Sales Campaign",
                     assistantId: "assistantId",
                     workflowId: "workflowId",
+                    squadId: "squadId",
                     phoneNumberId: "phoneNumberId",
+                    dialPlan: [
+                        {
+                            phoneNumberId: "phoneNumberId",
+                            customers: [{}],
+                        },
+                    ],
                     schedulePlan: {
                         earliestAt: "2024-01-15T09:30:00Z",
                     },
@@ -84,14 +93,16 @@ describe("CampaignsClient", () => {
     test("CampaignController_create", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "Q2 Sales Campaign", phoneNumberId: "phoneNumberId", customers: [{}] };
+        const rawRequestBody = { name: "Q2 Sales Campaign" };
         const rawResponseBody = {
             status: "scheduled",
             endedReason: "campaign.scheduled.ended-by-user",
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [{ phoneNumberId: "phoneNumberId", customers: [{}] }],
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             customers: [
                 {
@@ -105,6 +116,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -114,6 +126,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -187,8 +200,6 @@ describe("CampaignsClient", () => {
 
         const response = await client.campaigns.campaignControllerCreate({
             name: "Q2 Sales Campaign",
-            phoneNumberId: "phoneNumberId",
-            customers: [{}],
         });
         expect(response).toEqual({
             status: "scheduled",
@@ -196,7 +207,14 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [
+                {
+                    phoneNumberId: "phoneNumberId",
+                    customers: [{}],
+                },
+            ],
             schedulePlan: {
                 earliestAt: "2024-01-15T09:30:00Z",
                 latestAt: "2024-01-15T09:30:00Z",
@@ -213,6 +231,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -222,6 +241,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -311,7 +331,9 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [{ phoneNumberId: "phoneNumberId", customers: [{}] }],
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             customers: [
                 {
@@ -325,6 +347,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -334,6 +357,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -407,7 +431,14 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [
+                {
+                    phoneNumberId: "phoneNumberId",
+                    customers: [{}],
+                },
+            ],
             schedulePlan: {
                 earliestAt: "2024-01-15T09:30:00Z",
                 latestAt: "2024-01-15T09:30:00Z",
@@ -424,6 +455,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -433,6 +465,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -522,7 +555,9 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [{ phoneNumberId: "phoneNumberId", customers: [{}] }],
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             customers: [
                 {
@@ -536,6 +571,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -545,6 +581,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -618,7 +655,14 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [
+                {
+                    phoneNumberId: "phoneNumberId",
+                    customers: [{}],
+                },
+            ],
             schedulePlan: {
                 earliestAt: "2024-01-15T09:30:00Z",
                 latestAt: "2024-01-15T09:30:00Z",
@@ -635,6 +679,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -644,6 +689,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -733,7 +779,9 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [{ phoneNumberId: "phoneNumberId", customers: [{}] }],
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             customers: [
                 {
@@ -747,6 +795,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -756,6 +805,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },
@@ -836,7 +886,14 @@ describe("CampaignsClient", () => {
             name: "Q2 Sales Campaign",
             assistantId: "assistantId",
             workflowId: "workflowId",
+            squadId: "squadId",
             phoneNumberId: "phoneNumberId",
+            dialPlan: [
+                {
+                    phoneNumberId: "phoneNumberId",
+                    customers: [{}],
+                },
+            ],
             schedulePlan: {
                 earliestAt: "2024-01-15T09:30:00Z",
                 latestAt: "2024-01-15T09:30:00Z",
@@ -853,6 +910,7 @@ describe("CampaignsClient", () => {
                             endOfTurnConfidenceThreshold: 0.7,
                             minEndOfTurnSilenceWhenConfident: 160,
                             maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
                             fallbackPlan: {
                                 transcribers: [
                                     {
@@ -862,6 +920,7 @@ describe("CampaignsClient", () => {
                                         endOfTurnConfidenceThreshold: 0.7,
                                         minEndOfTurnSilenceWhenConfident: 160,
                                         maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
                                     },
                                 ],
                             },

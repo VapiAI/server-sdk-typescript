@@ -36,6 +36,7 @@ describe("PhoneNumbersClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: { key: "value" },
                     backoffPlan: {
@@ -91,6 +92,7 @@ describe("PhoneNumbersClient", () => {
                     timeoutSeconds: 20,
                     credentialId: "550e8400-e29b-41d4-a716-446655440000",
                     staticIpAddressesEnabled: false,
+                    encryptedPaths: ["encryptedPaths"],
                     url: "url",
                     headers: {
                         key: "value",
@@ -166,6 +168,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: { key: "value" },
                 backoffPlan: {
@@ -246,6 +249,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: {
                     key: "value",
@@ -441,6 +445,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: { key: "value" },
                 backoffPlan: {
@@ -513,6 +518,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: {
                     key: "value",
@@ -587,6 +593,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: { key: "value" },
                 backoffPlan: {
@@ -665,6 +672,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: {
                     key: "value",
@@ -739,6 +747,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: { key: "value" },
                 backoffPlan: {
@@ -819,6 +828,7 @@ describe("PhoneNumbersClient", () => {
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 staticIpAddressesEnabled: false,
+                encryptedPaths: ["encryptedPaths"],
                 url: "url",
                 headers: {
                     key: "value",
