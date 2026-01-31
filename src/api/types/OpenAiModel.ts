@@ -80,4 +80,73 @@ export interface OpenAiModel {
      * @default 0
      */
     numFastTurns?: number;
+    /**
+     * If specified, the system will make a best effort to sample deterministically,
+     * such that repeated requests with the same seed and parameters should return the same result.
+     * Determinism is not guaranteed.
+     *
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-seed
+     */
+    seed?: number;
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling,
+     * where the model considers the results of the tokens with top_p probability mass.
+     * So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+     *
+     * We generally recommend altering this or temperature but not both.
+     *
+     * @default 1
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-top_p
+     */
+    topP?: number;
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
+     * frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+     *
+     * @default 0
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-frequency_penalty
+     */
+    frequencyPenalty?: number;
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they
+     * appear in the text so far, increasing the model's likelihood to talk about new topics.
+     *
+     * @default 0
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-presence_penalty
+     */
+    presencePenalty?: number;
+    /**
+     * Whether to return log probabilities of the output tokens or not.
+     * If true, returns the log probabilities of each output token returned in the content of message.
+     *
+     * @default false
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-logprobs
+     */
+    logprobs?: boolean;
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each
+     * token position, each with an associated log probability. logprobs must be set to true if
+     * this parameter is used.
+     *
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-top_logprobs
+     */
+    topLogprobs?: number;
+    /**
+     * Whether to enable parallel function calling during tool use.
+     * When set to true, the model can call multiple functions in a single response.
+     *
+     * @default true
+     * @see https://platform.openai.com/docs/guides/function-calling#parallel-function-calling
+     */
+    parallelToolCalls?: boolean;
+    /**
+     * Constrains effort on reasoning for reasoning models (o1, o3, etc.).
+     * Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+     *
+     * Possible values: "low", "medium", "high"
+     *
+     * @default "medium"
+     * @see https://platform.openai.com/docs/api-reference/chat/create#chat-create-reasoning_effort
+     */
+    reasoningEffort?: Vapi.OpenAiModelReasoningEffort;
 }

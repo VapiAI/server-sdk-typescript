@@ -1,3 +1,7 @@
 # Specify files that shouldn't be modified by Fern
 
 README.md
+tests/unit/types/OpenAiMessageRole.test.ts
+tests/unit/types/OpenAiModelReasoningEffort.test.ts
+tests/unit/types/OpenAiModel.test.ts
+tests/custom.test.ts
