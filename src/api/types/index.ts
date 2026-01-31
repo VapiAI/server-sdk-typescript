@@ -1095,6 +1095,7 @@ export * from "./OpenAiModelFallbackModelsItem.js";
 export * from "./OpenAiModelModel.js";
 export * from "./OpenAiModelPromptCacheRetention.js";
 export * from "./OpenAiModelProvider.js";
+export * from "./OpenAiModelReasoningEffort.js";
 export * from "./OpenAiModelToolStrictCompatibilityMode.js";
 export * from "./OpenAiModelToolsItem.js";
 export * from "./OpenAiTranscriber.js";
