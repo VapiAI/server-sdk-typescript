@@ -4,21 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface AssistantCustomEndpointingRule {
     /**
-     * This endpointing rule is based on the last assistant message before customer started speaking.
-     *
-     * Flow:
-     * - Assistant speaks
-     * - Customer starts speaking
-     * - Customer transcription comes in
-     * - This rule is evaluated on the last assistant message
-     * - If a match is found based on `regex`, the endpointing timeout is set to `timeoutSeconds`
-     *
-     * Usage:
-     * - If you have yes/no questions in your use case like "are you interested in a loan?", you can set a shorter timeout.
-     * - If you have questions where the customer may pause to look up information like "what's my account number?", you can set a longer timeout.
-     */
-    type: Vapi.AssistantCustomEndpointingRuleType;
-    /**
      * This is the regex pattern to match.
      *
      * Note:
@@ -34,7 +19,7 @@ export interface AssistantCustomEndpointingRule {
      *
      * @default []
      */
-    regexOptions?: Vapi.RegexOption[];
+    regexOptions?: Vapi.RegexOption[] | undefined;
     /** This is the endpointing timeout in seconds, if the rule is matched. */
     timeoutSeconds: number;
 }

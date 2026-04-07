@@ -3,6 +3,20 @@
 import type * as Vapi from "../index.js";
 
 export type CreateTransferCallToolDtoDestinationsItem =
-    | Vapi.TransferDestinationAssistant
-    | Vapi.TransferDestinationNumber
-    | Vapi.TransferDestinationSip;
+    | Vapi.CreateTransferCallToolDtoDestinationsItem.Assistant
+    | Vapi.CreateTransferCallToolDtoDestinationsItem.Number
+    | Vapi.CreateTransferCallToolDtoDestinationsItem.Sip;
+
+export namespace CreateTransferCallToolDtoDestinationsItem {
+    export interface Assistant extends Vapi.TransferDestinationAssistant {
+        type: "assistant";
+    }
+
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

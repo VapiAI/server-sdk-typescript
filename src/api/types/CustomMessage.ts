@@ -12,9 +12,9 @@ export interface CustomMessage {
      *
      * This will override the `content` property.
      */
-    contents?: Vapi.TextContent[];
+    contents?: Vapi.TextContent[] | undefined;
     /** This is a custom message. */
     type: Vapi.CustomMessageType;
     /** This is the content that the assistant will say when this message is triggered. */
-    content?: string;
+    content?: string | undefined;
 }

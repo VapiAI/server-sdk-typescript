@@ -4,11 +4,11 @@ import type * as Vapi from "../index.js";
 
 export interface BackgroundSpeechDenoisingPlan {
     /** Whether smart denoising using Krisp is enabled. */
-    smartDenoisingPlan?: Vapi.SmartDenoisingPlan;
+    smartDenoisingPlan?: Vapi.SmartDenoisingPlan | undefined;
     /**
      * Whether Fourier denoising is enabled. Note that this is experimental and may not work as expected.
      *
      * This can be combined with smart denoising, and will be run afterwards.
      */
-    fourierDenoisingPlan?: Vapi.FourierDenoisingPlan;
+    fourierDenoisingPlan?: Vapi.FourierDenoisingPlan | undefined;
 }

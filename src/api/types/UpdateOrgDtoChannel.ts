@@ -6,5 +6,6 @@ export const UpdateOrgDtoChannel = {
     Default: "default",
     Weekly: "weekly",
     Intuit: "intuit",
+    Hcs: "hcs",
 } as const;
 export type UpdateOrgDtoChannel = (typeof UpdateOrgDtoChannel)[keyof typeof UpdateOrgDtoChannel];

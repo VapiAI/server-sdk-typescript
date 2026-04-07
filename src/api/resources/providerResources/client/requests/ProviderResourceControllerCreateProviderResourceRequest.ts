@@ -5,7 +5,7 @@ import type * as Vapi from "../../../../index.js";
 /**
  * @example
  *     {
- *         provider: "11labs",
+ *         provider: "cartesia",
  *         resourceName: "pronunciation-dictionary"
  *     }
  */

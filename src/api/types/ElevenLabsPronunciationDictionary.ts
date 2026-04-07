@@ -16,7 +16,7 @@ export interface ElevenLabsPronunciationDictionary {
     /** The number of rules in this version */
     versionRulesNum: number;
     /** The permission level on this resource */
-    permissionOnResource?: Vapi.ElevenLabsPronunciationDictionaryPermissionOnResource;
+    permissionOnResource?: Vapi.ElevenLabsPronunciationDictionaryPermissionOnResource | undefined;
     /** The description of the pronunciation dictionary */
-    description?: string;
+    description?: string | undefined;
 }

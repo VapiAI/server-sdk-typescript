@@ -3,7 +3,10 @@
 /** This is the model that will be used. This is optional and will default to the correct model for the voiceId. */
 export const CartesiaVoiceModel = {
     Sonic3: "sonic-3",
+    Sonic320260112: "sonic-3-2026-01-12",
+    Sonic320251027: "sonic-3-2025-10-27",
     Sonic2: "sonic-2",
+    Sonic220250611: "sonic-2-2025-06-11",
     SonicEnglish: "sonic-english",
     SonicMultilingual: "sonic-multilingual",
     SonicPreview: "sonic-preview",

@@ -4,27 +4,27 @@ import type * as Vapi from "../index.js";
 
 export interface CostBreakdown {
     /** This is the cost of the transport provider, like Twilio or Vonage. */
-    transport?: number;
+    transport?: number | undefined;
     /** This is the cost of the speech-to-text service. */
-    stt?: number;
+    stt?: number | undefined;
     /** This is the cost of the language model. */
-    llm?: number;
+    llm?: number | undefined;
     /** This is the cost of the text-to-speech service. */
-    tts?: number;
+    tts?: number | undefined;
     /** This is the cost of Vapi. */
-    vapi?: number;
+    vapi?: number | undefined;
     /** This is the cost of chat interactions. */
-    chat?: number;
+    chat?: number | undefined;
     /** This is the total cost of the call. */
-    total?: number;
+    total?: number | undefined;
     /** This is the LLM prompt tokens used for the call. */
-    llmPromptTokens?: number;
+    llmPromptTokens?: number | undefined;
     /** This is the LLM completion tokens used for the call. */
-    llmCompletionTokens?: number;
+    llmCompletionTokens?: number | undefined;
     /** This is the LLM cached prompt tokens used for the call. */
-    llmCachedPromptTokens?: number;
+    llmCachedPromptTokens?: number | undefined;
     /** This is the TTS characters used for the call. */
-    ttsCharacters?: number;
+    ttsCharacters?: number | undefined;
     /** This is the cost of the analysis. */
-    analysisCostBreakdown?: Vapi.AnalysisCostBreakdown;
+    analysisCostBreakdown?: Vapi.AnalysisCostBreakdown | undefined;
 }

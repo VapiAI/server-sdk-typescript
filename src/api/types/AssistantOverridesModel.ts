@@ -6,17 +6,85 @@ import type * as Vapi from "../index.js";
  * These are the options for the assistant's LLM.
  */
 export type AssistantOverridesModel =
-    | Vapi.AnthropicModel
-    | Vapi.AnyscaleModel
-    | Vapi.CerebrasModel
-    | Vapi.CustomLlmModel
-    | Vapi.DeepInfraModel
-    | Vapi.DeepSeekModel
-    | Vapi.GoogleModel
-    | Vapi.GroqModel
-    | Vapi.InflectionAiModel
-    | Vapi.OpenAiModel
-    | Vapi.OpenRouterModel
-    | Vapi.PerplexityAiModel
-    | Vapi.TogetherAiModel
-    | Vapi.XaiModel;
+    | Vapi.AssistantOverridesModel.Anthropic
+    | Vapi.AssistantOverridesModel.AnthropicBedrock
+    | Vapi.AssistantOverridesModel.Anyscale
+    | Vapi.AssistantOverridesModel.Cerebras
+    | Vapi.AssistantOverridesModel.CustomLlm
+    | Vapi.AssistantOverridesModel.Deepinfra
+    | Vapi.AssistantOverridesModel.DeepSeek
+    | Vapi.AssistantOverridesModel.Google
+    | Vapi.AssistantOverridesModel.Groq
+    | Vapi.AssistantOverridesModel.InflectionAi
+    | Vapi.AssistantOverridesModel.Minimax
+    | Vapi.AssistantOverridesModel.Openai
+    | Vapi.AssistantOverridesModel.Openrouter
+    | Vapi.AssistantOverridesModel.PerplexityAi
+    | Vapi.AssistantOverridesModel.TogetherAi
+    | Vapi.AssistantOverridesModel.Xai;
+
+export namespace AssistantOverridesModel {
+    export interface Anthropic extends Vapi.AnthropicModel {
+        provider: "anthropic";
+    }
+
+    export interface AnthropicBedrock extends Vapi.AnthropicBedrockModel {
+        provider: "anthropic-bedrock";
+    }
+
+    export interface Anyscale extends Vapi.AnyscaleModel {
+        provider: "anyscale";
+    }
+
+    export interface Cerebras extends Vapi.CerebrasModel {
+        provider: "cerebras";
+    }
+
+    export interface CustomLlm extends Vapi.CustomLlmModel {
+        provider: "custom-llm";
+    }
+
+    export interface Deepinfra extends Vapi.DeepInfraModel {
+        provider: "deepinfra";
+    }
+
+    export interface DeepSeek extends Vapi.DeepSeekModel {
+        provider: "deep-seek";
+    }
+
+    export interface Google extends Vapi.GoogleModel {
+        provider: "google";
+    }
+
+    export interface Groq extends Vapi.GroqModel {
+        provider: "groq";
+    }
+
+    export interface InflectionAi extends Vapi.InflectionAiModel {
+        provider: "inflection-ai";
+    }
+
+    export interface Minimax extends Vapi.MinimaxLlmModel {
+        provider: "minimax";
+    }
+
+    export interface Openai extends Vapi.OpenAiModel {
+        provider: "openai";
+    }
+
+    export interface Openrouter extends Vapi.OpenRouterModel {
+        provider: "openrouter";
+    }
+
+    export interface PerplexityAi extends Vapi.PerplexityAiModel {
+        provider: "perplexity-ai";
+    }
+
+    export interface TogetherAi extends Vapi.TogetherAiModel {
+        provider: "together-ai";
+    }
+
+    export interface Xai extends Vapi.XaiModel {
+        provider: "xai";
+    }
+}

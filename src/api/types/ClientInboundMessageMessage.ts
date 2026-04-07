@@ -6,8 +6,35 @@ import type * as Vapi from "../index.js";
  * These are the messages that can be sent from client-side SDKs to control the call.
  */
 export type ClientInboundMessageMessage =
-    | Vapi.ClientInboundMessageAddMessage
-    | Vapi.ClientInboundMessageControl
-    | Vapi.ClientInboundMessageSay
-    | Vapi.ClientInboundMessageEndCall
-    | Vapi.ClientInboundMessageTransfer;
+    | Vapi.ClientInboundMessageMessage.AddMessage
+    | Vapi.ClientInboundMessageMessage.Control
+    | Vapi.ClientInboundMessageMessage.Say
+    | Vapi.ClientInboundMessageMessage.EndCall
+    | Vapi.ClientInboundMessageMessage.Transfer
+    | Vapi.ClientInboundMessageMessage.SendTransportMessage;
+
+export namespace ClientInboundMessageMessage {
+    export interface AddMessage extends Vapi.ClientInboundMessageAddMessage {
+        type: "add-message";
+    }
+
+    export interface Control extends Vapi.ClientInboundMessageControl {
+        type: "control";
+    }
+
+    export interface Say extends Vapi.ClientInboundMessageSay {
+        type: "say";
+    }
+
+    export interface EndCall extends Vapi.ClientInboundMessageEndCall {
+        type: "end-call";
+    }
+
+    export interface Transfer extends Vapi.ClientInboundMessageTransfer {
+        type: "transfer";
+    }
+
+    export interface SendTransportMessage extends Vapi.ClientInboundMessageSendTransportMessage {
+        type: "send-transport-message";
+    }
+}

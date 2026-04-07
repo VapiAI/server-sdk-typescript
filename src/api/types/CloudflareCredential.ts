@@ -6,13 +6,13 @@ export interface CloudflareCredential {
     /** Credential provider. Only allowed value is cloudflare */
     provider: Vapi.CloudflareCredentialProvider;
     /** Cloudflare Account Id. */
-    accountId?: string;
+    accountId?: string | undefined;
     /** Cloudflare API Key / Token. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** Cloudflare Account Email. */
-    accountEmail?: string;
+    accountEmail?: string | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -22,7 +22,7 @@ export interface CloudflareCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /** This is the bucket plan that can be provided to store call artifacts in R2 */
-    bucketPlan?: Vapi.CloudflareR2BucketPlan;
+    bucketPlan?: Vapi.CloudflareR2BucketPlan | undefined;
 }

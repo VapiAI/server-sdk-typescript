@@ -2,6 +2,7 @@
 
 /** This is the provider that manages this resource. */
 export const ProviderResourceProvider = {
+    Cartesia: "cartesia",
     ElevenLabs: "11labs",
 } as const;
 export type ProviderResourceProvider = (typeof ProviderResourceProvider)[keyof typeof ProviderResourceProvider];

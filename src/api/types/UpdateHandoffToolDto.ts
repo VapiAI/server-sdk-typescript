@@ -8,7 +8,9 @@ export interface UpdateHandoffToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateHandoffToolDtoMessagesItem[];
+    messages?: Vapi.UpdateHandoffToolDtoMessagesItem[] | undefined;
+    /** This is the default local tool result message used when no runtime handoff result override is returned. */
+    defaultResult?: string | undefined;
     /**
      * These are the destinations that the call can be handed off to.
      *
@@ -178,7 +180,7 @@ export interface UpdateHandoffToolDto {
      *
      * The properties `customerAreaCode`, `customerIntent`, and `customerSentiment` will be passed to the server in the webhook request body.
      */
-    destinations?: Vapi.UpdateHandoffToolDtoDestinationsItem[];
+    destinations?: Vapi.UpdateHandoffToolDtoDestinationsItem[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -259,7 +261,7 @@ export interface UpdateHandoffToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
     /**
      * This is the optional function definition that will be passed to the LLM.
      * If this is not defined, we will construct this based on the other properties.
@@ -361,5 +363,5 @@ export interface UpdateHandoffToolDto {
      * }
      * ```
      */
-    function?: Vapi.OpenAiFunction;
+    function?: Vapi.OpenAiFunction | undefined;
 }

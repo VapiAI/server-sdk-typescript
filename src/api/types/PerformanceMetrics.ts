@@ -4,23 +4,23 @@ import type * as Vapi from "../index.js";
 
 export interface PerformanceMetrics {
     /** These are the individual latencies for each turn. */
-    turnLatencies?: Vapi.TurnLatency[];
+    turnLatencies?: Vapi.TurnLatency[] | undefined;
     /** This is the average latency for the model to output the first token. */
-    modelLatencyAverage?: number;
+    modelLatencyAverage?: number | undefined;
     /** This is the average latency for the text to speech. */
-    voiceLatencyAverage?: number;
+    voiceLatencyAverage?: number | undefined;
     /** This is the average latency for the transcriber. */
-    transcriberLatencyAverage?: number;
+    transcriberLatencyAverage?: number | undefined;
     /** This is the average latency for the endpointing. */
-    endpointingLatencyAverage?: number;
+    endpointingLatencyAverage?: number | undefined;
     /** This is the average latency for complete turns. */
-    turnLatencyAverage?: number;
+    turnLatencyAverage?: number | undefined;
     /** This is the average latency for packets received from the transport provider in milliseconds. */
-    fromTransportLatencyAverage?: number;
+    fromTransportLatencyAverage?: number | undefined;
     /** This is the average latency for packets sent to the transport provider in milliseconds. */
-    toTransportLatencyAverage?: number;
+    toTransportLatencyAverage?: number | undefined;
     /** This is the number of times the user was interrupted by the assistant during the call. */
-    numUserInterrupted?: number;
+    numUserInterrupted?: number | undefined;
     /** This is the number of times the assistant was interrupted by the user during the call. */
-    numAssistantInterrupted?: number;
+    numAssistantInterrupted?: number | undefined;
 }

@@ -4,11 +4,11 @@ import type * as Vapi from "../index.js";
 
 export interface TrieveKnowledgeBaseSearchPlan {
     /** Specifies the number of top chunks to return. This corresponds to the `page_size` parameter in Trieve. */
-    topK?: number;
+    topK?: number | undefined;
     /** If true, stop words (specified in server/src/stop-words.txt in the git repo) will be removed. This will preserve queries that are entirely stop words. */
-    removeStopWords?: boolean;
+    removeStopWords?: boolean | undefined;
     /** This is the score threshold to filter out chunks with a score below the threshold for cosine distance metric. For Manhattan Distance, Euclidean Distance, and Dot Product, it will filter out scores above the threshold distance. This threshold applies before weight and bias modifications. If not specified, this defaults to no threshold. A threshold of 0 will default to no threshold. */
-    scoreThreshold?: number;
+    scoreThreshold?: number | undefined;
     /** This is the search method used when searching for relevant chunks from the vector store. */
     searchType: Vapi.TrieveKnowledgeBaseSearchPlanSearchType;
 }

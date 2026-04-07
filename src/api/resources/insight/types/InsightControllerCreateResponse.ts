@@ -2,4 +2,26 @@
 
 import type * as Vapi from "../../../index.js";
 
-export type InsightControllerCreateResponse = Vapi.BarInsight | Vapi.PieInsight | Vapi.LineInsight | Vapi.TextInsight;
+export type InsightControllerCreateResponse =
+    | Vapi.InsightControllerCreateResponse.Bar
+    | Vapi.InsightControllerCreateResponse.Pie
+    | Vapi.InsightControllerCreateResponse.Line
+    | Vapi.InsightControllerCreateResponse.Text;
+
+export namespace InsightControllerCreateResponse {
+    export interface Bar extends Vapi.BarInsight {
+        type: "bar";
+    }
+
+    export interface Pie extends Vapi.PieInsight {
+        type: "pie";
+    }
+
+    export interface Line extends Vapi.LineInsight {
+        type: "line";
+    }
+
+    export interface Text extends Vapi.TextInsight {
+        type: "text";
+    }
+}

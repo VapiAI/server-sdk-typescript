@@ -12,17 +12,7 @@ export interface ToolMessageComplete {
      *
      * This will override the `content` property.
      */
-    contents?: Vapi.TextContent[];
-    /**
-     * This message is triggered when the tool call is complete.
-     *
-     * This message is triggered immediately without waiting for your server to respond for async tool calls.
-     *
-     * If this message is not provided, the model will be requested to respond.
-     *
-     * If this message is provided, only this message will be spoken and the model will not be requested to come up with a response. It's an exclusive OR.
-     */
-    type: Vapi.ToolMessageCompleteType;
+    contents?: Vapi.TextContent[] | undefined;
     /**
      * This is optional and defaults to "assistant".
      *
@@ -42,7 +32,7 @@ export interface ToolMessageComplete {
      *     ---> model generates response which is spoken
      * This is useful when you want to provide a hint to the model about what to say next.
      */
-    role?: Vapi.ToolMessageCompleteRole;
+    role?: Vapi.ToolMessageCompleteRole | undefined;
     /**
      * This is an optional boolean that if true, the call will end after the message is spoken. Default is false.
      *
@@ -50,9 +40,9 @@ export interface ToolMessageComplete {
      *
      * @default false
      */
-    endCallAfterSpokenEnabled?: boolean;
+    endCallAfterSpokenEnabled?: boolean | undefined;
     /** This is the content that the assistant says when this message is triggered. */
-    content?: string;
+    content?: string | undefined;
     /** This is an optional array of conditions that the tool call arguments must meet in order for this message to be triggered. */
-    conditions?: Vapi.Condition[];
+    conditions?: Vapi.Condition[] | undefined;
 }

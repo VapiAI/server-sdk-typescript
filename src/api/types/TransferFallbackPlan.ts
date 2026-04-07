@@ -12,5 +12,5 @@ export interface TransferFallbackPlan {
      *
      * @default true
      */
-    endCallEnabled?: boolean;
+    endCallEnabled?: boolean | undefined;
 }

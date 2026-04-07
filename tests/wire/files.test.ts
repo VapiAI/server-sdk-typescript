@@ -30,6 +30,7 @@ describe("FilesClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         ];
+
         server.mockEndpoint().get("/file").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.files.list();
@@ -83,6 +84,7 @@ describe("FilesClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().get("/file/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.files.get({
@@ -136,6 +138,7 @@ describe("FilesClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().delete("/file/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.files.delete({
@@ -189,6 +192,7 @@ describe("FilesClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .patch("/file/id")

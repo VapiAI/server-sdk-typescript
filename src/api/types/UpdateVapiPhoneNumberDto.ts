@@ -11,29 +11,29 @@ export interface UpdateVapiPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: Vapi.UpdateVapiPhoneNumberDtoFallbackDestination;
+    fallbackDestination?: Vapi.UpdateVapiPhoneNumberDtoFallbackDestination | undefined;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: Vapi.UpdateVapiPhoneNumberDtoHooksItem[];
+    hooks?: Vapi.UpdateVapiPhoneNumberDtoHooksItem[] | undefined;
     /** This is the name of the phone number. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the assistant that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the workflow that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is the squad that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -43,17 +43,17 @@ export interface UpdateVapiPhoneNumberDto {
      * 2. phoneNumber.server
      * 3. org.server
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /**
      * This is the SIP URI of the phone number. You can SIP INVITE this. The assistant attached to this number will answer.
      *
      * This is case-insensitive.
      */
-    sipUri?: string;
+    sipUri?: string | undefined;
     /**
      * This enables authentication for incoming SIP INVITE requests to the `sipUri`.
      *
      * If not set, any username/password to the 401 challenge of the SIP INVITE will be accepted.
      */
-    authentication?: Vapi.SipAuthentication;
+    authentication?: Vapi.SipAuthentication | undefined;
 }

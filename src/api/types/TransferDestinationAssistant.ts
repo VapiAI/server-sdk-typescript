@@ -12,7 +12,7 @@ export interface TransferDestinationAssistant {
      *
      * This accepts a string or a ToolMessageStart class. Latter is useful if you want to specify multiple messages for different languages through the `contents` field.
      */
-    message?: Vapi.TransferDestinationAssistantMessage;
+    message?: Vapi.TransferDestinationAssistantMessage | undefined;
     type: Vapi.TransferDestinationAssistantType;
     /**
      * This is the mode to use for the transfer. Defaults to `rolling-history`.
@@ -104,9 +104,9 @@ export interface TransferDestinationAssistant {
      *
      * @default 'rolling-history'
      */
-    transferMode?: Vapi.TransferMode;
+    transferMode?: Vapi.TransferMode | undefined;
     /** This is the assistant to transfer the call to. */
     assistantName: string;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
-    description?: string;
+    description?: string | undefined;
 }

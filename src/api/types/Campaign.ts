@@ -6,23 +6,23 @@ export interface Campaign {
     /** This is the status of the campaign. */
     status: Vapi.CampaignStatus;
     /** This is the explanation for how the campaign ended. */
-    endedReason?: Vapi.CampaignEndedReason;
+    endedReason?: Vapi.CampaignEndedReason | undefined;
     /** This is the name of the campaign. This is just for your own reference. */
     name: string;
     /** This is the assistant ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used. */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /** This is the workflow ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used. */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /** This is the squad ID that will be used for the campaign calls. Note: Only one of assistantId, workflowId, or squadId can be used. */
-    squadId?: string;
+    squadId?: string | undefined;
     /** This is the phone number ID that will be used for the campaign calls. Required if dialPlan is not provided. Note: phoneNumberId and dialPlan are mutually exclusive. */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /** This is a list of dial entries, each specifying a phone number and the customers to call using that number. Use this when you want different phone numbers to call different sets of customers. Note: phoneNumberId and dialPlan are mutually exclusive. */
-    dialPlan?: Vapi.DialPlanEntry[];
+    dialPlan?: Vapi.DialPlanEntry[] | undefined;
     /** This is the schedule plan for the campaign. Calls will start at startedAt and continue until your organization’s concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn’t be placed won’t be retried. */
-    schedulePlan?: Vapi.SchedulePlan;
+    schedulePlan?: Vapi.SchedulePlan | undefined;
     /** These are the customers that will be called in the campaign. Required if dialPlan is not provided. */
-    customers?: Vapi.CreateCustomerDto[];
+    customers?: Vapi.CreateCustomerDto[] | undefined;
     /** This is the unique identifier for the campaign. */
     id: string;
     /** This is the unique identifier for the org that this campaign belongs to. */

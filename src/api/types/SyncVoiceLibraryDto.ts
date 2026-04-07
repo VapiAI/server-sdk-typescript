@@ -4,5 +4,5 @@ import type * as Vapi from "../index.js";
 
 export interface SyncVoiceLibraryDto {
     /** List of providers you want to sync. */
-    providers?: Vapi.SyncVoiceLibraryDtoProvidersItem[];
+    providers?: Vapi.SyncVoiceLibraryDtoProvidersItem[] | undefined;
 }

@@ -2,8 +2,8 @@
 
 export interface UpdateElevenLabsCredentialDto {
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
-    provider?: "11labs";
+    name?: string | undefined;
+    provider?: "11labs" | undefined;
 }

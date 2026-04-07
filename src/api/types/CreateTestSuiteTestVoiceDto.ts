@@ -10,7 +10,7 @@ export interface CreateTestSuiteTestVoiceDto {
     /** This is the script to be used for the voice test. */
     script: string;
     /** This is the number of attempts allowed for the test. */
-    numAttempts?: number;
+    numAttempts?: number | undefined;
     /** This is the name of the test. */
-    name?: string;
+    name?: string | undefined;
 }

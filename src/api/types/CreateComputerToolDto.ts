@@ -8,8 +8,7 @@ export interface CreateComputerToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateComputerToolDtoMessagesItem[];
-    type: "computer";
+    messages?: Vapi.CreateComputerToolDtoMessagesItem[] | undefined;
     /** The sub type of tool. */
     subType: Vapi.CreateComputerToolDtoSubType;
     /**
@@ -22,7 +21,7 @@ export interface CreateComputerToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** The name of the tool, fixed to 'computer' */
     name: Vapi.CreateComputerToolDtoName;
     /** The display width in pixels */
@@ -30,7 +29,7 @@ export interface CreateComputerToolDto {
     /** The display height in pixels */
     displayHeightPx: number;
     /** Optional display number */
-    displayNumber?: number;
+    displayNumber?: number | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -111,5 +110,5 @@ export interface CreateComputerToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

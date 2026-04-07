@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type CodeToolMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.CodeToolMessagesItem.RequestStart
+    | Vapi.CodeToolMessagesItem.RequestComplete
+    | Vapi.CodeToolMessagesItem.RequestFailed
+    | Vapi.CodeToolMessagesItem.RequestResponseDelayed;
+
+export namespace CodeToolMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

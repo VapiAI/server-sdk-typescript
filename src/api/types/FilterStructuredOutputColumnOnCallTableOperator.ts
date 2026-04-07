@@ -18,6 +18,8 @@ export const FilterStructuredOutputColumnOnCallTableOperator = {
     NotIn: "not_in",
     Contains: "contains",
     NotContains: "not_contains",
+    IsEmpty: "is_empty",
+    IsNotEmpty: "is_not_empty",
 } as const;
 export type FilterStructuredOutputColumnOnCallTableOperator =
     (typeof FilterStructuredOutputColumnOnCallTableOperator)[keyof typeof FilterStructuredOutputColumnOnCallTableOperator];

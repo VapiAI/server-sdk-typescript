@@ -2,13 +2,13 @@
 
 export interface TurnLatency {
     /** This is the model latency for the first token. */
-    modelLatency?: number;
+    modelLatency?: number | undefined;
     /** This is the voice latency from the model output. */
-    voiceLatency?: number;
+    voiceLatency?: number | undefined;
     /** This is the transcriber latency from the user speech. */
-    transcriberLatency?: number;
+    transcriberLatency?: number | undefined;
     /** This is the endpointing latency. */
-    endpointingLatency?: number;
+    endpointingLatency?: number | undefined;
     /** This is the latency for the whole turn. */
-    turnLatency?: number;
+    turnLatency?: number | undefined;
 }

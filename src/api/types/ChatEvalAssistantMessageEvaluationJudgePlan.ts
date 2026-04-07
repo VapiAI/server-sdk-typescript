@@ -7,6 +7,20 @@ import type * as Vapi from "../index.js";
  * The assistant message can be evaluated against fixed content (exact match or RegEx) or with an LLM-as-judge by defining the evaluation criteria in a prompt.
  */
 export type ChatEvalAssistantMessageEvaluationJudgePlan =
-    | Vapi.AssistantMessageJudgePlanExact
-    | Vapi.AssistantMessageJudgePlanRegex
-    | Vapi.AssistantMessageJudgePlanAi;
+    | Vapi.ChatEvalAssistantMessageEvaluationJudgePlan.Exact
+    | Vapi.ChatEvalAssistantMessageEvaluationJudgePlan.Regex
+    | Vapi.ChatEvalAssistantMessageEvaluationJudgePlan.Ai;
+
+export namespace ChatEvalAssistantMessageEvaluationJudgePlan {
+    export interface Exact extends Vapi.AssistantMessageJudgePlanExact {
+        type: "exact";
+    }
+
+    export interface Regex extends Vapi.AssistantMessageJudgePlanRegex {
+        type: "regex";
+    }
+
+    export interface Ai extends Vapi.AssistantMessageJudgePlanAi {
+        type: "ai";
+    }
+}

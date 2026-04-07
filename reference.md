@@ -605,58 +605,6 @@ await client.calls.create();
 </dl>
 </details>
 
-<details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">callControllerFindAllPaginated</a>({ ...params }) -> Vapi.CallPaginatedResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.calls.callControllerFindAllPaginated({
-    assistantIdAny: "assistant-1,assistant-2,assistant-3",
-    customerNumberAny: "+1234567890,+0987654321"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Vapi.CallControllerFindAllPaginatedRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CallsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.calls.<a href="/src/api/resources/calls/client/Client.ts">get</a>({ ...params }) -> Vapi.Call</code></summary>
 <dl>
 <dd>
@@ -908,57 +856,6 @@ await client.chats.create({
 <dd>
 
 **request:** `Vapi.CreateChatDto` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ChatsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.chats.<a href="/src/api/resources/chats/client/Client.ts">chatControllerChatsExport</a>({ ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.chats.chatControllerChatsExport({
-    assistantIdAny: "assistant-1,assistant-2,assistant-3"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Vapi.ChatControllerChatsExportRequest` 
     
 </dd>
 </dl>
@@ -1487,58 +1384,6 @@ await client.sessions.create();
 </dl>
 </details>
 
-<details><summary><code>client.sessions.<a href="/src/api/resources/sessions/client/Client.ts">sessionControllerSessionsExport</a>({ ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.sessions.sessionControllerSessionsExport({
-    assistantIdAny: "assistant-1,assistant-2,assistant-3",
-    customerNumberAny: "+1234567890,+0987654321"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Vapi.SessionControllerSessionsExportRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SessionsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.sessions.<a href="/src/api/resources/sessions/client/Client.ts">get</a>({ ...params }) -> Vapi.Session</code></summary>
 <dl>
 <dd>
@@ -1960,7 +1805,9 @@ await client.phoneNumbers.delete({
 ```typescript
 await client.phoneNumbers.update({
     id: "id",
-    body: {}
+    body: {
+        provider: "byo-phone-number"
+    }
 });
 
 ```
@@ -2217,7 +2064,9 @@ await client.tools.delete({
 ```typescript
 await client.tools.update({
     id: "id",
-    body: {}
+    body: {
+        type: "apiRequest"
+    }
 });
 
 ```
@@ -2238,47 +2087,6 @@ await client.tools.update({
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ToolsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">toolControllerTestCodeExecution</a>() -> Vapi.ToolControllerTestCodeExecutionResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.tools.toolControllerTestCodeExecution();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
 
 <dl>
 <dd>
@@ -3629,7 +3437,7 @@ await client.eval.evalControllerGetRunsPaginated();
 </dl>
 </details>
 
-<details><summary><code>client.eval.<a href="/src/api/resources/eval/client/Client.ts">evalControllerRun</a>({ ...params }) -> Record<string, unknown></code></summary>
+<details><summary><code>client.eval.<a href="/src/api/resources/eval/client/Client.ts">evalControllerRun</a>({ ...params }) -> Record&lt;string, unknown&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3957,7 +3765,7 @@ await client.observabilityScorecard.scorecardControllerCreate({
 
 ```typescript
 await client.providerResources.providerResourceControllerGetProviderResourcesPaginated({
-    provider: "11labs",
+    provider: "cartesia",
     resourceName: "pronunciation-dictionary"
 });
 
@@ -4009,7 +3817,7 @@ await client.providerResources.providerResourceControllerGetProviderResourcesPag
 
 ```typescript
 await client.providerResources.providerResourceControllerCreateProviderResource({
-    provider: "11labs",
+    provider: "cartesia",
     resourceName: "pronunciation-dictionary"
 });
 
@@ -4061,7 +3869,7 @@ await client.providerResources.providerResourceControllerCreateProviderResource(
 
 ```typescript
 await client.providerResources.providerResourceControllerGetProviderResource({
-    provider: "11labs",
+    provider: "cartesia",
     resourceName: "pronunciation-dictionary",
     id: "id"
 });
@@ -4114,7 +3922,7 @@ await client.providerResources.providerResourceControllerGetProviderResource({
 
 ```typescript
 await client.providerResources.providerResourceControllerDeleteProviderResource({
-    provider: "11labs",
+    provider: "cartesia",
     resourceName: "pronunciation-dictionary",
     id: "id"
 });
@@ -4167,7 +3975,7 @@ await client.providerResources.providerResourceControllerDeleteProviderResource(
 
 ```typescript
 await client.providerResources.providerResourceControllerUpdateProviderResource({
-    provider: "11labs",
+    provider: "cartesia",
     resourceName: "pronunciation-dictionary",
     id: "id"
 });
@@ -4264,3 +4072,4 @@ await client.analytics.get({
 </dd>
 </dl>
 </details>
+

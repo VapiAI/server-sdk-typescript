@@ -4,12 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface AssistantMessageJudgePlanRegex {
     /**
-     * This is the type of the judge plan.
-     * Use 'regex' for a regex match on the content and tool calls - without using LLM-as-a-judge.
-     * @default 'regex'
-     */
-    type: Vapi.AssistantMessageJudgePlanRegexType;
-    /**
      * This is what that will be used to evaluate the model's message content.
      * The content will be evaluated against the regex pattern provided in the Judge Plan content field.
      * Evaluation is considered successful if the regex pattern matches any part of the assistant message content.
@@ -31,5 +25,5 @@ export interface AssistantMessageJudgePlanRegex {
      *
      * For all other tools, they are called without arguments or with user-defined arguments
      */
-    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[];
+    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[] | undefined;
 }

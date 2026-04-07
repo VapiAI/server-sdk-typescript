@@ -3,11 +3,10 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateByoSipTrunkCredentialDto {
-    provider: "byo-sip-trunk";
     /** This is the list of SIP trunk's gateways. */
     gateways: Vapi.SipTrunkGateway[];
     /** This can be used to configure the outbound authentication if required by the SIP trunk. */
-    outboundAuthenticationPlan?: Vapi.SipTrunkOutboundAuthenticationPlan;
+    outboundAuthenticationPlan?: Vapi.SipTrunkOutboundAuthenticationPlan | undefined;
     /**
      * This ensures the outbound origination attempts have a leading plus. Defaults to false to match conventional telecom behavior.
      *
@@ -16,13 +15,13 @@ export interface CreateByoSipTrunkCredentialDto {
      *
      * @default false
      */
-    outboundLeadingPlusEnabled?: boolean;
+    outboundLeadingPlusEnabled?: boolean | undefined;
     /** This can be used to configure the tech prefix on outbound calls. This is an advanced property. */
-    techPrefix?: string;
+    techPrefix?: string | undefined;
     /** This can be used to enable the SIP diversion header for authenticating the calling number if the SIP trunk supports it. This is an advanced property. */
-    sipDiversionHeader?: string;
+    sipDiversionHeader?: string | undefined;
     /** This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi. */
-    sbcConfiguration?: Vapi.SbcConfiguration;
+    sbcConfiguration?: Vapi.SbcConfiguration | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

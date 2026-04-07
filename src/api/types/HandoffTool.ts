@@ -8,8 +8,9 @@ export interface HandoffTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.HandoffToolMessagesItem[];
-    type: "handoff";
+    messages?: Vapi.HandoffToolMessagesItem[] | undefined;
+    /** This is the default local tool result message used when no runtime handoff result override is returned. */
+    defaultResult?: string | undefined;
     /**
      * These are the destinations that the call can be handed off to.
      *
@@ -179,7 +180,7 @@ export interface HandoffTool {
      *
      * The properties `customerAreaCode`, `customerIntent`, and `customerSentiment` will be passed to the server in the webhook request body.
      */
-    destinations?: Vapi.HandoffToolDestinationsItem[];
+    destinations?: Vapi.HandoffToolDestinationsItem[] | undefined;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -268,7 +269,7 @@ export interface HandoffTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
     /**
      * This is the optional function definition that will be passed to the LLM.
      * If this is not defined, we will construct this based on the other properties.
@@ -370,5 +371,5 @@ export interface HandoffTool {
      * }
      * ```
      */
-    function?: Vapi.OpenAiFunction;
+    function?: Vapi.OpenAiFunction | undefined;
 }

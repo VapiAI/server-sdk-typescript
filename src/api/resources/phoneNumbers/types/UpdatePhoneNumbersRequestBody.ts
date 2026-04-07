@@ -3,8 +3,30 @@
 import type * as Vapi from "../../../index.js";
 
 export type UpdatePhoneNumbersRequestBody =
-    | Vapi.UpdateByoPhoneNumberDto
-    | Vapi.UpdateTwilioPhoneNumberDto
-    | Vapi.UpdateVonagePhoneNumberDto
-    | Vapi.UpdateVapiPhoneNumberDto
-    | Vapi.UpdateTelnyxPhoneNumberDto;
+    | Vapi.UpdatePhoneNumbersRequestBody.ByoPhoneNumber
+    | Vapi.UpdatePhoneNumbersRequestBody.Twilio
+    | Vapi.UpdatePhoneNumbersRequestBody.Vonage
+    | Vapi.UpdatePhoneNumbersRequestBody.Vapi
+    | Vapi.UpdatePhoneNumbersRequestBody.Telnyx;
+
+export namespace UpdatePhoneNumbersRequestBody {
+    export interface ByoPhoneNumber extends Vapi.UpdateByoPhoneNumberDto {
+        provider: "byo-phone-number";
+    }
+
+    export interface Twilio extends Vapi.UpdateTwilioPhoneNumberDto {
+        provider: "twilio";
+    }
+
+    export interface Vonage extends Vapi.UpdateVonagePhoneNumberDto {
+        provider: "vonage";
+    }
+
+    export interface Vapi extends Vapi.UpdateVapiPhoneNumberDto {
+        provider: "vapi";
+    }
+
+    export interface Telnyx extends Vapi.UpdateTelnyxPhoneNumberDto {
+        provider: "telnyx";
+    }
+}

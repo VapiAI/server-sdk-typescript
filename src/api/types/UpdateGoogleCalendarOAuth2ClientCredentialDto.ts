@@ -2,5 +2,5 @@
 
 export interface UpdateGoogleCalendarOAuth2ClientCredentialDto {
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

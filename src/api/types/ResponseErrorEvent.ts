@@ -10,7 +10,7 @@ export interface ResponseErrorEvent {
     /** Error message */
     message: string;
     /** Parameter that caused the error */
-    param?: string | null;
+    param?: (string | null) | undefined;
     /** Sequence number of the event */
     sequence_number: number;
 }

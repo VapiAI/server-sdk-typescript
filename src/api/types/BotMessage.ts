@@ -12,7 +12,7 @@ export interface BotMessage {
     /** The number of seconds from the start of the conversation. */
     secondsFromStart: number;
     /** The source of the message. */
-    source?: string;
+    source?: string | undefined;
     /** The duration of the message in seconds. */
-    duration?: number;
+    duration?: number | undefined;
 }

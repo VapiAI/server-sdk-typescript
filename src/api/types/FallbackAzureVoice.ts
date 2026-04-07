@@ -4,14 +4,12 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackAzureVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackAzureVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackAzureVoiceId;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
-    oneOf?: unknown;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
+    oneOf?: unknown | undefined;
 }

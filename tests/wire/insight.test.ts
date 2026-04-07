@@ -28,6 +28,7 @@ describe("InsightClient", () => {
                 createdAtGe: "2024-01-15T09:30:00Z",
             },
         };
+
         server.mockEndpoint().get("/reporting/insight").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.insight.insightControllerFindAll();
@@ -61,8 +62,8 @@ describe("InsightClient", () => {
             queries: [{ type: "vapiql-json", table: "call", column: "id", operation: "count" }],
         };
         const rawResponseBody = {
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [{ name: "Booking Rate", formula: "formula" }],
             metadata: {
                 xAxisLabel: "xAxisLabel",
@@ -88,6 +89,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/reporting/insight")
@@ -109,8 +111,8 @@ describe("InsightClient", () => {
             ],
         });
         expect(response).toEqual({
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [
                 {
                     name: "Booking Rate",
@@ -163,8 +165,8 @@ describe("InsightClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [{ name: "Booking Rate", formula: "formula" }],
             metadata: {
                 xAxisLabel: "xAxisLabel",
@@ -190,6 +192,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .get("/reporting/insight/id")
@@ -202,8 +205,8 @@ describe("InsightClient", () => {
             id: "id",
         });
         expect(response).toEqual({
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [
                 {
                     name: "Booking Rate",
@@ -256,8 +259,8 @@ describe("InsightClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [{ name: "Booking Rate", formula: "formula" }],
             metadata: {
                 xAxisLabel: "xAxisLabel",
@@ -283,6 +286,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .delete("/reporting/insight/id")
@@ -295,8 +299,8 @@ describe("InsightClient", () => {
             id: "id",
         });
         expect(response).toEqual({
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [
                 {
                     name: "Booking Rate",
@@ -349,8 +353,8 @@ describe("InsightClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { type: "bar" };
         const rawResponseBody = {
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [{ name: "Booking Rate", formula: "formula" }],
             metadata: {
                 xAxisLabel: "xAxisLabel",
@@ -376,6 +380,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .patch("/reporting/insight/id")
@@ -392,8 +397,8 @@ describe("InsightClient", () => {
             },
         });
         expect(response).toEqual({
-            name: "name",
             type: "bar",
+            name: "name",
             formulas: [
                 {
                     name: "Booking Rate",
@@ -452,6 +457,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/reporting/insight/id/run")
@@ -487,6 +493,7 @@ describe("InsightClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/reporting/insight/preview")

@@ -11,7 +11,7 @@ export interface JsonQueryOnCallTableWithStructuredOutputColumn {
      * This is the filters to apply to the insight.
      * The discriminator automatically selects the correct filter type based on column and operator.
      */
-    filters?: Vapi.JsonQueryOnCallTableWithStructuredOutputColumnFiltersItem[];
+    filters?: Vapi.JsonQueryOnCallTableWithStructuredOutputColumnFiltersItem[] | undefined;
     /**
      * This is the column that will be queried in the call table.
      * Structured Output Type columns are only to query on artifact.structuredOutputs[OutputID] column.
@@ -28,5 +28,5 @@ export interface JsonQueryOnCallTableWithStructuredOutputColumn {
      * This is the name of the query.
      * It will be used to label the query in the insight board on the UI.
      */
-    name?: string;
+    name?: string | undefined;
 }

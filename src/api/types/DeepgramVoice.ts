@@ -4,13 +4,11 @@ import type * as Vapi from "../index.js";
 
 export interface DeepgramVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.DeepgramVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.DeepgramVoiceId;
     /** This is the model that will be used. Defaults to 'aura-2' when not specified. */
-    model?: Vapi.DeepgramVoiceModel;
+    model?: Vapi.DeepgramVoiceModel | undefined;
     /**
      * If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
      *
@@ -18,9 +16,9 @@ export interface DeepgramVoice {
      *
      * @default false
      */
-    mipOptOut?: boolean;
+    mipOptOut?: boolean | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackPlan;
+    fallbackPlan?: Vapi.FallbackPlan | undefined;
 }

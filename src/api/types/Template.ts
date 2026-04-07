@@ -3,14 +3,14 @@
 import type * as Vapi from "../index.js";
 
 export interface Template {
-    details?: Vapi.TemplateDetails;
-    providerDetails?: Vapi.TemplateProviderDetails;
-    metadata?: Vapi.ToolTemplateMetadata;
-    visibility?: Vapi.TemplateVisibility;
+    details?: Vapi.TemplateDetails | undefined;
+    providerDetails?: Vapi.TemplateProviderDetails | undefined;
+    metadata?: Vapi.ToolTemplateMetadata | undefined;
+    visibility?: Vapi.TemplateVisibility | undefined;
     type: Vapi.TemplateType;
     /** The name of the template. This is just for your own reference. */
-    name?: string;
-    provider?: Vapi.TemplateProvider;
+    name?: string | undefined;
+    provider?: Vapi.TemplateProvider | undefined;
     /** The unique identifier for the template. */
     id: string;
     /** The unique identifier for the organization that this template belongs to. */

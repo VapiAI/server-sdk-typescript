@@ -116,6 +116,27 @@ export const ServerMessageEndOfCallReportEndedReason = {
     PipelineErrorAzureSpeechTranscriberFailed: "pipeline-error-azure-speech-transcriber-failed",
     CallInProgressErrorVapifaultAzureSpeechTranscriberFailed:
         "call.in-progress.error-vapifault-azure-speech-transcriber-failed",
+    PipelineErrorElevenLabsTranscriberFailed: "pipeline-error-eleven-labs-transcriber-failed",
+    CallInProgressErrorVapifaultElevenLabsTranscriberFailed:
+        "call.in-progress.error-vapifault-eleven-labs-transcriber-failed",
+    PipelineErrorGoogleTranscriberFailed: "pipeline-error-google-transcriber-failed",
+    CallInProgressErrorVapifaultGoogleTranscriberFailed: "call.in-progress.error-vapifault-google-transcriber-failed",
+    PipelineErrorOpenaiTranscriberFailed: "pipeline-error-openai-transcriber-failed",
+    CallInProgressErrorVapifaultOpenaiTranscriberFailed: "call.in-progress.error-vapifault-openai-transcriber-failed",
+    PipelineErrorSonioxTranscriberAuthFailed: "pipeline-error-soniox-transcriber-auth-failed",
+    PipelineErrorSonioxTranscriberRateLimited: "pipeline-error-soniox-transcriber-rate-limited",
+    PipelineErrorSonioxTranscriberInvalidConfig: "pipeline-error-soniox-transcriber-invalid-config",
+    PipelineErrorSonioxTranscriberServerError: "pipeline-error-soniox-transcriber-server-error",
+    PipelineErrorSonioxTranscriberFailed: "pipeline-error-soniox-transcriber-failed",
+    CallInProgressErrorVapifaultSonioxTranscriberAuthFailed:
+        "call.in-progress.error-vapifault-soniox-transcriber-auth-failed",
+    CallInProgressErrorVapifaultSonioxTranscriberRateLimited:
+        "call.in-progress.error-vapifault-soniox-transcriber-rate-limited",
+    CallInProgressErrorVapifaultSonioxTranscriberInvalidConfig:
+        "call.in-progress.error-vapifault-soniox-transcriber-invalid-config",
+    CallInProgressErrorVapifaultSonioxTranscriberServerError:
+        "call.in-progress.error-vapifault-soniox-transcriber-server-error",
+    CallInProgressErrorVapifaultSonioxTranscriberFailed: "call.in-progress.error-vapifault-soniox-transcriber-failed",
     CallInProgressErrorPipelineNoAvailableLlmModel: "call.in-progress.error-pipeline-no-available-llm-model",
     WorkerShutdown: "worker-shutdown",
     VonageDisconnected: "vonage-disconnected",
@@ -133,6 +154,11 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallInProgressErrorVapifaultWorkerDied: "call.in-progress.error-vapifault-worker-died",
     CallInProgressTwilioCompletedCall: "call.in-progress.twilio-completed-call",
     CallInProgressSipCompletedCall: "call.in-progress.sip-completed-call",
+    CallInProgressErrorSipInboundCallFailedToConnect: "call.in-progress.error-sip-inbound-call-failed-to-connect",
+    CallInProgressErrorProviderfaultOutboundSip503ServiceUnavailable:
+        "call.in-progress.error-providerfault-outbound-sip-503-service-unavailable",
+    CallInProgressErrorSipOutboundCallFailedToConnect: "call.in-progress.error-sip-outbound-call-failed-to-connect",
+    CallRingingErrorSipInboundCallFailedToConnect: "call.ringing.error-sip-inbound-call-failed-to-connect",
     CallInProgressErrorProviderfaultOpenaiLlmFailed: "call.in-progress.error-providerfault-openai-llm-failed",
     CallInProgressErrorProviderfaultAzureOpenaiLlmFailed:
         "call.in-progress.error-providerfault-azure-openai-llm-failed",
@@ -140,10 +166,12 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallInProgressErrorProviderfaultGoogleLlmFailed: "call.in-progress.error-providerfault-google-llm-failed",
     CallInProgressErrorProviderfaultXaiLlmFailed: "call.in-progress.error-providerfault-xai-llm-failed",
     CallInProgressErrorProviderfaultMistralLlmFailed: "call.in-progress.error-providerfault-mistral-llm-failed",
+    CallInProgressErrorProviderfaultMinimaxLlmFailed: "call.in-progress.error-providerfault-minimax-llm-failed",
     CallInProgressErrorProviderfaultInflectionAiLlmFailed:
         "call.in-progress.error-providerfault-inflection-ai-llm-failed",
     CallInProgressErrorProviderfaultCerebrasLlmFailed: "call.in-progress.error-providerfault-cerebras-llm-failed",
     CallInProgressErrorProviderfaultDeepSeekLlmFailed: "call.in-progress.error-providerfault-deep-seek-llm-failed",
+    CallInProgressErrorProviderfaultBasetenLlmFailed: "call.in-progress.error-providerfault-baseten-llm-failed",
     CallInProgressErrorVapifaultChatPipelineFailedToStart:
         "call.in-progress.error-vapifault-chat-pipeline-failed-to-start",
     PipelineErrorOpenai400BadRequestValidationFailed: "pipeline-error-openai-400-bad-request-validation-failed",
@@ -224,6 +252,23 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallInProgressErrorProviderfaultXai500ServerError: "call.in-progress.error-providerfault-xai-500-server-error",
     CallInProgressErrorProviderfaultXai503ServerOverloadedError:
         "call.in-progress.error-providerfault-xai-503-server-overloaded-error",
+    PipelineErrorBaseten400BadRequestValidationFailed: "pipeline-error-baseten-400-bad-request-validation-failed",
+    PipelineErrorBaseten401Unauthorized: "pipeline-error-baseten-401-unauthorized",
+    PipelineErrorBaseten403ModelAccessDenied: "pipeline-error-baseten-403-model-access-denied",
+    PipelineErrorBaseten429ExceededQuota: "pipeline-error-baseten-429-exceeded-quota",
+    PipelineErrorBaseten500ServerError: "pipeline-error-baseten-500-server-error",
+    PipelineErrorBaseten503ServerOverloadedError: "pipeline-error-baseten-503-server-overloaded-error",
+    PipelineErrorBasetenLlmFailed: "pipeline-error-baseten-llm-failed",
+    CallInProgressErrorVapifaultBaseten400BadRequestValidationFailed:
+        "call.in-progress.error-vapifault-baseten-400-bad-request-validation-failed",
+    CallInProgressErrorVapifaultBaseten401Unauthorized: "call.in-progress.error-vapifault-baseten-401-unauthorized",
+    CallInProgressErrorVapifaultBaseten403ModelAccessDenied:
+        "call.in-progress.error-vapifault-baseten-403-model-access-denied",
+    CallInProgressErrorVapifaultBaseten429ExceededQuota: "call.in-progress.error-vapifault-baseten-429-exceeded-quota",
+    CallInProgressErrorProviderfaultBaseten500ServerError:
+        "call.in-progress.error-providerfault-baseten-500-server-error",
+    CallInProgressErrorProviderfaultBaseten503ServerOverloadedError:
+        "call.in-progress.error-providerfault-baseten-503-server-overloaded-error",
     PipelineErrorMistral400BadRequestValidationFailed: "pipeline-error-mistral-400-bad-request-validation-failed",
     PipelineErrorMistral401Unauthorized: "pipeline-error-mistral-401-unauthorized",
     PipelineErrorMistral403ModelAccessDenied: "pipeline-error-mistral-403-model-access-denied",
@@ -241,6 +286,23 @@ export const ServerMessageEndOfCallReportEndedReason = {
         "call.in-progress.error-providerfault-mistral-500-server-error",
     CallInProgressErrorProviderfaultMistral503ServerOverloadedError:
         "call.in-progress.error-providerfault-mistral-503-server-overloaded-error",
+    PipelineErrorMinimax400BadRequestValidationFailed: "pipeline-error-minimax-400-bad-request-validation-failed",
+    PipelineErrorMinimax401Unauthorized: "pipeline-error-minimax-401-unauthorized",
+    PipelineErrorMinimax403ModelAccessDenied: "pipeline-error-minimax-403-model-access-denied",
+    PipelineErrorMinimax429ExceededQuota: "pipeline-error-minimax-429-exceeded-quota",
+    PipelineErrorMinimax500ServerError: "pipeline-error-minimax-500-server-error",
+    PipelineErrorMinimax503ServerOverloadedError: "pipeline-error-minimax-503-server-overloaded-error",
+    PipelineErrorMinimaxLlmFailed: "pipeline-error-minimax-llm-failed",
+    CallInProgressErrorVapifaultMinimax400BadRequestValidationFailed:
+        "call.in-progress.error-vapifault-minimax-400-bad-request-validation-failed",
+    CallInProgressErrorVapifaultMinimax401Unauthorized: "call.in-progress.error-vapifault-minimax-401-unauthorized",
+    CallInProgressErrorVapifaultMinimax403ModelAccessDenied:
+        "call.in-progress.error-vapifault-minimax-403-model-access-denied",
+    CallInProgressErrorVapifaultMinimax429ExceededQuota: "call.in-progress.error-vapifault-minimax-429-exceeded-quota",
+    CallInProgressErrorProviderfaultMinimax500ServerError:
+        "call.in-progress.error-providerfault-minimax-500-server-error",
+    CallInProgressErrorProviderfaultMinimax503ServerOverloadedError:
+        "call.in-progress.error-providerfault-minimax-503-server-overloaded-error",
     PipelineErrorInflectionAi400BadRequestValidationFailed:
         "pipeline-error-inflection-ai-400-bad-request-validation-failed",
     PipelineErrorInflectionAi401Unauthorized: "pipeline-error-inflection-ai-401-unauthorized",
@@ -639,9 +701,6 @@ export const ServerMessageEndOfCallReportEndedReason = {
         "call.in-progress.error-providerfault-playht-504-gateway-error",
     PipelineErrorCustomTranscriberFailed: "pipeline-error-custom-transcriber-failed",
     CallInProgressErrorVapifaultCustomTranscriberFailed: "call.in-progress.error-vapifault-custom-transcriber-failed",
-    PipelineErrorElevenLabsTranscriberFailed: "pipeline-error-eleven-labs-transcriber-failed",
-    CallInProgressErrorVapifaultElevenLabsTranscriberFailed:
-        "call.in-progress.error-vapifault-eleven-labs-transcriber-failed",
     PipelineErrorDeepgramReturning400NoSuchModelLanguageTierCombination:
         "pipeline-error-deepgram-returning-400-no-such-model-language-tier-combination",
     PipelineErrorDeepgramReturning401InvalidCredentials: "pipeline-error-deepgram-returning-401-invalid-credentials",
@@ -666,10 +725,6 @@ export const ServerMessageEndOfCallReportEndedReason = {
         "call.in-progress.error-providerfault-deepgram-returning-502-network-error",
     CallInProgressErrorProviderfaultDeepgramReturning502BadGatewayEhostunreach:
         "call.in-progress.error-providerfault-deepgram-returning-502-bad-gateway-ehostunreach",
-    PipelineErrorGoogleTranscriberFailed: "pipeline-error-google-transcriber-failed",
-    CallInProgressErrorVapifaultGoogleTranscriberFailed: "call.in-progress.error-vapifault-google-transcriber-failed",
-    PipelineErrorOpenaiTranscriberFailed: "pipeline-error-openai-transcriber-failed",
-    CallInProgressErrorVapifaultOpenaiTranscriberFailed: "call.in-progress.error-vapifault-openai-transcriber-failed",
     CallInProgressErrorWarmTransferMaxDuration: "call.in-progress.error-warm-transfer-max-duration",
     CallInProgressErrorWarmTransferAssistantCancelled: "call.in-progress.error-warm-transfer-assistant-cancelled",
     CallInProgressErrorWarmTransferSilenceTimeout: "call.in-progress.error-warm-transfer-silence-timeout",
@@ -687,6 +742,7 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CustomerEndedCall: "customer-ended-call",
     CustomerEndedCallBeforeWarmTransfer: "customer-ended-call-before-warm-transfer",
     CustomerEndedCallAfterWarmTransferAttempt: "customer-ended-call-after-warm-transfer-attempt",
+    CustomerEndedCallDuringTransfer: "customer-ended-call-during-transfer",
     CustomerDidNotAnswer: "customer-did-not-answer",
     CustomerDidNotGiveMicrophonePermission: "customer-did-not-give-microphone-permission",
     ExceededMaxDuration: "exceeded-max-duration",
@@ -694,22 +750,19 @@ export const ServerMessageEndOfCallReportEndedReason = {
     PhoneCallProviderClosedWebsocket: "phone-call-provider-closed-websocket",
     CallForwardingOperatorBusy: "call.forwarding.operator-busy",
     SilenceTimedOut: "silence-timed-out",
-    CallInProgressErrorSipInboundCallFailedToConnect: "call.in-progress.error-sip-inbound-call-failed-to-connect",
     CallInProgressErrorProviderfaultOutboundSip403Forbidden:
         "call.in-progress.error-providerfault-outbound-sip-403-forbidden",
     CallInProgressErrorProviderfaultOutboundSip407ProxyAuthenticationRequired:
         "call.in-progress.error-providerfault-outbound-sip-407-proxy-authentication-required",
-    CallInProgressErrorProviderfaultOutboundSip503ServiceUnavailable:
-        "call.in-progress.error-providerfault-outbound-sip-503-service-unavailable",
+    CallInProgressErrorProviderfaultOutboundSip408RequestTimeout:
+        "call.in-progress.error-providerfault-outbound-sip-408-request-timeout",
     CallInProgressErrorProviderfaultOutboundSip480TemporarilyUnavailable:
         "call.in-progress.error-providerfault-outbound-sip-480-temporarily-unavailable",
-    CallInProgressErrorSipOutboundCallFailedToConnect: "call.in-progress.error-sip-outbound-call-failed-to-connect",
     CallRingingHookExecutedSay: "call.ringing.hook-executed-say",
     CallRingingHookExecutedTransfer: "call.ringing.hook-executed-transfer",
     CallEndingHookExecutedSay: "call.ending.hook-executed-say",
     CallEndingHookExecutedTransfer: "call.ending.hook-executed-transfer",
     CallRingingSipInboundCallerHungupBeforeCallConnect: "call.ringing.sip-inbound-caller-hungup-before-call-connect",
-    CallRingingErrorSipInboundCallFailedToConnect: "call.ringing.error-sip-inbound-call-failed-to-connect",
     TwilioFailedToConnectCall: "twilio-failed-to-connect-call",
     TwilioReportedCustomerMisdialed: "twilio-reported-customer-misdialed",
     VonageRejected: "vonage-rejected",

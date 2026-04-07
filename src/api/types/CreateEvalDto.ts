@@ -15,12 +15,12 @@ export interface CreateEvalDto {
      * This is the name of the eval.
      * It helps identify what the eval is checking for.
      */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the description of the eval.
      * This helps describe the eval and its purpose in detail. It will not be used to evaluate the flow of the conversation.
      */
-    description?: string;
+    description?: string | undefined;
     /**
      * This is the type of the eval.
      * Currently it is fixed to `chat.mockConversation`.

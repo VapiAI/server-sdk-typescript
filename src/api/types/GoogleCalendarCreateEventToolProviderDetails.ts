@@ -4,8 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface GoogleCalendarCreateEventToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "google.calendar.event.create" for Google Calendar tool. */
-    type: Vapi.GoogleCalendarCreateEventToolProviderDetailsType;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
 }

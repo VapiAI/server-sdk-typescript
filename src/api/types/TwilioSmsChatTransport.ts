@@ -4,25 +4,27 @@ import type * as Vapi from "../index.js";
 
 export interface TwilioSmsChatTransport {
     /** This is the conversation type of the call (ie, voice or chat). */
-    conversationType?: Vapi.TwilioSmsChatTransportConversationType;
+    conversationType?: Vapi.TwilioSmsChatTransportConversationType | undefined;
     /**
      * This is the phone number that will be used to send the SMS.
      * If provided, will create a new session. If not provided, uses existing session's phoneNumberId.
      * The phone number must have SMS enabled and belong to your organization.
      */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /**
      * This is the customer who will receive the SMS.
      * If provided, will create a new session. If not provided, uses existing session's customer.
      */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
+    /** This is the customerId of the customer who will receive the SMS. */
+    customerId?: string | undefined;
     /**
      * Whether to use LLM-generated messages for outbound SMS.
      * When true (default), input is processed by the assistant for a response.
      * When false, the input text is forwarded directly as the SMS message without LLM processing.
      * Useful for sending pre-defined messages or notifications.
      */
-    useLLMGeneratedMessageForOutbound?: boolean;
+    useLLMGeneratedMessageForOutbound?: boolean | undefined;
     /**
      * The type of transport to use for sending the chat response.
      * Currently supports 'twilio.sms' for SMS delivery via Twilio.

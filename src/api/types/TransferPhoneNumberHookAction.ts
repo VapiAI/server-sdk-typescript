@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface TransferPhoneNumberHookAction {
-    /** This is the type of action - must be "transfer" */
-    type: Vapi.TransferPhoneNumberHookActionType;
     /** This is the destination details for the transfer - can be a phone number or SIP URI */
-    destination?: Vapi.TransferPhoneNumberHookActionDestination;
+    destination?: Vapi.TransferPhoneNumberHookActionDestination | undefined;
 }

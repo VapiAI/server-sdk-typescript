@@ -16,7 +16,7 @@ export interface InsightTimeRange {
      * - m: months
      * - y: years
      */
-    start?: Record<string, unknown>;
+    start?: Record<string, unknown> | undefined;
     /**
      * This is the end date for the time range.
      *
@@ -32,11 +32,11 @@ export interface InsightTimeRange {
      * - m: months
      * - y: years
      */
-    end?: Record<string, unknown>;
+    end?: Record<string, unknown> | undefined;
     /**
      * This is the timezone you want to set for the query.
      *
      * If not provided, defaults to UTC.
      */
-    timezone?: string;
+    timezone?: string | undefined;
 }

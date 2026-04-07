@@ -2,11 +2,11 @@
 
 export interface CloudflareR2BucketPlan {
     /** Cloudflare R2 Access key ID. */
-    accessKeyId?: string;
+    accessKeyId?: string | undefined;
     /** Cloudflare R2 access key secret. This is not returned in the API. */
-    secretAccessKey?: string;
+    secretAccessKey?: string | undefined;
     /** Cloudflare R2 base url. */
-    url?: string;
+    url?: string | undefined;
     /** This is the name of the bucket. */
     name: string;
     /**
@@ -18,5 +18,5 @@ export interface CloudflareR2BucketPlan {
      *
      * @default "/"
      */
-    path?: string;
+    path?: string | undefined;
 }

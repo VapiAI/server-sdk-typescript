@@ -8,19 +8,19 @@ export interface Server {
      *
      * @default 20
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /** The credential ID for server authentication */
-    credentialId?: string;
+    credentialId?: string | undefined;
     /**
      * If enabled, requests will originate from a static set of IPs owned and managed by Vapi.
      *
      * @default false
      */
-    staticIpAddressesEnabled?: boolean;
+    staticIpAddressesEnabled?: boolean | undefined;
     /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
-    encryptedPaths?: string[];
+    encryptedPaths?: string[] | undefined;
     /** This is where the request will be sent. */
-    url?: string;
+    url?: string | undefined;
     /**
      * These are the headers to include in the request.
      *
@@ -28,11 +28,11 @@ export interface Server {
      *
      * Note: Specifying an Authorization header here will override the authorization provided by the `credentialId` (if provided). This is an anti-pattern and should be avoided outside of edge case scenarios.
      */
-    headers?: Record<string, unknown>;
+    headers?: Record<string, unknown> | undefined;
     /**
      * This is the backoff plan if the request fails. Defaults to undefined (the request will not be retried).
      *
      * @default undefined (the request will not be retried)
      */
-    backoffPlan?: Vapi.BackoffPlan;
+    backoffPlan?: Vapi.BackoffPlan | undefined;
 }

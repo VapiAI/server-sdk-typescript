@@ -2,4 +2,16 @@
 
 import type * as Vapi from "../index.js";
 
-export type CompliancePlanRecordingConsentPlan = Vapi.RecordingConsentPlanStayOnLine | Vapi.RecordingConsentPlanVerbal;
+export type CompliancePlanRecordingConsentPlan =
+    | Vapi.CompliancePlanRecordingConsentPlan.StayOnLine
+    | Vapi.CompliancePlanRecordingConsentPlan.Verbal;
+
+export namespace CompliancePlanRecordingConsentPlan {
+    export interface StayOnLine extends Vapi.RecordingConsentPlanStayOnLine {
+        type: "stay-on-line";
+    }
+
+    export interface Verbal extends Vapi.RecordingConsentPlanVerbal {
+        type: "verbal";
+    }
+}

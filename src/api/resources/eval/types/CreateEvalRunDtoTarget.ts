@@ -5,4 +5,14 @@ import type * as Vapi from "../../../index.js";
 /**
  * This is the target that will be run against the eval
  */
-export type CreateEvalRunDtoTarget = Vapi.EvalRunTargetAssistant | Vapi.EvalRunTargetSquad;
+export type CreateEvalRunDtoTarget = Vapi.CreateEvalRunDtoTarget.Assistant | Vapi.CreateEvalRunDtoTarget.Squad;
+
+export namespace CreateEvalRunDtoTarget {
+    export interface Assistant extends Vapi.EvalRunTargetAssistant {
+        type: "assistant";
+    }
+
+    export interface Squad extends Vapi.EvalRunTargetSquad {
+        type: "squad";
+    }
+}

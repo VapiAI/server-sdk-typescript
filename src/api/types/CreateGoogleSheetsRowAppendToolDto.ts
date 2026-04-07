@@ -8,8 +8,7 @@ export interface CreateGoogleSheetsRowAppendToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateGoogleSheetsRowAppendToolDtoMessagesItem[];
-    type: "google.sheets.row.append";
+    messages?: Vapi.CreateGoogleSheetsRowAppendToolDtoMessagesItem[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -90,5 +89,5 @@ export interface CreateGoogleSheetsRowAppendToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

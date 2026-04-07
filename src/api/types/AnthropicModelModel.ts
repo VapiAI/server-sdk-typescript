@@ -11,8 +11,10 @@ export const AnthropicModelModel = {
     Claude37Sonnet20250219: "claude-3-7-sonnet-20250219",
     ClaudeOpus420250514: "claude-opus-4-20250514",
     ClaudeOpus4520251101: "claude-opus-4-5-20251101",
+    ClaudeOpus46: "claude-opus-4-6",
     ClaudeSonnet420250514: "claude-sonnet-4-20250514",
     ClaudeSonnet4520250929: "claude-sonnet-4-5-20250929",
+    ClaudeSonnet46: "claude-sonnet-4-6",
     ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
 } as const;
 export type AnthropicModelModel = (typeof AnthropicModelModel)[keyof typeof AnthropicModelModel];

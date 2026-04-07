@@ -13,6 +13,20 @@ import type * as Vapi from "../index.js";
  * @default { type: 'all' }
  */
 export type TransferPlanContextEngineeringPlan =
-    | Vapi.ContextEngineeringPlanLastNMessages
-    | Vapi.ContextEngineeringPlanNone
-    | Vapi.ContextEngineeringPlanAll;
+    | Vapi.TransferPlanContextEngineeringPlan.LastNMessages
+    | Vapi.TransferPlanContextEngineeringPlan.None
+    | Vapi.TransferPlanContextEngineeringPlan.All;
+
+export namespace TransferPlanContextEngineeringPlan {
+    export interface LastNMessages extends Vapi.ContextEngineeringPlanLastNMessages {
+        type: "lastNMessages";
+    }
+
+    export interface None extends Vapi.ContextEngineeringPlanNone {
+        type: "none";
+    }
+
+    export interface All extends Vapi.ContextEngineeringPlanAll {
+        type: "all";
+    }
+}

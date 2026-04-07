@@ -4,13 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateTestSuiteTestVoiceDto {
     /** These are the scorers used to evaluate the test. */
-    scorers?: Vapi.TestSuiteTestScorerAi[];
+    scorers?: Vapi.TestSuiteTestScorerAi[] | undefined;
     /** This is the type of the test, which must be voice. */
-    type?: Vapi.UpdateTestSuiteTestVoiceDtoType;
+    type?: Vapi.UpdateTestSuiteTestVoiceDtoType | undefined;
     /** This is the name of the test. */
-    name?: string;
+    name?: string | undefined;
     /** This is the script to be used for the voice test. */
-    script?: string;
+    script?: string | undefined;
     /** This is the number of attempts allowed for the test. */
-    numAttempts?: number;
+    numAttempts?: number | undefined;
 }

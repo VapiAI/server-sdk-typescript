@@ -3,14 +3,65 @@
 import type * as Vapi from "../index.js";
 
 export type FallbackTranscriberPlanTranscribersItem =
-    | Vapi.FallbackAssemblyAiTranscriber
-    | Vapi.FallbackAzureSpeechTranscriber
-    | Vapi.FallbackCustomTranscriber
-    | Vapi.FallbackDeepgramTranscriber
-    | Vapi.FallbackElevenLabsTranscriber
-    | Vapi.FallbackGladiaTranscriber
-    | Vapi.FallbackGoogleTranscriber
-    | Vapi.FallbackTalkscriberTranscriber
-    | Vapi.FallbackSpeechmaticsTranscriber
-    | Vapi.FallbackOpenAiTranscriber
-    | Vapi.FallbackCartesiaTranscriber;
+    | Vapi.FallbackTranscriberPlanTranscribersItem.AssemblyAi
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Azure
+    | Vapi.FallbackTranscriberPlanTranscribersItem.CustomTranscriber
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Deepgram
+    | Vapi.FallbackTranscriberPlanTranscribersItem._11Labs
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Gladia
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Google
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Talkscriber
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Speechmatics
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Openai
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Cartesia
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Soniox;
+
+export namespace FallbackTranscriberPlanTranscribersItem {
+    export interface AssemblyAi extends Vapi.FallbackAssemblyAiTranscriber {
+        provider: "assembly-ai";
+    }
+
+    export interface Azure extends Vapi.FallbackAzureSpeechTranscriber {
+        provider: "azure";
+    }
+
+    export interface CustomTranscriber extends Vapi.FallbackCustomTranscriber {
+        provider: "custom-transcriber";
+    }
+
+    export interface Deepgram extends Vapi.FallbackDeepgramTranscriber {
+        provider: "deepgram";
+    }
+
+    export interface _11Labs extends Vapi.FallbackElevenLabsTranscriber {
+        provider: "11labs";
+    }
+
+    export interface Gladia extends Vapi.FallbackGladiaTranscriber {
+        provider: "gladia";
+    }
+
+    export interface Google extends Vapi.FallbackGoogleTranscriber {
+        provider: "google";
+    }
+
+    export interface Talkscriber extends Vapi.FallbackTalkscriberTranscriber {
+        provider: "talkscriber";
+    }
+
+    export interface Speechmatics extends Vapi.FallbackSpeechmaticsTranscriber {
+        provider: "speechmatics";
+    }
+
+    export interface Openai extends Vapi.FallbackOpenAiTranscriber {
+        provider: "openai";
+    }
+
+    export interface Cartesia extends Vapi.FallbackCartesiaTranscriber {
+        provider: "cartesia";
+    }
+
+    export interface Soniox extends Vapi.FallbackSonioxTranscriber {
+        provider: "soniox";
+    }
+}

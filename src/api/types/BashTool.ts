@@ -8,8 +8,7 @@ export interface BashTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.BashToolMessagesItem[];
-    type: "bash";
+    messages?: Vapi.BashToolMessagesItem[] | undefined;
     /** The sub type of tool. */
     subType: Vapi.BashToolSubType;
     /**
@@ -22,7 +21,7 @@ export interface BashTool {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -111,7 +110,7 @@ export interface BashTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
     /** The name of the tool, fixed to 'bash' */
     name: Vapi.BashToolName;
 }

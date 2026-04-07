@@ -4,20 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface CustomerCustomEndpointingRule {
     /**
-     * This endpointing rule is based on current customer message as they are speaking.
-     *
-     * Flow:
-     * - Assistant speaks
-     * - Customer starts speaking
-     * - Customer transcription comes in
-     * - This rule is evaluated on the current customer transcription
-     * - If a match is found based on `regex`, the endpointing timeout is set to `timeoutSeconds`
-     *
-     * Usage:
-     * - If you want to wait longer while customer is speaking numbers, you can set a longer timeout.
-     */
-    type: Vapi.CustomerCustomEndpointingRuleType;
-    /**
      * This is the regex pattern to match.
      *
      * Note:
@@ -33,7 +19,7 @@ export interface CustomerCustomEndpointingRule {
      *
      * @default []
      */
-    regexOptions?: Vapi.RegexOption[];
+    regexOptions?: Vapi.RegexOption[] | undefined;
     /** This is the endpointing timeout in seconds, if the rule is matched. */
     timeoutSeconds: number;
 }

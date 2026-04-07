@@ -2,9 +2,9 @@
 
 export interface Oauth2AuthenticationSession {
     /** This is the OAuth2 access token. */
-    accessToken?: string;
+    accessToken?: string | undefined;
     /** This is the OAuth2 access token expiration. */
-    expiresAt?: string;
+    expiresAt?: string | undefined;
     /** This is the OAuth2 refresh token. */
-    refreshToken?: string;
+    refreshToken?: string | undefined;
 }

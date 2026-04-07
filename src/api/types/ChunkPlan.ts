@@ -14,7 +14,7 @@ export interface ChunkPlan {
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the minimum number of characters in a chunk.
      *
@@ -24,7 +24,7 @@ export interface ChunkPlan {
      *
      * @default 30
      */
-    minCharacters?: number;
+    minCharacters?: number | undefined;
     /**
      * These are the punctuations that are considered valid boundaries for a chunk to be created.
      *
@@ -34,7 +34,7 @@ export interface ChunkPlan {
      *
      * Default is automatically set to balance the trade-off between quality and latency based on the provider.
      */
-    punctuationBoundaries?: Vapi.PunctuationBoundary[];
+    punctuationBoundaries?: Vapi.PunctuationBoundary[] | undefined;
     /** This is the plan for formatting the chunk before it is sent to the voice provider. */
-    formatPlan?: Vapi.FormatPlan;
+    formatPlan?: Vapi.FormatPlan | undefined;
 }

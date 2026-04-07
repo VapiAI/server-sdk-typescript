@@ -8,12 +8,12 @@ export interface CallHookCustomerSpeechTimeout {
     /** This is the set of actions to perform when the hook triggers */
     do: Vapi.CallHookCustomerSpeechTimeoutDoItem[];
     /** This is the set of filters that must match for the hook to trigger */
-    options?: Vapi.CustomerSpeechTimeoutOptions;
+    options?: Vapi.CustomerSpeechTimeoutOptions | undefined;
     /**
      * This is the name of the hook, it can be set by the user to identify the hook.
      * If no name is provided, the hook will be auto generated as UUID.
      *
      * @default UUID
      */
-    name?: string;
+    name?: string | undefined;
 }

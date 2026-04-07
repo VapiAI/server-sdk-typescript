@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface VoicemailDetectionCost {
-    /** This is the type of cost, always 'voicemail-detection' for this class. */
-    type: Vapi.VoicemailDetectionCostType;
     /** This is the model that was used to perform the analysis. */
     model: Record<string, unknown>;
     /** This is the provider that was used to detect the voicemail. */

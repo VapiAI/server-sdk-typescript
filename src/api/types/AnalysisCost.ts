@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface AnalysisCost {
-    /** This is the type of cost, always 'analysis' for this class. */
-    type: Vapi.AnalysisCostType;
     /** This is the type of analysis performed. */
     analysisType: Vapi.AnalysisCostAnalysisType;
     /** This is the model that was used to perform the analysis. */
@@ -14,7 +12,7 @@ export interface AnalysisCost {
     /** This is the number of completion tokens generated in the analysis. */
     completionTokens: number;
     /** This is the number of cached prompt tokens used in the analysis. This is only applicable to certain providers (e.g., OpenAI, Azure OpenAI) that support prompt caching. Cached tokens are billed at a discounted rate. */
-    cachedPromptTokens?: number;
+    cachedPromptTokens?: number | undefined;
     /** This is the cost of the component in USD. */
     cost: number;
 }

@@ -8,7 +8,7 @@ export interface GhlTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.GhlToolMessagesItem[];
+    messages?: Vapi.GhlToolMessagesItem[] | undefined;
     /** The type of tool. "ghl" for GHL tool. */
     type: Vapi.GhlToolType;
     /** This is the unique identifier for the tool. */
@@ -99,6 +99,6 @@ export interface GhlTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
     metadata: Vapi.GhlToolMetadata;
 }

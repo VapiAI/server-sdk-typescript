@@ -8,9 +8,7 @@ export interface CreateCodeToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateCodeToolDtoMessagesItem[];
-    /** The type of tool. "code" for Code tool. */
-    type: Vapi.CreateCodeToolDtoType;
+    messages?: Vapi.CreateCodeToolDtoMessagesItem[] | undefined;
     /**
      * This determines if the tool is async.
      *
@@ -20,7 +18,7 @@ export interface CreateCodeToolDto {
      *
      *   Defaults to synchronous (`false`).
      */
-    async?: boolean;
+    async?: boolean | undefined;
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
      *
@@ -31,29 +29,29 @@ export interface CreateCodeToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** TypeScript code to execute when the tool is called */
     code: string;
     /** Environment variables available in code via `env` object */
-    environmentVariables?: Vapi.CodeToolEnvironmentVariable[];
+    environmentVariables?: Vapi.CodeToolEnvironmentVariable[] | undefined;
     /**
      * This is the timeout in seconds for the code execution. Defaults to 10 seconds.
      * Maximum is 30 seconds to prevent abuse.
      *
      * @default 10
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /** Credential ID containing the Val Town API key */
-    credentialId?: string;
+    credentialId?: string | undefined;
     /** Plan to extract variables from the tool response */
-    variableExtractionPlan?: Vapi.VariableExtractionPlan;
+    variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
     /**
      * This is the function definition of the tool.
      *
      * For the Code tool, this defines the name, description, and parameters that the model
      * will use to understand when and how to call this tool.
      */
-    function?: Vapi.OpenAiFunction;
+    function?: Vapi.OpenAiFunction | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -134,5 +132,5 @@ export interface CreateCodeToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

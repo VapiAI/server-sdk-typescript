@@ -13,11 +13,11 @@ export interface CustomerSpeechTimeoutOptions {
      *
      * @default 3
      */
-    triggerMaxCount?: number;
+    triggerMaxCount?: number | undefined;
     /**
      * This is whether the counter for hook trigger resets the user speaks.
      *
      * @default never
      */
-    triggerResetMode?: Record<string, unknown>;
+    triggerResetMode?: Record<string, unknown> | undefined;
 }

@@ -1,4 +1,3 @@
-export type { CallControllerFindAllPaginatedRequest } from "./CallControllerFindAllPaginatedRequest.js";
 export type { CreateCallDto } from "./CreateCallDto.js";
 export type { DeleteCallDto } from "./DeleteCallDto.js";
 export type { GetCallsRequest } from "./GetCallsRequest.js";

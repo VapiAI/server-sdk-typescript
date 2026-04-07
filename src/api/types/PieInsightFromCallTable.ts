@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface PieInsightFromCallTable {
     /** This is the name of the Insight. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the type of the Insight.
      * It is required to be `pie` to create a pie insight.
@@ -27,14 +27,14 @@ export interface PieInsightFromCallTable {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formulas?: Vapi.InsightFormula[];
-    timeRange?: Vapi.InsightTimeRange;
+    formulas?: Vapi.InsightFormula[] | undefined;
+    timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
      * These are the columns to group the results by.
      * All results are grouped by the time range step by default.
      */
-    groupBy?: Vapi.PieInsightFromCallTableGroupBy;
+    groupBy?: Vapi.PieInsightFromCallTableGroupBy | undefined;
     /** These are the queries to run to generate the insight. */
     queries: Vapi.PieInsightFromCallTableQueriesItem[];
 }

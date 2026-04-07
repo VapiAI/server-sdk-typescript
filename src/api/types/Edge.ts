@@ -3,9 +3,9 @@
 import type * as Vapi from "../index.js";
 
 export interface Edge {
-    condition?: Vapi.AiEdgeCondition;
+    condition?: Vapi.AiEdgeCondition | undefined;
     from: string;
     to: string;
     /** This is for metadata you want to store on the edge. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

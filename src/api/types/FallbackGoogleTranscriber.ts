@@ -3,10 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackGoogleTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackGoogleTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.FallbackGoogleTranscriberModel;
+    model?: Vapi.FallbackGoogleTranscriberModel | undefined;
     /** This is the language that will be set for the transcription. */
-    language?: Vapi.FallbackGoogleTranscriberLanguage;
+    language?: Vapi.FallbackGoogleTranscriberLanguage | undefined;
 }

@@ -10,9 +10,10 @@ describe("PhoneNumbersClient", () => {
 
         const rawResponseBody = [
             {
+                provider: "byo-phone-number",
                 fallbackDestination: {
-                    message: "message",
                     type: "number",
+                    message: "message",
                     numberE164CheckEnabled: true,
                     number: "number",
                     extension: "extension",
@@ -21,7 +22,6 @@ describe("PhoneNumbersClient", () => {
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-                provider: "byo-phone-number",
                 numberE164CheckEnabled: true,
                 id: "id",
                 orgId: "orgId",
@@ -50,14 +50,16 @@ describe("PhoneNumbersClient", () => {
                 credentialId: "credentialId",
             },
         ];
+
         server.mockEndpoint().get("/phone-number").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.phoneNumbers.list();
         expect(response).toEqual([
             {
+                provider: "byo-phone-number",
                 fallbackDestination: {
-                    message: "message",
                     type: "number",
+                    message: "message",
                     numberE164CheckEnabled: true,
                     number: "number",
                     extension: "extension",
@@ -77,7 +79,6 @@ describe("PhoneNumbersClient", () => {
                         ],
                     },
                 ],
-                provider: "byo-phone-number",
                 numberE164CheckEnabled: true,
                 id: "id",
                 orgId: "orgId",
@@ -130,9 +131,10 @@ describe("PhoneNumbersClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { provider: "byo-phone-number", credentialId: "credentialId" };
         const rawResponseBody = {
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -152,8 +154,13 @@ describe("PhoneNumbersClient", () => {
                 },
                 description: "description",
             },
-            hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-            provider: "byo-phone-number",
+            hooks: [
+                {
+                    on: "call.ringing",
+                    filters: [{ type: "startsWith", key: "number", startsWith: ["91", "86", "7"] }],
+                    do: [{ type: "transfer" }],
+                },
+            ],
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -181,6 +188,7 @@ describe("PhoneNumbersClient", () => {
             number: "number",
             credentialId: "credentialId",
         };
+
         server
             .mockEndpoint()
             .post("/phone-number")
@@ -195,9 +203,10 @@ describe("PhoneNumbersClient", () => {
             credentialId: "credentialId",
         });
         expect(response).toEqual({
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -227,6 +236,13 @@ describe("PhoneNumbersClient", () => {
             hooks: [
                 {
                     on: "call.ringing",
+                    filters: [
+                        {
+                            type: "startsWith",
+                            key: "number",
+                            startsWith: ["91", "86", "7"],
+                        },
+                    ],
                     do: [
                         {
                             type: "transfer",
@@ -234,7 +250,6 @@ describe("PhoneNumbersClient", () => {
                     ],
                 },
             ],
-            provider: "byo-phone-number",
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -288,9 +303,9 @@ describe("PhoneNumbersClient", () => {
         const rawResponseBody = {
             results: [
                 {
+                    provider: "byo-phone-number",
                     fallbackDestination: { type: "number", number: "number" },
                     hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-                    provider: "byo-phone-number",
                     numberE164CheckEnabled: true,
                     id: "id",
                     orgId: "orgId",
@@ -330,12 +345,14 @@ describe("PhoneNumbersClient", () => {
                 createdAtGe: "2024-01-15T09:30:00Z",
             },
         };
+
         server.mockEndpoint().get("/v2/phone-number").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.phoneNumbers.phoneNumberControllerFindAllPaginated();
         expect(response).toEqual({
             results: [
                 {
+                    provider: "byo-phone-number",
                     fallbackDestination: {
                         type: "number",
                         number: "number",
@@ -350,7 +367,6 @@ describe("PhoneNumbersClient", () => {
                             ],
                         },
                     ],
-                    provider: "byo-phone-number",
                     numberE164CheckEnabled: true,
                     id: "id",
                     orgId: "orgId",
@@ -407,9 +423,10 @@ describe("PhoneNumbersClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -429,8 +446,13 @@ describe("PhoneNumbersClient", () => {
                 },
                 description: "description",
             },
-            hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-            provider: "byo-phone-number",
+            hooks: [
+                {
+                    on: "call.ringing",
+                    filters: [{ type: "startsWith", key: "number", startsWith: ["91", "86", "7"] }],
+                    do: [{ type: "transfer" }],
+                },
+            ],
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -458,15 +480,17 @@ describe("PhoneNumbersClient", () => {
             number: "number",
             credentialId: "credentialId",
         };
+
         server.mockEndpoint().get("/phone-number/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.phoneNumbers.get({
             id: "id",
         });
         expect(response).toEqual({
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -496,6 +520,13 @@ describe("PhoneNumbersClient", () => {
             hooks: [
                 {
                     on: "call.ringing",
+                    filters: [
+                        {
+                            type: "startsWith",
+                            key: "number",
+                            startsWith: ["91", "86", "7"],
+                        },
+                    ],
                     do: [
                         {
                             type: "transfer",
@@ -503,7 +534,6 @@ describe("PhoneNumbersClient", () => {
                     ],
                 },
             ],
-            provider: "byo-phone-number",
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -555,9 +585,10 @@ describe("PhoneNumbersClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -577,8 +608,13 @@ describe("PhoneNumbersClient", () => {
                 },
                 description: "description",
             },
-            hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-            provider: "byo-phone-number",
+            hooks: [
+                {
+                    on: "call.ringing",
+                    filters: [{ type: "startsWith", key: "number", startsWith: ["91", "86", "7"] }],
+                    do: [{ type: "transfer" }],
+                },
+            ],
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -606,6 +642,7 @@ describe("PhoneNumbersClient", () => {
             number: "number",
             credentialId: "credentialId",
         };
+
         server
             .mockEndpoint()
             .delete("/phone-number/id")
@@ -618,9 +655,10 @@ describe("PhoneNumbersClient", () => {
             id: "id",
         });
         expect(response).toEqual({
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -650,6 +688,13 @@ describe("PhoneNumbersClient", () => {
             hooks: [
                 {
                     on: "call.ringing",
+                    filters: [
+                        {
+                            type: "startsWith",
+                            key: "number",
+                            startsWith: ["91", "86", "7"],
+                        },
+                    ],
                     do: [
                         {
                             type: "transfer",
@@ -657,7 +702,6 @@ describe("PhoneNumbersClient", () => {
                     ],
                 },
             ],
-            provider: "byo-phone-number",
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -707,11 +751,12 @@ describe("PhoneNumbersClient", () => {
     test("update", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { provider: "byo-phone-number" };
         const rawResponseBody = {
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -731,8 +776,13 @@ describe("PhoneNumbersClient", () => {
                 },
                 description: "description",
             },
-            hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
-            provider: "byo-phone-number",
+            hooks: [
+                {
+                    on: "call.ringing",
+                    filters: [{ type: "startsWith", key: "number", startsWith: ["91", "86", "7"] }],
+                    do: [{ type: "transfer" }],
+                },
+            ],
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",
@@ -760,6 +810,7 @@ describe("PhoneNumbersClient", () => {
             number: "number",
             credentialId: "credentialId",
         };
+
         server
             .mockEndpoint()
             .patch("/phone-number/id")
@@ -771,12 +822,15 @@ describe("PhoneNumbersClient", () => {
 
         const response = await client.phoneNumbers.update({
             id: "id",
-            body: {},
+            body: {
+                provider: "byo-phone-number",
+            },
         });
         expect(response).toEqual({
+            provider: "byo-phone-number",
             fallbackDestination: {
-                message: "message",
                 type: "number",
+                message: "message",
                 numberE164CheckEnabled: true,
                 number: "number",
                 extension: "extension",
@@ -806,6 +860,13 @@ describe("PhoneNumbersClient", () => {
             hooks: [
                 {
                     on: "call.ringing",
+                    filters: [
+                        {
+                            type: "startsWith",
+                            key: "number",
+                            startsWith: ["91", "86", "7"],
+                        },
+                    ],
                     do: [
                         {
                             type: "transfer",
@@ -813,7 +874,6 @@ describe("PhoneNumbersClient", () => {
                     ],
                 },
             ],
-            provider: "byo-phone-number",
             numberE164CheckEnabled: true,
             id: "id",
             orgId: "orgId",

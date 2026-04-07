@@ -14,5 +14,5 @@ export interface AzureBlobStorageBucketPlan {
      *
      * @default "/"
      */
-    path?: string;
+    path?: string | undefined;
 }

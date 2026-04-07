@@ -3,7 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface HandoffDestinationDynamic {
-    type: Vapi.HandoffDestinationDynamicType;
     /**
      * This is where Vapi will send the handoff-destination-request webhook in a dynamic handoff.
      *
@@ -14,7 +13,7 @@ export interface HandoffDestinationDynamic {
      * 3. phoneNumber.server.url
      * 4. org.server.url
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
-    description?: string;
+    description?: string | undefined;
 }

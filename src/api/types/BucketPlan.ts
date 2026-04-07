@@ -12,7 +12,7 @@ export interface BucketPlan {
      *
      * This overrides the `credential.region` field if it is provided.
      */
-    region?: string;
+    region?: string | undefined;
     /**
      * This is the path where call artifacts will be stored.
      *
@@ -22,7 +22,7 @@ export interface BucketPlan {
      *
      * @default "/"
      */
-    path?: string;
+    path?: string | undefined;
     /**
      * This is the HMAC access key offered by GCP for interoperability with S3 clients. Here is the guide on how to create: https://cloud.google.com/storage/docs/authentication/managing-hmackeys#console
      *
@@ -30,7 +30,7 @@ export interface BucketPlan {
      * - If `credential.type` is `gcp`, then this is required.
      * - If `credential.type` is `aws`, then this is not required since credential.awsAccessKeyId is used instead.
      */
-    hmacAccessKey?: string;
+    hmacAccessKey?: string | undefined;
     /**
      * This is the secret for the HMAC access key. Here is the guide on how to create: https://cloud.google.com/storage/docs/authentication/managing-hmackeys#console
      *
@@ -40,5 +40,5 @@ export interface BucketPlan {
      *
      * Note: This is not returned in the API.
      */
-    hmacSecret?: string;
+    hmacSecret?: string | undefined;
 }

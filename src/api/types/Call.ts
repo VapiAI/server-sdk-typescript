@@ -4,30 +4,30 @@ import type * as Vapi from "../index.js";
 
 export interface Call {
     /** This is the type of call. */
-    type?: Vapi.CallType;
+    type?: Vapi.CallType | undefined;
     /** These are the costs of individual components of the call in USD. */
-    costs?: Vapi.CallCostsItem[];
-    messages?: Vapi.CallMessagesItem[];
+    costs?: Vapi.CallCostsItem[] | undefined;
+    messages?: Vapi.CallMessagesItem[] | undefined;
     /**
      * This is the provider of the call.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    phoneCallProvider?: Vapi.CallPhoneCallProvider;
+    phoneCallProvider?: Vapi.CallPhoneCallProvider | undefined;
     /**
      * This is the transport of the phone call.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    phoneCallTransport?: Vapi.CallPhoneCallTransport;
+    phoneCallTransport?: Vapi.CallPhoneCallTransport | undefined;
     /** This is the status of the call. */
-    status?: Vapi.CallStatus;
+    status?: Vapi.CallStatus | undefined;
     /** This is the explanation for how the call ended. */
-    endedReason?: Vapi.CallEndedReason;
+    endedReason?: Vapi.CallEndedReason | undefined;
     /** This is the message that adds more context to the ended reason. It can be used to provide potential error messages or warnings. */
-    endedMessage?: string;
+    endedMessage?: string | undefined;
     /** This is the destination where the call ended up being transferred to. If the call was not transferred, this will be empty. */
-    destination?: Vapi.CallDestination;
+    destination?: Vapi.CallDestination | undefined;
     /** This is the unique identifier for the call. */
     id: string;
     /** This is the unique identifier for the org that this call belongs to. */
@@ -37,31 +37,31 @@ export interface Call {
     /** This is the ISO 8601 date-time string of when the call was last updated. */
     updatedAt: string;
     /** This is the ISO 8601 date-time string of when the call was started. */
-    startedAt?: string;
+    startedAt?: string | undefined;
     /** This is the ISO 8601 date-time string of when the call was ended. */
-    endedAt?: string;
+    endedAt?: string | undefined;
     /** This is the cost of the call in USD. */
-    cost?: number;
+    cost?: number | undefined;
     /** This is the cost of the call in USD. */
-    costBreakdown?: Vapi.CostBreakdown;
+    costBreakdown?: Vapi.CostBreakdown | undefined;
     /** This is a copy of assistant artifact plan. This isn't actually stored on the call but rather just returned in POST /call/web to enable artifact creation client side. */
-    artifactPlan?: Vapi.ArtifactPlan;
+    artifactPlan?: Vapi.ArtifactPlan | undefined;
     /** This is the analysis of the call. Configure in `assistant.analysisPlan`. */
-    analysis?: Vapi.Analysis;
+    analysis?: Vapi.Analysis | undefined;
     /** This is to real-time monitor the call. Configure in `assistant.monitorPlan`. */
-    monitor?: Vapi.Monitor;
+    monitor?: Vapi.Monitor | undefined;
     /** These are the artifacts created from the call. Configure in `assistant.artifactPlan`. */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the compliance of the call. Configure in `assistant.compliancePlan`. */
-    compliance?: Vapi.Compliance;
+    compliance?: Vapi.Compliance | undefined;
     /**
      * The ID of the call as provided by the phone number service. callSid in Twilio. conversationUuid in Vonage. callControlId in Telnyx.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    phoneCallProviderId?: string;
+    phoneCallProviderId?: string | undefined;
     /** This is the campaign ID that the call belongs to. */
-    campaignId?: string;
+    campaignId?: string | undefined;
     /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
      *
@@ -70,7 +70,7 @@ export interface Call {
      * - Squad, use `squadId` or `squad`
      * - Workflow, use `workflowId` or `workflow`
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the assistant that will be used for the call. To use an existing assistant, use `assistantId` instead.
      *
@@ -79,9 +79,9 @@ export interface Call {
      * - Squad, use `squad`
      * - Workflow, use `workflow`
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** These are the overrides for the `assistant` or `assistantId`'s settings and template variables. */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /**
      * This is the squad that will be used for the call. To use a transient squad, use `squad` instead.
      *
@@ -90,7 +90,7 @@ export interface Call {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is a squad that will be used for the call. To use an existing squad, use `squadId` instead.
      *
@@ -99,12 +99,12 @@ export interface Call {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    squad?: Vapi.CreateSquadDto;
+    squad?: Vapi.CreateSquadDto | undefined;
     /**
      * These are the overrides for the `squad` or `squadId`'s member settings and template variables.
      * This will apply to all members of the squad.
      */
-    squadOverrides?: Vapi.AssistantOverrides;
+    squadOverrides?: Vapi.AssistantOverrides | undefined;
     /**
      * This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
      *
@@ -113,7 +113,7 @@ export interface Call {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is a workflow that will be used for the call. To use an existing workflow, use `workflowId` instead.
      *
@@ -122,37 +122,37 @@ export interface Call {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    workflow?: Vapi.CreateWorkflowDto;
+    workflow?: Vapi.CreateWorkflowDto | undefined;
     /** These are the overrides for the `workflow` or `workflowId`'s settings and template variables. */
-    workflowOverrides?: Vapi.WorkflowOverrides;
+    workflowOverrides?: Vapi.WorkflowOverrides | undefined;
     /**
      * This is the phone number that will be used for the call. To use a transient number, use `phoneNumber` instead.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /**
      * This is the phone number that will be used for the call. To use an existing number, use `phoneNumberId` instead.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    phoneNumber?: Vapi.ImportTwilioPhoneNumberDto;
+    phoneNumber?: Vapi.ImportTwilioPhoneNumberDto | undefined;
     /**
      * This is the customer that will be called. To call a transient customer , use `customer` instead.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    customerId?: string;
+    customerId?: string | undefined;
     /**
      * This is the customer that will be called. To call an existing customer, use `customerId` instead.
      *
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the name of the call. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /** This is the schedule plan of the call. */
-    schedulePlan?: Vapi.SchedulePlan;
+    schedulePlan?: Vapi.SchedulePlan | undefined;
     /** This is the transport of the call. */
-    transport?: Record<string, unknown>;
+    transport?: Record<string, unknown> | undefined;
 }

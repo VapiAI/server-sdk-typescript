@@ -2,4 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
-export type SessionCostsItem = Vapi.ModelCost | Vapi.AnalysisCost | Vapi.SessionCost;
+export type SessionCostsItem =
+    | Vapi.SessionCostsItem.Model
+    | Vapi.SessionCostsItem.Analysis
+    | Vapi.SessionCostsItem.Session;
+
+export namespace SessionCostsItem {
+    export interface Model extends Vapi.ModelCost {
+        type: "model";
+    }
+
+    export interface Analysis extends Vapi.AnalysisCost {
+        type: "analysis";
+    }
+
+    export interface Session extends Vapi.SessionCost {
+        type: "session";
+    }
+}

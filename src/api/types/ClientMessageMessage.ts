@@ -20,6 +20,7 @@ export type ClientMessageMessage =
     | Vapi.ClientMessageUserInterrupted
     | Vapi.ClientMessageLanguageChangeDetected
     | Vapi.ClientMessageVoiceInput
+    | Vapi.ClientMessageAssistantSpeech
     | Vapi.ClientMessageChatCreated
     | Vapi.ClientMessageChatDeleted
     | Vapi.ClientMessageSessionCreated

@@ -8,9 +8,9 @@ export interface UpdateTransferCallToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateTransferCallToolDtoMessagesItem[];
+    messages?: Vapi.UpdateTransferCallToolDtoMessagesItem[] | undefined;
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
-    destinations?: Vapi.UpdateTransferCallToolDtoDestinationsItem[];
+    destinations?: Vapi.UpdateTransferCallToolDtoDestinationsItem[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -91,5 +91,5 @@ export interface UpdateTransferCallToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

@@ -4,5 +4,5 @@ import type * as Vapi from "../index.js";
 
 export interface Compliance {
     /** This is the recording consent of the call. Configure in `assistant.compliancePlan.recordingConsentPlan`. */
-    recordingConsent?: Vapi.RecordingConsent;
+    recordingConsent?: Vapi.RecordingConsent | undefined;
 }

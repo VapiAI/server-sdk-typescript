@@ -4,7 +4,7 @@ export interface PaginationMeta {
     itemsPerPage: number;
     totalItems: number;
     currentPage: number;
-    itemsBeyondRetention?: boolean;
-    createdAtLe?: string;
-    createdAtGe?: string;
+    itemsBeyondRetention?: boolean | undefined;
+    createdAtLe?: string | undefined;
+    createdAtGe?: string | undefined;
 }

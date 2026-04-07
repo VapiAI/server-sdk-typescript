@@ -3,8 +3,22 @@
 import type * as Vapi from "../index.js";
 
 export type GroupConditionConditionsItem =
-    | Vapi.RegexCondition
-    | Vapi.LiquidCondition
+    | Vapi.GroupConditionConditionsItem.Regex
+    | Vapi.GroupConditionConditionsItem.Liquid
     /**
      * This is the GroupCondition object but Swagger does not display nested schemas correctly. */
-    | Vapi.GroupCondition;
+    | Vapi.GroupConditionConditionsItem.Group;
+
+export namespace GroupConditionConditionsItem {
+    export interface Regex extends Vapi.RegexCondition {
+        type: "regex";
+    }
+
+    export interface Liquid extends Vapi.LiquidCondition {
+        type: "liquid";
+    }
+
+    export interface Group extends Vapi.GroupCondition {
+        type: "group";
+    }
+}

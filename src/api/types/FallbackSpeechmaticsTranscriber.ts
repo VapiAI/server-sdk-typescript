@@ -3,48 +3,46 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackSpeechmaticsTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackSpeechmaticsTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.FallbackSpeechmaticsTranscriberModel;
-    language?: Vapi.FallbackSpeechmaticsTranscriberLanguage;
+    model?: Vapi.FallbackSpeechmaticsTranscriberModel | undefined;
+    language?: Vapi.FallbackSpeechmaticsTranscriberLanguage | undefined;
     /**
      * This is the operating point for the transcription. Choose between `standard` for faster turnaround with strong accuracy or `enhanced` for highest accuracy when precision is critical.
      *
      * @default 'enhanced'
      */
-    operatingPoint?: Vapi.FallbackSpeechmaticsTranscriberOperatingPoint;
+    operatingPoint?: Vapi.FallbackSpeechmaticsTranscriberOperatingPoint | undefined;
     /**
      * This is the region for the Speechmatics API. Choose between EU (Europe) and US (United States) regions for lower latency and data sovereignty compliance.
      *
      * @default 'eu'
      */
-    region?: Vapi.FallbackSpeechmaticsTranscriberRegion;
+    region?: Vapi.FallbackSpeechmaticsTranscriberRegion | undefined;
     /**
      * This enables speaker diarization, which identifies and separates speakers in the transcription. Essential for multi-speaker conversations and conference calls.
      *
      * @default false
      */
-    enableDiarization?: boolean;
+    enableDiarization?: boolean | undefined;
     /**
      * This sets the maximum delay in milliseconds for partial transcripts. Balances latency and accuracy.
      *
      * @default 3000
      */
-    maxDelay?: number;
+    maxDelay?: number | undefined;
     customVocabulary: Vapi.SpeechmaticsCustomVocabularyItem[];
     /**
      * This controls how numbers, dates, currencies, and other entities are formatted in the transcription output.
      *
      * @default 'written'
      */
-    numeralStyle?: Vapi.FallbackSpeechmaticsTranscriberNumeralStyle;
+    numeralStyle?: Vapi.FallbackSpeechmaticsTranscriberNumeralStyle | undefined;
     /**
      * This is the sensitivity level for end-of-turn detection, which determines when a speaker has finished talking. Higher values are more sensitive.
      *
      * @default 0.5
      */
-    endOfTurnSensitivity?: number;
+    endOfTurnSensitivity?: number | undefined;
     /**
      * This enables removal of disfluencies (um, uh) from the transcript to create cleaner, more professional output.
      *
@@ -52,11 +50,11 @@ export interface FallbackSpeechmaticsTranscriber {
      *
      * @default false
      */
-    removeDisfluencies?: boolean;
+    removeDisfluencies?: boolean | undefined;
     /**
      * This is the minimum duration in seconds for speech segments. Shorter segments will be filtered out. Helps remove noise and improve accuracy.
      *
      * @default 0.0
      */
-    minimumSpeechDuration?: number;
+    minimumSpeechDuration?: number | undefined;
 }

@@ -4,17 +4,17 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageSessionCreated {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageSessionCreatedPhoneNumber;
+    phoneNumber?: Vapi.ClientMessageSessionCreatedPhoneNumber | undefined;
     /** This is the type of the message. "session.created" is sent when a new session is created. */
     type: Vapi.ClientMessageSessionCreatedType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the session that was created. */
     session: Vapi.Session;
 }

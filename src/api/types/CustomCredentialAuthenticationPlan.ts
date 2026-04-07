@@ -6,6 +6,20 @@ import type * as Vapi from "../index.js";
  * This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication.
  */
 export type CustomCredentialAuthenticationPlan =
-    | Vapi.OAuth2AuthenticationPlan
-    | Vapi.HmacAuthenticationPlan
-    | Vapi.BearerAuthenticationPlan;
+    | Vapi.CustomCredentialAuthenticationPlan.Oauth2
+    | Vapi.CustomCredentialAuthenticationPlan.Hmac
+    | Vapi.CustomCredentialAuthenticationPlan.Bearer;
+
+export namespace CustomCredentialAuthenticationPlan {
+    export interface Oauth2 extends Vapi.OAuth2AuthenticationPlan {
+        type: "oauth2";
+    }
+
+    export interface Hmac extends Vapi.HmacAuthenticationPlan {
+        type: "hmac";
+    }
+
+    export interface Bearer extends Vapi.BearerAuthenticationPlan {
+        type: "bearer";
+    }
+}

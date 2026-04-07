@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface Token {
     /** This is the tag for the token. It represents its scope. */
-    tag?: Vapi.TokenTag;
+    tag?: Vapi.TokenTag | undefined;
     /** This is the unique identifier for the token. */
     id: string;
     /** This is unique identifier for the org that this token belongs to. */
@@ -14,9 +14,9 @@ export interface Token {
     /** This is the ISO 8601 date-time string of when the token was last updated. */
     updatedAt: string;
     /** This is the token key. */
-    value?: string;
+    value?: string | undefined;
     /** This is the name of the token. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /** This are the restrictions for the token. */
-    restrictions?: Vapi.TokenRestrictions;
+    restrictions?: Vapi.TokenRestrictions | undefined;
 }

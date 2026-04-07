@@ -4,9 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface NodeArtifact {
     /** These are the messages that were spoken during the node. */
-    messages?: Vapi.NodeArtifactMessagesItem[];
+    messages?: Vapi.NodeArtifactMessagesItem[] | undefined;
     /** This is the node name. */
-    nodeName?: string;
+    nodeName?: string | undefined;
     /** These are the variable values that were extracted from the node. */
-    variableValues?: Record<string, unknown>;
+    variableValues?: Record<string, unknown> | undefined;
 }

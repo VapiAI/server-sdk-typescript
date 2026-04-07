@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type EvalRunResultMessagesItem =
-    | Vapi.ChatEvalUserMessageMock
-    | Vapi.ChatEvalSystemMessageMock
-    | Vapi.ChatEvalToolResponseMessageMock
-    | Vapi.ChatEvalAssistantMessageMock;
+    | Vapi.EvalRunResultMessagesItem.User
+    | Vapi.EvalRunResultMessagesItem.System
+    | Vapi.EvalRunResultMessagesItem.Tool
+    | Vapi.EvalRunResultMessagesItem.Assistant;
+
+export namespace EvalRunResultMessagesItem {
+    export interface User extends Vapi.ChatEvalUserMessageMock {
+        role: "user";
+    }
+
+    export interface System extends Vapi.ChatEvalSystemMessageMock {
+        role: "system";
+    }
+
+    export interface Tool extends Vapi.ChatEvalToolResponseMessageMock {
+        role: "tool";
+    }
+
+    export interface Assistant extends Vapi.ChatEvalAssistantMessageMock {
+        role: "assistant";
+    }
+}

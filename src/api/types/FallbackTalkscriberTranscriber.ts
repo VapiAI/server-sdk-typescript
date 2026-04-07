@@ -3,10 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackTalkscriberTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackTalkscriberTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.FallbackTalkscriberTranscriberModel;
+    model?: Vapi.FallbackTalkscriberTranscriberModel | undefined;
     /** This is the language that will be set for the transcription. The list of languages Whisper supports can be found here: https://github.com/openai/whisper/blob/main/whisper/tokenizer.py */
-    language?: Vapi.FallbackTalkscriberTranscriberLanguage;
+    language?: Vapi.FallbackTalkscriberTranscriberLanguage | undefined;
 }

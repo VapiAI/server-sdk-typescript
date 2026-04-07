@@ -3,55 +3,286 @@
 import type * as Vapi from "../../../index.js";
 
 export type UpdateAssistantDtoCredentialsItem =
-    | Vapi.CreateElevenLabsCredentialDto
-    | Vapi.CreateAnthropicCredentialDto
-    | Vapi.CreateAnyscaleCredentialDto
-    | Vapi.CreateAssemblyAiCredentialDto
-    | Vapi.CreateAzureOpenAiCredentialDto
-    | Vapi.CreateAzureCredentialDto
-    | Vapi.CreateByoSipTrunkCredentialDto
-    | Vapi.CreateCartesiaCredentialDto
-    | Vapi.CreateCerebrasCredentialDto
-    | Vapi.CreateCloudflareCredentialDto
-    | Vapi.CreateCustomLlmCredentialDto
-    | Vapi.CreateDeepgramCredentialDto
-    | Vapi.CreateDeepInfraCredentialDto
-    | Vapi.CreateDeepSeekCredentialDto
-    | Vapi.CreateGcpCredentialDto
-    | Vapi.CreateGladiaCredentialDto
-    | Vapi.CreateGoHighLevelCredentialDto
-    | Vapi.CreateGoogleCredentialDto
-    | Vapi.CreateGroqCredentialDto
-    | Vapi.CreateInflectionAiCredentialDto
-    | Vapi.CreateLangfuseCredentialDto
-    | Vapi.CreateLmntCredentialDto
-    | Vapi.CreateMakeCredentialDto
-    | Vapi.CreateOpenAiCredentialDto
-    | Vapi.CreateOpenRouterCredentialDto
-    | Vapi.CreatePerplexityAiCredentialDto
-    | Vapi.CreatePlayHtCredentialDto
-    | Vapi.CreateRimeAiCredentialDto
-    | Vapi.CreateRunpodCredentialDto
-    | Vapi.CreateS3CredentialDto
-    | Vapi.CreateSupabaseCredentialDto
-    | Vapi.CreateSmallestAiCredentialDto
-    | Vapi.CreateTavusCredentialDto
-    | Vapi.CreateTogetherAiCredentialDto
-    | Vapi.CreateTwilioCredentialDto
-    | Vapi.CreateVonageCredentialDto
-    | Vapi.CreateWebhookCredentialDto
-    | Vapi.CreateCustomCredentialDto
-    | Vapi.CreateXAiCredentialDto
-    | Vapi.CreateNeuphonicCredentialDto
-    | Vapi.CreateHumeCredentialDto
-    | Vapi.CreateMistralCredentialDto
-    | Vapi.CreateSpeechmaticsCredentialDto
-    | Vapi.CreateTrieveCredentialDto
-    | Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto
-    | Vapi.CreateGoogleCalendarOAuth2AuthorizationCredentialDto
-    | Vapi.CreateGoogleSheetsOAuth2AuthorizationCredentialDto
-    | Vapi.CreateSlackOAuth2AuthorizationCredentialDto
-    | Vapi.CreateGoHighLevelMcpCredentialDto
-    | Vapi.CreateInworldCredentialDto
-    | Vapi.CreateMinimaxCredentialDto
-    | Vapi.CreateWellSaidCredentialDto;
+    | Vapi.UpdateAssistantDtoCredentialsItem._11Labs
+    | Vapi.UpdateAssistantDtoCredentialsItem.Anthropic
+    | Vapi.UpdateAssistantDtoCredentialsItem.AnthropicBedrock
+    | Vapi.UpdateAssistantDtoCredentialsItem.Anyscale
+    | Vapi.UpdateAssistantDtoCredentialsItem.AssemblyAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.AzureOpenai
+    | Vapi.UpdateAssistantDtoCredentialsItem.Azure
+    | Vapi.UpdateAssistantDtoCredentialsItem.ByoSipTrunk
+    | Vapi.UpdateAssistantDtoCredentialsItem.Cartesia
+    | Vapi.UpdateAssistantDtoCredentialsItem.Cerebras
+    | Vapi.UpdateAssistantDtoCredentialsItem.Cloudflare
+    | Vapi.UpdateAssistantDtoCredentialsItem.CustomLlm
+    | Vapi.UpdateAssistantDtoCredentialsItem.Deepgram
+    | Vapi.UpdateAssistantDtoCredentialsItem.Deepinfra
+    | Vapi.UpdateAssistantDtoCredentialsItem.DeepSeek
+    | Vapi.UpdateAssistantDtoCredentialsItem.Gcp
+    | Vapi.UpdateAssistantDtoCredentialsItem.Gladia
+    | Vapi.UpdateAssistantDtoCredentialsItem.Gohighlevel
+    | Vapi.UpdateAssistantDtoCredentialsItem.Google
+    | Vapi.UpdateAssistantDtoCredentialsItem.Groq
+    | Vapi.UpdateAssistantDtoCredentialsItem.InflectionAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.Langfuse
+    | Vapi.UpdateAssistantDtoCredentialsItem.Lmnt
+    | Vapi.UpdateAssistantDtoCredentialsItem.Make
+    | Vapi.UpdateAssistantDtoCredentialsItem.Openai
+    | Vapi.UpdateAssistantDtoCredentialsItem.Openrouter
+    | Vapi.UpdateAssistantDtoCredentialsItem.PerplexityAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.Playht
+    | Vapi.UpdateAssistantDtoCredentialsItem.RimeAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.Runpod
+    | Vapi.UpdateAssistantDtoCredentialsItem.S3
+    | Vapi.UpdateAssistantDtoCredentialsItem.Supabase
+    | Vapi.UpdateAssistantDtoCredentialsItem.SmallestAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.Tavus
+    | Vapi.UpdateAssistantDtoCredentialsItem.TogetherAi
+    | Vapi.UpdateAssistantDtoCredentialsItem.Twilio
+    | Vapi.UpdateAssistantDtoCredentialsItem.Vonage
+    | Vapi.UpdateAssistantDtoCredentialsItem.Webhook
+    | Vapi.UpdateAssistantDtoCredentialsItem.CustomCredential
+    | Vapi.UpdateAssistantDtoCredentialsItem.Xai
+    | Vapi.UpdateAssistantDtoCredentialsItem.Neuphonic
+    | Vapi.UpdateAssistantDtoCredentialsItem.Hume
+    | Vapi.UpdateAssistantDtoCredentialsItem.Mistral
+    | Vapi.UpdateAssistantDtoCredentialsItem.Speechmatics
+    | Vapi.UpdateAssistantDtoCredentialsItem.Soniox
+    | Vapi.UpdateAssistantDtoCredentialsItem.Trieve
+    | Vapi.UpdateAssistantDtoCredentialsItem.GoogleCalendarOauth2Client
+    | Vapi.UpdateAssistantDtoCredentialsItem.GoogleCalendarOauth2Authorization
+    | Vapi.UpdateAssistantDtoCredentialsItem.GoogleSheetsOauth2Authorization
+    | Vapi.UpdateAssistantDtoCredentialsItem.SlackOauth2Authorization
+    | Vapi.UpdateAssistantDtoCredentialsItem.GhlOauth2Authorization
+    | Vapi.UpdateAssistantDtoCredentialsItem.Inworld
+    | Vapi.UpdateAssistantDtoCredentialsItem.Minimax
+    | Vapi.UpdateAssistantDtoCredentialsItem.Wellsaid
+    | Vapi.UpdateAssistantDtoCredentialsItem.Email
+    | Vapi.UpdateAssistantDtoCredentialsItem.SlackWebhook;
+
+export namespace UpdateAssistantDtoCredentialsItem {
+    export interface _11Labs extends Vapi.CreateElevenLabsCredentialDto {
+        provider: "11labs";
+    }
+
+    export interface Anthropic extends Vapi.CreateAnthropicCredentialDto {
+        provider: "anthropic";
+    }
+
+    export interface AnthropicBedrock extends Vapi.CreateAnthropicBedrockCredentialDto {
+        provider: "anthropic-bedrock";
+    }
+
+    export interface Anyscale extends Vapi.CreateAnyscaleCredentialDto {
+        provider: "anyscale";
+    }
+
+    export interface AssemblyAi extends Vapi.CreateAssemblyAiCredentialDto {
+        provider: "assembly-ai";
+    }
+
+    export interface AzureOpenai extends Vapi.CreateAzureOpenAiCredentialDto {
+        provider: "azure-openai";
+    }
+
+    export interface Azure extends Vapi.CreateAzureCredentialDto {
+        provider: "azure";
+    }
+
+    export interface ByoSipTrunk extends Vapi.CreateByoSipTrunkCredentialDto {
+        provider: "byo-sip-trunk";
+    }
+
+    export interface Cartesia extends Vapi.CreateCartesiaCredentialDto {
+        provider: "cartesia";
+    }
+
+    export interface Cerebras extends Vapi.CreateCerebrasCredentialDto {
+        provider: "cerebras";
+    }
+
+    export interface Cloudflare extends Vapi.CreateCloudflareCredentialDto {
+        provider: "cloudflare";
+    }
+
+    export interface CustomLlm extends Vapi.CreateCustomLlmCredentialDto {
+        provider: "custom-llm";
+    }
+
+    export interface Deepgram extends Vapi.CreateDeepgramCredentialDto {
+        provider: "deepgram";
+    }
+
+    export interface Deepinfra extends Vapi.CreateDeepInfraCredentialDto {
+        provider: "deepinfra";
+    }
+
+    export interface DeepSeek extends Vapi.CreateDeepSeekCredentialDto {
+        provider: "deep-seek";
+    }
+
+    export interface Gcp extends Vapi.CreateGcpCredentialDto {
+        provider: "gcp";
+    }
+
+    export interface Gladia extends Vapi.CreateGladiaCredentialDto {
+        provider: "gladia";
+    }
+
+    export interface Gohighlevel extends Vapi.CreateGoHighLevelCredentialDto {
+        provider: "gohighlevel";
+    }
+
+    export interface Google extends Vapi.CreateGoogleCredentialDto {
+        provider: "google";
+    }
+
+    export interface Groq extends Vapi.CreateGroqCredentialDto {
+        provider: "groq";
+    }
+
+    export interface InflectionAi extends Vapi.CreateInflectionAiCredentialDto {
+        provider: "inflection-ai";
+    }
+
+    export interface Langfuse extends Vapi.CreateLangfuseCredentialDto {
+        provider: "langfuse";
+    }
+
+    export interface Lmnt extends Vapi.CreateLmntCredentialDto {
+        provider: "lmnt";
+    }
+
+    export interface Make extends Vapi.CreateMakeCredentialDto {
+        provider: "make";
+    }
+
+    export interface Openai extends Vapi.CreateOpenAiCredentialDto {
+        provider: "openai";
+    }
+
+    export interface Openrouter extends Vapi.CreateOpenRouterCredentialDto {
+        provider: "openrouter";
+    }
+
+    export interface PerplexityAi extends Vapi.CreatePerplexityAiCredentialDto {
+        provider: "perplexity-ai";
+    }
+
+    export interface Playht extends Vapi.CreatePlayHtCredentialDto {
+        provider: "playht";
+    }
+
+    export interface RimeAi extends Vapi.CreateRimeAiCredentialDto {
+        provider: "rime-ai";
+    }
+
+    export interface Runpod extends Vapi.CreateRunpodCredentialDto {
+        provider: "runpod";
+    }
+
+    export interface S3 extends Vapi.CreateS3CredentialDto {
+        provider: "s3";
+    }
+
+    export interface Supabase extends Vapi.CreateSupabaseCredentialDto {
+        provider: "supabase";
+    }
+
+    export interface SmallestAi extends Vapi.CreateSmallestAiCredentialDto {
+        provider: "smallest-ai";
+    }
+
+    export interface Tavus extends Vapi.CreateTavusCredentialDto {
+        provider: "tavus";
+    }
+
+    export interface TogetherAi extends Vapi.CreateTogetherAiCredentialDto {
+        provider: "together-ai";
+    }
+
+    export interface Twilio extends Vapi.CreateTwilioCredentialDto {
+        provider: "twilio";
+    }
+
+    export interface Vonage extends Vapi.CreateVonageCredentialDto {
+        provider: "vonage";
+    }
+
+    export interface Webhook extends Vapi.CreateWebhookCredentialDto {
+        provider: "webhook";
+    }
+
+    export interface CustomCredential extends Vapi.CreateCustomCredentialDto {
+        provider: "custom-credential";
+    }
+
+    export interface Xai extends Vapi.CreateXAiCredentialDto {
+        provider: "xai";
+    }
+
+    export interface Neuphonic extends Vapi.CreateNeuphonicCredentialDto {
+        provider: "neuphonic";
+    }
+
+    export interface Hume extends Vapi.CreateHumeCredentialDto {
+        provider: "hume";
+    }
+
+    export interface Mistral extends Vapi.CreateMistralCredentialDto {
+        provider: "mistral";
+    }
+
+    export interface Speechmatics extends Vapi.CreateSpeechmaticsCredentialDto {
+        provider: "speechmatics";
+    }
+
+    export interface Soniox extends Vapi.CreateSonioxCredentialDto {
+        provider: "soniox";
+    }
+
+    export interface Trieve extends Vapi.CreateTrieveCredentialDto {
+        provider: "trieve";
+    }
+
+    export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
+        provider: "google.calendar.oauth2-client";
+    }
+
+    export interface GoogleCalendarOauth2Authorization
+        extends Vapi.CreateGoogleCalendarOAuth2AuthorizationCredentialDto {
+        provider: "google.calendar.oauth2-authorization";
+    }
+
+    export interface GoogleSheetsOauth2Authorization extends Vapi.CreateGoogleSheetsOAuth2AuthorizationCredentialDto {
+        provider: "google.sheets.oauth2-authorization";
+    }
+
+    export interface SlackOauth2Authorization extends Vapi.CreateSlackOAuth2AuthorizationCredentialDto {
+        provider: "slack.oauth2-authorization";
+    }
+
+    export interface GhlOauth2Authorization extends Vapi.CreateGoHighLevelMcpCredentialDto {
+        provider: "ghl.oauth2-authorization";
+    }
+
+    export interface Inworld extends Vapi.CreateInworldCredentialDto {
+        provider: "inworld";
+    }
+
+    export interface Minimax extends Vapi.CreateMinimaxCredentialDto {
+        provider: "minimax";
+    }
+
+    export interface Wellsaid extends Vapi.CreateWellSaidCredentialDto {
+        provider: "wellsaid";
+    }
+
+    export interface Email extends Vapi.CreateEmailCredentialDto {
+        provider: "email";
+    }
+
+    export interface SlackWebhook extends Vapi.CreateSlackWebhookCredentialDto {
+        provider: "slack-webhook";
+    }
+}

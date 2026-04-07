@@ -8,7 +8,7 @@ export interface UpdateGhlToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateGhlToolDtoMessagesItem[];
+    messages?: Vapi.UpdateGhlToolDtoMessagesItem[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -89,6 +89,6 @@ export interface UpdateGhlToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
-    metadata?: Vapi.GhlToolMetadata;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
+    metadata?: Vapi.GhlToolMetadata | undefined;
 }

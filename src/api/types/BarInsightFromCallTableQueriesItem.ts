@@ -5,4 +5,5 @@ import type * as Vapi from "../index.js";
 export type BarInsightFromCallTableQueriesItem =
     | Vapi.JsonQueryOnCallTableWithStringTypeColumn
     | Vapi.JsonQueryOnCallTableWithNumberTypeColumn
-    | Vapi.JsonQueryOnCallTableWithStructuredOutputColumn;
+    | Vapi.JsonQueryOnCallTableWithStructuredOutputColumn
+    | Vapi.JsonQueryOnEventsTable;

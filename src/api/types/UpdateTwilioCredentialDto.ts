@@ -2,12 +2,12 @@
 
 export interface UpdateTwilioCredentialDto {
     /** This is not returned in the API. */
-    authToken?: string;
+    authToken?: string | undefined;
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is not returned in the API. */
-    apiSecret?: string;
+    apiSecret?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
-    accountSid?: string;
+    name?: string | undefined;
+    accountSid?: string | undefined;
 }

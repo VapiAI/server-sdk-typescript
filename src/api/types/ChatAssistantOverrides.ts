@@ -2,5 +2,5 @@
 
 export interface ChatAssistantOverrides {
     /** Variable values for template substitution */
-    variableValues?: Record<string, unknown>;
+    variableValues?: Record<string, unknown> | undefined;
 }

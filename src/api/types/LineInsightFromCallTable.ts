@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface LineInsightFromCallTable {
     /** This is the name of the Insight. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the type of the Insight.
      * It is required to be `line` to create a line insight.
@@ -27,16 +27,16 @@ export interface LineInsightFromCallTable {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formulas?: Vapi.InsightFormula[];
+    formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
-    metadata?: Vapi.LineInsightMetadata;
-    timeRange?: Vapi.InsightTimeRangeWithStep;
+    metadata?: Vapi.LineInsightMetadata | undefined;
+    timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
      * These are the columns to group the results by.
      * All results are grouped by the time range step by default.
      */
-    groupBy?: Vapi.LineInsightFromCallTableGroupBy;
+    groupBy?: Vapi.LineInsightFromCallTableGroupBy | undefined;
     /** These are the queries to run to generate the insight. */
     queries: Vapi.LineInsightFromCallTableQueriesItem[];
 }

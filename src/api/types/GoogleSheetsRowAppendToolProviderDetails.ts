@@ -4,8 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface GoogleSheetsRowAppendToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "google.sheets.row.append" for Google Sheets tool. */
-    type: Vapi.GoogleSheetsRowAppendToolProviderDetailsType;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
 }

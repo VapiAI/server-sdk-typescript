@@ -8,8 +8,7 @@ export interface CreateTextEditorToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateTextEditorToolDtoMessagesItem[];
-    type: "textEditor";
+    messages?: Vapi.CreateTextEditorToolDtoMessagesItem[] | undefined;
     /** The sub type of tool. */
     subType: Vapi.CreateTextEditorToolDtoSubType;
     /**
@@ -22,7 +21,7 @@ export interface CreateTextEditorToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** The name of the tool, fixed to 'str_replace_editor' */
     name: Vapi.CreateTextEditorToolDtoName;
     /**
@@ -105,5 +104,5 @@ export interface CreateTextEditorToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

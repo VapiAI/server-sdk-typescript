@@ -5,4 +5,10 @@ import type * as Vapi from "../index.js";
 /**
  * This is the provider-specific ID that will be used.
  */
-export type FallbackRimeAiVoiceId = Vapi.FallbackRimeAiVoiceIdEnum | string;
+export type FallbackRimeAiVoiceId =
+    /**
+     * Popular Rime AI voices across mist, mistv2, and arcana models. Any valid Rime AI voice ID is accepted, not just these suggestions. */
+    | Vapi.FallbackRimeAiVoiceIdEnum
+    /**
+     * Any valid Rime AI voice ID. See https://docs.rime.ai/docs/voices for the full catalog. */
+    | string;

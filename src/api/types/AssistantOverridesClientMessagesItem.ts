@@ -2,6 +2,7 @@
 
 export const AssistantOverridesClientMessagesItem = {
     ConversationUpdate: "conversation-update",
+    AssistantSpeechStarted: "assistant.speechStarted",
     FunctionCall: "function-call",
     FunctionCallResult: "function-call-result",
     Hang: "hang",

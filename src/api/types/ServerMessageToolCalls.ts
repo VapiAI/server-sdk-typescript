@@ -4,27 +4,27 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageToolCalls {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageToolCallsPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageToolCallsPhoneNumber | undefined;
     /** This is the type of the message. "tool-calls" is sent to call a tool. */
-    type?: Vapi.ServerMessageToolCallsType;
+    type?: Vapi.ServerMessageToolCallsType | undefined;
     /** This is the list of tools calls that the model is requesting along with the original tool configuration. */
     toolWithToolCallList: Vapi.ServerMessageToolCallsToolWithToolCallListItem[];
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the list of tool calls that the model is requesting. */
     toolCallList: Vapi.ToolCall[];
 }

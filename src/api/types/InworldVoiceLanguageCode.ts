@@ -13,5 +13,9 @@ export const InworldVoiceLanguageCode = {
     It: "it",
     Pl: "pl",
     Pt: "pt",
+    Ru: "ru",
+    Hi: "hi",
+    He: "he",
+    Ar: "ar",
 } as const;
 export type InworldVoiceLanguageCode = (typeof InworldVoiceLanguageCode)[keyof typeof InworldVoiceLanguageCode];

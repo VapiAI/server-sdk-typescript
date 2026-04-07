@@ -4,17 +4,17 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageToolCallsResult {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageToolCallsResultPhoneNumber;
+    phoneNumber?: Vapi.ClientMessageToolCallsResultPhoneNumber | undefined;
     /** This is the type of the message. "tool-calls-result" is sent to forward the result of a tool call to the client. */
     type: Vapi.ClientMessageToolCallsResultType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the result of the tool call. */
     toolCallResult: Record<string, unknown>;
 }

@@ -24,7 +24,7 @@ export interface TransferAssistantModel {
      *
      * **Add Context:** You can provide additional messages (user, assistant, etc.) to add context while keeping the default system message, or combine them with your custom system message.
      */
-    messages?: unknown[];
+    messages?: unknown[] | undefined;
     /**
      * Tools available to the transfer assistant during warm-transfer-experimental.
      *
@@ -38,5 +38,5 @@ export interface TransferAssistantModel {
      *
      * **Additional Tools:** You can also provide other tools, but the two transfer tools will always be present and available to the assistant.
      */
-    tools?: unknown[];
+    tools?: unknown[] | undefined;
 }

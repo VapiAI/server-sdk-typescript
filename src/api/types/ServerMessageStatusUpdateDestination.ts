@@ -5,4 +5,16 @@ import type * as Vapi from "../index.js";
 /**
  * This is the destination the call is being transferred to. This is only sent if the status is "forwarding".
  */
-export type ServerMessageStatusUpdateDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
+export type ServerMessageStatusUpdateDestination =
+    | Vapi.ServerMessageStatusUpdateDestination.Number
+    | Vapi.ServerMessageStatusUpdateDestination.Sip;
+
+export namespace ServerMessageStatusUpdateDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

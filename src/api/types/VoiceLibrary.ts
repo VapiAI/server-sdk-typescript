@@ -4,31 +4,33 @@ import type * as Vapi from "../index.js";
 
 export interface VoiceLibrary {
     /** This is the voice provider that will be used. */
-    provider?: Record<string, unknown>;
+    provider?: Record<string, unknown> | undefined;
     /** The ID of the voice provided by the provider. */
-    providerId?: string;
+    providerId?: string | undefined;
     /** The unique slug of the voice. */
-    slug?: string;
+    slug?: string | undefined;
     /** The name of the voice. */
-    name?: string;
+    name?: string | undefined;
     /** The language of the voice. */
-    language?: string;
+    language?: string | undefined;
     /** The language code of the voice. */
-    languageCode?: string;
+    languageCode?: string | undefined;
     /** The model of the voice. */
-    model?: string;
+    model?: string | undefined;
     /** The supported models of the voice. */
-    supportedModels?: string;
+    supportedModels?: string | undefined;
     /** The gender of the voice. */
-    gender?: Vapi.VoiceLibraryGender;
+    gender?: Vapi.VoiceLibraryGender | undefined;
     /** The accent of the voice. */
-    accent?: string;
+    accent?: string | undefined;
     /** The preview URL of the voice. */
-    previewUrl?: string;
+    previewUrl?: string | undefined;
+    /** The sort order of the voice for display purposes. Lower values appear first. */
+    sortOrder?: number | undefined;
     /** The description of the voice. */
-    description?: string;
+    description?: string | undefined;
     /** The credential ID of the voice. */
-    credentialId?: string;
+    credentialId?: string | undefined;
     /** The unique identifier for the voice library. */
     id: string;
     /** The unique identifier for the organization that this voice library belongs to. */

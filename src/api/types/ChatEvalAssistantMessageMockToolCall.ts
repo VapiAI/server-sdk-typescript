@@ -7,5 +7,5 @@ export interface ChatEvalAssistantMessageMockToolCall {
      */
     name: string;
     /** This is the arguments that will be passed to the tool call. */
-    arguments?: Record<string, unknown>;
+    arguments?: Record<string, unknown> | undefined;
 }

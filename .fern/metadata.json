@@ -1,7 +1,7 @@
 {
-    "cliVersion": "1.2.0",
+    "cliVersion": "4.62.4",
     "generatorName": "fernapi/fern-typescript-sdk",
-    "generatorVersion": "3.32.0",
+    "generatorVersion": "3.60.8",
     "generatorConfig": {
         "namespaceExport": "Vapi",
         "allowCustomFetcher": true,
@@ -10,5 +10,7 @@
         "noSerdeLayer": true,
         "omitUndefined": true,
         "enableInlineTypes": false
-    }
+    },
+    "originGitCommit": "92fac1b8aa67e18ff518bde436e44b1277aaefbe",
+    "sdkVersion": "1.0.0"
 }

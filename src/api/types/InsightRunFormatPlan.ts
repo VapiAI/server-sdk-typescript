@@ -9,5 +9,5 @@ export interface InsightRunFormatPlan {
      * Raw provides the data as fetched from the database, with formulas evaluated.
      * Recharts provides the data in a format that can is ready to be used by recharts.js to render charts.
      */
-    format?: Vapi.InsightRunFormatPlanFormat;
+    format?: Vapi.InsightRunFormatPlanFormat | undefined;
 }

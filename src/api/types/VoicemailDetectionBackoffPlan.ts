@@ -2,9 +2,9 @@
 
 export interface VoicemailDetectionBackoffPlan {
     /** This is the number of seconds to wait before starting the first retry attempt. */
-    startAtSeconds?: number;
+    startAtSeconds?: number | undefined;
     /** This is the interval in seconds between retry attempts. */
-    frequencySeconds?: number;
+    frequencySeconds?: number | undefined;
     /** This is the maximum number of retry attempts before giving up. */
-    maxRetries?: number;
+    maxRetries?: number | undefined;
 }

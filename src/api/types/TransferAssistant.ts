@@ -4,25 +4,25 @@ import type * as Vapi from "../index.js";
 
 export interface TransferAssistant {
     /** Optional name for the transfer assistant */
-    name?: string;
+    name?: string | undefined;
     /** Model configuration for the transfer assistant */
     model: Vapi.TransferAssistantModel;
     /** These are the options for the transfer assistant's voice. */
-    voice?: Vapi.TransferAssistantVoice;
+    voice?: Vapi.TransferAssistantVoice | undefined;
     /** These are the options for the transfer assistant's transcriber. */
-    transcriber?: Vapi.TransferAssistantTranscriber;
+    transcriber?: Vapi.TransferAssistantTranscriber | undefined;
     /**
      * This is the first message that the transfer assistant will say.
      * This can also be a URL to a custom audio file.
      *
      * If unspecified, assistant will wait for user to speak and use the model to respond once they speak.
      */
-    firstMessage?: string;
+    firstMessage?: string | undefined;
     /**
      * This is the background sound in the transfer assistant call. Default for phone calls is 'office' and default for web calls is 'off'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
-    backgroundSound?: Vapi.TransferAssistantBackgroundSound;
+    backgroundSound?: Vapi.TransferAssistantBackgroundSound | undefined;
     /**
      * This is the plan for when the transfer assistant should start talking.
      *
@@ -30,7 +30,7 @@ export interface TransferAssistant {
      *
      * If this is not set, the transfer assistant will inherit the start speaking plan from the base assistant.
      */
-    startSpeakingPlan?: Vapi.StartSpeakingPlan;
+    startSpeakingPlan?: Vapi.StartSpeakingPlan | undefined;
     /**
      * This is the mode for the first message. Default is 'assistant-speaks-first'.
      *
@@ -41,17 +41,31 @@ export interface TransferAssistant {
      *
      * @default 'assistant-speaks-first'
      */
-    firstMessageMode?: Vapi.TransferAssistantFirstMessageMode;
+    firstMessageMode?: Vapi.TransferAssistantFirstMessageMode | undefined;
     /**
      * This is the maximum duration in seconds for the transfer assistant conversation.
      * After this time, the transfer will be cancelled automatically.
      * @default 120
      */
-    maxDurationSeconds?: number;
+    maxDurationSeconds?: number | undefined;
+    /**
+     * This enables filtering of noise and background speech while the user is talking.
+     *
+     * Features:
+     * - Smart denoising using Krisp
+     * - Fourier denoising
+     *
+     * Smart denoising can be combined with or used independently of Fourier denoising.
+     *
+     * Order of precedence:
+     * - Smart denoising
+     * - Fourier denoising
+     */
+    backgroundSpeechDenoisingPlan?: Vapi.BackgroundSpeechDenoisingPlan | undefined;
     /**
      * This is the number of seconds of silence to wait before ending the call. Defaults to 30.
      *
      * @default 30
      */
-    silenceTimeoutSeconds?: number;
+    silenceTimeoutSeconds?: number | undefined;
 }

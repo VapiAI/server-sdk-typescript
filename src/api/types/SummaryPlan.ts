@@ -24,7 +24,7 @@ export interface SummaryPlan {
      * - {{messages}}: The messages of the call from `assistant.model.messages`
      * - {{endedReason}}: The ended reason of the call from `call.endedReason`
      */
-    messages?: Record<string, unknown>[];
+    messages?: Record<string, unknown>[] | undefined;
     /**
      * This determines whether a summary is generated and stored in `call.analysis.summary`. Defaults to true.
      *
@@ -33,7 +33,7 @@ export interface SummaryPlan {
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is how long the request is tried before giving up. When request times out, `call.analysis.summary` will be empty.
      *
@@ -42,5 +42,5 @@ export interface SummaryPlan {
      *
      * @default 5 seconds
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
 }

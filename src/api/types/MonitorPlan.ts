@@ -8,7 +8,7 @@ export interface MonitorPlan {
      *
      * @default true
      */
-    listenEnabled?: boolean;
+    listenEnabled?: boolean | undefined;
     /**
      * This enables authentication on the `call.monitor.listenUrl`.
      *
@@ -16,7 +16,7 @@ export interface MonitorPlan {
      *
      * @default false
      */
-    listenAuthenticationEnabled?: boolean;
+    listenAuthenticationEnabled?: boolean | undefined;
     /**
      * This determines whether the assistant's calls allow live control. Defaults to true.
      *
@@ -26,7 +26,7 @@ export interface MonitorPlan {
      *
      * @default true
      */
-    controlEnabled?: boolean;
+    controlEnabled?: boolean | undefined;
     /**
      * This enables authentication on the `call.monitor.controlUrl`.
      *
@@ -34,5 +34,13 @@ export interface MonitorPlan {
      *
      * @default false
      */
-    controlAuthenticationEnabled?: boolean;
+    controlAuthenticationEnabled?: boolean | undefined;
+    /**
+     * This the set of monitor ids that are attached to the assistant.
+     * The source of truth for the monitor ids is the assistant_monitor join table.
+     * This field can be used for transient assistants and to update assistants with new monitor ids.
+     *
+     * @default []
+     */
+    monitorIds?: string[] | undefined;
 }

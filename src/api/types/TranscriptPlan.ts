@@ -6,7 +6,7 @@ export interface TranscriptPlan {
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the name of the assistant in the transcript. Defaults to 'AI'.
      *
@@ -21,7 +21,7 @@ export interface TranscriptPlan {
      *
      * @default 'AI'
      */
-    assistantName?: string;
+    assistantName?: string | undefined;
     /**
      * This is the name of the user in the transcript. Defaults to 'User'.
      *
@@ -36,5 +36,5 @@ export interface TranscriptPlan {
      *
      * @default 'User'
      */
-    userName?: string;
+    userName?: string | undefined;
 }

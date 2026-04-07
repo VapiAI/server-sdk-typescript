@@ -7,25 +7,25 @@ export interface GoogleRealtimeConfig {
      * This is the nucleus sampling parameter that controls the cumulative probability of tokens considered during text generation.
      * Only applicable with the Gemini Flash 2.0 Multimodal Live API.
      */
-    topP?: number;
+    topP?: number | undefined;
     /**
      * This is the top-k sampling parameter that limits the number of highest probability tokens considered during text generation.
      * Only applicable with the Gemini Flash 2.0 Multimodal Live API.
      */
-    topK?: number;
+    topK?: number | undefined;
     /**
      * This is the presence penalty parameter that influences the model's likelihood to repeat information by penalizing tokens based on their presence in the text.
      * Only applicable with the Gemini Flash 2.0 Multimodal Live API.
      */
-    presencePenalty?: number;
+    presencePenalty?: number | undefined;
     /**
      * This is the frequency penalty parameter that influences the model's likelihood to repeat tokens by penalizing them based on their frequency in the text.
      * Only applicable with the Gemini Flash 2.0 Multimodal Live API.
      */
-    frequencyPenalty?: number;
+    frequencyPenalty?: number | undefined;
     /**
      * This is the speech configuration object that defines the voice settings to be used for the model's speech output.
      * Only applicable with the Gemini Flash 2.0 Multimodal Live API.
      */
-    speechConfig?: Vapi.GeminiMultimodalLiveSpeechConfig;
+    speechConfig?: Vapi.GeminiMultimodalLiveSpeechConfig | undefined;
 }

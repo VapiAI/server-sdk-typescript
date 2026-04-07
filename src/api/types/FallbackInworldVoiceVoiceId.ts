@@ -2,7 +2,7 @@
 
 /**
  * Available voices by language:
- * • en: Alex, Ashley, Craig, Deborah, Dennis, Edward, Elizabeth, Hades, Julia, Pixie, Mark, Olivia, Priya, Ronald, Sarah, Shaun, Theodore, Timothy, Wendy, Dominus
+ * • en: Alex, Ashley, Craig, Deborah, Dennis, Edward, Elizabeth, Hades, Julia, Pixie, Mark, Olivia, Priya, Ronald, Sarah, Shaun, Theodore, Timothy, Wendy, Dominus, Hana, Clive, Carter, Blake, Luna
  * • zh: Yichen, Xiaoyin, Xinyi, Jing
  * • nl: Erik, Katrien, Lennart, Lore
  * • fr: Alain, Hélène, Mathieu, Étienne
@@ -13,6 +13,10 @@
  * • pl: Szymon, Wojciech
  * • pt: Heitor, Maitê
  * • es: Diego, Lupita, Miguel, Rafael
+ * • ru: Svetlana, Elena, Dmitry, Nikolai
+ * • hi: Riya, Manoj
+ * • he: Yael, Oren
+ * • ar: Nour, Omar
  */
 export const FallbackInworldVoiceVoiceId = {
     Alex: "Alex",
@@ -35,6 +39,11 @@ export const FallbackInworldVoiceVoiceId = {
     Timothy: "Timothy",
     Wendy: "Wendy",
     Dominus: "Dominus",
+    Hana: "Hana",
+    Clive: "Clive",
+    Carter: "Carter",
+    Blake: "Blake",
+    Luna: "Luna",
     Yichen: "Yichen",
     Xiaoyin: "Xiaoyin",
     Xinyi: "Xinyi",
@@ -65,6 +74,16 @@ export const FallbackInworldVoiceVoiceId = {
     Lupita: "Lupita",
     Miguel: "Miguel",
     Rafael: "Rafael",
+    Svetlana: "Svetlana",
+    Elena: "Elena",
+    Dmitry: "Dmitry",
+    Nikolai: "Nikolai",
+    Riya: "Riya",
+    Manoj: "Manoj",
+    Yael: "Yael",
+    Oren: "Oren",
+    Nour: "Nour",
+    Omar: "Omar",
 } as const;
 export type FallbackInworldVoiceVoiceId =
     (typeof FallbackInworldVoiceVoiceId)[keyof typeof FallbackInworldVoiceVoiceId];

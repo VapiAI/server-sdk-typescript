@@ -11,7 +11,801 @@ describe("SquadsClient", () => {
         const rawResponseBody = [
             {
                 name: "name",
-                members: [{}],
+                members: [
+                    {
+                        assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
+                        assistant: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                            credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [{ type: "request-start", blocking: false }],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: { key: "value" },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: { position: -1 },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "。",
+                                                            "，",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "،",
+                                                            "۔",
+                                                            "।",
+                                                            "॥",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: { enabled: true },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        name: "name",
+                                        schema: { type: "string" },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: { provider: "vapi" },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        assistantOverrides: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                            credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [{ type: "request-start", blocking: false }],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: { key: "value" },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: { position: -1 },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            "tools:append": [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "。",
+                                                            "，",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "،",
+                                                            "۔",
+                                                            "।",
+                                                            "॥",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: { enabled: true },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        name: "name",
+                                        schema: { type: "string" },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: { provider: "vapi" },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                    },
+                ],
                 membersOverrides: {
                     transcriber: {
                         provider: "assembly-ai",
@@ -35,12 +829,114 @@ describe("SquadsClient", () => {
                             ],
                         },
                     },
-                    model: { model: "claude-3-opus-20240229", provider: "anthropic" },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
-                        fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
                     },
                     firstMessage: "Hello! How can I help you today?",
                     firstMessageInterruptionsEnabled: true,
@@ -80,10 +976,48 @@ describe("SquadsClient", () => {
                     transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
                     credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                    hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
                     "tools:append": [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -99,6 +1033,15 @@ describe("SquadsClient", () => {
                                     { key: "value" },
                                 ],
                             },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
+                                ],
+                            },
                         },
                     ],
                     variableValues: { key: "value" },
@@ -108,21 +1051,78 @@ describe("SquadsClient", () => {
                     endCallPhrases: ["endCallPhrases"],
                     compliancePlan: {
                         recordingConsentPlan: {
+                            type: "stay-on-line",
                             message:
                                 "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                             voice: {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
                                 fallbackPlan: {
-                                    voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }],
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
                                 },
                             },
-                            type: "stay-on-line",
                             waitSeconds: 3,
                         },
                     },
                     metadata: { key: "value" },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
                     artifactPlan: {
                         recordingEnabled: true,
                         recordingUseCustomStorageEnabled: true,
@@ -133,8 +1133,24 @@ describe("SquadsClient", () => {
                         pcapUseCustomStorageEnabled: true,
                         loggingEnabled: true,
                         loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: { enabled: true },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                name: "name",
+                                schema: { type: "string" },
+                            },
+                        ],
                     },
-                    startSpeakingPlan: { waitSeconds: 0.4 },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: { provider: "vapi" },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
                     stopSpeakingPlan: {
                         numWords: 0,
                         voiceSeconds: 0.2,
@@ -191,6 +1207,7 @@ describe("SquadsClient", () => {
                         listenAuthenticationEnabled: false,
                         controlEnabled: false,
                         controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                     },
                     credentialIds: ["credentialIds"],
                     server: {
@@ -216,13 +1233,1000 @@ describe("SquadsClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         ];
+
         server.mockEndpoint().get("/squad").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.squads.list();
         expect(response).toEqual([
             {
                 name: "name",
-                members: [{}],
+                members: [
+                    {
+                        assistantDestinations: [
+                            {
+                                type: "assistant",
+                                assistantName: "assistantName",
+                            },
+                        ],
+                        assistant: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [
+                                {
+                                    provider: "twilio",
+                                    timeout: 60,
+                                    record: false,
+                                },
+                            ],
+                            credentials: [
+                                {
+                                    provider: "11labs",
+                                    apiKey: "apiKey",
+                                },
+                            ],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [
+                                                    {
+                                                        type: "request-start",
+                                                        blocking: false,
+                                                    },
+                                                ],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: {
+                                                        key: "value",
+                                                    },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: {
+                                                                position: -1,
+                                                            },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "\u3002",
+                                                            "\uFF0C",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "\u060C",
+                                                            "\u06D4",
+                                                            "\u0964",
+                                                            "\u0965",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: {
+                                                            enabled: true,
+                                                            numberToDigitsCutoff: 2025,
+                                                        },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: {
+                                    enabled: true,
+                                },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: {
+                                            forceStoreOnHipaaEnabled: false,
+                                        },
+                                        name: "name",
+                                        schema: {
+                                            type: "string",
+                                        },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: {
+                                    provider: "vapi",
+                                },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        assistantOverrides: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [
+                                {
+                                    provider: "twilio",
+                                    timeout: 60,
+                                    record: false,
+                                },
+                            ],
+                            credentials: [
+                                {
+                                    provider: "11labs",
+                                    apiKey: "apiKey",
+                                },
+                            ],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [
+                                                    {
+                                                        type: "request-start",
+                                                        blocking: false,
+                                                    },
+                                                ],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: {
+                                                        key: "value",
+                                                    },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: {
+                                                                position: -1,
+                                                            },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            "tools:append": [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "\u3002",
+                                                            "\uFF0C",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "\u060C",
+                                                            "\u06D4",
+                                                            "\u0964",
+                                                            "\u0965",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: {
+                                                            enabled: true,
+                                                            numberToDigitsCutoff: 2025,
+                                                        },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: {
+                                    enabled: true,
+                                },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: {
+                                            forceStoreOnHipaaEnabled: false,
+                                        },
+                                        name: "name",
+                                        schema: {
+                                            type: "string",
+                                        },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: {
+                                    provider: "vapi",
+                                },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    },
+                ],
                 membersOverrides: {
                     transcriber: {
                         provider: "assembly-ai",
@@ -247,19 +2251,143 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: {
-                        model: "claude-3-opus-20240229",
                         provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
                     },
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
                         fallbackPlan: {
                             voices: [
                                 {
-                                    cachingEnabled: true,
                                     provider: "azure",
+                                    cachingEnabled: true,
                                     voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
                                 },
                             ],
                         },
@@ -322,6 +2450,51 @@ describe("SquadsClient", () => {
                             do: [
                                 {
                                     type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
                                 },
                             ],
                         },
@@ -329,6 +2502,12 @@ describe("SquadsClient", () => {
                     "tools:append": [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -354,6 +2533,17 @@ describe("SquadsClient", () => {
                                     },
                                 ],
                             },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
+                                    },
+                                ],
+                            },
                         },
                     ],
                     variableValues: {
@@ -365,28 +2555,85 @@ describe("SquadsClient", () => {
                     endCallPhrases: ["endCallPhrases"],
                     compliancePlan: {
                         recordingConsentPlan: {
+                            type: "stay-on-line",
                             message:
                                 "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                             voice: {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                                 fallbackPlan: {
                                     voices: [
                                         {
-                                            cachingEnabled: true,
                                             provider: "azure",
+                                            cachingEnabled: true,
                                             voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
                                         },
                                     ],
                                 },
                             },
-                            type: "stay-on-line",
                             waitSeconds: 3,
                         },
                     },
                     metadata: {
                         key: "value",
+                    },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
                     },
                     artifactPlan: {
                         recordingEnabled: true,
@@ -398,9 +2645,31 @@ describe("SquadsClient", () => {
                         pcapUseCustomStorageEnabled: true,
                         loggingEnabled: true,
                         loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: {
+                            enabled: true,
+                        },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: {
+                                    forceStoreOnHipaaEnabled: false,
+                                },
+                                name: "name",
+                                schema: {
+                                    type: "string",
+                                },
+                            },
+                        ],
                     },
                     startSpeakingPlan: {
                         waitSeconds: 0.4,
+                        smartEndpointingPlan: {
+                            provider: "vapi",
+                        },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
                     },
                     stopSpeakingPlan: {
                         numWords: 0,
@@ -458,6 +2727,7 @@ describe("SquadsClient", () => {
                         listenAuthenticationEnabled: false,
                         controlEnabled: false,
                         controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                     },
                     credentialIds: ["credentialIds"],
                     server: {
@@ -528,11 +2798,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -566,7 +2939,221 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -591,11 +3178,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -629,7 +3319,251 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -664,10 +3598,12 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -681,6 +3617,15 @@ describe("SquadsClient", () => {
                                     { key: "value" },
                                     { key: "value" },
                                     { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
                                 ],
                             },
                         },
@@ -706,7 +3651,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -714,8 +3658,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -736,9 +3680,39 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                     },
                     speed: 1.1,
-                    fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                    fallbackPlan: {
+                        voices: [
+                            {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                            },
+                        ],
+                    },
                 },
                 firstMessage: "Hello! How can I help you today?",
                 firstMessageInterruptionsEnabled: true,
@@ -776,12 +3750,57 @@ describe("SquadsClient", () => {
                 backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
-                observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+                observabilityPlan: {
+                    provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
+                    tags: ["tags"],
+                    metadata: { key: "value" },
+                },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                hooks: [
+                    {
+                        on: "call.ending",
+                        do: [
+                            {
+                                type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -797,6 +3816,15 @@ describe("SquadsClient", () => {
                                 { key: "value" },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: { key: "value" },
@@ -808,15 +3836,65 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -829,11 +3907,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [{ key: "key", plan: {} }],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -849,6 +3922,13 @@ describe("SquadsClient", () => {
                     transcriptPlan: { enabled: true },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            name: "name",
+                            schema: { type: "string" },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -921,6 +4001,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -944,6 +4025,7 @@ describe("SquadsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/squad")
@@ -990,16 +4072,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -1036,12 +4246,273 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -1066,16 +4537,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -1112,12 +4711,320 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -1152,6 +5059,7 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [
                         {
                             content: null,
@@ -1161,6 +5069,12 @@ describe("SquadsClient", () => {
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1183,6 +5097,17 @@ describe("SquadsClient", () => {
                                     },
                                     {
                                         key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
                                     },
                                 ],
                             },
@@ -1219,7 +5144,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -1230,8 +5154,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -1252,14 +5176,42 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: {
+                            enabled: true,
+                            numberToDigitsCutoff: 2025,
+                        },
                     },
                     speed: 1.1,
                     fallbackPlan: {
                         voices: [
                             {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                             },
                         ],
                     },
@@ -1308,6 +5260,9 @@ describe("SquadsClient", () => {
                 ],
                 observabilityPlan: {
                     provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
                     tags: ["tags"],
                     metadata: {
                         key: "value",
@@ -1325,6 +5280,51 @@ describe("SquadsClient", () => {
                         do: [
                             {
                                 type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
                             },
                         ],
                     },
@@ -1332,6 +5332,12 @@ describe("SquadsClient", () => {
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1357,6 +5363,17 @@ describe("SquadsClient", () => {
                                 },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: {
@@ -1370,23 +5387,71 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -1401,16 +5466,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [
-                        {
-                            key: "key",
-                            plan: {},
-                        },
-                    ],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -1428,6 +5483,17 @@ describe("SquadsClient", () => {
                     },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: {
+                                forceStoreOnHipaaEnabled: false,
+                            },
+                            name: "name",
+                            schema: {
+                                type: "string",
+                            },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         {
@@ -1519,6 +5585,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -1598,11 +5665,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -1636,7 +5806,221 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -1661,11 +6045,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -1699,7 +6186,251 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -1734,10 +6465,12 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1751,6 +6484,15 @@ describe("SquadsClient", () => {
                                     { key: "value" },
                                     { key: "value" },
                                     { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
                                 ],
                             },
                         },
@@ -1776,7 +6518,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -1784,8 +6525,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -1806,9 +6547,39 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                     },
                     speed: 1.1,
-                    fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                    fallbackPlan: {
+                        voices: [
+                            {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                            },
+                        ],
+                    },
                 },
                 firstMessage: "Hello! How can I help you today?",
                 firstMessageInterruptionsEnabled: true,
@@ -1846,12 +6617,57 @@ describe("SquadsClient", () => {
                 backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
-                observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+                observabilityPlan: {
+                    provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
+                    tags: ["tags"],
+                    metadata: { key: "value" },
+                },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                hooks: [
+                    {
+                        on: "call.ending",
+                        do: [
+                            {
+                                type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1867,6 +6683,15 @@ describe("SquadsClient", () => {
                                 { key: "value" },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: { key: "value" },
@@ -1878,15 +6703,65 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -1899,11 +6774,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [{ key: "key", plan: {} }],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -1919,6 +6789,13 @@ describe("SquadsClient", () => {
                     transcriptPlan: { enabled: true },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            name: "name",
+                            schema: { type: "string" },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -1991,6 +6868,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -2014,6 +6892,7 @@ describe("SquadsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().get("/squad/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.squads.get({
@@ -2053,16 +6932,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -2099,12 +7106,273 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -2129,16 +7397,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -2175,12 +7571,320 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -2215,6 +7919,7 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [
                         {
                             content: null,
@@ -2224,6 +7929,12 @@ describe("SquadsClient", () => {
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2246,6 +7957,17 @@ describe("SquadsClient", () => {
                                     },
                                     {
                                         key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
                                     },
                                 ],
                             },
@@ -2282,7 +8004,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -2293,8 +8014,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -2315,14 +8036,42 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: {
+                            enabled: true,
+                            numberToDigitsCutoff: 2025,
+                        },
                     },
                     speed: 1.1,
                     fallbackPlan: {
                         voices: [
                             {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                             },
                         ],
                     },
@@ -2371,6 +8120,9 @@ describe("SquadsClient", () => {
                 ],
                 observabilityPlan: {
                     provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
                     tags: ["tags"],
                     metadata: {
                         key: "value",
@@ -2388,6 +8140,51 @@ describe("SquadsClient", () => {
                         do: [
                             {
                                 type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
                             },
                         ],
                     },
@@ -2395,6 +8192,12 @@ describe("SquadsClient", () => {
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2420,6 +8223,17 @@ describe("SquadsClient", () => {
                                 },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: {
@@ -2433,23 +8247,71 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -2464,16 +8326,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [
-                        {
-                            key: "key",
-                            plan: {},
-                        },
-                    ],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -2491,6 +8343,17 @@ describe("SquadsClient", () => {
                     },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: {
+                                forceStoreOnHipaaEnabled: false,
+                            },
+                            name: "name",
+                            schema: {
+                                type: "string",
+                            },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         {
@@ -2582,6 +8445,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -2661,11 +8525,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -2699,7 +8666,221 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -2724,11 +8905,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -2762,7 +9046,251 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -2797,10 +9325,12 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2814,6 +9344,15 @@ describe("SquadsClient", () => {
                                     { key: "value" },
                                     { key: "value" },
                                     { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
                                 ],
                             },
                         },
@@ -2839,7 +9378,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -2847,8 +9385,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -2869,9 +9407,39 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                     },
                     speed: 1.1,
-                    fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                    fallbackPlan: {
+                        voices: [
+                            {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                            },
+                        ],
+                    },
                 },
                 firstMessage: "Hello! How can I help you today?",
                 firstMessageInterruptionsEnabled: true,
@@ -2909,12 +9477,57 @@ describe("SquadsClient", () => {
                 backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
-                observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+                observabilityPlan: {
+                    provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
+                    tags: ["tags"],
+                    metadata: { key: "value" },
+                },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                hooks: [
+                    {
+                        on: "call.ending",
+                        do: [
+                            {
+                                type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2930,6 +9543,15 @@ describe("SquadsClient", () => {
                                 { key: "value" },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: { key: "value" },
@@ -2941,15 +9563,65 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -2962,11 +9634,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [{ key: "key", plan: {} }],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -2982,6 +9649,13 @@ describe("SquadsClient", () => {
                     transcriptPlan: { enabled: true },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            name: "name",
+                            schema: { type: "string" },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -3054,6 +9728,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -3077,6 +9752,7 @@ describe("SquadsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().delete("/squad/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.squads.delete({
@@ -3116,16 +9792,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -3162,12 +9966,273 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -3192,16 +10257,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -3238,12 +10431,320 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -3278,6 +10779,7 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [
                         {
                             content: null,
@@ -3287,6 +10789,12 @@ describe("SquadsClient", () => {
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3309,6 +10817,17 @@ describe("SquadsClient", () => {
                                     },
                                     {
                                         key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
                                     },
                                 ],
                             },
@@ -3345,7 +10864,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -3356,8 +10874,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -3378,14 +10896,42 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: {
+                            enabled: true,
+                            numberToDigitsCutoff: 2025,
+                        },
                     },
                     speed: 1.1,
                     fallbackPlan: {
                         voices: [
                             {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                             },
                         ],
                     },
@@ -3434,6 +10980,9 @@ describe("SquadsClient", () => {
                 ],
                 observabilityPlan: {
                     provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
                     tags: ["tags"],
                     metadata: {
                         key: "value",
@@ -3451,6 +11000,51 @@ describe("SquadsClient", () => {
                         do: [
                             {
                                 type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
                             },
                         ],
                     },
@@ -3458,6 +11052,12 @@ describe("SquadsClient", () => {
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3483,6 +11083,17 @@ describe("SquadsClient", () => {
                                 },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: {
@@ -3496,23 +11107,71 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -3527,16 +11186,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [
-                        {
-                            key: "key",
-                            plan: {},
-                        },
-                    ],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -3554,6 +11203,17 @@ describe("SquadsClient", () => {
                     },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: {
+                                forceStoreOnHipaaEnabled: false,
+                            },
+                            name: "name",
+                            schema: {
+                                type: "string",
+                            },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         {
@@ -3645,6 +11305,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -3724,11 +11385,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -3762,7 +11526,221 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -3787,11 +11765,114 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
                         firstMessage: "Hello! How can I help you today?",
                         clientMessages: [
@@ -3825,7 +11906,251 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [{ type: "request-start", blocking: false }],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: { key: "value" },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                    { key: "value" },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: { position: -1 },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "。",
+                                                        "，",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "،",
+                                                        "۔",
+                                                        "।",
+                                                        "॥",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: { enabled: true },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    name: "name",
+                                    schema: { type: "string" },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: { provider: "vapi" },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -3860,10 +12185,12 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3877,6 +12204,15 @@ describe("SquadsClient", () => {
                                     { key: "value" },
                                     { key: "value" },
                                     { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
                                 ],
                             },
                         },
@@ -3902,7 +12238,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -3910,8 +12245,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -3932,9 +12267,39 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                     },
                     speed: 1.1,
-                    fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                    fallbackPlan: {
+                        voices: [
+                            {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                            },
+                        ],
+                    },
                 },
                 firstMessage: "Hello! How can I help you today?",
                 firstMessageInterruptionsEnabled: true,
@@ -3972,12 +12337,57 @@ describe("SquadsClient", () => {
                 backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
-                observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+                observabilityPlan: {
+                    provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
+                    tags: ["tags"],
+                    metadata: { key: "value" },
+                },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                hooks: [
+                    {
+                        on: "call.ending",
+                        do: [
+                            {
+                                type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3993,6 +12403,15 @@ describe("SquadsClient", () => {
                                 { key: "value" },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: { key: "value" },
@@ -4004,15 +12423,65 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -4025,11 +12494,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [{ key: "key", plan: {} }],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -4045,6 +12509,13 @@ describe("SquadsClient", () => {
                     transcriptPlan: { enabled: true },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            name: "name",
+                            schema: { type: "string" },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -4117,6 +12588,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -4140,6 +12612,7 @@ describe("SquadsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .patch("/squad/id")
@@ -4187,16 +12660,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -4233,12 +12834,273 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     assistantOverrides: {
                         transcriber: {
@@ -4263,16 +13125,144 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         },
+                        model: {
+                            provider: "anthropic",
+                            tools: [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            knowledgeBase: {
+                                provider: "custom-knowledge-base",
+                                server: {
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    staticIpAddressesEnabled: false,
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                            model: "claude-3-opus-20240229",
+                        },
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
@@ -4309,12 +13299,320 @@ describe("SquadsClient", () => {
                         maxDurationSeconds: 600,
                         backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                         modelOutputInMessagesEnabled: false,
+                        transportConfigurations: [
+                            {
+                                provider: "twilio",
+                                timeout: 60,
+                                record: false,
+                            },
+                        ],
                         credentials: [
                             {
                                 provider: "11labs",
                                 apiKey: "apiKey",
                             },
                         ],
+                        hooks: [
+                            {
+                                on: "call.ending",
+                                do: [
+                                    {
+                                        type: "tool",
+                                        tool: {
+                                            type: "apiRequest",
+                                            messages: [
+                                                {
+                                                    type: "request-start",
+                                                    blocking: false,
+                                                },
+                                            ],
+                                            method: "POST",
+                                            timeoutSeconds: 20,
+                                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                            url: "url",
+                                            backoffPlan: {
+                                                type: {
+                                                    key: "value",
+                                                },
+                                                maxRetries: 0,
+                                                baseDelaySeconds: 1,
+                                                excludedStatusCodes: [
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                    {
+                                                        key: "value",
+                                                    },
+                                                ],
+                                            },
+                                            rejectionPlan: {
+                                                conditions: [
+                                                    {
+                                                        type: "regex",
+                                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                        target: {
+                                                            position: -1,
+                                                        },
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        "tools:append": [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        compliancePlan: {
+                            recordingConsentPlan: {
+                                type: "stay-on-line",
+                                message:
+                                    "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                voice: {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                    fallbackPlan: {
+                                        voices: [
+                                            {
+                                                provider: "azure",
+                                                cachingEnabled: true,
+                                                voiceId: "andrew",
+                                                chunkPlan: {
+                                                    enabled: true,
+                                                    minCharacters: 30,
+                                                    punctuationBoundaries: [
+                                                        "\u3002",
+                                                        "\uFF0C",
+                                                        ".",
+                                                        "!",
+                                                        "?",
+                                                        ";",
+                                                        "\u060C",
+                                                        "\u06D4",
+                                                        "\u0964",
+                                                        "\u0965",
+                                                        "|",
+                                                        "||",
+                                                        ",",
+                                                        ":",
+                                                    ],
+                                                    formatPlan: {
+                                                        enabled: true,
+                                                        numberToDigitsCutoff: 2025,
+                                                    },
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                                waitSeconds: 3,
+                            },
+                        },
+                        backgroundSpeechDenoisingPlan: {
+                            fourierDenoisingPlan: {
+                                mediaDetectionEnabled: true,
+                                staticThreshold: -35,
+                                baselineOffsetDb: -15,
+                                windowSizeMs: 3000,
+                                baselinePercentile: 85,
+                            },
+                        },
+                        artifactPlan: {
+                            recordingEnabled: true,
+                            recordingUseCustomStorageEnabled: true,
+                            videoRecordingEnabled: false,
+                            fullMessageHistoryEnabled: false,
+                            pcapEnabled: true,
+                            pcapS3PathPrefix: "/pcaps",
+                            pcapUseCustomStorageEnabled: true,
+                            loggingEnabled: true,
+                            loggingUseCustomStorageEnabled: true,
+                            transcriptPlan: {
+                                enabled: true,
+                            },
+                            structuredOutputs: [
+                                {
+                                    compliancePlan: {
+                                        forceStoreOnHipaaEnabled: false,
+                                    },
+                                    name: "name",
+                                    schema: {
+                                        type: "string",
+                                    },
+                                },
+                            ],
+                        },
+                        startSpeakingPlan: {
+                            waitSeconds: 0.4,
+                            smartEndpointingPlan: {
+                                provider: "vapi",
+                            },
+                            transcriptionEndpointingPlan: {
+                                onPunctuationSeconds: 0.1,
+                                onNoPunctuationSeconds: 1.5,
+                                onNumberSeconds: 0.5,
+                            },
+                        },
+                        stopSpeakingPlan: {
+                            numWords: 0,
+                            voiceSeconds: 0.2,
+                            backoffSeconds: 1,
+                            acknowledgementPhrases: [
+                                "i understand",
+                                "i see",
+                                "i got it",
+                                "i hear you",
+                                "im listening",
+                                "im with you",
+                                "right",
+                                "okay",
+                                "ok",
+                                "sure",
+                                "alright",
+                                "got it",
+                                "understood",
+                                "yeah",
+                                "yes",
+                                "uh-huh",
+                                "mm-hmm",
+                                "gotcha",
+                                "mhmm",
+                                "ah",
+                                "yeah okay",
+                                "yeah sure",
+                            ],
+                            interruptionPhrases: [
+                                "stop",
+                                "shut",
+                                "up",
+                                "enough",
+                                "quiet",
+                                "silence",
+                                "but",
+                                "dont",
+                                "not",
+                                "no",
+                                "hold",
+                                "wait",
+                                "cut",
+                                "pause",
+                                "nope",
+                                "nah",
+                                "nevermind",
+                                "never",
+                                "bad",
+                                "actually",
+                            ],
+                        },
+                        monitorPlan: {
+                            listenEnabled: false,
+                            listenAuthenticationEnabled: false,
+                            controlEnabled: false,
+                            controlAuthenticationEnabled: false,
+                            monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                        },
+                        server: {
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            staticIpAddressesEnabled: false,
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                        },
                     },
                 },
             ],
@@ -4349,6 +13647,7 @@ describe("SquadsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [
                         {
                             content: null,
@@ -4358,6 +13657,12 @@ describe("SquadsClient", () => {
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -4380,6 +13685,17 @@ describe("SquadsClient", () => {
                                     },
                                     {
                                         key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
                                     },
                                 ],
                             },
@@ -4416,7 +13732,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -4427,8 +13742,8 @@ describe("SquadsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -4449,14 +13764,42 @@ describe("SquadsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: {
+                            enabled: true,
+                            numberToDigitsCutoff: 2025,
+                        },
                     },
                     speed: 1.1,
                     fallbackPlan: {
                         voices: [
                             {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                             },
                         ],
                     },
@@ -4505,6 +13848,9 @@ describe("SquadsClient", () => {
                 ],
                 observabilityPlan: {
                     provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
                     tags: ["tags"],
                     metadata: {
                         key: "value",
@@ -4522,6 +13868,51 @@ describe("SquadsClient", () => {
                         do: [
                             {
                                 type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
                             },
                         ],
                     },
@@ -4529,6 +13920,12 @@ describe("SquadsClient", () => {
                 "tools:append": [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -4554,6 +13951,17 @@ describe("SquadsClient", () => {
                                 },
                             ],
                         },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
+                                },
+                            ],
+                        },
                     },
                 ],
                 variableValues: {
@@ -4567,23 +13975,71 @@ describe("SquadsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -4598,16 +14054,6 @@ describe("SquadsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [
-                        {
-                            key: "key",
-                            plan: {},
-                        },
-                    ],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -4625,6 +14071,17 @@ describe("SquadsClient", () => {
                     },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: {
+                                forceStoreOnHipaaEnabled: false,
+                            },
+                            name: "name",
+                            schema: {
+                                type: "string",
+                            },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         {
@@ -4716,6 +14173,7 @@ describe("SquadsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {

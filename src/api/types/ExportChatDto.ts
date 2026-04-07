@@ -4,50 +4,50 @@ import type * as Vapi from "../index.js";
 
 export interface ExportChatDto {
     /** This is the unique identifier for the chat to filter by. */
-    id?: string;
+    id?: string | undefined;
     /** This is the unique identifier for the assistant that will be used for the chat. */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /** Filter by multiple assistant IDs. Provide as comma-separated values. */
-    assistantIdAny?: string;
+    assistantIdAny?: string | undefined;
     /** This is the unique identifier for the squad that will be used for the chat. */
-    squadId?: string;
+    squadId?: string | undefined;
     /** This is the unique identifier for the session that will be used for the chat. */
-    sessionId?: string;
+    sessionId?: string | undefined;
     /** This is the unique identifier for the previous chat to filter by. */
-    previousChatId?: string;
+    previousChatId?: string | undefined;
     /** Columns to include in the CSV export */
-    columns?: Vapi.ExportChatDtoColumns;
+    columns?: Vapi.ExportChatDtoColumns | undefined;
     /**
      * This is the email address to send the export to.
      * Required if userId is not available in the request context.
      */
-    email?: string;
+    email?: string | undefined;
     /**
      * This is the format of the export.
      *
      * @default csv
      */
-    format?: Vapi.ExportChatDtoFormat;
+    format?: Vapi.ExportChatDtoFormat | undefined;
     /** This is the page number to return. Defaults to 1. */
-    page?: number;
+    page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
-    sortOrder?: Vapi.ExportChatDtoSortOrder;
+    sortOrder?: Vapi.ExportChatDtoSortOrder | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
-    limit?: number;
+    limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */
-    createdAtGt?: string;
+    createdAtGt?: string | undefined;
     /** This will return items where the createdAt is less than the specified value. */
-    createdAtLt?: string;
+    createdAtLt?: string | undefined;
     /** This will return items where the createdAt is greater than or equal to the specified value. */
-    createdAtGe?: string;
+    createdAtGe?: string | undefined;
     /** This will return items where the createdAt is less than or equal to the specified value. */
-    createdAtLe?: string;
+    createdAtLe?: string | undefined;
     /** This will return items where the updatedAt is greater than the specified value. */
-    updatedAtGt?: string;
+    updatedAtGt?: string | undefined;
     /** This will return items where the updatedAt is less than the specified value. */
-    updatedAtLt?: string;
+    updatedAtLt?: string | undefined;
     /** This will return items where the updatedAt is greater than or equal to the specified value. */
-    updatedAtGe?: string;
+    updatedAtGe?: string | undefined;
     /** This will return items where the updatedAt is less than or equal to the specified value. */
-    updatedAtLe?: string;
+    updatedAtLe?: string | undefined;
 }

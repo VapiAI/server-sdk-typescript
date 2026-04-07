@@ -13,7 +13,7 @@ export interface ChatEvalAssistantMessageMock {
      * This is the content of the assistant message.
      * This is the message that the assistant would have sent.
      */
-    content?: string;
+    content?: string | undefined;
     /** This is the tool calls that will be made by the assistant. */
-    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[];
+    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[] | undefined;
 }

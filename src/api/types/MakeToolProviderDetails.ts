@@ -4,12 +4,10 @@ import type * as Vapi from "../index.js";
 
 export interface MakeToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "make" for Make tool. */
-    type: Vapi.MakeToolProviderDetailsType;
-    scenarioId?: number;
-    scenarioName?: string;
-    triggerHookId?: number;
-    triggerHookName?: string;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
+    scenarioId?: number | undefined;
+    scenarioName?: string | undefined;
+    triggerHookId?: number | undefined;
+    triggerHookName?: string | undefined;
 }

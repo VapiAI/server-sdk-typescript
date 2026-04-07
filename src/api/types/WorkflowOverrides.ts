@@ -10,5 +10,5 @@ export interface WorkflowOverrides {
      *  Some VAPI reserved defaults:
      *  - *customer* - the customer object
      */
-    variableValues?: Record<string, unknown>;
+    variableValues?: Record<string, unknown> | undefined;
 }

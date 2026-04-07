@@ -2,35 +2,35 @@
 
 export interface AnalysisCostBreakdown {
     /** This is the cost to summarize the call. */
-    summary?: number;
+    summary?: number | undefined;
     /** This is the number of prompt tokens used to summarize the call. */
-    summaryPromptTokens?: number;
+    summaryPromptTokens?: number | undefined;
     /** This is the number of completion tokens used to summarize the call. */
-    summaryCompletionTokens?: number;
+    summaryCompletionTokens?: number | undefined;
     /** This is the number of cached prompt tokens used to summarize the call. */
-    summaryCachedPromptTokens?: number;
+    summaryCachedPromptTokens?: number | undefined;
     /** This is the cost to extract structured data from the call. */
-    structuredData?: number;
+    structuredData?: number | undefined;
     /** This is the number of prompt tokens used to extract structured data from the call. */
-    structuredDataPromptTokens?: number;
+    structuredDataPromptTokens?: number | undefined;
     /** This is the number of completion tokens used to extract structured data from the call. */
-    structuredDataCompletionTokens?: number;
+    structuredDataCompletionTokens?: number | undefined;
     /** This is the number of cached prompt tokens used to extract structured data from the call. */
-    structuredDataCachedPromptTokens?: number;
+    structuredDataCachedPromptTokens?: number | undefined;
     /** This is the cost to evaluate if the call was successful. */
-    successEvaluation?: number;
+    successEvaluation?: number | undefined;
     /** This is the number of prompt tokens used to evaluate if the call was successful. */
-    successEvaluationPromptTokens?: number;
+    successEvaluationPromptTokens?: number | undefined;
     /** This is the number of completion tokens used to evaluate if the call was successful. */
-    successEvaluationCompletionTokens?: number;
+    successEvaluationCompletionTokens?: number | undefined;
     /** This is the number of cached prompt tokens used to evaluate if the call was successful. */
-    successEvaluationCachedPromptTokens?: number;
+    successEvaluationCachedPromptTokens?: number | undefined;
     /** This is the cost to evaluate structuredOutputs from the call. */
-    structuredOutput?: number;
+    structuredOutput?: number | undefined;
     /** This is the number of prompt tokens used to evaluate structuredOutputs from the call. */
-    structuredOutputPromptTokens?: number;
+    structuredOutputPromptTokens?: number | undefined;
     /** This is the number of completion tokens used to evaluate structuredOutputs from the call. */
-    structuredOutputCompletionTokens?: number;
+    structuredOutputCompletionTokens?: number | undefined;
     /** This is the number of cached prompt tokens used to evaluate structuredOutputs from the call. */
-    structuredOutputCachedPromptTokens?: number;
+    structuredOutputCachedPromptTokens?: number | undefined;
 }

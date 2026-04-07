@@ -4,16 +4,16 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateGcpCredentialDto {
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the GCP key. This is the JSON that can be generated in the Google Cloud Console at https://console.cloud.google.com/iam-admin/serviceaccounts/details/<service-account-id>/keys.
      *
      * The schema is identical to the JSON that GCP outputs.
      */
-    gcpKey?: Vapi.GcpKey;
+    gcpKey?: Vapi.GcpKey | undefined;
     /** This is the region of the GCP resource. */
-    region?: string;
-    bucketPlan?: Vapi.BucketPlan;
+    region?: string | undefined;
+    bucketPlan?: Vapi.BucketPlan | undefined;
 }

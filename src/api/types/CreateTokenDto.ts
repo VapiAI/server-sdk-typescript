@@ -4,9 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface CreateTokenDto {
     /** This is the tag for the token. It represents its scope. */
-    tag?: Vapi.CreateTokenDtoTag;
+    tag?: Vapi.CreateTokenDtoTag | undefined;
     /** This is the name of the token. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /** This are the restrictions for the token. */
-    restrictions?: Vapi.TokenRestrictions;
+    restrictions?: Vapi.TokenRestrictions | undefined;
 }

@@ -4,37 +4,35 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackElevenLabsVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: "11labs";
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. Ensure the Voice is present in your 11Labs Voice Library. */
     voiceId: Vapi.FallbackElevenLabsVoiceId;
     /** Defines the stability for voice settings. */
-    stability?: number;
+    stability?: number | undefined;
     /** Defines the similarity boost for voice settings. */
-    similarityBoost?: number;
+    similarityBoost?: number | undefined;
     /** Defines the style for voice settings. */
-    style?: number;
+    style?: number | undefined;
     /** Defines the use speaker boost for voice settings. */
-    useSpeakerBoost?: boolean;
+    useSpeakerBoost?: boolean | undefined;
     /** Defines the speed for voice settings. */
-    speed?: number;
+    speed?: number | undefined;
     /** Defines the optimize streaming latency for voice settings. Defaults to 3. */
-    optimizeStreamingLatency?: number;
+    optimizeStreamingLatency?: number | undefined;
     /**
      * This enables the use of https://elevenlabs.io/docs/speech-synthesis/prompting#pronunciation. Defaults to false to save latency.
      *
      * @default false
      */
-    enableSsmlParsing?: boolean;
+    enableSsmlParsing?: boolean | undefined;
     /** Defines the auto mode for voice settings. Defaults to false. */
-    autoMode?: boolean;
+    autoMode?: boolean | undefined;
     /** This is the model that will be used. Defaults to 'eleven_turbo_v2' if not specified. */
-    model?: Vapi.FallbackElevenLabsVoiceModel;
+    model?: Vapi.FallbackElevenLabsVoiceModel | undefined;
     /** This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5 supports language enforcement. For other models, an error will be returned if language code is provided. */
-    language?: string;
+    language?: string | undefined;
     /** This is the pronunciation dictionary locators to use. */
-    pronunciationDictionaryLocators?: Vapi.ElevenLabsPronunciationDictionaryLocator[];
+    pronunciationDictionaryLocators?: Vapi.ElevenLabsPronunciationDictionaryLocator[] | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

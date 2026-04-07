@@ -4,18 +4,18 @@ import type * as Vapi from "../index.js";
 
 export interface Assistant {
     /** These are the options for the assistant's transcriber. */
-    transcriber?: Vapi.AssistantTranscriber;
+    transcriber?: Vapi.AssistantTranscriber | undefined;
     /** These are the options for the assistant's LLM. */
-    model?: Vapi.AssistantModel;
+    model?: Vapi.AssistantModel | undefined;
     /** These are the options for the assistant's voice. */
-    voice?: Vapi.AssistantVoice;
+    voice?: Vapi.AssistantVoice | undefined;
     /**
      * This is the first message that the assistant will say. This can also be a URL to a containerized audio file (mp3, wav, etc.).
      *
      * If unspecified, assistant will wait for user to speak and use the model to respond once they speak.
      */
-    firstMessage?: string;
-    firstMessageInterruptionsEnabled?: boolean;
+    firstMessage?: string | undefined;
+    firstMessageInterruptionsEnabled?: boolean | undefined;
     /**
      * This is the mode for the first message. Default is 'assistant-speaks-first'.
      *
@@ -26,70 +26,68 @@ export interface Assistant {
      *
      * @default 'assistant-speaks-first'
      */
-    firstMessageMode?: Vapi.AssistantFirstMessageMode;
+    firstMessageMode?: Vapi.AssistantFirstMessageMode | undefined;
     /**
      * These are the settings to configure or disable voicemail detection. Alternatively, voicemail detection can be configured using the model.tools=[VoicemailTool].
      * By default, voicemail detection is disabled.
      */
-    voicemailDetection?: Vapi.AssistantVoicemailDetection;
+    voicemailDetection?: Vapi.AssistantVoicemailDetection | undefined;
     /** These are the messages that will be sent to your Client SDKs. Default is conversation-update,function-call,hang,model-output,speech-update,status-update,transfer-update,transcript,tool-calls,user-interrupted,voice-input,workflow.node.started,assistant.started. You can check the shape of the messages in ClientMessage schema. */
-    clientMessages?: Vapi.AssistantClientMessagesItem[];
+    clientMessages?: Vapi.AssistantClientMessagesItem[] | undefined;
     /** These are the messages that will be sent to your Server URL. Default is conversation-update,end-of-call-report,function-call,hang,speech-update,status-update,tool-calls,transfer-destination-request,handoff-destination-request,user-interrupted,assistant.started. You can check the shape of the messages in ServerMessage schema. */
-    serverMessages?: Vapi.AssistantServerMessagesItem[];
+    serverMessages?: Vapi.AssistantServerMessagesItem[] | undefined;
     /**
      * This is the maximum number of seconds that the call will last. When the call reaches this duration, it will be ended.
      *
      * @default 600 (10 minutes)
      */
-    maxDurationSeconds?: number;
+    maxDurationSeconds?: number | undefined;
     /**
      * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
-    backgroundSound?: Vapi.AssistantBackgroundSound;
+    backgroundSound?: Vapi.AssistantBackgroundSound | undefined;
     /**
      * This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
      *
-     * Default `false` while in beta.
-     *
      * @default false
      */
-    modelOutputInMessagesEnabled?: boolean;
+    modelOutputInMessagesEnabled?: boolean | undefined;
     /** These are the configurations to be passed to the transport providers of assistant's calls, like Twilio. You can store multiple configurations for different transport providers. For a call, only the configuration matching the call transport provider is used. */
-    transportConfigurations?: Vapi.TransportConfigurationTwilio[];
+    transportConfigurations?: Vapi.TransportConfigurationTwilio[] | undefined;
     /**
      * This is the plan for observability of assistant's calls.
      *
      * Currently, only Langfuse is supported.
      */
-    observabilityPlan?: Vapi.LangfuseObservabilityPlan;
+    observabilityPlan?: Vapi.LangfuseObservabilityPlan | undefined;
     /** These are dynamic credentials that will be used for the assistant calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials. */
-    credentials?: Vapi.AssistantCredentialsItem[];
+    credentials?: Vapi.AssistantCredentialsItem[] | undefined;
     /** This is a set of actions that will be performed on certain events. */
-    hooks?: Vapi.AssistantHooksItem[];
+    hooks?: Vapi.AssistantHooksItem[] | undefined;
     /**
      * This is the name of the assistant.
      *
      * This is required when you want to transfer between assistants in a call.
      */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the message that the assistant will say if the call is forwarded to voicemail.
      *
      * If unspecified, it will hang up.
      */
-    voicemailMessage?: string;
+    voicemailMessage?: string | undefined;
     /**
      * This is the message that the assistant will say if it ends the call.
      *
      * If unspecified, it will hang up without saying anything.
      */
-    endCallMessage?: string;
+    endCallMessage?: string | undefined;
     /** This list contains phrases that, if spoken by the assistant, will trigger the call to be hung up. Case insensitive. */
-    endCallPhrases?: string[];
-    compliancePlan?: Vapi.CompliancePlan;
+    endCallPhrases?: string[] | undefined;
+    compliancePlan?: Vapi.CompliancePlan | undefined;
     /** This is for metadata you want to store on the assistant. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
     /**
      * This enables filtering of noise and background speech while the user is talking.
      *
@@ -103,11 +101,11 @@ export interface Assistant {
      * - Smart denoising
      * - Fourier denoising
      */
-    backgroundSpeechDenoisingPlan?: Vapi.BackgroundSpeechDenoisingPlan;
+    backgroundSpeechDenoisingPlan?: Vapi.BackgroundSpeechDenoisingPlan | undefined;
     /** This is the plan for analysis of assistant's calls. Stored in `call.analysis`. */
-    analysisPlan?: Vapi.AnalysisPlan;
+    analysisPlan?: Vapi.AnalysisPlan | undefined;
     /** This is the plan for artifacts generated during assistant's calls. Stored in `call.artifact`. */
-    artifactPlan?: Vapi.ArtifactPlan;
+    artifactPlan?: Vapi.ArtifactPlan | undefined;
     /**
      * This is the plan for when the assistant should start talking.
      *
@@ -116,7 +114,7 @@ export interface Assistant {
      * - The assistant is too fast to start talking after the customer is done speaking.
      * - The assistant is so fast that it's actually interrupting the customer.
      */
-    startSpeakingPlan?: Vapi.StartSpeakingPlan;
+    startSpeakingPlan?: Vapi.StartSpeakingPlan | undefined;
     /**
      * This is the plan for when assistant should stop talking on customer interruption.
      *
@@ -127,17 +125,18 @@ export interface Assistant {
      * - The assistant is getting interrupted by background noises.
      * - The assistant is not properly stopping -- it starts talking right after getting interrupted.
      */
-    stopSpeakingPlan?: Vapi.StopSpeakingPlan;
+    stopSpeakingPlan?: Vapi.StopSpeakingPlan | undefined;
     /**
      * This is the plan for real-time monitoring of the assistant's calls.
      *
      * Usage:
      * - To enable live listening of the assistant's calls, set `monitorPlan.listenEnabled` to `true`.
      * - To enable live control of the assistant's calls, set `monitorPlan.controlEnabled` to `true`.
+     * - To attach monitors to the assistant, set `monitorPlan.monitorIds` to the set of monitor ids.
      */
-    monitorPlan?: Vapi.MonitorPlan;
+    monitorPlan?: Vapi.MonitorPlan | undefined;
     /** These are the credentials that will be used for the assistant calls. By default, all the credentials are available for use in the call but you can provide a subset using this. */
-    credentialIds?: string[];
+    credentialIds?: string[] | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -147,8 +146,8 @@ export interface Assistant {
      * 2. phoneNumber.serverUrl
      * 3. org.serverUrl
      */
-    server?: Vapi.Server;
-    keypadInputPlan?: Vapi.KeypadInputPlan;
+    server?: Vapi.Server | undefined;
+    keypadInputPlan?: Vapi.KeypadInputPlan | undefined;
     /** This is the unique identifier for the assistant. */
     id: string;
     /** This is the unique identifier for the org that this assistant belongs to. */

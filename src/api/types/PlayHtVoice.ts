@@ -4,29 +4,27 @@ import type * as Vapi from "../index.js";
 
 export interface PlayHtVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.PlayHtVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.PlayHtVoiceId;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** A floating point number between 0, exclusive, and 2, inclusive. If equal to null or not provided, the model's default temperature will be used. The temperature parameter controls variance. Lower temperatures result in more predictable results, higher temperatures allow each run to vary more, so the voice may sound less like the baseline voice. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** An emotion to be applied to the speech. */
-    emotion?: Vapi.PlayHtVoiceEmotion;
+    emotion?: Vapi.PlayHtVoiceEmotion | undefined;
     /** A number between 1 and 6. Use lower numbers to reduce how unique your chosen voice will be compared to other voices. */
-    voiceGuidance?: number;
+    voiceGuidance?: number | undefined;
     /** A number between 1 and 30. Use lower numbers to to reduce how strong your chosen emotion will be. Higher numbers will create a very emotional performance. */
-    styleGuidance?: number;
+    styleGuidance?: number | undefined;
     /** A number between 1 and 2. This number influences how closely the generated speech adheres to the input text. Use lower values to create more fluid speech, but with a higher chance of deviating from the input text. Higher numbers will make the generated speech more accurate to the input text, ensuring that the words spoken align closely with the provided text. */
-    textGuidance?: number;
+    textGuidance?: number | undefined;
     /** Playht voice model/engine to use. */
-    model?: Vapi.PlayHtVoiceModel;
+    model?: Vapi.PlayHtVoiceModel | undefined;
     /** The language to use for the speech. */
-    language?: Vapi.PlayHtVoiceLanguage;
+    language?: Vapi.PlayHtVoiceLanguage | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackPlan;
+    fallbackPlan?: Vapi.FallbackPlan | undefined;
 }

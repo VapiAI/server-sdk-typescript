@@ -6,7 +6,25 @@ import type * as Vapi from "../index.js";
  * This is the message that will be spoken to the user as the tool is running.
  */
 export type ServerMessageResponseTransferDestinationRequestMessage =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.ServerMessageResponseTransferDestinationRequestMessage.RequestStart
+    | Vapi.ServerMessageResponseTransferDestinationRequestMessage.RequestComplete
+    | Vapi.ServerMessageResponseTransferDestinationRequestMessage.RequestFailed
+    | Vapi.ServerMessageResponseTransferDestinationRequestMessage.RequestResponseDelayed;
+
+export namespace ServerMessageResponseTransferDestinationRequestMessage {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

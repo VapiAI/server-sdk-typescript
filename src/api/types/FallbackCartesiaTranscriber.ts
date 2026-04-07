@@ -3,7 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackCartesiaTranscriber {
-    provider: Vapi.FallbackCartesiaTranscriberProvider;
-    model?: Vapi.FallbackCartesiaTranscriberModel;
-    language?: Vapi.FallbackCartesiaTranscriberLanguage;
+    model?: Vapi.FallbackCartesiaTranscriberModel | undefined;
+    language?: Vapi.FallbackCartesiaTranscriberLanguage | undefined;
 }

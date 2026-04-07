@@ -9,7 +9,7 @@ export interface KeypadInputPlan {
      *
      * @default false
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the time in seconds to wait before processing the input.
      * If the input is not received within this time, the input will be ignored.
@@ -17,10 +17,10 @@ export interface KeypadInputPlan {
      *
      * @default 2
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /**
      * This is the delimiter(s) that will be used to process the input.
      * Can be '#', '*', or an empty array.
      */
-    delimiters?: Vapi.KeypadInputPlanDelimiters;
+    delimiters?: Vapi.KeypadInputPlanDelimiters | undefined;
 }

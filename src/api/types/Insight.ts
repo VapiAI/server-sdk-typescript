@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface Insight {
     /** This is the name of the Insight. */
-    name?: string;
+    name?: string | undefined;
     /** This is the type of the Insight. */
     type: Vapi.InsightType;
     /** This is the unique identifier for the Insight. */

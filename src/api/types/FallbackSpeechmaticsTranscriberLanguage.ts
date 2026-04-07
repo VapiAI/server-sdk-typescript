@@ -3,6 +3,7 @@
 export const FallbackSpeechmaticsTranscriberLanguage = {
     Auto: "auto",
     Ar: "ar",
+    ArEn: "ar_en",
     Ba: "ba",
     Eu: "eu",
     Be: "be",

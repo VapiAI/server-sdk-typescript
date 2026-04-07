@@ -4,49 +4,38 @@ import type * as Vapi from "../index.js";
 
 export interface ConversationNode {
     /**
-     * This is the Conversation node. This can be used to start a conversation with the customer.
-     *
-     * The flow is:
-     * - Workflow starts the conversation node
-     * - Model is active with the `prompt` and global context.
-     * - Model will call a tool to exit this node.
-     * - Workflow will extract variables from the conversation.
-     * - Workflow continues.
-     */
-    type: Vapi.ConversationNodeType;
-    /**
      * This is the model for the node.
      *
      * This overrides `workflow.model`.
      */
-    model?: Vapi.ConversationNodeModel;
+    model?: Vapi.ConversationNodeModel | undefined;
     /**
      * This is the transcriber for the node.
      *
      * This overrides `workflow.transcriber`.
      */
-    transcriber?: Vapi.ConversationNodeTranscriber;
+    transcriber?: Vapi.ConversationNodeTranscriber | undefined;
     /**
      * This is the voice for the node.
      *
      * This overrides `workflow.voice`.
      */
-    voice?: Vapi.ConversationNodeVoice;
+    voice?: Vapi.ConversationNodeVoice | undefined;
     /**
      * These are the tools that the conversation node can use during the call. To use existing tools, use `toolIds`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: Vapi.ConversationNodeToolsItem[];
+    tools?: Vapi.ConversationNodeToolsItem[] | undefined;
     /**
      * These are the tools that the conversation node can use during the call. To use transient tools, use `tools`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    toolIds?: string[];
-    prompt?: string;
+    toolIds?: string[] | undefined;
+    prompt?: string | undefined;
     /** This is the plan for the global node. */
-    globalNodePlan?: Vapi.GlobalNodePlan;
+    globalNodePlan?: Vapi.GlobalNodePlan | undefined;
     /**
      * This is the plan that controls the variable extraction from the user's responses.
      *
@@ -96,10 +85,10 @@ export interface ConversationNode {
      *
      * Note: The `schema` field is required for Conversation nodes if you want to extract variables from the user's responses. `aliases` is just a convenience.
      */
-    variableExtractionPlan?: Vapi.VariableExtractionPlan;
+    variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
     name: string;
     /** This is whether or not the node is the start of the workflow. */
-    isStart?: boolean;
+    isStart?: boolean | undefined;
     /** This is for metadata you want to store on the task. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

@@ -5,7 +5,7 @@ import type * as Vapi from "../index.js";
 export interface GcpCredential {
     provider: Vapi.GcpCredentialProvider;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -15,7 +15,7 @@ export interface GcpCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the GCP key. This is the JSON that can be generated in the Google Cloud Console at https://console.cloud.google.com/iam-admin/serviceaccounts/details/<service-account-id>/keys.
      *
@@ -23,6 +23,6 @@ export interface GcpCredential {
      */
     gcpKey: Vapi.GcpKey;
     /** This is the region of the GCP resource. */
-    region?: string;
-    bucketPlan?: Vapi.BucketPlan;
+    region?: string | undefined;
+    bucketPlan?: Vapi.BucketPlan | undefined;
 }

@@ -12,6 +12,7 @@ export const LineInsightFromCallTableGroupBy = {
     PhoneNumberId: "phoneNumberId",
     Type: "type",
     EndedReason: "endedReason",
+    CustomerNumber: "customerNumber",
     CampaignId: "campaignId",
     ArtifactStructuredOutputsOutputId: "artifact.structuredOutputs[OutputID]",
 } as const;

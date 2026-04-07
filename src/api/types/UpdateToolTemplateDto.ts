@@ -3,12 +3,12 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateToolTemplateDto {
-    details?: Vapi.UpdateToolTemplateDtoDetails;
-    providerDetails?: Vapi.UpdateToolTemplateDtoProviderDetails;
-    metadata?: Vapi.ToolTemplateMetadata;
-    visibility?: Vapi.UpdateToolTemplateDtoVisibility;
+    details?: Vapi.UpdateToolTemplateDtoDetails | undefined;
+    providerDetails?: Vapi.UpdateToolTemplateDtoProviderDetails | undefined;
+    metadata?: Vapi.ToolTemplateMetadata | undefined;
+    visibility?: Vapi.UpdateToolTemplateDtoVisibility | undefined;
     type: Vapi.UpdateToolTemplateDtoType;
     /** The name of the template. This is just for your own reference. */
-    name?: string;
-    provider?: Vapi.UpdateToolTemplateDtoProvider;
+    name?: string | undefined;
+    provider?: Vapi.UpdateToolTemplateDtoProvider | undefined;
 }

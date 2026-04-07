@@ -4,15 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackLmntVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackLmntVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackLmntVoiceId;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** Two letter ISO 639-1 language code. Use "auto" for auto-detection. */
-    language?: Vapi.FallbackLmntVoiceLanguage;
+    language?: Vapi.FallbackLmntVoiceLanguage | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

@@ -13,6 +13,10 @@ export const FallbackInworldVoiceLanguageCode = {
     It: "it",
     Pl: "pl",
     Pt: "pt",
+    Ru: "ru",
+    Hi: "hi",
+    He: "he",
+    Ar: "ar",
 } as const;
 export type FallbackInworldVoiceLanguageCode =
     (typeof FallbackInworldVoiceLanguageCode)[keyof typeof FallbackInworldVoiceLanguageCode];

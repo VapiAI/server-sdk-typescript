@@ -2,4 +2,14 @@
 
 import type * as Vapi from "../index.js";
 
-export type FormatPlanReplacementsItem = Vapi.ExactReplacement | Vapi.RegexReplacement;
+export type FormatPlanReplacementsItem = Vapi.FormatPlanReplacementsItem.Exact | Vapi.FormatPlanReplacementsItem.Regex;
+
+export namespace FormatPlanReplacementsItem {
+    export interface Exact extends Vapi.ExactReplacement {
+        type: "exact";
+    }
+
+    export interface Regex extends Vapi.RegexReplacement {
+        type: "regex";
+    }
+}

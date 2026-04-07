@@ -14,5 +14,5 @@ export interface ToolCallResultMessage {
     /** The number of seconds from the start of the conversation. */
     secondsFromStart: number;
     /** The metadata for the tool call result. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

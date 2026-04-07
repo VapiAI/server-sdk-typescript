@@ -2,4 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
-export type UpdateHandoffToolDtoDestinationsItem = Vapi.HandoffDestinationAssistant | Vapi.HandoffDestinationDynamic;
+export type UpdateHandoffToolDtoDestinationsItem =
+    | Vapi.UpdateHandoffToolDtoDestinationsItem.Assistant
+    | Vapi.UpdateHandoffToolDtoDestinationsItem.Dynamic
+    | Vapi.UpdateHandoffToolDtoDestinationsItem.Squad;
+
+export namespace UpdateHandoffToolDtoDestinationsItem {
+    export interface Assistant extends Vapi.HandoffDestinationAssistant {
+        type: "assistant";
+    }
+
+    export interface Dynamic extends Vapi.HandoffDestinationDynamic {
+        type: "dynamic";
+    }
+
+    export interface Squad extends Vapi.HandoffDestinationSquad {
+        type: "squad";
+    }
+}

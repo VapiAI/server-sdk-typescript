@@ -4,43 +4,45 @@ import type * as Vapi from "../index.js";
 
 export interface Artifact {
     /** These are the messages that were spoken during the call. */
-    messages?: Vapi.ArtifactMessagesItem[];
+    messages?: Vapi.ArtifactMessagesItem[] | undefined;
     /** These are the messages that were spoken during the call, formatted for OpenAI. */
-    messagesOpenAIFormatted?: Vapi.OpenAiMessage[];
+    messagesOpenAIFormatted?: Vapi.OpenAiMessage[] | undefined;
     /** This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    recordingUrl?: string;
+    recordingUrl?: string | undefined;
     /** This is the stereo recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    stereoRecordingUrl?: string;
+    stereoRecordingUrl?: string | undefined;
     /** This is video recording url for the call. To enable, set `assistant.artifactPlan.videoRecordingEnabled`. */
-    videoRecordingUrl?: string;
+    videoRecordingUrl?: string | undefined;
     /** This is video recording start delay in ms. To enable, set `assistant.artifactPlan.videoRecordingEnabled`. This can be used to align the playback of the recording with artifact.messages timestamps. */
-    videoRecordingStartDelaySeconds?: number;
+    videoRecordingStartDelaySeconds?: number | undefined;
     /** This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    recording?: Vapi.Recording;
+    recording?: Vapi.Recording | undefined;
     /** This is the transcript of the call. This is derived from `artifact.messages` but provided for convenience. */
-    transcript?: string;
+    transcript?: string | undefined;
     /** This is the packet capture url for the call. This is only available for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`. */
-    pcapUrl?: string;
+    pcapUrl?: string | undefined;
     /** This is the url for the call logs. This includes all logging output during the call for debugging purposes. */
-    logUrl?: string;
+    logUrl?: string | undefined;
     /** This is the history of workflow nodes that were executed during the call. */
-    nodes?: Vapi.NodeArtifact[];
+    nodes?: Vapi.NodeArtifact[] | undefined;
+    /** Ordered list of assistants that were active during the call, including after transfers and handoffs. */
+    assistantActivations?: Vapi.AssistantActivation[] | undefined;
     /** These are the variable values at the end of the workflow execution. */
-    variableValues?: Record<string, unknown>;
+    variableValues?: Record<string, unknown> | undefined;
     /** This is the performance metrics for the call. It contains the turn latency, broken down by component. */
-    performanceMetrics?: Vapi.PerformanceMetrics;
+    performanceMetrics?: Vapi.PerformanceMetrics | undefined;
     /**
      * These are the structured outputs that will be extracted from the call.
      * To enable, set `assistant.artifactPlan.structuredOutputIds` with the IDs of the structured outputs you want to extract.
      */
-    structuredOutputs?: Record<string, unknown>;
+    structuredOutputs?: Record<string, unknown> | undefined;
     /**
      * These are the scorecards that have been evaluated based on the structured outputs extracted during the call.
      * To enable, set `assistant.artifactPlan.scorecardIds` or `assistant.artifactPlan.scorecards` with the IDs or objects of the scorecards you want to evaluate.
      */
-    scorecards?: Record<string, unknown>;
+    scorecards?: Record<string, unknown> | undefined;
     /** These are the transfer records from warm transfers, including destinations, transcripts, and status. */
-    transfers?: string[];
+    transfers?: string[] | undefined;
     /** This is when the structured outputs were last updated */
-    structuredOutputsLastUpdatedAt?: string;
+    structuredOutputsLastUpdatedAt?: string | undefined;
 }

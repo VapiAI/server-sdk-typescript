@@ -13,7 +13,25 @@ import type * as Vapi from "../index.js";
  * The LLM-Judge must respond with "pass" or "fail" and only those two responses are allowed.
  */
 export type AssistantMessageJudgePlanAiModel =
-    | Vapi.EvalOpenAiModel
-    | Vapi.EvalAnthropicModel
-    | Vapi.EvalGoogleModel
-    | Vapi.EvalCustomModel;
+    | Vapi.AssistantMessageJudgePlanAiModel.Openai
+    | Vapi.AssistantMessageJudgePlanAiModel.Anthropic
+    | Vapi.AssistantMessageJudgePlanAiModel.Google
+    | Vapi.AssistantMessageJudgePlanAiModel.CustomLlm;
+
+export namespace AssistantMessageJudgePlanAiModel {
+    export interface Openai extends Vapi.EvalOpenAiModel {
+        provider: "openai";
+    }
+
+    export interface Anthropic extends Vapi.EvalAnthropicModel {
+        provider: "anthropic";
+    }
+
+    export interface Google extends Vapi.EvalGoogleModel {
+        provider: "google";
+    }
+
+    export interface CustomLlm extends Vapi.EvalCustomModel {
+        provider: "custom-llm";
+    }
+}

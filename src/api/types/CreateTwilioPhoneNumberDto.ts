@@ -11,10 +11,9 @@ export interface CreateTwilioPhoneNumberDto {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: Vapi.CreateTwilioPhoneNumberDtoFallbackDestination;
+    fallbackDestination?: Vapi.CreateTwilioPhoneNumberDtoFallbackDestination | undefined;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: Vapi.CreateTwilioPhoneNumberDtoHooksItem[];
-    provider: "twilio";
+    hooks?: Vapi.CreateTwilioPhoneNumberDtoHooksItem[] | undefined;
     /**
      * Controls whether Vapi sets the messaging webhook URL on the Twilio number during import.
      *
@@ -23,37 +22,37 @@ export interface CreateTwilioPhoneNumberDto {
      *
      * @default true
      */
-    smsEnabled?: boolean;
+    smsEnabled?: boolean | undefined;
     /** These are the digits of the phone number you own on your Twilio. */
     number: string;
     /** This is the Twilio Account SID for the phone number. */
     twilioAccountSid: string;
     /** This is the Twilio Auth Token for the phone number. */
-    twilioAuthToken?: string;
+    twilioAuthToken?: string | undefined;
     /** This is the Twilio API Key for the phone number. */
-    twilioApiKey?: string;
+    twilioApiKey?: string | undefined;
     /** This is the Twilio API Secret for the phone number. */
-    twilioApiSecret?: string;
+    twilioApiSecret?: string | undefined;
     /** This is the name of the phone number. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the assistant that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the workflow that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is the squad that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -63,5 +62,5 @@ export interface CreateTwilioPhoneNumberDto {
      * 2. phoneNumber.server
      * 3. org.server
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
 }

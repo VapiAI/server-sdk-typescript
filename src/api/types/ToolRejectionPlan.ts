@@ -12,5 +12,5 @@ export interface ToolRejectionPlan {
      *
      * @default [] - Empty array means tool always executes
      */
-    conditions?: Vapi.ToolRejectionPlanConditionsItem[];
+    conditions?: Vapi.ToolRejectionPlanConditionsItem[] | undefined;
 }

@@ -57,8 +57,6 @@ export interface UpdateAssistantDto {
     /**
      * This determines whether the model's output is used in conversation history rather than the transcription of assistant's speech.
      *
-     * Default `false` while in beta.
-     *
      * @default false
      */
     modelOutputInMessagesEnabled?: boolean;
@@ -141,6 +139,7 @@ export interface UpdateAssistantDto {
      * Usage:
      * - To enable live listening of the assistant's calls, set `monitorPlan.listenEnabled` to `true`.
      * - To enable live control of the assistant's calls, set `monitorPlan.controlEnabled` to `true`.
+     * - To attach monitors to the assistant, set `monitorPlan.monitorIds` to the set of monitor ids.
      */
     monitorPlan?: Vapi.MonitorPlan;
     /** These are the credentials that will be used for the assistant calls. By default, all the credentials are available for use in the call but you can provide a subset using this. */

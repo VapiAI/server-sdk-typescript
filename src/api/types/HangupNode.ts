@@ -6,7 +6,7 @@ export interface HangupNode {
     type: Vapi.HangupNodeType;
     name: string;
     /** This is whether or not the node is the start of the workflow. */
-    isStart?: boolean;
+    isStart?: boolean | undefined;
     /** This is for metadata you want to store on the task. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

@@ -2,6 +2,11 @@
 
 /** The voices provided by Vapi */
 export const FallbackVapiVoiceVoiceId = {
+    Clara: "Clara",
+    Godfrey: "Godfrey",
+    Layla: "Layla",
+    Sid: "Sid",
+    Gustavo: "Gustavo",
     Elliot: "Elliot",
     Kylie: "Kylie",
     Rohan: "Rohan",
@@ -13,6 +18,12 @@ export const FallbackVapiVoiceVoiceId = {
     Harry: "Harry",
     Paige: "Paige",
     Spencer: "Spencer",
+    Nico: "Nico",
+    Kai: "Kai",
+    Emma: "Emma",
+    Sagar: "Sagar",
+    Neil: "Neil",
+    Naina: "Naina",
     Leah: "Leah",
     Tara: "Tara",
     Jess: "Jess",

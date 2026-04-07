@@ -8,5 +8,15 @@ import type * as Vapi from "../index.js";
  * If this is sent, `assistantId`, `assistant`, `squadId`, and `squad` are ignored.
  */
 export type ServerMessageResponseAssistantRequestDestination =
-    | Vapi.TransferDestinationNumber
-    | Vapi.TransferDestinationSip;
+    | Vapi.ServerMessageResponseAssistantRequestDestination.Number
+    | Vapi.ServerMessageResponseAssistantRequestDestination.Sip;
+
+export namespace ServerMessageResponseAssistantRequestDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

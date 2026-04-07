@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageResponseKnowledgeBaseRequest {
     /** This is the list of documents that will be sent to the model alongside the `messages` to generate a response. */
-    documents?: Vapi.KnowledgeBaseResponseDocument[];
+    documents?: Vapi.KnowledgeBaseResponseDocument[] | undefined;
     /** This can be used to skip the model output generation and speak a custom message. */
-    message?: Vapi.CustomMessage;
+    message?: Vapi.CustomMessage | undefined;
 }

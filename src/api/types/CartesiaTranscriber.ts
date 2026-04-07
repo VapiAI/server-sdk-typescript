@@ -3,9 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface CartesiaTranscriber {
-    provider: Vapi.CartesiaTranscriberProvider;
-    model?: Vapi.CartesiaTranscriberModel;
-    language?: Vapi.CartesiaTranscriberLanguage;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    model?: Vapi.CartesiaTranscriberModel | undefined;
+    language?: Vapi.CartesiaTranscriberLanguage | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

@@ -4,15 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface AzureVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.AzureVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.AzureVoiceId;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackPlan;
+    fallbackPlan?: Vapi.FallbackPlan | undefined;
 }

@@ -5,4 +5,16 @@ import type * as Vapi from "../index.js";
 /**
  * This is the destination to forward the call to if the request is "forward".
  */
-export type ServerMessagePhoneCallControlDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
+export type ServerMessagePhoneCallControlDestination =
+    | Vapi.ServerMessagePhoneCallControlDestination.Number
+    | Vapi.ServerMessagePhoneCallControlDestination.Sip;
+
+export namespace ServerMessagePhoneCallControlDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

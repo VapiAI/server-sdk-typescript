@@ -8,7 +8,7 @@ export interface MessageTarget {
      *
      * If not specified, will find the position in the message history ignoring role (effectively `any`).
      */
-    role?: Vapi.MessageTargetRole;
+    role?: Vapi.MessageTargetRole | undefined;
     /**
      * This is the position of the message to target.
      * - Negative numbers: Count from end (-1 = most recent, -2 = second most recent)
@@ -17,5 +17,5 @@ export interface MessageTarget {
      *
      * @default -1 (most recent message)
      */
-    position?: number;
+    position?: number | undefined;
 }

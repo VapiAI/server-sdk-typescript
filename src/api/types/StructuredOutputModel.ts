@@ -6,19 +6,42 @@ import type * as Vapi from "../index.js";
  * This is the model that will be used to extract the structured output.
  *
  * To provide your own custom system and user prompts for structured output extraction, populate the messages array with your system and user messages. You can specify liquid templating in your system and user messages.
- * Between the system or user messages, you must reference either 'transcript' or 'messages' with the '{{}}' syntax to access the conversation history.
- * Between the system or user messages, you must reference a variation of the structured output with the '{{}}' syntax to access the structured output definition.
+ * Between the system or user messages, you must reference either 'transcript' or 'messages' with the `{{}}` syntax to access the conversation history.
+ * Between the system or user messages, you must reference a variation of the structured output with the `{{}}` syntax to access the structured output definition.
  * i.e.:
- * {{structuredOutput}}
- * {{structuredOutput.name}}
- * {{structuredOutput.description}}
- * {{structuredOutput.schema}}
+ * `{{structuredOutput}}`
+ * `{{structuredOutput.name}}`
+ * `{{structuredOutput.description}}`
+ * `{{structuredOutput.schema}}`
  *
  * If model is not specified, GPT-4.1 will be used by default for extraction, utilizing default system and user prompts.
  * If messages or required fields are not specified, the default system and user prompts will be used.
  */
 export type StructuredOutputModel =
-    | Vapi.WorkflowOpenAiModel
-    | Vapi.WorkflowAnthropicModel
-    | Vapi.WorkflowGoogleModel
-    | Vapi.WorkflowCustomModel;
+    | Vapi.StructuredOutputModel.Openai
+    | Vapi.StructuredOutputModel.Anthropic
+    | Vapi.StructuredOutputModel.AnthropicBedrock
+    | Vapi.StructuredOutputModel.Google
+    | Vapi.StructuredOutputModel.CustomLlm;
+
+export namespace StructuredOutputModel {
+    export interface Openai extends Vapi.WorkflowOpenAiModel {
+        provider: "openai";
+    }
+
+    export interface Anthropic extends Vapi.WorkflowAnthropicModel {
+        provider: "anthropic";
+    }
+
+    export interface AnthropicBedrock extends Vapi.WorkflowAnthropicBedrockModel {
+        provider: "anthropic-bedrock";
+    }
+
+    export interface Google extends Vapi.WorkflowGoogleModel {
+        provider: "google";
+    }
+
+    export interface CustomLlm extends Vapi.WorkflowCustomModel {
+        provider: "custom-llm";
+    }
+}

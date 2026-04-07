@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem.RequestStart
+    | Vapi.CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem.RequestComplete
+    | Vapi.CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem.RequestFailed
+    | Vapi.CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem.RequestResponseDelayed;
+
+export namespace CreateGoHighLevelCalendarEventCreateToolDtoMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

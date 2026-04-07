@@ -14,13 +14,13 @@ export interface ArtifactPlan {
      *
      * @default true
      */
-    recordingEnabled?: boolean;
+    recordingEnabled?: boolean | undefined;
     /**
      * This determines the format of the recording. Defaults to `wav;l16`.
      *
      * @default 'wav;l16'
      */
-    recordingFormat?: Vapi.ArtifactPlanRecordingFormat;
+    recordingFormat?: Vapi.ArtifactPlanRecordingFormat | undefined;
     /**
      * This determines whether to use custom storage (S3 or GCP) for call recordings when storage credentials are configured.
      *
@@ -32,7 +32,7 @@ export interface ArtifactPlan {
      *
      * @default true
      */
-    recordingUseCustomStorageEnabled?: boolean;
+    recordingUseCustomStorageEnabled?: boolean | undefined;
     /**
      * This determines whether the video is recorded during the call. Defaults to false. Only relevant for `webCall` type.
      *
@@ -40,9 +40,9 @@ export interface ArtifactPlan {
      *
      * @default false
      */
-    videoRecordingEnabled?: boolean;
+    videoRecordingEnabled?: boolean | undefined;
     /** This determines whether the artifact contains the full message history, even after handoff context engineering. Defaults to false. */
-    fullMessageHistoryEnabled?: boolean;
+    fullMessageHistoryEnabled?: boolean | undefined;
     /**
      * This determines whether the SIP packet capture is enabled. Defaults to true. Only relevant for `phone` type calls where phone number's provider is `vapi` or `byo-phone-number`.
      *
@@ -50,7 +50,7 @@ export interface ArtifactPlan {
      *
      * @default true
      */
-    pcapEnabled?: boolean;
+    pcapEnabled?: boolean | undefined;
     /**
      * This is the path where the SIP packet capture will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
      *
@@ -62,7 +62,7 @@ export interface ArtifactPlan {
      *
      * @default '/'
      */
-    pcapS3PathPrefix?: string;
+    pcapS3PathPrefix?: string | undefined;
     /**
      * This determines whether to use custom storage (S3 or GCP) for SIP packet captures when storage credentials are configured.
      *
@@ -74,13 +74,13 @@ export interface ArtifactPlan {
      *
      * @default true
      */
-    pcapUseCustomStorageEnabled?: boolean;
+    pcapUseCustomStorageEnabled?: boolean | undefined;
     /**
      * This determines whether the call logs are enabled. Defaults to true.
      *
      * @default true
      */
-    loggingEnabled?: boolean;
+    loggingEnabled?: boolean | undefined;
     /**
      * This determines whether to use custom storage (S3 or GCP) for call logs when storage credentials are configured.
      *
@@ -92,9 +92,9 @@ export interface ArtifactPlan {
      *
      * @default true
      */
-    loggingUseCustomStorageEnabled?: boolean;
+    loggingUseCustomStorageEnabled?: boolean | undefined;
     /** This is the plan for `call.artifact.transcript`. To disable, set `transcriptPlan.enabled` to false. */
-    transcriptPlan?: Vapi.TranscriptPlan;
+    transcriptPlan?: Vapi.TranscriptPlan | undefined;
     /**
      * This is the path where the recording will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
      *
@@ -106,22 +106,28 @@ export interface ArtifactPlan {
      *
      * @default '/'
      */
-    recordingPath?: string;
+    recordingPath?: string | undefined;
     /**
      * This is an array of structured output IDs to be calculated during the call.
      * The outputs will be extracted and stored in `call.artifact.structuredOutputs` after the call is ended.
      */
-    structuredOutputIds?: string[];
+    structuredOutputIds?: string[] | undefined;
+    /**
+     * This is an array of transient structured outputs to be calculated during the call.
+     * The outputs will be extracted and stored in `call.artifact.structuredOutputs` after the call is ended.
+     * Use this to provide inline structured output configurations instead of referencing existing ones via structuredOutputIds.
+     */
+    structuredOutputs?: Vapi.CreateStructuredOutputDto[] | undefined;
     /**
      * This is an array of scorecard IDs that will be evaluated based on the structured outputs extracted during the call.
      * The scorecards will be evaluated and the results will be stored in `call.artifact.scorecards` after the call has ended.
      */
-    scorecardIds?: string[];
+    scorecardIds?: string[] | undefined;
     /**
      * This is the array of scorecards that will be evaluated based on the structured outputs extracted during the call.
      * The scorecards will be evaluated and the results will be stored in `call.artifact.scorecards` after the call has ended.
      */
-    scorecards?: Vapi.CreateScorecardDto[];
+    scorecards?: Vapi.CreateScorecardDto[] | undefined;
     /**
      * This is the path where the call logs will be uploaded. This is only used if you have provided S3 or GCP credentials on the Provider Credentials page in the Dashboard.
      *
@@ -133,5 +139,5 @@ export interface ArtifactPlan {
      *
      * @default '/'
      */
-    loggingPath?: string;
+    loggingPath?: string | undefined;
 }

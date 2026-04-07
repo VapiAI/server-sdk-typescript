@@ -4,23 +4,21 @@ import type * as Vapi from "../index.js";
 
 export interface OpenAiModel {
     /** This is the starting state for the conversation. */
-    messages?: Vapi.OpenAiMessage[];
+    messages?: Vapi.OpenAiMessage[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use existing tools, use `toolIds`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: Vapi.OpenAiModelToolsItem[];
+    tools?: Vapi.OpenAiModelToolsItem[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    toolIds?: string[];
+    toolIds?: string[] | undefined;
     /** These are the options for the knowledge base. */
-    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
-    /** This is the provider that will be used for the model. */
-    provider: Vapi.OpenAiModelProvider;
+    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /**
      * This is the OpenAI model that will be used.
      *
@@ -31,7 +29,7 @@ export interface OpenAiModel {
      */
     model: Vapi.OpenAiModelModel;
     /** These are the fallback models that will be used if the primary model fails. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest fallbacks that make sense. */
-    fallbackModels?: Vapi.OpenAiModelFallbackModelsItem[];
+    fallbackModels?: Vapi.OpenAiModelFallbackModelsItem[] | undefined;
     /**
      * Azure OpenAI doesn't support `maxLength` right now https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/structured-outputs?tabs=python-secure%2Cdotnet-entra-id&pivots=programming-language-csharp#unsupported-type-specific-keywords. Need to strip.
      *
@@ -40,18 +38,18 @@ export interface OpenAiModel {
      *
      * @default `strip-unsupported-validation`
      */
-    toolStrictCompatibilityMode?: Vapi.OpenAiModelToolStrictCompatibilityMode;
+    toolStrictCompatibilityMode?: Vapi.OpenAiModelToolStrictCompatibilityMode | undefined;
     /**
      * This controls the prompt cache retention policy for models that support extended caching (GPT-4.1, GPT-5 series).
      *
      * - `in_memory`: Default behavior, cache retained in GPU memory only
      * - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
      *
-     * Only applies to models: gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+     * Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
      *
      * @default undefined (uses API default which is 'in_memory')
      */
-    promptCacheRetention?: Vapi.OpenAiModelPromptCacheRetention;
+    promptCacheRetention?: Vapi.OpenAiModelPromptCacheRetention | undefined;
     /**
      * This is the prompt cache key for models that support extended caching (GPT-4.1, GPT-5 series).
      *
@@ -59,11 +57,11 @@ export interface OpenAiModel {
      *
      * @default undefined
      */
-    promptCacheKey?: string;
+    promptCacheKey?: string | undefined;
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.
      *
@@ -71,7 +69,7 @@ export interface OpenAiModel {
      *
      * @default false
      */
-    emotionRecognitionEnabled?: boolean;
+    emotionRecognitionEnabled?: boolean | undefined;
     /**
      * This sets how many turns at the start of the conversation to use a smaller, faster model from the same provider before switching to the primary model. Example, gpt-3.5-turbo if provider is openai.
      *
@@ -79,5 +77,5 @@ export interface OpenAiModel {
      *
      * @default 0
      */
-    numFastTurns?: number;
+    numFastTurns?: number | undefined;
 }

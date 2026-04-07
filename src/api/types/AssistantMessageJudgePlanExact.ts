@@ -4,12 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface AssistantMessageJudgePlanExact {
     /**
-     * This is the type of the judge plan.
-     * Use 'exact' for an exact match on the content and tool calls - without using LLM-as-a-judge.
-     * @default 'exact'
-     */
-    type: Vapi.AssistantMessageJudgePlanExactType;
-    /**
      * This is what that will be used to evaluate the model's message content.
      * If you provide a string, the assistant message content will be evaluated against it as an exact match, case-insensitive.
      */
@@ -28,5 +22,5 @@ export interface AssistantMessageJudgePlanExact {
      *
      * For all other tools, they are called without arguments or with user-defined arguments
      */
-    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[];
+    toolCalls?: Vapi.ChatEvalAssistantMessageMockToolCall[] | undefined;
 }

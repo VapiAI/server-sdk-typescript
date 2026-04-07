@@ -18,5 +18,5 @@ export interface ChatEvalAssistantMessageEvaluation {
      * This is the plan for how the overall evaluation will proceed after the assistant message is evaluated.
      * This lets you configure whether to stop the evaluation if this message fails, and whether to override any content for future turns
      */
-    continuePlan?: Vapi.AssistantMessageEvaluationContinuePlan;
+    continuePlan?: Vapi.AssistantMessageEvaluationContinuePlan | undefined;
 }

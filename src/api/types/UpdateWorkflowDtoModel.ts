@@ -8,7 +8,30 @@ import type * as Vapi from "../index.js";
  * This can be overridden at node level using `nodes[n].model`.
  */
 export type UpdateWorkflowDtoModel =
-    | Vapi.WorkflowOpenAiModel
-    | Vapi.WorkflowAnthropicModel
-    | Vapi.WorkflowGoogleModel
-    | Vapi.WorkflowCustomModel;
+    | Vapi.UpdateWorkflowDtoModel.Openai
+    | Vapi.UpdateWorkflowDtoModel.Anthropic
+    | Vapi.UpdateWorkflowDtoModel.AnthropicBedrock
+    | Vapi.UpdateWorkflowDtoModel.Google
+    | Vapi.UpdateWorkflowDtoModel.CustomLlm;
+
+export namespace UpdateWorkflowDtoModel {
+    export interface Openai extends Vapi.WorkflowOpenAiModel {
+        provider: "openai";
+    }
+
+    export interface Anthropic extends Vapi.WorkflowAnthropicModel {
+        provider: "anthropic";
+    }
+
+    export interface AnthropicBedrock extends Vapi.WorkflowAnthropicBedrockModel {
+        provider: "anthropic-bedrock";
+    }
+
+    export interface Google extends Vapi.WorkflowGoogleModel {
+        provider: "google";
+    }
+
+    export interface CustomLlm extends Vapi.WorkflowCustomModel {
+        provider: "custom-llm";
+    }
+}

@@ -8,5 +8,5 @@ export interface CallHookTranscriberEndpointedSpeechLowConfidence {
     /** This is the event that triggers this hook */
     on: string;
     /** This is the options for the hook including confidence thresholds */
-    options?: Vapi.EndpointedSpeechLowConfidenceOptions;
+    options?: Vapi.EndpointedSpeechLowConfidenceOptions | undefined;
 }

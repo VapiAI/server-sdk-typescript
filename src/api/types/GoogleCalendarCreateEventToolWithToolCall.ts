@@ -8,9 +8,7 @@ export interface GoogleCalendarCreateEventToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.GoogleCalendarCreateEventToolWithToolCallMessagesItem[];
-    /** The type of tool. "google.calendar.event.create" for Google Calendar Create Event tool. */
-    type: Vapi.GoogleCalendarCreateEventToolWithToolCallType;
+    messages?: Vapi.GoogleCalendarCreateEventToolWithToolCallMessagesItem[] | undefined;
     toolCall: Vapi.ToolCall;
     /**
      * This is the plan to reject a tool call based on the conversation state.
@@ -92,5 +90,5 @@ export interface GoogleCalendarCreateEventToolWithToolCall {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

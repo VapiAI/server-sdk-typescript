@@ -4,9 +4,9 @@ export interface CloneVoiceDto {
     /** This is the name of the cloned voice in the provider account. */
     name: string;
     /** This is the description of your cloned voice. */
-    description?: string;
+    description?: string | undefined;
     /** Serialized labels dictionary for the voice. */
-    labels?: string;
+    labels?: string | undefined;
     /** These are the files you want to use to clone your voice. Only Audio files are supported. */
     files: string[];
 }

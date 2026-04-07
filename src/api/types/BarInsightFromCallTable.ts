@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface BarInsightFromCallTable {
     /** This is the name of the Insight. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the type of the Insight.
      * It is required to be `bar` to create a bar insight.
@@ -27,16 +27,16 @@ export interface BarInsightFromCallTable {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formulas?: Vapi.InsightFormula[];
+    formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
-    metadata?: Vapi.BarInsightMetadata;
-    timeRange?: Vapi.InsightTimeRangeWithStep;
+    metadata?: Vapi.BarInsightMetadata | undefined;
+    timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
      * These are the columns to group the results by.
      * All results are grouped by the time range step by default.
      */
-    groupBy?: Vapi.BarInsightFromCallTableGroupBy;
+    groupBy?: Vapi.BarInsightFromCallTableGroupBy | undefined;
     /** These are the queries to run to generate the insight. */
     queries: Vapi.BarInsightFromCallTableQueriesItem[];
 }

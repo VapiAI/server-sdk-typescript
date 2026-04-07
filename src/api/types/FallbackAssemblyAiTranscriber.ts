@@ -3,22 +3,20 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackAssemblyAiTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackAssemblyAiTranscriberProvider;
     /** This is the language that will be set for the transcription. */
-    language?: Vapi.FallbackAssemblyAiTranscriberLanguage;
+    language?: Vapi.FallbackAssemblyAiTranscriberLanguage | undefined;
     /**
      * Transcripts below this confidence threshold will be discarded.
      *
      * @default 0.4
      */
-    confidenceThreshold?: number;
+    confidenceThreshold?: number | undefined;
     /**
      * This enables formatting of transcripts.
      *
      * @default true
      */
-    formatTurns?: boolean;
+    formatTurns?: boolean | undefined;
     /**
      * This is the end of turn confidence threshold. The minimum confidence that the end of turn is detected.
      * Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
@@ -26,20 +24,20 @@ export interface FallbackAssemblyAiTranscriber {
      * @max 1
      * @default 0.7
      */
-    endOfTurnConfidenceThreshold?: number;
+    endOfTurnConfidenceThreshold?: number | undefined;
     /**
      * This is the minimum end of turn silence when confident in milliseconds.
      * Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
      * @default 160
      */
-    minEndOfTurnSilenceWhenConfident?: number;
-    wordFinalizationMaxWaitTime?: number;
+    minEndOfTurnSilenceWhenConfident?: number | undefined;
+    wordFinalizationMaxWaitTime?: number | undefined;
     /**
      * This is the maximum turn silence time in milliseconds.
      * Note: Only used if startSpeakingPlan.smartEndpointingPlan is not set.
      * @default 400
      */
-    maxTurnSilence?: number;
+    maxTurnSilence?: number | undefined;
     /**
      * Use VAD to assist with endpointing decisions from the transcriber.
      * When enabled, transcriber endpointing will be buffered if VAD detects the user is still speaking, preventing premature turn-taking.
@@ -48,28 +46,28 @@ export interface FallbackAssemblyAiTranscriber {
      *
      * @default true
      */
-    vadAssistedEndpointingEnabled?: boolean;
+    vadAssistedEndpointingEnabled?: boolean | undefined;
     /**
      * This is the speech model used for the streaming session.
      * Note: Keyterms prompting is not supported with multilingual streaming.
      * @default 'universal-streaming-english'
      */
-    speechModel?: Vapi.FallbackAssemblyAiTranscriberSpeechModel;
+    speechModel?: Vapi.FallbackAssemblyAiTranscriberSpeechModel | undefined;
     /** The WebSocket URL that the transcriber connects to. */
-    realtimeUrl?: string;
+    realtimeUrl?: string | undefined;
     /** Add up to 2500 characters of custom vocabulary. */
-    wordBoost?: string[];
+    wordBoost?: string[] | undefined;
     /**
      * Keyterms prompting improves recognition accuracy for specific words and phrases.
      * Can include up to 100 keyterms, each up to 50 characters.
      * Costs an additional $0.04/hour when enabled.
      */
-    keytermsPrompt?: string[];
+    keytermsPrompt?: string[] | undefined;
     /** The duration of the end utterance silence threshold in milliseconds. */
-    endUtteranceSilenceThreshold?: number;
+    endUtteranceSilenceThreshold?: number | undefined;
     /**
      * Disable partial transcripts.
      * Set to `true` to not receive partial transcripts. Defaults to `false`.
      */
-    disablePartialTranscripts?: boolean;
+    disablePartialTranscripts?: boolean | undefined;
 }

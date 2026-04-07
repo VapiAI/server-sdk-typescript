@@ -6,5 +6,6 @@ export const OrgChannel = {
     Default: "default",
     Weekly: "weekly",
     Intuit: "intuit",
+    Hcs: "hcs",
 } as const;
 export type OrgChannel = (typeof OrgChannel)[keyof typeof OrgChannel];

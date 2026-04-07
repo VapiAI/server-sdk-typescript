@@ -3,9 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface TransportCost {
-    /** This is the type of cost, always 'transport' for this class. */
-    type: Vapi.TransportCostType;
-    provider?: Vapi.TransportCostProvider;
+    provider?: Vapi.TransportCostProvider | undefined;
     /** This is the minutes of `transport` usage. This should match `call.endedAt` - `call.startedAt`. */
     minutes: number;
     /** This is the cost of the component in USD. */

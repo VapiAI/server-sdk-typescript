@@ -2,4 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
-export type CallHookTranscriberEndpointedSpeechLowConfidenceDoItem = Vapi.SayHookAction | Vapi.ToolCallHookAction;
+export type CallHookTranscriberEndpointedSpeechLowConfidenceDoItem =
+    | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.Say
+    | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.Tool
+    | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.MessageAdd;
+
+export namespace CallHookTranscriberEndpointedSpeechLowConfidenceDoItem {
+    export interface Say extends Vapi.SayHookAction {
+        type: "say";
+    }
+
+    export interface Tool extends Vapi.ToolCallHookAction {
+        type: "tool";
+    }
+
+    export interface MessageAdd extends Vapi.MessageAddHookAction {
+        type: "message.add";
+    }
+}

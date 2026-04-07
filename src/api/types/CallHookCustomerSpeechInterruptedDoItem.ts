@@ -2,4 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
-export type CallHookCustomerSpeechInterruptedDoItem = Vapi.SayHookAction | Vapi.ToolCallHookAction;
+export type CallHookCustomerSpeechInterruptedDoItem =
+    | Vapi.CallHookCustomerSpeechInterruptedDoItem.Say
+    | Vapi.CallHookCustomerSpeechInterruptedDoItem.Tool
+    | Vapi.CallHookCustomerSpeechInterruptedDoItem.MessageAdd;
+
+export namespace CallHookCustomerSpeechInterruptedDoItem {
+    export interface Say extends Vapi.SayHookAction {
+        type: "say";
+    }
+
+    export interface Tool extends Vapi.ToolCallHookAction {
+        type: "tool";
+    }
+
+    export interface MessageAdd extends Vapi.MessageAddHookAction {
+        type: "message.add";
+    }
+}

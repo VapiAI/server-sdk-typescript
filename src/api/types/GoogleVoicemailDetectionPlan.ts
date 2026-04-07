@@ -14,16 +14,16 @@ export interface GoogleVoicemailDetectionPlan {
      * @min 0
      * @max 60
      */
-    beepMaxAwaitSeconds?: number;
+    beepMaxAwaitSeconds?: number | undefined;
     /** This is the provider to use for voicemail detection. */
     provider: Vapi.GoogleVoicemailDetectionPlanProvider;
     /** This is the backoff plan for the voicemail detection. */
-    backoffPlan?: Vapi.VoicemailDetectionBackoffPlan;
+    backoffPlan?: Vapi.VoicemailDetectionBackoffPlan | undefined;
     /**
      * This is the detection type to use for voicemail detection.
      * - 'audio': Uses native audio models (default)
      * - 'transcript': Uses ASR/transcript-based detection
      * @default 'audio' (audio detection)
      */
-    type?: Vapi.GoogleVoicemailDetectionPlanType;
+    type?: Vapi.GoogleVoicemailDetectionPlanType | undefined;
 }

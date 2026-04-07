@@ -11,10 +11,9 @@ export interface ByoPhoneNumber {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: Vapi.ByoPhoneNumberFallbackDestination;
+    fallbackDestination?: Vapi.ByoPhoneNumberFallbackDestination | undefined;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: Vapi.ByoPhoneNumberHooksItem[];
-    provider: "byo-phone-number";
+    hooks?: Vapi.ByoPhoneNumberHooksItem[] | undefined;
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
      *
@@ -26,7 +25,7 @@ export interface ByoPhoneNumber {
      *
      * @default true (E164 check is enabled)
      */
-    numberE164CheckEnabled?: boolean;
+    numberE164CheckEnabled?: boolean | undefined;
     /** This is the unique identifier for the phone number. */
     id: string;
     /** This is the unique identifier for the org that this phone number belongs to. */
@@ -36,27 +35,27 @@ export interface ByoPhoneNumber {
     /** This is the ISO 8601 date-time string of when the phone number was last updated. */
     updatedAt: string;
     /** This is the status of the phone number. */
-    status?: Vapi.ByoPhoneNumberStatus;
+    status?: Vapi.ByoPhoneNumberStatus | undefined;
     /** This is the name of the phone number. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the assistant that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the workflow that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is the squad that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -66,9 +65,9 @@ export interface ByoPhoneNumber {
      * 2. phoneNumber.server
      * 3. org.server
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** This is the number of the customer. */
-    number?: string;
+    number?: string | undefined;
     /**
      * This is the credential of your own SIP trunk or Carrier (type `byo-sip-trunk`) which can be used to make calls to this phone number.
      *

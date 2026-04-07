@@ -4,14 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface EvalRunTargetSquad {
     /** This is the transient squad that will be run against the eval */
-    squad?: Vapi.CreateSquadDto;
+    squad?: Vapi.CreateSquadDto | undefined;
     /** This is the overrides that will be applied to the assistants. */
-    assistantOverrides?: Vapi.AssistantOverrides;
-    /**
-     * This is the type of the target.
-     * Currently it is fixed to `squad`.
-     */
-    type: Vapi.EvalRunTargetSquadType;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /** This is the id of the squad that will be run against the eval */
-    squadId?: string;
+    squadId?: string | undefined;
 }

@@ -8,7 +8,7 @@ export interface UpdateMcpToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateMcpToolDtoMessagesItem[];
+    messages?: Vapi.UpdateMcpToolDtoMessagesItem[] | undefined;
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
      *
@@ -19,7 +19,9 @@ export interface UpdateMcpToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
+    /** Per-tool message overrides for individual tools loaded from the MCP server. Set messages to an empty array to suppress messages for a specific tool. Tools not listed here will use the default messages from the parent tool. */
+    toolMessages?: Vapi.McpToolMessages[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -100,6 +102,6 @@ export interface UpdateMcpToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
-    metadata?: Vapi.McpToolMetadata;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
+    metadata?: Vapi.McpToolMetadata | undefined;
 }

@@ -3,17 +3,16 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateCloudflareCredentialDto {
-    provider: "cloudflare";
     /** Cloudflare Account Id. */
-    accountId?: string;
+    accountId?: string | undefined;
     /** Cloudflare API Key / Token. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** Cloudflare Account Email. */
-    accountEmail?: string;
+    accountEmail?: string | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the bucket plan that can be provided to store call artifacts in R2 */
-    bucketPlan?: Vapi.CloudflareR2BucketPlan;
+    bucketPlan?: Vapi.CloudflareR2BucketPlan | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

@@ -11,5 +11,15 @@ import type * as Vapi from "../index.js";
  * If this is not set and above conditions are met, the inbound call is hung up with an error message.
  */
 export type UpdateTwilioPhoneNumberDtoFallbackDestination =
-    | Vapi.TransferDestinationNumber
-    | Vapi.TransferDestinationSip;
+    | Vapi.UpdateTwilioPhoneNumberDtoFallbackDestination.Number
+    | Vapi.UpdateTwilioPhoneNumberDtoFallbackDestination.Sip;
+
+export namespace UpdateTwilioPhoneNumberDtoFallbackDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

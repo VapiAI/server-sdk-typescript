@@ -3,12 +3,51 @@
 import type * as Vapi from "../index.js";
 
 export type CreateToolTemplateDtoProviderDetails =
-    | Vapi.MakeToolProviderDetails
-    | Vapi.GhlToolProviderDetails
-    | Vapi.FunctionToolProviderDetails
-    | Vapi.GoogleCalendarCreateEventToolProviderDetails
-    | Vapi.GoogleSheetsRowAppendToolProviderDetails
-    | Vapi.GoHighLevelCalendarAvailabilityToolProviderDetails
-    | Vapi.GoHighLevelCalendarEventCreateToolProviderDetails
-    | Vapi.GoHighLevelContactCreateToolProviderDetails
-    | Vapi.GoHighLevelContactGetToolProviderDetails;
+    | Vapi.CreateToolTemplateDtoProviderDetails.Make
+    | Vapi.CreateToolTemplateDtoProviderDetails.Ghl
+    | Vapi.CreateToolTemplateDtoProviderDetails.Function
+    | Vapi.CreateToolTemplateDtoProviderDetails.GoogleCalendarEventCreate
+    | Vapi.CreateToolTemplateDtoProviderDetails.GoogleSheetsRowAppend
+    | Vapi.CreateToolTemplateDtoProviderDetails.GohighlevelCalendarAvailabilityCheck
+    | Vapi.CreateToolTemplateDtoProviderDetails.GohighlevelCalendarEventCreate
+    | Vapi.CreateToolTemplateDtoProviderDetails.GohighlevelContactCreate
+    | Vapi.CreateToolTemplateDtoProviderDetails.GohighlevelContactGet;
+
+export namespace CreateToolTemplateDtoProviderDetails {
+    export interface Make extends Vapi.MakeToolProviderDetails {
+        type: "make";
+    }
+
+    export interface Ghl extends Vapi.GhlToolProviderDetails {
+        type: "ghl";
+    }
+
+    export interface Function extends Vapi.FunctionToolProviderDetails {
+        type: "function";
+    }
+
+    export interface GoogleCalendarEventCreate extends Vapi.GoogleCalendarCreateEventToolProviderDetails {
+        type: "google.calendar.event.create";
+    }
+
+    export interface GoogleSheetsRowAppend extends Vapi.GoogleSheetsRowAppendToolProviderDetails {
+        type: "google.sheets.row.append";
+    }
+
+    export interface GohighlevelCalendarAvailabilityCheck
+        extends Vapi.GoHighLevelCalendarAvailabilityToolProviderDetails {
+        type: "gohighlevel.calendar.availability.check";
+    }
+
+    export interface GohighlevelCalendarEventCreate extends Vapi.GoHighLevelCalendarEventCreateToolProviderDetails {
+        type: "gohighlevel.calendar.event.create";
+    }
+
+    export interface GohighlevelContactCreate extends Vapi.GoHighLevelContactCreateToolProviderDetails {
+        type: "gohighlevel.contact.create";
+    }
+
+    export interface GohighlevelContactGet extends Vapi.GoHighLevelContactGetToolProviderDetails {
+        type: "gohighlevel.contact.get";
+    }
+}

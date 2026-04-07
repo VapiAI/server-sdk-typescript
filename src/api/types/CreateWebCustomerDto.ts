@@ -14,26 +14,26 @@ export interface CreateWebCustomerDto {
      *
      * @default true (E164 check is enabled)
      */
-    numberE164CheckEnabled?: boolean;
+    numberE164CheckEnabled?: boolean | undefined;
     /** This is the extension that will be dialed after the call is answered. */
-    extension?: string;
+    extension?: string | undefined;
     /**
      * These are the variable values that will be used to replace template variables in the assistant messages.
      * Only variable substitution is supported in web chat - other assistant properties cannot be overridden.
      */
-    assistantOverrides?: Vapi.ChatAssistantOverrides;
+    assistantOverrides?: Vapi.ChatAssistantOverrides | undefined;
     /** This is the number of the customer. */
-    number?: string;
+    number?: string | undefined;
     /** This is the SIP URI of the customer. */
-    sipUri?: string;
+    sipUri?: string | undefined;
     /**
      * This is the name of the customer. This is just for your own reference.
      *
      * For SIP inbound calls, this is extracted from the `From` SIP header with format `"Display Name" <sip:username@domain>`.
      */
-    name?: string;
+    name?: string | undefined;
     /** This is the email of the customer. */
-    email?: string;
+    email?: string | undefined;
     /** This is the external ID of the customer. */
-    externalId?: string;
+    externalId?: string | undefined;
 }

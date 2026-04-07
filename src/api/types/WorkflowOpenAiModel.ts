@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface WorkflowOpenAiModel {
-    /** This is the provider of the model (`openai`). */
-    provider: Vapi.WorkflowOpenAiModelProvider;
     /**
      * This is the OpenAI model that will be used.
      *
@@ -13,7 +11,7 @@ export interface WorkflowOpenAiModel {
      */
     model: Vapi.WorkflowOpenAiModelModel;
     /** This is the temperature of the model. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max tokens of the model. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
 }

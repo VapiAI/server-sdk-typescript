@@ -8,7 +8,7 @@ export interface ServerMessageResponseAssistantRequest {
      *
      * If this is sent, `assistantId`, `assistant`, `squadId`, and `squad` are ignored.
      */
-    destination?: Vapi.ServerMessageResponseAssistantRequestDestination;
+    destination?: Vapi.ServerMessageResponseAssistantRequestDestination | undefined;
     /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
      *
@@ -17,7 +17,7 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squadId` or `squad`
      * - Workflow, use `workflowId` or `workflow`
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the assistant that will be used for the call. To use an existing assistant, use `assistantId` instead.
      *
@@ -26,9 +26,9 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad`
      * - Workflow, use `workflow`
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** These are the overrides for the `assistant` or `assistantId`'s settings and template variables. */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /**
      * This is the squad that will be used for the call. To use a transient squad, use `squad` instead.
      *
@@ -37,7 +37,7 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is a squad that will be used for the call. To use an existing squad, use `squadId` instead.
      *
@@ -46,12 +46,12 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    squad?: Vapi.CreateSquadDto;
+    squad?: Vapi.CreateSquadDto | undefined;
     /**
      * These are the overrides for the `squad` or `squadId`'s member settings and template variables.
      * This will apply to all members of the squad.
      */
-    squadOverrides?: Vapi.AssistantOverrides;
+    squadOverrides?: Vapi.AssistantOverrides | undefined;
     /**
      * This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead.
      *
@@ -60,7 +60,7 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is a workflow that will be used for the call. To use an existing workflow, use `workflowId` instead.
      *
@@ -69,13 +69,13 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad` or `squadId`
      * - Workflow, use `workflow` or `workflowId`
      */
-    workflow?: Vapi.CreateWorkflowDto;
+    workflow?: Vapi.CreateWorkflowDto | undefined;
     /** These are the overrides for the `workflow` or `workflowId`'s settings and template variables. */
-    workflowOverrides?: Vapi.WorkflowOverrides;
+    workflowOverrides?: Vapi.WorkflowOverrides | undefined;
     /**
      * This is the error if the call shouldn't be accepted. This is spoken to the customer.
      *
      * If this is sent, `assistantId`, `assistant`, `squadId`, `squad`, and `destination` are ignored.
      */
-    error?: string;
+    error?: string | undefined;
 }

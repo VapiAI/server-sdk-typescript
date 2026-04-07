@@ -2,7 +2,7 @@
 
 export interface ToolTemplateSetup {
     title: string;
-    description?: string;
-    videoUrl?: string;
-    docsUrl?: string;
+    description?: string | undefined;
+    videoUrl?: string | undefined;
+    docsUrl?: string | undefined;
 }

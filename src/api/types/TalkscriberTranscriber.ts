@@ -3,12 +3,10 @@
 import type * as Vapi from "../index.js";
 
 export interface TalkscriberTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.TalkscriberTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.TalkscriberTranscriberModel;
+    model?: Vapi.TalkscriberTranscriberModel | undefined;
     /** This is the language that will be set for the transcription. The list of languages Whisper supports can be found here: https://github.com/openai/whisper/blob/main/whisper/tokenizer.py */
-    language?: Vapi.TalkscriberTranscriberLanguage;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    language?: Vapi.TalkscriberTranscriberLanguage | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

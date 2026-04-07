@@ -4,11 +4,11 @@ import type * as Vapi from "../index.js";
 
 export interface Recording {
     /** This is the stereo recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    stereoUrl?: string;
+    stereoUrl?: string | undefined;
     /** This is the video recording url for the call. To enable, set `assistant.artifactPlan.videoRecordingEnabled`. */
-    videoUrl?: string;
+    videoUrl?: string | undefined;
     /** This is video recording start delay in ms. To enable, set `assistant.artifactPlan.videoRecordingEnabled`. This can be used to align the playback of the recording with artifact.messages timestamps. */
-    videoRecordingStartDelaySeconds?: number;
+    videoRecordingStartDelaySeconds?: number | undefined;
     /** This is the mono recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    mono?: Vapi.Mono;
+    mono?: Vapi.Mono | undefined;
 }

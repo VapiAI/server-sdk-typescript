@@ -2,5 +2,5 @@
 
 export interface SmartDenoisingPlan {
     /** Whether smart denoising using Krisp is enabled. */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
 }

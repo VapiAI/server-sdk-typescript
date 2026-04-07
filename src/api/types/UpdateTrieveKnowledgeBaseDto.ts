@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateTrieveKnowledgeBaseDto {
     /** This is the name of the knowledge base. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the searching plan used when searching for relevant chunks from the vector store.
      *
@@ -12,7 +12,7 @@ export interface UpdateTrieveKnowledgeBaseDto {
      * - Too much unnecessary context is being fed as knowledge base context.
      * - Not enough relevant context is being fed as knowledge base context.
      */
-    searchPlan?: Vapi.TrieveKnowledgeBaseSearchPlan;
+    searchPlan?: Vapi.TrieveKnowledgeBaseSearchPlan | undefined;
     /** This is the plan if you want us to create/import a new vector store using Trieve. */
-    createPlan?: Vapi.TrieveKnowledgeBaseImport;
+    createPlan?: Vapi.TrieveKnowledgeBaseImport | undefined;
 }

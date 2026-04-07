@@ -10,13 +10,13 @@ export interface TwilioVoicemailDetectionPlan {
      *
      * @default {Array} ['machine_end_beep', 'machine_end_silence']
      */
-    voicemailDetectionTypes?: Vapi.TwilioVoicemailDetectionPlanVoicemailDetectionTypesItem[];
+    voicemailDetectionTypes?: Vapi.TwilioVoicemailDetectionPlanVoicemailDetectionTypesItem[] | undefined;
     /**
      * This sets whether the assistant should detect voicemail. Defaults to true.
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * The number of seconds that Twilio should attempt to perform answering machine detection before timing out and returning AnsweredBy as unknown. Default is 30 seconds.
      *
@@ -28,7 +28,7 @@ export interface TwilioVoicemailDetectionPlan {
      *
      * @default 30
      */
-    machineDetectionTimeout?: number;
+    machineDetectionTimeout?: number | undefined;
     /**
      * The number of milliseconds that is used as the measuring stick for the length of the speech activity. Durations lower than this value will be interpreted as a human, longer as a machine. Default is 2400 milliseconds.
      *
@@ -40,7 +40,7 @@ export interface TwilioVoicemailDetectionPlan {
      *
      * @default 2400
      */
-    machineDetectionSpeechThreshold?: number;
+    machineDetectionSpeechThreshold?: number | undefined;
     /**
      * The number of milliseconds of silence after speech activity at which point the speech activity is considered complete. Default is 1200 milliseconds.
      *
@@ -54,7 +54,7 @@ export interface TwilioVoicemailDetectionPlan {
      *
      * @default 1200
      */
-    machineDetectionSpeechEndThreshold?: number;
+    machineDetectionSpeechEndThreshold?: number | undefined;
     /**
      * The number of milliseconds of initial silence after which an unknown AnsweredBy result will be returned. Default is 5000 milliseconds.
      *
@@ -66,5 +66,5 @@ export interface TwilioVoicemailDetectionPlan {
      *
      * @default 5000
      */
-    machineDetectionSilenceTimeout?: number;
+    machineDetectionSilenceTimeout?: number | undefined;
 }

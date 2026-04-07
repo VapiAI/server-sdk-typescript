@@ -3,40 +3,42 @@
 import type * as Vapi from "../index.js";
 
 export interface OpenAiWebChatRequest {
-    /** The assistant ID to use for this chat */
-    assistantId: string;
+    /** This is the assistant ID to use for this chat. To use a transient assistant, use `assistant` instead. */
+    assistantId?: string | undefined;
+    /** This is the transient assistant configuration for this chat. To use an existing assistant, use `assistantId` instead. */
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /**
      * This is the ID of the session that will be used for the chat.
      * If provided, the conversation will continue from the previous state.
      * If not provided or expired, a new session will be created.
      */
-    sessionId?: string;
+    sessionId?: string | undefined;
     /**
      * This is the expiration time for the session. This can ONLY be set if starting a new chat and therefore a new session is created.
      * If session already exists, this will be ignored and NOT be updated for the existing session. Use PATCH /session/:id to update the session expiration time.
      */
-    sessionExpirationSeconds?: number;
+    sessionExpirationSeconds?: number | undefined;
     /**
      * These are the variable values that will be used to replace template variables in the assistant messages.
      * Only variable substitution is supported in web chat - other assistant properties cannot be overridden.
      */
-    assistantOverrides?: Vapi.ChatAssistantOverrides;
+    assistantOverrides?: Vapi.ChatAssistantOverrides | undefined;
     /**
      * This is the customer information for the chat.
      * Used to automatically manage sessions for repeat customers.
      */
-    customer?: Vapi.CreateWebCustomerDto;
+    customer?: Vapi.CreateWebCustomerDto | undefined;
     /**
      * This is the input text for the chat.
      * Can be a string or an array of chat messages.
      */
     input: Vapi.OpenAiWebChatRequestInput;
     /** Whether to stream the response or not. */
-    stream?: boolean;
+    stream?: boolean | undefined;
     /**
      * This is a flag to indicate end of session. When true, the session will be marked as completed and the chat will be ended.
      * Used to end session to send End-of-session report to the customer.
      * When flag is set to true, any messages sent will not be processed and session will directly be marked as completed.
      */
-    sessionEnd?: boolean;
+    sessionEnd?: boolean | undefined;
 }

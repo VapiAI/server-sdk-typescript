@@ -9,6 +9,9 @@
  * @default undefined
  */
 export const OpenAiModelModel = {
+    Gpt54: "gpt-5.4",
+    Gpt54Mini: "gpt-5.4-mini",
+    Gpt54Nano: "gpt-5.4-nano",
     Gpt52: "gpt-5.2",
     Gpt52ChatLatest: "gpt-5.2-chat-latest",
     Gpt51: "gpt-5.1",
@@ -33,6 +36,7 @@ export const OpenAiModelModel = {
     Gpt4ORealtimePreview20241217: "gpt-4o-realtime-preview-2024-12-17",
     Gpt4OMiniRealtimePreview20241217: "gpt-4o-mini-realtime-preview-2024-12-17",
     GptRealtime20250828: "gpt-realtime-2025-08-28",
+    GptRealtimeMini20251215: "gpt-realtime-mini-2025-12-15",
     Gpt4OMini20240718: "gpt-4o-mini-2024-07-18",
     Gpt4OMini: "gpt-4o-mini",
     Gpt4O: "gpt-4o",
@@ -108,7 +112,7 @@ export const OpenAiModelModel = {
     Gpt40125PreviewEastus: "gpt-4-0125-preview:eastus",
     Gpt40125PreviewNorthcentralus: "gpt-4-0125-preview:northcentralus",
     Gpt40125PreviewSouthcentralus: "gpt-4-0125-preview:southcentralus",
-    Gpt41106PreviewAustralia: "gpt-4-1106-preview:australia",
+    Gpt41106PreviewAustraliaeast: "gpt-4-1106-preview:australiaeast",
     Gpt41106PreviewCanadaeast: "gpt-4-1106-preview:canadaeast",
     Gpt41106PreviewFrance: "gpt-4-1106-preview:france",
     Gpt41106PreviewIndia: "gpt-4-1106-preview:india",

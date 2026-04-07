@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface RegexCondition {
-    /** This is the type discriminator for regex condition */
-    type: Vapi.RegexConditionType;
     /**
      * This is the regular expression pattern to match against message content.
      *
@@ -24,12 +22,12 @@ export interface RegexCondition {
      * If role is not specified, it will look at the last message regardless of role.
      * @default { position: -1 }
      */
-    target?: Vapi.MessageTarget;
+    target?: Vapi.MessageTarget | undefined;
     /**
      * This is the flag that when true, the condition matches if the pattern does NOT match.
      * Useful for ensuring certain words/phrases are absent.
      *
      * @default false
      */
-    negate?: boolean;
+    negate?: boolean | undefined;
 }

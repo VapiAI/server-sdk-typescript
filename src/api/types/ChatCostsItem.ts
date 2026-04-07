@@ -2,4 +2,14 @@
 
 import type * as Vapi from "../index.js";
 
-export type ChatCostsItem = Vapi.ModelCost | Vapi.ChatCost;
+export type ChatCostsItem = Vapi.ChatCostsItem.Model | Vapi.ChatCostsItem.Chat;
+
+export namespace ChatCostsItem {
+    export interface Model extends Vapi.ModelCost {
+        type: "model";
+    }
+
+    export interface Chat extends Vapi.ChatCost {
+        type: "chat";
+    }
+}

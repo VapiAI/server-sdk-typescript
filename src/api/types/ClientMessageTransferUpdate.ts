@@ -4,25 +4,25 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageTransferUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageTransferUpdatePhoneNumber;
+    phoneNumber?: Vapi.ClientMessageTransferUpdatePhoneNumber | undefined;
     /** This is the type of the message. "transfer-update" is sent whenever a transfer happens. */
     type: Vapi.ClientMessageTransferUpdateType;
     /** This is the destination of the transfer. */
-    destination?: Vapi.ClientMessageTransferUpdateDestination;
+    destination?: Vapi.ClientMessageTransferUpdateDestination | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the assistant that the call is being transferred to. This is only sent if `destination.type` is "assistant". */
-    toAssistant?: Vapi.CreateAssistantDto;
+    toAssistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the assistant that the call is being transferred from. This is only sent if `destination.type` is "assistant". */
-    fromAssistant?: Vapi.CreateAssistantDto;
+    fromAssistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the step that the conversation moved to. */
-    toStepRecord?: Record<string, unknown>;
+    toStepRecord?: Record<string, unknown> | undefined;
     /** This is the step that the conversation moved from. = */
-    fromStepRecord?: Record<string, unknown>;
+    fromStepRecord?: Record<string, unknown> | undefined;
 }

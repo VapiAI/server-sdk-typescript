@@ -3,12 +3,10 @@
 import type * as Vapi from "../index.js";
 
 export interface GoogleTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.GoogleTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.GoogleTranscriberModel;
+    model?: Vapi.GoogleTranscriberModel | undefined;
     /** This is the language that will be set for the transcription. */
-    language?: Vapi.GoogleTranscriberLanguage;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    language?: Vapi.GoogleTranscriberLanguage | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

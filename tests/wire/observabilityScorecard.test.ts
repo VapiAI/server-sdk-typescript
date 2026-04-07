@@ -18,6 +18,7 @@ describe("ObservabilityScorecardClient", () => {
             metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
             assistantIds: ["assistantIds"],
         };
+
         server
             .mockEndpoint()
             .get("/observability/scorecard/id")
@@ -64,6 +65,7 @@ describe("ObservabilityScorecardClient", () => {
             metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
             assistantIds: ["assistantIds"],
         };
+
         server
             .mockEndpoint()
             .delete("/observability/scorecard/id")
@@ -110,6 +112,7 @@ describe("ObservabilityScorecardClient", () => {
             metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
             assistantIds: ["assistantIds"],
         };
+
         server
             .mockEndpoint()
             .patch("/observability/scorecard/id")
@@ -169,6 +172,7 @@ describe("ObservabilityScorecardClient", () => {
                 createdAtGe: "2024-01-15T09:30:00Z",
             },
         };
+
         server
             .mockEndpoint()
             .get("/observability/scorecard")
@@ -227,6 +231,7 @@ describe("ObservabilityScorecardClient", () => {
             metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
             assistantIds: ["assistantIds"],
         };
+
         server
             .mockEndpoint()
             .post("/observability/scorecard")

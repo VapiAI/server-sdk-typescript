@@ -5,11 +5,11 @@ import type * as Vapi from "../index.js";
 export interface TwilioCredential {
     provider: Vapi.TwilioCredentialProvider;
     /** This is not returned in the API. */
-    authToken?: string;
+    authToken?: string | undefined;
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is not returned in the API. */
-    apiSecret?: string;
+    apiSecret?: string | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -19,6 +19,6 @@ export interface TwilioCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     accountSid: string;
 }

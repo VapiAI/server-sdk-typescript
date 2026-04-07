@@ -8,8 +8,7 @@ export interface GoHighLevelContactGetTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.GoHighLevelContactGetToolMessagesItem[];
-    type: "gohighlevel.contact.get";
+    messages?: Vapi.GoHighLevelContactGetToolMessagesItem[] | undefined;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -98,5 +97,5 @@ export interface GoHighLevelContactGetTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

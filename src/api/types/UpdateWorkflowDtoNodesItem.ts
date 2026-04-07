@@ -2,4 +2,16 @@
 
 import type * as Vapi from "../index.js";
 
-export type UpdateWorkflowDtoNodesItem = Vapi.ConversationNode | Vapi.ToolNode;
+export type UpdateWorkflowDtoNodesItem =
+    | Vapi.UpdateWorkflowDtoNodesItem.Conversation
+    | Vapi.UpdateWorkflowDtoNodesItem.Tool;
+
+export namespace UpdateWorkflowDtoNodesItem {
+    export interface Conversation extends Vapi.ConversationNode {
+        type: "conversation";
+    }
+
+    export interface Tool extends Vapi.ToolNode {
+        type: "tool";
+    }
+}

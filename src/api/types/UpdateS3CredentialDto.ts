@@ -2,17 +2,17 @@
 
 export interface UpdateS3CredentialDto {
     /** AWS access key ID. */
-    awsAccessKeyId?: string;
+    awsAccessKeyId?: string | undefined;
     /** AWS access key secret. This is not returned in the API. */
-    awsSecretAccessKey?: string;
+    awsSecretAccessKey?: string | undefined;
     /** AWS region in which the S3 bucket is located. */
-    region?: string;
+    region?: string | undefined;
     /** AWS S3 bucket name. */
-    s3BucketName?: string;
+    s3BucketName?: string | undefined;
     /** The path prefix for the uploaded recording. Ex. "recordings/" */
-    s3PathPrefix?: string;
+    s3PathPrefix?: string | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

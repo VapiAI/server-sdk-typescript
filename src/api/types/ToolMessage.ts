@@ -10,7 +10,7 @@ export interface ToolMessage {
     /** This is the ID of the tool call this message is responding to */
     tool_call_id: string;
     /** This is an optional name for the participant */
-    name?: string;
+    name?: string | undefined;
     /** This is an optional metadata for the message */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

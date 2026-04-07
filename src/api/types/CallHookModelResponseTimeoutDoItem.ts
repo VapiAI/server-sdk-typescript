@@ -2,4 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
-export type CallHookModelResponseTimeoutDoItem = Vapi.SayHookAction | Vapi.ToolCallHookAction;
+export type CallHookModelResponseTimeoutDoItem =
+    | Vapi.CallHookModelResponseTimeoutDoItem.Say
+    | Vapi.CallHookModelResponseTimeoutDoItem.Tool
+    | Vapi.CallHookModelResponseTimeoutDoItem.MessageAdd;
+
+export namespace CallHookModelResponseTimeoutDoItem {
+    export interface Say extends Vapi.SayHookAction {
+        type: "say";
+    }
+
+    export interface Tool extends Vapi.ToolCallHookAction {
+        type: "tool";
+    }
+
+    export interface MessageAdd extends Vapi.MessageAddHookAction {
+        type: "message.add";
+    }
+}

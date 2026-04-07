@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface WorkflowCustomModel {
-    /** This is the provider of the model (`custom-llm`). */
-    provider: Vapi.WorkflowCustomModelProvider;
     /**
      * This determines whether metadata is sent in requests to the custom provider.
      *
@@ -16,17 +14,17 @@ export interface WorkflowCustomModel {
      *
      * Default is `variable`.
      */
-    metadataSendMode?: Vapi.WorkflowCustomModelMetadataSendMode;
+    metadataSendMode?: Vapi.WorkflowCustomModelMetadataSendMode | undefined;
     /** These is the URL we'll use for the OpenAI client's `baseURL`. Ex. https://openrouter.ai/api/v1 */
     url: string;
     /** These are the headers we'll use for the OpenAI client's `headers`. */
-    headers?: Record<string, unknown>;
+    headers?: Record<string, unknown> | undefined;
     /** This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds. */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
     model: string;
     /** This is the temperature of the model. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max tokens of the model. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
 }

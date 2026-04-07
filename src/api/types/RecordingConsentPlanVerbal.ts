@@ -13,10 +13,9 @@ export interface RecordingConsentPlanVerbal {
      * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
      * Use a different voice for the consent message for a better user experience.
      */
-    voice?: Vapi.RecordingConsentPlanVerbalVoice;
-    type: "verbal";
+    voice?: Vapi.RecordingConsentPlanVerbalVoice | undefined;
     /** Tool to execute if user verbally declines recording consent */
-    declineTool?: Record<string, unknown>;
+    declineTool?: Record<string, unknown> | undefined;
     /** ID of existing tool to execute if user verbally declines recording consent */
-    declineToolId?: string;
+    declineToolId?: string | undefined;
 }

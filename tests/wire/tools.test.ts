@@ -10,26 +10,31 @@ describe("ToolsClient", () => {
 
         const rawResponseBody = [
             {
-                messages: [{ type: "request-start", blocking: false }],
                 type: "apiRequest",
+                messages: [{ type: "request-start", blocking: false }],
                 method: "POST",
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 encryptedPaths: ["encryptedPaths"],
+                parameters: [{ key: "key", value: "value" }],
                 id: "id",
                 orgId: "orgId",
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 rejectionPlan: {
-                    conditions: [{ type: "regex", regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" }],
+                    conditions: [
+                        {
+                            type: "regex",
+                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                            target: { position: -1 },
+                        },
+                    ],
                 },
                 name: "name",
                 description: "description",
                 url: "url",
                 body: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -39,8 +44,6 @@ describe("ToolsClient", () => {
                 },
                 headers: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -57,22 +60,29 @@ describe("ToolsClient", () => {
                 variableExtractionPlan: { schema: { type: "string" }, aliases: [{ key: "key", value: "value" }] },
             },
         ];
+
         server.mockEndpoint().get("/tool").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.tools.list();
         expect(response).toEqual([
             {
+                type: "apiRequest",
                 messages: [
                     {
                         type: "request-start",
                         blocking: false,
                     },
                 ],
-                type: "apiRequest",
                 method: "POST",
                 timeoutSeconds: 20,
                 credentialId: "550e8400-e29b-41d4-a716-446655440000",
                 encryptedPaths: ["encryptedPaths"],
+                parameters: [
+                    {
+                        key: "key",
+                        value: "value",
+                    },
+                ],
                 id: "id",
                 orgId: "orgId",
                 createdAt: "2024-01-15T09:30:00Z",
@@ -82,6 +92,9 @@ describe("ToolsClient", () => {
                         {
                             type: "regex",
                             regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                            target: {
+                                position: -1,
+                            },
                         },
                     ],
                 },
@@ -90,12 +103,6 @@ describe("ToolsClient", () => {
                 url: "url",
                 body: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -105,12 +112,6 @@ describe("ToolsClient", () => {
                 },
                 headers: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -159,34 +160,39 @@ describe("ToolsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { type: "apiRequest", method: "POST", url: "url" };
         const rawResponseBody = {
+            type: "apiRequest",
             messages: [
                 {
-                    contents: [{ type: "text", text: "text", language: "aa" }],
                     type: "request-start",
+                    contents: [{ type: "text", text: "text", language: "aa" }],
                     blocking: false,
                     content: "content",
                     conditions: [{ operator: "eq", param: "param", value: "value" }],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [{ key: "key", value: "value" }],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             rejectionPlan: {
-                conditions: [{ type: "regex", regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" }],
+                conditions: [
+                    {
+                        type: "regex",
+                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: { position: -1 },
+                    },
+                ],
             },
             name: "name",
             description: "description",
             url: "url",
             body: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -196,8 +202,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -214,8 +218,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -226,6 +228,7 @@ describe("ToolsClient", () => {
                 aliases: [{ key: "key", value: "value" }],
             },
         };
+
         server
             .mockEndpoint()
             .post("/tool")
@@ -241,8 +244,10 @@ describe("ToolsClient", () => {
             url: "url",
         });
         expect(response).toEqual({
+            type: "apiRequest",
             messages: [
                 {
+                    type: "request-start",
                     contents: [
                         {
                             type: "text",
@@ -250,7 +255,6 @@ describe("ToolsClient", () => {
                             language: "aa",
                         },
                     ],
-                    type: "request-start",
                     blocking: false,
                     content: "content",
                     conditions: [
@@ -262,11 +266,16 @@ describe("ToolsClient", () => {
                     ],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [
+                {
+                    key: "key",
+                    value: "value",
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -276,6 +285,9 @@ describe("ToolsClient", () => {
                     {
                         type: "regex",
                         regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: {
+                            position: -1,
+                        },
                     },
                 ],
             },
@@ -284,12 +296,6 @@ describe("ToolsClient", () => {
             url: "url",
             body: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -299,12 +305,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -336,12 +336,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -364,34 +358,39 @@ describe("ToolsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            type: "apiRequest",
             messages: [
                 {
-                    contents: [{ type: "text", text: "text", language: "aa" }],
                     type: "request-start",
+                    contents: [{ type: "text", text: "text", language: "aa" }],
                     blocking: false,
                     content: "content",
                     conditions: [{ operator: "eq", param: "param", value: "value" }],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [{ key: "key", value: "value" }],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             rejectionPlan: {
-                conditions: [{ type: "regex", regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" }],
+                conditions: [
+                    {
+                        type: "regex",
+                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: { position: -1 },
+                    },
+                ],
             },
             name: "name",
             description: "description",
             url: "url",
             body: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -401,8 +400,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -419,8 +416,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -431,14 +426,17 @@ describe("ToolsClient", () => {
                 aliases: [{ key: "key", value: "value" }],
             },
         };
+
         server.mockEndpoint().get("/tool/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.tools.get({
             id: "id",
         });
         expect(response).toEqual({
+            type: "apiRequest",
             messages: [
                 {
+                    type: "request-start",
                     contents: [
                         {
                             type: "text",
@@ -446,7 +444,6 @@ describe("ToolsClient", () => {
                             language: "aa",
                         },
                     ],
-                    type: "request-start",
                     blocking: false,
                     content: "content",
                     conditions: [
@@ -458,11 +455,16 @@ describe("ToolsClient", () => {
                     ],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [
+                {
+                    key: "key",
+                    value: "value",
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -472,6 +474,9 @@ describe("ToolsClient", () => {
                     {
                         type: "regex",
                         regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: {
+                            position: -1,
+                        },
                     },
                 ],
             },
@@ -480,12 +485,6 @@ describe("ToolsClient", () => {
             url: "url",
             body: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -495,12 +494,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -532,12 +525,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -560,34 +547,39 @@ describe("ToolsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            type: "apiRequest",
             messages: [
                 {
-                    contents: [{ type: "text", text: "text", language: "aa" }],
                     type: "request-start",
+                    contents: [{ type: "text", text: "text", language: "aa" }],
                     blocking: false,
                     content: "content",
                     conditions: [{ operator: "eq", param: "param", value: "value" }],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [{ key: "key", value: "value" }],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             rejectionPlan: {
-                conditions: [{ type: "regex", regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" }],
+                conditions: [
+                    {
+                        type: "regex",
+                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: { position: -1 },
+                    },
+                ],
             },
             name: "name",
             description: "description",
             url: "url",
             body: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -597,8 +589,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -615,8 +605,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -627,14 +615,17 @@ describe("ToolsClient", () => {
                 aliases: [{ key: "key", value: "value" }],
             },
         };
+
         server.mockEndpoint().delete("/tool/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.tools.delete({
             id: "id",
         });
         expect(response).toEqual({
+            type: "apiRequest",
             messages: [
                 {
+                    type: "request-start",
                     contents: [
                         {
                             type: "text",
@@ -642,7 +633,6 @@ describe("ToolsClient", () => {
                             language: "aa",
                         },
                     ],
-                    type: "request-start",
                     blocking: false,
                     content: "content",
                     conditions: [
@@ -654,11 +644,16 @@ describe("ToolsClient", () => {
                     ],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [
+                {
+                    key: "key",
+                    value: "value",
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -668,6 +663,9 @@ describe("ToolsClient", () => {
                     {
                         type: "regex",
                         regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: {
+                            position: -1,
+                        },
                     },
                 ],
             },
@@ -676,12 +674,6 @@ describe("ToolsClient", () => {
             url: "url",
             body: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -691,12 +683,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -728,12 +714,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -754,36 +734,41 @@ describe("ToolsClient", () => {
     test("update", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { type: "apiRequest" };
         const rawResponseBody = {
+            type: "apiRequest",
             messages: [
                 {
-                    contents: [{ type: "text", text: "text", language: "aa" }],
                     type: "request-start",
+                    contents: [{ type: "text", text: "text", language: "aa" }],
                     blocking: false,
                     content: "content",
                     conditions: [{ operator: "eq", param: "param", value: "value" }],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [{ key: "key", value: "value" }],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             rejectionPlan: {
-                conditions: [{ type: "regex", regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words" }],
+                conditions: [
+                    {
+                        type: "regex",
+                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: { position: -1 },
+                    },
+                ],
             },
             name: "name",
             description: "description",
             url: "url",
             body: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -793,8 +778,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -811,8 +794,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: { key: "value" },
-                    properties: { key: "value" },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -823,6 +804,7 @@ describe("ToolsClient", () => {
                 aliases: [{ key: "key", value: "value" }],
             },
         };
+
         server
             .mockEndpoint()
             .patch("/tool/id")
@@ -834,11 +816,15 @@ describe("ToolsClient", () => {
 
         const response = await client.tools.update({
             id: "id",
-            body: {},
+            body: {
+                type: "apiRequest",
+            },
         });
         expect(response).toEqual({
+            type: "apiRequest",
             messages: [
                 {
+                    type: "request-start",
                     contents: [
                         {
                             type: "text",
@@ -846,7 +832,6 @@ describe("ToolsClient", () => {
                             language: "aa",
                         },
                     ],
-                    type: "request-start",
                     blocking: false,
                     content: "content",
                     conditions: [
@@ -858,11 +843,16 @@ describe("ToolsClient", () => {
                     ],
                 },
             ],
-            type: "apiRequest",
             method: "POST",
             timeoutSeconds: 20,
             credentialId: "550e8400-e29b-41d4-a716-446655440000",
             encryptedPaths: ["encryptedPaths"],
+            parameters: [
+                {
+                    key: "key",
+                    value: "value",
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -872,6 +862,9 @@ describe("ToolsClient", () => {
                     {
                         type: "regex",
                         regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                        target: {
+                            position: -1,
+                        },
                     },
                 ],
             },
@@ -880,12 +873,6 @@ describe("ToolsClient", () => {
             url: "url",
             body: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -895,12 +882,6 @@ describe("ToolsClient", () => {
             },
             headers: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -932,12 +913,6 @@ describe("ToolsClient", () => {
             variableExtractionPlan: {
                 schema: {
                     type: "string",
-                    items: {
-                        key: "value",
-                    },
-                    properties: {
-                        key: "value",
-                    },
                     description: "description",
                     pattern: "pattern",
                     format: "date-time",
@@ -952,31 +927,6 @@ describe("ToolsClient", () => {
                     },
                 ],
             },
-        });
-    });
-
-    test("ToolController_testCodeExecution", async () => {
-        const server = mockServerPool.createServer();
-        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            success: true,
-            result: { key: "value" },
-            error: "error",
-            logs: "logs",
-            executionTimeMs: 1.1,
-        };
-        server.mockEndpoint().post("/tool/code/test").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.tools.toolControllerTestCodeExecution();
-        expect(response).toEqual({
-            success: true,
-            result: {
-                key: "value",
-            },
-            error: "error",
-            logs: "logs",
-            executionTimeMs: 1.1,
         });
     });
 });

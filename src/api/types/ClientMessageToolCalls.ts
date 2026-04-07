@@ -4,19 +4,19 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageToolCalls {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageToolCallsPhoneNumber;
+    phoneNumber?: Vapi.ClientMessageToolCallsPhoneNumber | undefined;
     /** This is the type of the message. "tool-calls" is sent to call a tool. */
-    type?: Vapi.ClientMessageToolCallsType;
+    type?: Vapi.ClientMessageToolCallsType | undefined;
     /** This is the list of tools calls that the model is requesting along with the original tool configuration. */
     toolWithToolCallList: Vapi.ClientMessageToolCallsToolWithToolCallListItem[];
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the list of tool calls that the model is requesting. */
     toolCallList: Vapi.ToolCall[];
 }

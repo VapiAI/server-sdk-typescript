@@ -4,17 +4,15 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackWellSaidVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackWellSaidVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** The WellSaid speaker ID to synthesize. */
     voiceId: string;
     /** This is the model that will be used. */
-    model?: Vapi.FallbackWellSaidVoiceModel;
+    model?: Vapi.FallbackWellSaidVoiceModel | undefined;
     /** Enables limited SSML translation for input text. */
-    enableSsml?: boolean;
+    enableSsml?: boolean | undefined;
     /** Array of library IDs to use for voice synthesis. */
-    libraryIds?: string[];
+    libraryIds?: string[] | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

@@ -2,7 +2,7 @@
 
 export interface UpdateGoogleCalendarOAuth2AuthorizationCredentialDto {
     /** The authorization ID for the OAuth2 authorization */
-    authorizationId?: string;
+    authorizationId?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

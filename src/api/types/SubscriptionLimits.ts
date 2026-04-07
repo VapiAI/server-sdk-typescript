@@ -2,9 +2,9 @@
 
 export interface SubscriptionLimits {
     /** True if this call was blocked by the Call Concurrency limit */
-    concurrencyBlocked?: boolean;
+    concurrencyBlocked?: boolean | undefined;
     /** Account Call Concurrency limit */
-    concurrencyLimit?: number;
+    concurrencyLimit?: number | undefined;
     /** Incremental number of concurrent calls that will be allowed, including this call */
-    remainingConcurrentCalls?: number;
+    remainingConcurrentCalls?: number | undefined;
 }
