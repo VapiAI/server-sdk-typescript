@@ -2,4 +2,16 @@
 
 import type * as Vapi from "../index.js";
 
-export type PhoneNumberHookCallRingingDoItem = Vapi.TransferPhoneNumberHookAction | Vapi.SayPhoneNumberHookAction;
+export type PhoneNumberHookCallRingingDoItem =
+    | Vapi.PhoneNumberHookCallRingingDoItem.Transfer
+    | Vapi.PhoneNumberHookCallRingingDoItem.Say;
+
+export namespace PhoneNumberHookCallRingingDoItem {
+    export interface Transfer extends Vapi.TransferPhoneNumberHookAction {
+        type: "transfer";
+    }
+
+    export interface Say extends Vapi.SayPhoneNumberHookAction {
+        type: "say";
+    }
+}

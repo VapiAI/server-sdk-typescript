@@ -19,5 +19,5 @@ export interface BackoffPlan {
      * This is the excluded status codes. If the response status code is in this list, the request will not be retried.
      * By default, the request will be retried for any non-2xx status code.
      */
-    excludedStatusCodes?: Record<string, unknown>[];
+    excludedStatusCodes?: Record<string, unknown>[] | undefined;
 }

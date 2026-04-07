@@ -5,4 +5,16 @@ import type * as Vapi from "../index.js";
 /**
  * This is the action to perform when the hook triggers
  */
-export type PhoneNumberHookCallEndingDo = Vapi.TransferPhoneNumberHookAction | Vapi.SayPhoneNumberHookAction;
+export type PhoneNumberHookCallEndingDo =
+    | Vapi.PhoneNumberHookCallEndingDo.Transfer
+    | Vapi.PhoneNumberHookCallEndingDo.Say;
+
+export namespace PhoneNumberHookCallEndingDo {
+    export interface Transfer extends Vapi.TransferPhoneNumberHookAction {
+        type: "transfer";
+    }
+
+    export interface Say extends Vapi.SayPhoneNumberHookAction {
+        type: "say";
+    }
+}

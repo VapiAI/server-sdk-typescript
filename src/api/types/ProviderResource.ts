@@ -18,5 +18,5 @@ export interface ProviderResource {
     /** This is the provider-specific identifier for the resource. */
     resourceId: string;
     /** This is the full resource data from the provider's API. */
-    resource: Vapi.ElevenLabsPronunciationDictionary;
+    resource: Record<string, unknown>;
 }

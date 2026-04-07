@@ -4,25 +4,25 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageLanguageChangeDetected {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageLanguageChangeDetectedPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageLanguageChangeDetectedPhoneNumber | undefined;
     /** This is the type of the message. "language-change-detected" is sent when the transcriber is automatically switched based on the detected language. */
     type: Vapi.ServerMessageLanguageChangeDetectedType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the language the transcriber is switched to. */
     language: string;
 }

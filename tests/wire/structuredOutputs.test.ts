@@ -11,7 +11,9 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             results: [
                 {
-                    model: { provider: "openai", model: "gpt-5.2" },
+                    type: "ai",
+                    regex: "regex",
+                    model: { provider: "openai", model: "gpt-5.4" },
                     compliancePlan: { forceStoreOnHipaaEnabled: false },
                     id: "id",
                     orgId: "orgId",
@@ -33,15 +35,18 @@ describe("StructuredOutputsClient", () => {
                 createdAtGe: "2024-01-15T09:30:00Z",
             },
         };
+
         server.mockEndpoint().get("/structured-output").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.structuredOutputs.structuredOutputControllerFindAll();
         expect(response).toEqual({
             results: [
                 {
+                    type: "ai",
+                    regex: "regex",
                     model: {
                         provider: "openai",
-                        model: "gpt-5.2",
+                        model: "gpt-5.4",
                     },
                     compliancePlan: {
                         forceStoreOnHipaaEnabled: false,
@@ -75,7 +80,9 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "name", schema: { type: "string" } };
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
+            type: "ai",
+            regex: "regex",
+            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -87,8 +94,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -97,6 +102,7 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         };
+
         server
             .mockEndpoint()
             .post("/structured-output")
@@ -113,9 +119,11 @@ describe("StructuredOutputsClient", () => {
             },
         });
         expect(response).toEqual({
+            type: "ai",
+            regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.2",
+                model: "gpt-5.4",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -132,12 +140,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -153,7 +155,9 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
+            type: "ai",
+            regex: "regex",
+            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -165,8 +169,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -175,6 +177,7 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         };
+
         server
             .mockEndpoint()
             .get("/structured-output/id")
@@ -187,9 +190,11 @@ describe("StructuredOutputsClient", () => {
             id: "id",
         });
         expect(response).toEqual({
+            type: "ai",
+            regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.2",
+                model: "gpt-5.4",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -206,12 +211,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -227,7 +226,9 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
+            type: "ai",
+            regex: "regex",
+            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -239,8 +240,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -249,6 +248,7 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         };
+
         server
             .mockEndpoint()
             .delete("/structured-output/id")
@@ -261,9 +261,11 @@ describe("StructuredOutputsClient", () => {
             id: "id",
         });
         expect(response).toEqual({
+            type: "ai",
+            regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.2",
+                model: "gpt-5.4",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -280,12 +282,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -301,7 +297,9 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
+            type: "ai",
+            regex: "regex",
+            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -313,8 +311,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -323,6 +319,7 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         };
+
         server
             .mockEndpoint()
             .patch("/structured-output/id")
@@ -337,9 +334,11 @@ describe("StructuredOutputsClient", () => {
             schemaOverride: "schemaOverride",
         });
         expect(response).toEqual({
+            type: "ai",
+            regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.2",
+                model: "gpt-5.4",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -356,12 +355,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -377,7 +370,9 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { callIds: ["callIds"] };
         const rawResponseBody = {
-            model: { provider: "openai", model: "gpt-5.2", temperature: 1.1, maxTokens: 1.1 },
+            type: "ai",
+            regex: "regex",
+            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
             id: "id",
             orgId: "orgId",
@@ -389,8 +384,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: { key: "value" },
-                properties: { key: "value" },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",
@@ -399,6 +392,7 @@ describe("StructuredOutputsClient", () => {
                 title: "title",
             },
         };
+
         server
             .mockEndpoint()
             .post("/structured-output/run")
@@ -412,9 +406,11 @@ describe("StructuredOutputsClient", () => {
             callIds: ["callIds"],
         });
         expect(response).toEqual({
+            type: "ai",
+            regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.2",
+                model: "gpt-5.4",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -431,12 +427,6 @@ describe("StructuredOutputsClient", () => {
             workflowIds: ["workflowIds"],
             schema: {
                 type: "string",
-                items: {
-                    key: "value",
-                },
-                properties: {
-                    key: "value",
-                },
                 description: "description",
                 pattern: "pattern",
                 format: "date-time",

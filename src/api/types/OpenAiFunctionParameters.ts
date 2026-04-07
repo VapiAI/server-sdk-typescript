@@ -12,5 +12,5 @@ export interface OpenAiFunctionParameters {
      */
     properties: Record<string, Vapi.JsonSchema>;
     /** This specifies the properties that are required by the function. */
-    required?: string[];
+    required?: string[] | undefined;
 }

@@ -4,23 +4,23 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackRimeAiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackRimeAiVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackRimeAiVoiceId;
     /** This is the model that will be used. Defaults to 'arcana' when not specified. */
-    model?: Vapi.FallbackRimeAiVoiceModel;
+    model?: Vapi.FallbackRimeAiVoiceModel | undefined;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** This is a flag that controls whether to add slight pauses using angle brackets. Example: "Hi. <200> I'd love to have a conversation with you." adds a 200ms pause between the first and second sentences. */
-    pauseBetweenBrackets?: boolean;
+    pauseBetweenBrackets?: boolean | undefined;
     /** This is a flag that controls whether text inside brackets should be phonemized (converted to phonetic pronunciation) - Example: "{h'El.o} World" will pronounce "Hello" as expected. */
-    phonemizeBetweenBrackets?: boolean;
+    phonemizeBetweenBrackets?: boolean | undefined;
     /** This is a flag that controls whether to optimize for reduced latency in streaming. https://docs.rime.ai/api-reference/endpoint/websockets#param-reduce-latency */
-    reduceLatency?: boolean;
+    reduceLatency?: boolean | undefined;
     /** This is a string that allows inline speed control using alpha notation. https://docs.rime.ai/api-reference/endpoint/websockets#param-inline-speed-alpha */
-    inlineSpeedAlpha?: string;
+    inlineSpeedAlpha?: string | undefined;
+    /** Language for speech synthesis. Uses ISO 639 codes. Supported: en, es, de, fr, ar, hi, ja, he, pt, ta, si. */
+    language?: Vapi.FallbackRimeAiVoiceLanguage | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

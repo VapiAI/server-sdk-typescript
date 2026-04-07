@@ -4,43 +4,43 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageStatusUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageStatusUpdatePhoneNumber;
+    phoneNumber?: Vapi.ServerMessageStatusUpdatePhoneNumber | undefined;
     /** This is the type of the message. "status-update" is sent whenever the `call.status` changes. */
     type: Vapi.ServerMessageStatusUpdateType;
     /** This is the status of the call. */
     status: Vapi.ServerMessageStatusUpdateStatus;
     /** This is the reason the call ended. This is only sent if the status is "ended". */
-    endedReason?: Vapi.ServerMessageStatusUpdateEndedReason;
+    endedReason?: Vapi.ServerMessageStatusUpdateEndedReason | undefined;
     /** These are the conversation messages of the call. This is only sent if the status is "forwarding". */
-    messages?: Vapi.ServerMessageStatusUpdateMessagesItem[];
+    messages?: Vapi.ServerMessageStatusUpdateMessagesItem[] | undefined;
     /** These are the conversation messages of the call. This is only sent if the status is "forwarding". */
-    messagesOpenAIFormatted?: Vapi.OpenAiMessage[];
+    messagesOpenAIFormatted?: Vapi.OpenAiMessage[] | undefined;
     /** This is the destination the call is being transferred to. This is only sent if the status is "forwarding". */
-    destination?: Vapi.ServerMessageStatusUpdateDestination;
+    destination?: Vapi.ServerMessageStatusUpdateDestination | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the transcript of the call. This is only sent if the status is "forwarding". */
-    transcript?: string;
+    transcript?: string | undefined;
     /** This is the summary of the call. This is only sent if the status is "forwarding". */
-    summary?: string;
+    summary?: string | undefined;
     /**
      * This is the inbound phone call debugging artifacts. This is only sent if the status is "ended" and there was an error accepting the inbound phone call.
      *
      * This will include any errors related to the "assistant-request" if one was made.
      */
-    inboundPhoneCallDebuggingArtifacts?: Record<string, unknown>;
+    inboundPhoneCallDebuggingArtifacts?: Record<string, unknown> | undefined;
 }

@@ -6,7 +6,7 @@ export interface ToolCallHookAction {
     /** This is the type of action - must be "tool" */
     type: Vapi.ToolCallHookActionType;
     /** This is the tool to call. To use an existing tool, send `toolId` instead. */
-    tool?: Vapi.ToolCallHookActionTool;
+    tool?: Vapi.ToolCallHookActionTool | undefined;
     /** This is the tool to call. To use a transient tool, send `tool` instead. */
-    toolId?: string;
+    toolId?: string | undefined;
 }

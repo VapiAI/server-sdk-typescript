@@ -7,6 +7,9 @@
  * This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
  */
 export const WorkflowOpenAiModelModel = {
+    Gpt54: "gpt-5.4",
+    Gpt54Mini: "gpt-5.4-mini",
+    Gpt54Nano: "gpt-5.4-nano",
     Gpt52: "gpt-5.2",
     Gpt52ChatLatest: "gpt-5.2-chat-latest",
     Gpt51: "gpt-5.1",
@@ -102,7 +105,7 @@ export const WorkflowOpenAiModelModel = {
     Gpt40125PreviewEastus: "gpt-4-0125-preview:eastus",
     Gpt40125PreviewNorthcentralus: "gpt-4-0125-preview:northcentralus",
     Gpt40125PreviewSouthcentralus: "gpt-4-0125-preview:southcentralus",
-    Gpt41106PreviewAustralia: "gpt-4-1106-preview:australia",
+    Gpt41106PreviewAustraliaeast: "gpt-4-1106-preview:australiaeast",
     Gpt41106PreviewCanadaeast: "gpt-4-1106-preview:canadaeast",
     Gpt41106PreviewFrance: "gpt-4-1106-preview:france",
     Gpt41106PreviewIndia: "gpt-4-1106-preview:india",

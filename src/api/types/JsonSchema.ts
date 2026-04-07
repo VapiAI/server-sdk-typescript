@@ -15,40 +15,32 @@ export interface JsonSchema {
      * For `object`, you can define the properties of the object using the `properties` property.
      */
     type: Vapi.JsonSchemaType;
-    /**
-     * This is required if the type is "array". This is the schema of the items in the array.
-     *
-     * This is of type JsonSchema. However, Swagger doesn't support circular references.
-     */
-    items?: Record<string, unknown>;
-    /**
-     * This is required if the type is "object". This specifies the properties of the object.
-     *
-     * This is a map of string to JsonSchema. However, Swagger doesn't support circular references.
-     */
-    properties?: Record<string, unknown>;
+    /** This is required if the type is "array". This is the schema of the items in the array. This is a recursive reference to JsonSchema. */
+    items?: Vapi.JsonSchema | undefined;
+    /** This is required if the type is "object". This specifies the properties of the object. This is a map of property names to JsonSchema objects. */
+    properties?: Record<string, Vapi.JsonSchema> | undefined;
     /** This is the description to help the model understand what it needs to output. */
-    description?: string;
+    description?: string | undefined;
     /**
      * This is the pattern of the string. This is a regex that will be used to validate the data in question. To use a common format, use the `format` property instead.
      *
      * OpenAI documentation: https://platform.openai.com/docs/guides/structured-outputs#supported-properties
      */
-    pattern?: string;
+    pattern?: string | undefined;
     /**
      * This is the format of the string. To pass a regex, use the `pattern` property instead.
      *
      * OpenAI documentation: https://platform.openai.com/docs/guides/structured-outputs?api-mode=chat&type-restrictions=string-restrictions
      */
-    format?: Vapi.JsonSchemaFormat;
+    format?: Vapi.JsonSchemaFormat | undefined;
     /**
      * This is a list of properties that are required.
      *
      * This only makes sense if the type is "object".
      */
-    required?: string[];
+    required?: string[] | undefined;
     /** This array specifies the allowed values that can be used to restrict the output of the model. */
-    enum?: string[];
+    enum?: string[] | undefined;
     /** This is the title of the schema. */
-    title?: string;
+    title?: string | undefined;
 }

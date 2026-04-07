@@ -2,5 +2,5 @@
 
 export interface UpdateTestSuiteRunDto {
     /** This is the name of the test suite run. */
-    name?: string;
+    name?: string | undefined;
 }

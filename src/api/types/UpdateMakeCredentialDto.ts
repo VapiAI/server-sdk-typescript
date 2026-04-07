@@ -2,11 +2,11 @@
 
 export interface UpdateMakeCredentialDto {
     /** Team ID */
-    teamId?: string;
+    teamId?: string | undefined;
     /** Region of your application. For example: eu1, eu2, us1, us2 */
-    region?: string;
+    region?: string | undefined;
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

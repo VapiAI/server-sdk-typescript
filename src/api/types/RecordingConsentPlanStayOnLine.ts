@@ -13,8 +13,7 @@ export interface RecordingConsentPlanStayOnLine {
      * This is the voice to use for the consent message. If not specified, inherits from the assistant's voice.
      * Use a different voice for the consent message for a better user experience.
      */
-    voice?: Vapi.RecordingConsentPlanStayOnLineVoice;
-    type: "stay-on-line";
+    voice?: Vapi.RecordingConsentPlanStayOnLineVoice | undefined;
     /** Number of seconds to wait before transferring to the assistant if user stays on the call */
-    waitSeconds?: number;
+    waitSeconds?: number | undefined;
 }

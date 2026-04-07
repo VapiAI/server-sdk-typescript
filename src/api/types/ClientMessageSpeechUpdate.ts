@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageSpeechUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageSpeechUpdatePhoneNumber;
+    phoneNumber?: Vapi.ClientMessageSpeechUpdatePhoneNumber | undefined;
     /** This is the type of the message. "speech-update" is sent whenever assistant or user start or stop speaking. */
     type: Vapi.ClientMessageSpeechUpdateType;
     /** This is the status of the speech update. */
@@ -12,13 +12,13 @@ export interface ClientMessageSpeechUpdate {
     /** This is the role which the speech update is for. */
     role: Vapi.ClientMessageSpeechUpdateRole;
     /** This is the turn number of the speech update (0-indexed). */
-    turn?: number;
+    turn?: number | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
 }

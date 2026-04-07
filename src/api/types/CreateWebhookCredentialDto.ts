@@ -3,9 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateWebhookCredentialDto {
-    provider: "webhook";
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
     authenticationPlan: Vapi.CreateWebhookCredentialDtoAuthenticationPlan;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

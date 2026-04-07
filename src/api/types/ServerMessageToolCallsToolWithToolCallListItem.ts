@@ -3,10 +3,40 @@
 import type * as Vapi from "../index.js";
 
 export type ServerMessageToolCallsToolWithToolCallListItem =
-    | Vapi.FunctionToolWithToolCall
-    | Vapi.GhlToolWithToolCall
-    | Vapi.MakeToolWithToolCall
-    | Vapi.BashToolWithToolCall
-    | Vapi.ComputerToolWithToolCall
-    | Vapi.TextEditorToolWithToolCall
-    | Vapi.GoogleCalendarCreateEventToolWithToolCall;
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.Function
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.Ghl
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.Make
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.Bash
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.Computer
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.TextEditor
+    | Vapi.ServerMessageToolCallsToolWithToolCallListItem.GoogleCalendarEventCreate;
+
+export namespace ServerMessageToolCallsToolWithToolCallListItem {
+    export interface Function extends Vapi.FunctionToolWithToolCall {
+        type: "function";
+    }
+
+    export interface Ghl extends Vapi.GhlToolWithToolCall {
+        type: "ghl";
+    }
+
+    export interface Make extends Vapi.MakeToolWithToolCall {
+        type: "make";
+    }
+
+    export interface Bash extends Vapi.BashToolWithToolCall {
+        type: "bash";
+    }
+
+    export interface Computer extends Vapi.ComputerToolWithToolCall {
+        type: "computer";
+    }
+
+    export interface TextEditor extends Vapi.TextEditorToolWithToolCall {
+        type: "textEditor";
+    }
+
+    export interface GoogleCalendarEventCreate extends Vapi.GoogleCalendarCreateEventToolWithToolCall {
+        type: "google.calendar.event.create";
+    }
+}

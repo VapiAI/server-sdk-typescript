@@ -2,7 +2,7 @@
 
 export interface SipAuthentication {
     /** This will be expected in the `realm` field of the `authorization` header of the SIP INVITE. Defaults to sip.vapi.ai. */
-    realm?: string;
+    realm?: string | undefined;
     /** This will be expected in the `username` field of the `authorization` header of the SIP INVITE. */
     username: string;
     /** This will be expected to generate the `response` field of the `authorization` header of the SIP INVITE, through digest authentication. */

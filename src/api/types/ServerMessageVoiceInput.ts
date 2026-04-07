@@ -4,25 +4,25 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageVoiceInput {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageVoiceInputPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageVoiceInputPhoneNumber | undefined;
     /** This is the type of the message. "voice-input" is sent when a generation is requested from voice provider. */
     type: Vapi.ServerMessageVoiceInputType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the voice input content */
     input: string;
 }

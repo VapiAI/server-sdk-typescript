@@ -12,37 +12,45 @@ export interface Session {
     /** This is the ISO 8601 timestamp indicating when the session was last updated. */
     updatedAt: string;
     /** This is the cost of the session in USD. */
-    cost?: number;
+    cost?: number | undefined;
     /** These are the costs of individual components of the session in USD. */
-    costs?: Vapi.SessionCostsItem[];
+    costs?: Vapi.SessionCostsItem[] | undefined;
     /** This is a user-defined name for the session. Maximum length is 40 characters. */
-    name?: string;
+    name?: string | undefined;
     /** This is the current status of the session. Can be either 'active' or 'completed'. */
-    status?: Vapi.SessionStatus;
+    status?: Vapi.SessionStatus | undefined;
     /** Session expiration time in seconds. Defaults to 24 hours (86400 seconds) if not set. */
-    expirationSeconds?: number;
+    expirationSeconds?: number | undefined;
     /** This is the ID of the assistant associated with this session. Use this when referencing an existing assistant. */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the assistant configuration for this session. Use this when creating a new assistant configuration.
      * If assistantId is provided, this will be ignored.
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
+    /**
+     * These are the overrides for the assistant configuration.
+     * Use this to provide variable values and other overrides when using assistantId.
+     * Variable substitution will be applied to the assistant's messages and other text-based fields.
+     */
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /** This is the squad ID associated with this session. Use this when referencing an existing squad. */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is the squad configuration for this session. Use this when creating a new squad configuration.
      * If squadId is provided, this will be ignored.
      */
-    squad?: Vapi.CreateSquadDto;
+    squad?: Vapi.CreateSquadDto | undefined;
     /** This is an array of chat messages in the session. */
-    messages?: Vapi.SessionMessagesItem[];
+    messages?: Vapi.SessionMessagesItem[] | undefined;
     /** This is the customer information associated with this session. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
+    /** This is the customerId of the customer associated with this session. */
+    customerId?: string | undefined;
     /** This is the ID of the phone number associated with this session. */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /** This is the phone number configuration for this session. */
-    phoneNumber?: Vapi.ImportTwilioPhoneNumberDto;
+    phoneNumber?: Vapi.ImportTwilioPhoneNumberDto | undefined;
     /**
      * These are the artifacts that were extracted from the session messages.
      * They are only available after the session has completed.
@@ -50,5 +58,5 @@ export interface Session {
      * Currently the only supported fields of assistant artifact plan are:
      * - structuredOutputIds
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
 }

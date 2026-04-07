@@ -2,6 +2,7 @@
 
 /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
 export const WorkflowGoogleModelModel = {
+    Gemini3FlashPreview: "gemini-3-flash-preview",
     Gemini25Pro: "gemini-2.5-pro",
     Gemini25Flash: "gemini-2.5-flash",
     Gemini25FlashLite: "gemini-2.5-flash-lite",

@@ -12,21 +12,11 @@ export interface ToolMessageDelayed {
      *
      * This will override the `content` property.
      */
-    contents?: Vapi.TextContent[];
-    /**
-     * This message is triggered when the tool call is delayed.
-     *
-     * There are the two things that can trigger this message:
-     * 1. The user talks with the assistant while your server is processing the request. Default is "Sorry, a few more seconds."
-     * 2. The server doesn't respond within `timingMilliseconds`.
-     *
-     * This message is never triggered for async tool calls.
-     */
-    type: Vapi.ToolMessageDelayedType;
+    contents?: Vapi.TextContent[] | undefined;
     /** The number of milliseconds to wait for the server response before saying this message. */
-    timingMilliseconds?: number;
+    timingMilliseconds?: number | undefined;
     /** This is the content that the assistant says when this message is triggered. */
-    content?: string;
+    content?: string | undefined;
     /** This is an optional array of conditions that the tool call arguments must meet in order for this message to be triggered. */
-    conditions?: Vapi.Condition[];
+    conditions?: Vapi.Condition[] | undefined;
 }

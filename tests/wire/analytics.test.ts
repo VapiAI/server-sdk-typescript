@@ -22,6 +22,7 @@ describe("AnalyticsClient", () => {
                 result: [{ key: "value" }],
             },
         ];
+
         server
             .mockEndpoint()
             .post("/analytics")

@@ -4,23 +4,21 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackTavusVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackTavusVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackTavusVoiceVoiceId;
     /** This is the unique identifier for the persona that the replica will use in the conversation. */
-    personaId?: string;
+    personaId?: string | undefined;
     /** This is the url that will receive webhooks with updates regarding the conversation state. */
-    callbackUrl?: string;
+    callbackUrl?: string | undefined;
     /** This is the name for the conversation. */
-    conversationName?: string;
+    conversationName?: string | undefined;
     /** This is the context that will be appended to any context provided in the persona, if one is provided. */
-    conversationalContext?: string;
+    conversationalContext?: string | undefined;
     /** This is the custom greeting that the replica will give once a participant joines the conversation. */
-    customGreeting?: string;
+    customGreeting?: string | undefined;
     /** These are optional properties used to customize the conversation. */
-    properties?: Vapi.TavusConversationProperties;
+    properties?: Vapi.TavusConversationProperties | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

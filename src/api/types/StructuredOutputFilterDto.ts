@@ -2,19 +2,19 @@
 
 export interface StructuredOutputFilterDto {
     /** Equal to */
-    eq?: string;
+    eq?: string | undefined;
     /** Not equal to */
-    neq?: string;
+    neq?: string | undefined;
     /** Greater than */
-    gt?: string;
+    gt?: string | undefined;
     /** Greater than or equal to */
-    gte?: string;
+    gte?: string | undefined;
     /** Less than */
-    lt?: string;
+    lt?: string | undefined;
     /** Less than or equal to */
-    lte?: string;
+    lte?: string | undefined;
     /** Contains */
-    contains?: string;
+    contains?: string | undefined;
     /** Not contains */
-    notContains?: string;
+    notContains?: string | undefined;
 }

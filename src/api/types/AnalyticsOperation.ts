@@ -8,5 +8,5 @@ export interface AnalyticsOperation {
     /** This is the columns you want to perform the aggregation operation on. */
     column: Vapi.AnalyticsOperationColumn;
     /** This is the alias for column name returned. Defaults to `${operation}${column}`. */
-    alias?: string;
+    alias?: string | undefined;
 }

@@ -5,5 +5,5 @@ import type * as Vapi from "../index.js";
 export interface InviteUserDto {
     emails: string[];
     role: Vapi.InviteUserDtoRole;
-    redirectTo?: string;
+    redirectTo?: string | undefined;
 }

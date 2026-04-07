@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackCustomTranscriber {
-    /** This is the transcription provider that will be used. Use `custom-transcriber` for providers that are not natively supported. */
-    provider: Vapi.FallbackCustomTranscriberProvider;
     /**
      * This is where the transcription request will be sent.
      *

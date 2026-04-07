@@ -4,8 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateLineInsightFromCallTableDto {
     /** This is the name of the Insight. */
-    name?: string;
-    type: "line";
+    name?: string | undefined;
     /**
      * Formulas are mathematical expressions applied on the data returned by the queries to transform them before being used to create the insight.
      * The formulas needs to be a valid mathematical expression, supported by MathJS - https://mathjs.org/docs/expressions/syntax.html
@@ -23,16 +22,16 @@ export interface UpdateLineInsightFromCallTableDto {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formulas?: Vapi.InsightFormula[];
+    formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
-    metadata?: Vapi.LineInsightMetadata;
-    timeRange?: Vapi.InsightTimeRangeWithStep;
+    metadata?: Vapi.LineInsightMetadata | undefined;
+    timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
      * These are the columns to group the results by.
      * All results are grouped by the time range step by default.
      */
-    groupBy?: Vapi.UpdateLineInsightFromCallTableDtoGroupBy;
+    groupBy?: Vapi.UpdateLineInsightFromCallTableDtoGroupBy | undefined;
     /** These are the queries to run to generate the insight. */
-    queries?: Vapi.UpdateLineInsightFromCallTableDtoQueriesItem[];
+    queries?: Vapi.UpdateLineInsightFromCallTableDtoQueriesItem[] | undefined;
 }

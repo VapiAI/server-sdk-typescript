@@ -18,7 +18,7 @@ export interface SuccessEvaluationPlan {
      *
      * Default is 'PassFail'.
      */
-    rubric?: Vapi.SuccessEvaluationPlanRubric;
+    rubric?: Vapi.SuccessEvaluationPlanRubric | undefined;
     /**
      * These are the messages used to generate the success evaluation.
      *
@@ -43,7 +43,7 @@ export interface SuccessEvaluationPlan {
      * Here are the template variables available:
      * - {{transcript}}: the transcript of the call from `call.artifact.transcript`- {{systemPrompt}}: the system prompt of the call from `assistant.model.messages[type=system].content`- {{messages}}: the messages of the call from `assistant.model.messages`- {{rubric}}: the rubric of the success evaluation from `successEvaluationPlan.rubric`- {{endedReason}}: the ended reason of the call from `call.endedReason`
      */
-    messages?: Record<string, unknown>[];
+    messages?: Record<string, unknown>[] | undefined;
     /**
      * This determines whether a success evaluation is generated and stored in `call.analysis.successEvaluation`. Defaults to true.
      *
@@ -52,7 +52,7 @@ export interface SuccessEvaluationPlan {
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is how long the request is tried before giving up. When request times out, `call.analysis.successEvaluation` will be empty.
      *
@@ -61,5 +61,5 @@ export interface SuccessEvaluationPlan {
      *
      * @default 5 seconds
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
 }

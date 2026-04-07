@@ -3,12 +3,12 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateToolTemplateDto {
-    details?: Vapi.CreateToolTemplateDtoDetails;
-    providerDetails?: Vapi.CreateToolTemplateDtoProviderDetails;
-    metadata?: Vapi.ToolTemplateMetadata;
-    visibility?: Vapi.CreateToolTemplateDtoVisibility;
+    details?: Vapi.CreateToolTemplateDtoDetails | undefined;
+    providerDetails?: Vapi.CreateToolTemplateDtoProviderDetails | undefined;
+    metadata?: Vapi.ToolTemplateMetadata | undefined;
+    visibility?: Vapi.CreateToolTemplateDtoVisibility | undefined;
     type: Vapi.CreateToolTemplateDtoType;
     /** The name of the template. This is just for your own reference. */
-    name?: string;
-    provider?: Vapi.CreateToolTemplateDtoProvider;
+    name?: string | undefined;
+    provider?: Vapi.CreateToolTemplateDtoProvider | undefined;
 }

@@ -6,21 +6,95 @@ import type * as Vapi from "../../../index.js";
  * These are the options for the assistant's voice.
  */
 export type UpdateAssistantDtoVoice =
-    | Vapi.AzureVoice
-    | Vapi.CartesiaVoice
-    | Vapi.CustomVoice
-    | Vapi.DeepgramVoice
-    | Vapi.ElevenLabsVoice
-    | Vapi.HumeVoice
-    | Vapi.LmntVoice
-    | Vapi.NeuphonicVoice
-    | Vapi.OpenAiVoice
-    | Vapi.PlayHtVoice
-    | Vapi.WellSaidVoice
-    | Vapi.RimeAiVoice
-    | Vapi.SmallestAiVoice
-    | Vapi.TavusVoice
-    | Vapi.VapiVoice
-    | Vapi.SesameVoice
-    | Vapi.InworldVoice
-    | Vapi.MinimaxVoice;
+    | Vapi.UpdateAssistantDtoVoice.Azure
+    | Vapi.UpdateAssistantDtoVoice.Cartesia
+    | Vapi.UpdateAssistantDtoVoice.CustomVoice
+    | Vapi.UpdateAssistantDtoVoice.Deepgram
+    | Vapi.UpdateAssistantDtoVoice._11Labs
+    | Vapi.UpdateAssistantDtoVoice.Hume
+    | Vapi.UpdateAssistantDtoVoice.Lmnt
+    | Vapi.UpdateAssistantDtoVoice.Neuphonic
+    | Vapi.UpdateAssistantDtoVoice.Openai
+    | Vapi.UpdateAssistantDtoVoice.Playht
+    | Vapi.UpdateAssistantDtoVoice.Wellsaid
+    | Vapi.UpdateAssistantDtoVoice.RimeAi
+    | Vapi.UpdateAssistantDtoVoice.SmallestAi
+    | Vapi.UpdateAssistantDtoVoice.Tavus
+    | Vapi.UpdateAssistantDtoVoice.Vapi
+    | Vapi.UpdateAssistantDtoVoice.Sesame
+    | Vapi.UpdateAssistantDtoVoice.Inworld
+    | Vapi.UpdateAssistantDtoVoice.Minimax;
+
+export namespace UpdateAssistantDtoVoice {
+    export interface Azure extends Vapi.AzureVoice {
+        provider: "azure";
+    }
+
+    export interface Cartesia extends Vapi.CartesiaVoice {
+        provider: "cartesia";
+    }
+
+    export interface CustomVoice extends Vapi.CustomVoice {
+        provider: "custom-voice";
+    }
+
+    export interface Deepgram extends Vapi.DeepgramVoice {
+        provider: "deepgram";
+    }
+
+    export interface _11Labs extends Vapi.ElevenLabsVoice {
+        provider: "11labs";
+    }
+
+    export interface Hume extends Vapi.HumeVoice {
+        provider: "hume";
+    }
+
+    export interface Lmnt extends Vapi.LmntVoice {
+        provider: "lmnt";
+    }
+
+    export interface Neuphonic extends Vapi.NeuphonicVoice {
+        provider: "neuphonic";
+    }
+
+    export interface Openai extends Vapi.OpenAiVoice {
+        provider: "openai";
+    }
+
+    export interface Playht extends Vapi.PlayHtVoice {
+        provider: "playht";
+    }
+
+    export interface Wellsaid extends Vapi.WellSaidVoice {
+        provider: "wellsaid";
+    }
+
+    export interface RimeAi extends Vapi.RimeAiVoice {
+        provider: "rime-ai";
+    }
+
+    export interface SmallestAi extends Vapi.SmallestAiVoice {
+        provider: "smallest-ai";
+    }
+
+    export interface Tavus extends Vapi.TavusVoice {
+        provider: "tavus";
+    }
+
+    export interface Vapi extends Vapi.VapiVoice {
+        provider: "vapi";
+    }
+
+    export interface Sesame extends Vapi.SesameVoice {
+        provider: "sesame";
+    }
+
+    export interface Inworld extends Vapi.InworldVoice {
+        provider: "inworld";
+    }
+
+    export interface Minimax extends Vapi.MinimaxVoice {
+        provider: "minimax";
+    }
+}

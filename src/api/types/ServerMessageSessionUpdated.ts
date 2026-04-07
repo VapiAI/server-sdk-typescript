@@ -4,25 +4,25 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageSessionUpdated {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageSessionUpdatedPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageSessionUpdatedPhoneNumber | undefined;
     /** This is the type of the message. "session.updated" is sent when a session is updated. */
     type: Vapi.ServerMessageSessionUpdatedType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the session that was updated. */
     session: Vapi.Session;
 }

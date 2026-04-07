@@ -4,8 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface FunctionToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "function" for Function tool. */
-    type: Vapi.FunctionToolProviderDetailsType;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
 }

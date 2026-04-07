@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface ByoSipTrunkCredential {
     /** This can be used to bring your own SIP trunks or to connect to a Carrier. */
-    provider?: Vapi.ByoSipTrunkCredentialProvider;
+    provider?: Vapi.ByoSipTrunkCredentialProvider | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -14,11 +14,11 @@ export interface ByoSipTrunkCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /** This is the list of SIP trunk's gateways. */
     gateways: Vapi.SipTrunkGateway[];
     /** This can be used to configure the outbound authentication if required by the SIP trunk. */
-    outboundAuthenticationPlan?: Vapi.SipTrunkOutboundAuthenticationPlan;
+    outboundAuthenticationPlan?: Vapi.SipTrunkOutboundAuthenticationPlan | undefined;
     /**
      * This ensures the outbound origination attempts have a leading plus. Defaults to false to match conventional telecom behavior.
      *
@@ -27,11 +27,11 @@ export interface ByoSipTrunkCredential {
      *
      * @default false
      */
-    outboundLeadingPlusEnabled?: boolean;
+    outboundLeadingPlusEnabled?: boolean | undefined;
     /** This can be used to configure the tech prefix on outbound calls. This is an advanced property. */
-    techPrefix?: string;
+    techPrefix?: string | undefined;
     /** This can be used to enable the SIP diversion header for authenticating the calling number if the SIP trunk supports it. This is an advanced property. */
-    sipDiversionHeader?: string;
+    sipDiversionHeader?: string | undefined;
     /** This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi. */
-    sbcConfiguration?: Vapi.SbcConfiguration;
+    sbcConfiguration?: Vapi.SbcConfiguration | undefined;
 }

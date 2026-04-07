@@ -2,8 +2,7 @@
 
 export interface SpkiPemPublicKeyConfig {
     /** Optional name of the key for identification purposes. */
-    name?: string;
-    format: "spki-pem";
+    name?: string | undefined;
     /** The PEM-encoded public key. */
     pem: string;
 }

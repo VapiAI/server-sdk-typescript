@@ -2,6 +2,7 @@
 
 export const UpdateAssistantDtoServerMessagesItem = {
     AssistantStarted: "assistant.started",
+    AssistantSpeechStarted: "assistant.speechStarted",
     ConversationUpdate: "conversation-update",
     EndOfCallReport: "end-of-call-report",
     FunctionCall: "function-call",

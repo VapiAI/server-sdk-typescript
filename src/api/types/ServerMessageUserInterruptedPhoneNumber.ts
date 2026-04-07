@@ -6,8 +6,30 @@ import type * as Vapi from "../index.js";
  * This is the phone number that the message is associated with.
  */
 export type ServerMessageUserInterruptedPhoneNumber =
-    | Vapi.CreateByoPhoneNumberDto
-    | Vapi.CreateTwilioPhoneNumberDto
-    | Vapi.CreateVonagePhoneNumberDto
-    | Vapi.CreateVapiPhoneNumberDto
-    | Vapi.CreateTelnyxPhoneNumberDto;
+    | Vapi.ServerMessageUserInterruptedPhoneNumber.ByoPhoneNumber
+    | Vapi.ServerMessageUserInterruptedPhoneNumber.Twilio
+    | Vapi.ServerMessageUserInterruptedPhoneNumber.Vonage
+    | Vapi.ServerMessageUserInterruptedPhoneNumber.Vapi
+    | Vapi.ServerMessageUserInterruptedPhoneNumber.Telnyx;
+
+export namespace ServerMessageUserInterruptedPhoneNumber {
+    export interface ByoPhoneNumber extends Vapi.CreateByoPhoneNumberDto {
+        provider: "byo-phone-number";
+    }
+
+    export interface Twilio extends Vapi.CreateTwilioPhoneNumberDto {
+        provider: "twilio";
+    }
+
+    export interface Vonage extends Vapi.CreateVonagePhoneNumberDto {
+        provider: "vonage";
+    }
+
+    export interface Vapi extends Vapi.CreateVapiPhoneNumberDto {
+        provider: "vapi";
+    }
+
+    export interface Telnyx extends Vapi.CreateTelnyxPhoneNumberDto {
+        provider: "telnyx";
+    }
+}

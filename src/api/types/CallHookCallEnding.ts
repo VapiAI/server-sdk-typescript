@@ -6,7 +6,7 @@ export interface CallHookCallEnding {
     /** This is the event that triggers this hook */
     on: Vapi.CallHookCallEndingOn;
     /** This is the set of actions to perform when the hook triggers */
-    do: Vapi.ToolCallHookAction[];
+    do: Vapi.CallHookCallEndingDoItem[];
     /** This is the set of filters that must match for the hook to trigger */
-    filters?: Vapi.CallHookFilter[];
+    filters?: Vapi.CallHookFilter[] | undefined;
 }

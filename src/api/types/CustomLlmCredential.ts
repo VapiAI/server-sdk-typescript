@@ -7,7 +7,7 @@ export interface CustomLlmCredential {
     /** This is not returned in the API. */
     apiKey: string;
     /** This is the authentication plan. Currently supports OAuth2 RFC 6749. To use Bearer authentication, use apiKey */
-    authenticationPlan?: Vapi.OAuth2AuthenticationPlan;
+    authenticationPlan?: Vapi.OAuth2AuthenticationPlan | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -17,7 +17,7 @@ export interface CustomLlmCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the authentication session for the credential. Available for credentials that have an authentication plan. */
-    authenticationSession?: Vapi.Oauth2AuthenticationSession;
+    authenticationSession?: Vapi.Oauth2AuthenticationSession | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

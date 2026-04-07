@@ -6,5 +6,5 @@ export interface KnowledgeBaseResponseDocument {
     /** This is the similarity score of the document. */
     similarity: number;
     /** This is the uuid of the document. */
-    uuid?: string;
+    uuid?: string | undefined;
 }

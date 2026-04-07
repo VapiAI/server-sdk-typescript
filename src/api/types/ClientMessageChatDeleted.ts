@@ -4,17 +4,17 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageChatDeleted {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageChatDeletedPhoneNumber;
+    phoneNumber?: Vapi.ClientMessageChatDeletedPhoneNumber | undefined;
     /** This is the type of the message. "chat.deleted" is sent when a chat is deleted. */
     type: Vapi.ClientMessageChatDeletedType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the chat that was deleted. */
     chat: Vapi.Chat;
 }

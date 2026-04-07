@@ -13,7 +13,7 @@ export interface TransportConfigurationTwilio {
      *
      * @default 60
      */
-    timeout?: number;
+    timeout?: number | undefined;
     /**
      * Whether to record the call.
      * Can be `true` to record the phone call, or `false` to not.
@@ -21,7 +21,7 @@ export interface TransportConfigurationTwilio {
      *
      * @default false
      */
-    record?: boolean;
+    record?: boolean | undefined;
     /**
      * The number of channels in the final recording.
      * Can be: `mono` or `dual`.
@@ -32,5 +32,5 @@ export interface TransportConfigurationTwilio {
      *
      * @default 'mono'
      */
-    recordingChannels?: Vapi.TransportConfigurationTwilioRecordingChannels;
+    recordingChannels?: Vapi.TransportConfigurationTwilioRecordingChannels | undefined;
 }

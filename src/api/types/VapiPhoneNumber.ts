@@ -11,10 +11,9 @@ export interface VapiPhoneNumber {
      *
      * If this is not set and above conditions are met, the inbound call is hung up with an error message.
      */
-    fallbackDestination?: Vapi.VapiPhoneNumberFallbackDestination;
+    fallbackDestination?: Vapi.VapiPhoneNumberFallbackDestination | undefined;
     /** This is the hooks that will be used for incoming calls to this phone number. */
-    hooks?: Vapi.VapiPhoneNumberHooksItem[];
-    provider: "vapi";
+    hooks?: Vapi.VapiPhoneNumberHooksItem[] | undefined;
     /** This is the unique identifier for the phone number. */
     id: string;
     /** This is the unique identifier for the org that this phone number belongs to. */
@@ -24,29 +23,29 @@ export interface VapiPhoneNumber {
     /** This is the ISO 8601 date-time string of when the phone number was last updated. */
     updatedAt: string;
     /** This is the status of the phone number. */
-    status?: Vapi.VapiPhoneNumberStatus;
+    status?: Vapi.VapiPhoneNumberStatus | undefined;
     /** These are the digits of the phone number you purchased from Vapi. */
-    number?: string;
+    number?: string | undefined;
     /** This is the name of the phone number. This is just for your own reference. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the assistant that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId` nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * This is the workflow that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    workflowId?: string;
+    workflowId?: string | undefined;
     /**
      * This is the squad that will be used for incoming calls to this phone number.
      *
      * If neither `assistantId`, `squadId`, nor `workflowId` is set, `assistant-request` will be sent to your Server URL. Check `ServerMessage` and `ServerMessageResponse` for the shape of the message and response that is expected.
      */
-    squadId?: string;
+    squadId?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -56,19 +55,19 @@ export interface VapiPhoneNumber {
      * 2. phoneNumber.server
      * 3. org.server
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** This is the area code of the phone number to purchase. */
-    numberDesiredAreaCode?: string;
+    numberDesiredAreaCode?: string | undefined;
     /**
      * This is the SIP URI of the phone number. You can SIP INVITE this. The assistant attached to this number will answer.
      *
      * This is case-insensitive.
      */
-    sipUri?: string;
+    sipUri?: string | undefined;
     /**
      * This enables authentication for incoming SIP INVITE requests to the `sipUri`.
      *
      * If not set, any username/password to the 401 challenge of the SIP INVITE will be accepted.
      */
-    authentication?: Vapi.SipAuthentication;
+    authentication?: Vapi.SipAuthentication | undefined;
 }

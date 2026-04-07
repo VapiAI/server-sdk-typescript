@@ -30,6 +30,7 @@ export type ServerMessageMessage =
     | Vapi.ServerMessageUserInterrupted
     | Vapi.ServerMessageLanguageChangeDetected
     | Vapi.ServerMessageVoiceInput
+    | Vapi.ServerMessageAssistantSpeech
     | Vapi.ServerMessageVoiceRequest
     | Vapi.ServerMessageCallEndpointingRequest
     | Vapi.ServerMessageChatCreated

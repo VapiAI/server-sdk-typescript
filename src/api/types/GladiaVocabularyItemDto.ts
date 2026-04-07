@@ -4,9 +4,9 @@ export interface GladiaVocabularyItemDto {
     /** The vocabulary word or phrase */
     value: string;
     /** Alternative pronunciations for the vocabulary item */
-    pronunciations?: string[];
+    pronunciations?: string[] | undefined;
     /** Intensity for this specific vocabulary item (0.0 to 1.0) */
-    intensity?: number;
+    intensity?: number | undefined;
     /** Language code for this vocabulary item (ISO 639-1) */
-    language?: string;
+    language?: string | undefined;
 }

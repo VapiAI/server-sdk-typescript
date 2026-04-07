@@ -14,7 +14,7 @@ export interface StopSpeakingPlan {
      *
      * @default 0
      */
-    numWords?: number;
+    numWords?: number | undefined;
     /**
      * This is the seconds customer has to speak before the assistant stops talking. This uses the VAD (Voice Activity Detection) spike to determine if the customer has started speaking.
      *
@@ -28,7 +28,7 @@ export interface StopSpeakingPlan {
      *
      * @default 0.2
      */
-    voiceSeconds?: number;
+    voiceSeconds?: number | undefined;
     /**
      * This is the seconds to wait before the assistant will start talking again after being interrupted.
      *
@@ -36,15 +36,15 @@ export interface StopSpeakingPlan {
      *
      * @default 1
      */
-    backoffSeconds?: number;
+    backoffSeconds?: number | undefined;
     /**
      * These are the phrases that will never interrupt the assistant, even if numWords threshold is met.
      * These are typically acknowledgement or backchanneling phrases.
      */
-    acknowledgementPhrases?: string[];
+    acknowledgementPhrases?: string[] | undefined;
     /**
      * These are the phrases that will always interrupt the assistant immediately, regardless of numWords.
      * These are typically phrases indicating disagreement or desire to stop.
      */
-    interruptionPhrases?: string[];
+    interruptionPhrases?: string[] | undefined;
 }

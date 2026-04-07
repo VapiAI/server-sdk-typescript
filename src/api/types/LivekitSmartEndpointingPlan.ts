@@ -16,5 +16,5 @@ export interface LivekitSmartEndpointingPlan {
      *
      * @default "20 + 500 * sqrt(x) + 2500 * x^3"
      */
-    waitFunction?: string;
+    waitFunction?: string | undefined;
 }

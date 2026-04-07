@@ -35,5 +35,5 @@ export interface CustomEndpointingModelSmartEndpointingPlan {
      *
      * The timeout is the number of seconds to wait before considering the user's speech as finished. The endpointing timeout is automatically reset each time a new transcript is received (and another `call.endpointing.request` is sent).
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
 }

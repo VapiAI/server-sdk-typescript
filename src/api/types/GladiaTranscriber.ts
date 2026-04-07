@@ -3,43 +3,41 @@
 import type * as Vapi from "../index.js";
 
 export interface GladiaTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.GladiaTranscriberProvider;
     /** This is the Gladia model that will be used. Default is 'fast' */
-    model?: Vapi.GladiaTranscriberModel;
+    model?: Vapi.GladiaTranscriberModel | undefined;
     /** Defines how the transcription model detects the audio language. Default value is 'automatic single language'. */
-    languageBehaviour?: Vapi.GladiaTranscriberLanguageBehaviour;
+    languageBehaviour?: Vapi.GladiaTranscriberLanguageBehaviour | undefined;
     /** Defines the language to use for the transcription. Required when languageBehaviour is 'manual'. */
-    language?: Vapi.GladiaTranscriberLanguage;
+    language?: Vapi.GladiaTranscriberLanguage | undefined;
     /** Defines the languages to use for the transcription. Required when languageBehaviour is 'manual'. */
-    languages?: Vapi.GladiaTranscriberLanguages;
+    languages?: Vapi.GladiaTranscriberLanguages | undefined;
     /**
      * Provides a custom vocabulary to the model to improve accuracy of transcribing context specific words, technical terms, names, etc. If empty, this argument is ignored.
      * ⚠️ Warning ⚠️: Please be aware that the transcription_hint field has a character limit of 600. If you provide a transcription_hint longer than 600 characters, it will be automatically truncated to meet this limit.
      */
-    transcriptionHint?: string;
+    transcriptionHint?: string | undefined;
     /** If prosody is true, you will get a transcription that can contain prosodies i.e. (laugh) (giggles) (malefic laugh) (toss) (music)… Default value is false. */
-    prosody?: boolean;
+    prosody?: boolean | undefined;
     /** If true, audio will be pre-processed to improve accuracy but latency will increase. Default value is false. */
-    audioEnhancer?: boolean;
+    audioEnhancer?: boolean | undefined;
     /**
      * Transcripts below this confidence threshold will be discarded.
      *
      * @default 0.4
      */
-    confidenceThreshold?: number;
+    confidenceThreshold?: number | undefined;
     /** Endpointing time in seconds - time to wait before considering speech ended */
-    endpointing?: number;
+    endpointing?: number | undefined;
     /** Speech threshold - sensitivity configuration for speech detection (0.0 to 1.0) */
-    speechThreshold?: number;
+    speechThreshold?: number | undefined;
     /** Enable custom vocabulary for improved accuracy */
-    customVocabularyEnabled?: boolean;
+    customVocabularyEnabled?: boolean | undefined;
     /** Custom vocabulary configuration */
-    customVocabularyConfig?: Vapi.GladiaCustomVocabularyConfigDto;
+    customVocabularyConfig?: Vapi.GladiaCustomVocabularyConfigDto | undefined;
     /** Region for processing audio (us-west or eu-west) */
-    region?: Vapi.GladiaTranscriberRegion;
+    region?: Vapi.GladiaTranscriberRegion | undefined;
     /** Enable partial transcripts for low-latency streaming transcription */
-    receivePartialTranscripts?: boolean;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    receivePartialTranscripts?: boolean | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

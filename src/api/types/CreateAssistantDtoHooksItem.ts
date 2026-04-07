@@ -6,4 +6,5 @@ export type CreateAssistantDtoHooksItem =
     | Vapi.CallHookCallEnding
     | Vapi.CallHookAssistantSpeechInterrupted
     | Vapi.CallHookCustomerSpeechInterrupted
-    | Vapi.CallHookCustomerSpeechTimeout;
+    | Vapi.CallHookCustomerSpeechTimeout
+    | Vapi.SessionCreatedHook;

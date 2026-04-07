@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface TextInsightFromCallTable {
     /** This is the name of the Insight. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the type of the Insight.
      * It is required to be `text` to create a text insight.
@@ -27,8 +27,8 @@ export interface TextInsightFromCallTable {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formula?: Record<string, unknown>;
-    timeRange?: Vapi.InsightTimeRange;
+    formula?: Record<string, unknown> | undefined;
+    timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * These are the queries to run to generate the insight.
      * For Text Insights, we only allow a single query, or require a formula if multiple queries are provided

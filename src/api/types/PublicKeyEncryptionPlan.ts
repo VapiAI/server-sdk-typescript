@@ -3,8 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface PublicKeyEncryptionPlan {
-    type: "public-key";
     /** The encryption algorithm to use. */
     algorithm: Vapi.PublicKeyEncryptionPlanAlgorithm;
-    publicKey: Vapi.SpkiPemPublicKeyConfig;
+    /** The public key configuration. */
+    publicKey: Vapi.PublicKeyEncryptionPlanPublicKey;
 }

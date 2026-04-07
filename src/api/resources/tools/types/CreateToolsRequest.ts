@@ -3,23 +3,115 @@
 import type * as Vapi from "../../../index.js";
 
 export type CreateToolsRequest =
-    | Vapi.CreateApiRequestToolDto
-    | Vapi.CreateDtmfToolDto
-    | Vapi.CreateEndCallToolDto
-    | Vapi.CreateFunctionToolDto
-    | Vapi.CreateTransferCallToolDto
-    | Vapi.CreateHandoffToolDto
-    | Vapi.CreateBashToolDto
-    | Vapi.CreateComputerToolDto
-    | Vapi.CreateTextEditorToolDto
-    | Vapi.CreateQueryToolDto
-    | Vapi.CreateGoogleCalendarCreateEventToolDto
-    | Vapi.CreateGoogleSheetsRowAppendToolDto
-    | Vapi.CreateGoogleCalendarCheckAvailabilityToolDto
-    | Vapi.CreateSlackSendMessageToolDto
-    | Vapi.CreateSmsToolDto
-    | Vapi.CreateMcpToolDto
-    | Vapi.CreateGoHighLevelCalendarAvailabilityToolDto
-    | Vapi.CreateGoHighLevelCalendarEventCreateToolDto
-    | Vapi.CreateGoHighLevelContactCreateToolDto
-    | Vapi.CreateGoHighLevelContactGetToolDto;
+    | Vapi.CreateToolsRequest.ApiRequest
+    | Vapi.CreateToolsRequest.Dtmf
+    | Vapi.CreateToolsRequest.EndCall
+    | Vapi.CreateToolsRequest.Function
+    | Vapi.CreateToolsRequest.TransferCall
+    | Vapi.CreateToolsRequest.Handoff
+    | Vapi.CreateToolsRequest.Bash
+    | Vapi.CreateToolsRequest.Computer
+    | Vapi.CreateToolsRequest.TextEditor
+    | Vapi.CreateToolsRequest.Query
+    | Vapi.CreateToolsRequest.GoogleCalendarEventCreate
+    | Vapi.CreateToolsRequest.GoogleSheetsRowAppend
+    | Vapi.CreateToolsRequest.GoogleCalendarAvailabilityCheck
+    | Vapi.CreateToolsRequest.SlackMessageSend
+    | Vapi.CreateToolsRequest.Sms
+    | Vapi.CreateToolsRequest.Mcp
+    | Vapi.CreateToolsRequest.GohighlevelCalendarAvailabilityCheck
+    | Vapi.CreateToolsRequest.GohighlevelCalendarEventCreate
+    | Vapi.CreateToolsRequest.GohighlevelContactCreate
+    | Vapi.CreateToolsRequest.GohighlevelContactGet
+    | Vapi.CreateToolsRequest.SipRequest
+    | Vapi.CreateToolsRequest.Voicemail;
+
+export namespace CreateToolsRequest {
+    export interface ApiRequest extends Vapi.CreateApiRequestToolDto {
+        type: "apiRequest";
+    }
+
+    export interface Dtmf extends Vapi.CreateDtmfToolDto {
+        type: "dtmf";
+    }
+
+    export interface EndCall extends Vapi.CreateEndCallToolDto {
+        type: "endCall";
+    }
+
+    export interface Function extends Vapi.CreateFunctionToolDto {
+        type: "function";
+    }
+
+    export interface TransferCall extends Vapi.CreateTransferCallToolDto {
+        type: "transferCall";
+    }
+
+    export interface Handoff extends Vapi.CreateHandoffToolDto {
+        type: "handoff";
+    }
+
+    export interface Bash extends Vapi.CreateBashToolDto {
+        type: "bash";
+    }
+
+    export interface Computer extends Vapi.CreateComputerToolDto {
+        type: "computer";
+    }
+
+    export interface TextEditor extends Vapi.CreateTextEditorToolDto {
+        type: "textEditor";
+    }
+
+    export interface Query extends Vapi.CreateQueryToolDto {
+        type: "query";
+    }
+
+    export interface GoogleCalendarEventCreate extends Vapi.CreateGoogleCalendarCreateEventToolDto {
+        type: "google.calendar.event.create";
+    }
+
+    export interface GoogleSheetsRowAppend extends Vapi.CreateGoogleSheetsRowAppendToolDto {
+        type: "google.sheets.row.append";
+    }
+
+    export interface GoogleCalendarAvailabilityCheck extends Vapi.CreateGoogleCalendarCheckAvailabilityToolDto {
+        type: "google.calendar.availability.check";
+    }
+
+    export interface SlackMessageSend extends Vapi.CreateSlackSendMessageToolDto {
+        type: "slack.message.send";
+    }
+
+    export interface Sms extends Vapi.CreateSmsToolDto {
+        type: "sms";
+    }
+
+    export interface Mcp extends Vapi.CreateMcpToolDto {
+        type: "mcp";
+    }
+
+    export interface GohighlevelCalendarAvailabilityCheck extends Vapi.CreateGoHighLevelCalendarAvailabilityToolDto {
+        type: "gohighlevel.calendar.availability.check";
+    }
+
+    export interface GohighlevelCalendarEventCreate extends Vapi.CreateGoHighLevelCalendarEventCreateToolDto {
+        type: "gohighlevel.calendar.event.create";
+    }
+
+    export interface GohighlevelContactCreate extends Vapi.CreateGoHighLevelContactCreateToolDto {
+        type: "gohighlevel.contact.create";
+    }
+
+    export interface GohighlevelContactGet extends Vapi.CreateGoHighLevelContactGetToolDto {
+        type: "gohighlevel.contact.get";
+    }
+
+    export interface SipRequest extends Vapi.CreateSipRequestToolDto {
+        type: "sipRequest";
+    }
+
+    export interface Voicemail extends Vapi.CreateVoicemailToolDto {
+        type: "voicemail";
+    }
+}

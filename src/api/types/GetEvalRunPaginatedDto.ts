@@ -3,27 +3,27 @@
 import type * as Vapi from "../index.js";
 
 export interface GetEvalRunPaginatedDto {
-    id?: string;
+    id?: string | undefined;
     /** This is the page number to return. Defaults to 1. */
-    page?: number;
+    page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
-    sortOrder?: Vapi.GetEvalRunPaginatedDtoSortOrder;
+    sortOrder?: Vapi.GetEvalRunPaginatedDtoSortOrder | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
-    limit?: number;
+    limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */
-    createdAtGt?: string;
+    createdAtGt?: string | undefined;
     /** This will return items where the createdAt is less than the specified value. */
-    createdAtLt?: string;
+    createdAtLt?: string | undefined;
     /** This will return items where the createdAt is greater than or equal to the specified value. */
-    createdAtGe?: string;
+    createdAtGe?: string | undefined;
     /** This will return items where the createdAt is less than or equal to the specified value. */
-    createdAtLe?: string;
+    createdAtLe?: string | undefined;
     /** This will return items where the updatedAt is greater than the specified value. */
-    updatedAtGt?: string;
+    updatedAtGt?: string | undefined;
     /** This will return items where the updatedAt is less than the specified value. */
-    updatedAtLt?: string;
+    updatedAtLt?: string | undefined;
     /** This will return items where the updatedAt is greater than or equal to the specified value. */
-    updatedAtGe?: string;
+    updatedAtGe?: string | undefined;
     /** This will return items where the updatedAt is less than or equal to the specified value. */
-    updatedAtLe?: string;
+    updatedAtLe?: string | undefined;
 }

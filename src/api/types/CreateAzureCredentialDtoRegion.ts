@@ -2,9 +2,10 @@
 
 /** This is the region of the Azure resource. */
 export const CreateAzureCredentialDtoRegion = {
-    Australia: "australia",
+    Australiaeast: "australiaeast",
     Canadaeast: "canadaeast",
     Canadacentral: "canadacentral",
+    Centralus: "centralus",
     Eastus2: "eastus2",
     Eastus: "eastus",
     France: "france",

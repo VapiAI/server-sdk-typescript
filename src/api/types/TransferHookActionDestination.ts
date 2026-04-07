@@ -5,4 +5,16 @@ import type * as Vapi from "../index.js";
 /**
  * This is the destination details for the transfer - can be a phone number or SIP URI
  */
-export type TransferHookActionDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
+export type TransferHookActionDestination =
+    | Vapi.TransferHookActionDestination.Number
+    | Vapi.TransferHookActionDestination.Sip;
+
+export namespace TransferHookActionDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

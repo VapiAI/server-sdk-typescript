@@ -7,11 +7,11 @@ export interface AzureCredential {
     /** This is the service being used in Azure. */
     service: Vapi.AzureCredentialService;
     /** This is the region of the Azure resource. */
-    region?: Vapi.AzureCredentialRegion;
+    region?: Vapi.AzureCredentialRegion | undefined;
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -21,7 +21,7 @@ export interface AzureCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /** This is the bucket plan that can be provided to store call artifacts in Azure Blob Storage. */
-    bucketPlan?: Vapi.AzureBlobStorageBucketPlan;
+    bucketPlan?: Vapi.AzureBlobStorageBucketPlan | undefined;
 }

@@ -8,15 +8,13 @@ export interface CreateVoicemailToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateVoicemailToolDtoMessagesItem[];
-    /** The type of tool. "voicemail" for Voicemail tool. */
-    type: Vapi.CreateVoicemailToolDtoType;
+    messages?: Vapi.CreateVoicemailToolDtoMessagesItem[] | undefined;
     /**
      * This is the flag that enables beep detection for voicemail detection and applies only for twilio based calls.
      *
      * @default false
      */
-    beepDetectionEnabled?: boolean;
+    beepDetectionEnabled?: boolean | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -97,5 +95,5 @@ export interface CreateVoicemailToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

@@ -4,5 +4,5 @@ import type * as Vapi from "../index.js";
 
 export interface McpToolMetadata {
     /** This is the protocol used for MCP communication. Defaults to Streamable HTTP. */
-    protocol?: Vapi.McpToolMetadataProtocol;
+    protocol?: Vapi.McpToolMetadataProtocol | undefined;
 }

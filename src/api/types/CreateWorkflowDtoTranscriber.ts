@@ -8,14 +8,65 @@ import type * as Vapi from "../index.js";
  * This can be overridden at node level using `nodes[n].transcriber`.
  */
 export type CreateWorkflowDtoTranscriber =
-    | Vapi.AssemblyAiTranscriber
-    | Vapi.AzureSpeechTranscriber
-    | Vapi.CustomTranscriber
-    | Vapi.DeepgramTranscriber
-    | Vapi.ElevenLabsTranscriber
-    | Vapi.GladiaTranscriber
-    | Vapi.GoogleTranscriber
-    | Vapi.SpeechmaticsTranscriber
-    | Vapi.TalkscriberTranscriber
-    | Vapi.OpenAiTranscriber
-    | Vapi.CartesiaTranscriber;
+    | Vapi.CreateWorkflowDtoTranscriber.AssemblyAi
+    | Vapi.CreateWorkflowDtoTranscriber.Azure
+    | Vapi.CreateWorkflowDtoTranscriber.CustomTranscriber
+    | Vapi.CreateWorkflowDtoTranscriber.Deepgram
+    | Vapi.CreateWorkflowDtoTranscriber._11Labs
+    | Vapi.CreateWorkflowDtoTranscriber.Gladia
+    | Vapi.CreateWorkflowDtoTranscriber.Google
+    | Vapi.CreateWorkflowDtoTranscriber.Speechmatics
+    | Vapi.CreateWorkflowDtoTranscriber.Talkscriber
+    | Vapi.CreateWorkflowDtoTranscriber.Openai
+    | Vapi.CreateWorkflowDtoTranscriber.Cartesia
+    | Vapi.CreateWorkflowDtoTranscriber.Soniox;
+
+export namespace CreateWorkflowDtoTranscriber {
+    export interface AssemblyAi extends Vapi.AssemblyAiTranscriber {
+        provider: "assembly-ai";
+    }
+
+    export interface Azure extends Vapi.AzureSpeechTranscriber {
+        provider: "azure";
+    }
+
+    export interface CustomTranscriber extends Vapi.CustomTranscriber {
+        provider: "custom-transcriber";
+    }
+
+    export interface Deepgram extends Vapi.DeepgramTranscriber {
+        provider: "deepgram";
+    }
+
+    export interface _11Labs extends Vapi.ElevenLabsTranscriber {
+        provider: "11labs";
+    }
+
+    export interface Gladia extends Vapi.GladiaTranscriber {
+        provider: "gladia";
+    }
+
+    export interface Google extends Vapi.GoogleTranscriber {
+        provider: "google";
+    }
+
+    export interface Speechmatics extends Vapi.SpeechmaticsTranscriber {
+        provider: "speechmatics";
+    }
+
+    export interface Talkscriber extends Vapi.TalkscriberTranscriber {
+        provider: "talkscriber";
+    }
+
+    export interface Openai extends Vapi.OpenAiTranscriber {
+        provider: "openai";
+    }
+
+    export interface Cartesia extends Vapi.CartesiaTranscriber {
+        provider: "cartesia";
+    }
+
+    export interface Soniox extends Vapi.SonioxTranscriber {
+        provider: "soniox";
+    }
+}

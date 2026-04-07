@@ -8,39 +8,40 @@ export interface CreateApiRequestToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateApiRequestToolDtoMessagesItem[];
-    type: "apiRequest";
+    messages?: Vapi.CreateApiRequestToolDtoMessagesItem[] | undefined;
     method: Vapi.CreateApiRequestToolDtoMethod;
     /**
      * This is the timeout in seconds for the request. Defaults to 20 seconds.
      *
      * @default 20
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /** The credential ID for API request authentication */
-    credentialId?: string;
+    credentialId?: string | undefined;
     /** This is the paths to encrypt in the request body if credentialId and encryptionPlan are defined. */
-    encryptedPaths?: string[];
+    encryptedPaths?: string[] | undefined;
+    /** Static key-value pairs merged into the request body. Values support Liquid templates. */
+    parameters?: Vapi.ToolParameter[] | undefined;
     /**
      * This is the name of the tool. This will be passed to the model.
      *
      * Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
      */
-    name?: string;
+    name?: string | undefined;
     /** This is the description of the tool. This will be passed to the model. */
-    description?: string;
+    description?: string | undefined;
     /** This is where the request will be sent. */
     url: string;
     /** This is the body of the request. */
-    body?: Vapi.JsonSchema;
+    body?: Vapi.JsonSchema | undefined;
     /** These are the headers to send with the request. */
-    headers?: Vapi.JsonSchema;
+    headers?: Vapi.JsonSchema | undefined;
     /**
      * This is the backoff plan if the request fails. Defaults to undefined (the request will not be retried).
      *
      * @default undefined (the request will not be retried)
      */
-    backoffPlan?: Vapi.BackoffPlan;
+    backoffPlan?: Vapi.BackoffPlan | undefined;
     /**
      * This is the plan to extract variables from the tool's response. These will be accessible during the call and stored in `call.artifact.variableValues` after the call.
      *
@@ -196,7 +197,7 @@ export interface CreateApiRequestToolDto {
      *
      * Note: Both `aliases` and `schema` can be used together.
      */
-    variableExtractionPlan?: Vapi.VariableExtractionPlan;
+    variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -277,5 +278,5 @@ export interface CreateApiRequestToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

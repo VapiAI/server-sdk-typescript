@@ -5,5 +5,5 @@ import type * as Vapi from "../index.js";
 export interface AssistantVersionPaginatedResponse {
     results: unknown[];
     metadata: Vapi.PaginationMeta;
-    nextPageState?: string;
+    nextPageState?: string | undefined;
 }

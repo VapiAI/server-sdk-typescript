@@ -4,17 +4,17 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageTranscript {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageTranscriptPhoneNumber;
+    phoneNumber?: Vapi.ClientMessageTranscriptPhoneNumber | undefined;
     /** This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript. */
     type: Vapi.ClientMessageTranscriptType;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the role for which the transcript is for. */
     role: Vapi.ClientMessageTranscriptRole;
     /** This is the type of the transcript. */
@@ -22,9 +22,9 @@ export interface ClientMessageTranscript {
     /** This is the transcript content. */
     transcript: string;
     /** Indicates if the transcript was filtered for security reasons. */
-    isFiltered?: boolean;
+    isFiltered?: boolean | undefined;
     /** List of detected security threats if the transcript was filtered. */
-    detectedThreats?: string[];
+    detectedThreats?: string[] | undefined;
     /** The original transcript before filtering (only included if content was filtered). */
-    originalTranscript?: string;
+    originalTranscript?: string | undefined;
 }

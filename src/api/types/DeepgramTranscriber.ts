@@ -3,14 +3,12 @@
 import type * as Vapi from "../index.js";
 
 export interface DeepgramTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.DeepgramTranscriberProvider;
     /** This is the Deepgram model that will be used. A list of models can be found here: https://developers.deepgram.com/docs/models-languages-overview */
-    model?: Vapi.DeepgramTranscriberModel;
+    model?: Vapi.DeepgramTranscriberModel | undefined;
     /** This is the language that will be set for the transcription. The list of languages Deepgram supports can be found here: https://developers.deepgram.com/docs/models-languages-overview */
-    language?: Vapi.DeepgramTranscriberLanguage;
+    language?: Vapi.DeepgramTranscriberLanguage | undefined;
     /** This will be use smart format option provided by Deepgram. It's default disabled because it can sometimes format numbers as times but it's getting better. */
-    smartFormat?: boolean;
+    smartFormat?: boolean | undefined;
     /**
      * If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
      *
@@ -18,37 +16,43 @@ export interface DeepgramTranscriber {
      *
      * @default false
      */
-    mipOptOut?: boolean;
+    mipOptOut?: boolean | undefined;
     /**
      * If set to true, this will cause deepgram to convert spoken numbers to literal numerals. For example, "my phone number is nine-seven-two..." would become "my phone number is 972..."
      *
      * @default false
      */
-    numerals?: boolean;
+    numerals?: boolean | undefined;
+    /**
+     * If set to true, Deepgram will replace profanity in transcripts with surrounding asterisks, e.g. "f***".
+     *
+     * @default false
+     */
+    profanityFilter?: boolean | undefined;
     /**
      * Transcripts below this confidence threshold will be discarded.
      *
      * @default 0.4
      */
-    confidenceThreshold?: number;
+    confidenceThreshold?: number | undefined;
     /** Eager end-of-turn confidence required to fire a eager end-of-turn event. Setting a value here will enable EagerEndOfTurn and SpeechResumed events. It is disabled by default. Only used with Flux models. */
-    eagerEotThreshold?: number;
+    eagerEotThreshold?: number | undefined;
     /**
      * End-of-turn confidence required to finish a turn. Only used with Flux models.
      *
      * @default 0.7
      */
-    eotThreshold?: number;
+    eotThreshold?: number | undefined;
     /**
      * A turn will be finished when this much time has passed after speech, regardless of EOT confidence. Only used with Flux models.
      *
      * @default 5000
      */
-    eotTimeoutMs?: number;
+    eotTimeoutMs?: number | undefined;
     /** These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here. */
-    keywords?: string[];
+    keywords?: string[] | undefined;
     /** Keyterm Prompting allows you improve Keyword Recall Rate (KRR) for important keyterms or phrases up to 90%. */
-    keyterm?: string[];
+    keyterm?: string[] | undefined;
     /**
      * This is the timeout after which Deepgram will send transcription on user silence. You can read in-depth documentation here: https://developers.deepgram.com/docs/endpointing.
      *
@@ -59,7 +63,7 @@ export interface DeepgramTranscriber {
      *
      * @default 10
      */
-    endpointing?: number;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    endpointing?: number | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

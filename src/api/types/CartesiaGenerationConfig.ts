@@ -4,9 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface CartesiaGenerationConfig {
     /** Fine-grained speed control for sonic-3. Only available for sonic-3 model. */
-    speed?: number;
+    speed?: number | undefined;
     /** Fine-grained volume control for sonic-3. Only available for sonic-3 model. */
-    volume?: number;
+    volume?: number | undefined;
     /** Experimental model controls for sonic-3. These are subject to breaking changes. */
-    experimental?: Vapi.CartesiaGenerationConfigExperimental;
+    experimental?: Vapi.CartesiaGenerationConfigExperimental | undefined;
 }

@@ -6,8 +6,30 @@ import type * as Vapi from "../index.js";
  * This is the phone number that the message is associated with.
  */
 export type ServerMessageCallDeletedPhoneNumber =
-    | Vapi.CreateByoPhoneNumberDto
-    | Vapi.CreateTwilioPhoneNumberDto
-    | Vapi.CreateVonagePhoneNumberDto
-    | Vapi.CreateVapiPhoneNumberDto
-    | Vapi.CreateTelnyxPhoneNumberDto;
+    | Vapi.ServerMessageCallDeletedPhoneNumber.ByoPhoneNumber
+    | Vapi.ServerMessageCallDeletedPhoneNumber.Twilio
+    | Vapi.ServerMessageCallDeletedPhoneNumber.Vonage
+    | Vapi.ServerMessageCallDeletedPhoneNumber.Vapi
+    | Vapi.ServerMessageCallDeletedPhoneNumber.Telnyx;
+
+export namespace ServerMessageCallDeletedPhoneNumber {
+    export interface ByoPhoneNumber extends Vapi.CreateByoPhoneNumberDto {
+        provider: "byo-phone-number";
+    }
+
+    export interface Twilio extends Vapi.CreateTwilioPhoneNumberDto {
+        provider: "twilio";
+    }
+
+    export interface Vonage extends Vapi.CreateVonagePhoneNumberDto {
+        provider: "vonage";
+    }
+
+    export interface Vapi extends Vapi.CreateVapiPhoneNumberDto {
+        provider: "vapi";
+    }
+
+    export interface Telnyx extends Vapi.CreateTelnyxPhoneNumberDto {
+        provider: "telnyx";
+    }
+}

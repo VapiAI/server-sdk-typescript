@@ -8,18 +8,18 @@ export interface TesterPlan {
      *
      * Make sure to write a detailed system prompt for a test assistant, and use the {{test.script}} variable to access the test script.
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /**
      * Pass an assistant id that can be access
      *
      * Make sure to write a detailed system prompt for the test assistant, and use the {{test.script}} variable to access the test script.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /**
      * Add any assistant overrides to the test assistant.
      *
      * One use case is if you want to pass custom variables into the test using variableValues, that you can then access in the script
      * and rubric using {{varName}}.
      */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
 }

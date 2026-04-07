@@ -6,7 +6,7 @@
  * - `in_memory`: Default behavior, cache retained in GPU memory only
  * - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
  *
- * Only applies to models: gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+ * Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
  *
  * @default undefined (uses API default which is 'in_memory')
  */

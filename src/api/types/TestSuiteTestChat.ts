@@ -5,8 +5,6 @@ import type * as Vapi from "../index.js";
 export interface TestSuiteTestChat {
     /** These are the scorers used to evaluate the test. */
     scorers: Vapi.TestSuiteTestScorerAi[];
-    /** This is the type of the test, which must be chat. */
-    type: Vapi.TestSuiteTestChatType;
     /** This is the unique identifier for the test. */
     id: string;
     /** This is the unique identifier for the test suite this test belongs to. */
@@ -18,9 +16,9 @@ export interface TestSuiteTestChat {
     /** This is the ISO 8601 date-time string of when the test was last updated. */
     updatedAt: string;
     /** This is the name of the test. */
-    name?: string;
+    name?: string | undefined;
     /** This is the script to be used for the chat test. */
     script: string;
     /** This is the number of attempts allowed for the test. */
-    numAttempts?: number;
+    numAttempts?: number | undefined;
 }

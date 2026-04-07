@@ -12,15 +12,15 @@ export interface UserMessage {
     /** The number of seconds from the start of the conversation. */
     secondsFromStart: number;
     /** The duration of the message in seconds. */
-    duration?: number;
+    duration?: number | undefined;
     /** Indicates if the message was filtered for security reasons. */
-    isFiltered?: boolean;
+    isFiltered?: boolean | undefined;
     /** List of detected security threats if the message was filtered. */
-    detectedThreats?: string[];
+    detectedThreats?: string[] | undefined;
     /** The original message before filtering (only included if content was filtered). */
-    originalMessage?: string;
+    originalMessage?: string | undefined;
     /** The metadata associated with the message. Currently used to store the transcriber's word level confidence. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
     /** Stable speaker label for diarized user speakers (e.g., "Speaker 1"). */
-    speakerLabel?: string;
+    speakerLabel?: string | undefined;
 }

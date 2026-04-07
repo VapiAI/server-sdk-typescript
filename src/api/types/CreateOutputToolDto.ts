@@ -8,7 +8,7 @@ export interface CreateOutputToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateOutputToolDtoMessagesItem[];
+    messages?: Vapi.CreateOutputToolDtoMessagesItem[] | undefined;
     /** The type of tool. "output" for Output tool. */
     type: Vapi.CreateOutputToolDtoType;
     /**
@@ -91,5 +91,5 @@ export interface CreateOutputToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

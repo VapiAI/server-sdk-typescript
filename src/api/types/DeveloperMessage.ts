@@ -8,7 +8,7 @@ export interface DeveloperMessage {
     /** This is the content of the developer message */
     content: string;
     /** This is an optional name for the participant */
-    name?: string;
+    name?: string | undefined;
     /** This is an optional metadata for the message */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

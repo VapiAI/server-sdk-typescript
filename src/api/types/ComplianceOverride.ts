@@ -2,5 +2,5 @@
 
 export interface ComplianceOverride {
     /** Force storage for this output under HIPAA. Only enable if output contains no sensitive data. */
-    forceStoreOnHipaaEnabled?: boolean;
+    forceStoreOnHipaaEnabled?: boolean | undefined;
 }

@@ -4,8 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface CreateTextInsightFromCallTableDto {
     /** This is the name of the Insight. */
-    name?: string;
-    type: "text";
+    name?: string | undefined;
     /**
      * Formulas are mathematical expressions applied on the data returned by the queries to transform them before being used to create the insight.
      * The formulas needs to be a valid mathematical expression, supported by MathJS - https://mathjs.org/docs/expressions/syntax.html
@@ -23,8 +22,8 @@ export interface CreateTextInsightFromCallTableDto {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formula?: Record<string, unknown>;
-    timeRange?: Vapi.InsightTimeRange;
+    formula?: Record<string, unknown> | undefined;
+    timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * These are the queries to run to generate the insight.
      * For Text Insights, we only allow a single query, or require a formula if multiple queries are provided

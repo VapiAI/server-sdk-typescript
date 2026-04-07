@@ -3,24 +3,120 @@
 import type * as Vapi from "../../../index.js";
 
 export type ListToolsResponseItem =
-    | Vapi.ApiRequestTool
-    | Vapi.CodeTool
-    | Vapi.DtmfTool
-    | Vapi.EndCallTool
-    | Vapi.FunctionTool
-    | Vapi.TransferCallTool
-    | Vapi.HandoffTool
-    | Vapi.BashTool
-    | Vapi.ComputerTool
-    | Vapi.TextEditorTool
-    | Vapi.QueryTool
-    | Vapi.GoogleCalendarCreateEventTool
-    | Vapi.GoogleSheetsRowAppendTool
-    | Vapi.GoogleCalendarCheckAvailabilityTool
-    | Vapi.SlackSendMessageTool
-    | Vapi.SmsTool
-    | Vapi.McpTool
-    | Vapi.GoHighLevelCalendarAvailabilityTool
-    | Vapi.GoHighLevelCalendarEventCreateTool
-    | Vapi.GoHighLevelContactCreateTool
-    | Vapi.GoHighLevelContactGetTool;
+    | Vapi.ListToolsResponseItem.ApiRequest
+    | Vapi.ListToolsResponseItem.Code
+    | Vapi.ListToolsResponseItem.Dtmf
+    | Vapi.ListToolsResponseItem.EndCall
+    | Vapi.ListToolsResponseItem.Function
+    | Vapi.ListToolsResponseItem.TransferCall
+    | Vapi.ListToolsResponseItem.Handoff
+    | Vapi.ListToolsResponseItem.Bash
+    | Vapi.ListToolsResponseItem.Computer
+    | Vapi.ListToolsResponseItem.TextEditor
+    | Vapi.ListToolsResponseItem.Query
+    | Vapi.ListToolsResponseItem.GoogleCalendarEventCreate
+    | Vapi.ListToolsResponseItem.GoogleSheetsRowAppend
+    | Vapi.ListToolsResponseItem.GoogleCalendarAvailabilityCheck
+    | Vapi.ListToolsResponseItem.SlackMessageSend
+    | Vapi.ListToolsResponseItem.Sms
+    | Vapi.ListToolsResponseItem.Mcp
+    | Vapi.ListToolsResponseItem.GohighlevelCalendarAvailabilityCheck
+    | Vapi.ListToolsResponseItem.GohighlevelCalendarEventCreate
+    | Vapi.ListToolsResponseItem.GohighlevelContactCreate
+    | Vapi.ListToolsResponseItem.GohighlevelContactGet
+    | Vapi.ListToolsResponseItem.SipRequest
+    | Vapi.ListToolsResponseItem.Voicemail;
+
+export namespace ListToolsResponseItem {
+    export interface ApiRequest extends Vapi.ApiRequestTool {
+        type: "apiRequest";
+    }
+
+    export interface Code extends Vapi.CodeTool {
+        type: "code";
+    }
+
+    export interface Dtmf extends Vapi.DtmfTool {
+        type: "dtmf";
+    }
+
+    export interface EndCall extends Vapi.EndCallTool {
+        type: "endCall";
+    }
+
+    export interface Function extends Vapi.FunctionTool {
+        type: "function";
+    }
+
+    export interface TransferCall extends Vapi.TransferCallTool {
+        type: "transferCall";
+    }
+
+    export interface Handoff extends Vapi.HandoffTool {
+        type: "handoff";
+    }
+
+    export interface Bash extends Vapi.BashTool {
+        type: "bash";
+    }
+
+    export interface Computer extends Vapi.ComputerTool {
+        type: "computer";
+    }
+
+    export interface TextEditor extends Vapi.TextEditorTool {
+        type: "textEditor";
+    }
+
+    export interface Query extends Vapi.QueryTool {
+        type: "query";
+    }
+
+    export interface GoogleCalendarEventCreate extends Vapi.GoogleCalendarCreateEventTool {
+        type: "google.calendar.event.create";
+    }
+
+    export interface GoogleSheetsRowAppend extends Vapi.GoogleSheetsRowAppendTool {
+        type: "google.sheets.row.append";
+    }
+
+    export interface GoogleCalendarAvailabilityCheck extends Vapi.GoogleCalendarCheckAvailabilityTool {
+        type: "google.calendar.availability.check";
+    }
+
+    export interface SlackMessageSend extends Vapi.SlackSendMessageTool {
+        type: "slack.message.send";
+    }
+
+    export interface Sms extends Vapi.SmsTool {
+        type: "sms";
+    }
+
+    export interface Mcp extends Vapi.McpTool {
+        type: "mcp";
+    }
+
+    export interface GohighlevelCalendarAvailabilityCheck extends Vapi.GoHighLevelCalendarAvailabilityTool {
+        type: "gohighlevel.calendar.availability.check";
+    }
+
+    export interface GohighlevelCalendarEventCreate extends Vapi.GoHighLevelCalendarEventCreateTool {
+        type: "gohighlevel.calendar.event.create";
+    }
+
+    export interface GohighlevelContactCreate extends Vapi.GoHighLevelContactCreateTool {
+        type: "gohighlevel.contact.create";
+    }
+
+    export interface GohighlevelContactGet extends Vapi.GoHighLevelContactGetTool {
+        type: "gohighlevel.contact.get";
+    }
+
+    export interface SipRequest extends Vapi.SipRequestTool {
+        type: "sipRequest";
+    }
+
+    export interface Voicemail extends Vapi.VoicemailTool {
+        type: "voicemail";
+    }
+}

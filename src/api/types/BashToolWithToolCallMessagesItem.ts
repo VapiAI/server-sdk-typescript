@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type BashToolWithToolCallMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.BashToolWithToolCallMessagesItem.RequestStart
+    | Vapi.BashToolWithToolCallMessagesItem.RequestComplete
+    | Vapi.BashToolWithToolCallMessagesItem.RequestFailed
+    | Vapi.BashToolWithToolCallMessagesItem.RequestResponseDelayed;
+
+export namespace BashToolWithToolCallMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

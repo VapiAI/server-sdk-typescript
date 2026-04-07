@@ -4,9 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface VapiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.VapiVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** The voices provided by Vapi */
     voiceId: Vapi.VapiVoiceVoiceId;
     /**
@@ -14,9 +12,11 @@ export interface VapiVoice {
      *
      * @default 1
      */
-    speed?: number;
+    speed?: number | undefined;
+    /** List of pronunciation dictionary locators for custom word pronunciations. */
+    pronunciationDictionary?: Vapi.VapiPronunciationDictionaryLocator[] | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackPlan;
+    fallbackPlan?: Vapi.FallbackPlan | undefined;
 }

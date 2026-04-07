@@ -3,20 +3,90 @@
 import type * as Vapi from "../index.js";
 
 export type FallbackPlanVoicesItem =
-    | Vapi.FallbackAzureVoice
-    | Vapi.FallbackCartesiaVoice
-    | Vapi.FallbackHumeVoice
-    | Vapi.FallbackCustomVoice
-    | Vapi.FallbackDeepgramVoice
-    | Vapi.FallbackElevenLabsVoice
-    | Vapi.FallbackVapiVoice
-    | Vapi.FallbackLmntVoice
-    | Vapi.FallbackOpenAiVoice
-    | Vapi.FallbackPlayHtVoice
-    | Vapi.FallbackWellSaidVoice
-    | Vapi.FallbackRimeAiVoice
-    | Vapi.FallbackSmallestAiVoice
-    | Vapi.FallbackTavusVoice
-    | Vapi.FallbackNeuphonicVoice
-    | Vapi.FallbackSesameVoice
-    | Vapi.FallbackInworldVoice;
+    | Vapi.FallbackPlanVoicesItem.Azure
+    | Vapi.FallbackPlanVoicesItem.Cartesia
+    | Vapi.FallbackPlanVoicesItem.Hume
+    | Vapi.FallbackPlanVoicesItem.CustomVoice
+    | Vapi.FallbackPlanVoicesItem.Deepgram
+    | Vapi.FallbackPlanVoicesItem._11Labs
+    | Vapi.FallbackPlanVoicesItem.Vapi
+    | Vapi.FallbackPlanVoicesItem.Lmnt
+    | Vapi.FallbackPlanVoicesItem.Openai
+    | Vapi.FallbackPlanVoicesItem.Playht
+    | Vapi.FallbackPlanVoicesItem.Wellsaid
+    | Vapi.FallbackPlanVoicesItem.RimeAi
+    | Vapi.FallbackPlanVoicesItem.SmallestAi
+    | Vapi.FallbackPlanVoicesItem.Tavus
+    | Vapi.FallbackPlanVoicesItem.Neuphonic
+    | Vapi.FallbackPlanVoicesItem.Sesame
+    | Vapi.FallbackPlanVoicesItem.Inworld;
+
+export namespace FallbackPlanVoicesItem {
+    export interface Azure extends Vapi.FallbackAzureVoice {
+        provider: "azure";
+    }
+
+    export interface Cartesia extends Vapi.FallbackCartesiaVoice {
+        provider: "cartesia";
+    }
+
+    export interface Hume extends Vapi.FallbackHumeVoice {
+        provider: "hume";
+    }
+
+    export interface CustomVoice extends Vapi.FallbackCustomVoice {
+        provider: "custom-voice";
+    }
+
+    export interface Deepgram extends Vapi.FallbackDeepgramVoice {
+        provider: "deepgram";
+    }
+
+    export interface _11Labs extends Vapi.FallbackElevenLabsVoice {
+        provider: "11labs";
+    }
+
+    export interface Vapi extends Vapi.FallbackVapiVoice {
+        provider: "vapi";
+    }
+
+    export interface Lmnt extends Vapi.FallbackLmntVoice {
+        provider: "lmnt";
+    }
+
+    export interface Openai extends Vapi.FallbackOpenAiVoice {
+        provider: "openai";
+    }
+
+    export interface Playht extends Vapi.FallbackPlayHtVoice {
+        provider: "playht";
+    }
+
+    export interface Wellsaid extends Vapi.FallbackWellSaidVoice {
+        provider: "wellsaid";
+    }
+
+    export interface RimeAi extends Vapi.FallbackRimeAiVoice {
+        provider: "rime-ai";
+    }
+
+    export interface SmallestAi extends Vapi.FallbackSmallestAiVoice {
+        provider: "smallest-ai";
+    }
+
+    export interface Tavus extends Vapi.FallbackTavusVoice {
+        provider: "tavus";
+    }
+
+    export interface Neuphonic extends Vapi.FallbackNeuphonicVoice {
+        provider: "neuphonic";
+    }
+
+    export interface Sesame extends Vapi.FallbackSesameVoice {
+        provider: "sesame";
+    }
+
+    export interface Inworld extends Vapi.FallbackInworldVoice {
+        provider: "inworld";
+    }
+}

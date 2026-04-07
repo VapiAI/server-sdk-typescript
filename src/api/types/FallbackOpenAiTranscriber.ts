@@ -3,10 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackOpenAiTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackOpenAiTranscriberProvider;
     /** This is the model that will be used for the transcription. */
     model: Vapi.FallbackOpenAiTranscriberModel;
     /** This is the language that will be set for the transcription. */
-    language?: Vapi.FallbackOpenAiTranscriberLanguage;
+    language?: Vapi.FallbackOpenAiTranscriberLanguage | undefined;
 }

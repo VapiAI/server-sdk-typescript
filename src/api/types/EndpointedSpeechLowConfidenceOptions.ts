@@ -7,12 +7,12 @@ export interface EndpointedSpeechLowConfidenceOptions {
      *
      * @default confidenceMax - 0.2
      */
-    confidenceMin?: number;
+    confidenceMin?: number | undefined;
     /**
      * This is the maximum confidence threshold.
      * Transcripts with confidence at or above this value will be processed normally.
      *
      * @default transcriber's confidenceThreshold
      */
-    confidenceMax?: number;
+    confidenceMax?: number | undefined;
 }

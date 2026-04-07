@@ -4,13 +4,11 @@ import type * as Vapi from "../index.js";
 
 export interface GhlToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "ghl" for GHL tool. */
-    type: Vapi.GhlToolProviderDetailsType;
-    workflowId?: string;
-    workflowName?: string;
-    webhookHookId?: string;
-    webhookHookName?: string;
-    locationId?: string;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
+    workflowId?: string | undefined;
+    workflowName?: string | undefined;
+    webhookHookId?: string | undefined;
+    webhookHookName?: string | undefined;
+    locationId?: string | undefined;
 }

@@ -2,7 +2,7 @@
 
 export interface CreateSesameVoiceDto {
     /** The name of the voice. */
-    voiceName?: string;
+    voiceName?: string | undefined;
     /** The transcript of the utterance. */
-    transcription?: string;
+    transcription?: string | undefined;
 }

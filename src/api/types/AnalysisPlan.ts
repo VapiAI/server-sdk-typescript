@@ -6,20 +6,21 @@ export interface AnalysisPlan {
     /**
      * The minimum number of messages required to run the analysis plan.
      * If the number of messages is less than this, analysis will be skipped.
+     *
      * @default 2
      */
-    minMessagesThreshold?: number;
+    minMessagesThreshold?: number | undefined;
     /** This is the plan for generating the summary of the call. This outputs to `call.analysis.summary`. */
-    summaryPlan?: Vapi.SummaryPlan;
+    summaryPlan?: Vapi.SummaryPlan | undefined;
     /** This is the plan for generating the structured data from the call. This outputs to `call.analysis.structuredData`. */
-    structuredDataPlan?: Vapi.StructuredDataPlan;
+    structuredDataPlan?: Vapi.StructuredDataPlan | undefined;
     /** This is an array of structured data plan catalogs. Each entry includes a `key` and a `plan` for generating the structured data from the call. This outputs to `call.analysis.structuredDataMulti`. */
-    structuredDataMultiPlan?: Vapi.StructuredDataMultiPlan[];
+    structuredDataMultiPlan?: Vapi.StructuredDataMultiPlan[] | undefined;
     /** This is the plan for generating the success evaluation of the call. This outputs to `call.analysis.successEvaluation`. */
-    successEvaluationPlan?: Vapi.SuccessEvaluationPlan;
+    successEvaluationPlan?: Vapi.SuccessEvaluationPlan | undefined;
     /**
      * This is an array of outcome UUIDs to be calculated during analysis.
      * The outcomes will be calculated and stored in `call.analysis.outcomes`.
      */
-    outcomeIds?: string[];
+    outcomeIds?: string[] | undefined;
 }

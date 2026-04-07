@@ -8,7 +8,9 @@ export interface UpdateDtmfToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateDtmfToolDtoMessagesItem[];
+    messages?: Vapi.UpdateDtmfToolDtoMessagesItem[] | undefined;
+    /** This enables sending DTMF tones via SIP INFO messages instead of RFC 2833 (RTP events). When enabled, DTMF digits will be sent using the SIP INFO method, which can be more reliable in some network configurations. Only relevant when using the `vapi.sip` transport. */
+    sipInfoDtmfEnabled?: boolean | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -89,5 +91,5 @@ export interface UpdateDtmfToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

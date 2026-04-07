@@ -3,7 +3,25 @@
 import type * as Vapi from "../../../index.js";
 
 export type InsightControllerPreviewRequest =
-    | Vapi.CreateBarInsightFromCallTableDto
-    | Vapi.CreatePieInsightFromCallTableDto
-    | Vapi.CreateLineInsightFromCallTableDto
-    | Vapi.CreateTextInsightFromCallTableDto;
+    | Vapi.InsightControllerPreviewRequest.Bar
+    | Vapi.InsightControllerPreviewRequest.Pie
+    | Vapi.InsightControllerPreviewRequest.Line
+    | Vapi.InsightControllerPreviewRequest.Text;
+
+export namespace InsightControllerPreviewRequest {
+    export interface Bar extends Vapi.CreateBarInsightFromCallTableDto {
+        type: "bar";
+    }
+
+    export interface Pie extends Vapi.CreatePieInsightFromCallTableDto {
+        type: "pie";
+    }
+
+    export interface Line extends Vapi.CreateLineInsightFromCallTableDto {
+        type: "line";
+    }
+
+    export interface Text extends Vapi.CreateTextInsightFromCallTableDto {
+        type: "text";
+    }
+}

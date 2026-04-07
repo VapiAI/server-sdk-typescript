@@ -3,6 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface CartesiaExperimentalControls {
-    speed?: Vapi.CartesiaSpeedControl;
-    emotion?: Vapi.CartesiaExperimentalControlsEmotion;
+    speed?: Vapi.CartesiaSpeedControl | undefined;
+    emotion?: Vapi.CartesiaExperimentalControlsEmotion | undefined;
 }

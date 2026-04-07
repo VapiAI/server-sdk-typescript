@@ -8,10 +8,9 @@ export interface TransferCallTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.TransferCallToolMessagesItem[];
-    type: "transferCall";
+    messages?: Vapi.TransferCallToolMessagesItem[] | undefined;
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
-    destinations?: Vapi.TransferCallToolDestinationsItem[];
+    destinations?: Vapi.TransferCallToolDestinationsItem[] | undefined;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -100,5 +99,5 @@ export interface TransferCallTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface CreateSquadDto {
     /** This is the name of the squad. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the list of assistants that make up the squad.
      *
@@ -16,5 +16,5 @@ export interface CreateSquadDto {
      *
      * Both `membersOverrides` and `members[n].assistantOverrides` can be used together. First, `members[n].assistantOverrides` is applied. Then, `membersOverrides` is applied as a global override.
      */
-    membersOverrides?: Vapi.AssistantOverrides;
+    membersOverrides?: Vapi.AssistantOverrides | undefined;
 }

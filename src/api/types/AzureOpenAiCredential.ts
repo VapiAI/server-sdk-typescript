@@ -9,7 +9,7 @@ export interface AzureOpenAiCredential {
     /** This is not returned in the API. */
     openAIKey: string;
     /** This is not returned in the API. */
-    ocpApimSubscriptionKey?: string;
+    ocpApimSubscriptionKey?: string | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -19,6 +19,6 @@ export interface AzureOpenAiCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     openAIEndpoint: string;
 }

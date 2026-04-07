@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface CallBatchResponse {
     /** Subscription limits at the end of this batch */
-    subscriptionLimits?: Vapi.SubscriptionLimits;
+    subscriptionLimits?: Vapi.SubscriptionLimits | undefined;
     /** This is the list of calls that were created. */
     results: Vapi.Call[];
     /** This is the list of calls that failed to be created. */

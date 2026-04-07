@@ -3,9 +3,9 @@
 export interface VoiceLibraryVoiceResponse {
     voiceId: string;
     name: string;
-    publicOwnerId?: string;
-    description?: string;
-    gender?: string;
-    age?: Record<string, unknown>;
-    accent?: string;
+    publicOwnerId?: string | undefined;
+    description?: string | undefined;
+    gender?: string | undefined;
+    age?: Record<string, unknown> | undefined;
+    accent?: string | undefined;
 }

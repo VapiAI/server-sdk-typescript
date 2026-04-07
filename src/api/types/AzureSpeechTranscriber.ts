@@ -3,16 +3,14 @@
 import type * as Vapi from "../index.js";
 
 export interface AzureSpeechTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.AzureSpeechTranscriberProvider;
     /** This is the language that will be set for the transcription. The list of languages Azure supports can be found here: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt */
-    language?: Vapi.AzureSpeechTranscriberLanguage;
+    language?: Vapi.AzureSpeechTranscriberLanguage | undefined;
     /** Controls how phrase boundaries are detected, enabling either simple time/silence heuristics or more advanced semantic segmentation. */
-    segmentationStrategy?: Vapi.AzureSpeechTranscriberSegmentationStrategy;
+    segmentationStrategy?: Vapi.AzureSpeechTranscriberSegmentationStrategy | undefined;
     /** Duration of detected silence after which the service finalizes a phrase. Configure to adjust sensitivity to pauses in speech. */
-    segmentationSilenceTimeoutMs?: number;
+    segmentationSilenceTimeoutMs?: number | undefined;
     /** Maximum duration a segment can reach before being cut off when using time-based segmentation. */
-    segmentationMaximumTimeMs?: number;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    segmentationMaximumTimeMs?: number | undefined;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

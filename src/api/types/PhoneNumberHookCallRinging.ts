@@ -3,8 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface PhoneNumberHookCallRinging {
-    /** This is the event to trigger the hook on */
-    on: Vapi.PhoneNumberHookCallRingingOn;
+    /** Optional filters to decide when to trigger the hook. Currently supports filtering by caller country code. */
+    filters?: Vapi.PhoneNumberCallRingingHookFilter[] | undefined;
     /** Only the first action will be executed. Additional actions will be ignored. */
     do: Vapi.PhoneNumberHookCallRingingDoItem[];
 }

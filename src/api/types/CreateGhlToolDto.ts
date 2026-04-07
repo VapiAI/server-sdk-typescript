@@ -8,7 +8,7 @@ export interface CreateGhlToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateGhlToolDtoMessagesItem[];
+    messages?: Vapi.CreateGhlToolDtoMessagesItem[] | undefined;
     /** The type of tool. "ghl" for GHL tool. */
     type: Vapi.CreateGhlToolDtoType;
     metadata: Vapi.GhlToolMetadata;
@@ -92,5 +92,5 @@ export interface CreateGhlToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

@@ -3,11 +3,11 @@
 import type * as Vapi from "../index.js";
 
 export interface SquadMemberDto {
-    assistantDestinations?: Vapi.SquadMemberDtoAssistantDestinationsItem[];
+    assistantDestinations?: Vapi.SquadMemberDtoAssistantDestinationsItem[] | undefined;
     /** This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead. */
-    assistantId?: string | null;
+    assistantId?: (string | null) | undefined;
     /** This is the assistant that will be used for the call. To use an existing assistant, use `assistantId` instead. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This can be used to override the assistant's settings and provide values for it's template variables. */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
 }

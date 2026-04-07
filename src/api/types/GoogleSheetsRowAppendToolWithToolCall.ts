@@ -8,7 +8,7 @@ export interface GoogleSheetsRowAppendToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.GoogleSheetsRowAppendToolWithToolCallMessagesItem[];
+    messages?: Vapi.GoogleSheetsRowAppendToolWithToolCallMessagesItem[] | undefined;
     /** The type of tool. "google.sheets.row.append" for Google Sheets Row Append tool. */
     type: Vapi.GoogleSheetsRowAppendToolWithToolCallType;
     toolCall: Vapi.ToolCall;
@@ -92,5 +92,5 @@ export interface GoogleSheetsRowAppendToolWithToolCall {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

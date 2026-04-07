@@ -3,12 +3,10 @@
 import type * as Vapi from "../index.js";
 
 export interface WorkflowGoogleModel {
-    /** This is the provider of the model (`google`). */
-    provider: Vapi.WorkflowGoogleModelProvider;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
     model: Vapi.WorkflowGoogleModelModel;
     /** This is the temperature of the model. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max tokens of the model. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
 }

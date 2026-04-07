@@ -4,8 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface UpdatePieInsightFromCallTableDto {
     /** This is the name of the Insight. */
-    name?: string;
-    type: "pie";
+    name?: string | undefined;
     /**
      * Formulas are mathematical expressions applied on the data returned by the queries to transform them before being used to create the insight.
      * The formulas needs to be a valid mathematical expression, supported by MathJS - https://mathjs.org/docs/expressions/syntax.html
@@ -23,14 +22,14 @@ export interface UpdatePieInsightFromCallTableDto {
      *
      * You can also use the query names as the variable in the formula.
      */
-    formulas?: Vapi.InsightFormula[];
-    timeRange?: Vapi.InsightTimeRange;
+    formulas?: Vapi.InsightFormula[] | undefined;
+    timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
      * These are the columns to group the results by.
      * All results are grouped by the time range step by default.
      */
-    groupBy?: Vapi.UpdatePieInsightFromCallTableDtoGroupBy;
+    groupBy?: Vapi.UpdatePieInsightFromCallTableDtoGroupBy | undefined;
     /** These are the queries to run to generate the insight. */
-    queries?: Vapi.UpdatePieInsightFromCallTableDtoQueriesItem[];
+    queries?: Vapi.UpdatePieInsightFromCallTableDtoQueriesItem[] | undefined;
 }

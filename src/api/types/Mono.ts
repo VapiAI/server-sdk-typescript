@@ -2,9 +2,9 @@
 
 export interface Mono {
     /** This is the combined recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    combinedUrl?: string;
+    combinedUrl?: string | undefined;
     /** This is the mono recording url for the assistant. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    assistantUrl?: string;
+    assistantUrl?: string | undefined;
     /** This is the mono recording url for the customer. To enable, set `assistant.artifactPlan.recordingEnabled`. */
-    customerUrl?: string;
+    customerUrl?: string | undefined;
 }

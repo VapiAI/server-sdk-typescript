@@ -8,9 +8,9 @@ export interface UpdateBashToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.UpdateBashToolDtoMessagesItem[];
+    messages?: Vapi.UpdateBashToolDtoMessagesItem[] | undefined;
     /** The sub type of tool. */
-    subType?: Vapi.UpdateBashToolDtoSubType;
+    subType?: Vapi.UpdateBashToolDtoSubType | undefined;
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
      *
@@ -21,7 +21,7 @@ export interface UpdateBashToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -102,7 +102,7 @@ export interface UpdateBashToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
     /** The name of the tool, fixed to 'bash' */
-    name?: Vapi.UpdateBashToolDtoName;
+    name?: Vapi.UpdateBashToolDtoName | undefined;
 }

@@ -8,8 +8,7 @@ export interface CreateFunctionToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateFunctionToolDtoMessagesItem[];
-    type: "function";
+    messages?: Vapi.CreateFunctionToolDtoMessagesItem[] | undefined;
     /**
      * This determines if the tool is async.
      *
@@ -19,7 +18,7 @@ export interface CreateFunctionToolDto {
      *
      *   Defaults to synchronous (`false`).
      */
-    async?: boolean;
+    async?: boolean | undefined;
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
      *
@@ -30,9 +29,13 @@ export interface CreateFunctionToolDto {
      *   - Webhook is sent to the first available URL in this order: {{tool.server.url}}, {{assistant.server.url}}, {{phoneNumber.server.url}}, {{org.server.url}}.
      *   - Webhook expects a response with tool call result.
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
+    /** Plan to extract variables from the tool response */
+    variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
+    /** Static key-value pairs merged into the request body. Values support Liquid templates. */
+    parameters?: Vapi.ToolParameter[] | undefined;
     /** This is the function definition of the tool. */
-    function?: Vapi.OpenAiFunction;
+    function?: Vapi.OpenAiFunction | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -113,5 +116,5 @@ export interface CreateFunctionToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

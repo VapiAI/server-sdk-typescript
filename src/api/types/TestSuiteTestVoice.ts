@@ -18,9 +18,9 @@ export interface TestSuiteTestVoice {
     /** This is the ISO 8601 date-time string of when the test was last updated. */
     updatedAt: string;
     /** This is the name of the test. */
-    name?: string;
+    name?: string | undefined;
     /** This is the script to be used for the voice test. */
     script: string;
     /** This is the number of attempts allowed for the test. */
-    numAttempts?: number;
+    numAttempts?: number | undefined;
 }

@@ -5,4 +5,16 @@ import type * as Vapi from "../index.js";
 /**
  * This is the destination to transfer the call to.
  */
-export type ClientInboundMessageTransferDestination = Vapi.TransferDestinationNumber | Vapi.TransferDestinationSip;
+export type ClientInboundMessageTransferDestination =
+    | Vapi.ClientInboundMessageTransferDestination.Number
+    | Vapi.ClientInboundMessageTransferDestination.Sip;
+
+export namespace ClientInboundMessageTransferDestination {
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

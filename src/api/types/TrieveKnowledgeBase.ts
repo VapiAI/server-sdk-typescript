@@ -10,7 +10,7 @@ export interface TrieveKnowledgeBase {
      */
     provider: Vapi.TrieveKnowledgeBaseProvider;
     /** This is the name of the knowledge base. */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the searching plan used when searching for relevant chunks from the vector store.
      *
@@ -18,9 +18,9 @@ export interface TrieveKnowledgeBase {
      * - Too much unnecessary context is being fed as knowledge base context.
      * - Not enough relevant context is being fed as knowledge base context.
      */
-    searchPlan?: Vapi.TrieveKnowledgeBaseSearchPlan;
+    searchPlan?: Vapi.TrieveKnowledgeBaseSearchPlan | undefined;
     /** This is the plan if you want us to create/import a new vector store using Trieve. */
-    createPlan?: Vapi.TrieveKnowledgeBaseImport;
+    createPlan?: Vapi.TrieveKnowledgeBaseImport | undefined;
     /** This is the id of the knowledge base. */
     id: string;
     /** This is the org id of the knowledge base. */

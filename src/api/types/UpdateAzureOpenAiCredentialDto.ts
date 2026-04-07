@@ -3,13 +3,13 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateAzureOpenAiCredentialDto {
-    region?: Vapi.UpdateAzureOpenAiCredentialDtoRegion;
-    models?: Vapi.UpdateAzureOpenAiCredentialDtoModelsItem[];
+    region?: Vapi.UpdateAzureOpenAiCredentialDtoRegion | undefined;
+    models?: Vapi.UpdateAzureOpenAiCredentialDtoModelsItem[] | undefined;
     /** This is not returned in the API. */
-    openAIKey?: string;
+    openAIKey?: string | undefined;
     /** This is not returned in the API. */
-    ocpApimSubscriptionKey?: string;
+    ocpApimSubscriptionKey?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
-    openAIEndpoint?: string;
+    name?: string | undefined;
+    openAIEndpoint?: string | undefined;
 }

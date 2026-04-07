@@ -18,5 +18,5 @@ export interface TestSuiteRun {
     /** These are the results of the tests in this test suite run. */
     testResults: Vapi.TestSuiteRunTestResult[];
     /** This is the name of the test suite run. */
-    name?: string;
+    name?: string | undefined;
 }

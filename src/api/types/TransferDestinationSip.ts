@@ -12,18 +12,29 @@ export interface TransferDestinationSip {
      *
      * This accepts a string or a ToolMessageStart class. Latter is useful if you want to specify multiple messages for different languages through the `contents` field.
      */
-    message?: Vapi.TransferDestinationSipMessage;
-    type: Vapi.TransferDestinationSipType;
+    message?: Vapi.TransferDestinationSipMessage | undefined;
     /** This is the SIP URI to transfer the call to. */
     sipUri: string;
+    /**
+     * This is the caller ID to use when transferring the call to the `sipUri`.
+     *
+     * Usage:
+     * - If not provided, the caller ID will be determined by the SIP infrastructure.
+     * - Set to '{{customer.number}}' to always use the customer's number as the caller ID.
+     * - Set to '{{phoneNumber.number}}' to always use the phone number of the assistant as the caller ID.
+     * - Set to any E164 number to always use that number as the caller ID.
+     *
+     * Only applicable when `transferPlan.sipVerb='dial'`. Not applicable for SIP REFER.
+     */
+    callerId?: string | undefined;
     /**
      * This configures how transfer is executed and the experience of the destination party receiving the call. Defaults to `blind-transfer`.
      *
      * @default `transferPlan.mode='blind-transfer'`
      */
-    transferPlan?: Vapi.TransferPlan;
+    transferPlan?: Vapi.TransferPlan | undefined;
     /** These are custom headers to be added to SIP refer during transfer call. */
-    sipHeaders?: Record<string, unknown>;
+    sipHeaders?: Record<string, unknown> | undefined;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
-    description?: string;
+    description?: string | undefined;
 }

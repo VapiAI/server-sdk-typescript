@@ -8,9 +8,7 @@ export interface MakeToolWithToolCall {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.MakeToolWithToolCallMessagesItem[];
-    /** The type of tool. "make" for Make tool. */
-    type: Vapi.MakeToolWithToolCallType;
+    messages?: Vapi.MakeToolWithToolCallMessagesItem[] | undefined;
     toolCall: Vapi.ToolCall;
     metadata: Vapi.MakeToolMetadata;
     /**
@@ -93,5 +91,5 @@ export interface MakeToolWithToolCall {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

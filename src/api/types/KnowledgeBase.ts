@@ -8,7 +8,7 @@ export interface KnowledgeBase {
     /** The provider of the knowledge base */
     provider: Vapi.KnowledgeBaseProvider;
     /** The model to use for the knowledge base */
-    model?: Vapi.KnowledgeBaseModel;
+    model?: Vapi.KnowledgeBaseModel | undefined;
     /** A description of the knowledge base */
     description: string;
     /** The file IDs associated with this knowledge base */

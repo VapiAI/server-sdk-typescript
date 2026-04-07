@@ -6,11 +6,11 @@ export interface GlobalNodePlan {
      *
      * @default false
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the condition that will be checked to determine if the global node should be executed.
      *
      * @default ''
      */
-    enterCondition?: string;
+    enterCondition?: string | undefined;
 }

@@ -4,23 +4,21 @@ import type * as Vapi from "../index.js";
 
 export interface CustomLlmModel {
     /** This is the starting state for the conversation. */
-    messages?: Vapi.OpenAiMessage[];
+    messages?: Vapi.OpenAiMessage[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use existing tools, use `toolIds`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: Vapi.CustomLlmModelToolsItem[];
+    tools?: Vapi.CustomLlmModelToolsItem[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    toolIds?: string[];
+    toolIds?: string[] | undefined;
     /** These are the options for the knowledge base. */
-    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
-    /** This is the provider that will be used for the model. Any service, including your own server, that is compatible with the OpenAI API can be used. */
-    provider: Vapi.CustomLlmModelProvider;
+    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /**
      * This determines whether metadata is sent in requests to the custom provider.
      *
@@ -32,24 +30,24 @@ export interface CustomLlmModel {
      *
      * Default is `variable`.
      */
-    metadataSendMode?: Vapi.CustomLlmModelMetadataSendMode;
+    metadataSendMode?: Vapi.CustomLlmModelMetadataSendMode | undefined;
     /** Custom headers to send with requests. These headers can override default OpenAI headers except for Authorization (which should be specified using a custom-llm credential). */
-    headers?: Record<string, string>;
+    headers?: Record<string, string> | undefined;
     /** These is the URL we'll use for the OpenAI client's `baseURL`. Ex. https://openrouter.ai/api/v1 */
     url: string;
     /**
      * This determines whether the transcriber's word level confidence is sent in requests to the custom provider. Default is false.
      * This only works for Deepgram transcribers.
      */
-    wordLevelConfidenceEnabled?: boolean;
+    wordLevelConfidenceEnabled?: boolean | undefined;
     /** This sets the timeout for the connection to the custom provider without needing to stream any tokens back. Default is 20 seconds. */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
     model: string;
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.
      *
@@ -57,7 +55,7 @@ export interface CustomLlmModel {
      *
      * @default false
      */
-    emotionRecognitionEnabled?: boolean;
+    emotionRecognitionEnabled?: boolean | undefined;
     /**
      * This sets how many turns at the start of the conversation to use a smaller, faster model from the same provider before switching to the primary model. Example, gpt-3.5-turbo if provider is openai.
      *
@@ -65,5 +63,5 @@ export interface CustomLlmModel {
      *
      * @default 0
      */
-    numFastTurns?: number;
+    numFastTurns?: number | undefined;
 }

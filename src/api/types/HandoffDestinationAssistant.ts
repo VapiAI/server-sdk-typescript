@@ -5,17 +5,17 @@ import type * as Vapi from "../index.js";
 export interface HandoffDestinationAssistant {
     type: Vapi.HandoffDestinationAssistantType;
     /** This is the plan for manipulating the message context before handing off the call to the next assistant. */
-    contextEngineeringPlan?: Vapi.HandoffDestinationAssistantContextEngineeringPlan;
+    contextEngineeringPlan?: Vapi.HandoffDestinationAssistantContextEngineeringPlan | undefined;
     /** This is the assistant to transfer the call to. You must provide either assistantName or assistantId. */
-    assistantName?: string;
+    assistantName?: string | undefined;
     /** This is the assistant id to transfer the call to. You must provide either assistantName or assistantId. */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /** This is a transient assistant to transfer the call to. You may provide a transient assistant in the response  `handoff-destination-request` in a dynamic handoff. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the variable extraction plan for the handoff tool. */
-    variableExtractionPlan?: Vapi.VariableExtractionPlan;
+    variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
     /** These are the assistant overrides to apply to the destination assistant. */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
-    description?: string;
+    description?: string | undefined;
 }

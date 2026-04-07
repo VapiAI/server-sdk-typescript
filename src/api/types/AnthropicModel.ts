@@ -4,35 +4,33 @@ import type * as Vapi from "../index.js";
 
 export interface AnthropicModel {
     /** This is the starting state for the conversation. */
-    messages?: Vapi.OpenAiMessage[];
+    messages?: Vapi.OpenAiMessage[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use existing tools, use `toolIds`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    tools?: Vapi.AnthropicModelToolsItem[];
+    tools?: Vapi.AnthropicModelToolsItem[] | undefined;
     /**
      * These are the tools that the assistant can use during the call. To use transient tools, use `tools`.
      *
      * Both `tools` and `toolIds` can be used together.
      */
-    toolIds?: string[];
+    toolIds?: string[] | undefined;
     /** These are the options for the knowledge base. */
-    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto;
+    knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /** The specific Anthropic/Claude model that will be used. */
     model: Vapi.AnthropicModelModel;
-    /** The provider identifier for Anthropic. */
-    provider: Vapi.AnthropicModelProvider;
     /**
      * Optional configuration for Anthropic's thinking feature.
      * Only applicable for claude-3-7-sonnet-20250219 model.
      * If provided, maxTokens must be greater than thinking.budgetTokens.
      */
-    thinking?: Vapi.AnthropicThinkingConfig;
+    thinking?: Vapi.AnthropicThinkingConfig | undefined;
     /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.
      *
@@ -40,7 +38,7 @@ export interface AnthropicModel {
      *
      * @default false
      */
-    emotionRecognitionEnabled?: boolean;
+    emotionRecognitionEnabled?: boolean | undefined;
     /**
      * This sets how many turns at the start of the conversation to use a smaller, faster model from the same provider before switching to the primary model. Example, gpt-3.5-turbo if provider is openai.
      *
@@ -48,5 +46,5 @@ export interface AnthropicModel {
      *
      * @default 0
      */
-    numFastTurns?: number;
+    numFastTurns?: number | undefined;
 }

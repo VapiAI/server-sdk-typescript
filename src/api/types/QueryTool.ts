@@ -8,10 +8,9 @@ export interface QueryTool {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.QueryToolMessagesItem[];
-    type: "query";
+    messages?: Vapi.QueryToolMessagesItem[] | undefined;
     /** The knowledge bases to query */
-    knowledgeBases?: Vapi.KnowledgeBase[];
+    knowledgeBases?: Vapi.KnowledgeBase[] | undefined;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
@@ -100,5 +99,5 @@ export interface QueryTool {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

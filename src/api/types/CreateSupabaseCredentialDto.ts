@@ -3,10 +3,9 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateSupabaseCredentialDto {
-    provider: "supabase";
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
-    bucketPlan?: Vapi.SupabaseBucketPlan;
+    fallbackIndex?: number | undefined;
+    bucketPlan?: Vapi.SupabaseBucketPlan | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

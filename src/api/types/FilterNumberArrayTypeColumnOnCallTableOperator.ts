@@ -7,6 +7,8 @@
 export const FilterNumberArrayTypeColumnOnCallTableOperator = {
     In: "in",
     NotIn: "not_in",
+    IsEmpty: "is_empty",
+    IsNotEmpty: "is_not_empty",
 } as const;
 export type FilterNumberArrayTypeColumnOnCallTableOperator =
     (typeof FilterNumberArrayTypeColumnOnCallTableOperator)[keyof typeof FilterNumberArrayTypeColumnOnCallTableOperator];

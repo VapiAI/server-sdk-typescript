@@ -87,7 +87,7 @@ export interface VariableExtractionPlan {
      *
      * This will be extracted as `{{ people }}`. To access the array items, you can use `{{ people[n].name }}`, `{{ people[n].age }}`, `{{ people[n].zipCodes }}`, `{{ people[n].zipCodes[0] }}` and `{{ people[n].zipCodes[1] }}`.
      */
-    schema?: Vapi.JsonSchema;
+    schema?: Vapi.JsonSchema | undefined;
     /**
      * These are additional variables to create.
      *
@@ -123,5 +123,5 @@ export interface VariableExtractionPlan {
      *
      * This will create variables `customerName`, `fullName`, `greeting`, `customerCity`, and `something`. To access these variables, you can reference them as `{{customerName}}`, `{{fullName}}`, `{{greeting}}`, `{{customerCity}}`, and `{{something}}`.
      */
-    aliases?: Vapi.VariableExtractionAlias[];
+    aliases?: Vapi.VariableExtractionAlias[] | undefined;
 }

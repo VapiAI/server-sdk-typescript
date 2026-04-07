@@ -3,11 +3,45 @@
 import type * as Vapi from "../index.js";
 
 export type ServerMessageEndOfCallReportCostsItem =
-    | Vapi.TransportCost
-    | Vapi.TranscriberCost
-    | Vapi.ModelCost
-    | Vapi.VoiceCost
-    | Vapi.VapiCost
-    | Vapi.VoicemailDetectionCost
-    | Vapi.AnalysisCost
-    | Vapi.KnowledgeBaseCost;
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Transport
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Transcriber
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Model
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Voice
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Vapi
+    | Vapi.ServerMessageEndOfCallReportCostsItem.VoicemailDetection
+    | Vapi.ServerMessageEndOfCallReportCostsItem.Analysis
+    | Vapi.ServerMessageEndOfCallReportCostsItem.KnowledgeBase;
+
+export namespace ServerMessageEndOfCallReportCostsItem {
+    export interface Transport extends Vapi.TransportCost {
+        type: "transport";
+    }
+
+    export interface Transcriber extends Vapi.TranscriberCost {
+        type: "transcriber";
+    }
+
+    export interface Model extends Vapi.ModelCost {
+        type: "model";
+    }
+
+    export interface Voice extends Vapi.VoiceCost {
+        type: "voice";
+    }
+
+    export interface Vapi extends Vapi.VapiCost {
+        type: "vapi";
+    }
+
+    export interface VoicemailDetection extends Vapi.VoicemailDetectionCost {
+        type: "voicemail-detection";
+    }
+
+    export interface Analysis extends Vapi.AnalysisCost {
+        type: "analysis";
+    }
+
+    export interface KnowledgeBase extends Vapi.KnowledgeBaseCost {
+        type: "knowledge-base";
+    }
+}

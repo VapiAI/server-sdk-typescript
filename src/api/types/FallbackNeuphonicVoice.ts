@@ -4,17 +4,15 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackNeuphonicVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackNeuphonicVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: string;
     /** This is the model that will be used. Defaults to 'neu_fast' if not specified. */
-    model?: Vapi.FallbackNeuphonicVoiceModel;
+    model?: Vapi.FallbackNeuphonicVoiceModel | undefined;
     /** This is the language (ISO 639-1) that is enforced for the model. */
     language: Record<string, unknown>;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

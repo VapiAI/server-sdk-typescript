@@ -12,8 +12,7 @@ export interface TransferDestinationNumber {
      *
      * This accepts a string or a ToolMessageStart class. Latter is useful if you want to specify multiple messages for different languages through the `contents` field.
      */
-    message?: Vapi.TransferDestinationNumberMessage;
-    type: Vapi.TransferDestinationNumberType;
+    message?: Vapi.TransferDestinationNumberMessage | undefined;
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
      *
@@ -25,11 +24,11 @@ export interface TransferDestinationNumber {
      *
      * @default true (E164 check is enabled)
      */
-    numberE164CheckEnabled?: boolean;
+    numberE164CheckEnabled?: boolean | undefined;
     /** This is the phone number to transfer the call to. */
     number: string;
     /** This is the extension to dial after transferring the call to the `number`. */
-    extension?: string;
+    extension?: string | undefined;
     /**
      * This is the caller ID to use when transferring the call to the `number`.
      *
@@ -44,13 +43,13 @@ export interface TransferDestinationNumber {
      *
      * For Twilio, you can read up more here: https://www.twilio.com/docs/voice/twiml/dial#callerid
      */
-    callerId?: string;
+    callerId?: string | undefined;
     /**
      * This configures how transfer is executed and the experience of the destination party receiving the call. Defaults to `blind-transfer`.
      *
      * @default `transferPlan.mode='blind-transfer'`
      */
-    transferPlan?: Vapi.TransferPlan;
+    transferPlan?: Vapi.TransferPlan | undefined;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
-    description?: string;
+    description?: string | undefined;
 }

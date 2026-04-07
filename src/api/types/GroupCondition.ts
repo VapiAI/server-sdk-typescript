@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface GroupCondition {
-    /** This is the type discriminator for group condition */
-    type: Vapi.GroupConditionType;
     /** This is the logical operator for combining conditions in this group */
     operator: Vapi.GroupConditionOperator;
     /**

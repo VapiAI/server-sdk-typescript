@@ -4,21 +4,19 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackCartesiaVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackCartesiaVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** The ID of the particular voice you want to use. */
     voiceId: string;
     /** This is the model that will be used. This is optional and will default to the correct model for the voiceId. */
-    model?: Vapi.FallbackCartesiaVoiceModel;
+    model?: Vapi.FallbackCartesiaVoiceModel | undefined;
     /** This is the language that will be used. This is optional and will default to the correct language for the voiceId. */
-    language?: Vapi.FallbackCartesiaVoiceLanguage;
+    language?: Vapi.FallbackCartesiaVoiceLanguage | undefined;
     /** Experimental controls for Cartesia voice generation */
-    experimentalControls?: Vapi.CartesiaExperimentalControls;
+    experimentalControls?: Vapi.CartesiaExperimentalControls | undefined;
     /** Generation config for fine-grained control of sonic-3 voice output (speed, volume, and experimental controls). Only available for sonic-3 model. */
-    generationConfig?: Vapi.CartesiaGenerationConfig;
+    generationConfig?: Vapi.CartesiaGenerationConfig | undefined;
     /** Pronunciation dictionary ID for sonic-3. Allows custom pronunciations for specific words. Only available for sonic-3 model. */
-    pronunciationDictId?: string;
+    pronunciationDictId?: string | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

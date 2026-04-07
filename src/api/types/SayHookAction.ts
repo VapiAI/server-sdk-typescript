@@ -3,13 +3,11 @@
 import type * as Vapi from "../index.js";
 
 export interface SayHookAction {
-    /** This is the type of action - must be "say" */
-    type: Vapi.SayHookActionType;
     /**
      * This is the prompt for the assistant to generate a response based on existing conversation.
      * Can be a string or an array of chat messages.
      */
-    prompt?: Vapi.SayHookActionPrompt;
+    prompt?: Vapi.SayHookActionPrompt | undefined;
     /** This is the message to say */
-    exact?: Record<string, unknown>;
+    exact?: Record<string, unknown> | undefined;
 }

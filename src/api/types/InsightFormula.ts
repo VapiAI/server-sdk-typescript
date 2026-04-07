@@ -5,7 +5,7 @@ export interface InsightFormula {
      * This is the name of the formula.
      * It will be used to label the formula in the insight board on the UI.
      */
-    name?: string;
+    name?: string | undefined;
     /**
      * This is the formula to calculate the insight from the queries.
      * The formula needs to be a valid mathematical expression.

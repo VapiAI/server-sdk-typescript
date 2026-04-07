@@ -25,5 +25,5 @@ export interface AssistantMessageJudgePlanAi {
      * This is only applicable if the user has not provided any messages in the model's messages array
      * @default true
      */
-    autoIncludeMessageHistory?: boolean;
+    autoIncludeMessageHistory?: boolean | undefined;
 }

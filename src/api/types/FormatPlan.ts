@@ -13,7 +13,7 @@ export interface FormatPlan {
      *
      * @default true
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the cutoff after which a number is converted to individual digits instead of being spoken as words.
      *
@@ -26,7 +26,7 @@ export interface FormatPlan {
      *
      * @default 2025
      */
-    numberToDigitsCutoff?: number;
+    numberToDigitsCutoff?: number | undefined;
     /**
      * These are the custom replacements you can make to the chunk before it is sent to the voice provider.
      *
@@ -36,12 +36,12 @@ export interface FormatPlan {
      *
      * @default []
      */
-    replacements?: Vapi.FormatPlanReplacementsItem[];
+    replacements?: Vapi.FormatPlanReplacementsItem[] | undefined;
     /**
      * List of formatters to apply. If not provided, all default formatters will be applied.
      * If provided, only the specified formatters will be applied.
      * Note: Some essential formatters like angle bracket removal will always be applied.
      * @default undefined
      */
-    formattersEnabled?: Vapi.FormatPlanFormattersEnabledItem[];
+    formattersEnabled?: Vapi.FormatPlanFormattersEnabledItem[] | undefined;
 }

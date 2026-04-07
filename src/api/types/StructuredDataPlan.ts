@@ -23,7 +23,7 @@ export interface StructuredDataPlan {
      * Here are the template variables available:
      * - {{transcript}}: the transcript of the call from `call.artifact.transcript`- {{systemPrompt}}: the system prompt of the call from `assistant.model.messages[type=system].content`- {{messages}}: the messages of the call from `assistant.model.messages`- {{schema}}: the schema of the structured data from `structuredDataPlan.schema`- {{endedReason}}: the ended reason of the call from `call.endedReason`
      */
-    messages?: Record<string, unknown>[];
+    messages?: Record<string, unknown>[] | undefined;
     /**
      * This determines whether structured data is generated and stored in `call.analysis.structuredData`. Defaults to false.
      *
@@ -32,13 +32,13 @@ export interface StructuredDataPlan {
      *
      * @default false
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This is the schema of the structured data. The output is stored in `call.analysis.structuredData`.
      *
      * Complete guide on JSON Schema can be found [here](https://ajv.js.org/json-schema.html#json-data-type).
      */
-    schema?: Vapi.JsonSchema;
+    schema?: Vapi.JsonSchema | undefined;
     /**
      * This is how long the request is tried before giving up. When request times out, `call.analysis.structuredData` will be empty.
      *
@@ -47,5 +47,5 @@ export interface StructuredDataPlan {
      *
      * @default 5 seconds
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | undefined;
 }

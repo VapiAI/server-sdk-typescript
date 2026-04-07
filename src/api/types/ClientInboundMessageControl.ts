@@ -3,15 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface ClientInboundMessageControl {
-    /**
-     * This is the type of the message. Send "control" message to control the assistant. `control` options are:
-     * - "mute-assistant" - mute the assistant
-     * - "unmute-assistant" - unmute the assistant
-     * - "mute-customer" - mute the user
-     * - "unmute-customer" - unmute the user
-     * - "say-first-message" - say the first message (this is used when video recording is enabled and the conversation is only started once the client side kicks off the recording)
-     */
-    type: Vapi.ClientInboundMessageControlType;
     /** This is the control action */
     control: Vapi.ClientInboundMessageControlControl;
 }

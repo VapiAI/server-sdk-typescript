@@ -4,15 +4,15 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateTestSuiteDto {
     /** This is the name of the test suite. */
-    name?: string;
+    name?: string | undefined;
     /** This is the phone number ID associated with this test suite. */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /**
      * Override the default tester plan by providing custom assistant configuration for the test agent.
      *
      * We recommend only using this if you are confident, as we have already set sensible defaults on the tester plan.
      */
-    testerPlan?: Vapi.TesterPlan;
+    testerPlan?: Vapi.TesterPlan | undefined;
     /** These are the configuration for the assistant / phone number that is being tested. */
-    targetPlan?: Vapi.TargetPlan;
+    targetPlan?: Vapi.TargetPlan | undefined;
 }

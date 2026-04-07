@@ -4,15 +4,15 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateAzureCredentialDto {
     /** This is the service being used in Azure. */
-    service?: Vapi.UpdateAzureCredentialDtoService;
+    service?: Vapi.UpdateAzureCredentialDtoService | undefined;
     /** This is the region of the Azure resource. */
-    region?: Vapi.UpdateAzureCredentialDtoRegion;
+    region?: Vapi.UpdateAzureCredentialDtoRegion | undefined;
     /** This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     /** This is the bucket plan that can be provided to store call artifacts in Azure Blob Storage. */
-    bucketPlan?: Vapi.AzureBlobStorageBucketPlan;
+    bucketPlan?: Vapi.AzureBlobStorageBucketPlan | undefined;
 }

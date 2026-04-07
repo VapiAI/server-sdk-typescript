@@ -3,10 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface PhoneNumberHookCallEnding {
-    /** This is the event to trigger the hook on */
-    on: Vapi.PhoneNumberHookCallEndingOn;
     /** Optional filters to decide when to trigger - restricted to assistant-request related ended reasons */
-    filters?: Vapi.PhoneNumberCallEndingHookFilter[];
+    filters?: Vapi.PhoneNumberCallEndingHookFilter[] | undefined;
     /** This is the action to perform when the hook triggers */
-    do?: Vapi.PhoneNumberHookCallEndingDo;
+    do?: Vapi.PhoneNumberHookCallEndingDo | undefined;
 }

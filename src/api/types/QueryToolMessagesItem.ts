@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type QueryToolMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.QueryToolMessagesItem.RequestStart
+    | Vapi.QueryToolMessagesItem.RequestComplete
+    | Vapi.QueryToolMessagesItem.RequestFailed
+    | Vapi.QueryToolMessagesItem.RequestResponseDelayed;
+
+export namespace QueryToolMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

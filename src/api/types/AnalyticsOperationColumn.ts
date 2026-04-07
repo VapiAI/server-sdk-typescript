@@ -14,6 +14,7 @@ export const AnalyticsOperationColumn = {
     CostBreakdownTtsCharacters: "costBreakdown.ttsCharacters",
     CostBreakdownLlmPromptTokens: "costBreakdown.llmPromptTokens",
     CostBreakdownLlmCompletionTokens: "costBreakdown.llmCompletionTokens",
+    CostBreakdownLlmCachedPromptTokens: "costBreakdown.llmCachedPromptTokens",
     Duration: "duration",
     Concurrency: "concurrency",
     MinutesUsed: "minutesUsed",

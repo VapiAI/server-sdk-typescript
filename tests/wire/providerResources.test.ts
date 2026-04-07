@@ -16,18 +16,10 @@ describe("ProviderResourcesClient", () => {
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    provider: "11labs",
+                    provider: "cartesia",
                     resourceName: "pronunciation-dictionary",
                     resourceId: "resourceId",
-                    resource: {
-                        pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                        dictionaryName: "My Dictionary",
-                        createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                        creationTimeUnix: 1714156800,
-                        versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                        versionRulesNum: 5,
-                        description: "This is a test dictionary",
-                    },
+                    resource: { key: "value" },
                 },
             ],
             metadata: {
@@ -39,16 +31,17 @@ describe("ProviderResourcesClient", () => {
                 createdAtGe: "2024-01-15T09:30:00Z",
             },
         };
+
         server
             .mockEndpoint()
-            .get("/provider/11labs/pronunciation-dictionary")
+            .get("/provider/cartesia/pronunciation-dictionary")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
         const response = await client.providerResources.providerResourceControllerGetProviderResourcesPaginated({
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
         });
         expect(response).toEqual({
@@ -58,17 +51,11 @@ describe("ProviderResourcesClient", () => {
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    provider: "11labs",
+                    provider: "cartesia",
                     resourceName: "pronunciation-dictionary",
                     resourceId: "resourceId",
                     resource: {
-                        pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                        dictionaryName: "My Dictionary",
-                        createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                        creationTimeUnix: 1714156800,
-                        versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                        versionRulesNum: 5,
-                        description: "This is a test dictionary",
+                        key: "value",
                     },
                 },
             ],
@@ -92,30 +79,22 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
-            resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
-            },
+            resource: { key: "value" },
         };
+
         server
             .mockEndpoint()
-            .post("/provider/11labs/pronunciation-dictionary")
+            .post("/provider/cartesia/pronunciation-dictionary")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
         const response = await client.providerResources.providerResourceControllerCreateProviderResource({
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
         });
         expect(response).toEqual({
@@ -123,18 +102,11 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
             resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
+                key: "value",
             },
         });
     });
@@ -148,30 +120,22 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
-            resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
-            },
+            resource: { key: "value" },
         };
+
         server
             .mockEndpoint()
-            .get("/provider/11labs/pronunciation-dictionary/id")
+            .get("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
         const response = await client.providerResources.providerResourceControllerGetProviderResource({
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             id: "id",
         });
@@ -180,18 +144,11 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
             resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
+                key: "value",
             },
         });
     });
@@ -201,9 +158,10 @@ describe("ProviderResourcesClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/provider/11labs/pronunciation-dictionary/id")
+            .get("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
@@ -211,7 +169,7 @@ describe("ProviderResourcesClient", () => {
 
         await expect(async () => {
             return await client.providerResources.providerResourceControllerGetProviderResource({
-                provider: "11labs",
+                provider: "cartesia",
                 resourceName: "pronunciation-dictionary",
                 id: "id",
             });
@@ -227,30 +185,22 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
-            resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
-            },
+            resource: { key: "value" },
         };
+
         server
             .mockEndpoint()
-            .delete("/provider/11labs/pronunciation-dictionary/id")
+            .delete("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
         const response = await client.providerResources.providerResourceControllerDeleteProviderResource({
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             id: "id",
         });
@@ -259,18 +209,11 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
             resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
+                key: "value",
             },
         });
     });
@@ -280,9 +223,10 @@ describe("ProviderResourcesClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .delete("/provider/11labs/pronunciation-dictionary/id")
+            .delete("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
@@ -290,7 +234,7 @@ describe("ProviderResourcesClient", () => {
 
         await expect(async () => {
             return await client.providerResources.providerResourceControllerDeleteProviderResource({
-                provider: "11labs",
+                provider: "cartesia",
                 resourceName: "pronunciation-dictionary",
                 id: "id",
             });
@@ -306,30 +250,22 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
-            resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
-            },
+            resource: { key: "value" },
         };
+
         server
             .mockEndpoint()
-            .patch("/provider/11labs/pronunciation-dictionary/id")
+            .patch("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
         const response = await client.providerResources.providerResourceControllerUpdateProviderResource({
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             id: "id",
         });
@@ -338,18 +274,11 @@ describe("ProviderResourcesClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            provider: "11labs",
+            provider: "cartesia",
             resourceName: "pronunciation-dictionary",
             resourceId: "resourceId",
             resource: {
-                pronunciationDictionaryId: "5xM3yVvZQKV0EfqQpLrJ",
-                dictionaryName: "My Dictionary",
-                createdBy: "ar6633Es2kUjFXBdR1iVc9ztsXl1",
-                creationTimeUnix: 1714156800,
-                versionId: "5xM3yVvZQKV0EfqQpLrJ",
-                versionRulesNum: 5,
-                permissionOnResource: "admin",
-                description: "This is a test dictionary",
+                key: "value",
             },
         });
     });
@@ -359,9 +288,10 @@ describe("ProviderResourcesClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .patch("/provider/11labs/pronunciation-dictionary/id")
+            .patch("/provider/cartesia/pronunciation-dictionary/id")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
@@ -369,7 +299,7 @@ describe("ProviderResourcesClient", () => {
 
         await expect(async () => {
             return await client.providerResources.providerResourceControllerUpdateProviderResource({
-                provider: "11labs",
+                provider: "cartesia",
                 resourceName: "pronunciation-dictionary",
                 id: "id",
             });

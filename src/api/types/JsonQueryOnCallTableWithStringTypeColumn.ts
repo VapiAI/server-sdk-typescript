@@ -11,7 +11,7 @@ export interface JsonQueryOnCallTableWithStringTypeColumn {
      * This is the filters to apply to the insight.
      * The discriminator automatically selects the correct filter type based on column and operator.
      */
-    filters?: Vapi.JsonQueryOnCallTableWithStringTypeColumnFiltersItem[];
+    filters?: Vapi.JsonQueryOnCallTableWithStringTypeColumnFiltersItem[] | undefined;
     /**
      * This is the column that will be queried in the selected table.
      * Available columns depend on the selected table.
@@ -27,5 +27,5 @@ export interface JsonQueryOnCallTableWithStringTypeColumn {
      * This is the name of the query.
      * It will be used to label the query in the insight board on the UI.
      */
-    name?: string;
+    name?: string | undefined;
 }

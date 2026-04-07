@@ -4,8 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface GoHighLevelContactGetToolProviderDetails {
     /** This is the Template URL or the Snapshot URL corresponding to the Template. */
-    templateUrl?: string;
-    setupInstructions?: Vapi.ToolTemplateSetup[];
-    /** The type of tool. "gohighlevel.contact.get" for GoHighLevel contact get tool. */
-    type: Vapi.GoHighLevelContactGetToolProviderDetailsType;
+    templateUrl?: string | undefined;
+    setupInstructions?: Vapi.ToolTemplateSetup[] | undefined;
 }

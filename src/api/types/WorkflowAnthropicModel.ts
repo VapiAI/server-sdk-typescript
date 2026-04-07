@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface WorkflowAnthropicModel {
-    /** This is the provider of the model (`anthropic`). */
-    provider: Vapi.WorkflowAnthropicModelProvider;
     /** This is the specific model that will be used. */
     model: Vapi.WorkflowAnthropicModelModel;
     /**
@@ -12,9 +10,9 @@ export interface WorkflowAnthropicModel {
      *
      * - If provided, `maxTokens` must be greater than `thinking.budgetTokens`.
      */
-    thinking?: Vapi.AnthropicThinkingConfig;
+    thinking?: Vapi.AnthropicThinkingConfig | undefined;
     /** This is the temperature of the model. */
-    temperature?: number;
+    temperature?: number | undefined;
     /** This is the max tokens of the model. */
-    maxTokens?: number;
+    maxTokens?: number | undefined;
 }

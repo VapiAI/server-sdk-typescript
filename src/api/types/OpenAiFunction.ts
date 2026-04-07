@@ -8,7 +8,7 @@ export interface OpenAiFunction {
      *
      * @default false
      */
-    strict?: boolean;
+    strict?: boolean | undefined;
     /**
      * This is the the name of the function to be called.
      *
@@ -16,7 +16,7 @@ export interface OpenAiFunction {
      */
     name: string;
     /** This is the description of what the function does, used by the AI to choose when and how to call the function. */
-    description?: string;
+    description?: string | undefined;
     /**
      * These are the parameters the functions accepts, described as a JSON Schema object.
      *
@@ -24,5 +24,5 @@ export interface OpenAiFunction {
      *
      * Omitting parameters defines a function with an empty parameter list.
      */
-    parameters?: Vapi.OpenAiFunctionParameters;
+    parameters?: Vapi.OpenAiFunctionParameters | undefined;
 }

@@ -3,25 +3,24 @@
 import type * as Vapi from "../index.js";
 
 export interface HmacAuthenticationPlan {
-    type: "hmac";
     /** This is the HMAC secret key used to sign requests. */
     secretKey: string;
     /** This is the HMAC algorithm to use for signing. */
     algorithm: Vapi.HmacAuthenticationPlanAlgorithm;
     /** This is the header name where the signature will be sent. Defaults to 'x-signature'. */
-    signatureHeader?: string;
+    signatureHeader?: string | undefined;
     /** This is the header name where the timestamp will be sent. Defaults to 'x-timestamp'. */
-    timestampHeader?: string;
+    timestampHeader?: string | undefined;
     /** This is the prefix for the signature. For example, 'sha256=' for GitHub-style signatures. */
-    signaturePrefix?: string;
+    signaturePrefix?: string | undefined;
     /** Whether to include a timestamp in the signature payload. Defaults to true. */
-    includeTimestamp?: boolean;
+    includeTimestamp?: boolean | undefined;
     /** Custom payload format. Use {body} for request body, {timestamp} for timestamp, {method} for HTTP method, {url} for URL, {svix-id} for unique message ID. Defaults to '{timestamp}.{body}'. */
-    payloadFormat?: string;
+    payloadFormat?: string | undefined;
     /** This is the header name where the unique message ID will be sent. Used for Svix-style webhooks. */
-    messageIdHeader?: string;
+    messageIdHeader?: string | undefined;
     /** The encoding format for the signature. Defaults to 'hex'. */
-    signatureEncoding?: Vapi.HmacAuthenticationPlanSignatureEncoding;
+    signatureEncoding?: Vapi.HmacAuthenticationPlanSignatureEncoding | undefined;
     /** Whether the secret key is base64-encoded and should be decoded before use. Defaults to false. */
-    secretIsBase64?: boolean;
+    secretIsBase64?: boolean | undefined;
 }

@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface CustomTranscriber {
-    /** This is the transcription provider that will be used. Use `custom-transcriber` for providers that are not natively supported. */
-    provider: Vapi.CustomTranscriberProvider;
     /**
      * This is where the transcription request will be sent.
      *
@@ -46,6 +44,6 @@ export interface CustomTranscriber {
      * ```
      */
     server: Vapi.Server;
-    /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackTranscriberPlan;
+    /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
+    fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

@@ -8,7 +8,7 @@ export interface TransferCancelToolUserEditable {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.TransferCancelToolUserEditableMessagesItem[];
+    messages?: Vapi.TransferCancelToolUserEditableMessagesItem[] | undefined;
     /** The type of tool. "transferCancel" for Transfer Cancel tool. This tool can only be used during warm-transfer-experimental by the transfer assistant to cancel an ongoing transfer and return the call back to the original assistant when the transfer cannot be completed. */
     type: Vapi.TransferCancelToolUserEditableType;
     /**
@@ -91,5 +91,5 @@ export interface TransferCancelToolUserEditable {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

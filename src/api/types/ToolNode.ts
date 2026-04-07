@@ -3,24 +3,13 @@
 import type * as Vapi from "../index.js";
 
 export interface ToolNode {
-    /**
-     * This is the Tool node. This can be used to call a tool in your workflow.
-     *
-     * The flow is:
-     * - Workflow starts the tool node
-     * - Model is called to extract parameters needed by the tool from the conversation history
-     * - Tool is called with the parameters
-     * - Server returns a response
-     * - Workflow continues with the response
-     */
-    type: Vapi.ToolNodeType;
     /** This is the tool to call. To use an existing tool, send `toolId` instead. */
-    tool?: Vapi.ToolNodeTool;
+    tool?: Vapi.ToolNodeTool | undefined;
     /** This is the tool to call. To use a transient tool, send `tool` instead. */
-    toolId?: string;
+    toolId?: string | undefined;
     name: string;
     /** This is whether or not the node is the start of the workflow. */
-    isStart?: boolean;
+    isStart?: boolean | undefined;
     /** This is for metadata you want to store on the task. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
 }

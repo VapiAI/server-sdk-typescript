@@ -27,86 +27,91 @@ export interface Subscription {
     /** This is the default concurrency limit for the subscription. */
     concurrencyLimitIncluded: number;
     /** This is the number of free phone numbers the subscription has */
-    phoneNumbersCounter?: number;
+    phoneNumbersCounter?: number | undefined;
     /** This is the maximum number of free phone numbers the subscription can have */
-    phoneNumbersIncluded?: number;
+    phoneNumbersIncluded?: number | undefined;
     /** This is the purchased add-on concurrency limit for the subscription. */
     concurrencyLimitPurchased: number;
     /** This is the ID of the monthly job that charges for subscription add ons and phone numbers. */
-    monthlyChargeScheduleId?: number;
+    monthlyChargeScheduleId?: number | undefined;
     /**
      * This is the ID of the monthly job that checks whether the credit balance of the subscription
      * is sufficient for the monthly charge.
      */
-    monthlyCreditCheckScheduleId?: number;
+    monthlyCreditCheckScheduleId?: number | undefined;
     /** This is the Stripe customer ID. */
-    stripeCustomerId?: string;
+    stripeCustomerId?: string | undefined;
     /** This is the Stripe payment ID. */
-    stripePaymentMethodId?: string;
+    stripePaymentMethodId?: string | undefined;
     /** If this flag is true, then the user has purchased slack support. */
-    slackSupportEnabled?: boolean;
+    slackSupportEnabled?: boolean | undefined;
     /** If this subscription has a slack support subscription, the slack channel's ID will be stored here. */
-    slackChannelId?: string;
+    slackChannelId?: string | undefined;
     /**
      * This is the HIPAA enabled flag for the subscription. It determines whether orgs under this
      * subscription have the option to enable HIPAA compliance.
      */
-    hipaaEnabled?: boolean;
+    hipaaEnabled?: boolean | undefined;
+    /**
+     * This is the ZDR enabled flag for the subscription. It determines whether orgs under this
+     * subscription have the option to enable ZDR.
+     */
+    zdrEnabled?: boolean | undefined;
     /**
      * This is the data retention enabled flag for the subscription. It determines whether orgs under this
      * subscription have the option to enable data retention.
      */
-    dataRetentionEnabled?: boolean;
+    dataRetentionEnabled?: boolean | undefined;
     /** This is the ID for the Common Paper agreement outlining the HIPAA contract. */
-    hipaaCommonPaperAgreementId?: string;
+    hipaaCommonPaperAgreementId?: string | undefined;
     /**
      * This is the Stripe fingerprint of the payment method (card). It allows us
      * to detect users who try to abuse our system through multiple sign-ups.
      */
-    stripePaymentMethodFingerprint?: string;
+    stripePaymentMethodFingerprint?: string | undefined;
     /** This is the customer's email on Stripe. */
-    stripeCustomerEmail?: string;
+    stripeCustomerEmail?: string | undefined;
     /** This is the email of the referrer for the subscription. */
-    referredByEmail?: string;
+    referredByEmail?: string | undefined;
     /** This is the auto reload plan configured for the subscription. */
-    autoReloadPlan?: Vapi.AutoReloadPlan;
+    autoReloadPlan?: Vapi.AutoReloadPlan | undefined;
     /** The number of minutes included in the subscription. */
-    minutesIncluded?: number;
+    minutesIncluded?: number | undefined;
     /** The number of minutes used in the subscription. */
-    minutesUsed?: number;
+    minutesUsed?: number | undefined;
     /** This is the timestamp at which the number of monthly free minutes is scheduled to reset at. */
-    minutesUsedNextResetAt?: string;
+    minutesUsedNextResetAt?: string | undefined;
     /** The per minute charge on minutes that exceed the included minutes. Enterprise only. */
-    minutesOverageCost?: number;
+    minutesOverageCost?: number | undefined;
     /** The list of providers included in the subscription. Enterprise only. */
-    providersIncluded?: string[];
+    providersIncluded?: string[] | undefined;
     /** The maximum number of outbound calls this subscription may make in a day. Resets every night. */
-    outboundCallsDailyLimit?: number;
+    outboundCallsDailyLimit?: number | undefined;
     /** The current number of outbound calls the subscription has made in the current day. */
-    outboundCallsCounter?: number;
+    outboundCallsCounter?: number | undefined;
     /** This is the timestamp at which the outbound calls counter is scheduled to reset at. */
-    outboundCallsCounterNextResetAt?: string;
+    outboundCallsCounterNextResetAt?: string | undefined;
     /** This is the IDs of the coupons applicable to this subscription. */
-    couponIds?: string[];
+    couponIds?: string[] | undefined;
     /** This is the number of credits left obtained from a coupon. */
-    couponUsageLeft?: string;
+    couponUsageLeft?: string | undefined;
     /** This is the invoice plan for the subscription. */
-    invoicePlan?: Vapi.InvoicePlan;
+    invoicePlan?: Vapi.InvoicePlan | undefined;
     /**
      * This is the PCI enabled flag for the subscription. It determines whether orgs under this
      * subscription have the option to enable PCI compliance.
      */
-    pciEnabled?: boolean;
+    pciEnabled?: boolean | undefined;
     /** This is the ID for the Common Paper agreement outlining the PCI contract. */
-    pciCommonPaperAgreementId?: string;
+    pciCommonPaperAgreementId?: string | undefined;
     /** This is the call retention days for the subscription. */
-    callRetentionDays?: number;
+    callRetentionDays?: number | undefined;
     /** This is the chat retention days for the subscription. */
-    chatRetentionDays?: number;
+    chatRetentionDays?: number | undefined;
     /** This is the minutes_included reset frequency for the subscription. */
-    minutesIncludedResetFrequency?: Vapi.SubscriptionMinutesIncludedResetFrequency;
+    minutesIncludedResetFrequency?: Vapi.SubscriptionMinutesIncludedResetFrequency | undefined;
     /** This is the Role Based Access Control (RBAC) enabled flag for the subscription. */
-    rbacEnabled?: boolean;
+    rbacEnabled?: boolean | undefined;
     /** This is the platform fee for the subscription. */
-    platformFee?: number;
+    platformFee?: number | undefined;
 }

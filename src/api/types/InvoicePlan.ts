@@ -2,11 +2,11 @@
 
 export interface InvoicePlan {
     /** This is the name of the company. */
-    companyName?: string;
+    companyName?: string | undefined;
     /** This is the address of the company. */
-    companyAddress?: string;
+    companyAddress?: string | undefined;
     /** This is the tax ID of the company. */
-    companyTaxId?: string;
+    companyTaxId?: string | undefined;
     /** This is the preferred invoicing email of the company. If not specified, defaults to the subscription's email. */
-    companyEmail?: string;
+    companyEmail?: string | undefined;
 }

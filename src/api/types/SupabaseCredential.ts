@@ -6,7 +6,7 @@ export interface SupabaseCredential {
     /** This is for supabase storage. */
     provider: Vapi.SupabaseCredentialProvider;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
-    fallbackIndex?: number;
+    fallbackIndex?: number | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -16,6 +16,6 @@ export interface SupabaseCredential {
     /** This is the ISO 8601 date-time string of when the assistant was last updated. */
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
-    bucketPlan?: Vapi.SupabaseBucketPlan;
+    name?: string | undefined;
+    bucketPlan?: Vapi.SupabaseBucketPlan | undefined;
 }

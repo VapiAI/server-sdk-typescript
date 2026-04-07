@@ -9,36 +9,36 @@ export interface CreateWorkflowDto {
      *
      * This can be overridden at node level using `nodes[n].model`.
      */
-    model?: Vapi.CreateWorkflowDtoModel;
+    model?: Vapi.CreateWorkflowDtoModel | undefined;
     /**
      * This is the transcriber for the workflow.
      *
      * This can be overridden at node level using `nodes[n].transcriber`.
      */
-    transcriber?: Vapi.CreateWorkflowDtoTranscriber;
+    transcriber?: Vapi.CreateWorkflowDtoTranscriber | undefined;
     /**
      * This is the voice for the workflow.
      *
      * This can be overridden at node level using `nodes[n].voice`.
      */
-    voice?: Vapi.CreateWorkflowDtoVoice;
+    voice?: Vapi.CreateWorkflowDtoVoice | undefined;
     /**
      * This is the plan for observability of workflow's calls.
      *
      * Currently, only Langfuse is supported.
      */
-    observabilityPlan?: Vapi.LangfuseObservabilityPlan;
+    observabilityPlan?: Vapi.LangfuseObservabilityPlan | undefined;
     /**
      * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
-    backgroundSound?: Vapi.CreateWorkflowDtoBackgroundSound;
+    backgroundSound?: Vapi.CreateWorkflowDtoBackgroundSound | undefined;
     /** This is a set of actions that will be performed on certain events. */
-    hooks?: Vapi.CreateWorkflowDtoHooksItem[];
+    hooks?: Vapi.CreateWorkflowDtoHooksItem[] | undefined;
     /** These are dynamic credentials that will be used for the workflow calls. By default, all the credentials are available for use in the call but you can supplement an additional credentials using this. Dynamic credentials override existing credentials. */
-    credentials?: Vapi.CreateWorkflowDtoCredentialsItem[];
+    credentials?: Vapi.CreateWorkflowDtoCredentialsItem[] | undefined;
     /** This is the voicemail detection plan for the workflow. */
-    voicemailDetection?: Vapi.CreateWorkflowDtoVoicemailDetection;
+    voicemailDetection?: Vapi.CreateWorkflowDtoVoicemailDetection | undefined;
     /**
      * This is the maximum duration of the call in seconds.
      *
@@ -46,10 +46,10 @@ export interface CreateWorkflowDto {
      *
      * Default is 1800 (30 minutes), max is 43200 (12 hours), and min is 10 seconds.
      */
-    maxDurationSeconds?: number;
+    maxDurationSeconds?: number | undefined;
     name: string;
     edges: Vapi.Edge[];
-    globalPrompt?: string;
+    globalPrompt?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.
      *
@@ -60,13 +60,13 @@ export interface CreateWorkflowDto {
      * 3. phoneNumber.server
      * 4. org.server
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
     /** This is the compliance plan for the workflow. It allows you to configure HIPAA and other compliance settings. */
-    compliancePlan?: Vapi.CompliancePlan;
+    compliancePlan?: Vapi.CompliancePlan | undefined;
     /** This is the plan for analysis of workflow's calls. Stored in `call.analysis`. */
-    analysisPlan?: Vapi.AnalysisPlan;
+    analysisPlan?: Vapi.AnalysisPlan | undefined;
     /** This is the plan for artifacts generated during workflow's calls. Stored in `call.artifact`. */
-    artifactPlan?: Vapi.ArtifactPlan;
+    artifactPlan?: Vapi.ArtifactPlan | undefined;
     /**
      * This is the plan for when the workflow nodes should start talking.
      *
@@ -75,7 +75,7 @@ export interface CreateWorkflowDto {
      * - The assistant is too fast to start talking after the customer is done speaking.
      * - The assistant is so fast that it's actually interrupting the customer.
      */
-    startSpeakingPlan?: Vapi.StartSpeakingPlan;
+    startSpeakingPlan?: Vapi.StartSpeakingPlan | undefined;
     /**
      * This is the plan for when workflow nodes should stop talking on customer interruption.
      *
@@ -86,7 +86,7 @@ export interface CreateWorkflowDto {
      * - The assistant is getting interrupted by background noises.
      * - The assistant is not properly stopping -- it starts talking right after getting interrupted.
      */
-    stopSpeakingPlan?: Vapi.StopSpeakingPlan;
+    stopSpeakingPlan?: Vapi.StopSpeakingPlan | undefined;
     /**
      * This is the plan for real-time monitoring of the workflow's calls.
      *
@@ -94,7 +94,7 @@ export interface CreateWorkflowDto {
      * - To enable live listening of the workflow's calls, set `monitorPlan.listenEnabled` to `true`.
      * - To enable live control of the workflow's calls, set `monitorPlan.controlEnabled` to `true`.
      */
-    monitorPlan?: Vapi.MonitorPlan;
+    monitorPlan?: Vapi.MonitorPlan | undefined;
     /**
      * This enables filtering of noise and background speech while the user is talking.
      *
@@ -106,15 +106,15 @@ export interface CreateWorkflowDto {
      * - Smart denoising
      * - Fourier denoising
      */
-    backgroundSpeechDenoisingPlan?: Vapi.BackgroundSpeechDenoisingPlan;
+    backgroundSpeechDenoisingPlan?: Vapi.BackgroundSpeechDenoisingPlan | undefined;
     /** These are the credentials that will be used for the workflow calls. By default, all the credentials are available for use in the call but you can provide a subset using this. */
-    credentialIds?: string[];
+    credentialIds?: string[] | undefined;
     /** This is the plan for keypad input handling during workflow calls. */
-    keypadInputPlan?: Vapi.KeypadInputPlan;
+    keypadInputPlan?: Vapi.KeypadInputPlan | undefined;
     /**
      * This is the message that the assistant will say if the call is forwarded to voicemail.
      *
      * If unspecified, it will hang up.
      */
-    voicemailMessage?: string;
+    voicemailMessage?: string | undefined;
 }

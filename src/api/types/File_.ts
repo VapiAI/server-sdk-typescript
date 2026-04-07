@@ -3,21 +3,21 @@
 import type * as Vapi from "../index.js";
 
 export interface File_ {
-    object?: Vapi.FileObject;
-    status?: Vapi.FileStatus;
+    object?: Vapi.FileObject | undefined;
+    status?: Vapi.FileStatus | undefined;
     /** This is the name of the file. This is just for your own reference. */
-    name?: string;
-    originalName?: string;
-    bytes?: number;
-    purpose?: string;
-    mimetype?: string;
-    key?: string;
-    path?: string;
-    bucket?: string;
-    url?: string;
-    parsedTextUrl?: string;
-    parsedTextBytes?: number;
-    metadata?: Record<string, unknown>;
+    name?: string | undefined;
+    originalName?: string | undefined;
+    bytes?: number | undefined;
+    purpose?: string | undefined;
+    mimetype?: string | undefined;
+    key?: string | undefined;
+    path?: string | undefined;
+    bucket?: string | undefined;
+    url?: string | undefined;
+    parsedTextUrl?: string | undefined;
+    parsedTextBytes?: number | undefined;
+    metadata?: Record<string, unknown> | undefined;
     /** This is the unique identifier for the file. */
     id: string;
     /** This is the unique identifier for the org that this file belongs to. */

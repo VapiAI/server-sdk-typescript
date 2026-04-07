@@ -8,7 +8,7 @@ export interface TranscriptionEndpointingPlan {
      *
      * @default 0.1
      */
-    onPunctuationSeconds?: number;
+    onPunctuationSeconds?: number | undefined;
     /**
      * The minimum number of seconds to wait after transcription ending without punctuation before sending a request to the model. Defaults to 1.5.
      *
@@ -16,7 +16,7 @@ export interface TranscriptionEndpointingPlan {
      *
      * @default 1.5
      */
-    onNoPunctuationSeconds?: number;
+    onNoPunctuationSeconds?: number | undefined;
     /**
      * The minimum number of seconds to wait after transcription ending with a number before sending a request to the model. Defaults to 0.4.
      *
@@ -24,5 +24,5 @@ export interface TranscriptionEndpointingPlan {
      *
      * @default 0.5
      */
-    onNumberSeconds?: number;
+    onNumberSeconds?: number | undefined;
 }

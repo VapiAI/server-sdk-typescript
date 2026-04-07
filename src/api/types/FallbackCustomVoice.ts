@@ -4,9 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackCustomVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. Use `custom-voice` for providers that are not natively supported. */
-    provider: Vapi.FallbackCustomVoiceProvider;
+    cachingEnabled?: boolean | undefined;
+    /** This is the provider-specific ID that will be used. This is passed in the voice request payload to identify the voice to use. */
+    voiceId?: string | undefined;
     /**
      * This is where the voice request will be sent.
      *
@@ -33,5 +33,5 @@ export interface FallbackCustomVoice {
      */
     server: Vapi.Server;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

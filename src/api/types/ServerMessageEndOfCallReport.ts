@@ -4,33 +4,38 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageEndOfCallReport {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageEndOfCallReportPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageEndOfCallReportPhoneNumber | undefined;
     /** This is the type of the message. "end-of-call-report" is sent when the call ends and post-processing is complete. */
     type: Vapi.ServerMessageEndOfCallReportType;
     /** This is the reason the call ended. This can also be found at `call.endedReason` on GET /call/:id. */
     endedReason: Vapi.ServerMessageEndOfCallReportEndedReason;
     /** This is the cost of the call in USD. This can also be found at `call.cost` on GET /call/:id. */
-    cost?: number;
+    cost?: number | undefined;
     /** These are the costs of individual components of the call in USD. This can also be found at `call.costs` on GET /call/:id. */
-    costs?: Vapi.ServerMessageEndOfCallReportCostsItem[];
+    costs?: Vapi.ServerMessageEndOfCallReportCostsItem[] | undefined;
+    /**
+     * This is the destination the call was transferred to, if the call was forwarded.
+     * This can also be found at `call.destination` on GET /call/:id.
+     */
+    destination?: Vapi.ServerMessageEndOfCallReportDestination | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** These are the artifacts from the call. This can also be found at `call.artifact` on GET /call/:id. */
     artifact: Vapi.Artifact;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the analysis of the call. This can also be found at `call.analysis` on GET /call/:id. */
     analysis: Vapi.Analysis;
     /** This is the ISO 8601 date-time string of when the call started. This can also be found at `call.startedAt` on GET /call/:id. */
-    startedAt?: string;
+    startedAt?: string | undefined;
     /** This is the ISO 8601 date-time string of when the call ended. This can also be found at `call.endedAt` on GET /call/:id. */
-    endedAt?: string;
+    endedAt?: string | undefined;
     /** This is the compliance result of the call. This can also be found at `call.compliance` on GET /call/:id. */
-    compliance?: Vapi.Compliance;
+    compliance?: Vapi.Compliance | undefined;
 }

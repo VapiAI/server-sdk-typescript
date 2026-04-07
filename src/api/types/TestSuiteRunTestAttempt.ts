@@ -6,9 +6,9 @@ export interface TestSuiteRunTestAttempt {
     /** These are the results of the scorers used to evaluate the test attempt. */
     scorerResults: Vapi.TestSuiteRunScorerAi[];
     /** This is the call made during the test attempt. */
-    call?: Vapi.TestSuiteRunTestAttemptCall;
+    call?: Vapi.TestSuiteRunTestAttemptCall | undefined;
     /** This is the call ID for the test attempt. */
-    callId?: string;
+    callId?: string | undefined;
     /** This is the metadata for the test attempt. */
-    metadata?: Vapi.TestSuiteRunTestAttemptMetadata;
+    metadata?: Vapi.TestSuiteRunTestAttemptMetadata | undefined;
 }

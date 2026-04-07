@@ -6,13 +6,13 @@ export interface AnalyticsQuery {
     /** This is the table you want to query. */
     table: Vapi.AnalyticsQueryTable;
     /** This is the list of columns you want to group by. */
-    groupBy?: Vapi.AnalyticsQueryGroupByItem[];
+    groupBy?: Vapi.AnalyticsQueryGroupByItem[] | undefined;
     /** This is the list of variable value keys you want to group by. */
-    groupByVariableValue?: Vapi.VariableValueGroupBy[];
+    groupByVariableValue?: Vapi.VariableValueGroupBy[] | undefined;
     /** This is the name of the query. This will be used to identify the query in the response. */
     name: string;
     /** This is the time range for the query. */
-    timeRange?: Vapi.TimeRange;
+    timeRange?: Vapi.TimeRange | undefined;
     /** This is the list of operations you want to perform. */
     operations: Vapi.AnalyticsOperation[];
 }

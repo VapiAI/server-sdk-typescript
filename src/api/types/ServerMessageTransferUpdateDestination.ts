@@ -6,6 +6,20 @@ import type * as Vapi from "../index.js";
  * This is the destination of the transfer.
  */
 export type ServerMessageTransferUpdateDestination =
-    | Vapi.TransferDestinationAssistant
-    | Vapi.TransferDestinationNumber
-    | Vapi.TransferDestinationSip;
+    | Vapi.ServerMessageTransferUpdateDestination.Assistant
+    | Vapi.ServerMessageTransferUpdateDestination.Number
+    | Vapi.ServerMessageTransferUpdateDestination.Sip;
+
+export namespace ServerMessageTransferUpdateDestination {
+    export interface Assistant extends Vapi.TransferDestinationAssistant {
+        type: "assistant";
+    }
+
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

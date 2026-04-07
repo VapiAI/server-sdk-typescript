@@ -2,4 +2,16 @@
 
 import type * as Vapi from "../index.js";
 
-export type TestSuiteTestsPaginatedResponseResultsItem = Vapi.TestSuiteTestVoice | Vapi.TestSuiteTestChat;
+export type TestSuiteTestsPaginatedResponseResultsItem =
+    | Vapi.TestSuiteTestsPaginatedResponseResultsItem.Voice
+    | Vapi.TestSuiteTestsPaginatedResponseResultsItem.Chat;
+
+export namespace TestSuiteTestsPaginatedResponseResultsItem {
+    export interface Voice extends Vapi.TestSuiteTestVoice {
+        type: "voice";
+    }
+
+    export interface Chat extends Vapi.TestSuiteTestChat {
+        type: "chat";
+    }
+}

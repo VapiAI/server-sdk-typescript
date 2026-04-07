@@ -4,23 +4,28 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageUserInterrupted {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageUserInterruptedPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageUserInterruptedPhoneNumber | undefined;
     /** This is the type of the message. "user-interrupted" is sent when the user interrupts the assistant. */
     type: Vapi.ServerMessageUserInterruptedType;
+    /**
+     * This is the turnId of the LLM response that was interrupted. Matches the turnId
+     * on model-output messages so clients can discard the interrupted turn's tokens.
+     */
+    turnId?: string | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
 }

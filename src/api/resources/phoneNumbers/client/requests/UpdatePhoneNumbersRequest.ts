@@ -6,7 +6,9 @@ import type * as Vapi from "../../../../index.js";
  * @example
  *     {
  *         id: "id",
- *         body: {}
+ *         body: {
+ *             provider: "byo-phone-number"
+ *         }
  *     }
  */
 export interface UpdatePhoneNumbersRequest {

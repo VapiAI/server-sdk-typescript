@@ -17,8 +17,8 @@ export interface StartSpeakingPlan {
      *
      * @default 0.4
      */
-    waitSeconds?: number;
-    smartEndpointingEnabled?: Vapi.StartSpeakingPlanSmartEndpointingEnabled;
+    waitSeconds?: number | undefined;
+    smartEndpointingEnabled?: Vapi.StartSpeakingPlanSmartEndpointingEnabled | undefined;
     /**
      * This is the plan for smart endpointing. Pick between Vapi smart endpointing, LiveKit, or custom endpointing model (or nothing). We strongly recommend using livekit endpointing when working in English. LiveKit endpointing is not supported in other languages, yet.
      *
@@ -27,7 +27,7 @@ export interface StartSpeakingPlan {
      *
      * If this is not set, the system will automatically use the transcriber's built-in endpointing capabilities if available.
      */
-    smartEndpointingPlan?: Vapi.StartSpeakingPlanSmartEndpointingPlan;
+    smartEndpointingPlan?: Vapi.StartSpeakingPlanSmartEndpointingPlan | undefined;
     /**
      * These are the custom endpointing rules to set an endpointing timeout based on a regex on the customer's speech or the assistant's last message.
      *
@@ -47,7 +47,7 @@ export interface StartSpeakingPlan {
      *
      * @default []
      */
-    customEndpointingRules?: Vapi.StartSpeakingPlanCustomEndpointingRulesItem[];
+    customEndpointingRules?: Vapi.StartSpeakingPlanCustomEndpointingRulesItem[] | undefined;
     /**
      * This determines how a customer speech is considered done (endpointing) using the transcription of customer's speech.
      *
@@ -56,5 +56,5 @@ export interface StartSpeakingPlan {
      * Note: This plan is only used if `smartEndpointingPlan` is not set and transcriber does not have built-in endpointing capabilities. If both are provided, `smartEndpointingPlan` takes precedence.
      * This plan will also be overridden by any matching `customEndpointingRules`.
      */
-    transcriptionEndpointingPlan?: Vapi.TranscriptionEndpointingPlan;
+    transcriptionEndpointingPlan?: Vapi.TranscriptionEndpointingPlan | undefined;
 }

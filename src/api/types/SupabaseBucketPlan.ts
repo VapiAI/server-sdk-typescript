@@ -37,5 +37,5 @@ export interface SupabaseBucketPlan {
      * A Path is like a folder in the bucket
      * Eg. If the bucket is called "my-bucket" and the path is "my-folder", the full path is "my-bucket/my-folder"
      */
-    path?: string;
+    path?: string | undefined;
 }

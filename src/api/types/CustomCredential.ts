@@ -6,7 +6,8 @@ export interface CustomCredential {
     provider: Vapi.CustomCredentialProvider;
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
     authenticationPlan: Vapi.CustomCredentialAuthenticationPlan;
-    encryptionPlan: Vapi.PublicKeyEncryptionPlan;
+    /** This is the encryption plan for encrypting sensitive data. Currently supports public-key encryption. */
+    encryptionPlan?: Vapi.CustomCredentialEncryptionPlan | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */
@@ -18,5 +19,5 @@ export interface CustomCredential {
     /** This is the authentication session for the credential. Available for credentials that have an authentication plan. */
     authenticationSession: Vapi.Oauth2AuthenticationSession;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

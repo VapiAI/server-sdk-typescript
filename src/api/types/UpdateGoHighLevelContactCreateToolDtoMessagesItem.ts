@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type UpdateGoHighLevelContactCreateToolDtoMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.UpdateGoHighLevelContactCreateToolDtoMessagesItem.RequestStart
+    | Vapi.UpdateGoHighLevelContactCreateToolDtoMessagesItem.RequestComplete
+    | Vapi.UpdateGoHighLevelContactCreateToolDtoMessagesItem.RequestFailed
+    | Vapi.UpdateGoHighLevelContactCreateToolDtoMessagesItem.RequestResponseDelayed;
+
+export namespace UpdateGoHighLevelContactCreateToolDtoMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

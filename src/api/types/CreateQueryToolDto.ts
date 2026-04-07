@@ -8,10 +8,9 @@ export interface CreateQueryToolDto {
      *
      * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
      */
-    messages?: Vapi.CreateQueryToolDtoMessagesItem[];
-    type: "query";
+    messages?: Vapi.CreateQueryToolDtoMessagesItem[] | undefined;
     /** The knowledge bases to query */
-    knowledgeBases?: Vapi.KnowledgeBase[];
+    knowledgeBases?: Vapi.KnowledgeBase[] | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.
      *
@@ -92,5 +91,5 @@ export interface CreateQueryToolDto {
      * }
      * ```
      */
-    rejectionPlan?: Vapi.ToolRejectionPlan;
+    rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
 }

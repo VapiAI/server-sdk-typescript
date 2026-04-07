@@ -4,9 +4,9 @@ import type * as Vapi from "../index.js";
 
 export interface CreateScorecardDto {
     /** This is the name of the scorecard. It is only for user reference and will not be used for any evaluation. */
-    name?: string;
+    name?: string | undefined;
     /** This is the description of the scorecard. It is only for user reference and will not be used for any evaluation. */
-    description?: string;
+    description?: string | undefined;
     /**
      * These are the metrics that will be used to evaluate the scorecard.
      * Each metric will have a set of conditions and points that will be used to generate the score.
@@ -16,5 +16,5 @@ export interface CreateScorecardDto {
      * These are the assistant IDs that this scorecard is linked to.
      * When linked to assistants, this scorecard will be available for evaluation during those assistants' calls.
      */
-    assistantIds?: string[];
+    assistantIds?: string[] | undefined;
 }

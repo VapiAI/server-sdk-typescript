@@ -3,9 +3,16 @@
 import type * as Vapi from "../index.js";
 
 export interface FallbackElevenLabsTranscriber {
-    /** This is the transcription provider that will be used. */
-    provider: Vapi.FallbackElevenLabsTranscriberProvider;
     /** This is the model that will be used for the transcription. */
-    model?: Vapi.FallbackElevenLabsTranscriberModel;
-    language?: Vapi.FallbackElevenLabsTranscriberLanguage;
+    model?: Vapi.FallbackElevenLabsTranscriberModel | undefined;
+    /** This is the language that will be used for the transcription. */
+    language?: Vapi.FallbackElevenLabsTranscriberLanguage | undefined;
+    /** This is the number of seconds of silence before VAD commits (0.3-3.0). */
+    silenceThresholdSeconds?: number | undefined;
+    /** This is the VAD sensitivity (0.1-0.9, lower indicates more sensitive). */
+    confidenceThreshold?: number | undefined;
+    /** This is the minimum speech duration for VAD (50-2000ms). */
+    minSpeechDurationMs?: number | undefined;
+    /** This is the minimum silence duration for VAD (50-2000ms). */
+    minSilenceDurationMs?: number | undefined;
 }

@@ -10,19 +10,19 @@ export interface SipTrunkGateway {
      *
      * @default 5060
      */
-    port?: number;
+    port?: number | undefined;
     /**
      * This is the netmask of the gateway. Defaults to 32.
      *
      * @default 32
      */
-    netmask?: number;
+    netmask?: number | undefined;
     /**
      * This is whether inbound calls are allowed from this gateway. Default is true.
      *
      * @default true
      */
-    inboundEnabled?: boolean;
+    inboundEnabled?: boolean | undefined;
     /**
      * This is whether outbound calls should be sent to this gateway. Default is true.
      *
@@ -30,13 +30,13 @@ export interface SipTrunkGateway {
      *
      * @default true
      */
-    outboundEnabled?: boolean;
+    outboundEnabled?: boolean | undefined;
     /**
      * This is the protocol to use for SIP signaling outbound calls. Default is udp.
      *
      * @default udp
      */
-    outboundProtocol?: Vapi.SipTrunkGatewayOutboundProtocol;
+    outboundProtocol?: Vapi.SipTrunkGatewayOutboundProtocol | undefined;
     /**
      * This is whether to send options ping to the gateway. This can be used to check if the gateway is reachable. Default is false.
      *
@@ -44,5 +44,5 @@ export interface SipTrunkGateway {
      *
      * @default false
      */
-    optionsPingEnabled?: boolean;
+    optionsPingEnabled?: boolean | undefined;
 }

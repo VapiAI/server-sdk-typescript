@@ -8,23 +8,23 @@ export interface TimeRange {
      *
      * If not provided, defaults to returning for the entire time range.
      */
-    step?: Vapi.TimeRangeStep;
+    step?: Vapi.TimeRangeStep | undefined;
     /**
      * This is the start date for the time range.
      *
      * If not provided, defaults to the 7 days ago.
      */
-    start?: string;
+    start?: string | undefined;
     /**
      * This is the end date for the time range.
      *
      * If not provided, defaults to now.
      */
-    end?: string;
+    end?: string | undefined;
     /**
      * This is the timezone you want to set for the query.
      *
      * If not provided, defaults to UTC.
      */
-    timezone?: string;
+    timezone?: string | undefined;
 }

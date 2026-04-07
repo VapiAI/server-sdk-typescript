@@ -3,14 +3,13 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateAzureOpenAiCredentialDto {
-    provider: "azure-openai";
     region: Vapi.CreateAzureOpenAiCredentialDtoRegion;
     models: Vapi.CreateAzureOpenAiCredentialDtoModelsItem[];
     /** This is not returned in the API. */
     openAIKey: string;
     /** This is not returned in the API. */
-    ocpApimSubscriptionKey?: string;
+    ocpApimSubscriptionKey?: string | undefined;
     openAIEndpoint: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

@@ -25,20 +25,20 @@ export interface TransferPlan {
      * Usage:
      * - Used only when `mode` is `blind-transfer-add-summary-to-sip-header`, `warm-transfer-say-message`, `warm-transfer-wait-for-operator-to-speak-first-and-then-say-message`, or `warm-transfer-experimental`.
      */
-    message?: Vapi.TransferPlanMessage;
+    message?: Vapi.TransferPlanMessage | undefined;
     /**
      * This is the timeout in seconds for the warm-transfer-wait-for-operator-to-speak-first-and-then-say-message/summary
      *
      * @default 60
      */
-    timeout?: number;
+    timeout?: number | undefined;
     /**
      * This specifies the SIP verb to use while transferring the call.
      * - 'refer': Uses SIP REFER to transfer the call (default)
      * - 'bye': Ends current call with SIP BYE
      * - 'dial': Uses SIP DIAL to transfer the call
      */
-    sipVerb?: Record<string, unknown>;
+    sipVerb?: Record<string, unknown> | undefined;
     /**
      * This sets the timeout for the dial operation in seconds. This is the duration the call will ring before timing out.
      *
@@ -46,7 +46,7 @@ export interface TransferPlan {
      *
      * @default 60
      */
-    dialTimeout?: number;
+    dialTimeout?: number | undefined;
     /**
      * This is the URL to an audio file played while the customer is on hold during transfer.
      *
@@ -57,7 +57,7 @@ export interface TransferPlan {
      * - Supported formats: MP3 and WAV.
      * - If not provided, the default hold audio will be used.
      */
-    holdAudioUrl?: string;
+    holdAudioUrl?: string | undefined;
     /**
      * This is the URL to an audio file played after the warm transfer message or summary is delivered to the destination party.
      * It can be used to play a custom sound like 'beep' to notify that the transfer is complete.
@@ -68,7 +68,7 @@ export interface TransferPlan {
      * - Must be a publicly accessible URL to an audio file.
      * - Supported formats: MP3 and WAV.
      */
-    transferCompleteAudioUrl?: string;
+    transferCompleteAudioUrl?: string | undefined;
     /**
      * This is the plan for manipulating the message context before initiating the warm transfer.
      * Usage:
@@ -79,7 +79,7 @@ export interface TransferPlan {
      *
      * @default { type: 'all' }
      */
-    contextEngineeringPlan?: Vapi.TransferPlanContextEngineeringPlan;
+    contextEngineeringPlan?: Vapi.TransferPlanContextEngineeringPlan | undefined;
     /**
      * This is the TwiML instructions to execute on the destination call leg before connecting the customer.
      *
@@ -95,20 +95,20 @@ export interface TransferPlan {
      * <Say>They called about billing questions.</Say>
      * ```
      */
-    twiml?: string;
+    twiml?: string | undefined;
     /**
      * This is the plan for generating a summary of the call to present to the destination party.
      *
      * Usage:
      * - Used only when `mode` is `blind-transfer-add-summary-to-sip-header` or `warm-transfer-say-summary` or `warm-transfer-wait-for-operator-to-speak-first-and-then-say-summary` or `warm-transfer-experimental`.
      */
-    summaryPlan?: Vapi.SummaryPlan;
+    summaryPlan?: Vapi.SummaryPlan | undefined;
     /**
      * This flag includes the sipHeaders from above in the refer to sip uri as url encoded query params.
      *
      * @default false
      */
-    sipHeadersInReferToEnabled?: boolean;
+    sipHeadersInReferToEnabled?: boolean | undefined;
     /**
      * This configures the fallback plan when the transfer fails (destination unreachable, busy, or not human).
      *
@@ -116,5 +116,5 @@ export interface TransferPlan {
      * - Used only when `mode` is `warm-transfer-experimental`.
      * - If not provided when using `warm-transfer-experimental`, a default message will be used.
      */
-    fallbackPlan?: Vapi.TransferFallbackPlan;
+    fallbackPlan?: Vapi.TransferFallbackPlan | undefined;
 }

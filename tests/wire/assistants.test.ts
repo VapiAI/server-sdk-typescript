@@ -40,10 +40,12 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -57,6 +59,15 @@ describe("AssistantsClient", () => {
                                     { key: "value" },
                                     { key: "value" },
                                     { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
                                 ],
                             },
                         },
@@ -82,7 +93,6 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -90,8 +100,8 @@ describe("AssistantsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -112,9 +122,39 @@ describe("AssistantsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                     },
                     speed: 1.1,
-                    fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                    fallbackPlan: {
+                        voices: [
+                            {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                            },
+                        ],
+                    },
                 },
                 firstMessage: "Hello! How can I help you today?",
                 firstMessageInterruptionsEnabled: true,
@@ -152,9 +192,53 @@ describe("AssistantsClient", () => {
                 backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
-                observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+                observabilityPlan: {
+                    provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
+                    tags: ["tags"],
+                    metadata: { key: "value" },
+                },
                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
-                hooks: [{ on: "call.ending", do: [{ type: "tool" }] }],
+                hooks: [
+                    {
+                        on: "call.ending",
+                        do: [
+                            {
+                                type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
                 name: "name",
                 voicemailMessage: "voicemailMessage",
                 endCallMessage: "endCallMessage",
@@ -163,15 +247,65 @@ describe("AssistantsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
-                            fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                            fallbackPlan: {
+                                voices: [
+                                    {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                    },
+                                ],
+                            },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -184,11 +318,6 @@ describe("AssistantsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [{ key: "key", plan: {} }],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -204,6 +333,13 @@ describe("AssistantsClient", () => {
                     transcriptPlan: { enabled: true },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            name: "name",
+                            schema: { type: "string" },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -276,6 +412,7 @@ describe("AssistantsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -299,6 +436,7 @@ describe("AssistantsClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         ];
+
         server.mockEndpoint().get("/assistant").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.assistants.list();
@@ -334,6 +472,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: {
+                    provider: "anthropic",
                     messages: [
                         {
                             content: null,
@@ -343,6 +482,12 @@ describe("AssistantsClient", () => {
                     tools: [
                         {
                             type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
                             method: "POST",
                             timeoutSeconds: 20,
                             credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -365,6 +510,17 @@ describe("AssistantsClient", () => {
                                     },
                                     {
                                         key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
                                     },
                                 ],
                             },
@@ -401,7 +557,6 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
-                    provider: "anthropic",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -412,8 +567,8 @@ describe("AssistantsClient", () => {
                     numFastTurns: 1.1,
                 },
                 voice: {
-                    cachingEnabled: true,
                     provider: "azure",
+                    cachingEnabled: true,
                     voiceId: "andrew",
                     chunkPlan: {
                         enabled: true,
@@ -434,14 +589,42 @@ describe("AssistantsClient", () => {
                             ",",
                             ":",
                         ],
+                        formatPlan: {
+                            enabled: true,
+                            numberToDigitsCutoff: 2025,
+                        },
                     },
                     speed: 1.1,
                     fallbackPlan: {
                         voices: [
                             {
-                                cachingEnabled: true,
                                 provider: "azure",
+                                cachingEnabled: true,
                                 voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
                             },
                         ],
                     },
@@ -490,6 +673,9 @@ describe("AssistantsClient", () => {
                 ],
                 observabilityPlan: {
                     provider: "langfuse",
+                    promptName: "promptName",
+                    promptVersion: 1.1,
+                    traceName: "traceName",
                     tags: ["tags"],
                     metadata: {
                         key: "value",
@@ -507,6 +693,51 @@ describe("AssistantsClient", () => {
                         do: [
                             {
                                 type: "tool",
+                                tool: {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
                             },
                         ],
                     },
@@ -519,23 +750,71 @@ describe("AssistantsClient", () => {
                     hipaaEnabled: true,
                     pciEnabled: true,
                     recordingConsentPlan: {
+                        type: "stay-on-line",
                         message:
                             "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                         voice: {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                             fallbackPlan: {
                                 voices: [
                                     {
-                                        cachingEnabled: true,
                                         provider: "azure",
+                                        cachingEnabled: true,
                                         voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
                                     },
                                 ],
                             },
                         },
-                        type: "stay-on-line",
                         waitSeconds: 3,
                     },
                 },
@@ -550,16 +829,6 @@ describe("AssistantsClient", () => {
                         windowSizeMs: 3000,
                         baselinePercentile: 85,
                     },
-                },
-                analysisPlan: {
-                    minMessagesThreshold: 1.1,
-                    structuredDataMultiPlan: [
-                        {
-                            key: "key",
-                            plan: {},
-                        },
-                    ],
-                    outcomeIds: ["outcomeIds"],
                 },
                 artifactPlan: {
                     recordingEnabled: true,
@@ -577,6 +846,17 @@ describe("AssistantsClient", () => {
                     },
                     recordingPath: "recordingPath",
                     structuredOutputIds: ["structuredOutputIds"],
+                    structuredOutputs: [
+                        {
+                            compliancePlan: {
+                                forceStoreOnHipaaEnabled: false,
+                            },
+                            name: "name",
+                            schema: {
+                                type: "string",
+                            },
+                        },
+                    ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
                         {
@@ -668,6 +948,7 @@ describe("AssistantsClient", () => {
                     listenAuthenticationEnabled: false,
                     controlEnabled: false,
                     controlAuthenticationEnabled: false,
+                    monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
                 },
                 credentialIds: ["credentialIds"],
                 server: {
@@ -749,10 +1030,12 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [{ content: null, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -766,6 +1049,15 @@ describe("AssistantsClient", () => {
                                 { key: "value" },
                                 { key: "value" },
                                 { key: "value" },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
                             ],
                         },
                     },
@@ -791,7 +1083,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -799,8 +1090,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -809,7 +1100,36 @@ describe("AssistantsClient", () => {
                     formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                 },
                 speed: 1.1,
-                fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                fallbackPlan: {
+                    voices: [
+                        {
+                            provider: "azure",
+                            cachingEnabled: true,
+                            voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                        },
+                    ],
+                },
             },
             firstMessage: "Hello! How can I help you today?",
             firstMessageInterruptionsEnabled: true,
@@ -847,12 +1167,51 @@ describe("AssistantsClient", () => {
             backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
-            observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+            observabilityPlan: {
+                provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
+                tags: ["tags"],
+                metadata: { key: "value" },
+            },
             credentials: [{ provider: "11labs", apiKey: "apiKey", name: "name" }],
             hooks: [
                 {
                     on: "call.ending",
-                    do: [{ type: "tool" }],
+                    do: [
+                        {
+                            type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    ],
                     filters: [{ type: "oneOf", key: "key", oneOf: ["oneOf"] }],
                 },
             ],
@@ -870,15 +1229,65 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
-                        fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -895,7 +1304,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: { messages: [{ key: "value" }], enabled: true, timeoutSeconds: 1.1 },
                 structuredDataPlan: {
                     messages: [{ key: "value" }],
@@ -903,14 +1311,12 @@ describe("AssistantsClient", () => {
                     schema: { type: "string" },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [{ key: "key", plan: {} }],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [{ key: "value" }],
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -926,6 +1332,9 @@ describe("AssistantsClient", () => {
                 transcriptPlan: { enabled: true, assistantName: "assistantName", userName: "userName" },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    { compliancePlan: { forceStoreOnHipaaEnabled: false }, name: "name", schema: { type: "string" } },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -998,6 +1407,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -1020,6 +1430,7 @@ describe("AssistantsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .post("/assistant")
@@ -1061,6 +1472,7 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [
                     {
                         content: null,
@@ -1070,6 +1482,12 @@ describe("AssistantsClient", () => {
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1092,6 +1510,17 @@ describe("AssistantsClient", () => {
                                 },
                                 {
                                     key: "value",
+                                },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
                                 },
                             ],
                         },
@@ -1128,7 +1557,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -1139,8 +1567,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -1170,9 +1598,33 @@ describe("AssistantsClient", () => {
                 fallbackPlan: {
                     voices: [
                         {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                         },
                     ],
                 },
@@ -1222,6 +1674,9 @@ describe("AssistantsClient", () => {
             ],
             observabilityPlan: {
                 provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
                 tags: ["tags"],
                 metadata: {
                     key: "value",
@@ -1240,6 +1695,51 @@ describe("AssistantsClient", () => {
                     do: [
                         {
                             type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
                         },
                     ],
                     filters: [
@@ -1265,23 +1765,71 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
                         fallbackPlan: {
                             voices: [
                                 {
-                                    cachingEnabled: true,
                                     provider: "azure",
+                                    cachingEnabled: true,
                                     voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
                                 },
                             ],
                         },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -1302,7 +1850,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: {
                     messages: [
                         {
@@ -1324,12 +1871,6 @@ describe("AssistantsClient", () => {
                     },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [
-                    {
-                        key: "key",
-                        plan: {},
-                    },
-                ],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [
@@ -1340,7 +1881,6 @@ describe("AssistantsClient", () => {
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -1360,6 +1900,17 @@ describe("AssistantsClient", () => {
                 },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    {
+                        compliancePlan: {
+                            forceStoreOnHipaaEnabled: false,
+                        },
+                        name: "name",
+                        schema: {
+                            type: "string",
+                        },
+                    },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     {
@@ -1451,6 +2002,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -1531,10 +2083,12 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [{ content: null, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1548,6 +2102,15 @@ describe("AssistantsClient", () => {
                                 { key: "value" },
                                 { key: "value" },
                                 { key: "value" },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
                             ],
                         },
                     },
@@ -1573,7 +2136,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -1581,8 +2143,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -1591,7 +2153,36 @@ describe("AssistantsClient", () => {
                     formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                 },
                 speed: 1.1,
-                fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                fallbackPlan: {
+                    voices: [
+                        {
+                            provider: "azure",
+                            cachingEnabled: true,
+                            voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                        },
+                    ],
+                },
             },
             firstMessage: "Hello! How can I help you today?",
             firstMessageInterruptionsEnabled: true,
@@ -1629,12 +2220,51 @@ describe("AssistantsClient", () => {
             backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
-            observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+            observabilityPlan: {
+                provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
+                tags: ["tags"],
+                metadata: { key: "value" },
+            },
             credentials: [{ provider: "11labs", apiKey: "apiKey", name: "name" }],
             hooks: [
                 {
                     on: "call.ending",
-                    do: [{ type: "tool" }],
+                    do: [
+                        {
+                            type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    ],
                     filters: [{ type: "oneOf", key: "key", oneOf: ["oneOf"] }],
                 },
             ],
@@ -1652,15 +2282,65 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
-                        fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -1677,7 +2357,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: { messages: [{ key: "value" }], enabled: true, timeoutSeconds: 1.1 },
                 structuredDataPlan: {
                     messages: [{ key: "value" }],
@@ -1685,14 +2364,12 @@ describe("AssistantsClient", () => {
                     schema: { type: "string" },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [{ key: "key", plan: {} }],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [{ key: "value" }],
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -1708,6 +2385,9 @@ describe("AssistantsClient", () => {
                 transcriptPlan: { enabled: true, assistantName: "assistantName", userName: "userName" },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    { compliancePlan: { forceStoreOnHipaaEnabled: false }, name: "name", schema: { type: "string" } },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -1780,6 +2460,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -1802,6 +2483,7 @@ describe("AssistantsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().get("/assistant/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.assistants.get({
@@ -1838,6 +2520,7 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [
                     {
                         content: null,
@@ -1847,6 +2530,12 @@ describe("AssistantsClient", () => {
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -1869,6 +2558,17 @@ describe("AssistantsClient", () => {
                                 },
                                 {
                                     key: "value",
+                                },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
                                 },
                             ],
                         },
@@ -1905,7 +2605,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -1916,8 +2615,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -1947,9 +2646,33 @@ describe("AssistantsClient", () => {
                 fallbackPlan: {
                     voices: [
                         {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                         },
                     ],
                 },
@@ -1999,6 +2722,9 @@ describe("AssistantsClient", () => {
             ],
             observabilityPlan: {
                 provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
                 tags: ["tags"],
                 metadata: {
                     key: "value",
@@ -2017,6 +2743,51 @@ describe("AssistantsClient", () => {
                     do: [
                         {
                             type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
                         },
                     ],
                     filters: [
@@ -2042,23 +2813,71 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
                         fallbackPlan: {
                             voices: [
                                 {
-                                    cachingEnabled: true,
                                     provider: "azure",
+                                    cachingEnabled: true,
                                     voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
                                 },
                             ],
                         },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -2079,7 +2898,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: {
                     messages: [
                         {
@@ -2101,12 +2919,6 @@ describe("AssistantsClient", () => {
                     },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [
-                    {
-                        key: "key",
-                        plan: {},
-                    },
-                ],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [
@@ -2117,7 +2929,6 @@ describe("AssistantsClient", () => {
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -2137,6 +2948,17 @@ describe("AssistantsClient", () => {
                 },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    {
+                        compliancePlan: {
+                            forceStoreOnHipaaEnabled: false,
+                        },
+                        name: "name",
+                        schema: {
+                            type: "string",
+                        },
+                    },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     {
@@ -2228,6 +3050,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -2308,10 +3131,12 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [{ content: null, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2325,6 +3150,15 @@ describe("AssistantsClient", () => {
                                 { key: "value" },
                                 { key: "value" },
                                 { key: "value" },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
                             ],
                         },
                     },
@@ -2350,7 +3184,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -2358,8 +3191,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -2368,7 +3201,36 @@ describe("AssistantsClient", () => {
                     formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                 },
                 speed: 1.1,
-                fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                fallbackPlan: {
+                    voices: [
+                        {
+                            provider: "azure",
+                            cachingEnabled: true,
+                            voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                        },
+                    ],
+                },
             },
             firstMessage: "Hello! How can I help you today?",
             firstMessageInterruptionsEnabled: true,
@@ -2406,12 +3268,51 @@ describe("AssistantsClient", () => {
             backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
-            observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+            observabilityPlan: {
+                provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
+                tags: ["tags"],
+                metadata: { key: "value" },
+            },
             credentials: [{ provider: "11labs", apiKey: "apiKey", name: "name" }],
             hooks: [
                 {
                     on: "call.ending",
-                    do: [{ type: "tool" }],
+                    do: [
+                        {
+                            type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    ],
                     filters: [{ type: "oneOf", key: "key", oneOf: ["oneOf"] }],
                 },
             ],
@@ -2429,15 +3330,65 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
-                        fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -2454,7 +3405,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: { messages: [{ key: "value" }], enabled: true, timeoutSeconds: 1.1 },
                 structuredDataPlan: {
                     messages: [{ key: "value" }],
@@ -2462,14 +3412,12 @@ describe("AssistantsClient", () => {
                     schema: { type: "string" },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [{ key: "key", plan: {} }],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [{ key: "value" }],
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -2485,6 +3433,9 @@ describe("AssistantsClient", () => {
                 transcriptPlan: { enabled: true, assistantName: "assistantName", userName: "userName" },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    { compliancePlan: { forceStoreOnHipaaEnabled: false }, name: "name", schema: { type: "string" } },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -2557,6 +3508,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -2579,6 +3531,7 @@ describe("AssistantsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server.mockEndpoint().delete("/assistant/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.assistants.delete({
@@ -2615,6 +3568,7 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [
                     {
                         content: null,
@@ -2624,6 +3578,12 @@ describe("AssistantsClient", () => {
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -2646,6 +3606,17 @@ describe("AssistantsClient", () => {
                                 },
                                 {
                                     key: "value",
+                                },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
                                 },
                             ],
                         },
@@ -2682,7 +3653,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -2693,8 +3663,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -2724,9 +3694,33 @@ describe("AssistantsClient", () => {
                 fallbackPlan: {
                     voices: [
                         {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                         },
                     ],
                 },
@@ -2776,6 +3770,9 @@ describe("AssistantsClient", () => {
             ],
             observabilityPlan: {
                 provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
                 tags: ["tags"],
                 metadata: {
                     key: "value",
@@ -2794,6 +3791,51 @@ describe("AssistantsClient", () => {
                     do: [
                         {
                             type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
                         },
                     ],
                     filters: [
@@ -2819,23 +3861,71 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
                         fallbackPlan: {
                             voices: [
                                 {
-                                    cachingEnabled: true,
                                     provider: "azure",
+                                    cachingEnabled: true,
                                     voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
                                 },
                             ],
                         },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -2856,7 +3946,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: {
                     messages: [
                         {
@@ -2878,12 +3967,6 @@ describe("AssistantsClient", () => {
                     },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [
-                    {
-                        key: "key",
-                        plan: {},
-                    },
-                ],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [
@@ -2894,7 +3977,6 @@ describe("AssistantsClient", () => {
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -2914,6 +3996,17 @@ describe("AssistantsClient", () => {
                 },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    {
+                        compliancePlan: {
+                            forceStoreOnHipaaEnabled: false,
+                        },
+                        name: "name",
+                        schema: {
+                            type: "string",
+                        },
+                    },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     {
@@ -3005,6 +4098,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -3085,10 +4179,12 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [{ content: null, role: "assistant" }],
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [{ type: "request-start", blocking: false }],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3102,6 +4198,15 @@ describe("AssistantsClient", () => {
                                 { key: "value" },
                                 { key: "value" },
                                 { key: "value" },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: { position: -1 },
+                                },
                             ],
                         },
                     },
@@ -3127,7 +4232,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -3135,8 +4239,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -3145,7 +4249,36 @@ describe("AssistantsClient", () => {
                     formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
                 },
                 speed: 1.1,
-                fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                fallbackPlan: {
+                    voices: [
+                        {
+                            provider: "azure",
+                            cachingEnabled: true,
+                            voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "。",
+                                    "，",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "،",
+                                    "۔",
+                                    "।",
+                                    "॥",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                            },
+                        },
+                    ],
+                },
             },
             firstMessage: "Hello! How can I help you today?",
             firstMessageInterruptionsEnabled: true,
@@ -3183,12 +4316,51 @@ describe("AssistantsClient", () => {
             backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
-            observabilityPlan: { provider: "langfuse", tags: ["tags"], metadata: { key: "value" } },
+            observabilityPlan: {
+                provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
+                tags: ["tags"],
+                metadata: { key: "value" },
+            },
             credentials: [{ provider: "11labs", apiKey: "apiKey", name: "name" }],
             hooks: [
                 {
                     on: "call.ending",
-                    do: [{ type: "tool" }],
+                    do: [
+                        {
+                            type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    ],
                     filters: [{ type: "oneOf", key: "key", oneOf: ["oneOf"] }],
                 },
             ],
@@ -3206,15 +4378,65 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
-                        fallbackPlan: { voices: [{ cachingEnabled: true, provider: "azure", voiceId: "andrew" }] },
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -3231,7 +4453,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: { messages: [{ key: "value" }], enabled: true, timeoutSeconds: 1.1 },
                 structuredDataPlan: {
                     messages: [{ key: "value" }],
@@ -3239,14 +4460,12 @@ describe("AssistantsClient", () => {
                     schema: { type: "string" },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [{ key: "key", plan: {} }],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [{ key: "value" }],
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -3262,6 +4481,9 @@ describe("AssistantsClient", () => {
                 transcriptPlan: { enabled: true, assistantName: "assistantName", userName: "userName" },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    { compliancePlan: { forceStoreOnHipaaEnabled: false }, name: "name", schema: { type: "string" } },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
@@ -3334,6 +4556,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {
@@ -3356,6 +4579,7 @@ describe("AssistantsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .patch("/assistant/id")
@@ -3399,6 +4623,7 @@ describe("AssistantsClient", () => {
                 },
             },
             model: {
+                provider: "anthropic",
                 messages: [
                     {
                         content: null,
@@ -3408,6 +4633,12 @@ describe("AssistantsClient", () => {
                 tools: [
                     {
                         type: "apiRequest",
+                        messages: [
+                            {
+                                type: "request-start",
+                                blocking: false,
+                            },
+                        ],
                         method: "POST",
                         timeoutSeconds: 20,
                         credentialId: "550e8400-e29b-41d4-a716-446655440000",
@@ -3430,6 +4661,17 @@ describe("AssistantsClient", () => {
                                 },
                                 {
                                     key: "value",
+                                },
+                            ],
+                        },
+                        rejectionPlan: {
+                            conditions: [
+                                {
+                                    type: "regex",
+                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                    target: {
+                                        position: -1,
+                                    },
                                 },
                             ],
                         },
@@ -3466,7 +4708,6 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
-                provider: "anthropic",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -3477,8 +4718,8 @@ describe("AssistantsClient", () => {
                 numFastTurns: 1.1,
             },
             voice: {
-                cachingEnabled: true,
                 provider: "azure",
+                cachingEnabled: true,
                 voiceId: "andrew",
                 chunkPlan: {
                     enabled: true,
@@ -3508,9 +4749,33 @@ describe("AssistantsClient", () => {
                 fallbackPlan: {
                     voices: [
                         {
-                            cachingEnabled: true,
                             provider: "azure",
+                            cachingEnabled: true,
                             voiceId: "andrew",
+                            chunkPlan: {
+                                enabled: true,
+                                minCharacters: 30,
+                                punctuationBoundaries: [
+                                    "\u3002",
+                                    "\uFF0C",
+                                    ".",
+                                    "!",
+                                    "?",
+                                    ";",
+                                    "\u060C",
+                                    "\u06D4",
+                                    "\u0964",
+                                    "\u0965",
+                                    "|",
+                                    "||",
+                                    ",",
+                                    ":",
+                                ],
+                                formatPlan: {
+                                    enabled: true,
+                                    numberToDigitsCutoff: 2025,
+                                },
+                            },
                         },
                     ],
                 },
@@ -3560,6 +4825,9 @@ describe("AssistantsClient", () => {
             ],
             observabilityPlan: {
                 provider: "langfuse",
+                promptName: "promptName",
+                promptVersion: 1.1,
+                traceName: "traceName",
                 tags: ["tags"],
                 metadata: {
                     key: "value",
@@ -3578,6 +4846,51 @@ describe("AssistantsClient", () => {
                     do: [
                         {
                             type: "tool",
+                            tool: {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
                         },
                     ],
                     filters: [
@@ -3603,23 +4916,71 @@ describe("AssistantsClient", () => {
                     replacementText: "replacementText",
                 },
                 recordingConsentPlan: {
+                    type: "stay-on-line",
                     message:
                         "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
                     voice: {
-                        cachingEnabled: true,
                         provider: "azure",
+                        cachingEnabled: true,
                         voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
                         fallbackPlan: {
                             voices: [
                                 {
-                                    cachingEnabled: true,
                                     provider: "azure",
+                                    cachingEnabled: true,
                                     voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
                                 },
                             ],
                         },
                     },
-                    type: "stay-on-line",
                     waitSeconds: 3,
                 },
             },
@@ -3640,7 +5001,6 @@ describe("AssistantsClient", () => {
                 },
             },
             analysisPlan: {
-                minMessagesThreshold: 1.1,
                 summaryPlan: {
                     messages: [
                         {
@@ -3662,12 +5022,6 @@ describe("AssistantsClient", () => {
                     },
                     timeoutSeconds: 1.1,
                 },
-                structuredDataMultiPlan: [
-                    {
-                        key: "key",
-                        plan: {},
-                    },
-                ],
                 successEvaluationPlan: {
                     rubric: "NumericScale",
                     messages: [
@@ -3678,7 +5032,6 @@ describe("AssistantsClient", () => {
                     enabled: true,
                     timeoutSeconds: 1.1,
                 },
-                outcomeIds: ["outcomeIds"],
             },
             artifactPlan: {
                 recordingEnabled: true,
@@ -3698,6 +5051,17 @@ describe("AssistantsClient", () => {
                 },
                 recordingPath: "recordingPath",
                 structuredOutputIds: ["structuredOutputIds"],
+                structuredOutputs: [
+                    {
+                        compliancePlan: {
+                            forceStoreOnHipaaEnabled: false,
+                        },
+                        name: "name",
+                        schema: {
+                            type: "string",
+                        },
+                    },
+                ],
                 scorecardIds: ["scorecardIds"],
                 scorecards: [
                     {
@@ -3789,6 +5153,7 @@ describe("AssistantsClient", () => {
                 listenAuthenticationEnabled: false,
                 controlEnabled: false,
                 controlAuthenticationEnabled: false,
+                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
             },
             credentialIds: ["credentialIds"],
             server: {

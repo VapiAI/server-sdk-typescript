@@ -2,7 +2,7 @@
 
 export interface UpdateInworldCredentialDto {
     /** This is the Inworld Basic (Base64) authentication token. This is not returned in the API. */
-    apiKey?: string;
+    apiKey?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

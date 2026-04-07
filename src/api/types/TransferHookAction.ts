@@ -6,5 +6,5 @@ export interface TransferHookAction {
     /** This is the type of action - must be "transfer" */
     type: Vapi.TransferHookActionType;
     /** This is the destination details for the transfer - can be a phone number or SIP URI */
-    destination?: Vapi.TransferHookActionDestination;
+    destination?: Vapi.TransferHookActionDestination | undefined;
 }

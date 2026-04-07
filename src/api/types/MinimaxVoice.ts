@@ -4,9 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface MinimaxVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.MinimaxVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. Use a voice from MINIMAX_PREDEFINED_VOICES or a custom cloned voice ID. */
     voiceId: string;
     /**
@@ -16,35 +14,43 @@ export interface MinimaxVoice {
      *
      * @default "speech-02-turbo"
      */
-    model?: Vapi.MinimaxVoiceModel;
+    model?: Vapi.MinimaxVoiceModel | undefined;
     /**
      * The emotion to use for the voice. If not provided, will use auto-detect mode.
      * Options include: 'happy', 'sad', 'angry', 'fearful', 'surprised', 'disgusted', 'neutral'
      */
-    emotion?: string;
+    emotion?: string | undefined;
+    /**
+     * Controls the granularity of subtitle/timing data returned by Minimax
+     * during synthesis. Set to 'word' to receive per-word timestamps in
+     * assistant.speechStarted events for karaoke-style caption rendering.
+     *
+     * @default "sentence"
+     */
+    subtitleType?: Vapi.MinimaxVoiceSubtitleType | undefined;
     /**
      * Voice pitch adjustment. Range from -12 to 12 semitones.
      * @default 0
      */
-    pitch?: number;
+    pitch?: number | undefined;
     /**
      * Voice speed adjustment. Range from 0.5 to 2.0.
      * @default 1.0
      */
-    speed?: number;
+    speed?: number | undefined;
     /**
      * Voice volume adjustment. Range from 0.5 to 2.0.
      * @default 1.0
      */
-    volume?: number;
+    volume?: number | undefined;
     /** The region for Minimax API. Defaults to "worldwide". */
-    region?: Vapi.MinimaxVoiceRegion;
+    region?: Vapi.MinimaxVoiceRegion | undefined;
     /** Language hint for MiniMax T2A. Example: yue (Cantonese), zh (Chinese), en (English). */
-    languageBoost?: Vapi.MinimaxVoiceLanguageBoost;
+    languageBoost?: Vapi.MinimaxVoiceLanguageBoost | undefined;
     /** Enable MiniMax text normalization to improve number reading and formatting. */
-    textNormalizationEnabled?: boolean;
+    textNormalizationEnabled?: boolean | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
     /** This is the plan for voice provider fallbacks in the event that the primary voice provider fails. */
-    fallbackPlan?: Vapi.FallbackPlan;
+    fallbackPlan?: Vapi.FallbackPlan | undefined;
 }

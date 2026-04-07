@@ -44,5 +44,5 @@ export interface UpdateCustomKnowledgeBaseDto {
      * }
      * ```
      */
-    server?: Vapi.Server;
+    server?: Vapi.Server | undefined;
 }

@@ -3,8 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface VapiCost {
-    /** This is the type of cost, always 'vapi' for this class. */
-    type: Vapi.VapiCostType;
     /** This is the sub type of the cost. */
     subType: Vapi.VapiCostSubType;
     /** This is the minutes of Vapi usage. This should match `call.endedAt` - `call.startedAt`. */

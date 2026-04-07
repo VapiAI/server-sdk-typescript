@@ -18,7 +18,7 @@ export interface EvalRun {
      */
     endedReason: Vapi.EvalRunEndedReason;
     /** This is the transient eval that will be run */
-    eval?: Vapi.CreateEvalDto;
+    eval?: Vapi.CreateEvalDto | undefined;
     /** This is the target that will be run against the eval */
     target: Vapi.EvalRunTarget;
     id: string;
@@ -27,7 +27,7 @@ export interface EvalRun {
     startedAt: string;
     endedAt: string;
     /** This is the ended message when the eval run ended for any reason apart from mockConversation.done */
-    endedMessage?: string;
+    endedMessage?: string | undefined;
     /**
      * This is the results of the eval or suite run.
      * The array will have a single item for an eval run, and multiple items each corresponding to the an eval in a suite run in the same order as the evals in the suite.
@@ -43,5 +43,5 @@ export interface EvalRun {
      */
     type: Vapi.EvalRunType;
     /** This is the id of the eval that will be run. */
-    evalId?: string;
+    evalId?: string | undefined;
 }

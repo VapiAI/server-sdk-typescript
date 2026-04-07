@@ -4,19 +4,19 @@ import type * as Vapi from "../index.js";
 
 export interface ClientMessageConversationUpdate {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ClientMessageConversationUpdatePhoneNumber;
+    phoneNumber?: Vapi.ClientMessageConversationUpdatePhoneNumber | undefined;
     /** This is the type of the message. "conversation-update" is sent when an update is committed to the conversation history. */
     type: Vapi.ClientMessageConversationUpdateType;
     /** This is the most up-to-date conversation history at the time the message is sent. */
-    messages?: Vapi.ClientMessageConversationUpdateMessagesItem[];
+    messages?: Vapi.ClientMessageConversationUpdateMessagesItem[] | undefined;
     /** This is the most up-to-date conversation history at the time the message is sent, formatted for OpenAI. */
     messagesOpenAIFormatted: Vapi.OpenAiMessage[];
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
 }

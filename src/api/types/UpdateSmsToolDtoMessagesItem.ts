@@ -3,7 +3,25 @@
 import type * as Vapi from "../index.js";
 
 export type UpdateSmsToolDtoMessagesItem =
-    | Vapi.ToolMessageStart
-    | Vapi.ToolMessageComplete
-    | Vapi.ToolMessageFailed
-    | Vapi.ToolMessageDelayed;
+    | Vapi.UpdateSmsToolDtoMessagesItem.RequestStart
+    | Vapi.UpdateSmsToolDtoMessagesItem.RequestComplete
+    | Vapi.UpdateSmsToolDtoMessagesItem.RequestFailed
+    | Vapi.UpdateSmsToolDtoMessagesItem.RequestResponseDelayed;
+
+export namespace UpdateSmsToolDtoMessagesItem {
+    export interface RequestStart extends Vapi.ToolMessageStart {
+        type: "request-start";
+    }
+
+    export interface RequestComplete extends Vapi.ToolMessageComplete {
+        type: "request-complete";
+    }
+
+    export interface RequestFailed extends Vapi.ToolMessageFailed {
+        type: "request-failed";
+    }
+
+    export interface RequestResponseDelayed extends Vapi.ToolMessageDelayed {
+        type: "request-response-delayed";
+    }
+}

@@ -4,25 +4,30 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageModelOutput {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageModelOutputPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageModelOutputPhoneNumber | undefined;
     /** This is the type of the message. "model-output" is sent as the model outputs tokens. */
     type: Vapi.ServerMessageModelOutputType;
+    /**
+     * This is the unique identifier for the current LLM turn. All tokens from the same
+     * LLM response share the same turnId. Use this to group tokens and discard on interruption.
+     */
+    turnId?: string | undefined;
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
     /** This is the output of the model. It can be a token or tool call. */
     output: Record<string, unknown>;
 }

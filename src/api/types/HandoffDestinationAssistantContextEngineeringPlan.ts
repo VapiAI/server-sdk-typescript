@@ -6,6 +6,25 @@ import type * as Vapi from "../index.js";
  * This is the plan for manipulating the message context before handing off the call to the next assistant.
  */
 export type HandoffDestinationAssistantContextEngineeringPlan =
-    | Vapi.ContextEngineeringPlanLastNMessages
-    | Vapi.ContextEngineeringPlanNone
-    | Vapi.ContextEngineeringPlanAll;
+    | Vapi.HandoffDestinationAssistantContextEngineeringPlan.LastNMessages
+    | Vapi.HandoffDestinationAssistantContextEngineeringPlan.None
+    | Vapi.HandoffDestinationAssistantContextEngineeringPlan.All
+    | Vapi.HandoffDestinationAssistantContextEngineeringPlan.UserAndAssistantMessages;
+
+export namespace HandoffDestinationAssistantContextEngineeringPlan {
+    export interface LastNMessages extends Vapi.ContextEngineeringPlanLastNMessages {
+        type: "lastNMessages";
+    }
+
+    export interface None extends Vapi.ContextEngineeringPlanNone {
+        type: "none";
+    }
+
+    export interface All extends Vapi.ContextEngineeringPlanAll {
+        type: "all";
+    }
+
+    export interface UserAndAssistantMessages extends Vapi.ContextEngineeringPlanUserAndAssistantMessages {
+        type: "userAndAssistantMessages";
+    }
+}

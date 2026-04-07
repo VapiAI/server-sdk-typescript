@@ -13,5 +13,6 @@ export interface CredentialWebhookDto {
     environment: string;
     success: boolean;
     endUser: Vapi.CredentialEndUser;
-    error?: Vapi.CredentialSessionError;
+    error?: Vapi.CredentialSessionError | undefined;
+    tags?: Record<string, unknown> | undefined;
 }

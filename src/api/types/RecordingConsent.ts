@@ -7,5 +7,5 @@ export interface RecordingConsent {
      * This is the date and time the recording consent was granted.
      * If not specified, it means the recording consent was not granted.
      */
-    grantedAt?: string;
+    grantedAt?: string | undefined;
 }

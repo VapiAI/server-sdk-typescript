@@ -4,22 +4,20 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackHumeVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackHumeVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the model that will be used. */
-    model?: Vapi.FallbackHumeVoiceModel;
+    model?: Vapi.FallbackHumeVoiceModel | undefined;
     /** The ID of the particular voice you want to use. */
     voiceId: string;
     /** Indicates whether the chosen voice is a preset Hume AI voice or a custom voice. */
-    isCustomHumeVoice?: boolean;
+    isCustomHumeVoice?: boolean | undefined;
     /**
      * Natural language instructions describing how the synthesized speech should sound, including but not limited to tone, intonation, pacing, and accent (e.g., 'a soft, gentle voice with a strong British accent').
      *
      * If a Voice is specified in the request, this description serves as acting instructions.
      * If no Voice is specified, a new voice is generated based on this description.
      */
-    description?: string;
+    description?: string | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

@@ -20,6 +20,12 @@ export interface CreateSessionDto {
      * If assistantId is provided, this will be ignored.
      */
     assistant?: Vapi.CreateAssistantDto;
+    /**
+     * These are the overrides for the assistant configuration.
+     * Use this to provide variable values and other overrides when using assistantId.
+     * Variable substitution will be applied to the assistant's messages and other text-based fields.
+     */
+    assistantOverrides?: Vapi.AssistantOverrides;
     /** This is the squad ID associated with this session. Use this when referencing an existing squad. */
     squadId?: string;
     /**
@@ -31,6 +37,8 @@ export interface CreateSessionDto {
     messages?: Vapi.CreateSessionDtoMessagesItem[];
     /** This is the customer information associated with this session. */
     customer?: Vapi.CreateCustomerDto;
+    /** This is the customerId of the customer associated with this session. */
+    customerId?: string;
     /** This is the ID of the phone number associated with this session. */
     phoneNumberId?: string;
     /** This is the phone number configuration for this session. */

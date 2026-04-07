@@ -7,12 +7,12 @@ export interface SecurityFilterPlan {
      * Whether the security filter is enabled.
      * @default false
      */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * Array of security filter types to apply.
      * If array is not empty, only those security filters are run.
      */
-    filters?: Vapi.SecurityFilterBase[];
+    filters?: Vapi.SecurityFilterBase[] | undefined;
     /**
      * Mode of operation when a security threat is detected.
      * - 'sanitize': Remove or replace the threatening content
@@ -20,10 +20,10 @@ export interface SecurityFilterPlan {
      * - 'replace': Replace threatening patterns with replacement text
      * @default 'sanitize'
      */
-    mode?: Vapi.SecurityFilterPlanMode;
+    mode?: Vapi.SecurityFilterPlanMode | undefined;
     /**
      * Text to use when replacing filtered content.
      * @default '[FILTERED]'
      */
-    replacementText?: string;
+    replacementText?: string | undefined;
 }

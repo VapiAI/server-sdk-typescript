@@ -6,6 +6,20 @@ import type * as Vapi from "../index.js";
  * This is the destination you'd like the call to be transferred to.
  */
 export type ServerMessageResponseTransferDestinationRequestDestination =
-    | Vapi.TransferDestinationAssistant
-    | Vapi.TransferDestinationNumber
-    | Vapi.TransferDestinationSip;
+    | Vapi.ServerMessageResponseTransferDestinationRequestDestination.Assistant
+    | Vapi.ServerMessageResponseTransferDestinationRequestDestination.Number
+    | Vapi.ServerMessageResponseTransferDestinationRequestDestination.Sip;
+
+export namespace ServerMessageResponseTransferDestinationRequestDestination {
+    export interface Assistant extends Vapi.TransferDestinationAssistant {
+        type: "assistant";
+    }
+
+    export interface Number extends Vapi.TransferDestinationNumber {
+        type: "number";
+    }
+
+    export interface Sip extends Vapi.TransferDestinationSip {
+        type: "sip";
+    }
+}

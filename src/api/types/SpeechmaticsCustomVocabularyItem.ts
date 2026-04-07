@@ -4,5 +4,5 @@ export interface SpeechmaticsCustomVocabularyItem {
     /** The word or phrase to add to the custom vocabulary. */
     content: string;
     /** Alternative phonetic representations of how the word might sound. This helps recognition when the word might be pronounced differently. */
-    soundsLike?: string[];
+    soundsLike?: string[] | undefined;
 }

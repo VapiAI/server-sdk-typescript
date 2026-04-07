@@ -4,15 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface FallbackSmallestAiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
-    cachingEnabled?: boolean;
-    /** This is the voice provider that will be used. */
-    provider: Vapi.FallbackSmallestAiVoiceProvider;
+    cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackSmallestAiVoiceId;
     /** Smallest AI voice model to use. Defaults to 'lightning' when not specified. */
-    model?: Vapi.FallbackSmallestAiVoiceModel;
+    model?: Vapi.FallbackSmallestAiVoiceModel | undefined;
     /** This is the speed multiplier that will be used. */
-    speed?: number;
+    speed?: number | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
-    chunkPlan?: Vapi.ChunkPlan;
+    chunkPlan?: Vapi.ChunkPlan | undefined;
 }

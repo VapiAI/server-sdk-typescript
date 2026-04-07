@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageResponseToolCalls {
     /** These are the results of the "tool-calls" message. */
-    results?: Vapi.ToolCallResult[];
+    results?: Vapi.ToolCallResult[] | undefined;
     /** This is the error message if the tool call was not successful. */
-    error?: string;
+    error?: string | undefined;
 }

@@ -8,5 +8,6 @@ export const ElevenLabsVoiceModel = {
     ElevenFlashV2: "eleven_flash_v2",
     ElevenFlashV25: "eleven_flash_v2_5",
     ElevenMonolingualV1: "eleven_monolingual_v1",
+    ElevenV3: "eleven_v3",
 } as const;
 export type ElevenLabsVoiceModel = (typeof ElevenLabsVoiceModel)[keyof typeof ElevenLabsVoiceModel];

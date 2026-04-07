@@ -10,5 +10,5 @@ export interface User {
     /** This is the email of the user that is associated with the profile. */
     email: string;
     /** This is the full name of the user that is associated with the profile. */
-    fullName?: string;
+    fullName?: string | undefined;
 }

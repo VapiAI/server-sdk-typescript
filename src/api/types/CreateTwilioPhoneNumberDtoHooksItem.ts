@@ -2,4 +2,16 @@
 
 import type * as Vapi from "../index.js";
 
-export type CreateTwilioPhoneNumberDtoHooksItem = Vapi.PhoneNumberHookCallRinging | Vapi.PhoneNumberHookCallEnding;
+export type CreateTwilioPhoneNumberDtoHooksItem =
+    | Vapi.CreateTwilioPhoneNumberDtoHooksItem.CallRinging
+    | Vapi.CreateTwilioPhoneNumberDtoHooksItem.CallEnding;
+
+export namespace CreateTwilioPhoneNumberDtoHooksItem {
+    export interface CallRinging extends Vapi.PhoneNumberHookCallRinging {
+        on: "call.ringing";
+    }
+
+    export interface CallEnding extends Vapi.PhoneNumberHookCallEnding {
+        on: "call.ending";
+    }
+}

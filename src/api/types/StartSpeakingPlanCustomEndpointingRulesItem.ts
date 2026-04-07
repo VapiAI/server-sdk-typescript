@@ -3,6 +3,20 @@
 import type * as Vapi from "../index.js";
 
 export type StartSpeakingPlanCustomEndpointingRulesItem =
-    | Vapi.AssistantCustomEndpointingRule
-    | Vapi.CustomerCustomEndpointingRule
-    | Vapi.BothCustomEndpointingRule;
+    | Vapi.StartSpeakingPlanCustomEndpointingRulesItem.Assistant
+    | Vapi.StartSpeakingPlanCustomEndpointingRulesItem.Customer
+    | Vapi.StartSpeakingPlanCustomEndpointingRulesItem.Both;
+
+export namespace StartSpeakingPlanCustomEndpointingRulesItem {
+    export interface Assistant extends Vapi.AssistantCustomEndpointingRule {
+        type: "assistant";
+    }
+
+    export interface Customer extends Vapi.CustomerCustomEndpointingRule {
+        type: "customer";
+    }
+
+    export interface Both extends Vapi.BothCustomEndpointingRule {
+        type: "both";
+    }
+}

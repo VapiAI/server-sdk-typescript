@@ -3,17 +3,14 @@
 import type * as Vapi from "../index.js";
 
 export interface CompliancePlan {
-    /**
-     * When this is enabled, no logs, recordings, or transcriptions will be stored.
-     * At the end of the call, you will still receive an end-of-call-report message to store on your server. Defaults to false.
-     */
-    hipaaEnabled?: boolean;
+    /** When this is enabled, logs, recordings, and transcriptions will be stored in HIPAA-compliant storage. Defaults to false. Only HIPAA-compliant providers will be available for LLM, Voice, and Transcriber respectively. This setting is only honored if the organization is on an Enterprise subscription or has purchased the HIPAA add-on. */
+    hipaaEnabled?: boolean | undefined;
     /**
      * When this is enabled, the user will be restricted to use PCI-compliant providers, and no logs or transcripts are stored.
      * At the end of the call, you will receive an end-of-call-report message to store on your server. Defaults to false.
      */
-    pciEnabled?: boolean;
+    pciEnabled?: boolean | undefined;
     /** This is the security filter plan for the assistant. It allows filtering of transcripts for security threats before sending to LLM. */
-    securityFilterPlan?: Vapi.SecurityFilterPlan;
-    recordingConsentPlan?: Vapi.CompliancePlanRecordingConsentPlan;
+    securityFilterPlan?: Vapi.SecurityFilterPlan | undefined;
+    recordingConsentPlan?: Vapi.CompliancePlanRecordingConsentPlan | undefined;
 }

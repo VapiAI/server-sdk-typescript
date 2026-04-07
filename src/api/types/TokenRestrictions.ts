@@ -2,19 +2,19 @@
 
 export interface TokenRestrictions {
     /** This determines whether the token is enabled or disabled. Default is true, it's enabled. */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /**
      * This determines the allowed origins for this token. Validates the `Origin` header. Default is any origin.
      *
      * Only relevant for `public` tokens.
      */
-    allowedOrigins?: string[];
+    allowedOrigins?: string[] | undefined;
     /**
      * This determines which assistantIds can be used when creating a call. Default is any assistantId.
      *
      * Only relevant for `public` tokens.
      */
-    allowedAssistantIds?: string[];
+    allowedAssistantIds?: string[] | undefined;
     /**
      * This determines whether transient assistants can be used when creating a call. Default is true.
      *
@@ -22,5 +22,5 @@ export interface TokenRestrictions {
      *
      * Only relevant for `public` tokens.
      */
-    allowTransientAssistant?: boolean;
+    allowTransientAssistant?: boolean | undefined;
 }

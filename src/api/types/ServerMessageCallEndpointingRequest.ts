@@ -4,7 +4,7 @@ import type * as Vapi from "../index.js";
 
 export interface ServerMessageCallEndpointingRequest {
     /** This is the phone number that the message is associated with. */
-    phoneNumber?: Vapi.ServerMessageCallEndpointingRequestPhoneNumber;
+    phoneNumber?: Vapi.ServerMessageCallEndpointingRequestPhoneNumber | undefined;
     /**
      * This is the type of the message. "call.endpointing.request" is sent when using `assistant.startSpeakingPlan.smartEndpointingPlan={ "provider": "custom-endpointing-model" }`.
      *
@@ -35,23 +35,23 @@ export interface ServerMessageCallEndpointingRequest {
      */
     type: Vapi.ServerMessageCallEndpointingRequestType;
     /** This is the conversation history at the time of the endpointing request. */
-    messages?: Vapi.ServerMessageCallEndpointingRequestMessagesItem[];
+    messages?: Vapi.ServerMessageCallEndpointingRequestMessagesItem[] | undefined;
     /** This is just `messages` formatted for OpenAI. */
     messagesOpenAIFormatted: Vapi.OpenAiMessage[];
     /** This is the timestamp of the message. */
-    timestamp?: number;
+    timestamp?: number | undefined;
     /**
      * This is a live version of the `call.artifact`.
      *
      * This matches what is stored on `call.artifact` after the call.
      */
-    artifact?: Vapi.Artifact;
+    artifact?: Vapi.Artifact | undefined;
     /** This is the assistant that the message is associated with. */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.CreateAssistantDto | undefined;
     /** This is the customer that the message is associated with. */
-    customer?: Vapi.CreateCustomerDto;
+    customer?: Vapi.CreateCustomerDto | undefined;
     /** This is the call that the message is associated with. */
-    call?: Vapi.Call;
+    call?: Vapi.Call | undefined;
     /** This is the chat object. */
-    chat?: Vapi.Chat;
+    chat?: Vapi.Chat | undefined;
 }

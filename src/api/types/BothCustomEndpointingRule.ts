@@ -4,20 +4,6 @@ import type * as Vapi from "../index.js";
 
 export interface BothCustomEndpointingRule {
     /**
-     * This endpointing rule is based on both the last assistant message and the current customer message as they are speaking.
-     *
-     * Flow:
-     * - Assistant speaks
-     * - Customer starts speaking
-     * - Customer transcription comes in
-     * - This rule is evaluated on the last assistant message and the current customer transcription
-     * - If assistant message matches `assistantRegex` AND customer message matches `customerRegex`, the endpointing timeout is set to `timeoutSeconds`
-     *
-     * Usage:
-     * - If you want to wait longer while customer is speaking numbers, you can set a longer timeout.
-     */
-    type: Vapi.BothCustomEndpointingRuleType;
-    /**
      * This is the regex pattern to match the assistant's message.
      *
      * Note:
@@ -33,14 +19,14 @@ export interface BothCustomEndpointingRule {
      *
      * @default []
      */
-    assistantRegexOptions?: Vapi.RegexOption[];
+    assistantRegexOptions?: Vapi.RegexOption[] | undefined;
     customerRegex: string;
     /**
      * These are the options for the customer's message regex match. Defaults to all disabled.
      *
      * @default []
      */
-    customerRegexOptions?: Vapi.RegexOption[];
+    customerRegexOptions?: Vapi.RegexOption[] | undefined;
     /** This is the endpointing timeout in seconds, if the rule is matched. */
     timeoutSeconds: number;
 }

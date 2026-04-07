@@ -17,5 +17,5 @@ export interface WebhookCredential {
     /** This is the authentication session for the credential. Available for credentials that have an authentication plan. */
     authenticationSession: Vapi.Oauth2AuthenticationSession;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
 }

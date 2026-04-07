@@ -12,7 +12,7 @@ export interface ResponseObject {
     /** Status of the response */
     status: Vapi.ResponseObjectStatus;
     /** Error message if the response failed */
-    error?: string | null;
+    error?: (string | null) | undefined;
     /** Output messages from the model */
     output: Vapi.ResponseOutputMessage[];
 }

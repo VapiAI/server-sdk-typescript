@@ -8,19 +8,19 @@ export interface TargetPlan {
      * During the actual test, it'll be called and the assistant attached to it will pick up and be tested.
      * To test an assistant directly, send assistantId instead.
      */
-    phoneNumberId?: string;
+    phoneNumberId?: string | undefined;
     /**
      * This can be any phone number (even not on Vapi).
      * During the actual test, it'll be called.
      * To test a Vapi number, send phoneNumberId. To test an assistant directly, send assistantId instead.
      */
-    phoneNumber?: Vapi.TestSuitePhoneNumber;
+    phoneNumber?: Vapi.TestSuitePhoneNumber | undefined;
     /**
      * This is the assistant being tested.
      * During the actual test, it'll invoked directly.
      * To test the assistant over phone number, send phoneNumberId instead.
      */
-    assistantId?: string;
+    assistantId?: string | undefined;
     /** This is the assistant overrides applied to assistantId before it is tested. */
-    assistantOverrides?: Vapi.AssistantOverrides;
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
 }

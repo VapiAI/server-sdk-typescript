@@ -23,6 +23,6 @@ export interface VonageCredential {
      */
     vonageApplicationId: string;
     /** This is the name of credential. This is just for your reference. */
-    name?: string;
+    name?: string | undefined;
     apiKey: string;
 }

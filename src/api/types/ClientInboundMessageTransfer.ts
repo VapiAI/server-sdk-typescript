@@ -3,10 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface ClientInboundMessageTransfer {
-    /** This is the type of the message. Send "transfer" message to transfer the call to a destination. */
-    type: Vapi.ClientInboundMessageTransferType;
     /** This is the destination to transfer the call to. */
-    destination?: Vapi.ClientInboundMessageTransferDestination;
+    destination?: Vapi.ClientInboundMessageTransferDestination | undefined;
     /** This is the content to say. */
-    content?: string;
+    content?: string | undefined;
 }

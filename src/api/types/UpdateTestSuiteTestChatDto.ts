@@ -4,13 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface UpdateTestSuiteTestChatDto {
     /** These are the scorers used to evaluate the test. */
-    scorers?: Vapi.TestSuiteTestScorerAi[];
+    scorers?: Vapi.TestSuiteTestScorerAi[] | undefined;
     /** This is the type of the test, which must be chat. */
-    type?: Vapi.UpdateTestSuiteTestChatDtoType;
+    type?: Vapi.UpdateTestSuiteTestChatDtoType | undefined;
     /** This is the name of the test. */
-    name?: string;
+    name?: string | undefined;
     /** This is the script to be used for the chat test. */
-    script?: string;
+    script?: string | undefined;
     /** This is the number of attempts allowed for the test. */
-    numAttempts?: number;
+    numAttempts?: number | undefined;
 }
