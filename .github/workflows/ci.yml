@@ -24,7 +24,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Update npm
-        run: npm install -g npm@latest
+        run: sudo npm install -g npm@latest
 
       - name: Compile
         run: pnpm build
