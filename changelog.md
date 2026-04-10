@@ -1,3 +1,6 @@
+## 1.1.0 - 2026-04-10
+* The `VapiError` and `VapiTimeoutError` classes now expose an optional `cause` property that carries the original underlying error, making it easier to diagnose root causes of network failures and timeouts. `BasicAuth.username` and `BasicAuth.password` are now optional fields; if both are absent or empty, no `Authorization` header is sent.
+
 ## 1.0.0 - 2026-04-07
 * Several exported TypeScript types and enum constants have been removed in this release.
 **Removed exports:** Over 70 single-value enum types (e.g. `ConversationNodeType`, `CustomLlmModelProvider`, `DeepgramTranscriberProvider`, `FallbackCustomTranscriberProvider`, `GroupConditionType`, and many others) are no longer exported. Replace any usage of these constants with their plain string literal equivalents (e.g. `"deepgram"`, `"custom-llm"`, `"group"`).
