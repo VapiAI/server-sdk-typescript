@@ -1,84 +1,84 @@
-  name: ci
+name: ci
 
-  on:
-    push:
-    workflow_dispatch: {}
+on:
+  push:
+  workflow_dispatch: {}
 
-  concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: false
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
-  jobs:
-    compile:
-      runs-on: ubuntu-latest
+jobs:
+  compile:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v6
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
 
-        - name: Set up node
-          uses: actions/setup-node@v6
+      - name: Set up node
+        uses: actions/setup-node@v6
 
-        - name: Install pnpm
-          uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
-        - name: Install dependencies
-          run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-        - name: Compile
-          run: pnpm build
+      - name: Compile
+        run: pnpm build
 
-    test:
-      runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v6
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
 
-        - name: Set up node
-          uses: actions/setup-node@v6
+      - name: Set up node
+        uses: actions/setup-node@v6
 
-        - name: Install pnpm
-          uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
-        - name: Install dependencies
-          run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-        - name: Test
-          run: pnpm test
+      - name: Test
+        run: pnpm test
 
-    publish:
-      needs: [ compile, test ]
-      if: ${{ github.event_name == 'workflow_dispatch' || contains(github.ref, 'refs/tags/') }}
-      runs-on: ubuntu-latest
-      permissions:
-        contents: read
-        id-token: write
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v6
+  publish:
+    needs: [ compile, test ]
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.ref, 'refs/tags/') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
 
-        - name: Set up node
-          uses: actions/setup-node@v6
+      - name: Set up node
+        uses: actions/setup-node@v6
 
-        - name: Update npm
-          run: sudo npm install -g npm@11.5.1
+      - name: Update npm
+        run: sudo npm install -g npm@11.5.1
 
-        - name: Install pnpm
-          uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
-        - name: Install dependencies
-          run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-        - name: Build
-          run: pnpm build
+      - name: Build
+        run: pnpm build
 
-        - name: Publish to npm
-          run: |
-           if [[ ${GITHUB_REF} == *alpha* ]]; then
-             npm publish --access public --tag alpha
-           elif [[ ${GITHUB_REF} == *beta* ]]; then
-             npm publish --access public --tag beta
-           else
-             npm publish --access public
-           fi
+      - name: Publish to npm
+        run: |
+         if [[ ${GITHUB_REF} == *alpha* ]]; then
+           npm publish --access public --tag alpha
+         elif [[ ${GITHUB_REF} == *beta* ]]; then
+           npm publish --access public --tag beta
+         else
+           npm publish --access public
+         fi
