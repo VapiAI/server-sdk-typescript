@@ -1,8 +1,6 @@
 name: ci
 
-on:
-  push:
-  workflow_dispatch: {}
+on: [push]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -37,7 +35,7 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v6
-
+                
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
@@ -49,20 +47,17 @@ jobs:
 
   publish:
     needs: [ compile, test ]
-    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.ref, 'refs/tags/') }}
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      id-token: write
+      contents: read   # Required for checkout
+      id-token: write  # Required for OIDC
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
 
       - name: Set up node
         uses: actions/setup-node@v6
-
-      - name: Update npm
-        run: sudo npm install -g npm@11.5.1
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -75,10 +70,21 @@ jobs:
 
       - name: Publish to npm
         run: |
-         if [[ ${GITHUB_REF} == *alpha* ]]; then
-           npm publish --access public --tag alpha
-         elif [[ ${GITHUB_REF} == *beta* ]]; then
-           npm publish --access public --tag beta
-         else
-           npm publish --access public
-         fi
+          publish() {  # use latest npm to ensure OIDC support
+            npx -y npm@latest publish "$@"
+          }
+          if [[ ${GITHUB_REF} == *alpha* ]]; then
+            publish --access public --tag alpha
+          elif [[ ${GITHUB_REF} == *beta* ]]; then
+            publish --access public --tag beta
+          else
+            PKG_NAME=$(node -p "require('./package.json').name")
+            PKG_VERSION=$(node -p "require('./package.json').version")
+            CURRENT_LATEST=$(npm view "${PKG_NAME}" dist-tags.latest 2>/dev/null || echo "0.0.0")
+            if npx -y semver "${PKG_VERSION}" -r "<${CURRENT_LATEST}" > /dev/null 2>&1; then
+              echo "Publishing ${PKG_VERSION} with --tag backport (current latest is ${CURRENT_LATEST})"
+              publish --access public --tag backport
+            else
+              publish --access public
+            fi
+          fi

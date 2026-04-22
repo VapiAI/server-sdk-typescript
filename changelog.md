@@ -1,3 +1,7 @@
+## 1.2.0 - 2026-04-22
+### Added
+* **`Call.subscriptionLimits`** — new optional field exposing the organization's subscription limits (including concurrency limits) at the time of the call.
+
 ## 1.1.0 - 2026-04-10
 * The `VapiError` and `VapiTimeoutError` classes now expose an optional `cause` property that carries the original underlying error, making it easier to diagnose root causes of network failures and timeouts. `BasicAuth.username` and `BasicAuth.password` are now optional fields; if both are absent or empty, no `Authorization` header is sent.
 

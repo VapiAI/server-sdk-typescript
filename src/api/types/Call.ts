@@ -155,4 +155,6 @@ export interface Call {
     schedulePlan?: Vapi.SchedulePlan | undefined;
     /** This is the transport of the call. */
     transport?: Record<string, unknown> | undefined;
+    /** These are the subscription limits for the org at the time of the call. Includes concurrency limit information. */
+    subscriptionLimits?: Vapi.SubscriptionLimits | undefined;
 }

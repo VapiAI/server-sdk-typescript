@@ -3417,6 +3417,7 @@ describe("CallsClient", () => {
                 name: "name",
                 schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
                 transport: { key: "value" },
+                subscriptionLimits: { concurrencyBlocked: true, concurrencyLimit: 1.1, remainingConcurrentCalls: 1.1 },
             },
         ];
 
@@ -7726,6 +7727,11 @@ describe("CallsClient", () => {
                 transport: {
                     key: "value",
                 },
+                subscriptionLimits: {
+                    concurrencyBlocked: true,
+                    concurrencyLimit: 1.1,
+                    remainingConcurrentCalls: 1.1,
+                },
             },
         ]);
     });
@@ -11345,6 +11351,7 @@ describe("CallsClient", () => {
             name: "name",
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             transport: { key: "value" },
+            subscriptionLimits: { concurrencyBlocked: true, concurrencyLimit: 1.1, remainingConcurrentCalls: 1.1 },
         };
 
         server
@@ -16027,6 +16034,11 @@ describe("CallsClient", () => {
             transport: {
                 key: "value",
             },
+            subscriptionLimits: {
+                concurrencyBlocked: true,
+                concurrencyLimit: 1.1,
+                remainingConcurrentCalls: 1.1,
+            },
         });
     });
 
@@ -19645,6 +19657,7 @@ describe("CallsClient", () => {
             name: "name",
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             transport: { key: "value" },
+            subscriptionLimits: { concurrencyBlocked: true, concurrencyLimit: 1.1, remainingConcurrentCalls: 1.1 },
         };
 
         server.mockEndpoint().get("/call/id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
@@ -24322,6 +24335,11 @@ describe("CallsClient", () => {
             transport: {
                 key: "value",
             },
+            subscriptionLimits: {
+                concurrencyBlocked: true,
+                concurrencyLimit: 1.1,
+                remainingConcurrentCalls: 1.1,
+            },
         });
     });
 
@@ -27940,6 +27958,7 @@ describe("CallsClient", () => {
             name: "name",
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             transport: { key: "value" },
+            subscriptionLimits: { concurrencyBlocked: true, concurrencyLimit: 1.1, remainingConcurrentCalls: 1.1 },
         };
 
         server
@@ -32624,6 +32643,11 @@ describe("CallsClient", () => {
             transport: {
                 key: "value",
             },
+            subscriptionLimits: {
+                concurrencyBlocked: true,
+                concurrencyLimit: 1.1,
+                remainingConcurrentCalls: 1.1,
+            },
         });
     });
 
@@ -36242,6 +36266,7 @@ describe("CallsClient", () => {
             name: "name",
             schedulePlan: { earliestAt: "2024-01-15T09:30:00Z", latestAt: "2024-01-15T09:30:00Z" },
             transport: { key: "value" },
+            subscriptionLimits: { concurrencyBlocked: true, concurrencyLimit: 1.1, remainingConcurrentCalls: 1.1 },
         };
 
         server
@@ -40925,6 +40950,11 @@ describe("CallsClient", () => {
             },
             transport: {
                 key: "value",
+            },
+            subscriptionLimits: {
+                concurrencyBlocked: true,
+                concurrencyLimit: 1.1,
+                remainingConcurrentCalls: 1.1,
             },
         });
     });
