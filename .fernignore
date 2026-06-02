@@ -2,3 +2,7 @@
 
 README.md
 changelog.md
+tests/unit/types/SayHookAction.test.ts
+
+# PRO-3057: Manually fixed incorrect type for exact field (was Record<string, unknown>, should be string | string[])
+src/api/types/SayHookAction.ts
