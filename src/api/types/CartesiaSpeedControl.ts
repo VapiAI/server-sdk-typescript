@@ -2,4 +2,4 @@
 
 import type * as Vapi from "../index.js";
 
-export type CartesiaSpeedControl = Vapi.CartesiaExperimentalControlsSpeedZero | number;
+export type CartesiaSpeedControl = Vapi.CartesiaSpeedControlZero | number;

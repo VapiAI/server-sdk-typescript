@@ -1,3 +1,8 @@
+## 2.0.0 - 2026-06-24
+### Breaking Changes
+* **`CartesiaExperimentalControlsSpeedZero`** has been removed and replaced by **`CartesiaSpeedControlZero`**, which carries the same `"slowest" | "slow" | "normal" | "fast" | "fastest"` values. Update any imports or references from `CartesiaExperimentalControlsSpeedZero` to `CartesiaSpeedControlZero`.
+* **`FallbackAzureVoiceVoiceIdZero`** has been removed and replaced by **`FallbackAzureVoiceIdZero`**, which carries the same `"andrew" | "brian" | "emma"` values. Update any imports or references from `FallbackAzureVoiceVoiceIdZero` to `FallbackAzureVoiceIdZero`.
+
 ## 1.2.0 - 2026-04-22
 ### Added
 * **`Call.subscriptionLimits`** — new optional field exposing the organization's subscription limits (including concurrency limits) at the time of the call.

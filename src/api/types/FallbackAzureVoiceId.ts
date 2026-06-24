@@ -5,4 +5,4 @@ import type * as Vapi from "../index.js";
 /**
  * This is the provider-specific ID that will be used.
  */
-export type FallbackAzureVoiceId = Vapi.FallbackAzureVoiceVoiceIdZero | string;
+export type FallbackAzureVoiceId = Vapi.FallbackAzureVoiceIdZero | string;
