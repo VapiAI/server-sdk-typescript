@@ -1,0 +1,146 @@
+name: SDK Release PR Notification
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  notify:
+    name: Notify Slack
+    if: >
+      (github.event.action == 'ready_for_review' || github.event.pull_request.draft == false) &&
+      (
+        github.event.pull_request.user.login == 'fern-api[bot]' ||
+        github.event.pull_request.user.login == 'fern-api' ||
+        contains(github.event.pull_request.head.ref, 'fern')
+      )
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.PRODUCTION_RELEASE_OBSERVABILITY_SLACK_WEBHOOK }}
+      RUNBOOK_URL: https://github.com/VapiAI/docs/blob/main/.github/runbooks/sdk-release-approval.md
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Detect package metadata
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          repo="${GITHUB_REPOSITORY#*/}"
+          package="unknown"
+          registry="unknown"
+
+          case "$repo" in
+            server-sdk-typescript)
+              package="@vapi-ai/server-sdk"
+              registry="npm"
+              ;;
+            server-sdk-python)
+              package="vapi_server_sdk"
+              registry="PyPI"
+              ;;
+            server-sdk-go)
+              package="github.com/VapiAI/server-sdk-go"
+              registry="Go modules"
+              ;;
+            server-sdk-ruby)
+              package="vapi_server_sdk"
+              registry="RubyGems"
+              ;;
+            server-sdk-csharp)
+              package="Vapi.Net"
+              registry="NuGet"
+              ;;
+            server-sdk-php)
+              package="vapi/vapi"
+              registry="Packagist"
+              ;;
+            server-sdk-swift)
+              package="Vapi"
+              registry="Swift Package Manager"
+              ;;
+          esac
+
+          version="$(node <<'NODE'
+          const fs = require('fs');
+
+          const readJson = (path) => {
+            try {
+              return JSON.parse(fs.readFileSync(path, 'utf8'));
+            } catch {
+              return undefined;
+            }
+          };
+
+          const firstMatch = (path, regex) => {
+            if (!fs.existsSync(path)) return undefined;
+            return fs.readFileSync(path, 'utf8').match(regex)?.[1];
+          };
+
+          const metadata = readJson('.fern/metadata.json');
+          const packageJson = readJson('package.json');
+          const composerJson = readJson('composer.json');
+
+          const version =
+            metadata?.sdkVersion ||
+            packageJson?.version ||
+            composerJson?.version ||
+            firstMatch('pyproject.toml', /^version = "([^"]+)"/m) ||
+            firstMatch('src/Vapi.Net/Vapi.Net.csproj', /<Version>([^<]+)<\/Version>/) ||
+            firstMatch('lib/vapi/version.rb', /VERSION = "([^"]+)"/) ||
+            'unknown';
+
+          process.stdout.write(version);
+          NODE
+          )"
+
+          {
+            echo "package=$package"
+            echo "registry=$registry"
+            echo "version=$version"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send Slack notification
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PACKAGE_NAME: ${{ steps.package.outputs.package }}
+          PACKAGE_REGISTRY: ${{ steps.package.outputs.registry }}
+          PACKAGE_VERSION: ${{ steps.package.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SLACK_WEBHOOK_URL}" ]; then
+            echo "::warning::PRODUCTION_RELEASE_OBSERVABILITY_SLACK_WEBHOOK is not set; skipping Slack notification."
+            exit 0
+          fi
+
+          text="$(cat <<EOF
+          *SDK release PR ready for review*
+          *Repo:* \`${GITHUB_REPOSITORY}\`
+          *PR:* <${PR_URL}|#${PR_NUMBER} ${PR_TITLE}>
+          *Author:* \`${PR_AUTHOR}\`
+          *Package:* \`${PACKAGE_NAME}\` (${PACKAGE_REGISTRY})
+          *Version:* \`${PACKAGE_VERSION}\`
+          *Next:* Review and merge the PR, then publish the release tag from the SDK repo.
+          *Runbook:* <${RUNBOOK_URL}|SDK release approval runbook>
+          EOF
+          )"
+
+          payload="$(jq -n --arg text "$text" '{text: $text}')"
+          curl --fail --show-error --silent \
+            --request POST \
+            --header 'Content-Type: application/json' \
+            --data "$payload" \
+            "$SLACK_WEBHOOK_URL"
