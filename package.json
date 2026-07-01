@@ -1,6 +1,6 @@
 {
     "name": "@vapi-ai/server-sdk",
-    "version": "0.0.0-fern-placeholder",
+    "version": "2.0.1",
     "private": false,
     "repository": {
         "type": "git",
