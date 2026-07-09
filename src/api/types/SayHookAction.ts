@@ -9,5 +9,5 @@ export interface SayHookAction {
      */
     prompt?: Vapi.SayHookActionPrompt | undefined;
     /** This is the message to say */
-    exact?: Record<string, unknown> | undefined;
+    exact?: string | string[] | undefined;
 }
