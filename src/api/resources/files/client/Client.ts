@@ -7,7 +7,12 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import * as Vapi from "../../../index.js";
+import { BadRequestError } from "../../../errors/BadRequestError.js";
+import type { File_ } from "../../../types/File_.js";
+import type { CreateFileDto } from "./requests/CreateFileDto.js";
+import type { DeleteFilesRequest } from "./requests/DeleteFilesRequest.js";
+import type { GetFilesRequest } from "./requests/GetFilesRequest.js";
+import type { UpdateFileDto } from "./requests/UpdateFileDto.js";
 
 export declare namespace FilesClient {
     export type Options = BaseClientOptions;
@@ -28,11 +33,11 @@ export class FilesClient {
      * @example
      *     await client.files.list()
      */
-    public list(requestOptions?: FilesClient.RequestOptions): core.HttpResponsePromise<Vapi.File_[]> {
+    public list(requestOptions?: FilesClient.RequestOptions): core.HttpResponsePromise<File_[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(requestOptions));
     }
 
-    private async __list(requestOptions?: FilesClient.RequestOptions): Promise<core.WithRawResponse<Vapi.File_[]>> {
+    private async __list(requestOptions?: FilesClient.RequestOptions): Promise<core.WithRawResponse<File_[]>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -56,7 +61,7 @@ export class FilesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.File_[], rawResponse: _response.rawResponse };
+            return { data: _response.body as File_[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -83,16 +88,16 @@ export class FilesClient {
      *     })
      */
     public create(
-        request: Vapi.CreateFileDto,
+        request: CreateFileDto,
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.File_> {
+    ): core.HttpResponsePromise<File_> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateFileDto,
+        request: CreateFileDto,
         requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.File_>> {
+    ): Promise<core.WithRawResponse<File_>> {
         const _body = await core.newFormData();
         await _body.appendFile("file", request.file);
         const _maybeEncodedRequest = await _body.getRequest();
@@ -123,13 +128,13 @@ export class FilesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.File_, rawResponse: _response.rawResponse };
+            return { data: _response.body as File_, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                    throw new BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.VapiError({
                         statusCode: _response.error.statusCode,
@@ -152,16 +157,16 @@ export class FilesClient {
      *     })
      */
     public get(
-        request: Vapi.GetFilesRequest,
+        request: GetFilesRequest,
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.File_> {
+    ): core.HttpResponsePromise<File_> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetFilesRequest,
+        request: GetFilesRequest,
         requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.File_>> {
+    ): Promise<core.WithRawResponse<File_>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -186,7 +191,7 @@ export class FilesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.File_, rawResponse: _response.rawResponse };
+            return { data: _response.body as File_, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -210,16 +215,16 @@ export class FilesClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteFilesRequest,
+        request: DeleteFilesRequest,
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.File_> {
+    ): core.HttpResponsePromise<File_> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteFilesRequest,
+        request: DeleteFilesRequest,
         requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.File_>> {
+    ): Promise<core.WithRawResponse<File_>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -244,7 +249,7 @@ export class FilesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.File_, rawResponse: _response.rawResponse };
+            return { data: _response.body as File_, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -268,16 +273,16 @@ export class FilesClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateFileDto,
+        request: UpdateFileDto,
         requestOptions?: FilesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.File_> {
+    ): core.HttpResponsePromise<File_> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateFileDto,
+        request: UpdateFileDto,
         requestOptions?: FilesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.File_>> {
+    ): Promise<core.WithRawResponse<File_>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -305,7 +310,7 @@ export class FilesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.File_, rawResponse: _response.rawResponse };
+            return { data: _response.body as File_, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

@@ -7,7 +7,13 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { Call } from "../../../types/Call.js";
+import type { CreateCallsResponse } from "../types/CreateCallsResponse.js";
+import type { CreateCallDto } from "./requests/CreateCallDto.js";
+import type { DeleteCallDto } from "./requests/DeleteCallDto.js";
+import type { GetCallsRequest } from "./requests/GetCallsRequest.js";
+import type { ListCallsRequest } from "./requests/ListCallsRequest.js";
+import type { UpdateCallDto } from "./requests/UpdateCallDto.js";
 
 export declare namespace CallsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +36,16 @@ export class CallsClient {
      *     await client.calls.list()
      */
     public list(
-        request: Vapi.ListCallsRequest = {},
+        request: ListCallsRequest = {},
         requestOptions?: CallsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Call[]> {
+    ): core.HttpResponsePromise<Call[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListCallsRequest = {},
+        request: ListCallsRequest = {},
         requestOptions?: CallsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Call[]>> {
+    ): Promise<core.WithRawResponse<Call[]>> {
         const {
             id,
             assistantId,
@@ -91,7 +97,7 @@ export class CallsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Call[], rawResponse: _response.rawResponse };
+            return { data: _response.body as Call[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -113,16 +119,16 @@ export class CallsClient {
      *     await client.calls.create()
      */
     public create(
-        request: Vapi.CreateCallDto = {},
+        request: CreateCallDto = {},
         requestOptions?: CallsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CreateCallsResponse> {
+    ): core.HttpResponsePromise<CreateCallsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateCallDto = {},
+        request: CreateCallDto = {},
         requestOptions?: CallsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CreateCallsResponse>> {
+    ): Promise<core.WithRawResponse<CreateCallsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -149,7 +155,7 @@ export class CallsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CreateCallsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CreateCallsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -173,16 +179,16 @@ export class CallsClient {
      *     })
      */
     public get(
-        request: Vapi.GetCallsRequest,
+        request: GetCallsRequest,
         requestOptions?: CallsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Call> {
+    ): core.HttpResponsePromise<Call> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetCallsRequest,
+        request: GetCallsRequest,
         requestOptions?: CallsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Call>> {
+    ): Promise<core.WithRawResponse<Call>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -207,7 +213,7 @@ export class CallsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Call, rawResponse: _response.rawResponse };
+            return { data: _response.body as Call, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -231,16 +237,16 @@ export class CallsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteCallDto,
+        request: DeleteCallDto,
         requestOptions?: CallsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Call> {
+    ): core.HttpResponsePromise<Call> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteCallDto,
+        request: DeleteCallDto,
         requestOptions?: CallsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Call>> {
+    ): Promise<core.WithRawResponse<Call>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -268,7 +274,7 @@ export class CallsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Call, rawResponse: _response.rawResponse };
+            return { data: _response.body as Call, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -292,16 +298,16 @@ export class CallsClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateCallDto,
+        request: UpdateCallDto,
         requestOptions?: CallsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Call> {
+    ): core.HttpResponsePromise<Call> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateCallDto,
+        request: UpdateCallDto,
         requestOptions?: CallsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Call>> {
+    ): Promise<core.WithRawResponse<Call>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -329,7 +335,7 @@ export class CallsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Call, rawResponse: _response.rawResponse };
+            return { data: _response.body as Call, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

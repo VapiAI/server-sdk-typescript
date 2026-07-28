@@ -7,7 +7,13 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { Campaign } from "../../../types/Campaign.js";
+import type { CampaignPaginatedResponse } from "../../../types/CampaignPaginatedResponse.js";
+import type { CampaignControllerFindAllRequest } from "./requests/CampaignControllerFindAllRequest.js";
+import type { CampaignControllerFindOneRequest } from "./requests/CampaignControllerFindOneRequest.js";
+import type { CampaignControllerRemoveRequest } from "./requests/CampaignControllerRemoveRequest.js";
+import type { CreateCampaignDto } from "./requests/CreateCampaignDto.js";
+import type { UpdateCampaignDto } from "./requests/UpdateCampaignDto.js";
 
 export declare namespace CampaignsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +36,16 @@ export class CampaignsClient {
      *     await client.campaigns.campaignControllerFindAll()
      */
     public campaignControllerFindAll(
-        request: Vapi.CampaignControllerFindAllRequest = {},
+        request: CampaignControllerFindAllRequest = {},
         requestOptions?: CampaignsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CampaignPaginatedResponse> {
+    ): core.HttpResponsePromise<CampaignPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerFindAll(request, requestOptions));
     }
 
     private async __campaignControllerFindAll(
-        request: Vapi.CampaignControllerFindAllRequest = {},
+        request: CampaignControllerFindAllRequest = {},
         requestOptions?: CampaignsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CampaignPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<CampaignPaginatedResponse>> {
         const {
             id,
             status,
@@ -93,7 +99,7 @@ export class CampaignsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CampaignPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CampaignPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -117,16 +123,16 @@ export class CampaignsClient {
      *     })
      */
     public campaignControllerCreate(
-        request: Vapi.CreateCampaignDto,
+        request: CreateCampaignDto,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Campaign> {
+    ): core.HttpResponsePromise<Campaign> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerCreate(request, requestOptions));
     }
 
     private async __campaignControllerCreate(
-        request: Vapi.CreateCampaignDto,
+        request: CreateCampaignDto,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+    ): Promise<core.WithRawResponse<Campaign>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -153,7 +159,7 @@ export class CampaignsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+            return { data: _response.body as Campaign, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -177,16 +183,16 @@ export class CampaignsClient {
      *     })
      */
     public campaignControllerFindOne(
-        request: Vapi.CampaignControllerFindOneRequest,
+        request: CampaignControllerFindOneRequest,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Campaign> {
+    ): core.HttpResponsePromise<Campaign> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerFindOne(request, requestOptions));
     }
 
     private async __campaignControllerFindOne(
-        request: Vapi.CampaignControllerFindOneRequest,
+        request: CampaignControllerFindOneRequest,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+    ): Promise<core.WithRawResponse<Campaign>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -211,7 +217,7 @@ export class CampaignsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+            return { data: _response.body as Campaign, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -235,16 +241,16 @@ export class CampaignsClient {
      *     })
      */
     public campaignControllerRemove(
-        request: Vapi.CampaignControllerRemoveRequest,
+        request: CampaignControllerRemoveRequest,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Campaign> {
+    ): core.HttpResponsePromise<Campaign> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerRemove(request, requestOptions));
     }
 
     private async __campaignControllerRemove(
-        request: Vapi.CampaignControllerRemoveRequest,
+        request: CampaignControllerRemoveRequest,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+    ): Promise<core.WithRawResponse<Campaign>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -269,7 +275,7 @@ export class CampaignsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+            return { data: _response.body as Campaign, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -293,16 +299,16 @@ export class CampaignsClient {
      *     })
      */
     public campaignControllerUpdate(
-        request: Vapi.UpdateCampaignDto,
+        request: UpdateCampaignDto,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Campaign> {
+    ): core.HttpResponsePromise<Campaign> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerUpdate(request, requestOptions));
     }
 
     private async __campaignControllerUpdate(
-        request: Vapi.UpdateCampaignDto,
+        request: UpdateCampaignDto,
         requestOptions?: CampaignsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+    ): Promise<core.WithRawResponse<Campaign>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -330,7 +336,7 @@ export class CampaignsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+            return { data: _response.body as Campaign, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

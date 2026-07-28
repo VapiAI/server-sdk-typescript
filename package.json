@@ -187,6 +187,16 @@
             },
             "default": "./dist/cjs/api/resources/analytics/exports.js"
         },
+        "./types/*": {
+            "import": {
+                "types": "./dist/esm/api/types/*.d.mts",
+                "default": "./dist/esm/api/types/*.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/types/*.d.ts",
+                "default": "./dist/cjs/api/types/*.js"
+            }
+        },
         "./package.json": "./package.json"
     },
     "files": [

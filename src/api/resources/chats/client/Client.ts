@@ -7,7 +7,15 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { Chat } from "../../../types/Chat.js";
+import type { ChatPaginatedResponse } from "../../../types/ChatPaginatedResponse.js";
+import type { CreateChatsResponse } from "../types/CreateChatsResponse.js";
+import type { CreateResponseChatsResponse } from "../types/CreateResponseChatsResponse.js";
+import type { CreateChatDto } from "./requests/CreateChatDto.js";
+import type { DeleteChatsRequest } from "./requests/DeleteChatsRequest.js";
+import type { GetChatsRequest } from "./requests/GetChatsRequest.js";
+import type { ListChatsRequest } from "./requests/ListChatsRequest.js";
+import type { OpenAiResponsesRequest } from "./requests/OpenAiResponsesRequest.js";
 
 export declare namespace ChatsClient {
     export type Options = BaseClientOptions;
@@ -34,16 +42,16 @@ export class ChatsClient {
      *     })
      */
     public list(
-        request: Vapi.ListChatsRequest = {},
+        request: ListChatsRequest = {},
         requestOptions?: ChatsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ChatPaginatedResponse> {
+    ): core.HttpResponsePromise<ChatPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListChatsRequest = {},
+        request: ListChatsRequest = {},
         requestOptions?: ChatsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ChatPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<ChatPaginatedResponse>> {
         const {
             id,
             assistantId,
@@ -105,7 +113,7 @@ export class ChatsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ChatPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as ChatPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -133,16 +141,16 @@ export class ChatsClient {
      *     })
      */
     public create(
-        request: Vapi.CreateChatDto,
+        request: CreateChatDto,
         requestOptions?: ChatsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CreateChatsResponse> {
+    ): core.HttpResponsePromise<CreateChatsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateChatDto,
+        request: CreateChatDto,
         requestOptions?: ChatsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CreateChatsResponse>> {
+    ): Promise<core.WithRawResponse<CreateChatsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -169,7 +177,7 @@ export class ChatsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CreateChatsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CreateChatsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -195,16 +203,16 @@ export class ChatsClient {
      *     })
      */
     public get(
-        request: Vapi.GetChatsRequest,
+        request: GetChatsRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Chat> {
+    ): core.HttpResponsePromise<Chat> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetChatsRequest,
+        request: GetChatsRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Chat>> {
+    ): Promise<core.WithRawResponse<Chat>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -229,7 +237,7 @@ export class ChatsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Chat, rawResponse: _response.rawResponse };
+            return { data: _response.body as Chat, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -255,16 +263,16 @@ export class ChatsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteChatsRequest,
+        request: DeleteChatsRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Chat> {
+    ): core.HttpResponsePromise<Chat> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteChatsRequest,
+        request: DeleteChatsRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Chat>> {
+    ): Promise<core.WithRawResponse<Chat>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -289,7 +297,7 @@ export class ChatsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Chat, rawResponse: _response.rawResponse };
+            return { data: _response.body as Chat, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -315,16 +323,16 @@ export class ChatsClient {
      *     })
      */
     public createResponse(
-        request: Vapi.OpenAiResponsesRequest,
+        request: OpenAiResponsesRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CreateResponseChatsResponse> {
+    ): core.HttpResponsePromise<CreateResponseChatsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__createResponse(request, requestOptions));
     }
 
     private async __createResponse(
-        request: Vapi.OpenAiResponsesRequest,
+        request: OpenAiResponsesRequest,
         requestOptions?: ChatsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CreateResponseChatsResponse>> {
+    ): Promise<core.WithRawResponse<CreateResponseChatsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -351,7 +359,7 @@ export class ChatsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CreateResponseChatsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CreateResponseChatsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

@@ -7,7 +7,19 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { InsightPaginatedResponse } from "../../../types/InsightPaginatedResponse.js";
+import type { InsightRunResponse } from "../../../types/InsightRunResponse.js";
+import type { InsightControllerCreateRequest } from "../types/InsightControllerCreateRequest.js";
+import type { InsightControllerCreateResponse } from "../types/InsightControllerCreateResponse.js";
+import type { InsightControllerFindOneResponse } from "../types/InsightControllerFindOneResponse.js";
+import type { InsightControllerPreviewRequest } from "../types/InsightControllerPreviewRequest.js";
+import type { InsightControllerRemoveResponse } from "../types/InsightControllerRemoveResponse.js";
+import type { InsightControllerUpdateResponse } from "../types/InsightControllerUpdateResponse.js";
+import type { InsightControllerFindAllRequest } from "./requests/InsightControllerFindAllRequest.js";
+import type { InsightControllerFindOneRequest } from "./requests/InsightControllerFindOneRequest.js";
+import type { InsightControllerRemoveRequest } from "./requests/InsightControllerRemoveRequest.js";
+import type { InsightControllerUpdateRequest } from "./requests/InsightControllerUpdateRequest.js";
+import type { InsightRunDto } from "./requests/InsightRunDto.js";
 
 export declare namespace InsightClient {
     export type Options = BaseClientOptions;
@@ -30,16 +42,16 @@ export class InsightClient {
      *     await client.insight.insightControllerFindAll()
      */
     public insightControllerFindAll(
-        request: Vapi.InsightControllerFindAllRequest = {},
+        request: InsightControllerFindAllRequest = {},
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightPaginatedResponse> {
+    ): core.HttpResponsePromise<InsightPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerFindAll(request, requestOptions));
     }
 
     private async __insightControllerFindAll(
-        request: Vapi.InsightControllerFindAllRequest = {},
+        request: InsightControllerFindAllRequest = {},
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<InsightPaginatedResponse>> {
         const {
             id,
             page,
@@ -91,7 +103,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -121,16 +133,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerCreate(
-        request: Vapi.InsightControllerCreateRequest,
+        request: InsightControllerCreateRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightControllerCreateResponse> {
+    ): core.HttpResponsePromise<InsightControllerCreateResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerCreate(request, requestOptions));
     }
 
     private async __insightControllerCreate(
-        request: Vapi.InsightControllerCreateRequest,
+        request: InsightControllerCreateRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightControllerCreateResponse>> {
+    ): Promise<core.WithRawResponse<InsightControllerCreateResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -157,7 +169,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightControllerCreateResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightControllerCreateResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -181,16 +193,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerFindOne(
-        request: Vapi.InsightControllerFindOneRequest,
+        request: InsightControllerFindOneRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightControllerFindOneResponse> {
+    ): core.HttpResponsePromise<InsightControllerFindOneResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerFindOne(request, requestOptions));
     }
 
     private async __insightControllerFindOne(
-        request: Vapi.InsightControllerFindOneRequest,
+        request: InsightControllerFindOneRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightControllerFindOneResponse>> {
+    ): Promise<core.WithRawResponse<InsightControllerFindOneResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -216,7 +228,7 @@ export class InsightClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as Vapi.InsightControllerFindOneResponse,
+                data: _response.body as InsightControllerFindOneResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -242,16 +254,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerRemove(
-        request: Vapi.InsightControllerRemoveRequest,
+        request: InsightControllerRemoveRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightControllerRemoveResponse> {
+    ): core.HttpResponsePromise<InsightControllerRemoveResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerRemove(request, requestOptions));
     }
 
     private async __insightControllerRemove(
-        request: Vapi.InsightControllerRemoveRequest,
+        request: InsightControllerRemoveRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightControllerRemoveResponse>> {
+    ): Promise<core.WithRawResponse<InsightControllerRemoveResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -276,7 +288,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightControllerRemoveResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightControllerRemoveResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -303,16 +315,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerUpdate(
-        request: Vapi.InsightControllerUpdateRequest,
+        request: InsightControllerUpdateRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightControllerUpdateResponse> {
+    ): core.HttpResponsePromise<InsightControllerUpdateResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerUpdate(request, requestOptions));
     }
 
     private async __insightControllerUpdate(
-        request: Vapi.InsightControllerUpdateRequest,
+        request: InsightControllerUpdateRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightControllerUpdateResponse>> {
+    ): Promise<core.WithRawResponse<InsightControllerUpdateResponse>> {
         const { id, body: _body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -340,7 +352,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightControllerUpdateResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightControllerUpdateResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -364,16 +376,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerRun(
-        request: Vapi.InsightRunDto,
+        request: InsightRunDto,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightRunResponse> {
+    ): core.HttpResponsePromise<InsightRunResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerRun(request, requestOptions));
     }
 
     private async __insightControllerRun(
-        request: Vapi.InsightRunDto,
+        request: InsightRunDto,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightRunResponse>> {
+    ): Promise<core.WithRawResponse<InsightRunResponse>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -401,7 +413,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightRunResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightRunResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -431,16 +443,16 @@ export class InsightClient {
      *     })
      */
     public insightControllerPreview(
-        request: Vapi.InsightControllerPreviewRequest,
+        request: InsightControllerPreviewRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.InsightRunResponse> {
+    ): core.HttpResponsePromise<InsightRunResponse> {
         return core.HttpResponsePromise.fromPromise(this.__insightControllerPreview(request, requestOptions));
     }
 
     private async __insightControllerPreview(
-        request: Vapi.InsightControllerPreviewRequest,
+        request: InsightControllerPreviewRequest,
         requestOptions?: InsightClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.InsightRunResponse>> {
+    ): Promise<core.WithRawResponse<InsightRunResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -467,7 +479,7 @@ export class InsightClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.InsightRunResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as InsightRunResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

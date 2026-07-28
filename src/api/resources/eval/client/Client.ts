@@ -7,7 +7,19 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { CreateEvalDto } from "../../../types/CreateEvalDto.js";
+import type { Eval } from "../../../types/Eval.js";
+import type { EvalPaginatedResponse } from "../../../types/EvalPaginatedResponse.js";
+import type { EvalRun } from "../../../types/EvalRun.js";
+import type { EvalRunPaginatedResponse } from "../../../types/EvalRunPaginatedResponse.js";
+import type { CreateEvalRunDto } from "./requests/CreateEvalRunDto.js";
+import type { EvalControllerGetPaginatedRequest } from "./requests/EvalControllerGetPaginatedRequest.js";
+import type { EvalControllerGetRequest } from "./requests/EvalControllerGetRequest.js";
+import type { EvalControllerGetRunRequest } from "./requests/EvalControllerGetRunRequest.js";
+import type { EvalControllerGetRunsPaginatedRequest } from "./requests/EvalControllerGetRunsPaginatedRequest.js";
+import type { EvalControllerRemoveRequest } from "./requests/EvalControllerRemoveRequest.js";
+import type { EvalControllerRemoveRunRequest } from "./requests/EvalControllerRemoveRunRequest.js";
+import type { UpdateEvalDto } from "./requests/UpdateEvalDto.js";
 
 export declare namespace EvalClient {
     export type Options = BaseClientOptions;
@@ -30,16 +42,16 @@ export class EvalClient {
      *     await client.eval.evalControllerGetPaginated()
      */
     public evalControllerGetPaginated(
-        request: Vapi.EvalControllerGetPaginatedRequest = {},
+        request: EvalControllerGetPaginatedRequest = {},
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.EvalPaginatedResponse> {
+    ): core.HttpResponsePromise<EvalPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerGetPaginated(request, requestOptions));
     }
 
     private async __evalControllerGetPaginated(
-        request: Vapi.EvalControllerGetPaginatedRequest = {},
+        request: EvalControllerGetPaginatedRequest = {},
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.EvalPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<EvalPaginatedResponse>> {
         const {
             id,
             page,
@@ -91,7 +103,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.EvalPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as EvalPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -118,16 +130,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerCreate(
-        request: Vapi.CreateEvalDto,
+        request: CreateEvalDto,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Eval> {
+    ): core.HttpResponsePromise<Eval> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerCreate(request, requestOptions));
     }
 
     private async __evalControllerCreate(
-        request: Vapi.CreateEvalDto,
+        request: CreateEvalDto,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Eval>> {
+    ): Promise<core.WithRawResponse<Eval>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -154,7 +166,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Eval, rawResponse: _response.rawResponse };
+            return { data: _response.body as Eval, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -178,16 +190,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerGet(
-        request: Vapi.EvalControllerGetRequest,
+        request: EvalControllerGetRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Eval> {
+    ): core.HttpResponsePromise<Eval> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerGet(request, requestOptions));
     }
 
     private async __evalControllerGet(
-        request: Vapi.EvalControllerGetRequest,
+        request: EvalControllerGetRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Eval>> {
+    ): Promise<core.WithRawResponse<Eval>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -212,7 +224,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Eval, rawResponse: _response.rawResponse };
+            return { data: _response.body as Eval, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -236,16 +248,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerRemove(
-        request: Vapi.EvalControllerRemoveRequest,
+        request: EvalControllerRemoveRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Eval> {
+    ): core.HttpResponsePromise<Eval> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerRemove(request, requestOptions));
     }
 
     private async __evalControllerRemove(
-        request: Vapi.EvalControllerRemoveRequest,
+        request: EvalControllerRemoveRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Eval>> {
+    ): Promise<core.WithRawResponse<Eval>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -270,7 +282,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Eval, rawResponse: _response.rawResponse };
+            return { data: _response.body as Eval, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -294,16 +306,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerUpdate(
-        request: Vapi.UpdateEvalDto,
+        request: UpdateEvalDto,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Eval> {
+    ): core.HttpResponsePromise<Eval> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerUpdate(request, requestOptions));
     }
 
     private async __evalControllerUpdate(
-        request: Vapi.UpdateEvalDto,
+        request: UpdateEvalDto,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Eval>> {
+    ): Promise<core.WithRawResponse<Eval>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -331,7 +343,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Eval, rawResponse: _response.rawResponse };
+            return { data: _response.body as Eval, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -355,16 +367,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerGetRun(
-        request: Vapi.EvalControllerGetRunRequest,
+        request: EvalControllerGetRunRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.EvalRun> {
+    ): core.HttpResponsePromise<EvalRun> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerGetRun(request, requestOptions));
     }
 
     private async __evalControllerGetRun(
-        request: Vapi.EvalControllerGetRunRequest,
+        request: EvalControllerGetRunRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.EvalRun>> {
+    ): Promise<core.WithRawResponse<EvalRun>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -389,7 +401,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.EvalRun, rawResponse: _response.rawResponse };
+            return { data: _response.body as EvalRun, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -413,16 +425,16 @@ export class EvalClient {
      *     })
      */
     public evalControllerRemoveRun(
-        request: Vapi.EvalControllerRemoveRunRequest,
+        request: EvalControllerRemoveRunRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.EvalRun> {
+    ): core.HttpResponsePromise<EvalRun> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerRemoveRun(request, requestOptions));
     }
 
     private async __evalControllerRemoveRun(
-        request: Vapi.EvalControllerRemoveRunRequest,
+        request: EvalControllerRemoveRunRequest,
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.EvalRun>> {
+    ): Promise<core.WithRawResponse<EvalRun>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -447,7 +459,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.EvalRun, rawResponse: _response.rawResponse };
+            return { data: _response.body as EvalRun, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -469,16 +481,16 @@ export class EvalClient {
      *     await client.eval.evalControllerGetRunsPaginated()
      */
     public evalControllerGetRunsPaginated(
-        request: Vapi.EvalControllerGetRunsPaginatedRequest = {},
+        request: EvalControllerGetRunsPaginatedRequest = {},
         requestOptions?: EvalClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.EvalRunPaginatedResponse> {
+    ): core.HttpResponsePromise<EvalRunPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerGetRunsPaginated(request, requestOptions));
     }
 
     private async __evalControllerGetRunsPaginated(
-        request: Vapi.EvalControllerGetRunsPaginatedRequest = {},
+        request: EvalControllerGetRunsPaginatedRequest = {},
         requestOptions?: EvalClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.EvalRunPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<EvalRunPaginatedResponse>> {
         const {
             id,
             page,
@@ -530,7 +542,7 @@ export class EvalClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.EvalRunPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as EvalRunPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -557,14 +569,14 @@ export class EvalClient {
      *     })
      */
     public evalControllerRun(
-        request: Vapi.CreateEvalRunDto,
+        request: CreateEvalRunDto,
         requestOptions?: EvalClient.RequestOptions,
     ): core.HttpResponsePromise<Record<string, unknown>> {
         return core.HttpResponsePromise.fromPromise(this.__evalControllerRun(request, requestOptions));
     }
 
     private async __evalControllerRun(
-        request: Vapi.CreateEvalRunDto,
+        request: CreateEvalRunDto,
         requestOptions?: EvalClient.RequestOptions,
     ): Promise<core.WithRawResponse<Record<string, unknown>>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

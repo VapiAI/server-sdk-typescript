@@ -7,7 +7,16 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { CreateToolsRequest } from "../types/CreateToolsRequest.js";
+import type { CreateToolsResponse } from "../types/CreateToolsResponse.js";
+import type { DeleteToolsResponse } from "../types/DeleteToolsResponse.js";
+import type { GetToolsResponse } from "../types/GetToolsResponse.js";
+import type { ListToolsResponseItem } from "../types/ListToolsResponseItem.js";
+import type { UpdateToolsResponse } from "../types/UpdateToolsResponse.js";
+import type { DeleteToolsRequest } from "./requests/DeleteToolsRequest.js";
+import type { GetToolsRequest } from "./requests/GetToolsRequest.js";
+import type { ListToolsRequest } from "./requests/ListToolsRequest.js";
+import type { UpdateToolsRequest } from "./requests/UpdateToolsRequest.js";
 
 export declare namespace ToolsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +39,16 @@ export class ToolsClient {
      *     await client.tools.list()
      */
     public list(
-        request: Vapi.ListToolsRequest = {},
+        request: ListToolsRequest = {},
         requestOptions?: ToolsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ListToolsResponseItem[]> {
+    ): core.HttpResponsePromise<ListToolsResponseItem[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListToolsRequest = {},
+        request: ListToolsRequest = {},
         requestOptions?: ToolsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ListToolsResponseItem[]>> {
+    ): Promise<core.WithRawResponse<ListToolsResponseItem[]>> {
         const {
             limit,
             createdAtGt,
@@ -85,7 +94,7 @@ export class ToolsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ListToolsResponseItem[], rawResponse: _response.rawResponse };
+            return { data: _response.body as ListToolsResponseItem[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -111,16 +120,16 @@ export class ToolsClient {
      *     })
      */
     public create(
-        request: Vapi.CreateToolsRequest,
+        request: CreateToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CreateToolsResponse> {
+    ): core.HttpResponsePromise<CreateToolsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateToolsRequest,
+        request: CreateToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CreateToolsResponse>> {
+    ): Promise<core.WithRawResponse<CreateToolsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -147,7 +156,7 @@ export class ToolsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CreateToolsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CreateToolsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -171,16 +180,16 @@ export class ToolsClient {
      *     })
      */
     public get(
-        request: Vapi.GetToolsRequest,
+        request: GetToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.GetToolsResponse> {
+    ): core.HttpResponsePromise<GetToolsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetToolsRequest,
+        request: GetToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.GetToolsResponse>> {
+    ): Promise<core.WithRawResponse<GetToolsResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -205,7 +214,7 @@ export class ToolsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.GetToolsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as GetToolsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -229,16 +238,16 @@ export class ToolsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteToolsRequest,
+        request: DeleteToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.DeleteToolsResponse> {
+    ): core.HttpResponsePromise<DeleteToolsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteToolsRequest,
+        request: DeleteToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.DeleteToolsResponse>> {
+    ): Promise<core.WithRawResponse<DeleteToolsResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -263,7 +272,7 @@ export class ToolsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.DeleteToolsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as DeleteToolsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -290,16 +299,16 @@ export class ToolsClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateToolsRequest,
+        request: UpdateToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.UpdateToolsResponse> {
+    ): core.HttpResponsePromise<UpdateToolsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateToolsRequest,
+        request: UpdateToolsRequest,
         requestOptions?: ToolsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.UpdateToolsResponse>> {
+    ): Promise<core.WithRawResponse<UpdateToolsResponse>> {
         const { id, body: _body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -327,7 +336,7 @@ export class ToolsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.UpdateToolsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as UpdateToolsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

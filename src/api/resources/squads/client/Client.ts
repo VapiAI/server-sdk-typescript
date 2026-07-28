@@ -7,7 +7,12 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { CreateSquadDto } from "../../../types/CreateSquadDto.js";
+import type { Squad } from "../../../types/Squad.js";
+import type { DeleteSquadsRequest } from "./requests/DeleteSquadsRequest.js";
+import type { GetSquadsRequest } from "./requests/GetSquadsRequest.js";
+import type { ListSquadsRequest } from "./requests/ListSquadsRequest.js";
+import type { UpdateSquadDto } from "./requests/UpdateSquadDto.js";
 
 export declare namespace SquadsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +35,16 @@ export class SquadsClient {
      *     await client.squads.list()
      */
     public list(
-        request: Vapi.ListSquadsRequest = {},
+        request: ListSquadsRequest = {},
         requestOptions?: SquadsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Squad[]> {
+    ): core.HttpResponsePromise<Squad[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListSquadsRequest = {},
+        request: ListSquadsRequest = {},
         requestOptions?: SquadsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Squad[]>> {
+    ): Promise<core.WithRawResponse<Squad[]>> {
         const {
             limit,
             createdAtGt,
@@ -85,7 +90,7 @@ export class SquadsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Squad[], rawResponse: _response.rawResponse };
+            return { data: _response.body as Squad[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -109,16 +114,16 @@ export class SquadsClient {
      *     })
      */
     public create(
-        request: Vapi.CreateSquadDto,
+        request: CreateSquadDto,
         requestOptions?: SquadsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Squad> {
+    ): core.HttpResponsePromise<Squad> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateSquadDto,
+        request: CreateSquadDto,
         requestOptions?: SquadsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Squad>> {
+    ): Promise<core.WithRawResponse<Squad>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -145,7 +150,7 @@ export class SquadsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Squad, rawResponse: _response.rawResponse };
+            return { data: _response.body as Squad, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -169,16 +174,16 @@ export class SquadsClient {
      *     })
      */
     public get(
-        request: Vapi.GetSquadsRequest,
+        request: GetSquadsRequest,
         requestOptions?: SquadsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Squad> {
+    ): core.HttpResponsePromise<Squad> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetSquadsRequest,
+        request: GetSquadsRequest,
         requestOptions?: SquadsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Squad>> {
+    ): Promise<core.WithRawResponse<Squad>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -203,7 +208,7 @@ export class SquadsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Squad, rawResponse: _response.rawResponse };
+            return { data: _response.body as Squad, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -227,16 +232,16 @@ export class SquadsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteSquadsRequest,
+        request: DeleteSquadsRequest,
         requestOptions?: SquadsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Squad> {
+    ): core.HttpResponsePromise<Squad> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteSquadsRequest,
+        request: DeleteSquadsRequest,
         requestOptions?: SquadsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Squad>> {
+    ): Promise<core.WithRawResponse<Squad>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -261,7 +266,7 @@ export class SquadsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Squad, rawResponse: _response.rawResponse };
+            return { data: _response.body as Squad, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -286,16 +291,16 @@ export class SquadsClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateSquadDto,
+        request: UpdateSquadDto,
         requestOptions?: SquadsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Squad> {
+    ): core.HttpResponsePromise<Squad> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateSquadDto,
+        request: UpdateSquadDto,
         requestOptions?: SquadsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Squad>> {
+    ): Promise<core.WithRawResponse<Squad>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -323,7 +328,7 @@ export class SquadsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Squad, rawResponse: _response.rawResponse };
+            return { data: _response.body as Squad, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

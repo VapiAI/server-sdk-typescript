@@ -7,7 +7,14 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { CreateStructuredOutputDto } from "../../../types/CreateStructuredOutputDto.js";
+import type { StructuredOutput } from "../../../types/StructuredOutput.js";
+import type { StructuredOutputPaginatedResponse } from "../../../types/StructuredOutputPaginatedResponse.js";
+import type { StructuredOutputControllerFindAllRequest } from "./requests/StructuredOutputControllerFindAllRequest.js";
+import type { StructuredOutputControllerFindOneRequest } from "./requests/StructuredOutputControllerFindOneRequest.js";
+import type { StructuredOutputControllerRemoveRequest } from "./requests/StructuredOutputControllerRemoveRequest.js";
+import type { StructuredOutputRunDto } from "./requests/StructuredOutputRunDto.js";
+import type { UpdateStructuredOutputDto } from "./requests/UpdateStructuredOutputDto.js";
 
 export declare namespace StructuredOutputsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +37,16 @@ export class StructuredOutputsClient {
      *     await client.structuredOutputs.structuredOutputControllerFindAll()
      */
     public structuredOutputControllerFindAll(
-        request: Vapi.StructuredOutputControllerFindAllRequest = {},
+        request: StructuredOutputControllerFindAllRequest = {},
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutputPaginatedResponse> {
+    ): core.HttpResponsePromise<StructuredOutputPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerFindAll(request, requestOptions));
     }
 
     private async __structuredOutputControllerFindAll(
-        request: Vapi.StructuredOutputControllerFindAllRequest = {},
+        request: StructuredOutputControllerFindAllRequest = {},
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutputPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<StructuredOutputPaginatedResponse>> {
         const {
             id,
             name,
@@ -94,7 +101,7 @@ export class StructuredOutputsClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as Vapi.StructuredOutputPaginatedResponse,
+                data: _response.body as StructuredOutputPaginatedResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -123,16 +130,16 @@ export class StructuredOutputsClient {
      *     })
      */
     public structuredOutputControllerCreate(
-        request: Vapi.CreateStructuredOutputDto,
+        request: CreateStructuredOutputDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<StructuredOutput> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerCreate(request, requestOptions));
     }
 
     private async __structuredOutputControllerCreate(
-        request: Vapi.CreateStructuredOutputDto,
+        request: CreateStructuredOutputDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<StructuredOutput>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -159,7 +166,7 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return { data: _response.body as StructuredOutput, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -183,16 +190,16 @@ export class StructuredOutputsClient {
      *     })
      */
     public structuredOutputControllerFindOne(
-        request: Vapi.StructuredOutputControllerFindOneRequest,
+        request: StructuredOutputControllerFindOneRequest,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<StructuredOutput> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerFindOne(request, requestOptions));
     }
 
     private async __structuredOutputControllerFindOne(
-        request: Vapi.StructuredOutputControllerFindOneRequest,
+        request: StructuredOutputControllerFindOneRequest,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<StructuredOutput>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -217,7 +224,7 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return { data: _response.body as StructuredOutput, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -241,16 +248,16 @@ export class StructuredOutputsClient {
      *     })
      */
     public structuredOutputControllerRemove(
-        request: Vapi.StructuredOutputControllerRemoveRequest,
+        request: StructuredOutputControllerRemoveRequest,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<StructuredOutput> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerRemove(request, requestOptions));
     }
 
     private async __structuredOutputControllerRemove(
-        request: Vapi.StructuredOutputControllerRemoveRequest,
+        request: StructuredOutputControllerRemoveRequest,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<StructuredOutput>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -275,7 +282,7 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return { data: _response.body as StructuredOutput, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -300,16 +307,16 @@ export class StructuredOutputsClient {
      *     })
      */
     public structuredOutputControllerUpdate(
-        request: Vapi.UpdateStructuredOutputDto,
+        request: UpdateStructuredOutputDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<StructuredOutput> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerUpdate(request, requestOptions));
     }
 
     private async __structuredOutputControllerUpdate(
-        request: Vapi.UpdateStructuredOutputDto,
+        request: UpdateStructuredOutputDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<StructuredOutput>> {
         const { id, schemaOverride, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             schemaOverride,
@@ -340,7 +347,7 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return { data: _response.body as StructuredOutput, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -364,16 +371,16 @@ export class StructuredOutputsClient {
      *     })
      */
     public structuredOutputControllerRun(
-        request: Vapi.StructuredOutputRunDto,
+        request: StructuredOutputRunDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<StructuredOutput> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerRun(request, requestOptions));
     }
 
     private async __structuredOutputControllerRun(
-        request: Vapi.StructuredOutputRunDto,
+        request: StructuredOutputRunDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<StructuredOutput>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -400,7 +407,7 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return { data: _response.body as StructuredOutput, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

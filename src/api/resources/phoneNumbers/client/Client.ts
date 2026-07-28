@@ -7,7 +7,18 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { PhoneNumberPaginatedResponse } from "../../../types/PhoneNumberPaginatedResponse.js";
+import type { CreatePhoneNumbersRequest } from "../types/CreatePhoneNumbersRequest.js";
+import type { CreatePhoneNumbersResponse } from "../types/CreatePhoneNumbersResponse.js";
+import type { DeletePhoneNumbersResponse } from "../types/DeletePhoneNumbersResponse.js";
+import type { GetPhoneNumbersResponse } from "../types/GetPhoneNumbersResponse.js";
+import type { ListPhoneNumbersResponseItem } from "../types/ListPhoneNumbersResponseItem.js";
+import type { UpdatePhoneNumbersResponse } from "../types/UpdatePhoneNumbersResponse.js";
+import type { DeletePhoneNumbersRequest } from "./requests/DeletePhoneNumbersRequest.js";
+import type { GetPhoneNumbersRequest } from "./requests/GetPhoneNumbersRequest.js";
+import type { ListPhoneNumbersRequest } from "./requests/ListPhoneNumbersRequest.js";
+import type { PhoneNumberControllerFindAllPaginatedRequest } from "./requests/PhoneNumberControllerFindAllPaginatedRequest.js";
+import type { UpdatePhoneNumbersRequest } from "./requests/UpdatePhoneNumbersRequest.js";
 
 export declare namespace PhoneNumbersClient {
     export type Options = BaseClientOptions;
@@ -30,16 +41,16 @@ export class PhoneNumbersClient {
      *     await client.phoneNumbers.list()
      */
     public list(
-        request: Vapi.ListPhoneNumbersRequest = {},
+        request: ListPhoneNumbersRequest = {},
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ListPhoneNumbersResponseItem[]> {
+    ): core.HttpResponsePromise<ListPhoneNumbersResponseItem[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListPhoneNumbersRequest = {},
+        request: ListPhoneNumbersRequest = {},
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ListPhoneNumbersResponseItem[]>> {
+    ): Promise<core.WithRawResponse<ListPhoneNumbersResponseItem[]>> {
         const {
             limit,
             createdAtGt,
@@ -85,7 +96,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ListPhoneNumbersResponseItem[], rawResponse: _response.rawResponse };
+            return { data: _response.body as ListPhoneNumbersResponseItem[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -110,16 +121,16 @@ export class PhoneNumbersClient {
      *     })
      */
     public create(
-        request: Vapi.CreatePhoneNumbersRequest,
+        request: CreatePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.CreatePhoneNumbersResponse> {
+    ): core.HttpResponsePromise<CreatePhoneNumbersResponse> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreatePhoneNumbersRequest,
+        request: CreatePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.CreatePhoneNumbersResponse>> {
+    ): Promise<core.WithRawResponse<CreatePhoneNumbersResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -146,7 +157,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.CreatePhoneNumbersResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as CreatePhoneNumbersResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -168,18 +179,18 @@ export class PhoneNumbersClient {
      *     await client.phoneNumbers.phoneNumberControllerFindAllPaginated()
      */
     public phoneNumberControllerFindAllPaginated(
-        request: Vapi.PhoneNumberControllerFindAllPaginatedRequest = {},
+        request: PhoneNumberControllerFindAllPaginatedRequest = {},
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.PhoneNumberPaginatedResponse> {
+    ): core.HttpResponsePromise<PhoneNumberPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(
             this.__phoneNumberControllerFindAllPaginated(request, requestOptions),
         );
     }
 
     private async __phoneNumberControllerFindAllPaginated(
-        request: Vapi.PhoneNumberControllerFindAllPaginatedRequest = {},
+        request: PhoneNumberControllerFindAllPaginatedRequest = {},
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.PhoneNumberPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<PhoneNumberPaginatedResponse>> {
         const {
             search,
             page,
@@ -231,7 +242,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.PhoneNumberPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as PhoneNumberPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -255,16 +266,16 @@ export class PhoneNumbersClient {
      *     })
      */
     public get(
-        request: Vapi.GetPhoneNumbersRequest,
+        request: GetPhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.GetPhoneNumbersResponse> {
+    ): core.HttpResponsePromise<GetPhoneNumbersResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetPhoneNumbersRequest,
+        request: GetPhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.GetPhoneNumbersResponse>> {
+    ): Promise<core.WithRawResponse<GetPhoneNumbersResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -289,7 +300,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.GetPhoneNumbersResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as GetPhoneNumbersResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -313,16 +324,16 @@ export class PhoneNumbersClient {
      *     })
      */
     public delete(
-        request: Vapi.DeletePhoneNumbersRequest,
+        request: DeletePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.DeletePhoneNumbersResponse> {
+    ): core.HttpResponsePromise<DeletePhoneNumbersResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeletePhoneNumbersRequest,
+        request: DeletePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.DeletePhoneNumbersResponse>> {
+    ): Promise<core.WithRawResponse<DeletePhoneNumbersResponse>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -347,7 +358,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.DeletePhoneNumbersResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as DeletePhoneNumbersResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -374,16 +385,16 @@ export class PhoneNumbersClient {
      *     })
      */
     public update(
-        request: Vapi.UpdatePhoneNumbersRequest,
+        request: UpdatePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.UpdatePhoneNumbersResponse> {
+    ): core.HttpResponsePromise<UpdatePhoneNumbersResponse> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdatePhoneNumbersRequest,
+        request: UpdatePhoneNumbersRequest,
         requestOptions?: PhoneNumbersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.UpdatePhoneNumbersResponse>> {
+    ): Promise<core.WithRawResponse<UpdatePhoneNumbersResponse>> {
         const { id, body: _body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -411,7 +422,7 @@ export class PhoneNumbersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.UpdatePhoneNumbersResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as UpdatePhoneNumbersResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

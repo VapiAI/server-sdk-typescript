@@ -7,7 +7,13 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { Session } from "../../../types/Session.js";
+import type { SessionPaginatedResponse } from "../../../types/SessionPaginatedResponse.js";
+import type { CreateSessionDto } from "./requests/CreateSessionDto.js";
+import type { DeleteSessionsRequest } from "./requests/DeleteSessionsRequest.js";
+import type { GetSessionsRequest } from "./requests/GetSessionsRequest.js";
+import type { ListSessionsRequest } from "./requests/ListSessionsRequest.js";
+import type { UpdateSessionDto } from "./requests/UpdateSessionDto.js";
 
 export declare namespace SessionsClient {
     export type Options = BaseClientOptions;
@@ -35,16 +41,16 @@ export class SessionsClient {
      *     })
      */
     public list(
-        request: Vapi.ListSessionsRequest = {},
+        request: ListSessionsRequest = {},
         requestOptions?: SessionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.SessionPaginatedResponse> {
+    ): core.HttpResponsePromise<SessionPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListSessionsRequest = {},
+        request: ListSessionsRequest = {},
         requestOptions?: SessionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.SessionPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<SessionPaginatedResponse>> {
         const {
             id,
             name,
@@ -126,7 +132,7 @@ export class SessionsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.SessionPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as SessionPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -150,16 +156,16 @@ export class SessionsClient {
      *     await client.sessions.create()
      */
     public create(
-        request: Vapi.CreateSessionDto = {},
+        request: CreateSessionDto = {},
         requestOptions?: SessionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Session> {
+    ): core.HttpResponsePromise<Session> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateSessionDto = {},
+        request: CreateSessionDto = {},
         requestOptions?: SessionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Session>> {
+    ): Promise<core.WithRawResponse<Session>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -186,7 +192,7 @@ export class SessionsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Session, rawResponse: _response.rawResponse };
+            return { data: _response.body as Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -212,16 +218,16 @@ export class SessionsClient {
      *     })
      */
     public get(
-        request: Vapi.GetSessionsRequest,
+        request: GetSessionsRequest,
         requestOptions?: SessionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Session> {
+    ): core.HttpResponsePromise<Session> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetSessionsRequest,
+        request: GetSessionsRequest,
         requestOptions?: SessionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Session>> {
+    ): Promise<core.WithRawResponse<Session>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -246,7 +252,7 @@ export class SessionsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Session, rawResponse: _response.rawResponse };
+            return { data: _response.body as Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -272,16 +278,16 @@ export class SessionsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteSessionsRequest,
+        request: DeleteSessionsRequest,
         requestOptions?: SessionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Session> {
+    ): core.HttpResponsePromise<Session> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteSessionsRequest,
+        request: DeleteSessionsRequest,
         requestOptions?: SessionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Session>> {
+    ): Promise<core.WithRawResponse<Session>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -306,7 +312,7 @@ export class SessionsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Session, rawResponse: _response.rawResponse };
+            return { data: _response.body as Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -332,16 +338,16 @@ export class SessionsClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateSessionDto,
+        request: UpdateSessionDto,
         requestOptions?: SessionsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Session> {
+    ): core.HttpResponsePromise<Session> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateSessionDto,
+        request: UpdateSessionDto,
         requestOptions?: SessionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Session>> {
+    ): Promise<core.WithRawResponse<Session>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -369,7 +375,7 @@ export class SessionsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Session, rawResponse: _response.rawResponse };
+            return { data: _response.body as Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

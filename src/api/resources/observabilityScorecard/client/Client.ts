@@ -7,7 +7,13 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { CreateScorecardDto } from "../../../types/CreateScorecardDto.js";
+import type { Scorecard } from "../../../types/Scorecard.js";
+import type { ScorecardPaginatedResponse } from "../../../types/ScorecardPaginatedResponse.js";
+import type { ScorecardControllerGetPaginatedRequest } from "./requests/ScorecardControllerGetPaginatedRequest.js";
+import type { ScorecardControllerGetRequest } from "./requests/ScorecardControllerGetRequest.js";
+import type { ScorecardControllerRemoveRequest } from "./requests/ScorecardControllerRemoveRequest.js";
+import type { UpdateScorecardDto } from "./requests/UpdateScorecardDto.js";
 
 export declare namespace ObservabilityScorecardClient {
     export type Options = BaseClientOptions;
@@ -32,16 +38,16 @@ export class ObservabilityScorecardClient {
      *     })
      */
     public scorecardControllerGet(
-        request: Vapi.ScorecardControllerGetRequest,
+        request: ScorecardControllerGetRequest,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Scorecard> {
+    ): core.HttpResponsePromise<Scorecard> {
         return core.HttpResponsePromise.fromPromise(this.__scorecardControllerGet(request, requestOptions));
     }
 
     private async __scorecardControllerGet(
-        request: Vapi.ScorecardControllerGetRequest,
+        request: ScorecardControllerGetRequest,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Scorecard>> {
+    ): Promise<core.WithRawResponse<Scorecard>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -66,7 +72,7 @@ export class ObservabilityScorecardClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Scorecard, rawResponse: _response.rawResponse };
+            return { data: _response.body as Scorecard, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -90,16 +96,16 @@ export class ObservabilityScorecardClient {
      *     })
      */
     public scorecardControllerRemove(
-        request: Vapi.ScorecardControllerRemoveRequest,
+        request: ScorecardControllerRemoveRequest,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Scorecard> {
+    ): core.HttpResponsePromise<Scorecard> {
         return core.HttpResponsePromise.fromPromise(this.__scorecardControllerRemove(request, requestOptions));
     }
 
     private async __scorecardControllerRemove(
-        request: Vapi.ScorecardControllerRemoveRequest,
+        request: ScorecardControllerRemoveRequest,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Scorecard>> {
+    ): Promise<core.WithRawResponse<Scorecard>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -124,7 +130,7 @@ export class ObservabilityScorecardClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Scorecard, rawResponse: _response.rawResponse };
+            return { data: _response.body as Scorecard, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -153,16 +159,16 @@ export class ObservabilityScorecardClient {
      *     })
      */
     public scorecardControllerUpdate(
-        request: Vapi.UpdateScorecardDto,
+        request: UpdateScorecardDto,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Scorecard> {
+    ): core.HttpResponsePromise<Scorecard> {
         return core.HttpResponsePromise.fromPromise(this.__scorecardControllerUpdate(request, requestOptions));
     }
 
     private async __scorecardControllerUpdate(
-        request: Vapi.UpdateScorecardDto,
+        request: UpdateScorecardDto,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Scorecard>> {
+    ): Promise<core.WithRawResponse<Scorecard>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -190,7 +196,7 @@ export class ObservabilityScorecardClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Scorecard, rawResponse: _response.rawResponse };
+            return { data: _response.body as Scorecard, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -217,16 +223,16 @@ export class ObservabilityScorecardClient {
      *     await client.observabilityScorecard.scorecardControllerGetPaginated()
      */
     public scorecardControllerGetPaginated(
-        request: Vapi.ScorecardControllerGetPaginatedRequest = {},
+        request: ScorecardControllerGetPaginatedRequest = {},
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ScorecardPaginatedResponse> {
+    ): core.HttpResponsePromise<ScorecardPaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(this.__scorecardControllerGetPaginated(request, requestOptions));
     }
 
     private async __scorecardControllerGetPaginated(
-        request: Vapi.ScorecardControllerGetPaginatedRequest = {},
+        request: ScorecardControllerGetPaginatedRequest = {},
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ScorecardPaginatedResponse>> {
+    ): Promise<core.WithRawResponse<ScorecardPaginatedResponse>> {
         const {
             id,
             page,
@@ -278,7 +284,7 @@ export class ObservabilityScorecardClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ScorecardPaginatedResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as ScorecardPaginatedResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -307,16 +313,16 @@ export class ObservabilityScorecardClient {
      *     })
      */
     public scorecardControllerCreate(
-        request: Vapi.CreateScorecardDto,
+        request: CreateScorecardDto,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Scorecard> {
+    ): core.HttpResponsePromise<Scorecard> {
         return core.HttpResponsePromise.fromPromise(this.__scorecardControllerCreate(request, requestOptions));
     }
 
     private async __scorecardControllerCreate(
-        request: Vapi.CreateScorecardDto,
+        request: CreateScorecardDto,
         requestOptions?: ObservabilityScorecardClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Scorecard>> {
+    ): Promise<core.WithRawResponse<Scorecard>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -343,7 +349,7 @@ export class ObservabilityScorecardClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Scorecard, rawResponse: _response.rawResponse };
+            return { data: _response.body as Scorecard, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

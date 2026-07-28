@@ -7,7 +7,12 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { Assistant } from "../../../types/Assistant.js";
+import type { CreateAssistantDto } from "../../../types/CreateAssistantDto.js";
+import type { DeleteAssistantsRequest } from "./requests/DeleteAssistantsRequest.js";
+import type { GetAssistantsRequest } from "./requests/GetAssistantsRequest.js";
+import type { ListAssistantsRequest } from "./requests/ListAssistantsRequest.js";
+import type { UpdateAssistantDto } from "./requests/UpdateAssistantDto.js";
 
 export declare namespace AssistantsClient {
     export type Options = BaseClientOptions;
@@ -30,16 +35,16 @@ export class AssistantsClient {
      *     await client.assistants.list()
      */
     public list(
-        request: Vapi.ListAssistantsRequest = {},
+        request: ListAssistantsRequest = {},
         requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Assistant[]> {
+    ): core.HttpResponsePromise<Assistant[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListAssistantsRequest = {},
+        request: ListAssistantsRequest = {},
         requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Assistant[]>> {
+    ): Promise<core.WithRawResponse<Assistant[]>> {
         const {
             limit,
             createdAtGt,
@@ -85,7 +90,7 @@ export class AssistantsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Assistant[], rawResponse: _response.rawResponse };
+            return { data: _response.body as Assistant[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -107,16 +112,16 @@ export class AssistantsClient {
      *     await client.assistants.create({})
      */
     public create(
-        request: Vapi.CreateAssistantDto,
+        request: CreateAssistantDto,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Assistant> {
+    ): core.HttpResponsePromise<Assistant> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Vapi.CreateAssistantDto,
+        request: CreateAssistantDto,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Assistant>> {
+    ): Promise<core.WithRawResponse<Assistant>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -143,7 +148,7 @@ export class AssistantsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Assistant, rawResponse: _response.rawResponse };
+            return { data: _response.body as Assistant, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -167,16 +172,16 @@ export class AssistantsClient {
      *     })
      */
     public get(
-        request: Vapi.GetAssistantsRequest,
+        request: GetAssistantsRequest,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Assistant> {
+    ): core.HttpResponsePromise<Assistant> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.GetAssistantsRequest,
+        request: GetAssistantsRequest,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Assistant>> {
+    ): Promise<core.WithRawResponse<Assistant>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -201,7 +206,7 @@ export class AssistantsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Assistant, rawResponse: _response.rawResponse };
+            return { data: _response.body as Assistant, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -225,16 +230,16 @@ export class AssistantsClient {
      *     })
      */
     public delete(
-        request: Vapi.DeleteAssistantsRequest,
+        request: DeleteAssistantsRequest,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Assistant> {
+    ): core.HttpResponsePromise<Assistant> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
-        request: Vapi.DeleteAssistantsRequest,
+        request: DeleteAssistantsRequest,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Assistant>> {
+    ): Promise<core.WithRawResponse<Assistant>> {
         const { id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -259,7 +264,7 @@ export class AssistantsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Assistant, rawResponse: _response.rawResponse };
+            return { data: _response.body as Assistant, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -283,16 +288,16 @@ export class AssistantsClient {
      *     })
      */
     public update(
-        request: Vapi.UpdateAssistantDto,
+        request: UpdateAssistantDto,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.Assistant> {
+    ): core.HttpResponsePromise<Assistant> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Vapi.UpdateAssistantDto,
+        request: UpdateAssistantDto,
         requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.Assistant>> {
+    ): Promise<core.WithRawResponse<Assistant>> {
         const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -320,7 +325,7 @@ export class AssistantsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.Assistant, rawResponse: _response.rawResponse };
+            return { data: _response.body as Assistant, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

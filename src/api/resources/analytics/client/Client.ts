@@ -7,7 +7,8 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import type { AnalyticsQueryResult } from "../../../types/AnalyticsQueryResult.js";
+import type { AnalyticsQueryDto } from "./requests/AnalyticsQueryDto.js";
 
 export declare namespace AnalyticsClient {
     export type Options = BaseClientOptions;
@@ -39,16 +40,16 @@ export class AnalyticsClient {
      *     })
      */
     public get(
-        request: Vapi.AnalyticsQueryDto,
+        request: AnalyticsQueryDto,
         requestOptions?: AnalyticsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.AnalyticsQueryResult[]> {
+    ): core.HttpResponsePromise<AnalyticsQueryResult[]> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
     private async __get(
-        request: Vapi.AnalyticsQueryDto,
+        request: AnalyticsQueryDto,
         requestOptions?: AnalyticsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.AnalyticsQueryResult[]>> {
+    ): Promise<core.WithRawResponse<AnalyticsQueryResult[]>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -75,7 +76,7 @@ export class AnalyticsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.AnalyticsQueryResult[], rawResponse: _response.rawResponse };
+            return { data: _response.body as AnalyticsQueryResult[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

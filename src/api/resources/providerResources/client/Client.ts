@@ -7,7 +7,14 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import * as Vapi from "../../../index.js";
+import { NotFoundError } from "../../../errors/NotFoundError.js";
+import type { ProviderResource } from "../../../types/ProviderResource.js";
+import type { ProviderResourcePaginatedResponse } from "../../../types/ProviderResourcePaginatedResponse.js";
+import type { ProviderResourceControllerCreateProviderResourceRequest } from "./requests/ProviderResourceControllerCreateProviderResourceRequest.js";
+import type { ProviderResourceControllerDeleteProviderResourceRequest } from "./requests/ProviderResourceControllerDeleteProviderResourceRequest.js";
+import type { ProviderResourceControllerGetProviderResourceRequest } from "./requests/ProviderResourceControllerGetProviderResourceRequest.js";
+import type { ProviderResourceControllerGetProviderResourcesPaginatedRequest } from "./requests/ProviderResourceControllerGetProviderResourcesPaginatedRequest.js";
+import type { ProviderResourceControllerUpdateProviderResourceRequest } from "./requests/ProviderResourceControllerUpdateProviderResourceRequest.js";
 
 export declare namespace ProviderResourcesClient {
     export type Options = BaseClientOptions;
@@ -33,18 +40,18 @@ export class ProviderResourcesClient {
      *     })
      */
     public providerResourceControllerGetProviderResourcesPaginated(
-        request: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequest,
+        request: ProviderResourceControllerGetProviderResourcesPaginatedRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ProviderResourcePaginatedResponse> {
+    ): core.HttpResponsePromise<ProviderResourcePaginatedResponse> {
         return core.HttpResponsePromise.fromPromise(
             this.__providerResourceControllerGetProviderResourcesPaginated(request, requestOptions),
         );
     }
 
     private async __providerResourceControllerGetProviderResourcesPaginated(
-        request: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequest,
+        request: ProviderResourceControllerGetProviderResourcesPaginatedRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ProviderResourcePaginatedResponse>> {
+    ): Promise<core.WithRawResponse<ProviderResourcePaginatedResponse>> {
         const {
             provider,
             resourceName,
@@ -101,7 +108,7 @@ export class ProviderResourcesClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as Vapi.ProviderResourcePaginatedResponse,
+                data: _response.body as ProviderResourcePaginatedResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -133,18 +140,18 @@ export class ProviderResourcesClient {
      *     })
      */
     public providerResourceControllerCreateProviderResource(
-        request: Vapi.ProviderResourceControllerCreateProviderResourceRequest,
+        request: ProviderResourceControllerCreateProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ProviderResource> {
+    ): core.HttpResponsePromise<ProviderResource> {
         return core.HttpResponsePromise.fromPromise(
             this.__providerResourceControllerCreateProviderResource(request, requestOptions),
         );
     }
 
     private async __providerResourceControllerCreateProviderResource(
-        request: Vapi.ProviderResourceControllerCreateProviderResourceRequest,
+        request: ProviderResourceControllerCreateProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ProviderResource>> {
+    ): Promise<core.WithRawResponse<ProviderResource>> {
         const { provider, resourceName } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -169,7 +176,7 @@ export class ProviderResourcesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ProviderResource, rawResponse: _response.rawResponse };
+            return { data: _response.body as ProviderResource, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -202,18 +209,18 @@ export class ProviderResourcesClient {
      *     })
      */
     public providerResourceControllerGetProviderResource(
-        request: Vapi.ProviderResourceControllerGetProviderResourceRequest,
+        request: ProviderResourceControllerGetProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ProviderResource> {
+    ): core.HttpResponsePromise<ProviderResource> {
         return core.HttpResponsePromise.fromPromise(
             this.__providerResourceControllerGetProviderResource(request, requestOptions),
         );
     }
 
     private async __providerResourceControllerGetProviderResource(
-        request: Vapi.ProviderResourceControllerGetProviderResourceRequest,
+        request: ProviderResourceControllerGetProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ProviderResource>> {
+    ): Promise<core.WithRawResponse<ProviderResource>> {
         const { provider, resourceName, id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -238,13 +245,13 @@ export class ProviderResourcesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ProviderResource, rawResponse: _response.rawResponse };
+            return { data: _response.body as ProviderResource, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                    throw new NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.VapiError({
                         statusCode: _response.error.statusCode,
@@ -276,18 +283,18 @@ export class ProviderResourcesClient {
      *     })
      */
     public providerResourceControllerDeleteProviderResource(
-        request: Vapi.ProviderResourceControllerDeleteProviderResourceRequest,
+        request: ProviderResourceControllerDeleteProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ProviderResource> {
+    ): core.HttpResponsePromise<ProviderResource> {
         return core.HttpResponsePromise.fromPromise(
             this.__providerResourceControllerDeleteProviderResource(request, requestOptions),
         );
     }
 
     private async __providerResourceControllerDeleteProviderResource(
-        request: Vapi.ProviderResourceControllerDeleteProviderResourceRequest,
+        request: ProviderResourceControllerDeleteProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ProviderResource>> {
+    ): Promise<core.WithRawResponse<ProviderResource>> {
         const { provider, resourceName, id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -312,13 +319,13 @@ export class ProviderResourcesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ProviderResource, rawResponse: _response.rawResponse };
+            return { data: _response.body as ProviderResource, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                    throw new NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.VapiError({
                         statusCode: _response.error.statusCode,
@@ -350,18 +357,18 @@ export class ProviderResourcesClient {
      *     })
      */
     public providerResourceControllerUpdateProviderResource(
-        request: Vapi.ProviderResourceControllerUpdateProviderResourceRequest,
+        request: ProviderResourceControllerUpdateProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.ProviderResource> {
+    ): core.HttpResponsePromise<ProviderResource> {
         return core.HttpResponsePromise.fromPromise(
             this.__providerResourceControllerUpdateProviderResource(request, requestOptions),
         );
     }
 
     private async __providerResourceControllerUpdateProviderResource(
-        request: Vapi.ProviderResourceControllerUpdateProviderResourceRequest,
+        request: ProviderResourceControllerUpdateProviderResourceRequest,
         requestOptions?: ProviderResourcesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.ProviderResource>> {
+    ): Promise<core.WithRawResponse<ProviderResource>> {
         const { provider, resourceName, id } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -386,13 +393,13 @@ export class ProviderResourcesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.ProviderResource, rawResponse: _response.rawResponse };
+            return { data: _response.body as ProviderResource, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                    throw new NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.VapiError({
                         statusCode: _response.error.statusCode,
