@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Realtime Gemini generation and speech-output settings, including sampling, repetition penalties, and voice configuration.
+ */
 export interface GoogleRealtimeConfig {
     /**
      * This is the nucleus sampling parameter that controls the cumulative probability of tokens considered during text generation.

@@ -3,5 +3,7 @@
 export interface SimulationRunSuiteEntry {
     /** ID of the simulation suite to run */
     simulationSuiteId?: string | undefined;
+    /** Historical suite name captured when the run was created */
+    name?: string | undefined;
     suiteId?: string | undefined;
 }

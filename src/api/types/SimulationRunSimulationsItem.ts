@@ -14,4 +14,11 @@ export namespace SimulationRunSimulationsItem {
     export interface SimulationSuite extends Vapi.SimulationRunSuiteEntry {
         type: "simulationSuite";
     }
+
+    export type Request =
+        | Vapi.SimulationRunSimulationsItem.Simulation
+        | Vapi.SimulationRunSimulationsItem.SimulationSuite;
+    export type Response =
+        | Vapi.SimulationRunSimulationsItem.Simulation
+        | Vapi.SimulationRunSimulationsItem.SimulationSuite;
 }

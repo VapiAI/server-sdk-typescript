@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters numeric call fields using a list of values or an emptiness test.
+ */
 export interface FilterNumberArrayTypeColumnOnCallTable {
     /**
      * This is the column in the call table that will be filtered on.

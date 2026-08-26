@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters event data by comparing or searching a string field.
+ */
 export interface EventsTableStringCondition {
     /** The string field name from the event data */
     column: string;

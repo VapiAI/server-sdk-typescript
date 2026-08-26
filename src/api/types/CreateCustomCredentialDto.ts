@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Reusable custom credentials for authenticating outbound requests, with optional public-key encryption for sensitive request data.
+ */
 export interface CreateCustomCredentialDto {
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
     authenticationPlan: Vapi.CreateCustomCredentialDtoAuthenticationPlan;

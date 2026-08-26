@@ -19,6 +19,8 @@ export interface ExportSessionDto {
     customer?: Vapi.CreateCustomerDto | undefined;
     /** Filter by any of the specified customer phone numbers (comma-separated). */
     customerNumberAny?: string | undefined;
+    /** Filter by multiple session IDs. Provide as comma-separated values. */
+    idAny?: string | undefined;
     /** Columns to include in the CSV export */
     columns?: Vapi.ExportSessionDtoColumns | undefined;
     /**
@@ -40,6 +42,8 @@ export interface ExportSessionDto {
     page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ExportSessionDtoSortOrder | undefined;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ExportSessionDtoSortBy | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */

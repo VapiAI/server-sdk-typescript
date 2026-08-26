@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech through a custom server, including voice selection, server connection, chunking, caching, and fallback settings.
+ */
 export interface CustomVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

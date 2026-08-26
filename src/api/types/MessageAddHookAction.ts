@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A hook action that adds an OpenAI-format message to the conversation and can trigger an assistant response.
+ */
 export interface MessageAddHookAction {
     /** The message to add to the conversation in OpenAI format */
     message: Vapi.OpenAiMessage;

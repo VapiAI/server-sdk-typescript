@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ServerMessageCallDeleted {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ServerMessageCallDeletedPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "call.deleted" is sent when a call is deleted. */
     type: Vapi.ServerMessageCallDeletedType;
     /** This is the timestamp of the message. */

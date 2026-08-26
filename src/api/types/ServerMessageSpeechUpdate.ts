@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ServerMessageSpeechUpdate {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ServerMessageSpeechUpdatePhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "speech-update" is sent whenever assistant or user start or stop speaking. */
     type: Vapi.ServerMessageSpeechUpdateType;
     /** This is the status of the speech update. */

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved insight returned by the API, including its visualization type, identity, organization, and lifecycle timestamps.
+ */
 export interface Insight {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -15,4 +18,6 @@ export interface Insight {
     createdAt: string;
     /** This is the ISO 8601 date-time string of when the Insight was last updated. */
     updatedAt: string;
+    /** Stable server-owned identifier for system-created insights. */
+    systemKey?: string | undefined;
 }

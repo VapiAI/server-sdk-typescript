@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to import a Vonage phone number into Vapi with a stored credential and routing settings.
+ */
 export interface CreateVonagePhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

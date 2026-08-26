@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * The result of a batch call creation request, containing successfully created calls, per-call failures, and subscription limits recorded at the end of the batch.
+ */
 export interface CallBatchResponse {
     /** Subscription limits at the end of this batch */
     subscriptionLimits?: Vapi.SubscriptionLimits | undefined;

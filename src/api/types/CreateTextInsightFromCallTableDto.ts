@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a text-value insight from call data using metric queries, a formula, and a time range.
+ */
 export interface CreateTextInsightFromCallTableDto {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -23,6 +26,7 @@ export interface CreateTextInsightFromCallTableDto {
      * You can also use the query names as the variable in the formula.
      */
     formula?: Record<string, unknown> | undefined;
+    /** The time range used to query the text-value data. */
     timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * These are the queries to run to generate the insight.

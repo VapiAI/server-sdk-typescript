@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Start, end, timezone, and aggregation step used for a time-series insight query.
+ */
 export interface InsightTimeRangeWithStep {
     /**
      * This is the group by step for aggregation.

@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace ToolsClient {
     export type Options = BaseClientOptions;
@@ -23,6 +23,8 @@ export class ToolsClient {
     }
 
     /**
+     * Returns reusable tools for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+     *
      * @param {Vapi.ListToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -100,6 +102,8 @@ export class ToolsClient {
     }
 
     /**
+     * Creates a reusable tool that assistants can invoke during conversations.
+     *
      * @param {Vapi.CreateToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -162,6 +166,8 @@ export class ToolsClient {
     }
 
     /**
+     * Returns the tool identified by its ID.
+     *
      * @param {Vapi.GetToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -220,8 +226,12 @@ export class ToolsClient {
     }
 
     /**
+     * Deletes the tool identified by its ID.
+     *
      * @param {Vapi.DeleteToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ConflictError}
      *
      * @example
      *     await client.tools.delete({
@@ -267,17 +277,24 @@ export class ToolsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/tool/{id}");
     }
 
     /**
+     * Updates the specified fields of the tool identified by its ID.
+     *
      * @param {Vapi.UpdateToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

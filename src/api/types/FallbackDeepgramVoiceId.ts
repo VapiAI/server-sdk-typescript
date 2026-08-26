@@ -57,5 +57,12 @@ export const FallbackDeepgramVoiceId = {
     Aquila: "aquila",
     Selena: "selena",
     Javier: "javier",
+    Viktoria: "viktoria",
+    Kara: "kara",
+    Fabian: "fabian",
+    Julius: "julius",
+    Lara: "lara",
+    Elara: "elara",
+    Aurelia: "aurelia",
 } as const;
 export type FallbackDeepgramVoiceId = (typeof FallbackDeepgramVoiceId)[keyof typeof FallbackDeepgramVoiceId];

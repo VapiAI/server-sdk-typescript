@@ -7,5 +7,6 @@
  *     }
  */
 export interface DeleteFilesRequest {
+    /** The unique identifier of the file. */
     id: string;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Messages and variable values captured while a workflow node was active.
+ */
 export interface NodeArtifact {
     /** These are the messages that were spoken during the node. */
     messages?: Vapi.NodeArtifactMessagesItem[] | undefined;

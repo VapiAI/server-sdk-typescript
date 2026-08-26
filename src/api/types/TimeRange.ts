@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Start, end, timezone, and time step used for analytics aggregation.
+ */
 export interface TimeRange {
     /**
      * This is the time step for aggregations.

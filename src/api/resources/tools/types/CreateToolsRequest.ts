@@ -114,4 +114,28 @@ export namespace CreateToolsRequest {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.CreateToolsRequest.ApiRequest
+        | Vapi.CreateToolsRequest.Dtmf
+        | Vapi.CreateToolsRequest.EndCall
+        | Vapi.CreateToolsRequest.Function
+        | Vapi.CreateToolsRequest.TransferCall
+        | Vapi.CreateToolsRequest.Handoff
+        | Vapi.CreateToolsRequest.Bash
+        | Vapi.CreateToolsRequest.Computer
+        | Vapi.CreateToolsRequest.TextEditor
+        | Vapi.CreateToolsRequest.Query
+        | Vapi.CreateToolsRequest.GoogleCalendarEventCreate
+        | Vapi.CreateToolsRequest.GoogleSheetsRowAppend
+        | Vapi.CreateToolsRequest.GoogleCalendarAvailabilityCheck
+        | Vapi.CreateToolsRequest.SlackMessageSend
+        | Vapi.CreateToolsRequest.Sms
+        | Vapi.CreateToolsRequest.Mcp
+        | Vapi.CreateToolsRequest.GohighlevelCalendarAvailabilityCheck
+        | Vapi.CreateToolsRequest.GohighlevelCalendarEventCreate
+        | Vapi.CreateToolsRequest.GohighlevelContactCreate
+        | Vapi.CreateToolsRequest.GohighlevelContactGet
+        | Vapi.CreateToolsRequest.SipRequest
+        | Vapi.CreateToolsRequest.Voicemail;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Evaluates whether targeted conversation-message content matches a regular expression.
+ */
 export interface RegexCondition {
     /**
      * This is the regular expression pattern to match against message content.

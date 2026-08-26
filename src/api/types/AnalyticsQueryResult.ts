@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * The result of a named analytics query, including the evaluated time range and returned metric data.
+ */
 export interface AnalyticsQueryResult {
     /** This is the unique key for the query. */
     name: string;

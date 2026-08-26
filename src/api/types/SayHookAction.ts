@@ -2,12 +2,15 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A hook action that makes the assistant speak exact text or generate a response from a prompt.
+ */
 export interface SayHookAction {
+    /** This is the exact message to say. When a string array is provided, one is randomly selected. */
+    exact?: Vapi.SayHookActionExact | undefined;
     /**
      * This is the prompt for the assistant to generate a response based on existing conversation.
      * Can be a string or an array of chat messages.
      */
     prompt?: Vapi.SayHookActionPrompt | undefined;
-    /** This is the message to say */
-    exact?: Record<string, unknown> | undefined;
 }

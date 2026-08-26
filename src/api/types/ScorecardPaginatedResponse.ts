@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of scorecards and metadata describing the result set.
+ */
 export interface ScorecardPaginatedResponse {
+    /** The scorecards returned for the current page. */
     results: Vapi.Scorecard[];
+    /** Pagination metadata for the scorecard result set. */
     metadata: Vapi.PaginationMeta;
 }

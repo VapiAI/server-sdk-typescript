@@ -15,5 +15,6 @@ export interface ProviderResourceControllerUpdateProviderResourceRequest {
     provider: Vapi.ProviderResourceControllerUpdateProviderResourceRequestProvider;
     /** The resource name (e.g., pronunciation-dictionary) */
     resourceName: Vapi.ProviderResourceControllerUpdateProviderResourceRequestResourceName;
+    /** The unique identifier of the provider resource. */
     id: string;
 }

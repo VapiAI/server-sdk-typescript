@@ -105,9 +105,9 @@ export interface Subscription {
     /** This is the ID for the Common Paper agreement outlining the PCI contract. */
     pciCommonPaperAgreementId?: string | undefined;
     /** This is the call retention days for the subscription. */
-    callRetentionDays?: number | undefined;
+    callRetentionDays?: (number | null) | undefined;
     /** This is the chat retention days for the subscription. */
-    chatRetentionDays?: number | undefined;
+    chatRetentionDays?: (number | null) | undefined;
     /** This is the minutes_included reset frequency for the subscription. */
     minutesIncludedResetFrequency?: Vapi.SubscriptionMinutesIncludedResetFrequency | undefined;
     /** This is the Role Based Access Control (RBAC) enabled flag for the subscription. */

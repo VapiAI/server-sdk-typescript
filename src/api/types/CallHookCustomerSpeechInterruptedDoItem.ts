@@ -19,4 +19,9 @@ export namespace CallHookCustomerSpeechInterruptedDoItem {
     export interface MessageAdd extends Vapi.MessageAddHookAction {
         type: "message.add";
     }
+
+    export type Response =
+        | Vapi.CallHookCustomerSpeechInterruptedDoItem.Say
+        | Vapi.CallHookCustomerSpeechInterruptedDoItem.Tool
+        | Vapi.CallHookCustomerSpeechInterruptedDoItem.MessageAdd;
 }

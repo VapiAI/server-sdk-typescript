@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for signing outbound requests with an HMAC secret, including algorithm, headers, payload format, and signature encoding.
+ */
 export interface HmacAuthenticationPlan {
     /** This is the HMAC secret key used to sign requests. */
     secretKey: string;

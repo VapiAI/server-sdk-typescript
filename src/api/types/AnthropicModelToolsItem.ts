@@ -119,4 +119,29 @@ export namespace AnthropicModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.AnthropicModelToolsItem.ApiRequest
+        | Vapi.AnthropicModelToolsItem.Bash
+        | Vapi.AnthropicModelToolsItem.Code
+        | Vapi.AnthropicModelToolsItem.Computer
+        | Vapi.AnthropicModelToolsItem.Dtmf
+        | Vapi.AnthropicModelToolsItem.EndCall
+        | Vapi.AnthropicModelToolsItem.Function
+        | Vapi.AnthropicModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.AnthropicModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.AnthropicModelToolsItem.GohighlevelContactCreate
+        | Vapi.AnthropicModelToolsItem.GohighlevelContactGet
+        | Vapi.AnthropicModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.AnthropicModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.AnthropicModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.AnthropicModelToolsItem.Handoff
+        | Vapi.AnthropicModelToolsItem.Mcp
+        | Vapi.AnthropicModelToolsItem.Query
+        | Vapi.AnthropicModelToolsItem.SlackMessageSend
+        | Vapi.AnthropicModelToolsItem.Sms
+        | Vapi.AnthropicModelToolsItem.TextEditor
+        | Vapi.AnthropicModelToolsItem.TransferCall
+        | Vapi.AnthropicModelToolsItem.SipRequest
+        | Vapi.AnthropicModelToolsItem.Voicemail;
 }

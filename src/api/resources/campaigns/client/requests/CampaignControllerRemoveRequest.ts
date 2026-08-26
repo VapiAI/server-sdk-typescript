@@ -7,5 +7,6 @@
  *     }
  */
 export interface CampaignControllerRemoveRequest {
+    /** The unique identifier of the campaign. */
     id: string;
 }

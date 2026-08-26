@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Evaluates an assistant message using case-insensitive exact content matching and expected tool calls.
+ */
 export interface AssistantMessageJudgePlanExact {
     /**
      * This is what that will be used to evaluate the model's message content.

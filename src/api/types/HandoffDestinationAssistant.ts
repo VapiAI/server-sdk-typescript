@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Routes a handoff to a saved or transient assistant, with optional context engineering, variable extraction, and assistant overrides.
+ */
 export interface HandoffDestinationAssistant {
+    /** Selects an assistant as the handoff destination. */
     type: Vapi.HandoffDestinationAssistantType;
     /** This is the plan for manipulating the message context before handing off the call to the next assistant. */
     contextEngineeringPlan?: Vapi.HandoffDestinationAssistantContextEngineeringPlan | undefined;

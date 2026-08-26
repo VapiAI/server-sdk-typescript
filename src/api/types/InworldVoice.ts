@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with Inworld, including voice and model selection, language, temperature, speaking rate, chunking, caching, and fallback settings.
+ */
 export interface InworldVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

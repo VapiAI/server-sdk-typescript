@@ -119,4 +119,29 @@ export namespace GroqModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.GroqModelToolsItem.ApiRequest
+        | Vapi.GroqModelToolsItem.Bash
+        | Vapi.GroqModelToolsItem.Code
+        | Vapi.GroqModelToolsItem.Computer
+        | Vapi.GroqModelToolsItem.Dtmf
+        | Vapi.GroqModelToolsItem.EndCall
+        | Vapi.GroqModelToolsItem.Function
+        | Vapi.GroqModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.GroqModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.GroqModelToolsItem.GohighlevelContactCreate
+        | Vapi.GroqModelToolsItem.GohighlevelContactGet
+        | Vapi.GroqModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.GroqModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.GroqModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.GroqModelToolsItem.Handoff
+        | Vapi.GroqModelToolsItem.Mcp
+        | Vapi.GroqModelToolsItem.Query
+        | Vapi.GroqModelToolsItem.SlackMessageSend
+        | Vapi.GroqModelToolsItem.Sms
+        | Vapi.GroqModelToolsItem.TextEditor
+        | Vapi.GroqModelToolsItem.TransferCall
+        | Vapi.GroqModelToolsItem.SipRequest
+        | Vapi.GroqModelToolsItem.Voicemail;
 }

@@ -12,6 +12,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdatePhoneNumbersRequest {
+    /** The unique identifier of the phone number. */
     id: string;
     body: Vapi.UpdatePhoneNumbersRequestBody;
 }

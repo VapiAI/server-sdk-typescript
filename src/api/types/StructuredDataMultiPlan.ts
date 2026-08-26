@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Associates a catalog key with a structured data extraction plan.
+ */
 export interface StructuredDataMultiPlan {
     /** This is the key of the structured data plan in the catalog. */
     key: string;

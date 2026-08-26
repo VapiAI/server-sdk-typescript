@@ -21,7 +21,8 @@ export type UpdateAssistantDtoModel =
     | Vapi.UpdateAssistantDtoModel.Openrouter
     | Vapi.UpdateAssistantDtoModel.PerplexityAi
     | Vapi.UpdateAssistantDtoModel.TogetherAi
-    | Vapi.UpdateAssistantDtoModel.Xai;
+    | Vapi.UpdateAssistantDtoModel.Xai
+    | Vapi.UpdateAssistantDtoModel.Vapi;
 
 export namespace UpdateAssistantDtoModel {
     export interface Anthropic extends Vapi.AnthropicModel {
@@ -87,4 +88,30 @@ export namespace UpdateAssistantDtoModel {
     export interface Xai extends Vapi.XaiModel {
         provider: "xai";
     }
+
+    export interface Vapi extends Vapi.VapiModel {
+        provider: "vapi";
+    }
+
+    /**
+     * These are the options for the assistant's LLM.
+     */
+    export type Response =
+        | Vapi.UpdateAssistantDtoModel.Anthropic
+        | Vapi.UpdateAssistantDtoModel.AnthropicBedrock
+        | Vapi.UpdateAssistantDtoModel.Anyscale
+        | Vapi.UpdateAssistantDtoModel.Cerebras
+        | Vapi.UpdateAssistantDtoModel.CustomLlm
+        | Vapi.UpdateAssistantDtoModel.Deepinfra
+        | Vapi.UpdateAssistantDtoModel.DeepSeek
+        | Vapi.UpdateAssistantDtoModel.Google
+        | Vapi.UpdateAssistantDtoModel.Groq
+        | Vapi.UpdateAssistantDtoModel.InflectionAi
+        | Vapi.UpdateAssistantDtoModel.Minimax
+        | Vapi.UpdateAssistantDtoModel.Openai
+        | Vapi.UpdateAssistantDtoModel.Openrouter
+        | Vapi.UpdateAssistantDtoModel.PerplexityAi
+        | Vapi.UpdateAssistantDtoModel.TogetherAi
+        | Vapi.UpdateAssistantDtoModel.Xai
+        | Vapi.UpdateAssistantDtoModel.Vapi;
 }

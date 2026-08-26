@@ -9,6 +9,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateSessionDto {
+    /** The unique identifier for the resource. */
     id: string;
     /** This is the new name for the session. Maximum length is 40 characters. */
     name?: string;

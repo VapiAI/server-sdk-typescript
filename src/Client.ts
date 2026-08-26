@@ -2,16 +2,23 @@
 
 import { AnalyticsClient } from "./api/resources/analytics/client/Client.js";
 import { AssistantsClient } from "./api/resources/assistants/client/Client.js";
+import { BoardClient } from "./api/resources/board/client/Client.js";
 import { CallsClient } from "./api/resources/calls/client/Client.js";
 import { CampaignsClient } from "./api/resources/campaigns/client/Client.js";
 import { ChatsClient } from "./api/resources/chats/client/Client.js";
 import { EvalClient } from "./api/resources/eval/client/Client.js";
 import { FilesClient } from "./api/resources/files/client/Client.js";
 import { InsightClient } from "./api/resources/insight/client/Client.js";
+import { KnowledgeBasesV2Client } from "./api/resources/knowledgeBasesV2/client/Client.js";
 import { ObservabilityScorecardClient } from "./api/resources/observabilityScorecard/client/Client.js";
 import { PhoneNumbersClient } from "./api/resources/phoneNumbers/client/Client.js";
 import { ProviderResourcesClient } from "./api/resources/providerResources/client/Client.js";
 import { SessionsClient } from "./api/resources/sessions/client/Client.js";
+import { SimulationPersonalitiesClient } from "./api/resources/simulationPersonalities/client/Client.js";
+import { SimulationRunsClient } from "./api/resources/simulationRuns/client/Client.js";
+import { SimulationScenariosClient } from "./api/resources/simulationScenarios/client/Client.js";
+import { SimulationSuitesClient } from "./api/resources/simulationSuites/client/Client.js";
+import { SimulationsClient } from "./api/resources/simulations/client/Client.js";
 import { SquadsClient } from "./api/resources/squads/client/Client.js";
 import { StructuredOutputsClient } from "./api/resources/structuredOutputs/client/Client.js";
 import { ToolsClient } from "./api/resources/tools/client/Client.js";
@@ -36,8 +43,15 @@ export class VapiClient {
     protected _phoneNumbers: PhoneNumbersClient | undefined;
     protected _tools: ToolsClient | undefined;
     protected _files: FilesClient | undefined;
+    protected _knowledgeBasesV2: KnowledgeBasesV2Client | undefined;
     protected _structuredOutputs: StructuredOutputsClient | undefined;
+    protected _simulationPersonalities: SimulationPersonalitiesClient | undefined;
+    protected _simulationScenarios: SimulationScenariosClient | undefined;
+    protected _simulationRuns: SimulationRunsClient | undefined;
+    protected _simulationSuites: SimulationSuitesClient | undefined;
+    protected _simulations: SimulationsClient | undefined;
     protected _insight: InsightClient | undefined;
+    protected _board: BoardClient | undefined;
     protected _eval: EvalClient | undefined;
     protected _observabilityScorecard: ObservabilityScorecardClient | undefined;
     protected _providerResources: ProviderResourcesClient | undefined;
@@ -83,12 +97,40 @@ export class VapiClient {
         return (this._files ??= new FilesClient(this._options));
     }
 
+    public get knowledgeBasesV2(): KnowledgeBasesV2Client {
+        return (this._knowledgeBasesV2 ??= new KnowledgeBasesV2Client(this._options));
+    }
+
     public get structuredOutputs(): StructuredOutputsClient {
         return (this._structuredOutputs ??= new StructuredOutputsClient(this._options));
     }
 
+    public get simulationPersonalities(): SimulationPersonalitiesClient {
+        return (this._simulationPersonalities ??= new SimulationPersonalitiesClient(this._options));
+    }
+
+    public get simulationScenarios(): SimulationScenariosClient {
+        return (this._simulationScenarios ??= new SimulationScenariosClient(this._options));
+    }
+
+    public get simulationRuns(): SimulationRunsClient {
+        return (this._simulationRuns ??= new SimulationRunsClient(this._options));
+    }
+
+    public get simulationSuites(): SimulationSuitesClient {
+        return (this._simulationSuites ??= new SimulationSuitesClient(this._options));
+    }
+
+    public get simulations(): SimulationsClient {
+        return (this._simulations ??= new SimulationsClient(this._options));
+    }
+
     public get insight(): InsightClient {
         return (this._insight ??= new InsightClient(this._options));
+    }
+
+    public get board(): BoardClient {
+        return (this._board ??= new BoardClient(this._options));
     }
 
     public get eval(): EvalClient {

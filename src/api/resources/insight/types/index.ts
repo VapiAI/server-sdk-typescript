@@ -1,5 +1,6 @@
 export * from "./InsightControllerCreateRequest.js";
 export * from "./InsightControllerCreateResponse.js";
+export * from "./InsightControllerFindAllRequestSortBy.js";
 export * from "./InsightControllerFindAllRequestSortOrder.js";
 export * from "./InsightControllerFindOneResponse.js";
 export * from "./InsightControllerPreviewRequest.js";

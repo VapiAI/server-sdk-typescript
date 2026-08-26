@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Compliance information captured for a call, including recording consent.
+ */
 export interface Compliance {
     /** This is the recording consent of the call. Configure in `assistant.compliancePlan.recordingConsentPlan`. */
     recordingConsent?: Vapi.RecordingConsent | undefined;

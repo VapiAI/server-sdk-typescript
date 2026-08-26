@@ -23,6 +23,8 @@ export class InsightClient {
     }
 
     /**
+     * Returns saved reporting insights for the authenticated organization. Filter results by ID or creation and update timestamps.
+     *
      * @param {Vapi.InsightControllerFindAllRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -44,6 +46,7 @@ export class InsightClient {
             id,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -58,6 +61,7 @@ export class InsightClient {
             id,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -106,6 +110,8 @@ export class InsightClient {
     }
 
     /**
+     * Creates a saved reporting insight that queries call data and presents the results as a bar chart, pie chart, line chart, or text value.
+     *
      * @param {Vapi.InsightControllerCreateRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -172,6 +178,8 @@ export class InsightClient {
     }
 
     /**
+     * Returns the reporting insight identified by its ID.
+     *
      * @param {Vapi.InsightControllerFindOneRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -233,6 +241,8 @@ export class InsightClient {
     }
 
     /**
+     * Deletes the reporting insight identified by its ID.
+     *
      * @param {Vapi.InsightControllerRemoveRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -291,6 +301,8 @@ export class InsightClient {
     }
 
     /**
+     * Updates the reporting insight identified by its ID.
+     *
      * @param {Vapi.InsightControllerUpdateRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -355,6 +367,8 @@ export class InsightClient {
     }
 
     /**
+     * Runs a saved reporting insight, optionally overriding its time range and response format.
+     *
      * @param {Vapi.InsightRunDto} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -416,6 +430,8 @@ export class InsightClient {
     }
 
     /**
+     * Runs an insight definition without first saving it, returning a preview of the resulting chart or text value.
+     *
      * @param {Vapi.InsightControllerPreviewRequest} request
      * @param {InsightClient.RequestOptions} requestOptions - Request-specific configuration.
      *

@@ -7,5 +7,6 @@
  *     }
  */
 export interface EvalControllerGetRequest {
+    /** The unique identifier of the eval definition. */
     id: string;
 }

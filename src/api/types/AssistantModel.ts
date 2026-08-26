@@ -21,7 +21,8 @@ export type AssistantModel =
     | Vapi.AssistantModel.Openrouter
     | Vapi.AssistantModel.PerplexityAi
     | Vapi.AssistantModel.TogetherAi
-    | Vapi.AssistantModel.Xai;
+    | Vapi.AssistantModel.Xai
+    | Vapi.AssistantModel.Vapi;
 
 export namespace AssistantModel {
     export interface Anthropic extends Vapi.AnthropicModel {
@@ -87,4 +88,30 @@ export namespace AssistantModel {
     export interface Xai extends Vapi.XaiModel {
         provider: "xai";
     }
+
+    export interface Vapi extends Vapi.VapiModel {
+        provider: "vapi";
+    }
+
+    /**
+     * These are the options for the assistant's LLM.
+     */
+    export type Response =
+        | Vapi.AssistantModel.Anthropic
+        | Vapi.AssistantModel.AnthropicBedrock
+        | Vapi.AssistantModel.Anyscale
+        | Vapi.AssistantModel.Cerebras
+        | Vapi.AssistantModel.CustomLlm
+        | Vapi.AssistantModel.Deepinfra
+        | Vapi.AssistantModel.DeepSeek
+        | Vapi.AssistantModel.Google
+        | Vapi.AssistantModel.Groq
+        | Vapi.AssistantModel.InflectionAi
+        | Vapi.AssistantModel.Minimax
+        | Vapi.AssistantModel.Openai
+        | Vapi.AssistantModel.Openrouter
+        | Vapi.AssistantModel.PerplexityAi
+        | Vapi.AssistantModel.TogetherAi
+        | Vapi.AssistantModel.Xai
+        | Vapi.AssistantModel.Vapi;
 }

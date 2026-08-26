@@ -17,19 +17,37 @@ export interface VapiModel {
      * Both `tools` and `toolIds` can be used together.
      */
     toolIds?: string[] | undefined;
+    /**
+     * These are version-pinned references to tools. Each entry pins a specific
+     * version of a tool by `(toolId, version)`. When the same `toolId` appears
+     * in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+     * `toolIds` entry is dropped at write time).
+     */
+    toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
-    provider: Vapi.VapiModelProvider;
+    /**
+     * White-label Vapi models are selected by `version`, not a model name, so
+     * `model` is optional here (the runtime already accepts a version-only Vapi
+     * payload). Overriding the required `ModelBase.model`: the declared type stays
+     * `string` to match the base (avoids TS2416) and the `= undefined!` initializer
+     * satisfies TS2612 for the field override, while `@IsOptional` +
+     * `@ApiPropertyOptional` make validation and the generated OpenAPI schema treat
+     * it as optional (so `VapiModel.required` is `['provider']`).
+     */
+    model?: string | undefined;
+    /**
+     * Vapi-managed model version (update channel). When set, this is a Vapi-managed
+     * LLM routed by the registry; when absent, this is the legacy workflow form
+     * below (`steps` / `workflow`).
+     */
+    version?: Vapi.VapiModelVersion | undefined;
     /** This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead. */
     workflowId?: string | undefined;
     /** This is the workflow that will be used for the call. To use an existing workflow, use `workflowId` instead. */
     workflow?: Vapi.WorkflowUserEditable | undefined;
-    /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
-    model: string;
-    /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
+    /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
-    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
-    maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.
      *

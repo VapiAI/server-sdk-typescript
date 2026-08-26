@@ -7,5 +7,6 @@
  *     }
  */
 export interface EvalControllerGetRunRequest {
+    /** The unique identifier of the eval run. */
     id: string;
 }

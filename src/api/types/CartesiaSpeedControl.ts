@@ -2,4 +2,7 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Speaking-speed control expressed as a preset or a value from -1 to 1.
+ */
 export type CartesiaSpeedControl = Vapi.CartesiaSpeedControlZero | number;

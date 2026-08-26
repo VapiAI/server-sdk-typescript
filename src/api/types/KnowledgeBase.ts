@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A knowledge-base configuration, including its provider, model, description, and associated files.
+ */
 export interface KnowledgeBase {
     /** The name of the knowledge base */
     name: string;

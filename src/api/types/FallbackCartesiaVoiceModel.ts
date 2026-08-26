@@ -2,6 +2,8 @@
 
 /** This is the model that will be used. This is optional and will default to the correct model for the voiceId. */
 export const FallbackCartesiaVoiceModel = {
+    Sonic35: "sonic-3.5",
+    Sonic3520260504: "sonic-3.5-2026-05-04",
     Sonic3: "sonic-3",
     Sonic320260112: "sonic-3-2026-01-12",
     Sonic320251027: "sonic-3-2025-10-27",

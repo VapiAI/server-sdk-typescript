@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with AssemblyAI, including language, streaming model, endpointing, vocabulary, and fallback settings.
+ */
 export interface AssemblyAiTranscriber {
     /** This is the language that will be set for the transcription. */
     language?: Vapi.AssemblyAiTranscriberLanguage | undefined;
@@ -48,8 +51,21 @@ export interface AssemblyAiTranscriber {
      */
     vadAssistedEndpointingEnabled?: boolean | undefined;
     /**
+     * This is the transcription mode used by the `universal-3-5-pro` speech model. Only applies to the `universal-3-5-pro` speech model.
+     *
+     * @default 'balanced'
+     */
+    mode?: Vapi.AssemblyAiTranscriberMode | undefined;
+    /** This is a prompt that provides additional context to the transcription model. Only applies to the `universal-3-5-pro` speech model. */
+    prompt?: string | undefined;
+    /** This is context about the voice agent that guides the transcription model. Only applies to the `universal-3-5-pro` speech model. */
+    agentContext?: string | undefined;
+    /** These are language codes used to steer automatic language detection. Only applies to the `universal-3-5-pro` speech model. */
+    languageCodes?: Vapi.AssemblyAiTranscriberLanguageCodesItem[] | undefined;
+    /**
      * This is the speech model used for the streaming session.
-     * Note: Keyterms prompting is not supported with multilingual streaming.
+     * Keyterms prompting is supported on universal-streaming-english and universal-3-5-pro.
+     * universal-3-5-pro is AssemblyAI's most accurate voice-agent model.
      * @default 'universal-streaming-english'
      */
     speechModel?: Vapi.AssemblyAiTranscriberSpeechModel | undefined;
@@ -60,7 +76,7 @@ export interface AssemblyAiTranscriber {
     /**
      * Keyterms prompting improves recognition accuracy for specific words and phrases.
      * Can include up to 100 keyterms, each up to 50 characters.
-     * Costs an additional $0.04/hour when enabled.
+     * Costs an additional $0.04/hour on universal-streaming-english and is included at no extra cost on universal-3-5-pro.
      */
     keytermsPrompt?: string[] | undefined;
     /** The duration of the end utterance silence threshold in milliseconds. */

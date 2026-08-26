@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a Telnyx phone number, including its credential, number, routing, hooks, and server settings.
+ */
 export interface UpdateTelnyxPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

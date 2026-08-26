@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a bar-chart insight from call data using metric queries, formulas, grouping, and a stepped time range.
+ */
 export interface CreateBarInsightFromCallTableDto {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -25,6 +28,7 @@ export interface CreateBarInsightFromCallTableDto {
     formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
     metadata?: Vapi.BarInsightMetadata | undefined;
+    /** The time range and interval used to aggregate the bar-chart data. */
     timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.

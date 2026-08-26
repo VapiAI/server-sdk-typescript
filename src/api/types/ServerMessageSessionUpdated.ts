@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ServerMessageSessionUpdated {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ServerMessageSessionUpdatedPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "session.updated" is sent when a session is updated. */
     type: Vapi.ServerMessageSessionUpdatedType;
     /** This is the timestamp of the message. */

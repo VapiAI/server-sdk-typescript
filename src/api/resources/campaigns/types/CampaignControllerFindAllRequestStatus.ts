@@ -4,6 +4,8 @@ export const CampaignControllerFindAllRequestStatus = {
     Scheduled: "scheduled",
     InProgress: "in-progress",
     Ended: "ended",
+    Cancelled: "cancelled",
+    Archived: "archived",
 } as const;
 export type CampaignControllerFindAllRequestStatus =
     (typeof CampaignControllerFindAllRequestStatus)[keyof typeof CampaignControllerFindAllRequestStatus];

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with ElevenLabs, including voice and model selection, language, voice tuning, streaming, Speech Synthesis Markup Language parsing, pronunciation dictionaries, chunking, caching, and fallback settings.
+ */
 export interface ElevenLabsVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

@@ -17,7 +17,9 @@ export type AssistantTranscriber =
     | Vapi.AssistantTranscriber.Talkscriber
     | Vapi.AssistantTranscriber.Openai
     | Vapi.AssistantTranscriber.Cartesia
-    | Vapi.AssistantTranscriber.Soniox;
+    | Vapi.AssistantTranscriber.Soniox
+    | Vapi.AssistantTranscriber.Xai
+    | Vapi.AssistantTranscriber.Vapi;
 
 export namespace AssistantTranscriber {
     export interface AssemblyAi extends Vapi.AssemblyAiTranscriber {
@@ -66,5 +68,13 @@ export namespace AssistantTranscriber {
 
     export interface Soniox extends Vapi.SonioxTranscriber {
         provider: "soniox";
+    }
+
+    export interface Xai extends Vapi.XaiTranscriber {
+        provider: "xai";
+    }
+
+    export interface Vapi extends Vapi.VapiTranscriber {
+        provider: "vapi";
     }
 }

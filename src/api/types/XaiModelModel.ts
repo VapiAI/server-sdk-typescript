@@ -7,5 +7,8 @@ export const XaiModelModel = {
     Grok3: "grok-3",
     Grok4FastReasoning: "grok-4-fast-reasoning",
     Grok4FastNonReasoning: "grok-4-fast-non-reasoning",
+    Grok4200309Reasoning: "grok-4.20-0309-reasoning",
+    Grok4200309NonReasoning: "grok-4.20-0309-non-reasoning",
+    Grok43: "grok-4.3",
 } as const;
 export type XaiModelModel = (typeof XaiModelModel)[keyof typeof XaiModelModel];

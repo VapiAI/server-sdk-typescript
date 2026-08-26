@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Aggregated call costs and usage, including transport, transcription, model, voice, Vapi, analysis, token, and character totals.
+ */
 export interface CostBreakdown {
     /** This is the cost of the transport provider, like Twilio or Vonage. */
     transport?: number | undefined;

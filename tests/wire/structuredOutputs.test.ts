@@ -13,8 +13,12 @@ describe("StructuredOutputsClient", () => {
                 {
                     type: "ai",
                     regex: "regex",
-                    model: { provider: "openai", model: "gpt-5.4" },
+                    model: { provider: "openai", model: "gpt-5.6-sol" },
                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                    conditions: [
+                        { type: "minMessages", count: 4 },
+                        { type: "minCallDuration", seconds: 10 },
+                    ],
                     id: "id",
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
@@ -30,6 +34,10 @@ describe("StructuredOutputsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -46,11 +54,21 @@ describe("StructuredOutputsClient", () => {
                     regex: "regex",
                     model: {
                         provider: "openai",
-                        model: "gpt-5.4",
+                        model: "gpt-5.6-sol",
                     },
                     compliancePlan: {
                         forceStoreOnHipaaEnabled: false,
                     },
+                    conditions: [
+                        {
+                            type: "minMessages",
+                            count: 4,
+                        },
+                        {
+                            type: "minCallDuration",
+                            seconds: 10,
+                        },
+                    ],
                     id: "id",
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
@@ -68,6 +86,10 @@ describe("StructuredOutputsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -82,8 +104,18 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             type: "ai",
             regex: "regex",
-            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
+            model: {
+                provider: "openai",
+                messages: [{ content: null, role: "assistant" }],
+                model: "gpt-5.6-sol",
+                temperature: 1.1,
+                maxTokens: 1.1,
+            },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
+            conditions: [
+                { type: "minMessages", count: 4 },
+                { type: "minCallDuration", seconds: 10 },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -123,13 +155,29 @@ describe("StructuredOutputsClient", () => {
             regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.4",
+                messages: [
+                    {
+                        content: null,
+                        role: "assistant",
+                    },
+                ],
+                model: "gpt-5.6-sol",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
             compliancePlan: {
                 forceStoreOnHipaaEnabled: false,
             },
+            conditions: [
+                {
+                    type: "minMessages",
+                    count: 4,
+                },
+                {
+                    type: "minCallDuration",
+                    seconds: 10,
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -157,8 +205,18 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             type: "ai",
             regex: "regex",
-            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
+            model: {
+                provider: "openai",
+                messages: [{ content: null, role: "assistant" }],
+                model: "gpt-5.6-sol",
+                temperature: 1.1,
+                maxTokens: 1.1,
+            },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
+            conditions: [
+                { type: "minMessages", count: 4 },
+                { type: "minCallDuration", seconds: 10 },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -194,13 +252,29 @@ describe("StructuredOutputsClient", () => {
             regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.4",
+                messages: [
+                    {
+                        content: null,
+                        role: "assistant",
+                    },
+                ],
+                model: "gpt-5.6-sol",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
             compliancePlan: {
                 forceStoreOnHipaaEnabled: false,
             },
+            conditions: [
+                {
+                    type: "minMessages",
+                    count: 4,
+                },
+                {
+                    type: "minCallDuration",
+                    seconds: 10,
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -228,8 +302,18 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             type: "ai",
             regex: "regex",
-            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
+            model: {
+                provider: "openai",
+                messages: [{ content: null, role: "assistant" }],
+                model: "gpt-5.6-sol",
+                temperature: 1.1,
+                maxTokens: 1.1,
+            },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
+            conditions: [
+                { type: "minMessages", count: 4 },
+                { type: "minCallDuration", seconds: 10 },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -265,13 +349,29 @@ describe("StructuredOutputsClient", () => {
             regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.4",
+                messages: [
+                    {
+                        content: null,
+                        role: "assistant",
+                    },
+                ],
+                model: "gpt-5.6-sol",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
             compliancePlan: {
                 forceStoreOnHipaaEnabled: false,
             },
+            conditions: [
+                {
+                    type: "minMessages",
+                    count: 4,
+                },
+                {
+                    type: "minCallDuration",
+                    seconds: 10,
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -299,8 +399,18 @@ describe("StructuredOutputsClient", () => {
         const rawResponseBody = {
             type: "ai",
             regex: "regex",
-            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
+            model: {
+                provider: "openai",
+                messages: [{ content: null, role: "assistant" }],
+                model: "gpt-5.6-sol",
+                temperature: 1.1,
+                maxTokens: 1.1,
+            },
             compliancePlan: { forceStoreOnHipaaEnabled: false },
+            conditions: [
+                { type: "minMessages", count: 4 },
+                { type: "minCallDuration", seconds: 10 },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -338,13 +448,29 @@ describe("StructuredOutputsClient", () => {
             regex: "regex",
             model: {
                 provider: "openai",
-                model: "gpt-5.4",
+                messages: [
+                    {
+                        content: null,
+                        role: "assistant",
+                    },
+                ],
+                model: "gpt-5.6-sol",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
             compliancePlan: {
                 forceStoreOnHipaaEnabled: false,
             },
+            conditions: [
+                {
+                    type: "minMessages",
+                    count: 4,
+                },
+                {
+                    type: "minCallDuration",
+                    seconds: 10,
+                },
+            ],
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -370,27 +496,7 @@ describe("StructuredOutputsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { callIds: ["callIds"] };
         const rawResponseBody = {
-            type: "ai",
-            regex: "regex",
-            model: { provider: "openai", model: "gpt-5.4", temperature: 1.1, maxTokens: 1.1 },
-            compliancePlan: { forceStoreOnHipaaEnabled: false },
-            id: "id",
-            orgId: "orgId",
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-            name: "name",
-            description: "description",
-            assistantIds: ["assistantIds"],
-            workflowIds: ["workflowIds"],
-            schema: {
-                type: "string",
-                description: "description",
-                pattern: "pattern",
-                format: "date-time",
-                required: ["required"],
-                enum: ["enum"],
-                title: "title",
-            },
+            skipped: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
         };
 
         server
@@ -406,33 +512,14 @@ describe("StructuredOutputsClient", () => {
             callIds: ["callIds"],
         });
         expect(response).toEqual({
-            type: "ai",
-            regex: "regex",
-            model: {
-                provider: "openai",
-                model: "gpt-5.4",
-                temperature: 1.1,
-                maxTokens: 1.1,
-            },
-            compliancePlan: {
-                forceStoreOnHipaaEnabled: false,
-            },
-            id: "id",
-            orgId: "orgId",
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-            name: "name",
-            description: "description",
-            assistantIds: ["assistantIds"],
-            workflowIds: ["workflowIds"],
-            schema: {
-                type: "string",
-                description: "description",
-                pattern: "pattern",
-                format: "date-time",
-                required: ["required"],
-                enum: ["enum"],
-                title: "title",
+            skipped: {
+                key: {
+                    name: "name",
+                    unmetCondition: {
+                        type: "minMessages",
+                        count: 4,
+                    },
+                },
             },
         });
     });

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Supabase S3-compatible bucket configuration for call artifacts, including region, endpoint, access keys, bucket name, and path.
+ */
 export interface SupabaseBucketPlan {
     /**
      * This is the S3 Region. It should look like us-east-1

@@ -2,11 +2,15 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A workflow node that invokes an inline tool or an existing saved tool.
+ */
 export interface ToolNode {
     /** This is the tool to call. To use an existing tool, send `toolId` instead. */
     tool?: Vapi.ToolNodeTool | undefined;
     /** This is the tool to call. To use a transient tool, send `tool` instead. */
     toolId?: string | undefined;
+    /** Unique name used to identify this workflow node. */
     name: string;
     /** This is whether or not the node is the start of the workflow. */
     isStart?: boolean | undefined;

@@ -119,4 +119,29 @@ export namespace InflectionAiModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.InflectionAiModelToolsItem.ApiRequest
+        | Vapi.InflectionAiModelToolsItem.Bash
+        | Vapi.InflectionAiModelToolsItem.Code
+        | Vapi.InflectionAiModelToolsItem.Computer
+        | Vapi.InflectionAiModelToolsItem.Dtmf
+        | Vapi.InflectionAiModelToolsItem.EndCall
+        | Vapi.InflectionAiModelToolsItem.Function
+        | Vapi.InflectionAiModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.InflectionAiModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.InflectionAiModelToolsItem.GohighlevelContactCreate
+        | Vapi.InflectionAiModelToolsItem.GohighlevelContactGet
+        | Vapi.InflectionAiModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.InflectionAiModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.InflectionAiModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.InflectionAiModelToolsItem.Handoff
+        | Vapi.InflectionAiModelToolsItem.Mcp
+        | Vapi.InflectionAiModelToolsItem.Query
+        | Vapi.InflectionAiModelToolsItem.SlackMessageSend
+        | Vapi.InflectionAiModelToolsItem.Sms
+        | Vapi.InflectionAiModelToolsItem.TextEditor
+        | Vapi.InflectionAiModelToolsItem.TransferCall
+        | Vapi.InflectionAiModelToolsItem.SipRequest
+        | Vapi.InflectionAiModelToolsItem.Voicemail;
 }

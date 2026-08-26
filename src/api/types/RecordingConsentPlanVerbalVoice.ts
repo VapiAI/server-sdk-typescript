@@ -24,7 +24,9 @@ export type RecordingConsentPlanVerbalVoice =
     | Vapi.RecordingConsentPlanVerbalVoice.Vapi
     | Vapi.RecordingConsentPlanVerbalVoice.Sesame
     | Vapi.RecordingConsentPlanVerbalVoice.Inworld
-    | Vapi.RecordingConsentPlanVerbalVoice.Minimax;
+    | Vapi.RecordingConsentPlanVerbalVoice.Minimax
+    | Vapi.RecordingConsentPlanVerbalVoice.Xai
+    | Vapi.RecordingConsentPlanVerbalVoice.Microsoft;
 
 export namespace RecordingConsentPlanVerbalVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -97,5 +99,13 @@ export namespace RecordingConsentPlanVerbalVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

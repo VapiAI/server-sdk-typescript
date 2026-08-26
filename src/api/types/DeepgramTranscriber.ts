@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with Deepgram, including model, language, formatting, endpointing, vocabulary, and fallback settings.
+ */
 export interface DeepgramTranscriber {
     /** This is the Deepgram model that will be used. A list of models can be found here: https://developers.deepgram.com/docs/models-languages-overview */
     model?: Vapi.DeepgramTranscriberModel | undefined;
@@ -30,13 +33,26 @@ export interface DeepgramTranscriber {
      */
     profanityFilter?: boolean | undefined;
     /**
+     * Enables redaction of sensitive information from transcripts.
+     *
+     * Options include:
+     * - "pci": Redacts credit card numbers, expiration dates, and CVV.
+     * - "pii": Redacts personally identifiable information (names, locations, identifying numbers, etc.).
+     * - "phi": Redacts protected health information (medical conditions, drugs, injuries, etc.).
+     * - "numbers": Redacts numerical and identifying entities (dates, account numbers, SSNs, etc.).
+     *
+     * Multiple values can be provided to redact different categories simultaneously.
+     * Redacted content is replaced with entity labels like [CREDIT_CARD_1], [SSN_1], etc.
+     *
+     * See https://developers.deepgram.com/docs/redaction for details.
+     */
+    redaction?: Vapi.DeepgramTranscriberRedactionItem[] | undefined;
+    /**
      * Transcripts below this confidence threshold will be discarded.
      *
      * @default 0.4
      */
     confidenceThreshold?: number | undefined;
-    /** Eager end-of-turn confidence required to fire a eager end-of-turn event. Setting a value here will enable EagerEndOfTurn and SpeechResumed events. It is disabled by default. Only used with Flux models. */
-    eagerEotThreshold?: number | undefined;
     /**
      * End-of-turn confidence required to finish a turn. Only used with Flux models.
      *
@@ -49,6 +65,12 @@ export interface DeepgramTranscriber {
      * @default 5000
      */
     eotTimeoutMs?: number | undefined;
+    /**
+     * Language hints to bias Flux Multilingual (`flux-general-multi`) toward specific languages.
+     * Provide BCP-47 language codes (e.g. "en", "es", "fr"). Multiple hints can be given for
+     * multilingual or code-switching scenarios. Omit for auto-detection. Only used with `flux-general-multi`.
+     */
+    languages?: string[] | undefined;
     /** These keywords are passed to the transcription model to help it pick up use-case specific words. Anything that may not be a common word, like your company name, should be added here. */
     keywords?: string[] | undefined;
     /** Keyterm Prompting allows you improve Keyword Recall Rate (KRR) for important keyterms or phrases up to 90%. */

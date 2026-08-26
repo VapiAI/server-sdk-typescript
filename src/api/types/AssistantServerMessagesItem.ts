@@ -28,6 +28,7 @@ export const AssistantServerMessagesItem = {
     SessionDeleted: "session.deleted",
     CallDeleted: "call.deleted",
     CallDeleteFailed: "call.delete.failed",
+    CallArtifactUpload: "call.artifact.upload",
 } as const;
 export type AssistantServerMessagesItem =
     (typeof AssistantServerMessagesItem)[keyof typeof AssistantServerMessagesItem];

@@ -21,7 +21,8 @@ export type AssistantOverridesModel =
     | Vapi.AssistantOverridesModel.Openrouter
     | Vapi.AssistantOverridesModel.PerplexityAi
     | Vapi.AssistantOverridesModel.TogetherAi
-    | Vapi.AssistantOverridesModel.Xai;
+    | Vapi.AssistantOverridesModel.Xai
+    | Vapi.AssistantOverridesModel.Vapi;
 
 export namespace AssistantOverridesModel {
     export interface Anthropic extends Vapi.AnthropicModel {
@@ -87,4 +88,30 @@ export namespace AssistantOverridesModel {
     export interface Xai extends Vapi.XaiModel {
         provider: "xai";
     }
+
+    export interface Vapi extends Vapi.VapiModel {
+        provider: "vapi";
+    }
+
+    /**
+     * These are the options for the assistant's LLM.
+     */
+    export type Response =
+        | Vapi.AssistantOverridesModel.Anthropic
+        | Vapi.AssistantOverridesModel.AnthropicBedrock
+        | Vapi.AssistantOverridesModel.Anyscale
+        | Vapi.AssistantOverridesModel.Cerebras
+        | Vapi.AssistantOverridesModel.CustomLlm
+        | Vapi.AssistantOverridesModel.Deepinfra
+        | Vapi.AssistantOverridesModel.DeepSeek
+        | Vapi.AssistantOverridesModel.Google
+        | Vapi.AssistantOverridesModel.Groq
+        | Vapi.AssistantOverridesModel.InflectionAi
+        | Vapi.AssistantOverridesModel.Minimax
+        | Vapi.AssistantOverridesModel.Openai
+        | Vapi.AssistantOverridesModel.Openrouter
+        | Vapi.AssistantOverridesModel.PerplexityAi
+        | Vapi.AssistantOverridesModel.TogetherAi
+        | Vapi.AssistantOverridesModel.Xai
+        | Vapi.AssistantOverridesModel.Vapi;
 }

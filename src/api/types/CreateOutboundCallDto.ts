@@ -4,6 +4,13 @@ import type * as Vapi from "../index.js";
 
 export interface CreateOutboundCallDto {
     /**
+     * This is the assistant version to use for this call. Supported only with
+     * direct `assistantId`. Omit to follow the latest version.
+     */
+    assistantVersion?: (string | null) | undefined;
+    /** This is the transport of the call. */
+    transport?: Vapi.CreateOutboundCallDtoTransport | undefined;
+    /**
      * This is used to issue batch calls to multiple customers.
      *
      * Only relevant for `outboundPhoneCall`. To call a single customer, use `customer` instead.
@@ -13,8 +20,6 @@ export interface CreateOutboundCallDto {
     name?: string | undefined;
     /** This is the schedule plan of the call. */
     schedulePlan?: Vapi.SchedulePlan | undefined;
-    /** This is the transport of the call. */
-    transport?: Record<string, unknown> | undefined;
     /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
      *

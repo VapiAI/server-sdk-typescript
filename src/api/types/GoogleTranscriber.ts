@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with Google, including model, language, and fallback settings.
+ */
 export interface GoogleTranscriber {
     /** This is the model that will be used for the transcription. */
     model?: Vapi.GoogleTranscriberModel | undefined;

@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Error returned for one customer entry in a batch call request.
+ */
 export interface CallBatchError {
+    /** Customer configuration associated with the failed call. */
     customer: Vapi.CreateCustomerDto;
+    /** Error message explaining why the call could not be created. */
     error: string;
 }

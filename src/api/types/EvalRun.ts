@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A record of an eval execution, including its target, status, results, costs, completion details, and lifecycle timestamps.
+ */
 export interface EvalRun {
     /**
      * This is the status of the eval run. When an eval run is created, the status is 'running'.
@@ -21,10 +24,15 @@ export interface EvalRun {
     eval?: Vapi.CreateEvalDto | undefined;
     /** This is the target that will be run against the eval */
     target: Vapi.EvalRunTarget;
+    /** The unique identifier for the eval run. */
     id: string;
+    /** The unique identifier for the organization that owns the run. */
     orgId: string;
+    /** The ISO 8601 timestamp when the eval run was created. */
     createdAt: string;
+    /** The ISO 8601 timestamp when the eval run started. */
     startedAt: string;
+    /** The ISO 8601 timestamp when the eval run ended. */
     endedAt: string;
     /** This is the ended message when the eval run ended for any reason apart from mockConversation.done */
     endedMessage?: string | undefined;

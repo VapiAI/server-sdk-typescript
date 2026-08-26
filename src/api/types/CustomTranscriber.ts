@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for sending conversation audio to a custom WebSocket transcription server.
+ */
 export interface CustomTranscriber {
     /**
      * This is where the transcription request will be sent.

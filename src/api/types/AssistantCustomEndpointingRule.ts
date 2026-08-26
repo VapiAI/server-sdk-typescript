@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A custom endpointing rule that matches the assistant's last message and applies a configured timeout.
+ */
 export interface AssistantCustomEndpointingRule {
     /**
      * This is the regex pattern to match.

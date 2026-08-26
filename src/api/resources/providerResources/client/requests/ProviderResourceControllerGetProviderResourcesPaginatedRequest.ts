@@ -14,12 +14,16 @@ export interface ProviderResourceControllerGetProviderResourcesPaginatedRequest 
     provider: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequestProvider;
     /** The resource name (e.g., pronunciation-dictionary) */
     resourceName: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequestResourceName;
+    /** Filters provider resources by their resource ID. */
     id?: string;
+    /** Filters provider resources by their provider-specific resource ID. */
     resourceId?: string;
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

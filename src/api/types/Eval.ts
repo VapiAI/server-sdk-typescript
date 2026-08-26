@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved eval definition containing its mock conversation, checkpoints, descriptive metadata, type, and lifecycle information.
+ */
 export interface Eval {
     /**
      * This is the mock conversation that will be used to evaluate the flow of the conversation.
@@ -11,9 +14,13 @@ export interface Eval {
      * Evaluation Messages are used as checkpoints in the flow where the model's response to previous conversation needs to be evaluated to check the content and tool calls
      */
     messages: Vapi.EvalMessagesItem[];
+    /** The unique identifier for the eval. */
     id: string;
+    /** The unique identifier for the organization that owns the eval. */
     orgId: string;
+    /** The ISO 8601 timestamp when the eval was created. */
     createdAt: string;
+    /** The ISO 8601 timestamp when the eval was last updated. */
     updatedAt: string;
     /**
      * This is the name of the eval.

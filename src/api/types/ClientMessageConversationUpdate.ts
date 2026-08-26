@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ClientMessageConversationUpdate {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ClientMessageConversationUpdatePhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "conversation-update" is sent when an update is committed to the conversation history. */
     type: Vapi.ClientMessageConversationUpdateType;
     /** This is the most up-to-date conversation history at the time the message is sent. */

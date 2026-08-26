@@ -39,4 +39,6 @@ export type ServerMessageMessage =
     | Vapi.ServerMessageSessionUpdated
     | Vapi.ServerMessageSessionDeleted
     | Vapi.ServerMessageCallDeleted
-    | Vapi.ServerMessageCallDeleteFailed;
+    | Vapi.ServerMessageCallDeleteFailed
+    | Vapi.ServerMessageCallArtifactUpload
+    | Vapi.ServerMessageCampaignPredial;

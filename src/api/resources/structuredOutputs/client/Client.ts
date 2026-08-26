@@ -23,6 +23,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Returns structured-output definitions for the authenticated organization. Filter results by ID, name, or creation and update timestamps.
+     *
      * @param {Vapi.StructuredOutputControllerFindAllRequest} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -45,6 +47,7 @@ export class StructuredOutputsClient {
             name,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -60,6 +63,7 @@ export class StructuredOutputsClient {
             name,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -111,6 +115,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Creates a reusable definition for extracting validated data from conversations using an AI model or regular expression.
+     *
      * @param {Vapi.CreateStructuredOutputDto} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -174,6 +180,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Returns the structured-output definition identified by its ID.
+     *
      * @param {Vapi.StructuredOutputControllerFindOneRequest} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -232,6 +240,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Deletes the structured-output definition identified by its ID.
+     *
      * @param {Vapi.StructuredOutputControllerRemoveRequest} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -290,6 +300,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Updates the structured-output definition identified by its ID.
+     *
      * @param {Vapi.UpdateStructuredOutputDto} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -355,6 +367,8 @@ export class StructuredOutputsClient {
     }
 
     /**
+     * Runs a saved or transient structured-output definition against one or more calls, optionally returning a preview without updating call artifacts.
+     *
      * @param {Vapi.StructuredOutputRunDto} request
      * @param {StructuredOutputsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -366,14 +380,14 @@ export class StructuredOutputsClient {
     public structuredOutputControllerRun(
         request: Vapi.StructuredOutputRunDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.StructuredOutput> {
+    ): core.HttpResponsePromise<Vapi.StructuredOutputControllerRunResponse> {
         return core.HttpResponsePromise.fromPromise(this.__structuredOutputControllerRun(request, requestOptions));
     }
 
     private async __structuredOutputControllerRun(
         request: Vapi.StructuredOutputRunDto,
         requestOptions?: StructuredOutputsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.StructuredOutput>> {
+    ): Promise<core.WithRawResponse<Vapi.StructuredOutputControllerRunResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -400,7 +414,10 @@ export class StructuredOutputsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.StructuredOutput, rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as Vapi.StructuredOutputControllerRunResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

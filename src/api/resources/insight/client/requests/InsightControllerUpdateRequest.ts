@@ -12,6 +12,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface InsightControllerUpdateRequest {
+    /** The unique identifier of the reporting insight. */
     id: string;
     body: Vapi.InsightControllerUpdateRequestBody;
 }

@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateAzureOpenAiCredentialDto {
+    provider?: Vapi.UpdateAzureOpenAiCredentialDtoProvider | undefined;
     region?: Vapi.UpdateAzureOpenAiCredentialDtoRegion | undefined;
     models?: Vapi.UpdateAzureOpenAiCredentialDtoModelsItem[] | undefined;
     /** This is not returned in the API. */

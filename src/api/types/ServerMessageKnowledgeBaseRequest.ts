@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ServerMessageKnowledgeBaseRequest {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ServerMessageKnowledgeBaseRequestPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "knowledge-base-request" is sent to request knowledge base documents. To enable, use `assistant.knowledgeBase.provider=custom-knowledge-base`. */
     type: Vapi.ServerMessageKnowledgeBaseRequestType;
     /** These are the messages that are going to be sent to the `model` right after the `knowledge-base-request` webhook completes. */

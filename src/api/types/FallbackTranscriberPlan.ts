@@ -2,6 +2,10 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Lists backup transcriber configurations that can be used if the primary transcriber fails.
+ */
 export interface FallbackTranscriberPlan {
-    transcribers: Vapi.FallbackTranscriberPlanTranscribersItem[];
+    /** Transcriber configurations available when the primary transcriber fails. */
+    transcribers?: Vapi.FallbackTranscriberPlanTranscribersItem[] | undefined;
 }

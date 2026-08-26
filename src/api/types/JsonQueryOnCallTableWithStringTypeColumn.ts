@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * VapiQL JSON query that counts values from a string-valued call-table column with optional call filters.
+ */
 export interface JsonQueryOnCallTableWithStringTypeColumn {
     /** This is the type of query. Only allowed type is "vapiql-json". */
     type: Vapi.JsonQueryOnCallTableWithStringTypeColumnType;

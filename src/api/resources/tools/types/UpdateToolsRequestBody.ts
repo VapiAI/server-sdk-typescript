@@ -7,6 +7,7 @@ export type UpdateToolsRequestBody =
     | Vapi.UpdateToolsRequestBody.Dtmf
     | Vapi.UpdateToolsRequestBody.EndCall
     | Vapi.UpdateToolsRequestBody.Function
+    | Vapi.UpdateToolsRequestBody.KnowledgeBase
     | Vapi.UpdateToolsRequestBody.TransferCall
     | Vapi.UpdateToolsRequestBody.Handoff
     | Vapi.UpdateToolsRequestBody.Bash
@@ -41,6 +42,10 @@ export namespace UpdateToolsRequestBody {
 
     export interface Function extends Vapi.UpdateFunctionToolDto {
         type: "function";
+    }
+
+    export interface KnowledgeBase extends Vapi.UpdateKnowledgeBaseToolDto {
+        type: "knowledgeBase";
     }
 
     export interface TransferCall extends Vapi.UpdateTransferCallToolDto {
@@ -114,4 +119,29 @@ export namespace UpdateToolsRequestBody {
     export interface Voicemail extends Vapi.UpdateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.UpdateToolsRequestBody.ApiRequest
+        | Vapi.UpdateToolsRequestBody.Dtmf
+        | Vapi.UpdateToolsRequestBody.EndCall
+        | Vapi.UpdateToolsRequestBody.Function
+        | Vapi.UpdateToolsRequestBody.KnowledgeBase
+        | Vapi.UpdateToolsRequestBody.TransferCall
+        | Vapi.UpdateToolsRequestBody.Handoff
+        | Vapi.UpdateToolsRequestBody.Bash
+        | Vapi.UpdateToolsRequestBody.Computer
+        | Vapi.UpdateToolsRequestBody.TextEditor
+        | Vapi.UpdateToolsRequestBody.Query
+        | Vapi.UpdateToolsRequestBody.GoogleCalendarEventCreate
+        | Vapi.UpdateToolsRequestBody.GoogleSheetsRowAppend
+        | Vapi.UpdateToolsRequestBody.GoogleCalendarAvailabilityCheck
+        | Vapi.UpdateToolsRequestBody.SlackMessageSend
+        | Vapi.UpdateToolsRequestBody.Sms
+        | Vapi.UpdateToolsRequestBody.Mcp
+        | Vapi.UpdateToolsRequestBody.GohighlevelCalendarAvailabilityCheck
+        | Vapi.UpdateToolsRequestBody.GohighlevelCalendarEventCreate
+        | Vapi.UpdateToolsRequestBody.GohighlevelContactCreate
+        | Vapi.UpdateToolsRequestBody.GohighlevelContactGet
+        | Vapi.UpdateToolsRequestBody.SipRequest
+        | Vapi.UpdateToolsRequestBody.Voicemail;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A hook action that invokes an inline tool or an existing tool when the hook triggers.
+ */
 export interface ToolCallHookAction {
     /** This is the type of action - must be "tool" */
     type: Vapi.ToolCallHookActionType;

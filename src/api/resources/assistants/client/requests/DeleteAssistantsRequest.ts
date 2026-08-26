@@ -7,5 +7,6 @@
  *     }
  */
 export interface DeleteAssistantsRequest {
+    /** The unique identifier of the assistant. */
     id: string;
 }

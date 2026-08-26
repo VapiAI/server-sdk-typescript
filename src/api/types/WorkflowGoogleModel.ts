@@ -2,7 +2,23 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Workflow model configuration for Google, including model selection, temperature, and maximum output tokens.
+ */
 export interface WorkflowGoogleModel {
+    /**
+     * These are the messages used to customize the prompt used for structured output extraction.
+     *
+     * When provided, these messages replace the default prompts. Message contents support LiquidJS templating with the following variables:
+     * - `{{transcript}}` or `{{messages}}` to reference the conversation (one is required)
+     * - `{{structuredOutput.name}}`, `{{structuredOutput.description}}`, or `{{structuredOutput.schema}}` to reference the structured output definition (one is required)
+     * - `{{systemPrompt}}`, `{{callEndedReason}}`, `{{duration}}`, `{{startedAt}}`, `{{endedAt}}`, and any `assistantOverrides.variableValues`
+     *
+     * `{{messages}}` is the full message history including tool calls; `{{transcript}}` is the spoken text only, which uses significantly fewer tokens.
+     *
+     * If not provided, default system and user prompts are used.
+     */
+    messages?: Vapi.OpenAiMessage[] | undefined;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
     model: Vapi.WorkflowGoogleModelModel;
     /** This is the temperature of the model. */

@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An AI-evaluated boolean condition that determines whether a workflow follows an edge.
+ */
 export interface AiEdgeCondition {
+    /** Selects an AI-evaluated workflow edge condition. */
     type: Vapi.AiEdgeConditionType;
     /** This is the prompt for the AI edge condition. It should evaluate to a boolean. */
     prompt: string;

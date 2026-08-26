@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateGoHighLevelMcpCredentialDto {
+    provider?: Vapi.UpdateGoHighLevelMcpCredentialDtoProvider | undefined;
     /** This is the authentication session for the credential. */
     authenticationSession?: Vapi.Oauth2AuthenticationSession | undefined;
     /** This is the name of credential. This is just for your reference. */

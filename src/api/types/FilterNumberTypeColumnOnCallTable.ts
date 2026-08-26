@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters call records by comparing a numeric field with a value.
+ */
 export interface FilterNumberTypeColumnOnCallTable {
     /**
      * This is the column in the call table that will be filtered on.

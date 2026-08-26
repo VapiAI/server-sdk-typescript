@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Associates a phone number with the customers to dial through that number in a batch call plan.
+ */
 export interface DialPlanEntry {
     /** The phone number ID to use for calling the customers in this entry. */
     phoneNumberId: string;

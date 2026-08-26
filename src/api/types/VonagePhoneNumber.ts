@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A Vonage phone number connected to Vapi, including its credential, routing, hooks, server settings, and lifecycle metadata.
+ */
 export interface VonagePhoneNumber {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

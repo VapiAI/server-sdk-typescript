@@ -23,7 +23,9 @@ export type CreateAssistantDtoVoice =
     | Vapi.CreateAssistantDtoVoice.Vapi
     | Vapi.CreateAssistantDtoVoice.Sesame
     | Vapi.CreateAssistantDtoVoice.Inworld
-    | Vapi.CreateAssistantDtoVoice.Minimax;
+    | Vapi.CreateAssistantDtoVoice.Minimax
+    | Vapi.CreateAssistantDtoVoice.Xai
+    | Vapi.CreateAssistantDtoVoice.Microsoft;
 
 export namespace CreateAssistantDtoVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -96,5 +98,13 @@ export namespace CreateAssistantDtoVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

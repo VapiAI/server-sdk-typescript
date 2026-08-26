@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A phone number connected to Vapi through a bring-your-own telephony provider, including its credential, routing, hooks, server settings, and lifecycle metadata.
+ */
 export interface ByoPhoneNumber {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

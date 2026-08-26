@@ -2,13 +2,19 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for authenticating assistant model requests with Azure OpenAI, including region, endpoint, and available models.
+ */
 export interface CreateAzureOpenAiCredentialDto {
+    /** Azure region that hosts the OpenAI resource. */
     region: Vapi.CreateAzureOpenAiCredentialDtoRegion;
+    /** Azure OpenAI models available through this credential. */
     models: Vapi.CreateAzureOpenAiCredentialDtoModelsItem[];
     /** This is not returned in the API. */
     openAIKey: string;
     /** This is not returned in the API. */
     ocpApimSubscriptionKey?: string | undefined;
+    /** Endpoint URL for the Azure OpenAI resource. */
     openAIEndpoint: string;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;

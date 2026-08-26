@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Compares a named parameter with a value using the selected comparison operator.
+ */
 export interface Condition {
     /** This is the operator you want to use to compare the parameter and value. */
     operator: Vapi.ConditionOperator;

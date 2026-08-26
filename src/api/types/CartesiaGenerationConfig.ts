@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Generation controls for Cartesia Sonic 3 voices, including speed, volume, and accent localization.
+ */
 export interface CartesiaGenerationConfig {
     /** Fine-grained speed control for sonic-3. Only available for sonic-3 model. */
     speed?: number | undefined;

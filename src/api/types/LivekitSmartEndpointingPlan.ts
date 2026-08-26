@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for using LiveKit smart endpointing, including provider selection and wait-function behavior.
+ */
 export interface LivekitSmartEndpointingPlan {
     /** This is the provider for the smart endpointing plan. */
     provider: Vapi.LivekitSmartEndpointingPlanProvider;

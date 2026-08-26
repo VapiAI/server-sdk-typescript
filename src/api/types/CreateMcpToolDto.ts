@@ -2,12 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a tool that connects an assistant to a Model Context Protocol server and exposes its available tools.
+ */
 export interface CreateMcpToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.CreateMcpToolDtoMessagesItem[] | undefined;
     /**
      *   This is the server where a `tool-calls` webhook will be sent.
@@ -22,6 +21,7 @@ export interface CreateMcpToolDto {
     server?: Vapi.Server | undefined;
     /** Per-tool message overrides for individual tools loaded from the MCP server. Set messages to an empty array to suppress messages for a specific tool. Tools not listed here will use the default messages from the parent tool. */
     toolMessages?: Vapi.McpToolMessages[] | undefined;
+    /** Connection metadata for the MCP server, including its communication protocol. */
     metadata?: Vapi.McpToolMetadata | undefined;
     /**
      * This is the plan to reject a tool call based on the conversation state.

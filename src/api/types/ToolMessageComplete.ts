@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Message spoken when a tool call completes, with optional language variants, argument conditions, role, and end-call behavior.
+ */
 export interface ToolMessageComplete {
     /**
      * This is an alternative to the `content` property. It allows to specify variants of the same content, one per language.

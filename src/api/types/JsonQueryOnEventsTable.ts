@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * VapiQL JSON query that counts or calculates the percentage of matching events using optional typed event-data filters.
+ */
 export interface JsonQueryOnEventsTable {
     /** This is the type of query. Only allowed type is "vapiql-json". */
     type: Vapi.JsonQueryOnEventsTableType;

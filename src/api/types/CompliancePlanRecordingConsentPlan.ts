@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls how recording consent is requested before the assistant joins the call.
+ */
 export type CompliancePlanRecordingConsentPlan =
     | Vapi.CompliancePlanRecordingConsentPlan.StayOnLine
     | Vapi.CompliancePlanRecordingConsentPlan.Verbal;

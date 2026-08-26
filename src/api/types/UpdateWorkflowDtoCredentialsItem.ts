@@ -34,6 +34,7 @@ export type UpdateWorkflowDtoCredentialsItem =
     | Vapi.UpdateWorkflowDtoCredentialsItem.RimeAi
     | Vapi.UpdateWorkflowDtoCredentialsItem.Runpod
     | Vapi.UpdateWorkflowDtoCredentialsItem.S3
+    | Vapi.UpdateWorkflowDtoCredentialsItem.S3Compatible
     | Vapi.UpdateWorkflowDtoCredentialsItem.Supabase
     | Vapi.UpdateWorkflowDtoCredentialsItem.SmallestAi
     | Vapi.UpdateWorkflowDtoCredentialsItem.Tavus
@@ -43,12 +44,12 @@ export type UpdateWorkflowDtoCredentialsItem =
     | Vapi.UpdateWorkflowDtoCredentialsItem.Webhook
     | Vapi.UpdateWorkflowDtoCredentialsItem.CustomCredential
     | Vapi.UpdateWorkflowDtoCredentialsItem.Xai
+    | Vapi.UpdateWorkflowDtoCredentialsItem.Microsoft
     | Vapi.UpdateWorkflowDtoCredentialsItem.Neuphonic
     | Vapi.UpdateWorkflowDtoCredentialsItem.Hume
     | Vapi.UpdateWorkflowDtoCredentialsItem.Mistral
     | Vapi.UpdateWorkflowDtoCredentialsItem.Speechmatics
     | Vapi.UpdateWorkflowDtoCredentialsItem.Soniox
-    | Vapi.UpdateWorkflowDtoCredentialsItem.Trieve
     | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleSheetsOauth2Authorization
@@ -185,6 +186,10 @@ export namespace UpdateWorkflowDtoCredentialsItem {
         provider: "s3";
     }
 
+    export interface S3Compatible extends Vapi.CreateS3CompatibleCredentialDto {
+        provider: "s3-compatible";
+    }
+
     export interface Supabase extends Vapi.CreateSupabaseCredentialDto {
         provider: "supabase";
     }
@@ -221,6 +226,10 @@ export namespace UpdateWorkflowDtoCredentialsItem {
         provider: "xai";
     }
 
+    export interface Microsoft extends Vapi.CreateMicrosoftCredentialDto {
+        provider: "microsoft";
+    }
+
     export interface Neuphonic extends Vapi.CreateNeuphonicCredentialDto {
         provider: "neuphonic";
     }
@@ -239,10 +248,6 @@ export namespace UpdateWorkflowDtoCredentialsItem {
 
     export interface Soniox extends Vapi.CreateSonioxCredentialDto {
         provider: "soniox";
-    }
-
-    export interface Trieve extends Vapi.CreateTrieveCredentialDto {
-        provider: "trieve";
     }
 
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
@@ -285,4 +290,63 @@ export namespace UpdateWorkflowDtoCredentialsItem {
     export interface SlackWebhook extends Vapi.CreateSlackWebhookCredentialDto {
         provider: "slack-webhook";
     }
+
+    export type Response =
+        | Vapi.UpdateWorkflowDtoCredentialsItem._11Labs
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Anthropic
+        | Vapi.UpdateWorkflowDtoCredentialsItem.AnthropicBedrock
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Anyscale
+        | Vapi.UpdateWorkflowDtoCredentialsItem.AssemblyAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.AzureOpenai
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Azure
+        | Vapi.UpdateWorkflowDtoCredentialsItem.ByoSipTrunk
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Cartesia
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Cerebras
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Cloudflare
+        | Vapi.UpdateWorkflowDtoCredentialsItem.CustomLlm
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Deepgram
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Deepinfra
+        | Vapi.UpdateWorkflowDtoCredentialsItem.DeepSeek
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Gcp
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Gladia
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Gohighlevel
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Google
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Groq
+        | Vapi.UpdateWorkflowDtoCredentialsItem.InflectionAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Langfuse
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Lmnt
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Make
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Openai
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Openrouter
+        | Vapi.UpdateWorkflowDtoCredentialsItem.PerplexityAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Playht
+        | Vapi.UpdateWorkflowDtoCredentialsItem.RimeAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Runpod
+        | Vapi.UpdateWorkflowDtoCredentialsItem.S3
+        | Vapi.UpdateWorkflowDtoCredentialsItem.S3Compatible
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Supabase
+        | Vapi.UpdateWorkflowDtoCredentialsItem.SmallestAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Tavus
+        | Vapi.UpdateWorkflowDtoCredentialsItem.TogetherAi
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Twilio
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Vonage
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Webhook
+        | Vapi.UpdateWorkflowDtoCredentialsItem.CustomCredential
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Xai
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Microsoft
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Neuphonic
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Hume
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Mistral
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Speechmatics
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Soniox
+        | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleCalendarOauth2Client
+        | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleCalendarOauth2Authorization
+        | Vapi.UpdateWorkflowDtoCredentialsItem.GoogleSheetsOauth2Authorization
+        | Vapi.UpdateWorkflowDtoCredentialsItem.SlackOauth2Authorization
+        | Vapi.UpdateWorkflowDtoCredentialsItem.GhlOauth2Authorization
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Inworld
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Minimax
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Wellsaid
+        | Vapi.UpdateWorkflowDtoCredentialsItem.Email
+        | Vapi.UpdateWorkflowDtoCredentialsItem.SlackWebhook;
 }

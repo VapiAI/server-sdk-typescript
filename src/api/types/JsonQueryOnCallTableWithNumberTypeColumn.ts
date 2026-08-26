@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * VapiQL JSON query that aggregates a numeric call-table column with optional call filters.
+ */
 export interface JsonQueryOnCallTableWithNumberTypeColumn {
     /** This is the type of query. Only allowed type is "vapiql-json". */
     type: Vapi.JsonQueryOnCallTableWithNumberTypeColumnType;

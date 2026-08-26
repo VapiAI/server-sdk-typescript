@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to provision a Vapi-managed phone number or connect a SIP URI, with optional routing and authentication settings.
+ */
 export interface CreateVapiPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

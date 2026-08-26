@@ -23,6 +23,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Returns phone numbers for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+     *
      * @param {Vapi.ListPhoneNumbersRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -100,6 +102,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Creates a Vapi phone number or imports a phone number from a supported provider, including Twilio, Vonage, Telnyx, or a bring-your-own provider.
+     *
      * @param {Vapi.CreatePhoneNumbersRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -161,6 +165,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Returns a paginated list of phone numbers for the authenticated organization. Search by name, number, or SIP URI using a partial, case-insensitive match, and filter by creation or update timestamps.
+     *
      * @param {Vapi.PhoneNumberControllerFindAllPaginatedRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -184,6 +190,7 @@ export class PhoneNumbersClient {
             search,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -198,6 +205,7 @@ export class PhoneNumbersClient {
             search,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -246,6 +254,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Returns the phone number resource identified by its ID.
+     *
      * @param {Vapi.GetPhoneNumbersRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -304,6 +314,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Deletes the phone number resource identified by its ID.
+     *
      * @param {Vapi.DeletePhoneNumbersRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -362,6 +374,8 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Updates the specified fields of the phone number resource identified by its ID.
+     *
      * @param {Vapi.UpdatePhoneNumbersRequest} request
      * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
      *

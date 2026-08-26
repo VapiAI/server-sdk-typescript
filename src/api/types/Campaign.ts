@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved outbound calling campaign, including its calling configuration, schedule, status, customers, calls, and call-progress counters.
+ */
 export interface Campaign {
     /** This is the status of the campaign. */
     status: Vapi.CampaignStatus;
@@ -21,8 +24,20 @@ export interface Campaign {
     dialPlan?: Vapi.DialPlanEntry[] | undefined;
     /** This is the schedule plan for the campaign. Calls will start at startedAt and continue until your organization’s concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn’t be placed won’t be retried. */
     schedulePlan?: Vapi.SchedulePlan | undefined;
-    /** These are the customers that will be called in the campaign. Required if dialPlan is not provided. */
+    /** These are the customers that will be called in the campaign. Required if dialPlan is not provided. Maximum of 10000 customers per campaign. */
     customers?: Vapi.CreateCustomerDto[] | undefined;
+    /** This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. */
+    maxConcurrency?: number | undefined;
+    /** These are the overrides for the assistant's settings and template variables for the campaign. Use this when the campaign targets an `assistantId`. */
+    assistantOverrides?: Vapi.AssistantOverrides | undefined;
+    /** These are the overrides for the squad and template variables for the campaign. Use this when the campaign targets a `squadId`. Per-contact `squadOverrides` are deep-merged on top of this at dispatch time. */
+    squadOverrides?: Vapi.AssistantOverrides | undefined;
+    /** This is the server (URL, auth headers, timeout, etc.) for the campaign webhooks. */
+    server?: Vapi.Server | undefined;
+    /** These are the messages that will be sent to your Server URL. */
+    serverMessages?: Vapi.CampaignServerMessagesItem[] | undefined;
+    /** This opts the campaign into the blocking `campaign.predial` eligibility webhook. When set, every contact triggers a `campaign.predial` POST to the Server URL before dialing, and the response `{ eligible: boolean }` decides whether the call is placed. Requires `server`. When unset, no pre-dial webhook is sent. */
+    predialPlan?: Vapi.CampaignPredialPlan | undefined;
     /** This is the unique identifier for the campaign. */
     id: string;
     /** This is the unique identifier for the org that this campaign belongs to. */

@@ -3,3 +3,6 @@
 .github/workflows/sdk-release-pr-notification.yml
 README.md
 changelog.md
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

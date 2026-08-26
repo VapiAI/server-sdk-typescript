@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Enables or disables one regular-expression matching option for a text replacement.
+ */
 export interface RegexOption {
     /**
      * This is the type of the regex option. Options are:

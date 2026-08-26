@@ -2,13 +2,19 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update an API-request tool, including its URL, HTTP method, authentication, request data, retries, and response handling.
+ */
 export interface UpdateApiRequestToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.UpdateApiRequestToolDtoMessagesItem[] | undefined;
+    /**
+     * This is the name of the tool. This will be passed to the model.
+     *
+     * Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
+     */
+    name?: string | undefined;
+    /** The HTTP method used for the API request. */
     method?: Vapi.UpdateApiRequestToolDtoMethod | undefined;
     /**
      * This is the timeout in seconds for the request. Defaults to 20 seconds.
@@ -103,12 +109,6 @@ export interface UpdateApiRequestToolDto {
      * ```
      */
     rejectionPlan?: Vapi.ToolRejectionPlan | undefined;
-    /**
-     * This is the name of the tool. This will be passed to the model.
-     *
-     * Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 40.
-     */
-    name?: string | undefined;
     /** This is the description of the tool. This will be passed to the model. */
     description?: string | undefined;
     /** This is where the request will be sent. */

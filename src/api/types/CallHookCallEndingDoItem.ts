@@ -12,4 +12,6 @@ export namespace CallHookCallEndingDoItem {
     export interface MessageAdd extends Vapi.MessageAddHookAction {
         type: "message.add";
     }
+
+    export type Response = Vapi.CallHookCallEndingDoItem.Tool | Vapi.CallHookCallEndingDoItem.MessageAdd;
 }

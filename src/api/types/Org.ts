@@ -9,6 +9,13 @@ export interface Org {
      * This is due to the compliance requirements of HIPAA. Other providers may not meet these requirements.
      */
     hipaaEnabled?: boolean | undefined;
+    /**
+     * The org was created locally, but WorkOS access is still being repaired.
+     * Clients should keep the current session/org and refresh the org list.
+     */
+    workosRepairPending?: boolean | undefined;
+    /** Whether the pending WorkOS repair was accepted by Kafka. */
+    workosRepairQueued?: boolean | undefined;
     subscription?: Vapi.Subscription | undefined;
     /** This is the ID of the subscription the org belongs to. */
     subscriptionId?: string | undefined;

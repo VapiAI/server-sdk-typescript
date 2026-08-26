@@ -9,6 +9,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateScorecardDto {
+    /** The unique identifier of the scorecard. */
     id: string;
     /** This is the name of the scorecard. It is only for user reference and will not be used for any evaluation. */
     name?: string;

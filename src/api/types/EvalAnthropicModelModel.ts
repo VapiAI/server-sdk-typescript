@@ -15,6 +15,7 @@ export const EvalAnthropicModelModel = {
     ClaudeSonnet420250514: "claude-sonnet-4-20250514",
     ClaudeSonnet4520250929: "claude-sonnet-4-5-20250929",
     ClaudeSonnet46: "claude-sonnet-4-6",
+    ClaudeSonnet5: "claude-sonnet-5",
     ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
 } as const;
 export type EvalAnthropicModelModel = (typeof EvalAnthropicModelModel)[keyof typeof EvalAnthropicModelModel];

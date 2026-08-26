@@ -21,10 +21,14 @@ export interface ListChatsRequest {
     sessionId?: string;
     /** This is the unique identifier for the previous chat to filter by. */
     previousChatId?: string;
+    /** Filter by multiple chat IDs. Provide as comma-separated values. */
+    idAny?: string;
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ListChatsRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ListChatsRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

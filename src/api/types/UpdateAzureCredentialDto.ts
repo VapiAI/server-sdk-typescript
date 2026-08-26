@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateAzureCredentialDto {
+    provider?: Vapi.UpdateAzureCredentialDtoProvider | undefined;
     /** This is the service being used in Azure. */
     service?: Vapi.UpdateAzureCredentialDtoService | undefined;
     /** This is the region of the Azure resource. */

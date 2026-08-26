@@ -12,4 +12,6 @@ export namespace WorkflowNodesItem {
     export interface Tool extends Vapi.ToolNode {
         type: "tool";
     }
+
+    export type Response = Vapi.WorkflowNodesItem.Conversation | Vapi.WorkflowNodesItem.Tool;
 }

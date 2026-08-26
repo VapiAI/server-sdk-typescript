@@ -2,8 +2,14 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Localized text content used as a language-specific message variant.
+ */
 export interface TextContent {
+    /** Selects text as the content type. */
     type: Vapi.TextContentType;
+    /** Text spoken or displayed for this content variant. */
     text: string;
+    /** Language code associated with this text variant. */
     language: Vapi.TextContentLanguage;
 }

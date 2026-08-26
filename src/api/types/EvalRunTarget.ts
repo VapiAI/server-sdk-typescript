@@ -15,4 +15,9 @@ export namespace EvalRunTarget {
     export interface Squad extends Vapi.EvalRunTargetSquad {
         type: "squad";
     }
+
+    /**
+     * This is the target that will be run against the eval
+     */
+    export type Response = Vapi.EvalRunTarget.Assistant | Vapi.EvalRunTarget.Squad;
 }

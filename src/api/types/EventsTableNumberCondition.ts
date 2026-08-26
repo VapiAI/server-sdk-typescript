@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters event data by comparing a numeric field with a value.
+ */
 export interface EventsTableNumberCondition {
     /** The number field name from the event data */
     column: string;

@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Live monitoring data for a call, including attached monitor results and listening and control URLs.
+ */
 export interface Monitor {
+    /** Results produced by monitors attached to the call. */
     monitors?: Vapi.MonitorResult[] | undefined;
     /** This is the URL where the assistant's calls can be listened to in real-time. To enable, set `assistant.monitorPlan.listenEnabled` to `true`. */
     listenUrl?: string | undefined;

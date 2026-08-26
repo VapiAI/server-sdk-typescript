@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for connecting a custom knowledge-base implementation through a customer-hosted server.
+ */
 export interface CreateCustomKnowledgeBaseDto {
     /** This knowledge base is bring your own knowledge base implementation. */
     provider: Vapi.CreateCustomKnowledgeBaseDtoProvider;

@@ -7,5 +7,6 @@
  *     }
  */
 export interface EvalControllerRemoveRunRequest {
+    /** The unique identifier of the eval run. */
     id: string;
 }

@@ -9,7 +9,8 @@ export type HandoffDestinationSquadContextEngineeringPlan =
     | Vapi.HandoffDestinationSquadContextEngineeringPlan.LastNMessages
     | Vapi.HandoffDestinationSquadContextEngineeringPlan.None
     | Vapi.HandoffDestinationSquadContextEngineeringPlan.All
-    | Vapi.HandoffDestinationSquadContextEngineeringPlan.UserAndAssistantMessages;
+    | Vapi.HandoffDestinationSquadContextEngineeringPlan.UserAndAssistantMessages
+    | Vapi.HandoffDestinationSquadContextEngineeringPlan.PreviousAssistantMessages;
 
 export namespace HandoffDestinationSquadContextEngineeringPlan {
     export interface LastNMessages extends Vapi.ContextEngineeringPlanLastNMessages {
@@ -26,5 +27,9 @@ export namespace HandoffDestinationSquadContextEngineeringPlan {
 
     export interface UserAndAssistantMessages extends Vapi.ContextEngineeringPlanUserAndAssistantMessages {
         type: "userAndAssistantMessages";
+    }
+
+    export interface PreviousAssistantMessages extends Vapi.ContextEngineeringPlanPreviousAssistantMessages {
+        type: "previousAssistantMessages";
     }
 }

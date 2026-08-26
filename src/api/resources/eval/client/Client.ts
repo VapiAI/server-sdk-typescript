@@ -23,6 +23,8 @@ export class EvalClient {
     }
 
     /**
+     * Returns eval definitions for the authenticated organization. Filter results by ID or creation and update timestamps.
+     *
      * @param {Vapi.EvalControllerGetPaginatedRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -44,6 +46,7 @@ export class EvalClient {
             id,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -58,6 +61,7 @@ export class EvalClient {
             id,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -106,6 +110,8 @@ export class EvalClient {
     }
 
     /**
+     * Creates a reusable eval that defines a mock conversation and checkpoints for evaluating assistant responses and tool calls.
+     *
      * @param {Vapi.CreateEvalDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -169,6 +175,8 @@ export class EvalClient {
     }
 
     /**
+     * Returns the eval definition identified by its ID.
+     *
      * @param {Vapi.EvalControllerGetRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -227,6 +235,8 @@ export class EvalClient {
     }
 
     /**
+     * Deletes the eval definition identified by its ID.
+     *
      * @param {Vapi.EvalControllerRemoveRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -285,6 +295,8 @@ export class EvalClient {
     }
 
     /**
+     * Updates the eval definition identified by its ID.
+     *
      * @param {Vapi.UpdateEvalDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -346,6 +358,8 @@ export class EvalClient {
     }
 
     /**
+     * Returns the eval run identified by its ID.
+     *
      * @param {Vapi.EvalControllerGetRunRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -404,6 +418,8 @@ export class EvalClient {
     }
 
     /**
+     * Deletes the eval run identified by its ID.
+     *
      * @param {Vapi.EvalControllerRemoveRunRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -462,6 +478,8 @@ export class EvalClient {
     }
 
     /**
+     * Returns eval runs for the authenticated organization. Filter results by ID or creation and update timestamps.
+     *
      * @param {Vapi.EvalControllerGetRunsPaginatedRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -483,6 +501,7 @@ export class EvalClient {
             id,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -497,6 +516,7 @@ export class EvalClient {
             id,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -545,6 +565,8 @@ export class EvalClient {
     }
 
     /**
+     * Runs a saved or transient eval against an assistant or squad and creates an eval-run record containing the results.
+     *
      * @param {Vapi.CreateEvalRunDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
      *

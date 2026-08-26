@@ -3,33 +3,16 @@
 import type * as Vapi from "../index.js";
 
 export interface EvaluationPlanItem {
-    /**
-     * This is the ID of an existing structured output to use for evaluation.
-     * Mutually exclusive with structuredOutput.
-     */
+    /** The ID of an existing structured output to evaluate. Use this to reuse a structured output across scenarios. Provide either `structuredOutputId` or an inline `structuredOutput`. */
     structuredOutputId?: string | undefined;
-    /**
-     * This is an inline structured output definition for evaluation.
-     * Mutually exclusive with structuredOutputId.
-     * Only primitive schema types (string, number, integer, boolean) are allowed.
-     */
+    /** An inline structured output to evaluate, defined by its name and schema. Only primitive types (string, number, integer, boolean) are allowed. Provide either this or `structuredOutputId`. */
     structuredOutput?: Vapi.CreateStructuredOutputDto | undefined;
-    /**
-     * This is the comparison operator to use when evaluating the extracted value against the expected value.
-     * Available operators depend on the structured output's schema type:
-     * - boolean: '=', '!='
-     * - string: '=', '!='
-     * - number/integer: '=', '!=', '>', '<', '>=', '<='
-     */
+    /** Optional dot-notation path to a primitive leaf when evaluating an object structured output. */
+    path?: string | undefined;
+    /** How the structured output value is compared against `value`. Available operators depend on the output type. Boolean and string support `=` and `!=`; number and integer support `=`, `!=`, `>`, `<`, `>=`, `<=`. */
     comparator: Vapi.EvaluationPlanItemComparator;
-    /**
-     * This is the expected value to compare against the extracted structured output result.
-     * Type should match the structured output's schema type.
-     */
+    /** The expected value the structured output is compared against. Its type should match the structured output's type, for example `true` for a boolean. */
     value: Vapi.EvaluationPlanItemValue;
-    /**
-     * This is whether this evaluation must pass for the simulation to pass.
-     * Defaults to true. If false, the result is informational only.
-     */
+    /** Set to `false` to record this evaluation's result without requiring it to pass. Default is `true`. */
     required?: boolean | undefined;
 }

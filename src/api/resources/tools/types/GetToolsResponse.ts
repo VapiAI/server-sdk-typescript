@@ -8,6 +8,7 @@ export type GetToolsResponse =
     | Vapi.GetToolsResponse.Dtmf
     | Vapi.GetToolsResponse.EndCall
     | Vapi.GetToolsResponse.Function
+    | Vapi.GetToolsResponse.KnowledgeBase
     | Vapi.GetToolsResponse.TransferCall
     | Vapi.GetToolsResponse.Handoff
     | Vapi.GetToolsResponse.Bash
@@ -46,6 +47,10 @@ export namespace GetToolsResponse {
 
     export interface Function extends Vapi.FunctionTool {
         type: "function";
+    }
+
+    export interface KnowledgeBase extends Vapi.KnowledgeBaseTool {
+        type: "knowledgeBase";
     }
 
     export interface TransferCall extends Vapi.TransferCallTool {
@@ -119,4 +124,30 @@ export namespace GetToolsResponse {
     export interface Voicemail extends Vapi.VoicemailTool {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.GetToolsResponse.ApiRequest
+        | Vapi.GetToolsResponse.Code
+        | Vapi.GetToolsResponse.Dtmf
+        | Vapi.GetToolsResponse.EndCall
+        | Vapi.GetToolsResponse.Function
+        | Vapi.GetToolsResponse.KnowledgeBase
+        | Vapi.GetToolsResponse.TransferCall
+        | Vapi.GetToolsResponse.Handoff
+        | Vapi.GetToolsResponse.Bash
+        | Vapi.GetToolsResponse.Computer
+        | Vapi.GetToolsResponse.TextEditor
+        | Vapi.GetToolsResponse.Query
+        | Vapi.GetToolsResponse.GoogleCalendarEventCreate
+        | Vapi.GetToolsResponse.GoogleSheetsRowAppend
+        | Vapi.GetToolsResponse.GoogleCalendarAvailabilityCheck
+        | Vapi.GetToolsResponse.SlackMessageSend
+        | Vapi.GetToolsResponse.Sms
+        | Vapi.GetToolsResponse.Mcp
+        | Vapi.GetToolsResponse.GohighlevelCalendarAvailabilityCheck
+        | Vapi.GetToolsResponse.GohighlevelCalendarEventCreate
+        | Vapi.GetToolsResponse.GohighlevelContactCreate
+        | Vapi.GetToolsResponse.GohighlevelContactGet
+        | Vapi.GetToolsResponse.SipRequest
+        | Vapi.GetToolsResponse.Voicemail;
 }

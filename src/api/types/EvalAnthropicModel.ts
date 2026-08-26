@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Anthropic model configuration for an LLM judge, including its messages, generation settings, and optional extended thinking.
+ */
 export interface EvalAnthropicModel {
     /** This is the specific model that will be used. */
     model: Vapi.EvalAnthropicModelModel;

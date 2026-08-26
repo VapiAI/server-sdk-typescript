@@ -34,6 +34,7 @@ export type WorkflowUserEditableCredentialsItem =
     | Vapi.WorkflowUserEditableCredentialsItem.RimeAi
     | Vapi.WorkflowUserEditableCredentialsItem.Runpod
     | Vapi.WorkflowUserEditableCredentialsItem.S3
+    | Vapi.WorkflowUserEditableCredentialsItem.S3Compatible
     | Vapi.WorkflowUserEditableCredentialsItem.Supabase
     | Vapi.WorkflowUserEditableCredentialsItem.SmallestAi
     | Vapi.WorkflowUserEditableCredentialsItem.Tavus
@@ -43,12 +44,12 @@ export type WorkflowUserEditableCredentialsItem =
     | Vapi.WorkflowUserEditableCredentialsItem.Webhook
     | Vapi.WorkflowUserEditableCredentialsItem.CustomCredential
     | Vapi.WorkflowUserEditableCredentialsItem.Xai
+    | Vapi.WorkflowUserEditableCredentialsItem.Microsoft
     | Vapi.WorkflowUserEditableCredentialsItem.Neuphonic
     | Vapi.WorkflowUserEditableCredentialsItem.Hume
     | Vapi.WorkflowUserEditableCredentialsItem.Mistral
     | Vapi.WorkflowUserEditableCredentialsItem.Speechmatics
     | Vapi.WorkflowUserEditableCredentialsItem.Soniox
-    | Vapi.WorkflowUserEditableCredentialsItem.Trieve
     | Vapi.WorkflowUserEditableCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.WorkflowUserEditableCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.WorkflowUserEditableCredentialsItem.GoogleSheetsOauth2Authorization
@@ -185,6 +186,10 @@ export namespace WorkflowUserEditableCredentialsItem {
         provider: "s3";
     }
 
+    export interface S3Compatible extends Vapi.CreateS3CompatibleCredentialDto {
+        provider: "s3-compatible";
+    }
+
     export interface Supabase extends Vapi.CreateSupabaseCredentialDto {
         provider: "supabase";
     }
@@ -221,6 +226,10 @@ export namespace WorkflowUserEditableCredentialsItem {
         provider: "xai";
     }
 
+    export interface Microsoft extends Vapi.CreateMicrosoftCredentialDto {
+        provider: "microsoft";
+    }
+
     export interface Neuphonic extends Vapi.CreateNeuphonicCredentialDto {
         provider: "neuphonic";
     }
@@ -239,10 +248,6 @@ export namespace WorkflowUserEditableCredentialsItem {
 
     export interface Soniox extends Vapi.CreateSonioxCredentialDto {
         provider: "soniox";
-    }
-
-    export interface Trieve extends Vapi.CreateTrieveCredentialDto {
-        provider: "trieve";
     }
 
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
@@ -285,4 +290,63 @@ export namespace WorkflowUserEditableCredentialsItem {
     export interface SlackWebhook extends Vapi.CreateSlackWebhookCredentialDto {
         provider: "slack-webhook";
     }
+
+    export type Response =
+        | Vapi.WorkflowUserEditableCredentialsItem._11Labs
+        | Vapi.WorkflowUserEditableCredentialsItem.Anthropic
+        | Vapi.WorkflowUserEditableCredentialsItem.AnthropicBedrock
+        | Vapi.WorkflowUserEditableCredentialsItem.Anyscale
+        | Vapi.WorkflowUserEditableCredentialsItem.AssemblyAi
+        | Vapi.WorkflowUserEditableCredentialsItem.AzureOpenai
+        | Vapi.WorkflowUserEditableCredentialsItem.Azure
+        | Vapi.WorkflowUserEditableCredentialsItem.ByoSipTrunk
+        | Vapi.WorkflowUserEditableCredentialsItem.Cartesia
+        | Vapi.WorkflowUserEditableCredentialsItem.Cerebras
+        | Vapi.WorkflowUserEditableCredentialsItem.Cloudflare
+        | Vapi.WorkflowUserEditableCredentialsItem.CustomLlm
+        | Vapi.WorkflowUserEditableCredentialsItem.Deepgram
+        | Vapi.WorkflowUserEditableCredentialsItem.Deepinfra
+        | Vapi.WorkflowUserEditableCredentialsItem.DeepSeek
+        | Vapi.WorkflowUserEditableCredentialsItem.Gcp
+        | Vapi.WorkflowUserEditableCredentialsItem.Gladia
+        | Vapi.WorkflowUserEditableCredentialsItem.Gohighlevel
+        | Vapi.WorkflowUserEditableCredentialsItem.Google
+        | Vapi.WorkflowUserEditableCredentialsItem.Groq
+        | Vapi.WorkflowUserEditableCredentialsItem.InflectionAi
+        | Vapi.WorkflowUserEditableCredentialsItem.Langfuse
+        | Vapi.WorkflowUserEditableCredentialsItem.Lmnt
+        | Vapi.WorkflowUserEditableCredentialsItem.Make
+        | Vapi.WorkflowUserEditableCredentialsItem.Openai
+        | Vapi.WorkflowUserEditableCredentialsItem.Openrouter
+        | Vapi.WorkflowUserEditableCredentialsItem.PerplexityAi
+        | Vapi.WorkflowUserEditableCredentialsItem.Playht
+        | Vapi.WorkflowUserEditableCredentialsItem.RimeAi
+        | Vapi.WorkflowUserEditableCredentialsItem.Runpod
+        | Vapi.WorkflowUserEditableCredentialsItem.S3
+        | Vapi.WorkflowUserEditableCredentialsItem.S3Compatible
+        | Vapi.WorkflowUserEditableCredentialsItem.Supabase
+        | Vapi.WorkflowUserEditableCredentialsItem.SmallestAi
+        | Vapi.WorkflowUserEditableCredentialsItem.Tavus
+        | Vapi.WorkflowUserEditableCredentialsItem.TogetherAi
+        | Vapi.WorkflowUserEditableCredentialsItem.Twilio
+        | Vapi.WorkflowUserEditableCredentialsItem.Vonage
+        | Vapi.WorkflowUserEditableCredentialsItem.Webhook
+        | Vapi.WorkflowUserEditableCredentialsItem.CustomCredential
+        | Vapi.WorkflowUserEditableCredentialsItem.Xai
+        | Vapi.WorkflowUserEditableCredentialsItem.Microsoft
+        | Vapi.WorkflowUserEditableCredentialsItem.Neuphonic
+        | Vapi.WorkflowUserEditableCredentialsItem.Hume
+        | Vapi.WorkflowUserEditableCredentialsItem.Mistral
+        | Vapi.WorkflowUserEditableCredentialsItem.Speechmatics
+        | Vapi.WorkflowUserEditableCredentialsItem.Soniox
+        | Vapi.WorkflowUserEditableCredentialsItem.GoogleCalendarOauth2Client
+        | Vapi.WorkflowUserEditableCredentialsItem.GoogleCalendarOauth2Authorization
+        | Vapi.WorkflowUserEditableCredentialsItem.GoogleSheetsOauth2Authorization
+        | Vapi.WorkflowUserEditableCredentialsItem.SlackOauth2Authorization
+        | Vapi.WorkflowUserEditableCredentialsItem.GhlOauth2Authorization
+        | Vapi.WorkflowUserEditableCredentialsItem.Inworld
+        | Vapi.WorkflowUserEditableCredentialsItem.Minimax
+        | Vapi.WorkflowUserEditableCredentialsItem.Wellsaid
+        | Vapi.WorkflowUserEditableCredentialsItem.Email
+        | Vapi.WorkflowUserEditableCredentialsItem.SlackWebhook;
 }

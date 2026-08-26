@@ -7,5 +7,6 @@
  *     }
  */
 export interface CampaignControllerFindOneRequest {
+    /** The unique identifier of the campaign. */
     id: string;
 }

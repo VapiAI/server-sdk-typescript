@@ -9,7 +9,9 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface InsightRunDto {
+    /** The unique identifier of the reporting insight. */
     id: string;
+    /** Output-formatting instructions applied to the insight run. */
     formatPlan?: Vapi.InsightRunFormatPlan;
     /**
      * This is the optional time range override for the insight.
@@ -21,4 +23,9 @@ export interface InsightRunDto {
      * For Pie and Text Insights, step will be ignored even if provided.
      */
     timeRangeOverride?: Vapi.InsightTimeRangeWithStep;
+    /**
+     * Optional runtime assistant scope for dashboards.
+     * This is applied to call-table queries without mutating the saved insight.
+     */
+    assistantId?: string;
 }

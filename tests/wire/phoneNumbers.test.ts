@@ -19,6 +19,7 @@ describe("PhoneNumbersClient", () => {
                     extension: "extension",
                     callerId: "callerId",
                     transferPlan: { mode: "blind-transfer" },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
@@ -67,6 +68,7 @@ describe("PhoneNumbersClient", () => {
                     transferPlan: {
                         mode: "blind-transfer",
                     },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [
@@ -152,6 +154,7 @@ describe("PhoneNumbersClient", () => {
                     sipHeadersInReferToEnabled: true,
                     fallbackPlan: { message: "message" },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -231,6 +234,7 @@ describe("PhoneNumbersClient", () => {
                         message: "message",
                     },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -340,6 +344,10 @@ describe("PhoneNumbersClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -411,6 +419,10 @@ describe("PhoneNumbersClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -444,6 +456,7 @@ describe("PhoneNumbersClient", () => {
                     sipHeadersInReferToEnabled: true,
                     fallbackPlan: { message: "message" },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -515,6 +528,7 @@ describe("PhoneNumbersClient", () => {
                         message: "message",
                     },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -606,6 +620,7 @@ describe("PhoneNumbersClient", () => {
                     sipHeadersInReferToEnabled: true,
                     fallbackPlan: { message: "message" },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -683,6 +698,7 @@ describe("PhoneNumbersClient", () => {
                         message: "message",
                     },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -774,6 +790,7 @@ describe("PhoneNumbersClient", () => {
                     sipHeadersInReferToEnabled: true,
                     fallbackPlan: { message: "message" },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [
@@ -855,6 +872,7 @@ describe("PhoneNumbersClient", () => {
                         message: "message",
                     },
                 },
+                name: "name",
                 description: "description",
             },
             hooks: [

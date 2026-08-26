@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls post-call success evaluation, including the rubric, prompt messages, enablement, and request timeout.
+ */
 export interface SuccessEvaluationPlan {
     /**
      * This enforces the rubric of the evaluation. The output is stored in `call.analysis.successEvaluation`.

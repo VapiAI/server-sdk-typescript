@@ -10,6 +10,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateSquadDto {
+    /** The unique identifier of the squad. */
     id: string;
     /** This is the name of the squad. */
     name?: string;

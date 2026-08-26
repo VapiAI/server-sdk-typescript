@@ -28,6 +28,7 @@ export const UpdateAssistantDtoServerMessagesItem = {
     SessionDeleted: "session.deleted",
     CallDeleted: "call.deleted",
     CallDeleteFailed: "call.delete.failed",
+    CallArtifactUpload: "call.artifact.upload",
 } as const;
 export type UpdateAssistantDtoServerMessagesItem =
     (typeof UpdateAssistantDtoServerMessagesItem)[keyof typeof UpdateAssistantDtoServerMessagesItem];

@@ -2,12 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A reusable tool that transfers the active call to one of its configured destinations.
+ */
 export interface TransferCallTool {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    latestVersion?: (string | null) | undefined;
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.TransferCallToolMessagesItem[] | undefined;
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
     destinations?: Vapi.TransferCallToolDestinationsItem[] | undefined;

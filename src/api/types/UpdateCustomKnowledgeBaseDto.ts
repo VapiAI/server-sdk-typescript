@@ -3,6 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateCustomKnowledgeBaseDto {
+    /** This knowledge base is bring your own knowledge base implementation. */
+    provider?: Vapi.UpdateCustomKnowledgeBaseDtoProvider | undefined;
     /**
      * This is where the knowledge base request will be sent.
      *

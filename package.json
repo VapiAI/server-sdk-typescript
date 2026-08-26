@@ -1,6 +1,6 @@
 {
     "name": "@vapi-ai/server-sdk",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "private": false,
     "repository": {
         "type": "git",
@@ -121,6 +121,17 @@
             },
             "default": "./dist/cjs/api/resources/files/exports.js"
         },
+        "./knowledgeBasesV2": {
+            "import": {
+                "types": "./dist/esm/api/resources/knowledgeBasesV2/exports.d.mts",
+                "default": "./dist/esm/api/resources/knowledgeBasesV2/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/knowledgeBasesV2/exports.d.ts",
+                "default": "./dist/cjs/api/resources/knowledgeBasesV2/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/knowledgeBasesV2/exports.js"
+        },
         "./structuredOutputs": {
             "import": {
                 "types": "./dist/esm/api/resources/structuredOutputs/exports.d.mts",
@@ -132,6 +143,61 @@
             },
             "default": "./dist/cjs/api/resources/structuredOutputs/exports.js"
         },
+        "./simulationPersonalities": {
+            "import": {
+                "types": "./dist/esm/api/resources/simulationPersonalities/exports.d.mts",
+                "default": "./dist/esm/api/resources/simulationPersonalities/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/simulationPersonalities/exports.d.ts",
+                "default": "./dist/cjs/api/resources/simulationPersonalities/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/simulationPersonalities/exports.js"
+        },
+        "./simulationScenarios": {
+            "import": {
+                "types": "./dist/esm/api/resources/simulationScenarios/exports.d.mts",
+                "default": "./dist/esm/api/resources/simulationScenarios/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/simulationScenarios/exports.d.ts",
+                "default": "./dist/cjs/api/resources/simulationScenarios/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/simulationScenarios/exports.js"
+        },
+        "./simulationRuns": {
+            "import": {
+                "types": "./dist/esm/api/resources/simulationRuns/exports.d.mts",
+                "default": "./dist/esm/api/resources/simulationRuns/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/simulationRuns/exports.d.ts",
+                "default": "./dist/cjs/api/resources/simulationRuns/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/simulationRuns/exports.js"
+        },
+        "./simulationSuites": {
+            "import": {
+                "types": "./dist/esm/api/resources/simulationSuites/exports.d.mts",
+                "default": "./dist/esm/api/resources/simulationSuites/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/simulationSuites/exports.d.ts",
+                "default": "./dist/cjs/api/resources/simulationSuites/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/simulationSuites/exports.js"
+        },
+        "./simulations": {
+            "import": {
+                "types": "./dist/esm/api/resources/simulations/exports.d.mts",
+                "default": "./dist/esm/api/resources/simulations/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/simulations/exports.d.ts",
+                "default": "./dist/cjs/api/resources/simulations/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/simulations/exports.js"
+        },
         "./insight": {
             "import": {
                 "types": "./dist/esm/api/resources/insight/exports.d.mts",
@@ -142,6 +208,17 @@
                 "default": "./dist/cjs/api/resources/insight/exports.js"
             },
             "default": "./dist/cjs/api/resources/insight/exports.js"
+        },
+        "./board": {
+            "import": {
+                "types": "./dist/esm/api/resources/board/exports.d.mts",
+                "default": "./dist/esm/api/resources/board/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/board/exports.d.ts",
+                "default": "./dist/cjs/api/resources/board/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/board/exports.js"
         },
         "./eval": {
             "import": {

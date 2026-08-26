@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Uses a webhook response to select the handoff destination at runtime.
+ */
 export interface HandoffDestinationDynamic {
     /**
      * This is where Vapi will send the handoff-destination-request webhook in a dynamic handoff.

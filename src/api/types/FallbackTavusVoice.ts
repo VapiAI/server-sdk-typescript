@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for using Tavus as the assistant's voice provider, including persona, callback, context, greeting, conversation properties, chunking, and caching.
+ */
 export interface FallbackTavusVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

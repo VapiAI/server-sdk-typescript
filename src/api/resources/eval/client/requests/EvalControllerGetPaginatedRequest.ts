@@ -7,11 +7,14 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface EvalControllerGetPaginatedRequest {
+    /** Filters eval definitions by ID. */
     id?: string;
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.EvalControllerGetPaginatedRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.EvalControllerGetPaginatedRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

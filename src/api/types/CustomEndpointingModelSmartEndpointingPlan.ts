@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for using a custom endpointing model, including its provider identifier and server connection.
+ */
 export interface CustomEndpointingModelSmartEndpointingPlan {
     /** This is the provider for the smart endpointing plan. Use `custom-endpointing-model` for custom endpointing providers that are not natively supported. */
     provider: Vapi.CustomEndpointingModelSmartEndpointingPlanProvider;

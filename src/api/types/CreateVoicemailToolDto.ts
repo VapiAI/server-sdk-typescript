@@ -2,12 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a voicemail-detection tool with optional beep detection for supported calls.
+ */
 export interface CreateVoicemailToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.CreateVoicemailToolDtoMessagesItem[] | undefined;
     /**
      * This is the flag that enables beep detection for voicemail detection and applies only for twilio based calls.

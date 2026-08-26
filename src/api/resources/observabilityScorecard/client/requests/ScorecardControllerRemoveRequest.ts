@@ -7,5 +7,6 @@
  *     }
  */
 export interface ScorecardControllerRemoveRequest {
+    /** The unique identifier of the scorecard. */
     id: string;
 }

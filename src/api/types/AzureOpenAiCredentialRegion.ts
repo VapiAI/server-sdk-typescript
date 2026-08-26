@@ -19,6 +19,8 @@ export const AzureOpenAiCredentialRegion = {
     Spaincentral: "spaincentral",
     Swedencentral: "swedencentral",
     Switzerland: "switzerland",
+    Switzerlandnorth: "switzerlandnorth",
+    Switzerlandwest: "switzerlandwest",
     Uaenorth: "uaenorth",
     Uk: "uk",
     Westeurope: "westeurope",

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved scorecard containing its evaluation metrics, scoring conditions, assistant associations, descriptive metadata, and lifecycle information.
+ */
 export interface Scorecard {
     /** This is the unique identifier for the scorecard. */
     id: string;

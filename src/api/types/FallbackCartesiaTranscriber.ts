@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for transcribing speech with Cartesia, including model and language.
+ */
 export interface FallbackCartesiaTranscriber {
+    /** The Cartesia speech-to-text model used for transcription. */
     model?: Vapi.FallbackCartesiaTranscriberModel | undefined;
+    /** The language code used for transcription. */
     language?: Vapi.FallbackCartesiaTranscriberLanguage | undefined;
 }

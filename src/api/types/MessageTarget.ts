@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Selects a conversation message by participant role and position for condition evaluation.
+ */
 export interface MessageTarget {
     /**
      * This is the role of the message to target.

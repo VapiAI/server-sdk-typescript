@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An expected tool-response turn evaluated by a configured LLM judge.
+ */
 export interface ChatEvalToolResponseMessageEvaluation {
     /**
      * This is the role of the message author.

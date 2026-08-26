@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetCallsRequest {
+    /** The unique identifier of the call. */
     id: string;
 }

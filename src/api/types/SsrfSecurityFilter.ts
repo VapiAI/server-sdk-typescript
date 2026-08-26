@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters potential server-side request forgery (SSRF) patterns from transcripts.
+ */
 export interface SsrfSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.SsrfSecurityFilterType;

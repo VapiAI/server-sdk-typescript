@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a pie-chart insight, including its queries, formulas, grouping, time range, and name.
+ */
 export interface UpdatePieInsightFromCallTableDto {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -23,6 +26,7 @@ export interface UpdatePieInsightFromCallTableDto {
      * You can also use the query names as the variable in the formula.
      */
     formulas?: Vapi.InsightFormula[] | undefined;
+    /** The time range used to query the pie-chart data. */
     timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * This is the group by column for the insight when table is `call`.

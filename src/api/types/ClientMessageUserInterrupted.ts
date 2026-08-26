@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ClientMessageUserInterrupted {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ClientMessageUserInterruptedPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "user-interrupted" is sent when the user interrupts the assistant. */
     type: Vapi.ClientMessageUserInterruptedType;
     /**

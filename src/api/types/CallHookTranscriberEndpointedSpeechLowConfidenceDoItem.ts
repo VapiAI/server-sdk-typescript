@@ -19,4 +19,9 @@ export namespace CallHookTranscriberEndpointedSpeechLowConfidenceDoItem {
     export interface MessageAdd extends Vapi.MessageAddHookAction {
         type: "message.add";
     }
+
+    export type Response =
+        | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.Say
+        | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.Tool
+        | Vapi.CallHookTranscriberEndpointedSpeechLowConfidenceDoItem.MessageAdd;
 }

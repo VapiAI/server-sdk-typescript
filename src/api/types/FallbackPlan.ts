@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Lists backup voice configurations that can be used if the primary voice provider fails.
+ */
 export interface FallbackPlan {
     /** This is the list of voices to fallback to in the event that the primary voice provider fails. */
     voices: Vapi.FallbackPlanVoicesItem[];

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for post-call analysis of summaries, structured-data extraction, success evaluation, and outcomes.
+ */
 export interface AnalysisPlan {
     /**
      * The minimum number of messages required to run the analysis plan.

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of phone numbers and metadata describing the result set.
+ */
 export interface PhoneNumberPaginatedResponse {
     /** A list of phone numbers, which can be of any provider type. */
     results: Vapi.PhoneNumberPaginatedResponseResultsItem[];

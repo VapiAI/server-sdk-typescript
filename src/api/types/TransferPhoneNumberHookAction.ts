@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A phone-number hook action that transfers the call to a phone number or SIP destination.
+ */
 export interface TransferPhoneNumberHookAction {
     /** This is the destination details for the transfer - can be a phone number or SIP URI */
     destination?: Vapi.TransferPhoneNumberHookActionDestination | undefined;

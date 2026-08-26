@@ -7,5 +7,6 @@
  *     }
  */
 export interface DeleteToolsRequest {
+    /** The unique identifier of the tool. */
     id: string;
 }

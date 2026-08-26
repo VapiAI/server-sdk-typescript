@@ -28,6 +28,7 @@ export const AssistantOverridesServerMessagesItem = {
     SessionDeleted: "session.deleted",
     CallDeleted: "call.deleted",
     CallDeleteFailed: "call.delete.failed",
+    CallArtifactUpload: "call.artifact.upload",
 } as const;
 export type AssistantOverridesServerMessagesItem =
     (typeof AssistantOverridesServerMessagesItem)[keyof typeof AssistantOverridesServerMessagesItem];

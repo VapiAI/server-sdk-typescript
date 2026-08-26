@@ -1,5 +1,9 @@
 export type { CampaignControllerFindAllRequest } from "./CampaignControllerFindAllRequest.js";
+export type { CampaignControllerFindAllV2Request } from "./CampaignControllerFindAllV2Request.js";
 export type { CampaignControllerFindOneRequest } from "./CampaignControllerFindOneRequest.js";
+export type { CampaignControllerFindOneV2Request } from "./CampaignControllerFindOneV2Request.js";
+export type { CampaignControllerGetCampaignV2ContactsRequest } from "./CampaignControllerGetCampaignV2ContactsRequest.js";
 export type { CampaignControllerRemoveRequest } from "./CampaignControllerRemoveRequest.js";
-export type { CreateCampaignDto } from "./CreateCampaignDto.js";
-export type { UpdateCampaignDto } from "./UpdateCampaignDto.js";
+export type { CampaignControllerRemoveV2Request } from "./CampaignControllerRemoveV2Request.js";
+export type { CampaignControllerUpdateRequest } from "./CampaignControllerUpdateRequest.js";
+export type { CampaignControllerUpdateV2Request } from "./CampaignControllerUpdateV2Request.js";

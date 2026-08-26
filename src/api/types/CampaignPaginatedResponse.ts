@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of outbound calling campaigns and metadata describing the result set.
+ */
 export interface CampaignPaginatedResponse {
+    /** The campaigns returned for the current page. */
     results: Vapi.Campaign[];
+    /** Pagination metadata for the campaign result set. */
     metadata: Vapi.PaginationMeta;
 }

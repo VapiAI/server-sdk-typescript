@@ -2,9 +2,15 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A directed connection between two workflow nodes, with an optional AI-evaluated transition condition.
+ */
 export interface Edge {
+    /** Condition that must evaluate to true to follow this edge. */
     condition?: Vapi.AiEdgeCondition | undefined;
+    /** Name of the source workflow node. */
     from: string;
+    /** Name of the destination workflow node. */
     to: string;
     /** This is for metadata you want to store on the edge. */
     metadata?: Record<string, unknown> | undefined;

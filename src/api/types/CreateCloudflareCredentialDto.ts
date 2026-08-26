@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for storing call artifacts in Cloudflare R2, including account details, bucket configuration, and upload fallback order.
+ */
 export interface CreateCloudflareCredentialDto {
     /** Cloudflare Account Id. */
     accountId?: string | undefined;

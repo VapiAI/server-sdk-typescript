@@ -1,3 +1,5 @@
+## [2.0.1] - 2026-08-26
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`CartesiaExperimentalControlsSpeedZero`** has been removed and replaced by **`CartesiaSpeedControlZero`**, which carries the same `"slowest" | "slow" | "normal" | "fast" | "fastest"` values. Update any imports or references from `CartesiaExperimentalControlsSpeedZero` to `CartesiaSpeedControlZero`.

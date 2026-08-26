@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A simulated assistant turn in an evaluation conversation, with optional message content and tool calls.
+ */
 export interface ChatEvalAssistantMessageMock {
     /**
      * This is the role of the message author.

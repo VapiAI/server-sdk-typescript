@@ -23,7 +23,9 @@ export type TransferAssistantVoice =
     | Vapi.TransferAssistantVoice.Vapi
     | Vapi.TransferAssistantVoice.Sesame
     | Vapi.TransferAssistantVoice.Inworld
-    | Vapi.TransferAssistantVoice.Minimax;
+    | Vapi.TransferAssistantVoice.Minimax
+    | Vapi.TransferAssistantVoice.Xai
+    | Vapi.TransferAssistantVoice.Microsoft;
 
 export namespace TransferAssistantVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -96,5 +98,13 @@ export namespace TransferAssistantVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

@@ -23,7 +23,9 @@ export type AssistantOverridesVoice =
     | Vapi.AssistantOverridesVoice.Vapi
     | Vapi.AssistantOverridesVoice.Sesame
     | Vapi.AssistantOverridesVoice.Inworld
-    | Vapi.AssistantOverridesVoice.Minimax;
+    | Vapi.AssistantOverridesVoice.Minimax
+    | Vapi.AssistantOverridesVoice.Xai
+    | Vapi.AssistantOverridesVoice.Microsoft;
 
 export namespace AssistantOverridesVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -96,5 +98,13 @@ export namespace AssistantOverridesVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

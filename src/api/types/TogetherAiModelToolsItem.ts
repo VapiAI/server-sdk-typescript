@@ -119,4 +119,29 @@ export namespace TogetherAiModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.TogetherAiModelToolsItem.ApiRequest
+        | Vapi.TogetherAiModelToolsItem.Bash
+        | Vapi.TogetherAiModelToolsItem.Code
+        | Vapi.TogetherAiModelToolsItem.Computer
+        | Vapi.TogetherAiModelToolsItem.Dtmf
+        | Vapi.TogetherAiModelToolsItem.EndCall
+        | Vapi.TogetherAiModelToolsItem.Function
+        | Vapi.TogetherAiModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.TogetherAiModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.TogetherAiModelToolsItem.GohighlevelContactCreate
+        | Vapi.TogetherAiModelToolsItem.GohighlevelContactGet
+        | Vapi.TogetherAiModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.TogetherAiModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.TogetherAiModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.TogetherAiModelToolsItem.Handoff
+        | Vapi.TogetherAiModelToolsItem.Mcp
+        | Vapi.TogetherAiModelToolsItem.Query
+        | Vapi.TogetherAiModelToolsItem.SlackMessageSend
+        | Vapi.TogetherAiModelToolsItem.Sms
+        | Vapi.TogetherAiModelToolsItem.TextEditor
+        | Vapi.TogetherAiModelToolsItem.TransferCall
+        | Vapi.TogetherAiModelToolsItem.SipRequest
+        | Vapi.TogetherAiModelToolsItem.Voicemail;
 }

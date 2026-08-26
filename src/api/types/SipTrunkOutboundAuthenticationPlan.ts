@@ -2,9 +2,13 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials and optional SIP REGISTER settings used to authenticate outbound calls with a SIP trunk.
+ */
 export interface SipTrunkOutboundAuthenticationPlan {
     /** This is not returned in the API. */
     authPassword?: string | undefined;
+    /** Username used to authenticate outbound SIP requests. */
     authUsername?: string | undefined;
     /** This can be used to configure if SIP register is required by the SIP trunk. If not provided, no SIP registration will be attempted. */
     sipRegisterPlan?: Vapi.SipTrunkOutboundSipRegisterPlan | undefined;

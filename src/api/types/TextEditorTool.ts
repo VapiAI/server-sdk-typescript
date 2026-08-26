@@ -2,12 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A reusable tool that reads and edits text files in a configured environment.
+ */
 export interface TextEditorTool {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    latestVersion?: (string | null) | undefined;
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.TextEditorToolMessagesItem[] | undefined;
     /** The sub type of tool. */
     subType: Vapi.TextEditorToolSubType;

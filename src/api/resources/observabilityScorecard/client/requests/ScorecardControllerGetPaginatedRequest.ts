@@ -7,11 +7,14 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface ScorecardControllerGetPaginatedRequest {
+    /** Filters scorecards by ID. */
     id?: string;
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ScorecardControllerGetPaginatedRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ScorecardControllerGetPaginatedRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

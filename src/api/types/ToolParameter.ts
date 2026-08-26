@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Static key-value parameter added to a tool request, with Liquid template support for string values.
+ */
 export interface ToolParameter {
     /** This is the key of the parameter. */
     key: string;

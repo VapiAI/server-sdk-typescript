@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with Gladia, including language behavior, audio processing, endpointing, vocabulary, region, and fallback settings.
+ */
 export interface GladiaTranscriber {
     /** This is the Gladia model that will be used. Default is 'fast' */
     model?: Vapi.GladiaTranscriberModel | undefined;
@@ -10,7 +13,7 @@ export interface GladiaTranscriber {
     /** Defines the language to use for the transcription. Required when languageBehaviour is 'manual'. */
     language?: Vapi.GladiaTranscriberLanguage | undefined;
     /** Defines the languages to use for the transcription. Required when languageBehaviour is 'manual'. */
-    languages?: Vapi.GladiaTranscriberLanguages | undefined;
+    languages?: Vapi.GladiaTranscriberLanguagesItem[] | undefined;
     /**
      * Provides a custom vocabulary to the model to improve accuracy of transcribing context specific words, technical terms, names, etc. If empty, this argument is ignored.
      * ⚠️ Warning ⚠️: Please be aware that the transcription_hint field has a character limit of 600. If you provide a transcription_hint longer than 600 characters, it will be automatically truncated to meet this limit.

@@ -5,6 +5,8 @@
  *     {}
  */
 export interface ListSquadsRequest {
+    /** Return only squads matching the provided ids */
+    idAny?: string | string[];
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

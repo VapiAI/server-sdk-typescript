@@ -119,4 +119,29 @@ export namespace ConversationNodeToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.ConversationNodeToolsItem.ApiRequest
+        | Vapi.ConversationNodeToolsItem.Bash
+        | Vapi.ConversationNodeToolsItem.Code
+        | Vapi.ConversationNodeToolsItem.Computer
+        | Vapi.ConversationNodeToolsItem.Dtmf
+        | Vapi.ConversationNodeToolsItem.EndCall
+        | Vapi.ConversationNodeToolsItem.Function
+        | Vapi.ConversationNodeToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.ConversationNodeToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.ConversationNodeToolsItem.GohighlevelContactCreate
+        | Vapi.ConversationNodeToolsItem.GohighlevelContactGet
+        | Vapi.ConversationNodeToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.ConversationNodeToolsItem.GoogleCalendarEventCreate
+        | Vapi.ConversationNodeToolsItem.GoogleSheetsRowAppend
+        | Vapi.ConversationNodeToolsItem.Handoff
+        | Vapi.ConversationNodeToolsItem.Mcp
+        | Vapi.ConversationNodeToolsItem.Query
+        | Vapi.ConversationNodeToolsItem.SlackMessageSend
+        | Vapi.ConversationNodeToolsItem.Sms
+        | Vapi.ConversationNodeToolsItem.TextEditor
+        | Vapi.ConversationNodeToolsItem.TransferCall
+        | Vapi.ConversationNodeToolsItem.SipRequest
+        | Vapi.ConversationNodeToolsItem.Voicemail;
 }

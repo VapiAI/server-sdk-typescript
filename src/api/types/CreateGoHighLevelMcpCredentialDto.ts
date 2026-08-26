@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * OAuth 2.0 session credentials for authenticating GoHighLevel MCP requests.
+ */
 export interface CreateGoHighLevelMcpCredentialDto {
     /** This is the authentication session for the credential. */
     authenticationSession: Vapi.Oauth2AuthenticationSession;

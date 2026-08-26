@@ -23,6 +23,8 @@ export class ObservabilityScorecardClient {
     }
 
     /**
+     * Returns the scorecard identified by its ID.
+     *
      * @param {Vapi.ScorecardControllerGetRequest} request
      * @param {ObservabilityScorecardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -81,6 +83,8 @@ export class ObservabilityScorecardClient {
     }
 
     /**
+     * Deletes the scorecard identified by its ID.
+     *
      * @param {Vapi.ScorecardControllerRemoveRequest} request
      * @param {ObservabilityScorecardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -144,6 +148,8 @@ export class ObservabilityScorecardClient {
     }
 
     /**
+     * Updates the scorecard identified by its ID.
+     *
      * @param {Vapi.UpdateScorecardDto} request
      * @param {ObservabilityScorecardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -210,6 +216,8 @@ export class ObservabilityScorecardClient {
     }
 
     /**
+     * Returns scorecards for the authenticated organization. Filter results by ID or creation and update timestamps.
+     *
      * @param {Vapi.ScorecardControllerGetPaginatedRequest} request
      * @param {ObservabilityScorecardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -231,6 +239,7 @@ export class ObservabilityScorecardClient {
             id,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -245,6 +254,7 @@ export class ObservabilityScorecardClient {
             id,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -293,16 +303,21 @@ export class ObservabilityScorecardClient {
     }
 
     /**
+     * Creates a scorecard containing metrics, scoring conditions, and optional links to assistants whose calls should be evaluated.
+     *
      * @param {Vapi.CreateScorecardDto} request
      * @param {ObservabilityScorecardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.observabilityScorecard.scorecardControllerCreate({
      *         metrics: [{
-     *                 structuredOutputId: "structuredOutputId",
      *                 conditions: [{
-     *                         "key": "value"
-     *                     }]
+     *                         type: "comparator",
+     *                         comparator: "=",
+     *                         value: 1.1,
+     *                         points: 1.1
+     *                     }],
+     *                 structuredOutputId: "structuredOutputId"
      *             }]
      *     })
      */

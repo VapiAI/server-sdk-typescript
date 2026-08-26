@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetSessionsRequest {
+    /** The unique identifier for the resource. */
     id: string;
 }

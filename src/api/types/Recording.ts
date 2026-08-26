@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Call recording locations, including stereo, video, and separated mono recording URLs.
+ */
 export interface Recording {
     /** This is the stereo recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
     stereoUrl?: string | undefined;

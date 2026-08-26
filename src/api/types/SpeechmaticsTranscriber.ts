@@ -2,9 +2,13 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with Speechmatics, including language, region, diarization, vocabulary, endpointing, formatting, and fallback settings.
+ */
 export interface SpeechmaticsTranscriber {
     /** This is the model that will be used for the transcription. */
     model?: Vapi.SpeechmaticsTranscriberModel | undefined;
+    /** Language used for transcription. Set to `auto` to detect the language automatically. */
     language?: Vapi.SpeechmaticsTranscriberLanguage | undefined;
     /**
      * This is the operating point for the transcription. Choose between `standard` for faster turnaround with strong accuracy or `enhanced` for highest accuracy when precision is critical.
@@ -30,6 +34,7 @@ export interface SpeechmaticsTranscriber {
      * @default 3000
      */
     maxDelay?: number | undefined;
+    /** Words and phrases that Speechmatics should recognize more accurately, with optional phonetic alternatives. */
     customVocabulary: Vapi.SpeechmaticsCustomVocabularyItem[];
     /**
      * This controls how numbers, dates, currencies, and other entities are formatted in the transcription output.

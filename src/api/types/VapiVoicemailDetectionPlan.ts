@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for detecting voicemail with Vapi, including detection type, maximum beep wait, and retry backoff.
+ */
 export interface VapiVoicemailDetectionPlan {
     /**
      * This is the maximum duration from the start of the call that we will wait for a voicemail beep, before speaking our message

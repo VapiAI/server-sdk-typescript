@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetPhoneNumbersRequest {
+    /** The unique identifier of the phone number. */
     id: string;
 }

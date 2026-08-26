@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls the message and end-call behavior used when a call transfer fails.
+ */
 export interface TransferFallbackPlan {
     /** This is the message the assistant will deliver to the customer if the transfer fails. */
     message: Vapi.TransferFallbackPlanMessage;

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for Azure Speech or Blob Storage, including service, region, and optional storage bucket settings.
+ */
 export interface CreateAzureCredentialDto {
     /** This is the service being used in Azure. */
     service: Vapi.CreateAzureCredentialDtoService;

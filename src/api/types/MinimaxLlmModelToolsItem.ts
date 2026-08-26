@@ -119,4 +119,29 @@ export namespace MinimaxLlmModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.MinimaxLlmModelToolsItem.ApiRequest
+        | Vapi.MinimaxLlmModelToolsItem.Bash
+        | Vapi.MinimaxLlmModelToolsItem.Code
+        | Vapi.MinimaxLlmModelToolsItem.Computer
+        | Vapi.MinimaxLlmModelToolsItem.Dtmf
+        | Vapi.MinimaxLlmModelToolsItem.EndCall
+        | Vapi.MinimaxLlmModelToolsItem.Function
+        | Vapi.MinimaxLlmModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.MinimaxLlmModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.MinimaxLlmModelToolsItem.GohighlevelContactCreate
+        | Vapi.MinimaxLlmModelToolsItem.GohighlevelContactGet
+        | Vapi.MinimaxLlmModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.MinimaxLlmModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.MinimaxLlmModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.MinimaxLlmModelToolsItem.Handoff
+        | Vapi.MinimaxLlmModelToolsItem.Mcp
+        | Vapi.MinimaxLlmModelToolsItem.Query
+        | Vapi.MinimaxLlmModelToolsItem.SlackMessageSend
+        | Vapi.MinimaxLlmModelToolsItem.Sms
+        | Vapi.MinimaxLlmModelToolsItem.TextEditor
+        | Vapi.MinimaxLlmModelToolsItem.TransferCall
+        | Vapi.MinimaxLlmModelToolsItem.SipRequest
+        | Vapi.MinimaxLlmModelToolsItem.Voicemail;
 }

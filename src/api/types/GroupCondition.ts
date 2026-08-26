@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Combines nested regular-expression, Liquid, or grouped conditions with an `AND` or `OR` operator.
+ */
 export interface GroupCondition {
     /** This is the logical operator for combining conditions in this group */
     operator: Vapi.GroupConditionOperator;

@@ -17,7 +17,9 @@ export type UpdateAssistantDtoTranscriber =
     | Vapi.UpdateAssistantDtoTranscriber.Talkscriber
     | Vapi.UpdateAssistantDtoTranscriber.Openai
     | Vapi.UpdateAssistantDtoTranscriber.Cartesia
-    | Vapi.UpdateAssistantDtoTranscriber.Soniox;
+    | Vapi.UpdateAssistantDtoTranscriber.Soniox
+    | Vapi.UpdateAssistantDtoTranscriber.Xai
+    | Vapi.UpdateAssistantDtoTranscriber.Vapi;
 
 export namespace UpdateAssistantDtoTranscriber {
     export interface AssemblyAi extends Vapi.AssemblyAiTranscriber {
@@ -66,5 +68,13 @@ export namespace UpdateAssistantDtoTranscriber {
 
     export interface Soniox extends Vapi.SonioxTranscriber {
         provider: "soniox";
+    }
+
+    export interface Xai extends Vapi.XaiTranscriber {
+        provider: "xai";
+    }
+
+    export interface Vapi extends Vapi.VapiTranscriber {
+        provider: "vapi";
     }
 }

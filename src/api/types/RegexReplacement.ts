@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Replaces text matching a regular expression before it is sent to a voice provider.
+ */
 export interface RegexReplacement {
     /**
      * This is the regex pattern to replace.

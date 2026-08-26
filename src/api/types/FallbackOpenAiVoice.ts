@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for synthesizing assistant speech with OpenAI, including voice and model selection, delivery instructions, speed, chunking, and caching.
+ */
 export interface FallbackOpenAiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

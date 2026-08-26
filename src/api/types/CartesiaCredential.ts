@@ -16,4 +16,6 @@ export interface CartesiaCredential {
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;
+    /** This can be used to point to an onprem Cartesia instance. Defaults to api.cartesia.ai. */
+    apiUrl?: string | undefined;
 }

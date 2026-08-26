@@ -15,6 +15,8 @@ export interface StructuredOutputControllerFindAllRequest {
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.StructuredOutputControllerFindAllRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.StructuredOutputControllerFindAllRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

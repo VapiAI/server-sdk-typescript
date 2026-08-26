@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Google model configuration for an LLM judge, including its messages and generation settings.
+ */
 export interface EvalGoogleModel {
     /** This is the name of the model. Ex. gpt-4o */
     model: Vapi.EvalGoogleModelModel;

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * VapiQL JSON query that aggregates or counts a structured-output value stored on call records.
+ */
 export interface JsonQueryOnCallTableWithStructuredOutputColumn {
     /** This is the type of query. Only allowed type is "vapiql-json". */
     type: Vapi.JsonQueryOnCallTableWithStructuredOutputColumnType;

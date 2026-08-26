@@ -8,6 +8,7 @@ export type DeleteToolsResponse =
     | Vapi.DeleteToolsResponse.Dtmf
     | Vapi.DeleteToolsResponse.EndCall
     | Vapi.DeleteToolsResponse.Function
+    | Vapi.DeleteToolsResponse.KnowledgeBase
     | Vapi.DeleteToolsResponse.TransferCall
     | Vapi.DeleteToolsResponse.Handoff
     | Vapi.DeleteToolsResponse.Bash
@@ -46,6 +47,10 @@ export namespace DeleteToolsResponse {
 
     export interface Function extends Vapi.FunctionTool {
         type: "function";
+    }
+
+    export interface KnowledgeBase extends Vapi.KnowledgeBaseTool {
+        type: "knowledgeBase";
     }
 
     export interface TransferCall extends Vapi.TransferCallTool {
@@ -119,4 +124,30 @@ export namespace DeleteToolsResponse {
     export interface Voicemail extends Vapi.VoicemailTool {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.DeleteToolsResponse.ApiRequest
+        | Vapi.DeleteToolsResponse.Code
+        | Vapi.DeleteToolsResponse.Dtmf
+        | Vapi.DeleteToolsResponse.EndCall
+        | Vapi.DeleteToolsResponse.Function
+        | Vapi.DeleteToolsResponse.KnowledgeBase
+        | Vapi.DeleteToolsResponse.TransferCall
+        | Vapi.DeleteToolsResponse.Handoff
+        | Vapi.DeleteToolsResponse.Bash
+        | Vapi.DeleteToolsResponse.Computer
+        | Vapi.DeleteToolsResponse.TextEditor
+        | Vapi.DeleteToolsResponse.Query
+        | Vapi.DeleteToolsResponse.GoogleCalendarEventCreate
+        | Vapi.DeleteToolsResponse.GoogleSheetsRowAppend
+        | Vapi.DeleteToolsResponse.GoogleCalendarAvailabilityCheck
+        | Vapi.DeleteToolsResponse.SlackMessageSend
+        | Vapi.DeleteToolsResponse.Sms
+        | Vapi.DeleteToolsResponse.Mcp
+        | Vapi.DeleteToolsResponse.GohighlevelCalendarAvailabilityCheck
+        | Vapi.DeleteToolsResponse.GohighlevelCalendarEventCreate
+        | Vapi.DeleteToolsResponse.GohighlevelContactCreate
+        | Vapi.DeleteToolsResponse.GohighlevelContactGet
+        | Vapi.DeleteToolsResponse.SipRequest
+        | Vapi.DeleteToolsResponse.Voicemail;
 }

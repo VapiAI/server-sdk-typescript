@@ -19,4 +19,9 @@ export namespace UpdateHandoffToolDtoDestinationsItem {
     export interface Squad extends Vapi.HandoffDestinationSquad {
         type: "squad";
     }
+
+    export type Response =
+        | Vapi.UpdateHandoffToolDtoDestinationsItem.Assistant
+        | Vapi.UpdateHandoffToolDtoDestinationsItem.Dynamic
+        | Vapi.UpdateHandoffToolDtoDestinationsItem.Squad;
 }

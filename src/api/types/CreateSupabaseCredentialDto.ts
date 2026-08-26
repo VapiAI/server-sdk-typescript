@@ -2,9 +2,13 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for storing call artifacts in Supabase's S3-compatible storage, including bucket configuration and upload fallback order.
+ */
 export interface CreateSupabaseCredentialDto {
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
     fallbackIndex?: number | undefined;
+    /** Supabase S3-compatible bucket configuration used to store call artifacts. */
     bucketPlan?: Vapi.SupabaseBucketPlan | undefined;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;

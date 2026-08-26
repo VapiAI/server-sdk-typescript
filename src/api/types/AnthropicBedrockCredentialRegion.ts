@@ -4,6 +4,7 @@
 export const AnthropicBedrockCredentialRegion = {
     UsEast1: "us-east-1",
     UsWest2: "us-west-2",
+    EuCentral1: "eu-central-1",
     EuWest1: "eu-west-1",
     EuWest3: "eu-west-3",
     ApNortheast1: "ap-northeast-1",

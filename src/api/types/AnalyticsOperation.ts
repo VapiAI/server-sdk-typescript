@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An aggregation or history operation applied to an analytics column, with an optional response alias.
+ */
 export interface AnalyticsOperation {
     /** This is the aggregation operation you want to perform. */
     operation: Vapi.AnalyticsOperationOperation;

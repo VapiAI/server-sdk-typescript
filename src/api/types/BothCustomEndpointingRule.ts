@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A custom endpointing rule that matches both the assistant's last message and the customer's current speech before applying a configured timeout.
+ */
 export interface BothCustomEndpointingRule {
     /**
      * This is the regex pattern to match the assistant's message.
@@ -20,6 +23,7 @@ export interface BothCustomEndpointingRule {
      * @default []
      */
     assistantRegexOptions?: Vapi.RegexOption[] | undefined;
+    /** The regular expression pattern matched against the customer's speech. */
     customerRegex: string;
     /**
      * These are the options for the customer's message regex match. Defaults to all disabled.

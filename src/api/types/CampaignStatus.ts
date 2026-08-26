@@ -5,5 +5,7 @@ export const CampaignStatus = {
     Scheduled: "scheduled",
     InProgress: "in-progress",
     Ended: "ended",
+    Cancelled: "cancelled",
+    Archived: "archived",
 } as const;
 export type CampaignStatus = (typeof CampaignStatus)[keyof typeof CampaignStatus];

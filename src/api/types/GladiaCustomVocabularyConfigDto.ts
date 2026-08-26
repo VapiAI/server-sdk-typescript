@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Custom vocabulary configuration for Gladia transcription, including vocabulary items and default recognition intensity.
+ */
 export interface GladiaCustomVocabularyConfigDto {
     /** Array of vocabulary items (strings or objects with value, pronunciations, intensity, language) */
     vocabulary: Vapi.GladiaCustomVocabularyConfigDtoVocabularyItem[];

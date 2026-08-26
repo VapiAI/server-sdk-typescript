@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for transcribing speech with OpenAI, including model and language.
+ */
 export interface FallbackOpenAiTranscriber {
     /** This is the model that will be used for the transcription. */
     model: Vapi.FallbackOpenAiTranscriberModel;

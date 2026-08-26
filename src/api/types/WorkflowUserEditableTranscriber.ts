@@ -19,7 +19,9 @@ export type WorkflowUserEditableTranscriber =
     | Vapi.WorkflowUserEditableTranscriber.Talkscriber
     | Vapi.WorkflowUserEditableTranscriber.Openai
     | Vapi.WorkflowUserEditableTranscriber.Cartesia
-    | Vapi.WorkflowUserEditableTranscriber.Soniox;
+    | Vapi.WorkflowUserEditableTranscriber.Soniox
+    | Vapi.WorkflowUserEditableTranscriber.Xai
+    | Vapi.WorkflowUserEditableTranscriber.Vapi;
 
 export namespace WorkflowUserEditableTranscriber {
     export interface AssemblyAi extends Vapi.AssemblyAiTranscriber {
@@ -68,5 +70,13 @@ export namespace WorkflowUserEditableTranscriber {
 
     export interface Soniox extends Vapi.SonioxTranscriber {
         provider: "soniox";
+    }
+
+    export interface Xai extends Vapi.XaiTranscriber {
+        provider: "xai";
+    }
+
+    export interface Vapi extends Vapi.VapiTranscriber {
+        provider: "vapi";
     }
 }

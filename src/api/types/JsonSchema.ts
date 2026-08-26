@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * JSON Schema definition used to describe structured data for extraction, validation, or model output.
+ */
 export interface JsonSchema {
     /**
      * This is the type of output you'd like.

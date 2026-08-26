@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Vapi platform cost for a call, including cost subtype, billable minutes, and amount.
+ */
 export interface VapiCost {
     /** This is the sub type of the cost. */
     subType: Vapi.VapiCostSubType;

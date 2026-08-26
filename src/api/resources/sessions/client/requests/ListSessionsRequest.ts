@@ -45,6 +45,12 @@ export interface ListSessionsRequest {
      * This allows customization of the assistant's behavior for individual customers in batch calls.
      */
     assistantOverrides?: string;
+    /**
+     * These are the overrides applied when the call targets a `squadId`. Mirrors
+     * the call-level `squadOverrides` — use this instead of `assistantOverrides`
+     * when the campaign or call is squad-based.
+     */
+    squadOverrides?: string;
     /** This is the number of the customer. */
     number?: string;
     /** This is the SIP URI of the customer. */
@@ -55,6 +61,8 @@ export interface ListSessionsRequest {
     externalId?: string;
     /** Filter by any of the specified customer phone numbers (comma-separated). */
     customerNumberAny?: string;
+    /** Filter by multiple session IDs. Provide as comma-separated values. */
+    idAny?: string;
     /** This will return sessions with the specified phoneNumberId. */
     phoneNumberId?: string;
     /** This will return sessions with any of the specified phoneNumberIds. */
@@ -63,6 +71,8 @@ export interface ListSessionsRequest {
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ListSessionsRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ListSessionsRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */
