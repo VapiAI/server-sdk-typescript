@@ -19,4 +19,9 @@ export namespace CallHookCustomerSpeechTimeoutDoItem {
     export interface MessageAdd extends Vapi.MessageAddHookAction {
         type: "message.add";
     }
+
+    export type Response =
+        | Vapi.CallHookCustomerSpeechTimeoutDoItem.Say
+        | Vapi.CallHookCustomerSpeechTimeoutDoItem.Tool
+        | Vapi.CallHookCustomerSpeechTimeoutDoItem.MessageAdd;
 }

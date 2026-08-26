@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A provider-managed pronunciation-dictionary resource mirrored in Vapi, including its provider identifiers, resource data, and lifecycle information.
+ */
 export interface ProviderResource {
     /** This is the unique identifier for the provider resource. */
     id: string;

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for Twilio answering-machine detection, including recognized outcomes, enablement, timeout, speech thresholds, and silence timeout.
+ */
 export interface TwilioVoicemailDetectionPlan {
     /** This is the provider to use for voicemail detection. */
     provider: Vapi.TwilioVoicemailDetectionPlanProvider;

@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace AssistantsClient {
     export type Options = BaseClientOptions;
@@ -23,6 +23,8 @@ export class AssistantsClient {
     }
 
     /**
+     * Returns assistants for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+     *
      * @param {Vapi.ListAssistantsRequest} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -100,6 +102,8 @@ export class AssistantsClient {
     }
 
     /**
+     * Creates a reusable assistant configuration containing the model, voice, transcriber, tools, prompts, and call behavior.
+     *
      * @param {Vapi.CreateAssistantDto} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -158,6 +162,8 @@ export class AssistantsClient {
     }
 
     /**
+     * Returns the assistant identified by its ID.
+     *
      * @param {Vapi.GetAssistantsRequest} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -216,8 +222,12 @@ export class AssistantsClient {
     }
 
     /**
+     * Deletes the assistant identified by its ID.
+     *
      * @param {Vapi.DeleteAssistantsRequest} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ConflictError}
      *
      * @example
      *     await client.assistants.delete({
@@ -263,17 +273,24 @@ export class AssistantsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/assistant/{id}");
     }
 
     /**
+     * Updates the specified fields of the assistant identified by its ID.
+     *
      * @param {Vapi.UpdateAssistantDto} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

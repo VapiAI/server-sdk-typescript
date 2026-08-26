@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateGcpCredentialDto {
+    provider?: Vapi.UpdateGcpCredentialDtoProvider | undefined;
     /** This is the order in which this storage provider is tried during upload retries. Lower numbers are tried first in increasing order. */
     fallbackIndex?: number | undefined;
     /** This is the name of credential. This is just for your reference. */

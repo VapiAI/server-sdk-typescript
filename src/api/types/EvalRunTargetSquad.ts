@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A squad evaluation target provided as a saved squad ID or a transient squad, with optional assistant overrides.
+ */
 export interface EvalRunTargetSquad {
     /** This is the transient squad that will be run against the eval */
     squad?: Vapi.CreateSquadDto | undefined;

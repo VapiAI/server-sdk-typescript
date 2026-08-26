@@ -7,7 +7,7 @@ export interface SimulationRun {
     id: string;
     /** Organization ID */
     orgId: string;
-    /** Current status of the run */
+    /** The run's current status. One of `queued`, `running`, or `ended`. */
     status: Vapi.SimulationRunStatus;
     /** When the run was queued */
     queuedAt: string;
@@ -15,20 +15,20 @@ export interface SimulationRun {
     startedAt?: string | undefined;
     /** When the run ended */
     endedAt?: string | undefined;
-    /** Reason the run ended */
+    /** Why the run ended, when applicable. */
     endedReason?: string | undefined;
     /** ISO 8601 date-time when created */
     createdAt: string;
     /** ISO 8601 date-time when last updated */
     updatedAt: string;
-    /** Aggregate counts of run items by status */
+    /** Aggregate counts of the run's items by status. */
     itemCounts?: Vapi.SimulationRunItemCounts | undefined;
-    /** Array of simulations and/or suites to run */
+    /** The simulations and suites included in the run. */
     simulations: Vapi.SimulationRunSimulationsItem[];
-    /** Target to test against */
+    /** The assistant or squad the run was tested against. */
     target: Vapi.SimulationRunTarget;
-    /** Number of times to run each simulation (default: 1) */
+    /** The number of times each simulation was run. Defaults to 1. */
     iterations?: number | undefined;
-    /** Transport configuration for the simulation runs */
+    /** The transport used for the run, either voice or chat. */
     transport?: Vapi.SimulationRunTransportConfiguration | undefined;
 }

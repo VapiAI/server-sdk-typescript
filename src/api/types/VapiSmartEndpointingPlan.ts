@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Selects Vapi smart endpointing to determine when customer speech is complete.
+ */
 export interface VapiSmartEndpointingPlan {
     /** This is the provider for the smart endpointing plan. */
     provider: Vapi.VapiSmartEndpointingPlanProvider;

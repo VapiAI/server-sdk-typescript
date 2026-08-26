@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls smart and Fourier denoising applied to customer audio before transcription.
+ */
 export interface BackgroundSpeechDenoisingPlan {
     /** Whether smart denoising using Krisp is enabled. */
     smartDenoisingPlan?: Vapi.SmartDenoisingPlan | undefined;

@@ -303,6 +303,10 @@ describe("ChatsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -713,6 +717,10 @@ describe("ChatsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -1101,6 +1109,10 @@ describe("ChatsClient", () => {
                                         structuredOutputs: [
                                             {
                                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                                conditions: [
+                                                    { type: "minMessages", count: 4 },
+                                                    { type: "minCallDuration", seconds: 10 },
+                                                ],
                                                 name: "name",
                                                 schema: { type: "string" },
                                             },
@@ -1514,6 +1526,10 @@ describe("ChatsClient", () => {
                                         structuredOutputs: [
                                             {
                                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                                conditions: [
+                                                    { type: "minMessages", count: 4 },
+                                                    { type: "minCallDuration", seconds: 10 },
+                                                ],
                                                 name: "name",
                                                 schema: { type: "string" },
                                             },
@@ -1926,6 +1942,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -2037,6 +2057,10 @@ describe("ChatsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -2414,6 +2438,16 @@ describe("ChatsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -2926,6 +2960,16 @@ describe("ChatsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -3401,6 +3445,16 @@ describe("ChatsClient", () => {
                                                 compliancePlan: {
                                                     forceStoreOnHipaaEnabled: false,
                                                 },
+                                                conditions: [
+                                                    {
+                                                        type: "minMessages",
+                                                        count: 4,
+                                                    },
+                                                    {
+                                                        type: "minCallDuration",
+                                                        seconds: 10,
+                                                    },
+                                                ],
                                                 name: "name",
                                                 schema: {
                                                     type: "string",
@@ -3913,6 +3967,16 @@ describe("ChatsClient", () => {
                                                 compliancePlan: {
                                                     forceStoreOnHipaaEnabled: false,
                                                 },
+                                                conditions: [
+                                                    {
+                                                        type: "minMessages",
+                                                        count: 4,
+                                                    },
+                                                    {
+                                                        type: "minCallDuration",
+                                                        seconds: 10,
+                                                    },
+                                                ],
                                                 name: "name",
                                                 schema: {
                                                     type: "string",
@@ -4427,6 +4491,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -4574,6 +4648,10 @@ describe("ChatsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -4597,6 +4675,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -4651,6 +4733,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -4914,13 +4997,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -5019,6 +5113,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -5073,6 +5171,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -5367,13 +5466,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -5759,6 +5869,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -6169,6 +6283,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -6591,6 +6709,10 @@ describe("ChatsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -6700,6 +6822,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -6730,6 +6853,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -6806,6 +6933,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -7130,6 +7263,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -7141,12 +7284,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -7277,6 +7423,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -7353,6 +7503,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -7727,6 +7883,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -7738,12 +7904,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -8237,6 +8406,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -8749,6 +8928,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -9280,6 +9469,16 @@ describe("ChatsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -9419,6 +9618,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -9442,6 +9642,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -9496,6 +9700,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -9759,13 +9964,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -9864,6 +10080,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -9918,6 +10138,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -10212,13 +10433,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -10604,6 +10836,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -11014,6 +11250,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -11436,6 +11676,10 @@ describe("ChatsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -11545,6 +11789,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -11568,6 +11813,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -11644,6 +11893,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -11968,6 +12223,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -11979,12 +12244,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -12115,6 +12383,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -12191,6 +12463,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -12565,6 +12843,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -12576,12 +12864,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -13075,6 +13366,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -13587,6 +13888,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -14118,6 +14429,16 @@ describe("ChatsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -14257,6 +14578,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -14280,6 +14602,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -14334,6 +14660,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -14597,13 +14924,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -14702,6 +15040,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -14756,6 +15098,7 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -15050,13 +15393,24 @@ describe("ChatsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -15442,6 +15796,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -15852,6 +16210,10 @@ describe("ChatsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -16274,6 +16636,10 @@ describe("ChatsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -16383,6 +16749,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -16406,6 +16773,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -16482,6 +16853,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -16806,6 +17183,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -16817,12 +17204,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -16953,6 +17343,10 @@ describe("ChatsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -17029,6 +17423,12 @@ describe("ChatsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -17403,6 +17803,16 @@ describe("ChatsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -17414,12 +17824,15 @@ describe("ChatsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -17913,6 +18326,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -18425,6 +18848,16 @@ describe("ChatsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -18956,6 +19389,16 @@ describe("ChatsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -19095,6 +19538,7 @@ describe("ChatsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Selects whether an insight run returns raw data or Recharts-formatted data.
+ */
 export interface InsightRunFormatPlan {
     /**
      * This is the format of the data to return.

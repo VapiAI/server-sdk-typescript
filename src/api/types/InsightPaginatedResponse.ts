@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of saved reporting insights and metadata describing the result set.
+ */
 export interface InsightPaginatedResponse {
+    /** The reporting insights returned for the current page. */
     results: Vapi.Insight[];
+    /** Pagination metadata for the insight result set. */
     metadata: Vapi.PaginationMeta;
 }

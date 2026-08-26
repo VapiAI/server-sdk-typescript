@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Call performance measurements, including per-turn and average provider, endpointing, transport, and interruption metrics.
+ */
 export interface PerformanceMetrics {
     /** These are the individual latencies for each turn. */
     turnLatencies?: Vapi.TurnLatency[] | undefined;

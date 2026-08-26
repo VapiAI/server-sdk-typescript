@@ -9,7 +9,7 @@ export interface SimulationRunItem {
     orgId: string;
     /** This is the ID of the simulation this run belongs to. */
     simulationId: string;
-    /** This is the current status of the run. */
+    /** The run item's current status. */
     status: Vapi.SimulationRunItemStatus;
     /** This is the ISO 8601 date-time string of when the run was queued. */
     queuedAt: string;
@@ -21,9 +21,9 @@ export interface SimulationRunItem {
     failedAt?: string | undefined;
     /** This is the ISO 8601 date-time string of when the run was canceled. */
     canceledAt?: string | undefined;
-    /** This is the reason for failure. */
+    /** Why the run item failed, when applicable. */
     failureReason?: string | undefined;
-    /** This is the ID of the target Vapi call (the assistant being tested). */
+    /** The ID of the call that ran this item. */
     callId?: string | undefined;
     /** This is the ISO 8601 date-time string of when the run item was created. */
     createdAt: string;
@@ -33,19 +33,19 @@ export interface SimulationRunItem {
     runId?: string | undefined;
     /** Hooks configured for this simulation run item */
     hooks?: Vapi.SimulationRunItemHooksItem[] | undefined;
-    /** This is the iteration number (1-indexed) when run with iterations > 1. */
+    /** Which iteration of the simulation this item represents. */
     iterationNumber?: number | undefined;
     /** This is the session ID for chat-based simulations (webchat transport). */
     sessionId?: string | undefined;
-    /** This is the scenario ID at run creation time. */
+    /** The ID of the scenario used for this run item. */
     scenarioId?: string | undefined;
-    /** This is the personality ID at run creation time. */
+    /** The ID of the personality used for this run item. */
     personalityId?: string | undefined;
     /** This is the metadata containing snapshots and call data. */
     metadata?: Vapi.SimulationRunItemMetadata | undefined;
-    /** This is the results of the simulation run. */
+    /** The evaluation results for this run item. */
     results?: Vapi.SimulationRunItemResults | undefined;
-    /** This is the AI-generated improvement suggestions for failed runs. */
+    /** AI-generated suggestions for improving the assistant or squad's system prompt, tools, and scenarios after a failed run. */
     improvementSuggestions?: Vapi.SimulationRunItemImprovements | undefined;
     /** This is the configuration for how this simulation run executes. */
     configurations?: Vapi.SimulationRunConfiguration | undefined;

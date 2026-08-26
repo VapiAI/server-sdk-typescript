@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured actions when the assistant interrupts the customer's speech.
+ */
 export interface CallHookCustomerSpeechInterrupted {
     /** This is the event that triggers this hook */
     on: Vapi.CallHookCustomerSpeechInterruptedOn;

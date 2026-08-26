@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration passed to Twilio for assistant calls, including ring timeout and Twilio recording behavior.
+ */
 export interface TransportConfigurationTwilio {
+    /** Selects Twilio as the call transport provider. */
     provider: Vapi.TransportConfigurationTwilioProvider;
     /**
      * The integer number of seconds that we should allow the phone to ring before assuming there is no answer.

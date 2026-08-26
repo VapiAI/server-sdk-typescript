@@ -6,6 +6,7 @@ export * from "./ProviderResourceControllerGetProviderResourceRequestProvider.js
 export * from "./ProviderResourceControllerGetProviderResourceRequestResourceName.js";
 export * from "./ProviderResourceControllerGetProviderResourcesPaginatedRequestProvider.js";
 export * from "./ProviderResourceControllerGetProviderResourcesPaginatedRequestResourceName.js";
+export * from "./ProviderResourceControllerGetProviderResourcesPaginatedRequestSortBy.js";
 export * from "./ProviderResourceControllerGetProviderResourcesPaginatedRequestSortOrder.js";
 export * from "./ProviderResourceControllerUpdateProviderResourceRequestProvider.js";
 export * from "./ProviderResourceControllerUpdateProviderResourceRequestResourceName.js";

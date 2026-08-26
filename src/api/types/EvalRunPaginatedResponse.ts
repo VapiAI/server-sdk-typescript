@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of eval runs and metadata describing the result set.
+ */
 export interface EvalRunPaginatedResponse {
+    /** The eval runs returned for the current page. */
     results: Vapi.EvalRun[];
+    /** Pagination metadata for the eval-run result set. */
     metadata: Vapi.PaginationMeta;
 }

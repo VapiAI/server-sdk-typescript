@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a scorecard containing evaluation metrics, scoring conditions, and optional assistant associations.
+ */
 export interface CreateScorecardDto {
     /** This is the name of the scorecard. It is only for user reference and will not be used for any evaluation. */
     name?: string | undefined;

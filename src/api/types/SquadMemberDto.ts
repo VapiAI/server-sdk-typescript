@@ -2,7 +2,17 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An assistant member of a squad. Reference a saved assistant or provide a transient assistant, then configure member-specific overrides and destinations for transfers.
+ */
 export interface SquadMemberDto {
+    /**
+     * This is the assistant version (e.g. `v3`) to pin for this squad member. When set, the call uses
+     * the snapshot from `assistant_version` (by `(assistantId, version)`) instead of the latest. Valid
+     * only with `assistantId`; rejected with inline `assistant`. Omit to follow the latest version.
+     */
+    assistantVersion?: (string | null) | undefined;
+    /** Assistants this squad member can route the conversation to through a transfer or handoff. */
     assistantDestinations?: Vapi.SquadMemberDtoAssistantDestinationsItem[] | undefined;
     /** This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead. */
     assistantId?: (string | null) | undefined;

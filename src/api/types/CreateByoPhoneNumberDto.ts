@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to connect a bring-your-own phone number to Vapi with a stored telephony credential and routing settings.
+ */
 export interface CreateByoPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

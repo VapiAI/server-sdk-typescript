@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Message spoken when a tool call exceeds a configured response delay, with optional language variants and argument conditions.
+ */
 export interface ToolMessageDelayed {
     /**
      * This is an alternative to the `content` property. It allows to specify variants of the same content, one per language.
@@ -13,7 +16,7 @@ export interface ToolMessageDelayed {
      * This will override the `content` property.
      */
     contents?: Vapi.TextContent[] | undefined;
-    /** The number of milliseconds to wait for the server response before saying this message. */
+    /** The number of milliseconds to wait for the server response before saying this delayed message. */
     timingMilliseconds?: number | undefined;
     /** This is the content that the assistant says when this message is triggered. */
     content?: string | undefined;

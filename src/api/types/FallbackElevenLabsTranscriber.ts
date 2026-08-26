@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for transcribing speech with ElevenLabs, including model, language, and speech thresholds.
+ */
 export interface FallbackElevenLabsTranscriber {
     /** This is the model that will be used for the transcription. */
     model?: Vapi.FallbackElevenLabsTranscriberModel | undefined;

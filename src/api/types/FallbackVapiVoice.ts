@@ -2,17 +2,24 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for synthesizing assistant speech with Vapi, including voice selection, speed, pronunciation dictionary, chunking, and caching.
+ */
 export interface FallbackVapiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;
-    /** The voices provided by Vapi */
-    voiceId: Vapi.FallbackVapiVoiceVoiceId;
+    /** The voice to use: a built-in Vapi voice name, or a cloned voice id (used with version 2). */
+    voiceId: string;
+    /** The Vapi voice routing generation. `latest` auto-updates to the newest generation; version 1 uses legacy mappings; version 2 can use xAI-backed voices when available. When omitted, Version 1 is used. Accepts the string channel ('latest', '1', '2'); legacy numeric values (1, 2) are also accepted and coerced to their string form. */
+    version?: Vapi.FallbackVapiVoiceVersion | undefined;
     /**
      * This is the speed multiplier that will be used.
      *
      * @default 1
      */
     speed?: number | undefined;
+    /** Language for Vapi voice synthesis. For Version 2, omit this field or set `auto` for automatic language detection. Version 1 supports legacy Vapi language values. */
+    language?: Vapi.FallbackVapiVoiceLanguage | undefined;
     /** List of pronunciation dictionary locators for custom word pronunciations. */
     pronunciationDictionary?: Vapi.VapiPronunciationDictionaryLocator[] | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */

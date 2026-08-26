@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a line-chart insight, including its queries, formulas, grouping, time range, metadata, and name.
+ */
 export interface UpdateLineInsightFromCallTableDto {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -25,6 +28,7 @@ export interface UpdateLineInsightFromCallTableDto {
     formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
     metadata?: Vapi.LineInsightMetadata | undefined;
+    /** The time range and interval used to aggregate the line-chart data. */
     timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.

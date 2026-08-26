@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a squad. Provide an ordered list of assistant members and optional overrides that control how the squad handles a conversation and transfers between assistants.
+ */
 export interface CreateSquadDto {
     /** This is the name of the squad. */
     name?: string | undefined;

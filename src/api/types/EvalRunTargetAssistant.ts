@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An assistant evaluation target provided as a saved assistant ID or a transient assistant, with optional assistant overrides.
+ */
 export interface EvalRunTargetAssistant {
     /** This is the transient assistant that will be run against the eval */
     assistant?: Vapi.CreateAssistantDto | undefined;

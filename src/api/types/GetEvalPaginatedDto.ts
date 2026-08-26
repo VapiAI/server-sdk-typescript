@@ -8,6 +8,8 @@ export interface GetEvalPaginatedDto {
     page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.GetEvalPaginatedDtoSortOrder | undefined;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.GetEvalPaginatedDtoSortBy | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */

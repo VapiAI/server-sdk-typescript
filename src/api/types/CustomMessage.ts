@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A message spoken by the assistant with optional language-specific content variants.
+ */
 export interface CustomMessage {
     /**
      * This is an alternative to the `content` property. It allows to specify variants of the same content, one per language.

@@ -27,6 +27,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallStartErrorSubscriptionConcurrencyLimitReached: "call.start.error-subscription-concurrency-limit-reached",
     CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent:
         "call.start.error-enterprise-feature-not-available-recording-consent",
+    CallStartAssistantVersionErrorValidation: "call.start.assistant-version-error-validation",
     AssistantNotValid: "assistant-not-valid",
     CallStartErrorVapifaultDatabaseError: "call.start.error-vapifault-database-error",
     AssistantNotFound: "assistant-not-found",
@@ -46,6 +47,9 @@ export const ServerMessageStatusUpdateEndedReason = {
     PipelineErrorInworldVoiceFailed: "pipeline-error-inworld-voice-failed",
     PipelineErrorMinimaxVoiceFailed: "pipeline-error-minimax-voice-failed",
     PipelineErrorWellsaidVoiceFailed: "pipeline-error-wellsaid-voice-failed",
+    PipelineErrorXaiVoiceFailed: "pipeline-error-xai-voice-failed",
+    PipelineErrorMicrosoftVoiceFailed: "pipeline-error-microsoft-voice-failed",
+    PipelineErrorMicrosoftVoiceRequestCanceled: "pipeline-error-microsoft-voice-request-canceled",
     PipelineErrorTavusVideoFailed: "pipeline-error-tavus-video-failed",
     CallInProgressErrorVapifaultOpenaiVoiceFailed: "call.in-progress.error-vapifault-openai-voice-failed",
     CallInProgressErrorVapifaultCartesiaVoiceFailed: "call.in-progress.error-vapifault-cartesia-voice-failed",
@@ -63,6 +67,8 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallInProgressErrorVapifaultInworldVoiceFailed: "call.in-progress.error-vapifault-inworld-voice-failed",
     CallInProgressErrorVapifaultMinimaxVoiceFailed: "call.in-progress.error-vapifault-minimax-voice-failed",
     CallInProgressErrorVapifaultWellsaidVoiceFailed: "call.in-progress.error-vapifault-wellsaid-voice-failed",
+    CallInProgressErrorVapifaultXaiVoiceFailed: "call.in-progress.error-vapifault-xai-voice-failed",
+    CallInProgressErrorVapifaultMicrosoftVoiceFailed: "call.in-progress.error-vapifault-microsoft-voice-failed",
     CallInProgressErrorVapifaultTavusVideoFailed: "call.in-progress.error-vapifault-tavus-video-failed",
     PipelineErrorVapiLlmFailed: "pipeline-error-vapi-llm-failed",
     PipelineErrorVapi400BadRequestValidationFailed: "pipeline-error-vapi-400-bad-request-validation-failed",
@@ -72,6 +78,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     PipelineErrorVapi500ServerError: "pipeline-error-vapi-500-server-error",
     PipelineErrorVapi503ServerOverloadedError: "pipeline-error-vapi-503-server-overloaded-error",
     CallInProgressErrorProviderfaultVapiLlmFailed: "call.in-progress.error-providerfault-vapi-llm-failed",
+    CallInProgressErrorVapifaultVapiLlmFailed: "call.in-progress.error-vapifault-vapi-llm-failed",
     CallInProgressErrorVapifaultVapi400BadRequestValidationFailed:
         "call.in-progress.error-vapifault-vapi-400-bad-request-validation-failed",
     CallInProgressErrorVapifaultVapi401Unauthorized: "call.in-progress.error-vapifault-vapi-401-unauthorized",
@@ -81,6 +88,11 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallInProgressErrorProviderfaultVapi500ServerError: "call.in-progress.error-providerfault-vapi-500-server-error",
     CallInProgressErrorProviderfaultVapi503ServerOverloadedError:
         "call.in-progress.error-providerfault-vapi-503-server-overloaded-error",
+    PipelineErrorVapiTranscriberFailed: "pipeline-error-vapi-transcriber-failed",
+    CallInProgressErrorVapifaultVapiTranscriberFailed: "call.in-progress.error-vapifault-vapi-transcriber-failed",
+    CallInProgressErrorProviderfaultVapiTranscriberFailed:
+        "call.in-progress.error-providerfault-vapi-transcriber-failed",
+    CallInProgressErrorProviderfaultVapiVoiceFailed: "call.in-progress.error-providerfault-vapi-voice-failed",
     PipelineErrorDeepgramTranscriberFailed: "pipeline-error-deepgram-transcriber-failed",
     PipelineErrorDeepgramTranscriberApiKeyMissing: "pipeline-error-deepgram-transcriber-api-key-missing",
     CallInProgressErrorVapifaultDeepgramTranscriberFailed:
@@ -137,6 +149,23 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallInProgressErrorVapifaultSonioxTranscriberServerError:
         "call.in-progress.error-vapifault-soniox-transcriber-server-error",
     CallInProgressErrorVapifaultSonioxTranscriberFailed: "call.in-progress.error-vapifault-soniox-transcriber-failed",
+    PipelineErrorXaiTranscriberAuthFailed: "pipeline-error-xai-transcriber-auth-failed",
+    PipelineErrorXaiTranscriberRateLimited: "pipeline-error-xai-transcriber-rate-limited",
+    PipelineErrorXaiTranscriberInvalidConfig: "pipeline-error-xai-transcriber-invalid-config",
+    PipelineErrorXaiTranscriberServerError: "pipeline-error-xai-transcriber-server-error",
+    PipelineErrorXaiTranscriberFailed: "pipeline-error-xai-transcriber-failed",
+    CallInProgressErrorVapifaultXaiTranscriberAuthFailed:
+        "call.in-progress.error-vapifault-xai-transcriber-auth-failed",
+    CallInProgressErrorVapifaultXaiTranscriberRateLimited:
+        "call.in-progress.error-vapifault-xai-transcriber-rate-limited",
+    CallInProgressErrorVapifaultXaiTranscriberInvalidConfig:
+        "call.in-progress.error-vapifault-xai-transcriber-invalid-config",
+    CallInProgressErrorVapifaultXaiTranscriberServerError:
+        "call.in-progress.error-vapifault-xai-transcriber-server-error",
+    CallInProgressErrorVapifaultXaiTranscriberFailed: "call.in-progress.error-vapifault-xai-transcriber-failed",
+    PipelineErrorCartesiaTranscriberFailed: "pipeline-error-cartesia-transcriber-failed",
+    CallInProgressErrorVapifaultCartesiaTranscriberFailed:
+        "call.in-progress.error-vapifault-cartesia-transcriber-failed",
     CallInProgressErrorPipelineNoAvailableLlmModel: "call.in-progress.error-pipeline-no-available-llm-model",
     WorkerShutdown: "worker-shutdown",
     VonageDisconnected: "vonage-disconnected",
@@ -749,6 +778,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     ManuallyCanceled: "manually-canceled",
     PhoneCallProviderClosedWebsocket: "phone-call-provider-closed-websocket",
     CallForwardingOperatorBusy: "call.forwarding.operator-busy",
+    CallForwardingNoAnswer: "call.forwarding.no-answer",
     SilenceTimedOut: "silence-timed-out",
     CallInProgressErrorProviderfaultOutboundSip403Forbidden:
         "call.in-progress.error-providerfault-outbound-sip-403-forbidden",

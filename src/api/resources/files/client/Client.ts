@@ -23,16 +23,31 @@ export class FilesClient {
     }
 
     /**
+     * Returns files uploaded to the authenticated organization.
+     *
+     * @param {Vapi.ListFilesRequest} request
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.files.list()
+     *     await client.files.list({
+     *         purpose: "purpose"
+     *     })
      */
-    public list(requestOptions?: FilesClient.RequestOptions): core.HttpResponsePromise<Vapi.File_[]> {
-        return core.HttpResponsePromise.fromPromise(this.__list(requestOptions));
+    public list(
+        request: Vapi.ListFilesRequest,
+        requestOptions?: FilesClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.File_[]> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
-    private async __list(requestOptions?: FilesClient.RequestOptions): Promise<core.WithRawResponse<Vapi.File_[]>> {
+    private async __list(
+        request: Vapi.ListFilesRequest,
+        requestOptions?: FilesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.File_[]>> {
+        const { purpose } = request;
+        const _queryParams: Record<string, unknown> = {
+            purpose,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -48,7 +63,7 @@ export class FilesClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -71,6 +86,8 @@ export class FilesClient {
     }
 
     /**
+     * Uploads a file for use with a Vapi knowledge base.
+     *
      * @param {Vapi.CreateFileDto} request
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -95,6 +112,14 @@ export class FilesClient {
     ): Promise<core.WithRawResponse<Vapi.File_>> {
         const _body = await core.newFormData();
         await _body.appendFile("file", request.file);
+        if (request.purpose != null) {
+            _body.append("purpose", request.purpose);
+        }
+
+        if (request.metadata != null) {
+            _body.append("metadata", request.metadata);
+        }
+
         const _maybeEncodedRequest = await _body.getRequest();
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -143,6 +168,8 @@ export class FilesClient {
     }
 
     /**
+     * Returns the uploaded file identified by its ID.
+     *
      * @param {Vapi.GetFilesRequest} request
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -201,6 +228,8 @@ export class FilesClient {
     }
 
     /**
+     * Deletes the uploaded file identified by its ID.
+     *
      * @param {Vapi.DeleteFilesRequest} request
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -259,6 +288,8 @@ export class FilesClient {
     }
 
     /**
+     * Updates the name of the uploaded file identified by its ID.
+     *
      * @param {Vapi.UpdateFileDto} request
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *

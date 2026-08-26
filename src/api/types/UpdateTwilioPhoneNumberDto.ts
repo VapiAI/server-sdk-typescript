@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a Twilio phone number, including its account credentials, SMS configuration, routing, hooks, and server settings.
+ */
 export interface UpdateTwilioPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

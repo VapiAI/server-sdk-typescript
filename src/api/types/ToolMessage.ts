@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A tool-result message associated with a specific tool call.
+ */
 export interface ToolMessage {
     /** This is the role of the message author */
     role: Vapi.ToolMessageRole;

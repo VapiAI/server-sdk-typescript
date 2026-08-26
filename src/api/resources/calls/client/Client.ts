@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace CallsClient {
     export type Options = BaseClientOptions;
@@ -23,6 +23,8 @@ export class CallsClient {
     }
 
     /**
+     * Returns calls for the authenticated organization. Filter results by call ID, assistant ID, phone number ID, or creation and update timestamps.
+     *
      * @param {Vapi.ListCallsRequest} request
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -106,8 +108,13 @@ export class CallsClient {
     }
 
     /**
+     * Creates a call using an assistant or squad. The request can reference saved resources or include transient configurations.
+     *
      * @param {Vapi.CreateCallDto} request
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.BadRequestError}
+     * @throws {@link Vapi.InternalServerError}
      *
      * @example
      *     await client.calls.create()
@@ -153,17 +160,26 @@ export class CallsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Vapi.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/call");
     }
 
     /**
+     * Returns the call identified by its ID, including its status, configuration, and available call data.
+     *
      * @param {Vapi.GetCallsRequest} request
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -222,8 +238,12 @@ export class CallsClient {
     }
 
     /**
+     * Deletes the call identified by its ID.
+     *
      * @param {Vapi.DeleteCallDto} request
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ServiceUnavailableError}
      *
      * @example
      *     await client.calls.delete({
@@ -272,17 +292,24 @@ export class CallsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 503:
+                    throw new Vapi.ServiceUnavailableError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/call/{id}");
     }
 
     /**
+     * Updates the call identified by its ID.
+     *
      * @param {Vapi.UpdateCallDto} request
      * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -341,5 +368,498 @@ export class CallsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/call/{id}");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerMonoRecordingDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerMonoRecordingDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerMonoRecordingDownload(
+        request: Vapi.CallArtifactControllerMonoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerMonoRecordingDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerMonoRecordingDownload(
+        request: Vapi.CallArtifactControllerMonoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/mono-recording`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/mono-recording");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerStereoRecordingDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerStereoRecordingDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerStereoRecordingDownload(
+        request: Vapi.CallArtifactControllerStereoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerStereoRecordingDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerStereoRecordingDownload(
+        request: Vapi.CallArtifactControllerStereoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/stereo-recording`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/stereo-recording");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerVideoRecordingDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerVideoRecordingDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerVideoRecordingDownload(
+        request: Vapi.CallArtifactControllerVideoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerVideoRecordingDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerVideoRecordingDownload(
+        request: Vapi.CallArtifactControllerVideoRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/video-recording`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/video-recording");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerCustomerRecordingDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerCustomerRecordingDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerCustomerRecordingDownload(
+        request: Vapi.CallArtifactControllerCustomerRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerCustomerRecordingDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerCustomerRecordingDownload(
+        request: Vapi.CallArtifactControllerCustomerRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/customer-recording`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/customer-recording");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerAssistantRecordingDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerAssistantRecordingDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerAssistantRecordingDownload(
+        request: Vapi.CallArtifactControllerAssistantRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerAssistantRecordingDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerAssistantRecordingDownload(
+        request: Vapi.CallArtifactControllerAssistantRecordingDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/assistant-recording`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/call/{id}/assistant-recording",
+        );
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerPcapDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerPcapDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerPcapDownload(
+        request: Vapi.CallArtifactControllerPcapDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__callArtifactControllerPcapDownload(request, requestOptions));
+    }
+
+    private async __callArtifactControllerPcapDownload(
+        request: Vapi.CallArtifactControllerPcapDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/pcap`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/pcap");
+    }
+
+    /**
+     * @param {Vapi.CallArtifactControllerCallLogsDownloadRequest} request
+     * @param {CallsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.UnauthorizedError}
+     * @throws {@link Vapi.NotFoundError}
+     *
+     * @example
+     *     await client.calls.callArtifactControllerCallLogsDownload({
+     *         id: "id"
+     *     })
+     */
+    public callArtifactControllerCallLogsDownload(
+        request: Vapi.CallArtifactControllerCallLogsDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__callArtifactControllerCallLogsDownload(request, requestOptions),
+        );
+    }
+
+    private async __callArtifactControllerCallLogsDownload(
+        request: Vapi.CallArtifactControllerCallLogsDownloadRequest,
+        requestOptions?: CallsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `call/${core.url.encodePathParam(id)}/call-logs`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vapi.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/call/{id}/call-logs");
     }
 }

@@ -23,6 +23,8 @@ export class CampaignsClient {
     }
 
     /**
+     * Returns outbound calling campaigns for the authenticated organization. Filter results by campaign ID, status, or creation and update timestamps.
+     *
      * @param {Vapi.CampaignControllerFindAllRequest} request
      * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -45,6 +47,7 @@ export class CampaignsClient {
             status,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -60,6 +63,7 @@ export class CampaignsClient {
             status: status != null ? status : undefined,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -108,6 +112,8 @@ export class CampaignsClient {
     }
 
     /**
+     * Creates an outbound calling campaign that calls a set of customers.
+     *
      * @param {Vapi.CreateCampaignDto} request
      * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -168,6 +174,341 @@ export class CampaignsClient {
     }
 
     /**
+     * @param {Vapi.CampaignControllerFindAllV2Request} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerFindAllV2()
+     */
+    public campaignControllerFindAllV2(
+        request: Vapi.CampaignControllerFindAllV2Request = {},
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.CampaignSummaryPaginatedResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__campaignControllerFindAllV2(request, requestOptions));
+    }
+
+    private async __campaignControllerFindAllV2(
+        request: Vapi.CampaignControllerFindAllV2Request = {},
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.CampaignSummaryPaginatedResponse>> {
+        const {
+            id,
+            status,
+            includeCounters,
+            page,
+            sortOrder,
+            sortBy,
+            limit,
+            createdAtGt,
+            createdAtLt,
+            createdAtGe,
+            createdAtLe,
+            updatedAtGt,
+            updatedAtLt,
+            updatedAtGe,
+            updatedAtLe,
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            id,
+            status: status != null ? status : undefined,
+            includeCounters,
+            page,
+            sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
+            limit,
+            createdAtGt: createdAtGt != null ? createdAtGt : undefined,
+            createdAtLt: createdAtLt != null ? createdAtLt : undefined,
+            createdAtGe: createdAtGe != null ? createdAtGe : undefined,
+            createdAtLe: createdAtLe != null ? createdAtLe : undefined,
+            updatedAtGt: updatedAtGt != null ? updatedAtGt : undefined,
+            updatedAtLt: updatedAtLt != null ? updatedAtLt : undefined,
+            updatedAtGe: updatedAtGe != null ? updatedAtGe : undefined,
+            updatedAtLe: updatedAtLe != null ? updatedAtLe : undefined,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "v2/campaign",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.CampaignSummaryPaginatedResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/v2/campaign");
+    }
+
+    /**
+     * @param {Vapi.CreateCampaignDto} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerCreateV2({
+     *         name: "Q2 Sales Campaign"
+     *     })
+     */
+    public campaignControllerCreateV2(
+        request: Vapi.CreateCampaignDto,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.Campaign> {
+        return core.HttpResponsePromise.fromPromise(this.__campaignControllerCreateV2(request, requestOptions));
+    }
+
+    private async __campaignControllerCreateV2(
+        request: Vapi.CreateCampaignDto,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "v2/campaign",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/v2/campaign");
+    }
+
+    /**
+     * @param {Vapi.CampaignControllerFindOneV2Request} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerFindOneV2({
+     *         id: "id"
+     *     })
+     */
+    public campaignControllerFindOneV2(
+        request: Vapi.CampaignControllerFindOneV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.CampaignSummary> {
+        return core.HttpResponsePromise.fromPromise(this.__campaignControllerFindOneV2(request, requestOptions));
+    }
+
+    private async __campaignControllerFindOneV2(
+        request: Vapi.CampaignControllerFindOneV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.CampaignSummary>> {
+        const { id, includeCounters } = request;
+        const _queryParams: Record<string, unknown> = {
+            includeCounters,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `v2/campaign/${core.url.encodePathParam(id)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.CampaignSummary, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/v2/campaign/{id}");
+    }
+
+    /**
+     * @param {Vapi.CampaignControllerRemoveV2Request} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerRemoveV2({
+     *         id: "id"
+     *     })
+     */
+    public campaignControllerRemoveV2(
+        request: Vapi.CampaignControllerRemoveV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.Campaign> {
+        return core.HttpResponsePromise.fromPromise(this.__campaignControllerRemoveV2(request, requestOptions));
+    }
+
+    private async __campaignControllerRemoveV2(
+        request: Vapi.CampaignControllerRemoveV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `v2/campaign/${core.url.encodePathParam(id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/v2/campaign/{id}");
+    }
+
+    /**
+     * @param {Vapi.CampaignControllerUpdateV2Request} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerUpdateV2({
+     *         id: "id",
+     *         body: {}
+     *     })
+     */
+    public campaignControllerUpdateV2(
+        request: Vapi.CampaignControllerUpdateV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.Campaign> {
+        return core.HttpResponsePromise.fromPromise(this.__campaignControllerUpdateV2(request, requestOptions));
+    }
+
+    private async __campaignControllerUpdateV2(
+        request: Vapi.CampaignControllerUpdateV2Request,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.Campaign>> {
+        const { id, body: _body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `v2/campaign/${core.url.encodePathParam(id)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.Campaign, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/v2/campaign/{id}");
+    }
+
+    /**
+     * Returns the outbound calling campaign identified by its ID.
+     *
      * @param {Vapi.CampaignControllerFindOneRequest} request
      * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -226,6 +567,8 @@ export class CampaignsClient {
     }
 
     /**
+     * Deletes the outbound calling campaign identified by its ID.
+     *
      * @param {Vapi.CampaignControllerRemoveRequest} request
      * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -284,26 +627,29 @@ export class CampaignsClient {
     }
 
     /**
-     * @param {Vapi.UpdateCampaignDto} request
+     * Updates the outbound calling campaign identified by its ID. Campaigns can be ended by updating their status to `ended`.
+     *
+     * @param {Vapi.CampaignControllerUpdateRequest} request
      * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.campaigns.campaignControllerUpdate({
-     *         id: "id"
+     *         id: "id",
+     *         body: {}
      *     })
      */
     public campaignControllerUpdate(
-        request: Vapi.UpdateCampaignDto,
+        request: Vapi.CampaignControllerUpdateRequest,
         requestOptions?: CampaignsClient.RequestOptions,
     ): core.HttpResponsePromise<Vapi.Campaign> {
         return core.HttpResponsePromise.fromPromise(this.__campaignControllerUpdate(request, requestOptions));
     }
 
     private async __campaignControllerUpdate(
-        request: Vapi.UpdateCampaignDto,
+        request: Vapi.CampaignControllerUpdateRequest,
         requestOptions?: CampaignsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.Campaign>> {
-        const { id, ..._body } = request;
+        const { id, body: _body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -342,5 +688,74 @@ export class CampaignsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/campaign/{id}");
+    }
+
+    /**
+     * @param {Vapi.CampaignControllerGetCampaignV2ContactsRequest} request
+     * @param {CampaignsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.campaigns.campaignControllerGetCampaignV2Contacts({
+     *         id: "id"
+     *     })
+     */
+    public campaignControllerGetCampaignV2Contacts(
+        request: Vapi.CampaignControllerGetCampaignV2ContactsRequest,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.CampaignContactPaginatedResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__campaignControllerGetCampaignV2Contacts(request, requestOptions),
+        );
+    }
+
+    private async __campaignControllerGetCampaignV2Contacts(
+        request: Vapi.CampaignControllerGetCampaignV2ContactsRequest,
+        requestOptions?: CampaignsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.CampaignContactPaginatedResponse>> {
+        const { id, status, limit, sortBy, page } = request;
+        const _queryParams: Record<string, unknown> = {
+            status: Array.isArray(status) ? status.map((item) => item) : status != null ? status : undefined,
+            limit,
+            sortBy: sortBy != null ? sortBy : undefined,
+            page,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `v2/campaign/${core.url.encodePathParam(id)}/contacts`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.CampaignContactPaginatedResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/v2/campaign/{id}/contacts");
     }
 }

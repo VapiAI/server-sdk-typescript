@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A workflow node where the assistant conducts a conversation using optional node-specific providers, tools, prompt, and variable extraction.
+ */
 export interface ConversationNode {
     /**
      * This is the model for the node.
@@ -33,6 +36,7 @@ export interface ConversationNode {
      * Both `tools` and `toolIds` can be used together.
      */
     toolIds?: string[] | undefined;
+    /** Prompt that guides the assistant while this node is active. */
     prompt?: string | undefined;
     /** This is the plan for the global node. */
     globalNodePlan?: Vapi.GlobalNodePlan | undefined;
@@ -86,6 +90,7 @@ export interface ConversationNode {
      * Note: The `schema` field is required for Conversation nodes if you want to extract variables from the user's responses. `aliases` is just a convenience.
      */
     variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
+    /** Unique name used to identify this workflow node. */
     name: string;
     /** This is whether or not the node is the start of the workflow. */
     isStart?: boolean | undefined;

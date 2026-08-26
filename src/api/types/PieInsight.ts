@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved pie-chart insight containing its call-data queries, formulas, grouping, time range, and lifecycle information.
+ */
 export interface PieInsight {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -23,6 +26,7 @@ export interface PieInsight {
      * You can also use the query names as the variable in the formula.
      */
     formulas?: Vapi.InsightFormula[] | undefined;
+    /** The time range used to query the pie-chart data. */
     timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
@@ -40,4 +44,6 @@ export interface PieInsight {
     createdAt: string;
     /** This is the ISO 8601 date-time string of when the Insight was last updated. */
     updatedAt: string;
+    /** Stable server-owned identifier for system-created insights. */
+    systemKey?: string | undefined;
 }

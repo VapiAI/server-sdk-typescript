@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters call records by comparing a start or end timestamp with a date.
+ */
 export interface FilterDateTypeColumnOnCallTable {
     /**
      * This is the column in the call table that will be filtered on.

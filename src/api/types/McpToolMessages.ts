@@ -2,9 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Per-tool message overrides for a tool discovered through an MCP server.
+ */
 export interface McpToolMessages {
     /** The name of the tool from the MCP server. */
     name: string;
-    /** Custom messages for this specific tool. Set to an empty array to suppress all messages for this tool. If not provided, the tool will use the default messages from the parent MCP tool configuration. */
+    /** Custom messages for this specific tool. Set to an empty array to suppress all messages for this tool. If not provided, the tool will use the default messages from the parent MCP tool configuration. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.McpToolMessagesMessagesItem[] | undefined;
 }

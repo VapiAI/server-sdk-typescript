@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls how an evaluation proceeds after judging an assistant message, including failure handling and optional message overrides.
+ */
 export interface AssistantMessageEvaluationContinuePlan {
     /**
      * This is whether the evaluation should exit if the assistant message evaluates to false.

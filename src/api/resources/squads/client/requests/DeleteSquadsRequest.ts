@@ -7,5 +7,6 @@
  *     }
  */
 export interface DeleteSquadsRequest {
+    /** The unique identifier of the squad. */
     id: string;
 }

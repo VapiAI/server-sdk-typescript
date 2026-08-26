@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * JSON object schema defining the properties accepted by a function and which properties are required.
+ */
 export interface OpenAiFunctionParameters {
     /** This must be set to 'object'. It instructs the model to return a JSON object containing the function call properties. */
     type: Vapi.OpenAiFunctionParametersType;

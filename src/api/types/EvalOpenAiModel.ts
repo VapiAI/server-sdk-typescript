@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * OpenAI model configuration for an LLM judge, including its messages and generation settings.
+ */
 export interface EvalOpenAiModel {
     /**
      * This is the OpenAI model that will be used.

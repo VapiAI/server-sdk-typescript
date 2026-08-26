@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters potential SQL injection patterns from transcripts.
+ */
 export interface SqlInjectionSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.SqlInjectionSecurityFilterType;

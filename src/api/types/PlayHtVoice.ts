@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with PlayHT, including voice and model selection, language, emotion and style guidance, chunking, caching, and fallback settings.
+ */
 export interface PlayHtVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

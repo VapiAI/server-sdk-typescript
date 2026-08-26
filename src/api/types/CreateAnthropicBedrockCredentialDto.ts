@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for authenticating Anthropic model requests through Amazon Bedrock, including AWS region and authentication method.
+ */
 export interface CreateAnthropicBedrockCredentialDto {
     /** AWS region where Bedrock is configured. */
     region: Vapi.CreateAnthropicBedrockCredentialDtoRegion;

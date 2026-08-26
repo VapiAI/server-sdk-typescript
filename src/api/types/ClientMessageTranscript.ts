@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ClientMessageTranscript {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ClientMessageTranscriptPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "transcript" is sent as transcriber outputs partial or final transcript. */
     type: Vapi.ClientMessageTranscriptType;
     /** This is the timestamp of the message. */
@@ -21,6 +28,16 @@ export interface ClientMessageTranscript {
     transcriptType: Vapi.ClientMessageTranscriptTranscriptType;
     /** This is the transcript content. */
     transcript: string;
+    /**
+     * The ID of the assistant that produced this transcript. Present on
+     * assistant-role events when an active assistant ID is available.
+     */
+    assistantId?: string | undefined;
+    /**
+     * The name of the assistant that produced this transcript. Present on
+     * assistant-role events when an active assistant name is available.
+     */
+    assistantName?: string | undefined;
     /** Indicates if the transcript was filtered for security reasons. */
     isFiltered?: boolean | undefined;
     /** List of detected security threats if the transcript was filtered. */

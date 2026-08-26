@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for synthesizing assistant speech with Hume, including model and voice selection, custom voice metadata, chunking, and caching.
+ */
 export interface FallbackHumeVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

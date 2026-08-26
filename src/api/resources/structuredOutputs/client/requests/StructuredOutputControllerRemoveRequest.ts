@@ -7,5 +7,6 @@
  *     }
  */
 export interface StructuredOutputControllerRemoveRequest {
+    /** The unique identifier of the structured output. */
     id: string;
 }

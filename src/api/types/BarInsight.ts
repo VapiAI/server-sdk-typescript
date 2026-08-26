@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved bar-chart insight containing its call-data queries, formulas, grouping, stepped time range, metadata, and lifecycle information.
+ */
 export interface BarInsight {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -25,6 +28,7 @@ export interface BarInsight {
     formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
     metadata?: Vapi.BarInsightMetadata | undefined;
+    /** The time range and interval used to aggregate the bar-chart data. */
     timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
@@ -42,4 +46,6 @@ export interface BarInsight {
     createdAt: string;
     /** This is the ISO 8601 date-time string of when the Insight was last updated. */
     updatedAt: string;
+    /** Stable server-owned identifier for system-created insights. */
+    systemKey?: string | undefined;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A tool invocation requested by the assistant, including its identifier, type, and function details.
+ */
 export interface ToolCall {
     /** This is the ID of the tool call */
     id: string;

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A named analytics query against call or subscription data, including grouping, time range, and aggregation operations.
+ */
 export interface AnalyticsQuery {
     /** This is the table you want to query. */
     table: Vapi.AnalyticsQueryTable;

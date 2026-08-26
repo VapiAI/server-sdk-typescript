@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters potential cross-site scripting (XSS) patterns from transcripts.
+ */
 export interface XssSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.XssSecurityFilterType;

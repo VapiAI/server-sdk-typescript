@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters event data by comparing a boolean field with an expected value.
+ */
 export interface EventsTableBooleanCondition {
     /** The boolean field name from the event data */
     column: string;

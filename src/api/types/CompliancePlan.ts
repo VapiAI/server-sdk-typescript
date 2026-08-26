@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls HIPAA and PCI requirements, transcript security filtering, and recording-consent handling for assistant calls.
+ */
 export interface CompliancePlan {
     /** When this is enabled, logs, recordings, and transcriptions will be stored in HIPAA-compliant storage. Defaults to false. Only HIPAA-compliant providers will be available for LLM, Voice, and Transcriber respectively. This setting is only honored if the organization is on an Enterprise subscription or has purchased the HIPAA add-on. */
     hipaaEnabled?: boolean | undefined;
@@ -12,5 +15,6 @@ export interface CompliancePlan {
     pciEnabled?: boolean | undefined;
     /** This is the security filter plan for the assistant. It allows filtering of transcripts for security threats before sending to LLM. */
     securityFilterPlan?: Vapi.SecurityFilterPlan | undefined;
+    /** Controls how recording consent is requested before the assistant joins the call. */
     recordingConsentPlan?: Vapi.CompliancePlanRecordingConsentPlan | undefined;
 }

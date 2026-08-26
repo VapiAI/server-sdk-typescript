@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with Cartesia, including voice and model selection, language, generation controls, pronunciation dictionaries, chunking, caching, and fallback settings.
+ */
 export interface CartesiaVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

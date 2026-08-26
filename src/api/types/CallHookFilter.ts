@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Matches a call field against one or more allowed values to determine whether a hook runs.
+ */
 export interface CallHookFilter {
     /** This is the type of filter - currently only "oneOf" is supported */
     type: Vapi.CallHookFilterType;

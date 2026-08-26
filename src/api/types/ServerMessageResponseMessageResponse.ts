@@ -14,4 +14,5 @@ export type ServerMessageResponseMessageResponse =
     | Vapi.ServerMessageResponseToolCalls
     | Vapi.ServerMessageResponseTransferDestinationRequest
     | Vapi.ServerMessageResponseVoiceRequest
-    | Vapi.ServerMessageResponseCallEndpointingRequest;
+    | Vapi.ServerMessageResponseCallEndpointingRequest
+    | Vapi.ServerMessageResponseCampaignPredial;

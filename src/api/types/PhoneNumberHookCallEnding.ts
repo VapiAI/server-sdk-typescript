@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured transfer or message actions when a call ends with a matching assistant-request failure reason.
+ */
 export interface PhoneNumberHookCallEnding {
     /** Optional filters to decide when to trigger - restricted to assistant-request related ended reasons */
     filters?: Vapi.PhoneNumberCallEndingHookFilter[] | undefined;

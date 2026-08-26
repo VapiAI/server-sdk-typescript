@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Evaluates an assistant message with an LLM judge and a configured evaluation model.
+ */
 export interface AssistantMessageJudgePlanAi {
     /**
      * This is the model to use for the LLM-as-a-judge.

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Matches the call's ended reason against configured assistant-request failure reasons before an ending hook runs.
+ */
 export interface PhoneNumberCallEndingHookFilter {
     /** This is the type of filter - currently only "oneOf" is supported */
     type: Vapi.PhoneNumberCallEndingHookFilterType;

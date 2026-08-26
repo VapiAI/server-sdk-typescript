@@ -57,5 +57,12 @@ export const DeepgramVoiceId = {
     Aquila: "aquila",
     Selena: "selena",
     Javier: "javier",
+    Viktoria: "viktoria",
+    Kara: "kara",
+    Fabian: "fabian",
+    Julius: "julius",
+    Lara: "lara",
+    Elara: "elara",
+    Aurelia: "aurelia",
 } as const;
 export type DeepgramVoiceId = (typeof DeepgramVoiceId)[keyof typeof DeepgramVoiceId];

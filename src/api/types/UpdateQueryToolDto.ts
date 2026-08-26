@@ -2,12 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a query tool, including its knowledge bases, spoken messages, and rejection plan.
+ */
 export interface UpdateQueryToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.UpdateQueryToolDtoMessagesItem[] | undefined;
     /** The knowledge bases to query */
     knowledgeBases?: Vapi.KnowledgeBase[] | undefined;

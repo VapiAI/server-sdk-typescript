@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved line-chart insight containing its call-data queries, formulas, grouping, stepped time range, metadata, and lifecycle information.
+ */
 export interface LineInsight {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -25,6 +28,7 @@ export interface LineInsight {
     formulas?: Vapi.InsightFormula[] | undefined;
     /** This is the metadata for the insight. */
     metadata?: Vapi.LineInsightMetadata | undefined;
+    /** The time range and interval used to aggregate the line-chart data. */
     timeRange?: Vapi.InsightTimeRangeWithStep | undefined;
     /**
      * This is the group by column for the insight when table is `call`.
@@ -42,4 +46,6 @@ export interface LineInsight {
     createdAt: string;
     /** This is the ISO 8601 date-time string of when the Insight was last updated. */
     updatedAt: string;
+    /** Stable server-owned identifier for system-created insights. */
+    systemKey?: string | undefined;
 }

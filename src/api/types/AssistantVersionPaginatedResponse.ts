@@ -3,7 +3,6 @@
 import type * as Vapi from "../index.js";
 
 export interface AssistantVersionPaginatedResponse {
-    results: unknown[];
-    metadata: Vapi.PaginationMeta;
-    nextPageState?: string | undefined;
+    results: Vapi.AssistantVersion[];
+    metadata: Vapi.AssistantVersionPaginatedMetadata;
 }

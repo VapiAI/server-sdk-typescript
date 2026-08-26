@@ -2,11 +2,21 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Artifacts generated during a call, including messages, recordings, transcript, logs, packet capture, workflow-node data, variables, performance metrics, structured outputs, scorecards, and transfers.
+ */
 export interface Artifact {
     /** These are the messages that were spoken during the call. */
     messages?: Vapi.ArtifactMessagesItem[] | undefined;
     /** These are the messages that were spoken during the call, formatted for OpenAI. */
     messagesOpenAIFormatted?: Vapi.OpenAiMessage[] | undefined;
+    /** Structured outputs skipped because their conditions were not met, keyed by saved or runtime output ID. */
+    skippedStructuredOutputs?: Record<string, Vapi.SkippedStructuredOutput> | undefined;
+    /**
+     * These are the transfer records for the call's transfer attempts (warm and blind), including
+     * destination, mode, and status. Warm transfer records also include transcripts and messages.
+     */
+    transfers?: Vapi.TransferArtifact[] | undefined;
     /** This is the recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
     recordingUrl?: string | undefined;
     /** This is the stereo recording url for the call. To enable, set `assistant.artifactPlan.recordingEnabled`. */
@@ -41,8 +51,52 @@ export interface Artifact {
      * To enable, set `assistant.artifactPlan.scorecardIds` or `assistant.artifactPlan.scorecards` with the IDs or objects of the scorecards you want to evaluate.
      */
     scorecards?: Record<string, unknown> | undefined;
-    /** These are the transfer records from warm transfers, including destinations, transcripts, and status. */
-    transfers?: string[] | undefined;
     /** This is when the structured outputs were last updated */
     structuredOutputsLastUpdatedAt?: string | undefined;
+    /**
+     * This is a presigned URL to download the mono recording without
+     * authentication. Populated on API responses and server messages; never
+     * stored. Expires at `presignedUrlsExpiresAt` — after that, use
+     * `GET /call/{id}/mono-recording`.
+     */
+    presignedMonoUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the stereo recording without
+     * authentication. Expires at `presignedUrlsExpiresAt` — after that, use
+     * `GET /call/{id}/stereo-recording`.
+     */
+    presignedStereoUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the video recording without
+     * authentication. Expires at `presignedUrlsExpiresAt` — after that, use
+     * `GET /call/{id}/video-recording`.
+     */
+    presignedVideoUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the assistant-channel mono recording
+     * without authentication. Expires at `presignedUrlsExpiresAt`.
+     */
+    presignedAssistantUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the customer-channel mono recording
+     * without authentication. Expires at `presignedUrlsExpiresAt`.
+     */
+    presignedCustomerUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the packet capture without
+     * authentication. Expires at `presignedUrlsExpiresAt`.
+     */
+    presignedPcapUrl?: string | undefined;
+    /**
+     * This is a presigned URL to download the call logs without
+     * authentication. Expires at `presignedUrlsExpiresAt`.
+     */
+    presignedLogUrl?: string | undefined;
+    /**
+     * This is when the presigned URLs above expire, as an ISO 8601 timestamp.
+     * The raw `*Url` fields remain the stable identifiers and do not expire.
+     * Presigned URLs are regenerated per response and per webhook delivery, so
+     * values differ across retries.
+     */
+    presignedUrlsExpiresAt?: string | undefined;
 }

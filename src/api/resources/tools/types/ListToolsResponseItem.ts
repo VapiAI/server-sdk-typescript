@@ -8,6 +8,7 @@ export type ListToolsResponseItem =
     | Vapi.ListToolsResponseItem.Dtmf
     | Vapi.ListToolsResponseItem.EndCall
     | Vapi.ListToolsResponseItem.Function
+    | Vapi.ListToolsResponseItem.KnowledgeBase
     | Vapi.ListToolsResponseItem.TransferCall
     | Vapi.ListToolsResponseItem.Handoff
     | Vapi.ListToolsResponseItem.Bash
@@ -46,6 +47,10 @@ export namespace ListToolsResponseItem {
 
     export interface Function extends Vapi.FunctionTool {
         type: "function";
+    }
+
+    export interface KnowledgeBase extends Vapi.KnowledgeBaseTool {
+        type: "knowledgeBase";
     }
 
     export interface TransferCall extends Vapi.TransferCallTool {
@@ -119,4 +124,30 @@ export namespace ListToolsResponseItem {
     export interface Voicemail extends Vapi.VoicemailTool {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.ListToolsResponseItem.ApiRequest
+        | Vapi.ListToolsResponseItem.Code
+        | Vapi.ListToolsResponseItem.Dtmf
+        | Vapi.ListToolsResponseItem.EndCall
+        | Vapi.ListToolsResponseItem.Function
+        | Vapi.ListToolsResponseItem.KnowledgeBase
+        | Vapi.ListToolsResponseItem.TransferCall
+        | Vapi.ListToolsResponseItem.Handoff
+        | Vapi.ListToolsResponseItem.Bash
+        | Vapi.ListToolsResponseItem.Computer
+        | Vapi.ListToolsResponseItem.TextEditor
+        | Vapi.ListToolsResponseItem.Query
+        | Vapi.ListToolsResponseItem.GoogleCalendarEventCreate
+        | Vapi.ListToolsResponseItem.GoogleSheetsRowAppend
+        | Vapi.ListToolsResponseItem.GoogleCalendarAvailabilityCheck
+        | Vapi.ListToolsResponseItem.SlackMessageSend
+        | Vapi.ListToolsResponseItem.Sms
+        | Vapi.ListToolsResponseItem.Mcp
+        | Vapi.ListToolsResponseItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.ListToolsResponseItem.GohighlevelCalendarEventCreate
+        | Vapi.ListToolsResponseItem.GohighlevelContactCreate
+        | Vapi.ListToolsResponseItem.GohighlevelContactGet
+        | Vapi.ListToolsResponseItem.SipRequest
+        | Vapi.ListToolsResponseItem.Voicemail;
 }

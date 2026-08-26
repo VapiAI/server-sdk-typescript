@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Message spoken when a tool call fails, with optional language variants, argument conditions, and end-call behavior.
+ */
 export interface ToolMessageFailed {
     /**
      * This is an alternative to the `content` property. It allows to specify variants of the same content, one per language.
@@ -14,7 +17,25 @@ export interface ToolMessageFailed {
      */
     contents?: Vapi.TextContent[] | undefined;
     /**
+     * This is optional and defaults to "assistant".
+     *
+     * When role=assistant, `content` is said out loud when the tool call fails.
+     *
+     * When role=system, `content` is passed to the model as a system message
+     * along with the failure result, and the model's generated response is
+     * spoken. Example:
+     *     assistant: tool called
+     *     tool: error from your server
+     *     <--- system prompt as hint
+     *     ---> model generates response which is spoken
+     * This is useful when you want the model to generate an error-aware
+     * response instead of speaking a fixed failure message.
+     */
+    role?: Vapi.ToolMessageFailedRole | undefined;
+    /**
      * This is an optional boolean that if true, the call will end after the message is spoken. Default is false.
+     *
+     * This is ignored if `role` is set to `system`.
      *
      * @default false
      */

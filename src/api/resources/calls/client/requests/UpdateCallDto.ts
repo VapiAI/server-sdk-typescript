@@ -7,6 +7,7 @@
  *     }
  */
 export interface UpdateCallDto {
+    /** The unique identifier of the call. */
     id: string;
     /** This is the name of the call. This is just for your own reference. */
     name?: string;

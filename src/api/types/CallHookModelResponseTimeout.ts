@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured actions when the language model does not respond before its timeout.
+ */
 export interface CallHookModelResponseTimeout {
     /** This is the event that triggers this hook */
     on: Vapi.CallHookModelResponseTimeoutOn;

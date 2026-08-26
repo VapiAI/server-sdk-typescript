@@ -119,4 +119,29 @@ export namespace AssistantOverridesToolsAppendItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.AssistantOverridesToolsAppendItem.ApiRequest
+        | Vapi.AssistantOverridesToolsAppendItem.Bash
+        | Vapi.AssistantOverridesToolsAppendItem.Code
+        | Vapi.AssistantOverridesToolsAppendItem.Computer
+        | Vapi.AssistantOverridesToolsAppendItem.Dtmf
+        | Vapi.AssistantOverridesToolsAppendItem.EndCall
+        | Vapi.AssistantOverridesToolsAppendItem.Function
+        | Vapi.AssistantOverridesToolsAppendItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.AssistantOverridesToolsAppendItem.GohighlevelCalendarEventCreate
+        | Vapi.AssistantOverridesToolsAppendItem.GohighlevelContactCreate
+        | Vapi.AssistantOverridesToolsAppendItem.GohighlevelContactGet
+        | Vapi.AssistantOverridesToolsAppendItem.GoogleCalendarAvailabilityCheck
+        | Vapi.AssistantOverridesToolsAppendItem.GoogleCalendarEventCreate
+        | Vapi.AssistantOverridesToolsAppendItem.GoogleSheetsRowAppend
+        | Vapi.AssistantOverridesToolsAppendItem.Handoff
+        | Vapi.AssistantOverridesToolsAppendItem.Mcp
+        | Vapi.AssistantOverridesToolsAppendItem.Query
+        | Vapi.AssistantOverridesToolsAppendItem.SlackMessageSend
+        | Vapi.AssistantOverridesToolsAppendItem.Sms
+        | Vapi.AssistantOverridesToolsAppendItem.TextEditor
+        | Vapi.AssistantOverridesToolsAppendItem.TransferCall
+        | Vapi.AssistantOverridesToolsAppendItem.SipRequest
+        | Vapi.AssistantOverridesToolsAppendItem.Voicemail;
 }

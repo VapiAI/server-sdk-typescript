@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls when the assistant begins speaking after customer speech, including the minimum wait, endpointing strategy, and custom endpointing rules.
+ */
 export interface StartSpeakingPlan {
     /**
      * This is how long assistant waits before speaking. Defaults to 0.4.

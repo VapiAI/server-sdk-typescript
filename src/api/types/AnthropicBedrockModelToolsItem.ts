@@ -119,4 +119,29 @@ export namespace AnthropicBedrockModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.AnthropicBedrockModelToolsItem.ApiRequest
+        | Vapi.AnthropicBedrockModelToolsItem.Bash
+        | Vapi.AnthropicBedrockModelToolsItem.Code
+        | Vapi.AnthropicBedrockModelToolsItem.Computer
+        | Vapi.AnthropicBedrockModelToolsItem.Dtmf
+        | Vapi.AnthropicBedrockModelToolsItem.EndCall
+        | Vapi.AnthropicBedrockModelToolsItem.Function
+        | Vapi.AnthropicBedrockModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.AnthropicBedrockModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.AnthropicBedrockModelToolsItem.GohighlevelContactCreate
+        | Vapi.AnthropicBedrockModelToolsItem.GohighlevelContactGet
+        | Vapi.AnthropicBedrockModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.AnthropicBedrockModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.AnthropicBedrockModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.AnthropicBedrockModelToolsItem.Handoff
+        | Vapi.AnthropicBedrockModelToolsItem.Mcp
+        | Vapi.AnthropicBedrockModelToolsItem.Query
+        | Vapi.AnthropicBedrockModelToolsItem.SlackMessageSend
+        | Vapi.AnthropicBedrockModelToolsItem.Sms
+        | Vapi.AnthropicBedrockModelToolsItem.TextEditor
+        | Vapi.AnthropicBedrockModelToolsItem.TransferCall
+        | Vapi.AnthropicBedrockModelToolsItem.SipRequest
+        | Vapi.AnthropicBedrockModelToolsItem.Voicemail;
 }

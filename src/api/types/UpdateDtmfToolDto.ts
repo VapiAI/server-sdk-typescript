@@ -2,12 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a DTMF tool, including its spoken messages, rejection plan, and SIP INFO behavior.
+ */
 export interface UpdateDtmfToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.UpdateDtmfToolDtoMessagesItem[] | undefined;
     /** This enables sending DTMF tones via SIP INFO messages instead of RFC 2833 (RTP events). When enabled, DTMF digits will be sent using the SIP INFO method, which can be more reliable in some network configurations. Only relevant when using the `vapi.sip` transport. */
     sipInfoDtmfEnabled?: boolean | undefined;

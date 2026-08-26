@@ -119,4 +119,29 @@ export namespace OpenAiModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.OpenAiModelToolsItem.ApiRequest
+        | Vapi.OpenAiModelToolsItem.Bash
+        | Vapi.OpenAiModelToolsItem.Code
+        | Vapi.OpenAiModelToolsItem.Computer
+        | Vapi.OpenAiModelToolsItem.Dtmf
+        | Vapi.OpenAiModelToolsItem.EndCall
+        | Vapi.OpenAiModelToolsItem.Function
+        | Vapi.OpenAiModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.OpenAiModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.OpenAiModelToolsItem.GohighlevelContactCreate
+        | Vapi.OpenAiModelToolsItem.GohighlevelContactGet
+        | Vapi.OpenAiModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.OpenAiModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.OpenAiModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.OpenAiModelToolsItem.Handoff
+        | Vapi.OpenAiModelToolsItem.Mcp
+        | Vapi.OpenAiModelToolsItem.Query
+        | Vapi.OpenAiModelToolsItem.SlackMessageSend
+        | Vapi.OpenAiModelToolsItem.Sms
+        | Vapi.OpenAiModelToolsItem.TextEditor
+        | Vapi.OpenAiModelToolsItem.TransferCall
+        | Vapi.OpenAiModelToolsItem.SipRequest
+        | Vapi.OpenAiModelToolsItem.Voicemail;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A custom endpointing rule that matches the customer's current speech and applies a configured timeout.
+ */
 export interface CustomerCustomEndpointingRule {
     /**
      * This is the regex pattern to match.

@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetSquadsRequest {
+    /** The unique identifier of the squad. */
     id: string;
 }

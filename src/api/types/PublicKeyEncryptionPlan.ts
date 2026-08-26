@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for encrypting sensitive outbound request data with a public key.
+ */
 export interface PublicKeyEncryptionPlan {
     /** The encryption algorithm to use. */
     algorithm: Vapi.PublicKeyEncryptionPlanAlgorithm;

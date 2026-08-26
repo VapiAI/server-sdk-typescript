@@ -6,6 +6,8 @@ export interface SonioxCredential {
     provider: Vapi.SonioxCredentialProvider;
     /** This is not returned in the API. */
     apiKey: string;
+    /** Custom Soniox WebSocket endpoint (e.g. EU server wss://stt-rt.eu.soniox.com/transcribe-websocket). Defaults to the region-appropriate endpoint when omitted. */
+    apiUrl?: string | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */

@@ -5,6 +5,13 @@ import type * as Vapi from "../index.js";
 export interface ServerMessageHandoffDestinationRequest {
     /** This is the phone number that the message is associated with. */
     phoneNumber?: Vapi.ServerMessageHandoffDestinationRequestPhoneNumber | undefined;
+    /**
+     * This is the version label (e.g. `v3`) of the assistant the call was
+     * configured with. `null` for inline assistants, squad/workflow calls,
+     * pre-resolution assistant-request messages, and orgs not on
+     * assistant versioning.
+     */
+    assistantVersion?: (string | null) | undefined;
     /** This is the type of the message. "handoff-destination-request" is sent when the model is requesting handoff but destination is unknown. */
     type: Vapi.ServerMessageHandoffDestinationRequestType;
     /** This is the timestamp of the message. */

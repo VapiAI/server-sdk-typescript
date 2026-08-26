@@ -17,12 +17,17 @@ describe("InsightClient", () => {
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    systemKey: "systemKey",
                 },
             ],
             metadata: {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -41,12 +46,17 @@ describe("InsightClient", () => {
                     orgId: "orgId",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    systemKey: "systemKey",
                 },
             ],
             metadata: {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -88,6 +98,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         };
 
         server
@@ -157,6 +168,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         });
     });
 
@@ -191,6 +203,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         };
 
         server
@@ -251,6 +264,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         });
     });
 
@@ -285,6 +299,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         };
 
         server
@@ -345,6 +360,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         });
     });
 
@@ -379,6 +395,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         };
 
         server
@@ -443,6 +460,7 @@ describe("InsightClient", () => {
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
+            systemKey: "systemKey",
         });
     });
 

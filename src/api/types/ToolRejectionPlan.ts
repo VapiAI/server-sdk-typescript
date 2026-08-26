@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Conditions evaluated to determine whether a requested tool call should be rejected.
+ */
 export interface ToolRejectionPlan {
     /**
      * This is the list of conditions that must be evaluated.

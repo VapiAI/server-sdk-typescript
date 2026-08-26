@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved structured-output definition containing its extraction schema, execution method, model or regular expression, linked resources, and lifecycle metadata.
+ */
 export interface StructuredOutput {
     /**
      * This is the type of structured output.
@@ -41,6 +44,8 @@ export interface StructuredOutput {
     model?: Vapi.StructuredOutputModel | undefined;
     /** Compliance configuration for this output. Only enable overrides if no sensitive data will be stored. */
     compliancePlan?: Vapi.ComplianceOverride | undefined;
+    /** These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate. */
+    conditions?: (Vapi.StructuredOutputConditionsItem[] | null) | undefined;
     /** This is the unique identifier for the structured output. */
     id: string;
     /** This is the unique identifier for the org that this structured output belongs to. */

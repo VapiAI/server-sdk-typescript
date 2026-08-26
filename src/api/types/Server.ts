@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for requests Vapi sends to a customer server, including URL, authentication, headers, timeout, encryption, static IP addresses, and retry behavior.
+ */
 export interface Server {
     /**
      * This is the timeout in seconds for the request. Defaults to 20 seconds.

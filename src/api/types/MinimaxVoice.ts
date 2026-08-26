@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with MiniMax, including voice and model selection, emotion, pitch, speed, volume, region, language, text normalization, chunking, caching, and fallback settings.
+ */
 export interface MinimaxVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

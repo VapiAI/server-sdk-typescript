@@ -13,6 +13,8 @@ export interface PhoneNumberControllerFindAllPaginatedRequest {
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.PhoneNumberControllerFindAllPaginatedRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.PhoneNumberControllerFindAllPaginatedRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

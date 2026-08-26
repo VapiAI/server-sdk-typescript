@@ -119,4 +119,29 @@ export namespace DeepInfraModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.DeepInfraModelToolsItem.ApiRequest
+        | Vapi.DeepInfraModelToolsItem.Bash
+        | Vapi.DeepInfraModelToolsItem.Code
+        | Vapi.DeepInfraModelToolsItem.Computer
+        | Vapi.DeepInfraModelToolsItem.Dtmf
+        | Vapi.DeepInfraModelToolsItem.EndCall
+        | Vapi.DeepInfraModelToolsItem.Function
+        | Vapi.DeepInfraModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.DeepInfraModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.DeepInfraModelToolsItem.GohighlevelContactCreate
+        | Vapi.DeepInfraModelToolsItem.GohighlevelContactGet
+        | Vapi.DeepInfraModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.DeepInfraModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.DeepInfraModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.DeepInfraModelToolsItem.Handoff
+        | Vapi.DeepInfraModelToolsItem.Mcp
+        | Vapi.DeepInfraModelToolsItem.Query
+        | Vapi.DeepInfraModelToolsItem.SlackMessageSend
+        | Vapi.DeepInfraModelToolsItem.Sms
+        | Vapi.DeepInfraModelToolsItem.TextEditor
+        | Vapi.DeepInfraModelToolsItem.TransferCall
+        | Vapi.DeepInfraModelToolsItem.SipRequest
+        | Vapi.DeepInfraModelToolsItem.Voicemail;
 }

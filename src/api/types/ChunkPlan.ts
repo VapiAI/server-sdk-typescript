@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls how model output is split into chunks before voice synthesis, including minimum length, punctuation boundaries, and formatting.
+ */
 export interface ChunkPlan {
     /**
      * This determines whether the model output is chunked before being sent to the voice provider. Default `true`.

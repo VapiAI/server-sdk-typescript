@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An expected assistant turn in an evaluation, including the judge plan and how the evaluation should continue afterward.
+ */
 export interface ChatEvalAssistantMessageEvaluation {
     /**
      * This is the role of the message author.

@@ -19,4 +19,9 @@ export namespace CallHookModelResponseTimeoutDoItem {
     export interface MessageAdd extends Vapi.MessageAddHookAction {
         type: "message.add";
     }
+
+    export type Response =
+        | Vapi.CallHookModelResponseTimeoutDoItem.Say
+        | Vapi.CallHookModelResponseTimeoutDoItem.Tool
+        | Vapi.CallHookModelResponseTimeoutDoItem.MessageAdd;
 }

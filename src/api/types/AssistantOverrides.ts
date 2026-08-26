@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Per-call or handoff overrides for an assistant's providers, messages, tools, credentials, call behavior, and server configuration.
+ */
 export interface AssistantOverrides {
     /** These are the options for the assistant's transcriber. */
     transcriber?: Vapi.AssistantOverridesTranscriber | undefined;
@@ -15,6 +18,7 @@ export interface AssistantOverrides {
      * If unspecified, assistant will wait for user to speak and use the model to respond once they speak.
      */
     firstMessage?: string | undefined;
+    /** Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`. */
     firstMessageInterruptionsEnabled?: boolean | undefined;
     /**
      * This is the mode for the first message. Default is 'assistant-speaks-first'.
@@ -65,6 +69,7 @@ export interface AssistantOverrides {
     credentials?: Vapi.AssistantOverridesCredentialsItem[] | undefined;
     /** This is a set of actions that will be performed on certain events. */
     hooks?: Vapi.AssistantOverridesHooksItem[] | undefined;
+    /** Tools to append to the assistant's existing tool configuration. */
     "tools:append"?: Vapi.AssistantOverridesToolsAppendItem[] | undefined;
     /**
      * These are values that will be used to replace the template variables in the assistant messages and other text-based fields.
@@ -96,6 +101,7 @@ export interface AssistantOverrides {
     endCallMessage?: string | undefined;
     /** This list contains phrases that, if spoken by the assistant, will trigger the call to be hung up. Case insensitive. */
     endCallPhrases?: string[] | undefined;
+    /** Compliance settings to apply, including HIPAA and PCI behavior, security filtering, and recording consent. */
     compliancePlan?: Vapi.CompliancePlan | undefined;
     /** This is for metadata you want to store on the assistant. */
     metadata?: Record<string, unknown> | undefined;
@@ -158,5 +164,6 @@ export interface AssistantOverrides {
      * 3. org.serverUrl
      */
     server?: Vapi.Server | undefined;
+    /** Configuration for collecting and processing DTMF keypad input. */
     keypadInputPlan?: Vapi.KeypadInputPlan | undefined;
 }

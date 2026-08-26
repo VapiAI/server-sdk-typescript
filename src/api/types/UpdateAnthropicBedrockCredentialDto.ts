@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateAnthropicBedrockCredentialDto {
+    provider?: Vapi.UpdateAnthropicBedrockCredentialDtoProvider | undefined;
     /** AWS region where Bedrock is configured. */
     region?: Vapi.UpdateAnthropicBedrockCredentialDtoRegion | undefined;
     /** Authentication method - either direct IAM credentials or cross-account role assumption. */

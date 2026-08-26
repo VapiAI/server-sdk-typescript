@@ -31,6 +31,10 @@ describe("EvalClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -70,6 +74,10 @@ describe("EvalClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -621,6 +629,10 @@ describe("EvalClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -1042,6 +1054,10 @@ describe("EvalClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -1559,6 +1575,16 @@ describe("EvalClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -2089,6 +2115,16 @@ describe("EvalClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -2546,6 +2582,10 @@ describe("EvalClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -2967,6 +3007,10 @@ describe("EvalClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -3484,6 +3528,16 @@ describe("EvalClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -4014,6 +4068,16 @@ describe("EvalClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -4464,6 +4528,10 @@ describe("EvalClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -4874,6 +4942,10 @@ describe("EvalClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -4989,6 +5061,10 @@ describe("EvalClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -5386,6 +5462,16 @@ describe("EvalClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -5898,6 +5984,16 @@ describe("EvalClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -6036,6 +6132,10 @@ describe("EvalClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",

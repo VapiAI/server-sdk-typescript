@@ -20,6 +20,8 @@ export const SyncVoiceLibraryDtoProvidersItem = {
     Minimax: "minimax",
     Wellsaid: "wellsaid",
     Orpheus: "orpheus",
+    Xai: "xai",
+    Microsoft: "microsoft",
 } as const;
 export type SyncVoiceLibraryDtoProvidersItem =
     (typeof SyncVoiceLibraryDtoProvidersItem)[keyof typeof SyncVoiceLibraryDtoProvidersItem];

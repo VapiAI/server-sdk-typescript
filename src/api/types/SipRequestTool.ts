@@ -2,12 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A reusable tool that sends SIP `INFO`, `MESSAGE`, or `NOTIFY` requests with configured headers and body.
+ */
 export interface SipRequestTool {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    latestVersion?: (string | null) | undefined;
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.SipRequestToolMessagesItem[] | undefined;
     /** The SIP method to send. */
     verb: Vapi.SipRequestToolVerb;

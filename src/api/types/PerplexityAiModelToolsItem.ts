@@ -119,4 +119,29 @@ export namespace PerplexityAiModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.PerplexityAiModelToolsItem.ApiRequest
+        | Vapi.PerplexityAiModelToolsItem.Bash
+        | Vapi.PerplexityAiModelToolsItem.Code
+        | Vapi.PerplexityAiModelToolsItem.Computer
+        | Vapi.PerplexityAiModelToolsItem.Dtmf
+        | Vapi.PerplexityAiModelToolsItem.EndCall
+        | Vapi.PerplexityAiModelToolsItem.Function
+        | Vapi.PerplexityAiModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.PerplexityAiModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.PerplexityAiModelToolsItem.GohighlevelContactCreate
+        | Vapi.PerplexityAiModelToolsItem.GohighlevelContactGet
+        | Vapi.PerplexityAiModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.PerplexityAiModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.PerplexityAiModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.PerplexityAiModelToolsItem.Handoff
+        | Vapi.PerplexityAiModelToolsItem.Mcp
+        | Vapi.PerplexityAiModelToolsItem.Query
+        | Vapi.PerplexityAiModelToolsItem.SlackMessageSend
+        | Vapi.PerplexityAiModelToolsItem.Sms
+        | Vapi.PerplexityAiModelToolsItem.TextEditor
+        | Vapi.PerplexityAiModelToolsItem.TransferCall
+        | Vapi.PerplexityAiModelToolsItem.SipRequest
+        | Vapi.PerplexityAiModelToolsItem.Voicemail;
 }

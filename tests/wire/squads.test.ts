@@ -305,6 +305,10 @@ describe("SquadsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -715,6 +719,10 @@ describe("SquadsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -1137,6 +1145,10 @@ describe("SquadsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -1610,6 +1622,16 @@ describe("SquadsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -2122,6 +2144,16 @@ describe("SquadsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -2653,6 +2685,16 @@ describe("SquadsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -2773,6 +2815,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
@@ -3066,6 +3109,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -3476,6 +3523,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -3577,6 +3628,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -3631,6 +3686,7 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -3925,13 +3981,24 @@ describe("SquadsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -4042,6 +4109,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [
                         {
                             type: "assistant",
@@ -4411,6 +4479,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -4923,6 +5001,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -5038,6 +5126,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -5114,6 +5206,12 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -5488,6 +5586,16 @@ describe("SquadsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -5499,12 +5607,15 @@ describe("SquadsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -5640,6 +5751,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
@@ -5933,6 +6045,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -6343,6 +6459,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -6444,6 +6564,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -6498,6 +6622,7 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -6792,13 +6917,24 @@ describe("SquadsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -6902,6 +7038,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [
                         {
                             type: "assistant",
@@ -7271,6 +7408,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -7783,6 +7930,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -7898,6 +8055,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -7974,6 +8135,12 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -8348,6 +8515,16 @@ describe("SquadsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -8359,12 +8536,15 @@ describe("SquadsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -8500,6 +8680,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
@@ -8793,6 +8974,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -9203,6 +9388,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -9304,6 +9493,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -9358,6 +9551,7 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -9652,13 +9846,24 @@ describe("SquadsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -9762,6 +9967,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [
                         {
                             type: "assistant",
@@ -10131,6 +10337,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -10643,6 +10859,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -10758,6 +10984,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -10834,6 +11064,12 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -11208,6 +11444,16 @@ describe("SquadsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -11219,12 +11465,15 @@ describe("SquadsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -11360,6 +11609,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [{ type: "assistant", assistantName: "assistantName" }],
                     assistantId: "assistantId",
                     assistant: {
@@ -11653,6 +11903,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -12063,6 +12317,10 @@ describe("SquadsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -12164,6 +12422,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -12218,6 +12480,7 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -12512,13 +12775,24 @@ describe("SquadsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -12630,6 +12904,7 @@ describe("SquadsClient", () => {
             name: "name",
             members: [
                 {
+                    assistantVersion: "assistantVersion",
                     assistantDestinations: [
                         {
                             type: "assistant",
@@ -12999,6 +13274,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -13511,6 +13796,16 @@ describe("SquadsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -13626,6 +13921,10 @@ describe("SquadsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -13702,6 +14001,12 @@ describe("SquadsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -14076,6 +14381,16 @@ describe("SquadsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -14087,12 +14402,15 @@ describe("SquadsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },

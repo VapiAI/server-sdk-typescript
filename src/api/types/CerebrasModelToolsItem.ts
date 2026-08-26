@@ -119,4 +119,29 @@ export namespace CerebrasModelToolsItem {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.CerebrasModelToolsItem.ApiRequest
+        | Vapi.CerebrasModelToolsItem.Bash
+        | Vapi.CerebrasModelToolsItem.Code
+        | Vapi.CerebrasModelToolsItem.Computer
+        | Vapi.CerebrasModelToolsItem.Dtmf
+        | Vapi.CerebrasModelToolsItem.EndCall
+        | Vapi.CerebrasModelToolsItem.Function
+        | Vapi.CerebrasModelToolsItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.CerebrasModelToolsItem.GohighlevelCalendarEventCreate
+        | Vapi.CerebrasModelToolsItem.GohighlevelContactCreate
+        | Vapi.CerebrasModelToolsItem.GohighlevelContactGet
+        | Vapi.CerebrasModelToolsItem.GoogleCalendarAvailabilityCheck
+        | Vapi.CerebrasModelToolsItem.GoogleCalendarEventCreate
+        | Vapi.CerebrasModelToolsItem.GoogleSheetsRowAppend
+        | Vapi.CerebrasModelToolsItem.Handoff
+        | Vapi.CerebrasModelToolsItem.Mcp
+        | Vapi.CerebrasModelToolsItem.Query
+        | Vapi.CerebrasModelToolsItem.SlackMessageSend
+        | Vapi.CerebrasModelToolsItem.Sms
+        | Vapi.CerebrasModelToolsItem.TextEditor
+        | Vapi.CerebrasModelToolsItem.TransferCall
+        | Vapi.CerebrasModelToolsItem.SipRequest
+        | Vapi.CerebrasModelToolsItem.Voicemail;
 }

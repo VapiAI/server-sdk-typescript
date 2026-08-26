@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateCustomCredentialDto {
+    provider?: Vapi.UpdateCustomCredentialDtoProvider | undefined;
     /** This is the authentication plan. Supports OAuth2 RFC 6749, HMAC signing, and Bearer authentication. */
     authenticationPlan?: Vapi.UpdateCustomCredentialDtoAuthenticationPlan | undefined;
     /** This is the encryption plan for encrypting sensitive data. Currently supports public-key encryption. */

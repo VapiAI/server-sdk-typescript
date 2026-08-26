@@ -3,7 +3,7 @@
 import type * as Vapi from "../index.js";
 
 /**
- * Target to test against
+ * The assistant or squad the run was tested against.
  */
 export type SimulationRunTarget = Vapi.SimulationRunTarget.Assistant | Vapi.SimulationRunTarget.Squad;
 
@@ -15,4 +15,9 @@ export namespace SimulationRunTarget {
     export interface Squad extends Vapi.SimulationRunTargetSquad {
         type: "squad";
     }
+
+    /**
+     * The assistant or squad the run was tested against.
+     */
+    export type Response = Vapi.SimulationRunTarget.Assistant | Vapi.SimulationRunTarget.Squad;
 }

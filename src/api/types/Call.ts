@@ -2,11 +2,15 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A call record returned by Vapi. It contains the configuration and resources used for the call, its lifecycle status and timestamps, conversation messages, artifacts, analysis, and costs.
+ */
 export interface Call {
     /** This is the type of call. */
     type?: Vapi.CallType | undefined;
     /** These are the costs of individual components of the call in USD. */
     costs?: Vapi.CallCostsItem[] | undefined;
+    /** Messages exchanged during the call, including user, assistant, system, tool-call, and tool-result messages. */
     messages?: Vapi.CallMessagesItem[] | undefined;
     /**
      * This is the provider of the call.
@@ -28,6 +32,13 @@ export interface Call {
     endedMessage?: string | undefined;
     /** This is the destination where the call ended up being transferred to. If the call was not transferred, this will be empty. */
     destination?: Vapi.CallDestination | undefined;
+    /**
+     * This is the assistant version to use for this call. Supported only with
+     * direct `assistantId`. Omit to follow the latest version.
+     */
+    assistantVersion?: (string | null) | undefined;
+    /** This is the transport of the call. */
+    transport?: Vapi.CallTransport | undefined;
     /** This is the unique identifier for the call. */
     id: string;
     /** This is the unique identifier for the org that this call belongs to. */
@@ -153,8 +164,4 @@ export interface Call {
     name?: string | undefined;
     /** This is the schedule plan of the call. */
     schedulePlan?: Vapi.SchedulePlan | undefined;
-    /** This is the transport of the call. */
-    transport?: Record<string, unknown> | undefined;
-    /** These are the subscription limits for the org at the time of the call. Includes concurrency limit information. */
-    subscriptionLimits?: Vapi.SubscriptionLimits | undefined;
 }

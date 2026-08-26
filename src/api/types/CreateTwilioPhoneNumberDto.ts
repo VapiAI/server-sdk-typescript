@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to import a Twilio phone number into Vapi with its account credentials and routing settings.
+ */
 export interface CreateTwilioPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

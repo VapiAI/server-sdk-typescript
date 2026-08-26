@@ -314,6 +314,10 @@ describe("SessionsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -724,6 +728,10 @@ describe("SessionsClient", () => {
                             structuredOutputs: [
                                 {
                                     compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                    conditions: [
+                                        { type: "minMessages", count: 4 },
+                                        { type: "minCallDuration", seconds: 10 },
+                                    ],
                                     name: "name",
                                     schema: { type: "string" },
                                 },
@@ -1112,6 +1120,10 @@ describe("SessionsClient", () => {
                                         structuredOutputs: [
                                             {
                                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                                conditions: [
+                                                    { type: "minMessages", count: 4 },
+                                                    { type: "minCallDuration", seconds: 10 },
+                                                ],
                                                 name: "name",
                                                 schema: { type: "string" },
                                             },
@@ -1525,6 +1537,10 @@ describe("SessionsClient", () => {
                                         structuredOutputs: [
                                             {
                                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                                conditions: [
+                                                    { type: "minMessages", count: 4 },
+                                                    { type: "minCallDuration", seconds: 10 },
+                                                ],
                                                 name: "name",
                                                 schema: { type: "string" },
                                             },
@@ -1937,6 +1953,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -2350,6 +2370,424 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
+                                        name: "name",
+                                        schema: { type: "string" },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: { provider: "vapi" },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        squadOverrides: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                            credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [{ type: "request-start", blocking: false }],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: { key: "value" },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                        { key: "value" },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: { position: -1 },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            "tools:append": [
+                                {
+                                    type: "apiRequest",
+                                    messages: [{ type: "request-start", blocking: false }],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: { key: "value" },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                            { key: "value" },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: { position: -1 },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "。",
+                                                "，",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "،",
+                                                "۔",
+                                                "।",
+                                                "॥",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "。",
+                                                            "，",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "،",
+                                                            "۔",
+                                                            "।",
+                                                            "॥",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: { enabled: true },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -2468,6 +2906,10 @@ describe("SessionsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -2865,6 +3307,16 @@ describe("SessionsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -3377,6 +3829,16 @@ describe("SessionsClient", () => {
                                     compliancePlan: {
                                         forceStoreOnHipaaEnabled: false,
                                     },
+                                    conditions: [
+                                        {
+                                            type: "minMessages",
+                                            count: 4,
+                                        },
+                                        {
+                                            type: "minCallDuration",
+                                            seconds: 10,
+                                        },
+                                    ],
                                     name: "name",
                                     schema: {
                                         type: "string",
@@ -3852,6 +4314,16 @@ describe("SessionsClient", () => {
                                                 compliancePlan: {
                                                     forceStoreOnHipaaEnabled: false,
                                                 },
+                                                conditions: [
+                                                    {
+                                                        type: "minMessages",
+                                                        count: 4,
+                                                    },
+                                                    {
+                                                        type: "minCallDuration",
+                                                        seconds: 10,
+                                                    },
+                                                ],
                                                 name: "name",
                                                 schema: {
                                                     type: "string",
@@ -4364,6 +4836,16 @@ describe("SessionsClient", () => {
                                                 compliancePlan: {
                                                     forceStoreOnHipaaEnabled: false,
                                                 },
+                                                conditions: [
+                                                    {
+                                                        type: "minMessages",
+                                                        count: 4,
+                                                    },
+                                                    {
+                                                        type: "minCallDuration",
+                                                        seconds: 10,
+                                                    },
+                                                ],
                                                 name: "name",
                                                 schema: {
                                                     type: "string",
@@ -4878,6 +5360,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -5400,6 +5892,538 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
+                                        name: "name",
+                                        schema: {
+                                            type: "string",
+                                        },
+                                    },
+                                ],
+                            },
+                            startSpeakingPlan: {
+                                waitSeconds: 0.4,
+                                smartEndpointingPlan: {
+                                    provider: "vapi",
+                                },
+                                transcriptionEndpointingPlan: {
+                                    onPunctuationSeconds: 0.1,
+                                    onNoPunctuationSeconds: 1.5,
+                                    onNumberSeconds: 0.5,
+                                },
+                            },
+                            stopSpeakingPlan: {
+                                numWords: 0,
+                                voiceSeconds: 0.2,
+                                backoffSeconds: 1,
+                                acknowledgementPhrases: [
+                                    "i understand",
+                                    "i see",
+                                    "i got it",
+                                    "i hear you",
+                                    "im listening",
+                                    "im with you",
+                                    "right",
+                                    "okay",
+                                    "ok",
+                                    "sure",
+                                    "alright",
+                                    "got it",
+                                    "understood",
+                                    "yeah",
+                                    "yes",
+                                    "uh-huh",
+                                    "mm-hmm",
+                                    "gotcha",
+                                    "mhmm",
+                                    "ah",
+                                    "yeah okay",
+                                    "yeah sure",
+                                ],
+                                interruptionPhrases: [
+                                    "stop",
+                                    "shut",
+                                    "up",
+                                    "enough",
+                                    "quiet",
+                                    "silence",
+                                    "but",
+                                    "dont",
+                                    "not",
+                                    "no",
+                                    "hold",
+                                    "wait",
+                                    "cut",
+                                    "pause",
+                                    "nope",
+                                    "nah",
+                                    "nevermind",
+                                    "never",
+                                    "bad",
+                                    "actually",
+                                ],
+                            },
+                            monitorPlan: {
+                                listenEnabled: false,
+                                listenAuthenticationEnabled: false,
+                                controlEnabled: false,
+                                controlAuthenticationEnabled: false,
+                                monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                            },
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        squadOverrides: {
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
+                            model: {
+                                provider: "anthropic",
+                                tools: [
+                                    {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ],
+                                knowledgeBase: {
+                                    provider: "custom-knowledge-base",
+                                    server: {
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        staticIpAddressesEnabled: false,
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                                model: "claude-3-opus-20240229",
+                            },
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            firstMessage: "Hello! How can I help you today?",
+                            clientMessages: [
+                                "conversation-update",
+                                "function-call",
+                                "hang",
+                                "model-output",
+                                "speech-update",
+                                "status-update",
+                                "transfer-update",
+                                "transcript",
+                                "tool-calls",
+                                "user-interrupted",
+                                "voice-input",
+                                "workflow.node.started",
+                                "assistant.started",
+                            ],
+                            serverMessages: [
+                                "conversation-update",
+                                "end-of-call-report",
+                                "function-call",
+                                "hang",
+                                "speech-update",
+                                "status-update",
+                                "tool-calls",
+                                "transfer-destination-request",
+                                "handoff-destination-request",
+                                "user-interrupted",
+                                "assistant.started",
+                            ],
+                            maxDurationSeconds: 600,
+                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            modelOutputInMessagesEnabled: false,
+                            transportConfigurations: [
+                                {
+                                    provider: "twilio",
+                                    timeout: 60,
+                                    record: false,
+                                },
+                            ],
+                            credentials: [
+                                {
+                                    provider: "11labs",
+                                    apiKey: "apiKey",
+                                },
+                            ],
+                            hooks: [
+                                {
+                                    on: "call.ending",
+                                    do: [
+                                        {
+                                            type: "tool",
+                                            tool: {
+                                                type: "apiRequest",
+                                                messages: [
+                                                    {
+                                                        type: "request-start",
+                                                        blocking: false,
+                                                    },
+                                                ],
+                                                method: "POST",
+                                                timeoutSeconds: 20,
+                                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                                url: "url",
+                                                backoffPlan: {
+                                                    type: {
+                                                        key: "value",
+                                                    },
+                                                    maxRetries: 0,
+                                                    baseDelaySeconds: 1,
+                                                    excludedStatusCodes: [
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                        {
+                                                            key: "value",
+                                                        },
+                                                    ],
+                                                },
+                                                rejectionPlan: {
+                                                    conditions: [
+                                                        {
+                                                            type: "regex",
+                                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                            target: {
+                                                                position: -1,
+                                                            },
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                            "tools:append": [
+                                {
+                                    type: "apiRequest",
+                                    messages: [
+                                        {
+                                            type: "request-start",
+                                            blocking: false,
+                                        },
+                                    ],
+                                    method: "POST",
+                                    timeoutSeconds: 20,
+                                    credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                    url: "url",
+                                    backoffPlan: {
+                                        type: {
+                                            key: "value",
+                                        },
+                                        maxRetries: 0,
+                                        baseDelaySeconds: 1,
+                                        excludedStatusCodes: [
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                            {
+                                                key: "value",
+                                            },
+                                        ],
+                                    },
+                                    rejectionPlan: {
+                                        conditions: [
+                                            {
+                                                type: "regex",
+                                                regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                target: {
+                                                    position: -1,
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            ],
+                            compliancePlan: {
+                                recordingConsentPlan: {
+                                    type: "stay-on-line",
+                                    message:
+                                        "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                                    voice: {
+                                        provider: "azure",
+                                        cachingEnabled: true,
+                                        voiceId: "andrew",
+                                        chunkPlan: {
+                                            enabled: true,
+                                            minCharacters: 30,
+                                            punctuationBoundaries: [
+                                                "\u3002",
+                                                "\uFF0C",
+                                                ".",
+                                                "!",
+                                                "?",
+                                                ";",
+                                                "\u060C",
+                                                "\u06D4",
+                                                "\u0964",
+                                                "\u0965",
+                                                "|",
+                                                "||",
+                                                ",",
+                                                ":",
+                                            ],
+                                            formatPlan: {
+                                                enabled: true,
+                                                numberToDigitsCutoff: 2025,
+                                            },
+                                        },
+                                        fallbackPlan: {
+                                            voices: [
+                                                {
+                                                    provider: "azure",
+                                                    cachingEnabled: true,
+                                                    voiceId: "andrew",
+                                                    chunkPlan: {
+                                                        enabled: true,
+                                                        minCharacters: 30,
+                                                        punctuationBoundaries: [
+                                                            "\u3002",
+                                                            "\uFF0C",
+                                                            ".",
+                                                            "!",
+                                                            "?",
+                                                            ";",
+                                                            "\u060C",
+                                                            "\u06D4",
+                                                            "\u0964",
+                                                            "\u0965",
+                                                            "|",
+                                                            "||",
+                                                            ",",
+                                                            ":",
+                                                        ],
+                                                        formatPlan: {
+                                                            enabled: true,
+                                                            numberToDigitsCutoff: 2025,
+                                                        },
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    waitSeconds: 3,
+                                },
+                            },
+                            backgroundSpeechDenoisingPlan: {
+                                fourierDenoisingPlan: {
+                                    mediaDetectionEnabled: true,
+                                    staticThreshold: -35,
+                                    baselineOffsetDb: -15,
+                                    windowSizeMs: 3000,
+                                    baselinePercentile: 85,
+                                },
+                            },
+                            artifactPlan: {
+                                recordingEnabled: true,
+                                recordingUseCustomStorageEnabled: true,
+                                videoRecordingEnabled: false,
+                                fullMessageHistoryEnabled: false,
+                                pcapEnabled: true,
+                                pcapS3PathPrefix: "/pcaps",
+                                pcapUseCustomStorageEnabled: true,
+                                loggingEnabled: true,
+                                loggingUseCustomStorageEnabled: true,
+                                transcriptPlan: {
+                                    enabled: true,
+                                },
+                                structuredOutputs: [
+                                    {
+                                        compliancePlan: {
+                                            forceStoreOnHipaaEnabled: false,
+                                        },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -5542,6 +6566,10 @@ describe("SessionsClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -5566,6 +6594,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -5583,6 +6612,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -5637,6 +6670,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -5900,13 +6934,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -6005,6 +7050,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -6059,6 +7108,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -6353,13 +7403,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -6745,6 +7806,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -7155,6 +8220,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -7577,6 +8646,10 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -8003,6 +9076,435 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
+                                name: "name",
+                                schema: { type: "string" },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: { provider: "vapi" },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: { key: "value" },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                    observabilityPlan: { provider: "langfuse", tags: ["tags"] },
+                    credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: { key: "value" },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: { key: "value" },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: { enabled: true },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -8110,6 +9612,7 @@ describe("SessionsClient", () => {
                     extension: "extension",
                     callerId: "callerId",
                     transferPlan: { mode: "blind-transfer" },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
@@ -8141,6 +9644,8 @@ describe("SessionsClient", () => {
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
                 messagesOpenAIFormatted: [{ content: null, role: "assistant" }],
+                skippedStructuredOutputs: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
+                transfers: [{ destination: { type: "number", number: "number" } }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -8162,8 +9667,15 @@ describe("SessionsClient", () => {
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         };
 
@@ -8192,6 +9704,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -8209,6 +9722,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -8285,6 +9802,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -8609,6 +10132,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -8620,12 +10153,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -8756,6 +10292,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -8832,6 +10372,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -9206,6 +10752,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -9217,12 +10773,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -9716,6 +11275,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -10228,6 +11797,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -10759,6 +12338,16 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -11301,6 +12890,556 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
+                                name: "name",
+                                schema: {
+                                    type: "string",
+                                },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: {
+                            provider: "vapi",
+                        },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [
+                        {
+                            provider: "twilio",
+                            timeout: 60,
+                            record: false,
+                        },
+                    ],
+                    observabilityPlan: {
+                        provider: "langfuse",
+                        tags: ["tags"],
+                    },
+                    credentials: [
+                        {
+                            provider: "11labs",
+                            apiKey: "apiKey",
+                        },
+                    ],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: {
+                        key: "value",
+                    },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: {
+                        key: "value",
+                    },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: {
+                            enabled: true,
+                        },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: {
+                                    forceStoreOnHipaaEnabled: false,
+                                },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -11424,6 +13563,7 @@ describe("SessionsClient", () => {
                     transferPlan: {
                         mode: "blind-transfer",
                     },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [
@@ -11494,6 +13634,23 @@ describe("SessionsClient", () => {
                         role: "assistant",
                     },
                 ],
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                        unmetCondition: {
+                            type: "minMessages",
+                            count: 4,
+                        },
+                    },
+                },
+                transfers: [
+                    {
+                        destination: {
+                            type: "number",
+                            number: "number",
+                        },
+                    },
+                ],
                 recording: {
                     stereoUrl: "stereoUrl",
                     videoUrl: "videoUrl",
@@ -11529,8 +13686,15 @@ describe("SessionsClient", () => {
                 scorecards: {
                     key: "value",
                 },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         });
     });
@@ -11552,6 +13716,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -11569,6 +13734,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -11623,6 +13792,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -11886,13 +14056,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -11991,6 +14172,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -12045,6 +14230,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -12339,13 +14525,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -12731,6 +14928,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -13141,6 +15342,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -13563,6 +15768,10 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -13989,6 +16198,435 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
+                                name: "name",
+                                schema: { type: "string" },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: { provider: "vapi" },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: { key: "value" },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                    observabilityPlan: { provider: "langfuse", tags: ["tags"] },
+                    credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: { key: "value" },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: { key: "value" },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: { enabled: true },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -14096,6 +16734,7 @@ describe("SessionsClient", () => {
                     extension: "extension",
                     callerId: "callerId",
                     transferPlan: { mode: "blind-transfer" },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
@@ -14127,6 +16766,8 @@ describe("SessionsClient", () => {
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
                 messagesOpenAIFormatted: [{ content: null, role: "assistant" }],
+                skippedStructuredOutputs: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
+                transfers: [{ destination: { type: "number", number: "number" } }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -14148,8 +16789,15 @@ describe("SessionsClient", () => {
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         };
 
@@ -14173,6 +16821,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -14190,6 +16839,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -14266,6 +16919,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -14590,6 +17249,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -14601,12 +17270,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -14737,6 +17409,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -14813,6 +17489,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -15187,6 +17869,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -15198,12 +17890,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -15697,6 +18392,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -16209,6 +18914,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -16740,6 +19455,16 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -17282,6 +20007,556 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
+                                name: "name",
+                                schema: {
+                                    type: "string",
+                                },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: {
+                            provider: "vapi",
+                        },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [
+                        {
+                            provider: "twilio",
+                            timeout: 60,
+                            record: false,
+                        },
+                    ],
+                    observabilityPlan: {
+                        provider: "langfuse",
+                        tags: ["tags"],
+                    },
+                    credentials: [
+                        {
+                            provider: "11labs",
+                            apiKey: "apiKey",
+                        },
+                    ],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: {
+                        key: "value",
+                    },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: {
+                        key: "value",
+                    },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: {
+                            enabled: true,
+                        },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: {
+                                    forceStoreOnHipaaEnabled: false,
+                                },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -17405,6 +20680,7 @@ describe("SessionsClient", () => {
                     transferPlan: {
                         mode: "blind-transfer",
                     },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [
@@ -17475,6 +20751,23 @@ describe("SessionsClient", () => {
                         role: "assistant",
                     },
                 ],
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                        unmetCondition: {
+                            type: "minMessages",
+                            count: 4,
+                        },
+                    },
+                },
+                transfers: [
+                    {
+                        destination: {
+                            type: "number",
+                            number: "number",
+                        },
+                    },
+                ],
                 recording: {
                     stereoUrl: "stereoUrl",
                     videoUrl: "videoUrl",
@@ -17510,8 +20803,15 @@ describe("SessionsClient", () => {
                 scorecards: {
                     key: "value",
                 },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         });
     });
@@ -17533,6 +20833,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -17550,6 +20851,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -17604,6 +20909,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -17867,13 +21173,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -17972,6 +21289,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -18026,6 +21347,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -18320,13 +21642,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -18712,6 +22045,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -19122,6 +22459,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -19544,6 +22885,10 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -19970,6 +23315,435 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
+                                name: "name",
+                                schema: { type: "string" },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: { provider: "vapi" },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: { key: "value" },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                    observabilityPlan: { provider: "langfuse", tags: ["tags"] },
+                    credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: { key: "value" },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: { key: "value" },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: { enabled: true },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -20077,6 +23851,7 @@ describe("SessionsClient", () => {
                     extension: "extension",
                     callerId: "callerId",
                     transferPlan: { mode: "blind-transfer" },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
@@ -20108,6 +23883,8 @@ describe("SessionsClient", () => {
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
                 messagesOpenAIFormatted: [{ content: null, role: "assistant" }],
+                skippedStructuredOutputs: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
+                transfers: [{ destination: { type: "number", number: "number" } }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -20129,8 +23906,15 @@ describe("SessionsClient", () => {
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         };
 
@@ -20154,6 +23938,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -20171,6 +23956,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -20247,6 +24036,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -20571,6 +24366,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -20582,12 +24387,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -20718,6 +24526,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -20794,6 +24606,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -21168,6 +24986,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -21179,12 +25007,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -21678,6 +25509,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -22190,6 +26031,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -22721,6 +26572,16 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -23263,6 +27124,556 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
+                                name: "name",
+                                schema: {
+                                    type: "string",
+                                },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: {
+                            provider: "vapi",
+                        },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [
+                        {
+                            provider: "twilio",
+                            timeout: 60,
+                            record: false,
+                        },
+                    ],
+                    observabilityPlan: {
+                        provider: "langfuse",
+                        tags: ["tags"],
+                    },
+                    credentials: [
+                        {
+                            provider: "11labs",
+                            apiKey: "apiKey",
+                        },
+                    ],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: {
+                        key: "value",
+                    },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: {
+                        key: "value",
+                    },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: {
+                            enabled: true,
+                        },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: {
+                                    forceStoreOnHipaaEnabled: false,
+                                },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -23386,6 +27797,7 @@ describe("SessionsClient", () => {
                     transferPlan: {
                         mode: "blind-transfer",
                     },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [
@@ -23456,6 +27868,23 @@ describe("SessionsClient", () => {
                         role: "assistant",
                     },
                 ],
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                        unmetCondition: {
+                            type: "minMessages",
+                            count: 4,
+                        },
+                    },
+                },
+                transfers: [
+                    {
+                        destination: {
+                            type: "number",
+                            number: "number",
+                        },
+                    },
+                ],
                 recording: {
                     stereoUrl: "stereoUrl",
                     videoUrl: "videoUrl",
@@ -23491,8 +27920,15 @@ describe("SessionsClient", () => {
                 scorecards: {
                     key: "value",
                 },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         });
     });
@@ -23514,6 +27950,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -23531,6 +27968,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -23585,6 +28026,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -23848,13 +28290,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -23953,6 +28406,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -24007,6 +28464,7 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [{ toolId: "toolId", version: "version" }],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -24301,13 +28759,24 @@ describe("SessionsClient", () => {
                     structuredOutputs: [
                         {
                             compliancePlan: { forceStoreOnHipaaEnabled: false },
+                            conditions: [
+                                { type: "minMessages", count: 4 },
+                                { type: "minCallDuration", seconds: 10 },
+                            ],
                             name: "name",
                             schema: { type: "string" },
                         },
                     ],
                     scorecardIds: ["scorecardIds"],
                     scorecards: [
-                        { metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }] },
+                        {
+                            metrics: [
+                                {
+                                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                                    structuredOutputId: "structuredOutputId",
+                                },
+                            ],
+                        },
                     ],
                     loggingPath: "loggingPath",
                 },
@@ -24693,6 +29162,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -25103,6 +29576,10 @@ describe("SessionsClient", () => {
                                 structuredOutputs: [
                                     {
                                         compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                        conditions: [
+                                            { type: "minMessages", count: 4 },
+                                            { type: "minCallDuration", seconds: 10 },
+                                        ],
                                         name: "name",
                                         schema: { type: "string" },
                                     },
@@ -25525,6 +30002,10 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -25951,6 +30432,435 @@ describe("SessionsClient", () => {
                         structuredOutputs: [
                             {
                                 compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
+                                name: "name",
+                                schema: { type: "string" },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: { provider: "vapi" },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: { key: "value" },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                                { key: "value" },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [{ type: "request-start", blocking: false }],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: { position: -1 },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: { key: "value" },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                        { key: "value" },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "。",
+                                "，",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "،",
+                                "۔",
+                                "।",
+                                "॥",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "。",
+                                            "，",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "،",
+                                            "۔",
+                                            "।",
+                                            "॥",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
+                    observabilityPlan: { provider: "langfuse", tags: ["tags"] },
+                    credentials: [{ provider: "11labs", apiKey: "apiKey" }],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [{ type: "request-start", blocking: false }],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: { key: "value" },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                                { key: "value" },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: { position: -1 },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [{ type: "request-start", blocking: false }],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: { key: "value" },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                    { key: "value" },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: { position: -1 },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: { key: "value" },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "。",
+                                        "，",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "،",
+                                        "۔",
+                                        "।",
+                                        "॥",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "。",
+                                                    "，",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "،",
+                                                    "۔",
+                                                    "।",
+                                                    "॥",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: { enabled: true, numberToDigitsCutoff: 2025 },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: { key: "value" },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: { enabled: true },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: { forceStoreOnHipaaEnabled: false },
+                                conditions: [
+                                    { type: "minMessages", count: 4 },
+                                    { type: "minCallDuration", seconds: 10 },
+                                ],
                                 name: "name",
                                 schema: { type: "string" },
                             },
@@ -26058,6 +30968,7 @@ describe("SessionsClient", () => {
                     extension: "extension",
                     callerId: "callerId",
                     transferPlan: { mode: "blind-transfer" },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [{ on: "call.ringing", do: [{ type: "transfer" }] }],
@@ -26089,6 +31000,8 @@ describe("SessionsClient", () => {
             artifact: {
                 messages: [{ role: "role", message: "message", time: 1.1, endTime: 1.1, secondsFromStart: 1.1 }],
                 messagesOpenAIFormatted: [{ content: null, role: "assistant" }],
+                skippedStructuredOutputs: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
+                transfers: [{ destination: { type: "number", number: "number" } }],
                 recording: { stereoUrl: "stereoUrl", videoUrl: "videoUrl", videoRecordingStartDelaySeconds: 1.1 },
                 transcript: "transcript",
                 pcapUrl: "pcapUrl",
@@ -26110,8 +31023,15 @@ describe("SessionsClient", () => {
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         };
 
@@ -26142,6 +31062,7 @@ describe("SessionsClient", () => {
                     promptTokens: 1.1,
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
+                    reasoningTokens: 1.1,
                     cost: 1.1,
                 },
             ],
@@ -26159,6 +31080,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -26235,6 +31160,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -26559,6 +31490,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -26570,12 +31511,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -26706,6 +31650,10 @@ describe("SessionsClient", () => {
                     minEndOfTurnSilenceWhenConfident: 160,
                     maxTurnSilence: 400,
                     vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
                     wordBoost: ["wordBoost"],
@@ -26782,6 +31730,12 @@ describe("SessionsClient", () => {
                         },
                     ],
                     toolIds: ["toolIds"],
+                    toolRefs: [
+                        {
+                            toolId: "toolId",
+                            version: "version",
+                        },
+                    ],
                     knowledgeBase: {
                         provider: "custom-knowledge-base",
                         server: {
@@ -27156,6 +32110,16 @@ describe("SessionsClient", () => {
                             compliancePlan: {
                                 forceStoreOnHipaaEnabled: false,
                             },
+                            conditions: [
+                                {
+                                    type: "minMessages",
+                                    count: 4,
+                                },
+                                {
+                                    type: "minCallDuration",
+                                    seconds: 10,
+                                },
+                            ],
                             name: "name",
                             schema: {
                                 type: "string",
@@ -27167,12 +32131,15 @@ describe("SessionsClient", () => {
                         {
                             metrics: [
                                 {
-                                    structuredOutputId: "structuredOutputId",
                                     conditions: [
                                         {
-                                            key: "value",
+                                            type: "comparator",
+                                            comparator: "=",
+                                            value: 1.1,
+                                            points: 1.1,
                                         },
                                     ],
+                                    structuredOutputId: "structuredOutputId",
                                 },
                             ],
                         },
@@ -27666,6 +32633,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -28178,6 +33155,16 @@ describe("SessionsClient", () => {
                                         compliancePlan: {
                                             forceStoreOnHipaaEnabled: false,
                                         },
+                                        conditions: [
+                                            {
+                                                type: "minMessages",
+                                                count: 4,
+                                            },
+                                            {
+                                                type: "minCallDuration",
+                                                seconds: 10,
+                                            },
+                                        ],
                                         name: "name",
                                         schema: {
                                             type: "string",
@@ -28709,6 +33696,16 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -29251,6 +34248,556 @@ describe("SessionsClient", () => {
                                 compliancePlan: {
                                     forceStoreOnHipaaEnabled: false,
                                 },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
+                                name: "name",
+                                schema: {
+                                    type: "string",
+                                },
+                            },
+                        ],
+                    },
+                    startSpeakingPlan: {
+                        waitSeconds: 0.4,
+                        smartEndpointingPlan: {
+                            provider: "vapi",
+                        },
+                        transcriptionEndpointingPlan: {
+                            onPunctuationSeconds: 0.1,
+                            onNoPunctuationSeconds: 1.5,
+                            onNumberSeconds: 0.5,
+                        },
+                    },
+                    stopSpeakingPlan: {
+                        numWords: 0,
+                        voiceSeconds: 0.2,
+                        backoffSeconds: 1,
+                        acknowledgementPhrases: [
+                            "i understand",
+                            "i see",
+                            "i got it",
+                            "i hear you",
+                            "im listening",
+                            "im with you",
+                            "right",
+                            "okay",
+                            "ok",
+                            "sure",
+                            "alright",
+                            "got it",
+                            "understood",
+                            "yeah",
+                            "yes",
+                            "uh-huh",
+                            "mm-hmm",
+                            "gotcha",
+                            "mhmm",
+                            "ah",
+                            "yeah okay",
+                            "yeah sure",
+                        ],
+                        interruptionPhrases: [
+                            "stop",
+                            "shut",
+                            "up",
+                            "enough",
+                            "quiet",
+                            "silence",
+                            "but",
+                            "dont",
+                            "not",
+                            "no",
+                            "hold",
+                            "wait",
+                            "cut",
+                            "pause",
+                            "nope",
+                            "nah",
+                            "nevermind",
+                            "never",
+                            "bad",
+                            "actually",
+                        ],
+                    },
+                    monitorPlan: {
+                        listenEnabled: false,
+                        listenAuthenticationEnabled: false,
+                        controlEnabled: false,
+                        controlAuthenticationEnabled: false,
+                        monitorIds: ["123e4567-e89b-12d3-a456-426614174000"],
+                    },
+                    credentialIds: ["credentialIds"],
+                    server: {
+                        timeoutSeconds: 20,
+                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                        staticIpAddressesEnabled: false,
+                        backoffPlan: {
+                            type: {
+                                key: "value",
+                            },
+                            maxRetries: 0,
+                            baseDelaySeconds: 1,
+                            excludedStatusCodes: [
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                                {
+                                    key: "value",
+                                },
+                            ],
+                        },
+                    },
+                },
+                squadOverrides: {
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
+                    model: {
+                        provider: "anthropic",
+                        tools: [
+                            {
+                                type: "apiRequest",
+                                messages: [
+                                    {
+                                        type: "request-start",
+                                        blocking: false,
+                                    },
+                                ],
+                                method: "POST",
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                url: "url",
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                                rejectionPlan: {
+                                    conditions: [
+                                        {
+                                            type: "regex",
+                                            regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                            target: {
+                                                position: -1,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                        knowledgeBase: {
+                            provider: "custom-knowledge-base",
+                            server: {
+                                timeoutSeconds: 20,
+                                credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                staticIpAddressesEnabled: false,
+                                backoffPlan: {
+                                    type: {
+                                        key: "value",
+                                    },
+                                    maxRetries: 0,
+                                    baseDelaySeconds: 1,
+                                    excludedStatusCodes: [
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                        {
+                                            key: "value",
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        model: "claude-3-opus-20240229",
+                    },
+                    voice: {
+                        provider: "azure",
+                        cachingEnabled: true,
+                        voiceId: "andrew",
+                        chunkPlan: {
+                            enabled: true,
+                            minCharacters: 30,
+                            punctuationBoundaries: [
+                                "\u3002",
+                                "\uFF0C",
+                                ".",
+                                "!",
+                                "?",
+                                ";",
+                                "\u060C",
+                                "\u06D4",
+                                "\u0964",
+                                "\u0965",
+                                "|",
+                                "||",
+                                ",",
+                                ":",
+                            ],
+                            formatPlan: {
+                                enabled: true,
+                                numberToDigitsCutoff: 2025,
+                            },
+                        },
+                        fallbackPlan: {
+                            voices: [
+                                {
+                                    provider: "azure",
+                                    cachingEnabled: true,
+                                    voiceId: "andrew",
+                                    chunkPlan: {
+                                        enabled: true,
+                                        minCharacters: 30,
+                                        punctuationBoundaries: [
+                                            "\u3002",
+                                            "\uFF0C",
+                                            ".",
+                                            "!",
+                                            "?",
+                                            ";",
+                                            "\u060C",
+                                            "\u06D4",
+                                            "\u0964",
+                                            "\u0965",
+                                            "|",
+                                            "||",
+                                            ",",
+                                            ":",
+                                        ],
+                                        formatPlan: {
+                                            enabled: true,
+                                            numberToDigitsCutoff: 2025,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    firstMessage: "Hello! How can I help you today?",
+                    firstMessageInterruptionsEnabled: true,
+                    firstMessageMode: "assistant-speaks-first",
+                    voicemailDetection: "off",
+                    clientMessages: [
+                        "conversation-update",
+                        "function-call",
+                        "hang",
+                        "model-output",
+                        "speech-update",
+                        "status-update",
+                        "transfer-update",
+                        "transcript",
+                        "tool-calls",
+                        "user-interrupted",
+                        "voice-input",
+                        "workflow.node.started",
+                        "assistant.started",
+                    ],
+                    serverMessages: [
+                        "conversation-update",
+                        "end-of-call-report",
+                        "function-call",
+                        "hang",
+                        "speech-update",
+                        "status-update",
+                        "tool-calls",
+                        "transfer-destination-request",
+                        "handoff-destination-request",
+                        "user-interrupted",
+                        "assistant.started",
+                    ],
+                    maxDurationSeconds: 600,
+                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    modelOutputInMessagesEnabled: false,
+                    transportConfigurations: [
+                        {
+                            provider: "twilio",
+                            timeout: 60,
+                            record: false,
+                        },
+                    ],
+                    observabilityPlan: {
+                        provider: "langfuse",
+                        tags: ["tags"],
+                    },
+                    credentials: [
+                        {
+                            provider: "11labs",
+                            apiKey: "apiKey",
+                        },
+                    ],
+                    hooks: [
+                        {
+                            on: "call.ending",
+                            do: [
+                                {
+                                    type: "tool",
+                                    tool: {
+                                        type: "apiRequest",
+                                        messages: [
+                                            {
+                                                type: "request-start",
+                                                blocking: false,
+                                            },
+                                        ],
+                                        method: "POST",
+                                        timeoutSeconds: 20,
+                                        credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                                        url: "url",
+                                        backoffPlan: {
+                                            type: {
+                                                key: "value",
+                                            },
+                                            maxRetries: 0,
+                                            baseDelaySeconds: 1,
+                                            excludedStatusCodes: [
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                                {
+                                                    key: "value",
+                                                },
+                                            ],
+                                        },
+                                        rejectionPlan: {
+                                            conditions: [
+                                                {
+                                                    type: "regex",
+                                                    regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                                    target: {
+                                                        position: -1,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    "tools:append": [
+                        {
+                            type: "apiRequest",
+                            messages: [
+                                {
+                                    type: "request-start",
+                                    blocking: false,
+                                },
+                            ],
+                            method: "POST",
+                            timeoutSeconds: 20,
+                            credentialId: "550e8400-e29b-41d4-a716-446655440000",
+                            url: "url",
+                            backoffPlan: {
+                                type: {
+                                    key: "value",
+                                },
+                                maxRetries: 0,
+                                baseDelaySeconds: 1,
+                                excludedStatusCodes: [
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                    {
+                                        key: "value",
+                                    },
+                                ],
+                            },
+                            rejectionPlan: {
+                                conditions: [
+                                    {
+                                        type: "regex",
+                                        regex: "\\\\b(cancel|stop|wait)\\\\b - Matches whole words",
+                                        target: {
+                                            position: -1,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                    ],
+                    variableValues: {
+                        key: "value",
+                    },
+                    name: "name",
+                    voicemailMessage: "voicemailMessage",
+                    endCallMessage: "endCallMessage",
+                    endCallPhrases: ["endCallPhrases"],
+                    compliancePlan: {
+                        recordingConsentPlan: {
+                            type: "stay-on-line",
+                            message:
+                                "For quality purposes, this call may be recorded. Please stay on the line if you agree or end the call if you do not consent.",
+                            voice: {
+                                provider: "azure",
+                                cachingEnabled: true,
+                                voiceId: "andrew",
+                                chunkPlan: {
+                                    enabled: true,
+                                    minCharacters: 30,
+                                    punctuationBoundaries: [
+                                        "\u3002",
+                                        "\uFF0C",
+                                        ".",
+                                        "!",
+                                        "?",
+                                        ";",
+                                        "\u060C",
+                                        "\u06D4",
+                                        "\u0964",
+                                        "\u0965",
+                                        "|",
+                                        "||",
+                                        ",",
+                                        ":",
+                                    ],
+                                    formatPlan: {
+                                        enabled: true,
+                                        numberToDigitsCutoff: 2025,
+                                    },
+                                },
+                                fallbackPlan: {
+                                    voices: [
+                                        {
+                                            provider: "azure",
+                                            cachingEnabled: true,
+                                            voiceId: "andrew",
+                                            chunkPlan: {
+                                                enabled: true,
+                                                minCharacters: 30,
+                                                punctuationBoundaries: [
+                                                    "\u3002",
+                                                    "\uFF0C",
+                                                    ".",
+                                                    "!",
+                                                    "?",
+                                                    ";",
+                                                    "\u060C",
+                                                    "\u06D4",
+                                                    "\u0964",
+                                                    "\u0965",
+                                                    "|",
+                                                    "||",
+                                                    ",",
+                                                    ":",
+                                                ],
+                                                formatPlan: {
+                                                    enabled: true,
+                                                    numberToDigitsCutoff: 2025,
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                            waitSeconds: 3,
+                        },
+                    },
+                    metadata: {
+                        key: "value",
+                    },
+                    backgroundSpeechDenoisingPlan: {
+                        fourierDenoisingPlan: {
+                            mediaDetectionEnabled: true,
+                            staticThreshold: -35,
+                            baselineOffsetDb: -15,
+                            windowSizeMs: 3000,
+                            baselinePercentile: 85,
+                        },
+                    },
+                    artifactPlan: {
+                        recordingEnabled: true,
+                        recordingUseCustomStorageEnabled: true,
+                        videoRecordingEnabled: false,
+                        fullMessageHistoryEnabled: false,
+                        pcapEnabled: true,
+                        pcapS3PathPrefix: "/pcaps",
+                        pcapUseCustomStorageEnabled: true,
+                        loggingEnabled: true,
+                        loggingUseCustomStorageEnabled: true,
+                        transcriptPlan: {
+                            enabled: true,
+                        },
+                        structuredOutputs: [
+                            {
+                                compliancePlan: {
+                                    forceStoreOnHipaaEnabled: false,
+                                },
+                                conditions: [
+                                    {
+                                        type: "minMessages",
+                                        count: 4,
+                                    },
+                                    {
+                                        type: "minCallDuration",
+                                        seconds: 10,
+                                    },
+                                ],
                                 name: "name",
                                 schema: {
                                     type: "string",
@@ -29374,6 +34921,7 @@ describe("SessionsClient", () => {
                     transferPlan: {
                         mode: "blind-transfer",
                     },
+                    name: "name",
                     description: "description",
                 },
                 hooks: [
@@ -29444,6 +34992,23 @@ describe("SessionsClient", () => {
                         role: "assistant",
                     },
                 ],
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                        unmetCondition: {
+                            type: "minMessages",
+                            count: 4,
+                        },
+                    },
+                },
+                transfers: [
+                    {
+                        destination: {
+                            type: "number",
+                            number: "number",
+                        },
+                    },
+                ],
                 recording: {
                     stereoUrl: "stereoUrl",
                     videoUrl: "videoUrl",
@@ -29479,8 +35044,15 @@ describe("SessionsClient", () => {
                 scorecards: {
                     key: "value",
                 },
-                transfers: ["transfers"],
                 structuredOutputsLastUpdatedAt: "2024-01-15T09:30:00Z",
+                presignedMonoUrl: "presignedMonoUrl",
+                presignedStereoUrl: "presignedStereoUrl",
+                presignedVideoUrl: "presignedVideoUrl",
+                presignedAssistantUrl: "presignedAssistantUrl",
+                presignedCustomerUrl: "presignedCustomerUrl",
+                presignedPcapUrl: "presignedPcapUrl",
+                presignedLogUrl: "presignedLogUrl",
+                presignedUrlsExpiresAt: "presignedUrlsExpiresAt",
             },
         });
     });

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters a structured-output value stored on a call using comparison, membership, containment, or emptiness operators.
+ */
 export interface FilterStructuredOutputColumnOnCallTable {
     /**
      * This is the column in the call table that will be filtered on.

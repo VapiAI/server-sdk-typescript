@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for requesting recording consent by treating continued presence on the call as consent, including the announcement voice and wait time.
+ */
 export interface RecordingConsentPlanStayOnLine {
     /**
      * This is the message asking for consent to record the call.
@@ -14,6 +17,20 @@ export interface RecordingConsentPlanStayOnLine {
      * Use a different voice for the consent message for a better user experience.
      */
     voice?: Vapi.RecordingConsentPlanStayOnLineVoice | undefined;
+    /**
+     * This controls whether the consent assistant speaks first or waits for the caller to speak first.
+     *
+     * Use:
+     * - `assistant-speaks-first` (default) to have the consent assistant play the consent message as soon as the call is answered.
+     * - `assistant-waits-for-user` to have the consent assistant wait for the caller to speak before playing the consent message.
+     *
+     * We strongly recommend `assistant-waits-for-user` for outbound calls. Some telephony providers signal "answered" while the line is still ringing, which can cause the consent message to play into a ringing line and be missed by the caller. Waiting for the caller to speak first guarantees they hear the full consent message.
+     *
+     * Note: when combined with `type: 'stay-on-line'`, silence only counts toward consent after the caller has spoken at least once.
+     *
+     * @default 'assistant-speaks-first'
+     */
+    firstMessageMode?: Vapi.RecordingConsentPlanStayOnLineFirstMessageMode | undefined;
     /** Number of seconds to wait before transferring to the assistant if user stays on the call */
     waitSeconds?: number | undefined;
 }

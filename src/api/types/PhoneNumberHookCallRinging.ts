@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured transfer or message actions when an incoming call rings and its caller-number prefix filters match.
+ */
 export interface PhoneNumberHookCallRinging {
     /** Optional filters to decide when to trigger the hook. Currently supports filtering by caller country code. */
     filters?: Vapi.PhoneNumberCallRingingHookFilter[] | undefined;

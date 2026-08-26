@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A saved text-value insight containing its call-data queries, formula, time range, and lifecycle information.
+ */
 export interface TextInsight {
     /** This is the name of the Insight. */
     name?: string | undefined;
@@ -23,6 +26,7 @@ export interface TextInsight {
      * You can also use the query names as the variable in the formula.
      */
     formula?: Record<string, unknown> | undefined;
+    /** The time range used to query the text-value data. */
     timeRange?: Vapi.InsightTimeRange | undefined;
     /**
      * These are the queries to run to generate the insight.
@@ -37,4 +41,6 @@ export interface TextInsight {
     createdAt: string;
     /** This is the ISO 8601 date-time string of when the Insight was last updated. */
     updatedAt: string;
+    /** Stable server-owned identifier for system-created insights. */
+    systemKey?: string | undefined;
 }

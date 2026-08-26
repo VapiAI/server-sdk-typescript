@@ -12,6 +12,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateToolsRequest {
+    /** The unique identifier of the tool. */
     id: string;
     body: Vapi.UpdateToolsRequestBody;
 }

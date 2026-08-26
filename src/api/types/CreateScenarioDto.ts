@@ -3,20 +3,17 @@
 import type * as Vapi from "../index.js";
 
 export interface CreateScenarioDto {
-    /** This is the name of the scenario. */
+    /** The display name of the scenario, for example `Book an appointment`. */
     name: string;
-    /** This is the script/instructions for the tester to follow during the simulation. */
+    /** What the AI tester should try to accomplish in the conversation. Write it as the AI tester's goal, for example `Book an appointment for next week and confirm the time.` */
     instructions: string;
-    /**
-     * This is the structured output-based evaluation plan for the simulation.
-     * Each item defines a structured output to extract and evaluate against an expected value.
-     */
+    /** The checks that decide whether a run passes. Each evaluation compares a structured output against an expected value. At least one evaluation is required to run. */
     evaluations: Vapi.EvaluationPlanItem[];
     /** Hooks to run on simulation lifecycle events */
     hooks?: Vapi.CreateScenarioDtoHooksItem[] | undefined;
     /** Overrides to inject into the simulated target assistant or squad */
     targetOverrides?: Vapi.AssistantOverrides | undefined;
-    /** Scenario-level tool call mocks to use during simulations. */
+    /** Mock results for the assistant or squad's tools during the simulation, so the run stays deterministic without calling real services. */
     toolMocks?: Vapi.ScenarioToolMock[] | undefined;
     /**
      * Optional folder path for organizing scenarios.

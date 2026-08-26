@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Matches an incoming caller's phone number against one or more prefixes before a ringing hook runs.
+ */
 export interface PhoneNumberCallRingingHookFilter {
     /** This is the type of filter - matches when the specified field starts with any of the given prefixes */
     type: Vapi.PhoneNumberCallRingingHookFilterType;

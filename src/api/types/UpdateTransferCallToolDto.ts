@@ -2,12 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a call-transfer tool, including its destinations, spoken messages, and rejection plan.
+ */
 export interface UpdateTransferCallToolDto {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.UpdateTransferCallToolDtoMessagesItem[] | undefined;
     /** These are the destinations that the call can be transferred to. If no destinations are provided, server.url will be used to get the transfer destination once the tool is called. */
     destinations?: Vapi.UpdateTransferCallToolDtoDestinationsItem[] | undefined;

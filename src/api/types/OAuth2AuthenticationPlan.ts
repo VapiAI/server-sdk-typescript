@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Client-credentials configuration for obtaining an OAuth 2.0 access token used to authenticate outbound requests.
+ */
 export interface OAuth2AuthenticationPlan {
+    /** Selects OAuth 2.0 authentication. */
     type: Vapi.OAuth2AuthenticationPlanType;
     /** This is the OAuth2 URL. */
     url: string;

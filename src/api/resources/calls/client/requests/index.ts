@@ -1,3 +1,10 @@
+export type { CallArtifactControllerAssistantRecordingDownloadRequest } from "./CallArtifactControllerAssistantRecordingDownloadRequest.js";
+export type { CallArtifactControllerCallLogsDownloadRequest } from "./CallArtifactControllerCallLogsDownloadRequest.js";
+export type { CallArtifactControllerCustomerRecordingDownloadRequest } from "./CallArtifactControllerCustomerRecordingDownloadRequest.js";
+export type { CallArtifactControllerMonoRecordingDownloadRequest } from "./CallArtifactControllerMonoRecordingDownloadRequest.js";
+export type { CallArtifactControllerPcapDownloadRequest } from "./CallArtifactControllerPcapDownloadRequest.js";
+export type { CallArtifactControllerStereoRecordingDownloadRequest } from "./CallArtifactControllerStereoRecordingDownloadRequest.js";
+export type { CallArtifactControllerVideoRecordingDownloadRequest } from "./CallArtifactControllerVideoRecordingDownloadRequest.js";
 export type { CreateCallDto } from "./CreateCallDto.js";
 export type { DeleteCallDto } from "./DeleteCallDto.js";
 export type { GetCallsRequest } from "./GetCallsRequest.js";

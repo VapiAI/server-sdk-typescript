@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Defines structured variables to extract and optional aliases made available during and after a call.
+ */
 export interface VariableExtractionPlan {
     /**
      * This is the schema to extract.

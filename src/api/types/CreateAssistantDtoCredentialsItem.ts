@@ -34,6 +34,7 @@ export type CreateAssistantDtoCredentialsItem =
     | Vapi.CreateAssistantDtoCredentialsItem.RimeAi
     | Vapi.CreateAssistantDtoCredentialsItem.Runpod
     | Vapi.CreateAssistantDtoCredentialsItem.S3
+    | Vapi.CreateAssistantDtoCredentialsItem.S3Compatible
     | Vapi.CreateAssistantDtoCredentialsItem.Supabase
     | Vapi.CreateAssistantDtoCredentialsItem.SmallestAi
     | Vapi.CreateAssistantDtoCredentialsItem.Tavus
@@ -43,12 +44,12 @@ export type CreateAssistantDtoCredentialsItem =
     | Vapi.CreateAssistantDtoCredentialsItem.Webhook
     | Vapi.CreateAssistantDtoCredentialsItem.CustomCredential
     | Vapi.CreateAssistantDtoCredentialsItem.Xai
+    | Vapi.CreateAssistantDtoCredentialsItem.Microsoft
     | Vapi.CreateAssistantDtoCredentialsItem.Neuphonic
     | Vapi.CreateAssistantDtoCredentialsItem.Hume
     | Vapi.CreateAssistantDtoCredentialsItem.Mistral
     | Vapi.CreateAssistantDtoCredentialsItem.Speechmatics
     | Vapi.CreateAssistantDtoCredentialsItem.Soniox
-    | Vapi.CreateAssistantDtoCredentialsItem.Trieve
     | Vapi.CreateAssistantDtoCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.CreateAssistantDtoCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.CreateAssistantDtoCredentialsItem.GoogleSheetsOauth2Authorization
@@ -185,6 +186,10 @@ export namespace CreateAssistantDtoCredentialsItem {
         provider: "s3";
     }
 
+    export interface S3Compatible extends Vapi.CreateS3CompatibleCredentialDto {
+        provider: "s3-compatible";
+    }
+
     export interface Supabase extends Vapi.CreateSupabaseCredentialDto {
         provider: "supabase";
     }
@@ -221,6 +226,10 @@ export namespace CreateAssistantDtoCredentialsItem {
         provider: "xai";
     }
 
+    export interface Microsoft extends Vapi.CreateMicrosoftCredentialDto {
+        provider: "microsoft";
+    }
+
     export interface Neuphonic extends Vapi.CreateNeuphonicCredentialDto {
         provider: "neuphonic";
     }
@@ -239,10 +248,6 @@ export namespace CreateAssistantDtoCredentialsItem {
 
     export interface Soniox extends Vapi.CreateSonioxCredentialDto {
         provider: "soniox";
-    }
-
-    export interface Trieve extends Vapi.CreateTrieveCredentialDto {
-        provider: "trieve";
     }
 
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
@@ -285,4 +290,63 @@ export namespace CreateAssistantDtoCredentialsItem {
     export interface SlackWebhook extends Vapi.CreateSlackWebhookCredentialDto {
         provider: "slack-webhook";
     }
+
+    export type Response =
+        | Vapi.CreateAssistantDtoCredentialsItem._11Labs
+        | Vapi.CreateAssistantDtoCredentialsItem.Anthropic
+        | Vapi.CreateAssistantDtoCredentialsItem.AnthropicBedrock
+        | Vapi.CreateAssistantDtoCredentialsItem.Anyscale
+        | Vapi.CreateAssistantDtoCredentialsItem.AssemblyAi
+        | Vapi.CreateAssistantDtoCredentialsItem.AzureOpenai
+        | Vapi.CreateAssistantDtoCredentialsItem.Azure
+        | Vapi.CreateAssistantDtoCredentialsItem.ByoSipTrunk
+        | Vapi.CreateAssistantDtoCredentialsItem.Cartesia
+        | Vapi.CreateAssistantDtoCredentialsItem.Cerebras
+        | Vapi.CreateAssistantDtoCredentialsItem.Cloudflare
+        | Vapi.CreateAssistantDtoCredentialsItem.CustomLlm
+        | Vapi.CreateAssistantDtoCredentialsItem.Deepgram
+        | Vapi.CreateAssistantDtoCredentialsItem.Deepinfra
+        | Vapi.CreateAssistantDtoCredentialsItem.DeepSeek
+        | Vapi.CreateAssistantDtoCredentialsItem.Gcp
+        | Vapi.CreateAssistantDtoCredentialsItem.Gladia
+        | Vapi.CreateAssistantDtoCredentialsItem.Gohighlevel
+        | Vapi.CreateAssistantDtoCredentialsItem.Google
+        | Vapi.CreateAssistantDtoCredentialsItem.Groq
+        | Vapi.CreateAssistantDtoCredentialsItem.InflectionAi
+        | Vapi.CreateAssistantDtoCredentialsItem.Langfuse
+        | Vapi.CreateAssistantDtoCredentialsItem.Lmnt
+        | Vapi.CreateAssistantDtoCredentialsItem.Make
+        | Vapi.CreateAssistantDtoCredentialsItem.Openai
+        | Vapi.CreateAssistantDtoCredentialsItem.Openrouter
+        | Vapi.CreateAssistantDtoCredentialsItem.PerplexityAi
+        | Vapi.CreateAssistantDtoCredentialsItem.Playht
+        | Vapi.CreateAssistantDtoCredentialsItem.RimeAi
+        | Vapi.CreateAssistantDtoCredentialsItem.Runpod
+        | Vapi.CreateAssistantDtoCredentialsItem.S3
+        | Vapi.CreateAssistantDtoCredentialsItem.S3Compatible
+        | Vapi.CreateAssistantDtoCredentialsItem.Supabase
+        | Vapi.CreateAssistantDtoCredentialsItem.SmallestAi
+        | Vapi.CreateAssistantDtoCredentialsItem.Tavus
+        | Vapi.CreateAssistantDtoCredentialsItem.TogetherAi
+        | Vapi.CreateAssistantDtoCredentialsItem.Twilio
+        | Vapi.CreateAssistantDtoCredentialsItem.Vonage
+        | Vapi.CreateAssistantDtoCredentialsItem.Webhook
+        | Vapi.CreateAssistantDtoCredentialsItem.CustomCredential
+        | Vapi.CreateAssistantDtoCredentialsItem.Xai
+        | Vapi.CreateAssistantDtoCredentialsItem.Microsoft
+        | Vapi.CreateAssistantDtoCredentialsItem.Neuphonic
+        | Vapi.CreateAssistantDtoCredentialsItem.Hume
+        | Vapi.CreateAssistantDtoCredentialsItem.Mistral
+        | Vapi.CreateAssistantDtoCredentialsItem.Speechmatics
+        | Vapi.CreateAssistantDtoCredentialsItem.Soniox
+        | Vapi.CreateAssistantDtoCredentialsItem.GoogleCalendarOauth2Client
+        | Vapi.CreateAssistantDtoCredentialsItem.GoogleCalendarOauth2Authorization
+        | Vapi.CreateAssistantDtoCredentialsItem.GoogleSheetsOauth2Authorization
+        | Vapi.CreateAssistantDtoCredentialsItem.SlackOauth2Authorization
+        | Vapi.CreateAssistantDtoCredentialsItem.GhlOauth2Authorization
+        | Vapi.CreateAssistantDtoCredentialsItem.Inworld
+        | Vapi.CreateAssistantDtoCredentialsItem.Minimax
+        | Vapi.CreateAssistantDtoCredentialsItem.Wellsaid
+        | Vapi.CreateAssistantDtoCredentialsItem.Email
+        | Vapi.CreateAssistantDtoCredentialsItem.SlackWebhook;
 }

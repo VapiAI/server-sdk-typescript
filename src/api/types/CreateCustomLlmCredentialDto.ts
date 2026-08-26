@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Credentials for authenticating requests to a custom language model with an API key or OAuth 2.0 authentication plan.
+ */
 export interface CreateCustomLlmCredentialDto {
     /** This is not returned in the API. */
     apiKey: string;

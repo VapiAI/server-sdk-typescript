@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Enables Anthropic extended thinking with a maximum thinking-token budget.
+ */
 export interface AnthropicThinkingConfig {
+    /** Enables Anthropic extended thinking. */
     type: Vapi.AnthropicThinkingConfigType;
     /**
      * The maximum number of tokens to allocate for thinking.

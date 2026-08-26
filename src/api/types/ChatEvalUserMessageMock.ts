@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A simulated user message in an evaluation conversation.
+ */
 export interface ChatEvalUserMessageMock {
     /**
      * This is the role of the message author.

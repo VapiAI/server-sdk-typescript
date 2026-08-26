@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of structured-output definitions and metadata describing the result set.
+ */
 export interface StructuredOutputPaginatedResponse {
+    /** The structured-output definitions returned for the current page. */
     results: Vapi.StructuredOutput[];
+    /** Pagination metadata for the structured-output result set. */
     metadata: Vapi.PaginationMeta;
 }

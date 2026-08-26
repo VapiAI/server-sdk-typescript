@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Voicemail-detection model cost, including provider, model, multimodal token usage, and amount.
+ */
 export interface VoicemailDetectionCost {
     /** This is the model that was used to perform the analysis. */
     model: Record<string, unknown>;

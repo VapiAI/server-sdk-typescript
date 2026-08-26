@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fallback configuration for sending conversation audio to a custom WebSocket transcription server.
+ */
 export interface FallbackCustomTranscriber {
     /**
      * This is where the transcription request will be sent.

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Routes a handoff to a saved or transient squad, with optional entry assistant, context engineering, variable extraction, and overrides.
+ */
 export interface HandoffDestinationSquad {
     /** This is the plan for manipulating the message context before handing off the call to the squad. */
     contextEngineeringPlan?: Vapi.HandoffDestinationSquadContextEngineeringPlan | undefined;

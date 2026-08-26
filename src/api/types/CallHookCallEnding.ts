@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured actions when a call is ending, optionally only when its filters match.
+ */
 export interface CallHookCallEnding {
     /** This is the event that triggers this hook */
     on: Vapi.CallHookCallEndingOn;

@@ -23,7 +23,9 @@ export type AssistantVoice =
     | Vapi.AssistantVoice.Vapi
     | Vapi.AssistantVoice.Sesame
     | Vapi.AssistantVoice.Inworld
-    | Vapi.AssistantVoice.Minimax;
+    | Vapi.AssistantVoice.Minimax
+    | Vapi.AssistantVoice.Xai
+    | Vapi.AssistantVoice.Microsoft;
 
 export namespace AssistantVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -96,5 +98,13 @@ export namespace AssistantVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

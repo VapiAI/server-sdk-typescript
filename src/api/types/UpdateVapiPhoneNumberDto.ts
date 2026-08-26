@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Fields used to update a Vapi-managed phone number or SIP URI, including its authentication, routing, hooks, and server settings.
+ */
 export interface UpdateVapiPhoneNumberDto {
     /**
      * This is the fallback destination an inbound call will be transferred to if:

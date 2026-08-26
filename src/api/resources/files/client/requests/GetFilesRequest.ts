@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetFilesRequest {
+    /** The unique identifier of the file. */
     id: string;
 }

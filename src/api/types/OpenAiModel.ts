@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for generating assistant responses with OpenAI, including model selection, fallback models, prompts, tools, prompt caching, and generation settings.
+ */
 export interface OpenAiModel {
     /** This is the starting state for the conversation. */
     messages?: Vapi.OpenAiMessage[] | undefined;
@@ -17,6 +20,13 @@ export interface OpenAiModel {
      * Both `tools` and `toolIds` can be used together.
      */
     toolIds?: string[] | undefined;
+    /**
+     * These are version-pinned references to tools. Each entry pins a specific
+     * version of a tool by `(toolId, version)`. When the same `toolId` appears
+     * in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+     * `toolIds` entry is dropped at write time).
+     */
+    toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /**
@@ -45,7 +55,7 @@ export interface OpenAiModel {
      * - `in_memory`: Default behavior, cache retained in GPU memory only
      * - `24h`: Extended caching, keeps cached prefixes active for up to 24 hours by offloading to GPU-local storage
      *
-     * Only applies to models: gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
+     * Only applies to models: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5, chat-latest, gpt-5.4, gpt-5.4-mini, gpt-5.4-nano, gpt-5.2, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-mini, gpt-5.1-chat-latest, gpt-5, gpt-5-codex, gpt-4.1
      *
      * @default undefined (uses API default which is 'in_memory')
      */
@@ -58,7 +68,14 @@ export interface OpenAiModel {
      * @default undefined
      */
     promptCacheKey?: string | undefined;
-    /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
+    /**
+     * Reasoning effort for reasoning-capable OpenAI models.
+     * For `gpt-realtime-2`: forwarded to V2 stream's session.update as `reasoning.effort`.
+     * For non-realtime OpenAI models, model-aware validation limits newly public
+     * values while preserving the existing four-value storage contract.
+     */
+    reasoningEffort?: Vapi.OpenAiModelReasoningEffort | undefined;
+    /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
     maxTokens?: number | undefined;

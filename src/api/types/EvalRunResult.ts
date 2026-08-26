@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * The pass or fail result of an evaluation run, including its conversation messages and timing.
+ */
 export interface EvalRunResult {
     /**
      * This is the status of the eval run result.

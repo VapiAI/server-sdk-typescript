@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create an assistant, including its model, voice, transcriber, prompts, tools, messaging, and conversation behavior.
+ */
 export interface CreateAssistantDto {
     /** These are the options for the assistant's transcriber. */
     transcriber?: Vapi.CreateAssistantDtoTranscriber | undefined;
@@ -15,6 +18,7 @@ export interface CreateAssistantDto {
      * If unspecified, assistant will wait for user to speak and use the model to respond once they speak.
      */
     firstMessage?: string | undefined;
+    /** Set to `true` to allow the user to interrupt the assistant while it speaks the first message. Default is `false`. */
     firstMessageInterruptionsEnabled?: boolean | undefined;
     /**
      * This is the mode for the first message. Default is 'assistant-speaks-first'.
@@ -85,6 +89,7 @@ export interface CreateAssistantDto {
     endCallMessage?: string | undefined;
     /** This list contains phrases that, if spoken by the assistant, will trigger the call to be hung up. Case insensitive. */
     endCallPhrases?: string[] | undefined;
+    /** Compliance settings for the assistant, including HIPAA and PCI behavior, security filtering, and recording consent. */
     compliancePlan?: Vapi.CompliancePlan | undefined;
     /** This is for metadata you want to store on the assistant. */
     metadata?: Record<string, unknown> | undefined;
@@ -147,5 +152,6 @@ export interface CreateAssistantDto {
      * 3. org.serverUrl
      */
     server?: Vapi.Server | undefined;
+    /** Configuration for collecting and processing DTMF keypad input during calls. */
     keypadInputPlan?: Vapi.KeypadInputPlan | undefined;
 }

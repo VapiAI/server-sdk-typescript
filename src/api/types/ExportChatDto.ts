@@ -15,6 +15,8 @@ export interface ExportChatDto {
     sessionId?: string | undefined;
     /** This is the unique identifier for the previous chat to filter by. */
     previousChatId?: string | undefined;
+    /** Filter by multiple chat IDs. Provide as comma-separated values. */
+    idAny?: string | undefined;
     /** Columns to include in the CSV export */
     columns?: Vapi.ExportChatDtoColumns | undefined;
     /**
@@ -32,6 +34,8 @@ export interface ExportChatDto {
     page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.ExportChatDtoSortOrder | undefined;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.ExportChatDtoSortBy | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */

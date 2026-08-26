@@ -2,6 +2,8 @@
 
 /** This is the model that will be used for the transcription. */
 export const GoogleTranscriberModel = {
+    Gemini35Flash: "gemini-3.5-flash",
+    Gemini31FlashLite: "gemini-3.1-flash-lite",
     Gemini3FlashPreview: "gemini-3-flash-preview",
     Gemini25Pro: "gemini-2.5-pro",
     Gemini25Flash: "gemini-2.5-flash",

@@ -23,6 +23,8 @@ export class ProviderResourcesClient {
     }
 
     /**
+     * Returns a paginated list of provider resources for the authenticated organization. Filter pronunciation dictionaries by provider, resource ID, or creation and update timestamps.
+     *
      * @param {Vapi.ProviderResourceControllerGetProviderResourcesPaginatedRequest} request
      * @param {ProviderResourcesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -52,6 +54,7 @@ export class ProviderResourcesClient {
             resourceId,
             page,
             sortOrder,
+            sortBy,
             limit,
             createdAtGt,
             createdAtLt,
@@ -67,6 +70,7 @@ export class ProviderResourcesClient {
             resourceId,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
+            sortBy: sortBy != null ? sortBy : undefined,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -123,6 +127,8 @@ export class ProviderResourcesClient {
     }
 
     /**
+     * Creates a pronunciation-dictionary resource for a supported provider, currently Cartesia or ElevenLabs.
+     *
      * @param {Vapi.ProviderResourceControllerCreateProviderResourceRequest} request
      * @param {ProviderResourcesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -189,6 +195,8 @@ export class ProviderResourcesClient {
     }
 
     /**
+     * Returns the provider resource identified by its Vapi resource ID.
+     *
      * @param {Vapi.ProviderResourceControllerGetProviderResourceRequest} request
      * @param {ProviderResourcesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -263,6 +271,8 @@ export class ProviderResourcesClient {
     }
 
     /**
+     * Deletes the provider resource identified by its Vapi resource ID.
+     *
      * @param {Vapi.ProviderResourceControllerDeleteProviderResourceRequest} request
      * @param {ProviderResourcesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -337,6 +347,8 @@ export class ProviderResourcesClient {
     }
 
     /**
+     * Updates the provider resource identified by its Vapi resource ID.
+     *
      * @param {Vapi.ProviderResourceControllerUpdateProviderResourceRequest} request
      * @param {ProviderResourcesClient.RequestOptions} requestOptions - Request-specific configuration.
      *

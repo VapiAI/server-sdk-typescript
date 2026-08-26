@@ -3,6 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateByoSipTrunkCredentialDto {
+    /** This can be used to bring your own SIP trunks or to connect to a Carrier. */
+    provider?: Vapi.UpdateByoSipTrunkCredentialDtoProvider | undefined;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;
     /** This is the list of SIP trunk's gateways. */
@@ -22,6 +24,4 @@ export interface UpdateByoSipTrunkCredentialDto {
     techPrefix?: string | undefined;
     /** This can be used to enable the SIP diversion header for authenticating the calling number if the SIP trunk supports it. This is an advanced property. */
     sipDiversionHeader?: string | undefined;
-    /** This is an advanced configuration for enterprise deployments. This uses the onprem SBC to trunk into the SIP trunk's `gateways`, rather than the managed SBC provided by Vapi. */
-    sbcConfiguration?: Vapi.SbcConfiguration | undefined;
 }

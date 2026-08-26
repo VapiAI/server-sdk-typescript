@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for creating a graph-based workflow, including conversation and tool nodes, directed edges, global prompts, shared providers, hooks, credentials, and call behavior.
+ */
 export interface CreateWorkflowDto {
+    /** Nodes that make up the workflow graph. Conversation nodes interact with the customer, while tool nodes invoke configured tools. */
     nodes: Vapi.CreateWorkflowDtoNodesItem[];
     /**
      * This is the model for the workflow.
@@ -47,8 +51,11 @@ export interface CreateWorkflowDto {
      * Default is 1800 (30 minutes), max is 43200 (12 hours), and min is 10 seconds.
      */
     maxDurationSeconds?: number | undefined;
+    /** Name used to identify the workflow. */
     name: string;
+    /** Directed connections that determine transitions between nodes. */
     edges: Vapi.Edge[];
+    /** Prompt applied across the workflow's conversation nodes. */
     globalPrompt?: string | undefined;
     /**
      * This is where Vapi will send webhooks. You can find all webhooks available along with their shape in ServerMessage schema.

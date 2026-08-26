@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for sending assistant call traces to Langfuse, including prompt version linkage, trace naming, tags, and metadata.
+ */
 export interface LangfuseObservabilityPlan {
+    /** Routes assistant call observability data to Langfuse. */
     provider: Vapi.LangfuseObservabilityPlanProvider;
     /** The name of a Langfuse prompt to link generations to. This enables tracking which prompt version was used for each generation. https://langfuse.com/docs/prompt-management/features/link-to-traces */
     promptName?: string | undefined;

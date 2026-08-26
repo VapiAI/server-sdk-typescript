@@ -19,6 +19,8 @@ export interface GetSessionPaginatedDto {
     customer?: Vapi.CreateCustomerDto | undefined;
     /** Filter by any of the specified customer phone numbers (comma-separated). */
     customerNumberAny?: string | undefined;
+    /** Filter by multiple session IDs. Provide as comma-separated values. */
+    idAny?: string | undefined;
     /** This will return sessions with the specified phoneNumberId. */
     phoneNumberId?: string | undefined;
     /** This will return sessions with any of the specified phoneNumberIds. */
@@ -27,6 +29,8 @@ export interface GetSessionPaginatedDto {
     page?: number | undefined;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.GetSessionPaginatedDtoSortOrder | undefined;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.GetSessionPaginatedDtoSortBy | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */

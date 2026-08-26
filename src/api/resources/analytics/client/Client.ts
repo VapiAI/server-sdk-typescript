@@ -23,6 +23,8 @@ export class AnalyticsClient {
     }
 
     /**
+     * Runs one or more metric queries against call or subscription data using the requested time range, groupings, and aggregate operations.
+     *
      * @param {Vapi.AnalyticsQueryDto} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

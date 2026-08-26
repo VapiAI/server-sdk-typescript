@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Customer details used for call delivery and assistant personalization, including phone or SIP destination, contact identifiers, extension, and assistant overrides.
+ */
 export interface CreateCustomerDto {
     /**
      * This is the flag to toggle the E164 check for the `number` field. This is an advanced property which should be used if you know your use case requires it.
@@ -22,6 +25,12 @@ export interface CreateCustomerDto {
      * This allows customization of the assistant's behavior for individual customers in batch calls.
      */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
+    /**
+     * These are the overrides applied when the call targets a `squadId`. Mirrors
+     * the call-level `squadOverrides` — use this instead of `assistantOverrides`
+     * when the campaign or call is squad-based.
+     */
+    squadOverrides?: Vapi.AssistantOverrides | undefined;
     /** This is the number of the customer. */
     number?: string | undefined;
     /** This is the SIP URI of the customer. */

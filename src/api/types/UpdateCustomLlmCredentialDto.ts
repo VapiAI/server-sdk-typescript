@@ -3,6 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateCustomLlmCredentialDto {
+    provider?: Vapi.UpdateCustomLlmCredentialDtoProvider | undefined;
     /** This is not returned in the API. */
     apiKey?: string | undefined;
     /** This is the authentication plan. Currently supports OAuth2 RFC 6749. To use Bearer authentication, use apiKey */

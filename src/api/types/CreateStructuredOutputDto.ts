@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration used to create a structured-output definition that extracts validated data from calls using an AI model or regular expression.
+ */
 export interface CreateStructuredOutputDto {
     /**
      * This is the type of structured output.
@@ -43,6 +46,8 @@ export interface CreateStructuredOutputDto {
     model?: Vapi.CreateStructuredOutputDtoModel | undefined;
     /** Compliance configuration for this output. Only enable overrides if no sensitive data will be stored. */
     compliancePlan?: Vapi.ComplianceOverride | undefined;
+    /** These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate. */
+    conditions?: (Vapi.CreateStructuredOutputDtoConditionsItem[] | null) | undefined;
     /** This is the name of the structured output. */
     name: string;
     /**

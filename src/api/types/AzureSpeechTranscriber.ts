@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for transcribing speech during assistant conversations with Azure Speech, including language, segmentation, and fallback settings.
+ */
 export interface AzureSpeechTranscriber {
     /** This is the language that will be set for the transcription. The list of languages Azure supports can be found here: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt */
     language?: Vapi.AzureSpeechTranscriberLanguage | undefined;

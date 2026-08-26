@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with WellSaid, including voice and model selection, Speech Synthesis Markup Language support, voice libraries, chunking, caching, and fallback settings.
+ */
 export interface WellSaidVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

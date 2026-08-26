@@ -25,7 +25,9 @@ export type CreateWorkflowDtoVoice =
     | Vapi.CreateWorkflowDtoVoice.Vapi
     | Vapi.CreateWorkflowDtoVoice.Sesame
     | Vapi.CreateWorkflowDtoVoice.Inworld
-    | Vapi.CreateWorkflowDtoVoice.Minimax;
+    | Vapi.CreateWorkflowDtoVoice.Minimax
+    | Vapi.CreateWorkflowDtoVoice.Xai
+    | Vapi.CreateWorkflowDtoVoice.Microsoft;
 
 export namespace CreateWorkflowDtoVoice {
     export interface Azure extends Vapi.AzureVoice {
@@ -98,5 +100,13 @@ export namespace CreateWorkflowDtoVoice {
 
     export interface Minimax extends Vapi.MinimaxVoice {
         provider: "minimax";
+    }
+
+    export interface Xai extends Vapi.XaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.MicrosoftVoice {
+        provider: "microsoft";
     }
 }

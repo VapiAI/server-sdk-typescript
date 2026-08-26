@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of saved eval definitions and metadata describing the result set.
+ */
 export interface EvalPaginatedResponse {
+    /** The eval definitions returned for the current page. */
     results: Vapi.Eval[];
+    /** Pagination metadata for the eval result set. */
     metadata: Vapi.PaginationMeta;
 }

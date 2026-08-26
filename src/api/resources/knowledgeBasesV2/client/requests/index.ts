@@ -1,0 +1,9 @@
+export type { AttachKnowledgeBaseV2FileDto } from "./AttachKnowledgeBaseV2FileDto.js";
+export type { CreateKnowledgeBaseV2Dto } from "./CreateKnowledgeBaseV2Dto.js";
+export type { KnowledgeBaseV2ControllerFileDetachRequest } from "./KnowledgeBaseV2ControllerFileDetachRequest.js";
+export type { KnowledgeBaseV2ControllerFileRetryRequest } from "./KnowledgeBaseV2ControllerFileRetryRequest.js";
+export type { KnowledgeBaseV2ControllerFilesGetRequest } from "./KnowledgeBaseV2ControllerFilesGetRequest.js";
+export type { KnowledgeBaseV2ControllerFindAllRequest } from "./KnowledgeBaseV2ControllerFindAllRequest.js";
+export type { KnowledgeBaseV2ControllerFindOneRequest } from "./KnowledgeBaseV2ControllerFindOneRequest.js";
+export type { KnowledgeBaseV2ControllerRemoveRequest } from "./KnowledgeBaseV2ControllerRemoveRequest.js";
+export type { UpdateKnowledgeBaseV2Dto } from "./UpdateKnowledgeBaseV2Dto.js";

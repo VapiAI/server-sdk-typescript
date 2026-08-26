@@ -3,6 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface UpdateCloudflareCredentialDto {
+    /** Credential provider. Only allowed value is cloudflare */
+    provider?: Vapi.UpdateCloudflareCredentialDtoProvider | undefined;
     /** Cloudflare Account Id. */
     accountId?: string | undefined;
     /** Cloudflare API Key / Token. */

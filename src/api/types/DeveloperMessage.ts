@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A developer-authored instruction message supplied to the language model.
+ */
 export interface DeveloperMessage {
     /** This is the role of the message author */
     role: Vapi.DeveloperMessageRole;

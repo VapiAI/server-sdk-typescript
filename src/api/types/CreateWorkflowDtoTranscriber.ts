@@ -19,7 +19,9 @@ export type CreateWorkflowDtoTranscriber =
     | Vapi.CreateWorkflowDtoTranscriber.Talkscriber
     | Vapi.CreateWorkflowDtoTranscriber.Openai
     | Vapi.CreateWorkflowDtoTranscriber.Cartesia
-    | Vapi.CreateWorkflowDtoTranscriber.Soniox;
+    | Vapi.CreateWorkflowDtoTranscriber.Soniox
+    | Vapi.CreateWorkflowDtoTranscriber.Xai
+    | Vapi.CreateWorkflowDtoTranscriber.Vapi;
 
 export namespace CreateWorkflowDtoTranscriber {
     export interface AssemblyAi extends Vapi.AssemblyAiTranscriber {
@@ -68,5 +70,13 @@ export namespace CreateWorkflowDtoTranscriber {
 
     export interface Soniox extends Vapi.SonioxTranscriber {
         provider: "soniox";
+    }
+
+    export interface Xai extends Vapi.XaiTranscriber {
+        provider: "xai";
+    }
+
+    export interface Vapi extends Vapi.VapiTranscriber {
+        provider: "vapi";
     }
 }

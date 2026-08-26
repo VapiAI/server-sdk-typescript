@@ -7,5 +7,6 @@
  *     }
  */
 export interface InsightControllerFindOneRequest {
+    /** The unique identifier of the reporting insight. */
     id: string;
 }

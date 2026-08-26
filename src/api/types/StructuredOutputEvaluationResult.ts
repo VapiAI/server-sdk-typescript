@@ -10,6 +10,12 @@ export interface StructuredOutputEvaluationResult {
     structuredOutputId: string;
     /** This is the name of the structured output. */
     name: string;
+    /** This is the optional dot-notation path evaluated within an object structured output. */
+    path?: string | undefined;
+    /** This is the structured output description captured when the evaluation ran. */
+    description?: string | undefined;
+    /** This is the structured output schema captured when the evaluation ran. */
+    schema?: Vapi.JsonSchema | undefined;
     /** This is the value extracted from the call by the structured output. */
     extractedValue: Vapi.StructuredOutputEvaluationResultExtractedValue | null;
     /** This is the expected value that was defined in the evaluation plan. */

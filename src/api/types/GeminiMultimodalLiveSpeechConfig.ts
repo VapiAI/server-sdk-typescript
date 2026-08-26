@@ -2,6 +2,10 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Speech-output configuration for Gemini Multimodal Live.
+ */
 export interface GeminiMultimodalLiveSpeechConfig {
+    /** Voice configuration used for Gemini Multimodal Live speech output. */
     voiceConfig: Vapi.GeminiMultimodalLiveVoiceConfig;
 }

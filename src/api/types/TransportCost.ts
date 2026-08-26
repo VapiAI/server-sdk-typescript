@@ -2,7 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Telephony transport cost for a call, including provider, billable minutes, and amount.
+ */
 export interface TransportCost {
+    /** Telephony or transport provider that generated the cost. */
     provider?: Vapi.TransportCostProvider | undefined;
     /** This is the minutes of `transport` usage. This should match `call.endedAt` - `call.startedAt`. */
     minutes: number;

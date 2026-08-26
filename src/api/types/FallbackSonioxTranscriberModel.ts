@@ -3,6 +3,7 @@
 /** The Soniox model to use for transcription. */
 export const FallbackSonioxTranscriberModel = {
     SttRtV4: "stt-rt-v4",
+    SttRtV5: "stt-rt-v5",
 } as const;
 export type FallbackSonioxTranscriberModel =
     (typeof FallbackSonioxTranscriberModel)[keyof typeof FallbackSonioxTranscriberModel];

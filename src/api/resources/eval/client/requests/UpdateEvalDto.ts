@@ -9,6 +9,7 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateEvalDto {
+    /** The unique identifier of the eval definition. */
     id: string;
     /**
      * This is the mock conversation that will be used to evaluate the flow of the conversation.

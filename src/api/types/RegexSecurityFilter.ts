@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters transcript content that matches a custom regular expression.
+ */
 export interface RegexSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.RegexSecurityFilterType;

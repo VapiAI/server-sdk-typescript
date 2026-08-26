@@ -7,5 +7,6 @@
  *     }
  */
 export interface InsightControllerRemoveRequest {
+    /** The unique identifier of the reporting insight. */
     id: string;
 }

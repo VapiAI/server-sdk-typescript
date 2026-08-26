@@ -7,6 +7,7 @@
  *     }
  */
 export interface UpdateFileDto {
+    /** The unique identifier of the file. */
     id: string;
     /** This is the name of the file. This is just for your own reference. */
     name?: string;

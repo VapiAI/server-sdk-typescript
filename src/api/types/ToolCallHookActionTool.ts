@@ -122,4 +122,32 @@ export namespace ToolCallHookActionTool {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    /**
+     * This is the tool to call. To use an existing tool, send `toolId` instead.
+     */
+    export type Response =
+        | Vapi.ToolCallHookActionTool.ApiRequest
+        | Vapi.ToolCallHookActionTool.Bash
+        | Vapi.ToolCallHookActionTool.Code
+        | Vapi.ToolCallHookActionTool.Computer
+        | Vapi.ToolCallHookActionTool.Dtmf
+        | Vapi.ToolCallHookActionTool.EndCall
+        | Vapi.ToolCallHookActionTool.Function
+        | Vapi.ToolCallHookActionTool.GohighlevelCalendarAvailabilityCheck
+        | Vapi.ToolCallHookActionTool.GohighlevelCalendarEventCreate
+        | Vapi.ToolCallHookActionTool.GohighlevelContactCreate
+        | Vapi.ToolCallHookActionTool.GohighlevelContactGet
+        | Vapi.ToolCallHookActionTool.GoogleCalendarAvailabilityCheck
+        | Vapi.ToolCallHookActionTool.GoogleCalendarEventCreate
+        | Vapi.ToolCallHookActionTool.GoogleSheetsRowAppend
+        | Vapi.ToolCallHookActionTool.Handoff
+        | Vapi.ToolCallHookActionTool.Mcp
+        | Vapi.ToolCallHookActionTool.Query
+        | Vapi.ToolCallHookActionTool.SlackMessageSend
+        | Vapi.ToolCallHookActionTool.Sms
+        | Vapi.ToolCallHookActionTool.TextEditor
+        | Vapi.ToolCallHookActionTool.TransferCall
+        | Vapi.ToolCallHookActionTool.SipRequest
+        | Vapi.ToolCallHookActionTool.Voicemail;
 }

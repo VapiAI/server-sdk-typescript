@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An assistant-authored message, including content, refusal text, tool calls, participant name, and metadata.
+ */
 export interface AssistantMessage {
     /** This is the role of the message author */
     role: Vapi.AssistantMessageRole;

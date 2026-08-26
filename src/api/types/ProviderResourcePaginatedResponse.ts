@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A paginated collection of provider resources and metadata describing the result set.
+ */
 export interface ProviderResourcePaginatedResponse {
+    /** The provider resources returned for the current page. */
     results: Vapi.ProviderResource[];
+    /** Pagination metadata for the provider-resource result set. */
     metadata: Vapi.PaginationMeta;
 }

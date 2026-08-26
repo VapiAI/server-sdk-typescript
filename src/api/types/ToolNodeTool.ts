@@ -122,4 +122,32 @@ export namespace ToolNodeTool {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    /**
+     * This is the tool to call. To use an existing tool, send `toolId` instead.
+     */
+    export type Response =
+        | Vapi.ToolNodeTool.ApiRequest
+        | Vapi.ToolNodeTool.Bash
+        | Vapi.ToolNodeTool.Code
+        | Vapi.ToolNodeTool.Computer
+        | Vapi.ToolNodeTool.Dtmf
+        | Vapi.ToolNodeTool.EndCall
+        | Vapi.ToolNodeTool.Function
+        | Vapi.ToolNodeTool.GohighlevelCalendarAvailabilityCheck
+        | Vapi.ToolNodeTool.GohighlevelCalendarEventCreate
+        | Vapi.ToolNodeTool.GohighlevelContactCreate
+        | Vapi.ToolNodeTool.GohighlevelContactGet
+        | Vapi.ToolNodeTool.GoogleCalendarAvailabilityCheck
+        | Vapi.ToolNodeTool.GoogleCalendarEventCreate
+        | Vapi.ToolNodeTool.GoogleSheetsRowAppend
+        | Vapi.ToolNodeTool.Handoff
+        | Vapi.ToolNodeTool.Mcp
+        | Vapi.ToolNodeTool.Query
+        | Vapi.ToolNodeTool.SlackMessageSend
+        | Vapi.ToolNodeTool.Sms
+        | Vapi.ToolNodeTool.TextEditor
+        | Vapi.ToolNodeTool.TransferCall
+        | Vapi.ToolNodeTool.SipRequest
+        | Vapi.ToolNodeTool.Voicemail;
 }

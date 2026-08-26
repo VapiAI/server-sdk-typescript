@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Controls collection of dual-tone multi-frequency (DTMF) keypad input, including enablement, processing timeout, and delimiters.
+ */
 export interface KeypadInputPlan {
     /**
      * This keeps track of whether the user has enabled keypad input.

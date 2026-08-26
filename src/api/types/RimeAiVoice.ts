@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for synthesizing assistant speech with Rime AI, including voice and model selection, language, speed, pauses, phonemization, latency, chunking, caching, and fallback settings.
+ */
 export interface RimeAiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;

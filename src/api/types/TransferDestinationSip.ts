@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Transfers a call to a SIP URI, with optional caller ID, headers, message, and transfer plan.
+ */
 export interface TransferDestinationSip {
     /**
      * This is spoken to the customer before connecting them to the destination.
@@ -35,6 +38,19 @@ export interface TransferDestinationSip {
     transferPlan?: Vapi.TransferPlan | undefined;
     /** These are custom headers to be added to SIP refer during transfer call. */
     sipHeaders?: Record<string, unknown> | undefined;
+    /**
+     * This is the name of the transfer destination. This is just for your own reference.
+     *
+     * Usage:
+     * - Optional. Stored with the destination wherever it is supplied. For `number`
+     *   and `sip` destinations it is also persisted on the transfer record in the
+     *   call artifact after a transfer and displayed in the dashboard call log (on
+     *   the transfer divider in the transcript view) alongside the destination.
+     *   When omitted, everything behaves exactly as before.
+     * - Display-only. Unlike `description`, it is never included in prompts or tool
+     *   descriptions and has no effect on model behavior or destination choice.
+     */
+    name?: string | undefined;
     /** This is the description of the destination, used by the AI to choose when and how to transfer the call. */
     description?: string | undefined;
 }

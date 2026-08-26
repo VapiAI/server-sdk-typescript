@@ -7,5 +7,6 @@
  *     }
  */
 export interface GetToolsRequest {
+    /** The unique identifier of the tool. */
     id: string;
 }

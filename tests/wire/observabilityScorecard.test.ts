@@ -15,7 +15,12 @@ describe("ObservabilityScorecardClient", () => {
             updatedAt: "2024-01-15T09:30:00Z",
             name: "name",
             description: "description",
-            metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+            metrics: [
+                {
+                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                    structuredOutputId: "structuredOutputId",
+                },
+            ],
             assistantIds: ["assistantIds"],
         };
 
@@ -39,12 +44,15 @@ describe("ObservabilityScorecardClient", () => {
             description: "description",
             metrics: [
                 {
-                    structuredOutputId: "structuredOutputId",
                     conditions: [
                         {
-                            key: "value",
+                            type: "comparator",
+                            comparator: "=",
+                            value: 1.1,
+                            points: 1.1,
                         },
                     ],
+                    structuredOutputId: "structuredOutputId",
                 },
             ],
             assistantIds: ["assistantIds"],
@@ -62,7 +70,12 @@ describe("ObservabilityScorecardClient", () => {
             updatedAt: "2024-01-15T09:30:00Z",
             name: "name",
             description: "description",
-            metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+            metrics: [
+                {
+                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                    structuredOutputId: "structuredOutputId",
+                },
+            ],
             assistantIds: ["assistantIds"],
         };
 
@@ -86,12 +99,15 @@ describe("ObservabilityScorecardClient", () => {
             description: "description",
             metrics: [
                 {
-                    structuredOutputId: "structuredOutputId",
                     conditions: [
                         {
-                            key: "value",
+                            type: "comparator",
+                            comparator: "=",
+                            value: 1.1,
+                            points: 1.1,
                         },
                     ],
+                    structuredOutputId: "structuredOutputId",
                 },
             ],
             assistantIds: ["assistantIds"],
@@ -109,7 +125,12 @@ describe("ObservabilityScorecardClient", () => {
             updatedAt: "2024-01-15T09:30:00Z",
             name: "name",
             description: "description",
-            metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+            metrics: [
+                {
+                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                    structuredOutputId: "structuredOutputId",
+                },
+            ],
             assistantIds: ["assistantIds"],
         };
 
@@ -134,12 +155,15 @@ describe("ObservabilityScorecardClient", () => {
             description: "description",
             metrics: [
                 {
-                    structuredOutputId: "structuredOutputId",
                     conditions: [
                         {
-                            key: "value",
+                            type: "comparator",
+                            comparator: "=",
+                            value: 1.1,
+                            points: 1.1,
                         },
                     ],
+                    structuredOutputId: "structuredOutputId",
                 },
             ],
             assistantIds: ["assistantIds"],
@@ -159,7 +183,12 @@ describe("ObservabilityScorecardClient", () => {
                     updatedAt: "2024-01-15T09:30:00Z",
                     name: "name",
                     description: "description",
-                    metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+                    metrics: [
+                        {
+                            conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                            structuredOutputId: "structuredOutputId",
+                        },
+                    ],
                     assistantIds: ["assistantIds"],
                 },
             ],
@@ -167,6 +196,10 @@ describe("ObservabilityScorecardClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -193,12 +226,15 @@ describe("ObservabilityScorecardClient", () => {
                     description: "description",
                     metrics: [
                         {
-                            structuredOutputId: "structuredOutputId",
                             conditions: [
                                 {
-                                    key: "value",
+                                    type: "comparator",
+                                    comparator: "=",
+                                    value: 1.1,
+                                    points: 1.1,
                                 },
                             ],
+                            structuredOutputId: "structuredOutputId",
                         },
                     ],
                     assistantIds: ["assistantIds"],
@@ -208,6 +244,10 @@ describe("ObservabilityScorecardClient", () => {
                 itemsPerPage: 1.1,
                 totalItems: 1.1,
                 currentPage: 1.1,
+                totalPages: 1.1,
+                hasNextPage: true,
+                nextCursor: "nextCursor",
+                sortOrder: "ASC",
                 itemsBeyondRetention: true,
                 createdAtLe: "2024-01-15T09:30:00Z",
                 createdAtGe: "2024-01-15T09:30:00Z",
@@ -219,7 +259,12 @@ describe("ObservabilityScorecardClient", () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+            metrics: [
+                {
+                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                    structuredOutputId: "structuredOutputId",
+                },
+            ],
         };
         const rawResponseBody = {
             id: "id",
@@ -228,7 +273,12 @@ describe("ObservabilityScorecardClient", () => {
             updatedAt: "2024-01-15T09:30:00Z",
             name: "name",
             description: "description",
-            metrics: [{ structuredOutputId: "structuredOutputId", conditions: [{ key: "value" }] }],
+            metrics: [
+                {
+                    conditions: [{ type: "comparator", comparator: "=", value: 1.1, points: 1.1 }],
+                    structuredOutputId: "structuredOutputId",
+                },
+            ],
             assistantIds: ["assistantIds"],
         };
 
@@ -244,12 +294,15 @@ describe("ObservabilityScorecardClient", () => {
         const response = await client.observabilityScorecard.scorecardControllerCreate({
             metrics: [
                 {
-                    structuredOutputId: "structuredOutputId",
                     conditions: [
                         {
-                            key: "value",
+                            type: "comparator",
+                            comparator: "=",
+                            value: 1.1,
+                            points: 1.1,
                         },
                     ],
+                    structuredOutputId: "structuredOutputId",
                 },
             ],
         });
@@ -262,12 +315,15 @@ describe("ObservabilityScorecardClient", () => {
             description: "description",
             metrics: [
                 {
-                    structuredOutputId: "structuredOutputId",
                     conditions: [
                         {
-                            key: "value",
+                            type: "comparator",
+                            comparator: "=",
+                            value: 1.1,
+                            points: 1.1,
                         },
                     ],
+                    structuredOutputId: "structuredOutputId",
                 },
             ],
             assistantIds: ["assistantIds"],

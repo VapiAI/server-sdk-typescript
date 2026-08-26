@@ -7,12 +7,16 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface CampaignControllerFindAllRequest {
+    /** Filters campaigns by ID. */
     id?: string;
+    /** Filters campaigns by status. */
     status?: Vapi.CampaignControllerFindAllRequestStatus;
     /** This is the page number to return. Defaults to 1. */
     page?: number;
     /** This is the sort order for pagination. Defaults to 'DESC'. */
     sortOrder?: Vapi.CampaignControllerFindAllRequestSortOrder;
+    /** This is the column to sort by. Defaults to 'createdAt'. */
+    sortBy?: Vapi.CampaignControllerFindAllRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters potential remote code execution (RCE) patterns from transcripts.
+ */
 export interface RceSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.RceSecurityFilterType;

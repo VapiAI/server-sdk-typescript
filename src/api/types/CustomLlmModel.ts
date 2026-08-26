@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for generating assistant responses through a custom language model endpoint, including server URL, headers, metadata, prompts, tools, and generation settings.
+ */
 export interface CustomLlmModel {
     /** This is the starting state for the conversation. */
     messages?: Vapi.OpenAiMessage[] | undefined;
@@ -17,6 +20,13 @@ export interface CustomLlmModel {
      * Both `tools` and `toolIds` can be used together.
      */
     toolIds?: string[] | undefined;
+    /**
+     * These are version-pinned references to tools. Each entry pins a specific
+     * version of a tool by `(toolId, version)`. When the same `toolId` appears
+     * in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+     * `toolIds` entry is dropped at write time).
+     */
+    toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /**
@@ -44,7 +54,7 @@ export interface CustomLlmModel {
     timeoutSeconds?: number | undefined;
     /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
     model: string;
-    /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
+    /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
     maxTokens?: number | undefined;

@@ -119,4 +119,29 @@ export namespace UpdateToolTemplateDtoDetails {
     export interface Voicemail extends Vapi.CreateVoicemailToolDto {
         type: "voicemail";
     }
+
+    export type Response =
+        | Vapi.UpdateToolTemplateDtoDetails.ApiRequest
+        | Vapi.UpdateToolTemplateDtoDetails.Bash
+        | Vapi.UpdateToolTemplateDtoDetails.Code
+        | Vapi.UpdateToolTemplateDtoDetails.Computer
+        | Vapi.UpdateToolTemplateDtoDetails.Dtmf
+        | Vapi.UpdateToolTemplateDtoDetails.EndCall
+        | Vapi.UpdateToolTemplateDtoDetails.Function
+        | Vapi.UpdateToolTemplateDtoDetails.GohighlevelCalendarAvailabilityCheck
+        | Vapi.UpdateToolTemplateDtoDetails.GohighlevelCalendarEventCreate
+        | Vapi.UpdateToolTemplateDtoDetails.GohighlevelContactCreate
+        | Vapi.UpdateToolTemplateDtoDetails.GohighlevelContactGet
+        | Vapi.UpdateToolTemplateDtoDetails.GoogleCalendarAvailabilityCheck
+        | Vapi.UpdateToolTemplateDtoDetails.GoogleCalendarEventCreate
+        | Vapi.UpdateToolTemplateDtoDetails.GoogleSheetsRowAppend
+        | Vapi.UpdateToolTemplateDtoDetails.Handoff
+        | Vapi.UpdateToolTemplateDtoDetails.Mcp
+        | Vapi.UpdateToolTemplateDtoDetails.Query
+        | Vapi.UpdateToolTemplateDtoDetails.SlackMessageSend
+        | Vapi.UpdateToolTemplateDtoDetails.Sms
+        | Vapi.UpdateToolTemplateDtoDetails.TextEditor
+        | Vapi.UpdateToolTemplateDtoDetails.TransferCall
+        | Vapi.UpdateToolTemplateDtoDetails.SipRequest
+        | Vapi.UpdateToolTemplateDtoDetails.Voicemail;
 }

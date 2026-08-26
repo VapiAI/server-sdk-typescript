@@ -7,5 +7,6 @@
  *     }
  */
 export interface DeleteSessionsRequest {
+    /** The unique identifier for the resource. */
     id: string;
 }

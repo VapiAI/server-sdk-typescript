@@ -15,5 +15,6 @@ export interface ProviderResourceControllerDeleteProviderResourceRequest {
     provider: Vapi.ProviderResourceControllerDeleteProviderResourceRequestProvider;
     /** The resource name (e.g., pronunciation-dictionary) */
     resourceName: Vapi.ProviderResourceControllerDeleteProviderResourceRequestResourceName;
+    /** The unique identifier of the provider resource. */
     id: string;
 }

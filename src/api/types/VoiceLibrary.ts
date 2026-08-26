@@ -43,4 +43,15 @@ export interface VoiceLibrary {
     createdAt: string;
     /** The ISO 8601 date-time string of when the voice library was last updated. */
     updatedAt: string;
+    /**
+     * Whether this voice was cloned by the org from their own audio, as opposed
+     * to a seeded/preset voice. Drives the cloned filter and tag. Backed by a
+     * NOT NULL DEFAULT false column, so it is always present at read time.
+     */
+    isCloned?: boolean | undefined;
+    /**
+     * The provider that produced the clone (e.g. 'xai'). The voice `provider`
+     * stays 'vapi'; this records the underlying backend. Unset for non-cloned voices.
+     */
+    cloneBackend?: string | undefined;
 }

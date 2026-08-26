@@ -10,7 +10,9 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface UpdateStructuredOutputDto {
+    /** The unique identifier of the structured output. */
     id: string;
+    /** Set to the string `true` to allow changing the schema's top-level type. Other values do not enable schema type changes. */
     schemaOverride: string;
     /**
      * This is the type of structured output.
@@ -50,6 +52,8 @@ export interface UpdateStructuredOutputDto {
     model?: Vapi.UpdateStructuredOutputDtoModel;
     /** Compliance configuration for this output. Only enable overrides if no sensitive data will be stored. */
     compliancePlan?: Vapi.ComplianceOverride;
+    /** These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate. */
+    conditions?: Vapi.UpdateStructuredOutputDtoConditionsItem[] | null;
     /** This is the name of the structured output. */
     name?: string;
     /**

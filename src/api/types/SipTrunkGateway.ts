@@ -2,8 +2,11 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Network and routing settings for a SIP trunk gateway, including address, port, netmask, inbound and outbound use, signaling protocol, and OPTIONS health checks.
+ */
 export interface SipTrunkGateway {
-    /** This is the address of the gateway. It can be an IPv4 address like 1.1.1.1 or a fully qualified domain name like my-sip-trunk.pstn.twilio.com. */
+    /** This is the address of the gateway. Inbound gateways require an IPv4 address like 1.1.1.1. Outbound-only gateways can also use a fully qualified domain name like my-sip-trunk.pstn.twilio.com. */
     ip: string;
     /**
      * This is the port number of the gateway. Default is 5060.

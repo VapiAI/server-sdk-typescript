@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Cartesia voice controls for speed and emotion.
+ */
 export interface CartesiaExperimentalControls {
+    /** Speaking-speed control expressed as a preset or a value from -1 to 1. */
     speed?: Vapi.CartesiaSpeedControl | undefined;
+    /** Emotion and intensity applied to the Cartesia voice. */
     emotion?: Vapi.CartesiaExperimentalControlsEmotion | undefined;
 }

@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Filters potential prompt-injection patterns from transcripts.
+ */
 export interface PromptInjectionSecurityFilter {
     /** The type of security threat to filter. */
     type: Vapi.PromptInjectionSecurityFilterType;

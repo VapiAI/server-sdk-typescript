@@ -2,7 +2,12 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * A conversation message represented in OpenAI chat format.
+ */
 export interface OpenAiMessage {
+    /** Content of the conversation message. */
     content: string | null;
+    /** Role associated with the conversation message. */
     role: Vapi.OpenAiMessageRole;
 }

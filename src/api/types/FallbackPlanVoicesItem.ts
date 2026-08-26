@@ -19,7 +19,9 @@ export type FallbackPlanVoicesItem =
     | Vapi.FallbackPlanVoicesItem.Tavus
     | Vapi.FallbackPlanVoicesItem.Neuphonic
     | Vapi.FallbackPlanVoicesItem.Sesame
-    | Vapi.FallbackPlanVoicesItem.Inworld;
+    | Vapi.FallbackPlanVoicesItem.Inworld
+    | Vapi.FallbackPlanVoicesItem.Xai
+    | Vapi.FallbackPlanVoicesItem.Microsoft;
 
 export namespace FallbackPlanVoicesItem {
     export interface Azure extends Vapi.FallbackAzureVoice {
@@ -88,5 +90,13 @@ export namespace FallbackPlanVoicesItem {
 
     export interface Inworld extends Vapi.FallbackInworldVoice {
         provider: "inworld";
+    }
+
+    export interface Xai extends Vapi.FallbackXaiVoice {
+        provider: "xai";
+    }
+
+    export interface Microsoft extends Vapi.FallbackMicrosoftVoice {
+        provider: "microsoft";
     }
 }

@@ -3,11 +3,7 @@
 import type * as Vapi from "../index.js";
 
 export interface TransferSuccessfulToolUserEditable {
-    /**
-     * These are the messages that will be spoken to the user as the tool is running.
-     *
-     * For some tools, this is auto-filled based on special fields like `tool.destinations`. For others like the function tool, these can be custom configured.
-     */
+    /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.TransferSuccessfulToolUserEditableMessagesItem[] | undefined;
     /** The type of tool. "transferSuccessful" for Transfer Successful tool. This tool can only be used during warm-transfer-experimental by the transfer assistant to confirm that the transfer should proceed and finalize the handoff to the destination. */
     type: Vapi.TransferSuccessfulToolUserEditableType;

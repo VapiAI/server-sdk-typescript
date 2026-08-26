@@ -2,12 +2,15 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Runs configured actions when the customer does not speak before the configured timeout, with support for trigger limits and named instances.
+ */
 export interface CallHookCustomerSpeechTimeout {
     /** Must be either "customer.speech.timeout" or match the pattern "customer.speech.timeout[property=value]" */
     on: string;
     /** This is the set of actions to perform when the hook triggers */
     do: Vapi.CallHookCustomerSpeechTimeoutDoItem[];
-    /** This is the set of filters that must match for the hook to trigger */
+    /** Controls the speech timeout, maximum trigger count, and counter reset behavior for this hook. */
     options?: Vapi.CustomerSpeechTimeoutOptions | undefined;
     /**
      * This is the name of the hook, it can be set by the user to identify the hook.

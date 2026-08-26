@@ -2,6 +2,9 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * Configuration for generating assistant responses with Google, including model, prompts, tools, knowledge-base access, realtime settings, and generation settings.
+ */
 export interface GoogleModel {
     /** This is the starting state for the conversation. */
     messages?: Vapi.OpenAiMessage[] | undefined;
@@ -17,6 +20,13 @@ export interface GoogleModel {
      * Both `tools` and `toolIds` can be used together.
      */
     toolIds?: string[] | undefined;
+    /**
+     * These are version-pinned references to tools. Each entry pins a specific
+     * version of a tool by `(toolId, version)`. When the same `toolId` appears
+     * in both `toolIds` and `toolRefs[]`, the `toolRefs` pin wins (the
+     * `toolIds` entry is dropped at write time).
+     */
+    toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /** This is the Google model that will be used. */
@@ -26,7 +36,7 @@ export interface GoogleModel {
      * Only applicable if the model `gemini-2.0-flash-realtime-exp` is selected.
      */
     realtimeConfig?: Vapi.GoogleRealtimeConfig | undefined;
-    /** This is the temperature that will be used for calls. Default is 0 to leverage caching for lower latency. */
+    /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
     /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
     maxTokens?: number | undefined;

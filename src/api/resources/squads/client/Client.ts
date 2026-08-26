@@ -23,6 +23,8 @@ export class SquadsClient {
     }
 
     /**
+     * Returns squads for the authenticated organization. Filter results by creation or update timestamps and limit the number returned.
+     *
      * @param {Vapi.ListSquadsRequest} request
      * @param {SquadsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -41,6 +43,7 @@ export class SquadsClient {
         requestOptions?: SquadsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.Squad[]>> {
         const {
+            idAny,
             limit,
             createdAtGt,
             createdAtLt,
@@ -52,6 +55,7 @@ export class SquadsClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            idAny,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -100,6 +104,8 @@ export class SquadsClient {
     }
 
     /**
+     * Creates a squad that coordinates multiple assistants and their handoffs during a conversation.
+     *
      * @param {Vapi.CreateSquadDto} request
      * @param {SquadsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -160,6 +166,8 @@ export class SquadsClient {
     }
 
     /**
+     * Returns the squad identified by its ID.
+     *
      * @param {Vapi.GetSquadsRequest} request
      * @param {SquadsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -218,6 +226,8 @@ export class SquadsClient {
     }
 
     /**
+     * Deletes the squad identified by its ID.
+     *
      * @param {Vapi.DeleteSquadsRequest} request
      * @param {SquadsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -276,6 +286,8 @@ export class SquadsClient {
     }
 
     /**
+     * Updates the specified fields of the squad identified by its ID.
+     *
      * @param {Vapi.UpdateSquadDto} request
      * @param {SquadsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

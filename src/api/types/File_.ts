@@ -2,21 +2,37 @@
 
 import type * as Vapi from "../index.js";
 
+/**
+ * An uploaded file record, including its processing status, storage details, extracted-text location, metadata, and lifecycle timestamps.
+ */
 export interface File_ {
+    /** The object type. This is always `file`. */
     object?: Vapi.FileObject | undefined;
+    /** The current processing status of the uploaded file. */
     status?: Vapi.FileStatus | undefined;
     /** This is the name of the file. This is just for your own reference. */
     name?: string | undefined;
+    /** The original name of the uploaded file. */
     originalName?: string | undefined;
+    /** The size of the uploaded file in bytes. */
     bytes?: number | undefined;
+    /** The intended use assigned to the uploaded file. */
     purpose?: string | undefined;
+    /** The MIME type of the uploaded file. */
     mimetype?: string | undefined;
+    /** The object-storage key for the uploaded file. */
     key?: string | undefined;
+    /** The object-storage path for the uploaded file. */
     path?: string | undefined;
+    /** The object-storage bucket containing the uploaded file. */
     bucket?: string | undefined;
+    /** The URL used to access the uploaded file. */
     url?: string | undefined;
+    /** The URL used to access text extracted from the file. */
     parsedTextUrl?: string | undefined;
+    /** The size of the extracted text in bytes. */
     parsedTextBytes?: number | undefined;
+    /** Additional metadata associated with the uploaded file. */
     metadata?: Record<string, unknown> | undefined;
     /** This is the unique identifier for the file. */
     id: string;
