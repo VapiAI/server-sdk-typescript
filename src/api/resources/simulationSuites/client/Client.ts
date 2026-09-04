@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace SimulationSuitesClient {
     export type Options = BaseClientOptions;
@@ -170,6 +170,79 @@ export class SimulationSuitesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/eval/simulation/suite");
+    }
+
+    /**
+     * @param {Vapi.SimulationSuiteControllerDuplicateRequest} request
+     * @param {SimulationSuitesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.NotFoundError}
+     * @throws {@link Vapi.ConflictError}
+     *
+     * @example
+     *     await client.simulationSuites.simulationSuiteControllerDuplicate({
+     *         id: "id"
+     *     })
+     */
+    public simulationSuiteControllerDuplicate(
+        request: Vapi.SimulationSuiteControllerDuplicateRequest,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.SimulationSuite> {
+        return core.HttpResponsePromise.fromPromise(this.__simulationSuiteControllerDuplicate(request, requestOptions));
+    }
+
+    private async __simulationSuiteControllerDuplicate(
+        request: Vapi.SimulationSuiteControllerDuplicateRequest,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.SimulationSuite>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `eval/simulation/suite/${core.url.encodePathParam(id)}/duplicate`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.SimulationSuite, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/eval/simulation/suite/{id}/duplicate",
+        );
     }
 
     /**
