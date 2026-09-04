@@ -203,6 +203,10 @@ export const CallEndedReason = {
     CallInProgressErrorProviderfaultBasetenLlmFailed: "call.in-progress.error-providerfault-baseten-llm-failed",
     CallInProgressErrorVapifaultChatPipelineFailedToStart:
         "call.in-progress.error-vapifault-chat-pipeline-failed-to-start",
+    CallInProgressErrorConfigfaultModelUnsupportedInSquad:
+        "call.in-progress.error-configfault-model-unsupported-in-squad",
+    CallInProgressErrorConfigfaultTransportUnsupportedForModel:
+        "call.in-progress.error-configfault-transport-unsupported-for-model",
     PipelineErrorOpenai400BadRequestValidationFailed: "pipeline-error-openai-400-bad-request-validation-failed",
     PipelineErrorOpenai401Unauthorized: "pipeline-error-openai-401-unauthorized",
     PipelineErrorOpenai401IncorrectApiKey: "pipeline-error-openai-401-incorrect-api-key",

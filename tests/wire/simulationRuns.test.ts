@@ -241,7 +241,7 @@ describe("SimulationRunsClient", () => {
                                     "assistant.started",
                                 ],
                                 maxDurationSeconds: 600,
-                                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                                backgroundSound: "https://example.com/my-sound.mp3",
                                 modelOutputInMessagesEnabled: false,
                                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -658,7 +658,7 @@ describe("SimulationRunsClient", () => {
                                     "assistant.started",
                                 ],
                                 maxDurationSeconds: 600,
-                                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                                backgroundSound: "https://example.com/my-sound.mp3",
                                 modelOutputInMessagesEnabled: false,
                                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                                 credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -1048,7 +1048,7 @@ describe("SimulationRunsClient", () => {
                             "assistant.started",
                         ],
                         maxDurationSeconds: 600,
-                        backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                        backgroundSound: "https://example.com/my-sound.mp3",
                         modelOutputInMessagesEnabled: false,
                         transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                         credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -1570,7 +1570,7 @@ describe("SimulationRunsClient", () => {
                                     "assistant.started",
                                 ],
                                 maxDurationSeconds: 600,
-                                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                                backgroundSound: "https://example.com/my-sound.mp3",
                                 modelOutputInMessagesEnabled: false,
                                 transportConfigurations: [
                                     {
@@ -2095,7 +2095,7 @@ describe("SimulationRunsClient", () => {
                                     "assistant.started",
                                 ],
                                 maxDurationSeconds: 600,
-                                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                                backgroundSound: "https://example.com/my-sound.mp3",
                                 modelOutputInMessagesEnabled: false,
                                 transportConfigurations: [
                                     {
@@ -2576,7 +2576,7 @@ describe("SimulationRunsClient", () => {
                             "assistant.started",
                         ],
                         maxDurationSeconds: 600,
-                        backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                        backgroundSound: "https://example.com/my-sound.mp3",
                         modelOutputInMessagesEnabled: false,
                         transportConfigurations: [
                             {
@@ -3102,7 +3102,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -3520,7 +3520,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -3914,7 +3914,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
@@ -4456,7 +4456,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -4982,7 +4982,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -5467,7 +5467,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [
                         {
@@ -6042,7 +6042,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -6460,7 +6460,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -6854,7 +6854,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
@@ -7385,7 +7385,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -7911,7 +7911,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -8396,7 +8396,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [
                         {
@@ -8933,7 +8933,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -9351,7 +9351,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                             credentials: [{ provider: "11labs", apiKey: "apiKey" }],
@@ -9745,7 +9745,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                     observabilityPlan: { provider: "langfuse", tags: ["tags"] },
@@ -10276,7 +10276,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -10802,7 +10802,7 @@ describe("SimulationRunsClient", () => {
                                 "assistant.started",
                             ],
                             maxDurationSeconds: 600,
-                            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                            backgroundSound: "https://example.com/my-sound.mp3",
                             modelOutputInMessagesEnabled: false,
                             transportConfigurations: [
                                 {
@@ -11287,7 +11287,7 @@ describe("SimulationRunsClient", () => {
                         "assistant.started",
                     ],
                     maxDurationSeconds: 600,
-                    backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                    backgroundSound: "https://example.com/my-sound.mp3",
                     modelOutputInMessagesEnabled: false,
                     transportConfigurations: [
                         {
