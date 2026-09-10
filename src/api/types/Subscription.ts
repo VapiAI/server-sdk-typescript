@@ -9,6 +9,12 @@ export interface Subscription {
     createdAt: string;
     /** This is the timestamp when the subscription was last updated. */
     updatedAt: string;
+    /**
+     * This is the display name for the subscription, used to tell subscriptions
+     * apart in the dashboard. It is unique across all subscriptions and does not
+     * appear on invoices, which use the company details on the invoice plan.
+     */
+    name?: (string | null) | undefined;
     /** This is the type / tier of the subscription. */
     type: Vapi.SubscriptionType;
     /**
@@ -43,10 +49,6 @@ export interface Subscription {
     stripeCustomerId?: string | undefined;
     /** This is the Stripe payment ID. */
     stripePaymentMethodId?: string | undefined;
-    /** If this flag is true, then the user has purchased slack support. */
-    slackSupportEnabled?: boolean | undefined;
-    /** If this subscription has a slack support subscription, the slack channel's ID will be stored here. */
-    slackChannelId?: string | undefined;
     /**
      * This is the HIPAA enabled flag for the subscription. It determines whether orgs under this
      * subscription have the option to enable HIPAA compliance.

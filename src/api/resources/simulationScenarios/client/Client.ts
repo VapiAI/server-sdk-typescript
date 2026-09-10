@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace SimulationScenariosClient {
     export type Options = BaseClientOptions;
@@ -249,6 +249,8 @@ export class SimulationScenariosClient {
      * @param {Vapi.ScenarioControllerRemoveRequest} request
      * @param {SimulationScenariosClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Vapi.ConflictError}
+     *
      * @example
      *     await client.simulationScenarios.scenarioControllerRemove({
      *         id: "id"
@@ -293,11 +295,16 @@ export class SimulationScenariosClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(

@@ -195,7 +195,7 @@ describe("AssistantsClient", () => {
                     "assistant.started",
                 ],
                 maxDurationSeconds: 600,
-                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                backgroundSound: "https://example.com/my-sound.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [{ provider: "twilio", timeout: 60, record: false }],
                 observabilityPlan: {
@@ -690,7 +690,7 @@ describe("AssistantsClient", () => {
                     "assistant.started",
                 ],
                 maxDurationSeconds: 600,
-                backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+                backgroundSound: "https://example.com/my-sound.mp3",
                 modelOutputInMessagesEnabled: false,
                 transportConfigurations: [
                     {
@@ -1211,7 +1211,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
             observabilityPlan: {
@@ -1736,7 +1736,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [
                 {
@@ -2138,6 +2138,32 @@ describe("AssistantsClient", () => {
         });
     });
 
+    test("AssistantController_validateBackgroundSoundUrl", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { url: "https://example.com/my-sound.mp3" };
+        const rawResponseBody = { valid: true, reason: "invalid-url", status: 1.1, contentType: "contentType" };
+
+        server
+            .mockEndpoint()
+            .post("/assistant/background-sound/validate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.assistants.assistantControllerValidateBackgroundSoundUrl({
+            url: "https://example.com/my-sound.mp3",
+        });
+        expect(response).toEqual({
+            valid: true,
+            reason: "invalid-url",
+            status: 1.1,
+            contentType: "contentType",
+        });
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -2312,7 +2338,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
             observabilityPlan: {
@@ -2832,7 +2858,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [
                 {
@@ -3408,7 +3434,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
             observabilityPlan: {
@@ -3928,7 +3954,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [
                 {
@@ -4519,7 +4545,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [{ provider: "twilio", timeout: 60, record: false, recordingChannels: "mono" }],
             observabilityPlan: {
@@ -5046,7 +5072,7 @@ describe("AssistantsClient", () => {
                 "assistant.started",
             ],
             maxDurationSeconds: 600,
-            backgroundSound: "https://www.soundjay.com/ambient/sounds/people-in-lounge-1.mp3",
+            backgroundSound: "https://example.com/my-sound.mp3",
             modelOutputInMessagesEnabled: false,
             transportConfigurations: [
                 {

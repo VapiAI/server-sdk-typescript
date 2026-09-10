@@ -126,6 +126,57 @@ await client.assistants.create({});
 </dl>
 </details>
 
+<details><summary><code>client.assistants.<a href="/src/api/resources/assistants/client/Client.ts">assistantControllerValidateBackgroundSoundUrl</a>({ ...params }) -> Vapi.BackgroundSoundUrlValidationResult</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.assistants.assistantControllerValidateBackgroundSoundUrl({
+    url: "https://example.com/my-sound.mp3"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.ValidateBackgroundSoundUrlDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AssistantsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.assistants.<a href="/src/api/resources/assistants/client/Client.ts">get</a>({ ...params }) -> Vapi.Assistant</code></summary>
 <dl>
 <dd>
@@ -5673,6 +5724,57 @@ await client.simulationSuites.simulationSuiteControllerCreate({
 <dd>
 
 **request:** `Vapi.CreateSimulationSuiteDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SimulationSuitesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationSuiteControllerDuplicate</a>({ ...params }) -> Vapi.SimulationSuite</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.simulationSuites.simulationSuiteControllerDuplicate({
+    id: "id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.SimulationSuiteControllerDuplicateRequest` 
     
 </dd>
 </dl>

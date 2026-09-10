@@ -13,7 +13,7 @@ export interface UpdatePersonalityDto {
     id: string;
     /** This is the name of the personality. */
     name?: string;
-    /** This is the full assistant configuration for this personality. */
+    /** Complete assistant replacement. Omitted credentials and redacted server secrets are preserved when their endpoint URL is unchanged. Send credentials: [] to clear credentials; omit a server container to remove it. */
     assistant?: Vapi.CreateAssistantDto;
     /**
      * Optional folder path for organizing personalities.

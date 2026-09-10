@@ -26,7 +26,7 @@ export interface Campaign {
     schedulePlan?: Vapi.SchedulePlan | undefined;
     /** These are the customers that will be called in the campaign. Required if dialPlan is not provided. Maximum of 10000 customers per campaign. */
     customers?: Vapi.CreateCustomerDto[] | undefined;
-    /** This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. */
+    /** This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. Maximum of 500, and may not exceed your organization's concurrency limit. */
     maxConcurrency?: number | undefined;
     /** These are the overrides for the assistant's settings and template variables for the campaign. Use this when the campaign targets an `assistantId`. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
