@@ -29,7 +29,7 @@ export interface CerebrasModel {
     toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
-    /** This is the name of the model. Ex. cognitivecomputations/dolphin-mixtral-8x7b */
+    /** The Cerebras model used to generate assistant responses. `llama-3.3-70b` is deprecated and no longer available in the Dashboard. */
     model: Vapi.CerebrasModelModel;
     /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;

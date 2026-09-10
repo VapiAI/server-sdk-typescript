@@ -22,7 +22,7 @@ export interface UpdateScenarioDto {
     evaluations?: Vapi.EvaluationPlanItem[];
     /** Hooks to run on simulation lifecycle events */
     hooks?: Vapi.UpdateScenarioDtoHooksItem[];
-    /** Overrides to inject into the simulated target assistant or squad */
+    /** Complete override replacement. Omitted credentials and redacted server secrets are preserved when their endpoint URL is unchanged. Send credentials: [] to clear credentials; omit a server container to remove it. */
     targetOverrides?: Vapi.AssistantOverrides;
     toolMocks?: Vapi.ScenarioToolMock[];
     /**
