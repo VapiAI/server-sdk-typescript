@@ -1,3 +1,14 @@
+## [2.1.0] - 2026-09-11
+### Added
+- **`AnthropicBedrockModelFallbackModelsItem`** — new enum listing all supported Claude models that can be used as a same-provider Bedrock fallback.
+- **`AnthropicBedrockModel.fallbackModels`** — new optional field accepting up to one `AnthropicBedrockModelFallbackModelsItem` fallback model, tried automatically if the primary model fails.
+- **`HipaaSpecial`** — new `"hipaa-special"` value added to `InviteUserDtoRoleZero` and `UpdateUserRoleDtoRoleZero` role enums.
+- **`JsonQueryOnEventsTableOn.AssistantKnowledgeBaseRequestSucceeded`** — new `"assistant.knowledgeBase.requestSucceeded"` event type available for event-table queries.
+
+### Changed
+- **`StructuredOutput`**, **`CreateStructuredOutputDto`**, and **`UpdateStructuredOutputDto`** — `regexPattern` field documentation expanded to describe how simulation evaluations build their canonical transcript, including tool call/result handling and fallback behavior.
+- **`EvalRun`** — `results`, `cost`, and `costs` field descriptions updated to clarify they apply to individual Eval runs rather than suites.
+
 ## [2.0.1] - 2026-08-26
 
 ## 2.0.0 - 2026-06-24
