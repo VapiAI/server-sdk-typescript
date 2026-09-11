@@ -18,6 +18,7 @@ export * from "./AnthropicBedrockCredentialAuthenticationPlan.js";
 export * from "./AnthropicBedrockCredentialProvider.js";
 export * from "./AnthropicBedrockCredentialRegion.js";
 export * from "./AnthropicBedrockModel.js";
+export * from "./AnthropicBedrockModelFallbackModelsItem.js";
 export * from "./AnthropicBedrockModelModel.js";
 export * from "./AnthropicBedrockModelToolsItem.js";
 export * from "./AnthropicCredential.js";

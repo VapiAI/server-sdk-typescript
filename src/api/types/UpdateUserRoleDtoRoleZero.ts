@@ -4,5 +4,6 @@ export const UpdateUserRoleDtoRoleZero = {
     Admin: "admin",
     Editor: "editor",
     Viewer: "viewer",
+    HipaaSpecial: "hipaa-special",
 } as const;
 export type UpdateUserRoleDtoRoleZero = (typeof UpdateUserRoleDtoRoleZero)[keyof typeof UpdateUserRoleDtoRoleZero];
