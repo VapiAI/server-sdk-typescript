@@ -4,6 +4,7 @@
 export const VersionPinReferenceSourceType = {
     AssistantVersion: "assistant_version",
     Squad: "squad",
+    SquadVersion: "squad_version",
     ToolVersion: "tool_version",
 } as const;
 export type VersionPinReferenceSourceType =

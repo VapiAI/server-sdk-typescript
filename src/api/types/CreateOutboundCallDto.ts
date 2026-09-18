@@ -8,6 +8,11 @@ export interface CreateOutboundCallDto {
      * direct `assistantId`. Omit to follow the latest version.
      */
     assistantVersion?: (string | null) | undefined;
+    /**
+     * This is the squad version to use for this call. Supported only with
+     * direct `squadId`. Omit to follow the latest version.
+     */
+    squadVersion?: (string | null) | undefined;
     /** This is the transport of the call. */
     transport?: Vapi.CreateOutboundCallDtoTransport | undefined;
     /**

@@ -6818,6 +6818,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -9612,6 +9614,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -11785,6 +11789,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -14572,6 +14578,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -16745,6 +16753,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -19532,6 +19542,8 @@ describe("ChatsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },

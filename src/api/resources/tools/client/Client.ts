@@ -298,6 +298,8 @@ export class ToolsClient {
      * @param {Vapi.UpdateToolsRequest} request
      * @param {ToolsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Vapi.ConflictError}
+     *
      * @example
      *     await client.tools.update({
      *         id: "id",
@@ -348,11 +350,16 @@ export class ToolsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/tool/{id}");

@@ -6590,6 +6590,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -9698,6 +9700,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -13712,6 +13716,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -16815,6 +16821,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -20829,6 +20837,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -23932,6 +23942,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -27946,6 +27958,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -31056,6 +31070,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },

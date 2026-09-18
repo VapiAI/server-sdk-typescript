@@ -36,14 +36,11 @@ export interface EvalRun {
     endedAt: string;
     /** This is the ended message when the eval run ended for any reason apart from mockConversation.done */
     endedMessage?: string | undefined;
-    /**
-     * This is the results of the eval or suite run.
-     * The array will have a single item for an eval run, and multiple items each corresponding to the an eval in a suite run in the same order as the evals in the suite.
-     */
+    /** Results for this individual Eval. Check them after status is ended. An Eval that finishes normally contains one result; it passes only when all judged checkpoints pass. Grouping multiple Evals requires your own orchestration, not an Eval suite. */
     results: Vapi.EvalRunResult[];
-    /** This is the cost of the eval or suite run in USD. */
+    /** The cost of this Eval run in USD. */
     cost: number;
-    /** This is the break up of costs of the eval or suite run. */
+    /** The cost breakdown for this Eval run. */
     costs: Record<string, unknown>[];
     /**
      * This is the type of the run.

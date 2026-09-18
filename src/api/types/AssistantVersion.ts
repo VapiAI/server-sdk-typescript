@@ -92,6 +92,8 @@ export interface AssistantVersion {
     deletedAt?: (string | null) | undefined;
     /** This is the ISO 8601 date-time string of when the version was created. */
     createdAt: string;
+    /** Read-only. Present only when a model this configuration uses is deprecated or retired in Vapi's model deprecation registry, judged on the day of the response. Each entry names the slot that carries the model (for example `model` or `model.fallbackModels[1]`), the deprecation and retirement dates as `YYYY-MM-DD` in UTC, and the recommended replacement model: the registry's replacement, followed through any further retirements as of the response date, so it names a model that is alive on that day. Ignored if sent back in a create or update request. */
+    modelDeprecations?: Vapi.ModelDeprecationNotice[] | undefined;
     /**
      * This is the name of the assistant.
      *

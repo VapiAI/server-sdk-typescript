@@ -28,6 +28,7 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent:
         "call.start.error-enterprise-feature-not-available-recording-consent",
     CallStartAssistantVersionErrorValidation: "call.start.assistant-version-error-validation",
+    CallStartSquadVersionErrorValidation: "call.start.squad-version-error-validation",
     AssistantNotValid: "assistant-not-valid",
     CallStartErrorVapifaultDatabaseError: "call.start.error-vapifault-database-error",
     AssistantNotFound: "assistant-not-found",

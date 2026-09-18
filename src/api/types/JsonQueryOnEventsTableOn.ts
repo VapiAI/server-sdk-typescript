@@ -57,6 +57,7 @@ export const JsonQueryOnEventsTableOn = {
     AssistantModelRequestAttemptStarted: "assistant.model.requestAttemptStarted",
     AssistantModelRequestAttemptSucceeded: "assistant.model.requestAttemptSucceeded",
     AssistantModelRequestAttemptFailed: "assistant.model.requestAttemptFailed",
+    AssistantKnowledgeBaseRequestSucceeded: "assistant.knowledgeBase.requestSucceeded",
     AssistantModelConnectionOpened: "assistant.model.connectionOpened",
     AssistantModelConnectionClosed: "assistant.model.connectionClosed",
     AssistantModelFirstTokenReceived: "assistant.model.firstTokenReceived",

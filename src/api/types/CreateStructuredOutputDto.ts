@@ -18,6 +18,15 @@ export interface CreateStructuredOutputDto {
     /**
      * This is the regex pattern to match against the transcript.
      *
+     * Simulation evaluations use a canonical transcript built from recorded messages:
+     * User: and AI: dialogue, AI: tool_calls: JSON name/arguments records, and
+     * AI: tool_call_results: JSON results. System messages are excluded. These
+     * fixed labels apply even when custom artifact transcript labels are configured.
+     * Tool payloads participate in first-match and all-match extraction in event order.
+     * An empty message array falls back to the supplied transcript verbatim.
+     * Production-call extraction and call preview use their existing transcripts,
+     * so previewing the same output on a simulation's call can return a different result.
+     *
      * Only used when type is 'regex'. Supports both raw patterns (e.g. '\d+') and
      * regex literal format (e.g. '/\d+/gi'). Uses RE2 syntax for safety.
      *

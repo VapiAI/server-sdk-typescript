@@ -4,5 +4,6 @@ export const InviteUserDtoRoleZero = {
     Admin: "admin",
     Editor: "editor",
     Viewer: "viewer",
+    HipaaSpecial: "hipaa-special",
 } as const;
 export type InviteUserDtoRoleZero = (typeof InviteUserDtoRoleZero)[keyof typeof InviteUserDtoRoleZero];

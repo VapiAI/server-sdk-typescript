@@ -29,8 +29,13 @@ export interface OpenAiModel {
     toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
+    /** Configuration for the GPT-Live speaker. */
+    speaker?: Vapi.OpenAiSpeaker | undefined;
+    /** Configuration for the reasoner supporting the GPT-Live speaker. */
+    reasoner?: Vapi.OpenAiReasoner | undefined;
     /**
      * This is the OpenAI model that will be used.
+     * For GPT-Live configuration and supported settings, see https://docs.vapi.ai/gpt-live/overview.
      *
      * When using Vapi OpenAI or your own Azure Credentials, you have the option to specify the region for the selected model. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest region that make sense.
      * This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
