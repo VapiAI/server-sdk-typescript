@@ -1,3 +1,11 @@
+## [3.0.0] - 2026-09-18
+### Added
+- **`OpenAiSpeaker` and `OpenAiReasoner`** — new optional `speaker` and `reasoner` fields on `OpenAiModel` enable GPT-Live configuration, including personality packs, instructions, reasoning effort, and delegated reasoning model selection; `gpt-live-1` added to `OpenAiModelModel`.
+- **Squad versioning** — `squadVersion` optional field on `Call`, `CreateOutboundCallDto`, and `CreateWebCallDto` pins a call to a specific squad version; new `SquadVersion`, `SquadVersionPaginatedResponse`, and `SquadVersionPaginatedMetadata` types support the version history API; `latestVersion` added to `Squad`.
+- **`ModelDeprecationNotice`** — new type surfaced via `modelDeprecations` on `AssistantVersion` and `Squad`, identifying deprecated or retired models in use and their recommended replacements.
+- **`OrgLimitsResponseDto`**, **`OrgConcurrencyLimitsDto`**, and **`OrgApiLimitsDto`** — new types exposing org-level concurrency and API rate-limit usage at read time.
+- **New enum values** across several types: `Coda` and `Mistv3` in `RimeAiVoiceModel`/`FallbackRimeAiVoiceModel`; `HipaaSpecial` in `InviteUserDtoRoleZero`/`UpdateUserRoleDtoRoleZero`; `CallStartSquadVersionErrorValidation` in call-ended reason enums; `SquadVersion` in `VersionPinReferenceSourceType`; `AssistantKnowledgeBaseRequestSucceeded` in `JsonQueryOnEventsTableOn`.
+
 ## [2.0.1] - 2026-08-26
 
 ## 2.0.0 - 2026-06-24
