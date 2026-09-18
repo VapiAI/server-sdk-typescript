@@ -10,6 +10,17 @@ describe("SquadsClient", () => {
 
         const rawResponseBody = [
             {
+                latestVersion: "latestVersion",
+                modelDeprecations: [
+                    {
+                        slot: "model.fallbackModels[1]",
+                        provider: "openai",
+                        model: "gpt-4-1106-preview",
+                        deprecationDate: "2025-09-26",
+                        retirementDate: "2026-03-26",
+                        replacementModel: "gpt-5",
+                    },
+                ],
                 name: "name",
                 members: [
                     {
@@ -1251,6 +1262,17 @@ describe("SquadsClient", () => {
         const response = await client.squads.list();
         expect(response).toEqual([
             {
+                latestVersion: "latestVersion",
+                modelDeprecations: [
+                    {
+                        slot: "model.fallbackModels[1]",
+                        provider: "openai",
+                        model: "gpt-4-1106-preview",
+                        deprecationDate: "2025-09-26",
+                        retirementDate: "2026-03-26",
+                        replacementModel: "gpt-5",
+                    },
+                ],
                 name: "name",
                 members: [
                     {
@@ -2812,6 +2834,17 @@ describe("SquadsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { members: [{}] };
         const rawResponseBody = {
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -4106,6 +4139,17 @@ describe("SquadsClient", () => {
             members: [{}],
         });
         expect(response).toEqual({
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -5748,6 +5792,17 @@ describe("SquadsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -7035,6 +7090,17 @@ describe("SquadsClient", () => {
             id: "id",
         });
         expect(response).toEqual({
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -8677,6 +8743,17 @@ describe("SquadsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -9964,6 +10041,17 @@ describe("SquadsClient", () => {
             id: "id",
         });
         expect(response).toEqual({
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -11606,6 +11694,17 @@ describe("SquadsClient", () => {
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { members: [{}] };
         const rawResponseBody = {
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
@@ -12901,6 +13000,17 @@ describe("SquadsClient", () => {
             members: [{}],
         });
         expect(response).toEqual({
+            latestVersion: "latestVersion",
+            modelDeprecations: [
+                {
+                    slot: "model.fallbackModels[1]",
+                    provider: "openai",
+                    model: "gpt-4-1106-preview",
+                    deprecationDate: "2025-09-26",
+                    retirementDate: "2026-03-26",
+                    replacementModel: "gpt-5",
+                },
+            ],
             name: "name",
             members: [
                 {
