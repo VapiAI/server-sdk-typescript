@@ -15,7 +15,7 @@ export interface FallbackDeepgramTranscriber {
     /**
      * If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
      *
-     * This will only be used if you are using your own Deepgram API key.
+     * This only applies to your own Deepgram API key. Requests on Vapi's key always opt out, whatever this is set to.
      *
      * @default false
      */

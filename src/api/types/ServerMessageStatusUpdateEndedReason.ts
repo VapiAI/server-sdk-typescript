@@ -28,6 +28,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent:
         "call.start.error-enterprise-feature-not-available-recording-consent",
     CallStartAssistantVersionErrorValidation: "call.start.assistant-version-error-validation",
+    CallStartSquadVersionErrorValidation: "call.start.squad-version-error-validation",
     AssistantNotValid: "assistant-not-valid",
     CallStartErrorVapifaultDatabaseError: "call.start.error-vapifault-database-error",
     AssistantNotFound: "assistant-not-found",
@@ -792,6 +793,8 @@ export const ServerMessageStatusUpdateEndedReason = {
         "call.in-progress.error-providerfault-outbound-sip-408-request-timeout",
     CallInProgressErrorProviderfaultOutboundSip480TemporarilyUnavailable:
         "call.in-progress.error-providerfault-outbound-sip-480-temporarily-unavailable",
+    SipOutboundUnallocatedNumber: "sip-outbound-unallocated-number",
+    SipOutboundCarrierReleasedCall: "sip-outbound-carrier-released-call",
     CallRingingHookExecutedSay: "call.ringing.hook-executed-say",
     CallRingingHookExecutedTransfer: "call.ringing.hook-executed-transfer",
     CallEndingHookExecutedSay: "call.ending.hook-executed-say",

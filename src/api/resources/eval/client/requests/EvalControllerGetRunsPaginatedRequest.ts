@@ -7,14 +7,11 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface EvalControllerGetRunsPaginatedRequest {
+    sortBy?: Vapi.EvalControllerGetRunsPaginatedRequestSortBy;
+    /** Literal, case-insensitive search across eval and assistant names. */
+    search?: string;
     /** Filters eval runs by ID. */
     id?: string;
-    /** This is the page number to return. Defaults to 1. */
-    page?: number;
-    /** This is the sort order for pagination. Defaults to 'DESC'. */
-    sortOrder?: Vapi.EvalControllerGetRunsPaginatedRequestSortOrder;
-    /** This is the column to sort by. Defaults to 'createdAt'. */
-    sortBy?: Vapi.EvalControllerGetRunsPaginatedRequestSortBy;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number;
     /** This will return items where the createdAt is greater than the specified value. */
@@ -33,4 +30,8 @@ export interface EvalControllerGetRunsPaginatedRequest {
     updatedAtGe?: string;
     /** This will return items where the updatedAt is less than or equal to the specified value. */
     updatedAtLe?: string;
+    /** This is the page number to return. Defaults to 1. */
+    page?: number;
+    /** This is the sort order for pagination. Defaults to 'DESC'. */
+    sortOrder?: Vapi.EvalControllerGetRunsPaginatedRequestSortOrder;
 }

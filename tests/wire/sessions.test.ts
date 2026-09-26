@@ -6590,6 +6590,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -6615,6 +6617,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -7053,6 +7056,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -9698,6 +9702,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -9725,6 +9731,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -10295,6 +10302,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -13712,6 +13720,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -13737,6 +13747,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -14175,6 +14186,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -16815,6 +16827,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -16842,6 +16856,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -17412,6 +17427,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -20829,6 +20845,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -20854,6 +20872,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -21292,6 +21311,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -23932,6 +23952,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -23959,6 +23981,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -24529,6 +24552,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -27946,6 +27970,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: { key: "value" },
                     promptTokens: 1.1,
                     completionTokens: 1.1,
@@ -27971,6 +27997,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -28409,6 +28436,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -31056,6 +31084,8 @@ describe("SessionsClient", () => {
             costs: [
                 {
                     type: "model",
+                    seconds: 1.1,
+                    usageComplete: true,
                     model: {
                         key: "value",
                     },
@@ -31083,6 +31113,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -31653,6 +31684,7 @@ describe("SessionsClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",

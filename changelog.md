@@ -1,3 +1,6 @@
+## [3.0.0] - 2026-09-26
+Removing exported types `FallbackOpenAiVoiceId`, `FallbackOpenAiVoiceIdEnum`, `OpenAiVoiceId`, `OpenAiVoiceIdEnum`, `ToolPinnedConflictResponseDtoError`, removing the required `error` field from `ToolPinnedConflictResponseDto`, and removing enum values `Duration` and `Cost` from `EvalControllerGetRunsPaginatedRequestSortBy` and `GetEvalRunPaginatedDtoSortBy` are all breaking changes for existing callers.
+
 ## [2.0.1] - 2026-08-26
 
 ## 2.0.0 - 2026-06-24

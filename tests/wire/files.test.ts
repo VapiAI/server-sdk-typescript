@@ -33,9 +33,7 @@ describe("FilesClient", () => {
 
         server.mockEndpoint().get("/file").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.files.list({
-            purpose: "purpose",
-        });
+        const response = await client.files.list();
         expect(response).toEqual([
             {
                 object: "file",
