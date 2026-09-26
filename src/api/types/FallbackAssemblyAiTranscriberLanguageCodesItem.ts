@@ -19,6 +19,20 @@ export const FallbackAssemblyAiTranscriberLanguageCodesItem = {
     He: "he",
     Ja: "ja",
     Zh: "zh",
+    Ur: "ur",
+    Ru: "ru",
+    Ko: "ko",
+    Ca: "ca",
+    Gl: "gl",
+    Ro: "ro",
+    Et: "et",
+    Fa: "fa",
+    Yue: "yue",
+    Af: "af",
+    Mr: "mr",
+    Zu: "zu",
+    Xh: "xh",
+    Nn: "nn",
 } as const;
 export type FallbackAssemblyAiTranscriberLanguageCodesItem =
     (typeof FallbackAssemblyAiTranscriberLanguageCodesItem)[keyof typeof FallbackAssemblyAiTranscriberLanguageCodesItem];

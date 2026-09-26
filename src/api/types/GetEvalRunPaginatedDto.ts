@@ -3,13 +3,10 @@
 import type * as Vapi from "../index.js";
 
 export interface GetEvalRunPaginatedDto {
-    id?: string | undefined;
-    /** This is the page number to return. Defaults to 1. */
-    page?: number | undefined;
-    /** This is the sort order for pagination. Defaults to 'DESC'. */
-    sortOrder?: Vapi.GetEvalRunPaginatedDtoSortOrder | undefined;
-    /** This is the column to sort by. Defaults to 'createdAt'. */
     sortBy?: Vapi.GetEvalRunPaginatedDtoSortBy | undefined;
+    /** Literal, case-insensitive search across eval and assistant names. */
+    search?: string | undefined;
+    id?: string | undefined;
     /** This is the maximum number of items to return. Defaults to 100. */
     limit?: number | undefined;
     /** This will return items where the createdAt is greater than the specified value. */
@@ -28,4 +25,8 @@ export interface GetEvalRunPaginatedDto {
     updatedAtGe?: string | undefined;
     /** This will return items where the updatedAt is less than or equal to the specified value. */
     updatedAtLe?: string | undefined;
+    /** This is the page number to return. Defaults to 1. */
+    page?: number | undefined;
+    /** This is the sort order for pagination. Defaults to 'DESC'. */
+    sortOrder?: Vapi.GetEvalRunPaginatedDtoSortOrder | undefined;
 }

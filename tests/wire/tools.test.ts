@@ -755,7 +755,7 @@ describe("ToolsClient", () => {
         }).rejects.toThrow(Vapi.ConflictError);
     });
 
-    test("update", async () => {
+    test("update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { type: "apiRequest" };
@@ -954,5 +954,30 @@ describe("ToolsClient", () => {
                 ],
             },
         });
+    });
+
+    test("update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "apiRequest" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/tool/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.tools.update({
+                id: "id",
+                body: {
+                    type: "apiRequest",
+                },
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
     });
 });

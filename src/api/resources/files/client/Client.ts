@@ -29,24 +29,22 @@ export class FilesClient {
      * @param {FilesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.files.list({
-     *         purpose: "purpose"
-     *     })
+     *     await client.files.list()
      */
     public list(
-        request: Vapi.ListFilesRequest,
+        request: Vapi.ListFilesRequest = {},
         requestOptions?: FilesClient.RequestOptions,
     ): core.HttpResponsePromise<Vapi.File_[]> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
-        request: Vapi.ListFilesRequest,
+        request: Vapi.ListFilesRequest = {},
         requestOptions?: FilesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.File_[]>> {
         const { purpose } = request;
         const _queryParams: Record<string, unknown> = {
-            purpose,
+            purpose: purpose != null ? purpose : undefined,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

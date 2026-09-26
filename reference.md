@@ -3279,9 +3279,7 @@ Returns files uploaded to the authenticated organization.
 <dd>
 
 ```typescript
-await client.files.list({
-    purpose: "purpose"
-});
+await client.files.list();
 
 ```
 </dd>

@@ -116,4 +116,9 @@ export interface Subscription {
     rbacEnabled?: boolean | undefined;
     /** This is the platform fee for the subscription. */
     platformFee?: number | undefined;
+    /**
+     * This is how payment is collected for the subscription: charged to the card
+     * on file, or invoiced.
+     */
+    billingCollectionMethod?: (Vapi.SubscriptionBillingCollectionMethod | null) | undefined;
 }

@@ -8,11 +8,7 @@ import type * as Vapi from "../index.js";
 export interface OpenAiVoice {
     /** This is the flag to toggle voice caching for the assistant. */
     cachingEnabled?: boolean | undefined;
-    /**
-     * This is the provider-specific ID that will be used.
-     * Please note that ash, ballad, coral, sage, and verse may only be used with realtime or GPT-Live models.
-     */
-    voiceId: Vapi.OpenAiVoiceId;
+    voiceId?: unknown | undefined;
     /** This is the model that will be used for text-to-speech. */
     model?: Vapi.OpenAiVoiceModel | undefined;
     /**

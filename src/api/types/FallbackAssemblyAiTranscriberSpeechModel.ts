@@ -2,14 +2,15 @@
 
 /**
  * This is the speech model used for the streaming session.
- * Keyterms prompting is supported on universal-streaming-english and universal-3-5-pro.
- * universal-3-5-pro is AssemblyAI's most accurate voice-agent model.
+ * Keyterms prompting is supported on universal-streaming-english, universal-3-5-pro and universal-3-6-pro.
+ * universal-3-6-pro is AssemblyAI's newest and most accurate voice-agent model.
  * @default 'universal-streaming-english'
  */
 export const FallbackAssemblyAiTranscriberSpeechModel = {
     UniversalStreamingEnglish: "universal-streaming-english",
     UniversalStreamingMultilingual: "universal-streaming-multilingual",
     Universal35Pro: "universal-3-5-pro",
+    Universal36Pro: "universal-3-6-pro",
 } as const;
 export type FallbackAssemblyAiTranscriberSpeechModel =
     (typeof FallbackAssemblyAiTranscriberSpeechModel)[keyof typeof FallbackAssemblyAiTranscriberSpeechModel];
