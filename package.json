@@ -1,6 +1,6 @@
 {
     "name": "@vapi-ai/server-sdk",
-    "version": "2.0.1",
+    "version": "0.0.0-fern-placeholder",
     "private": false,
     "repository": {
         "type": "git",
@@ -87,6 +87,17 @@
                 "default": "./dist/cjs/api/resources/sessions/exports.js"
             },
             "default": "./dist/cjs/api/resources/sessions/exports.js"
+        },
+        "./trafficAllocations": {
+            "import": {
+                "types": "./dist/esm/api/resources/trafficAllocations/exports.d.mts",
+                "default": "./dist/esm/api/resources/trafficAllocations/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/trafficAllocations/exports.d.ts",
+                "default": "./dist/cjs/api/resources/trafficAllocations/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/trafficAllocations/exports.js"
         },
         "./phoneNumbers": {
             "import": {

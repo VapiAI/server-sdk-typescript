@@ -7,7 +7,7 @@ import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
-import type * as Vapi from "../../../index.js";
+import * as Vapi from "../../../index.js";
 
 export declare namespace EvalClient {
     export type Options = BaseClientOptions;
@@ -27,6 +27,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerGetPaginatedRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerGetPaginated()
@@ -99,11 +101,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval");
@@ -114,6 +121,8 @@ export class EvalClient {
      *
      * @param {Vapi.CreateEvalDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerCreate({
@@ -164,11 +173,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/eval");
@@ -179,6 +193,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerGetRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerGet({
@@ -224,11 +240,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval/{id}");
@@ -239,6 +260,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerRemoveRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerRemove({
@@ -284,11 +307,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/eval/{id}");
@@ -299,6 +327,8 @@ export class EvalClient {
      *
      * @param {Vapi.UpdateEvalDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerUpdate({
@@ -347,11 +377,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/eval/{id}");
@@ -362,6 +397,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerGetRunRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerGetRun({
@@ -407,11 +444,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval/run/{id}");
@@ -422,6 +464,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerRemoveRunRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerRemoveRun({
@@ -467,11 +511,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/eval/run/{id}");
@@ -482,6 +531,8 @@ export class EvalClient {
      *
      * @param {Vapi.EvalControllerGetRunsPaginatedRequest} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerGetRunsPaginated()
@@ -498,10 +549,9 @@ export class EvalClient {
         requestOptions?: EvalClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.EvalRunPaginatedResponse>> {
         const {
-            id,
-            page,
-            sortOrder,
             sortBy,
+            search,
+            id,
             limit,
             createdAtGt,
             createdAtLt,
@@ -511,12 +561,13 @@ export class EvalClient {
             updatedAtLt,
             updatedAtGe,
             updatedAtLe,
+            page,
+            sortOrder,
         } = request;
         const _queryParams: Record<string, unknown> = {
-            id,
-            page,
-            sortOrder: sortOrder != null ? sortOrder : undefined,
             sortBy: sortBy != null ? sortBy : undefined,
+            search,
+            id,
             limit,
             createdAtGt: createdAtGt != null ? createdAtGt : undefined,
             createdAtLt: createdAtLt != null ? createdAtLt : undefined,
@@ -526,6 +577,8 @@ export class EvalClient {
             updatedAtLt: updatedAtLt != null ? updatedAtLt : undefined,
             updatedAtGe: updatedAtGe != null ? updatedAtGe : undefined,
             updatedAtLe: updatedAtLe != null ? updatedAtLe : undefined,
+            page,
+            sortOrder: sortOrder != null ? sortOrder : undefined,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -554,11 +607,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval/run");
@@ -569,6 +627,8 @@ export class EvalClient {
      *
      * @param {Vapi.CreateEvalRunDto} request
      * @param {EvalClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.ForbiddenError}
      *
      * @example
      *     await client.eval.evalControllerRun({
@@ -619,11 +679,16 @@ export class EvalClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/eval/run");

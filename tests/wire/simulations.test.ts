@@ -110,6 +110,40 @@ describe("SimulationsClient", () => {
         });
     });
 
+    test("SimulationController_getConcurrency", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            orgId: "orgId",
+            concurrencyLimit: 1.1,
+            activeSimulations: 1.1,
+            availableToStart: 1.1,
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
+            isDefault: true,
+        };
+
+        server
+            .mockEndpoint()
+            .get("/eval/simulation/concurrency")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.simulations.simulationControllerGetConcurrency();
+        expect(response).toEqual({
+            orgId: "orgId",
+            concurrencyLimit: 1.1,
+            activeSimulations: 1.1,
+            availableToStart: 1.1,
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
+            isDefault: true,
+        });
+    });
+
     test("SimulationController_findOne", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -222,40 +256,6 @@ describe("SimulationsClient", () => {
             scenarioId: "scenarioId",
             personalityId: "personalityId",
             path: "path",
-        });
-    });
-
-    test("SimulationController_getConcurrency", async () => {
-        const server = mockServerPool.createServer();
-        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            orgId: "orgId",
-            concurrencyLimit: 1.1,
-            activeSimulations: 1.1,
-            availableToStart: 1.1,
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-            isDefault: true,
-        };
-
-        server
-            .mockEndpoint()
-            .get("/eval/simulation/concurrency")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.simulations.simulationControllerGetConcurrency();
-        expect(response).toEqual({
-            orgId: "orgId",
-            concurrencyLimit: 1.1,
-            activeSimulations: 1.1,
-            availableToStart: 1.1,
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-            isDefault: true,
         });
     });
 });

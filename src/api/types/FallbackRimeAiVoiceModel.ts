@@ -3,7 +3,9 @@
 /** This is the model that will be used. Defaults to 'arcana' when not specified. */
 export const FallbackRimeAiVoiceModel = {
     Arcana: "arcana",
+    Coda: "coda",
     Mistv2: "mistv2",
+    Mistv3: "mistv3",
     Mist: "mist",
 } as const;
 export type FallbackRimeAiVoiceModel = (typeof FallbackRimeAiVoiceModel)[keyof typeof FallbackRimeAiVoiceModel];

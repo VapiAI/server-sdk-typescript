@@ -31,6 +31,8 @@ export interface AnthropicBedrockModel {
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
     /** The specific Anthropic/Claude model that will be used via Bedrock. */
     model: Vapi.AnthropicBedrockModelModel;
+    /** At most one same-provider Bedrock fallback model, tried if the primary fails. Cannot be combined with thinking in this release. Resolution uses the call's Bedrock credential region (or ANTHROPIC_BEDROCK_AWS_REGION). Names with no inference profile in that region are skipped and warned, never remapped to US or global. On Vapi EU, fallback names without an EU inference profile are rejected at write time. */
+    fallbackModels?: Vapi.AnthropicBedrockModelFallbackModelsItem[] | undefined;
     /**
      * Optional configuration for Anthropic's thinking feature.
      * Only applicable for claude-3-7-sonnet-20250219 model.

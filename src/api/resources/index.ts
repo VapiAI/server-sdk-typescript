@@ -61,3 +61,6 @@ export * from "./structuredOutputs/types/index.js";
 export * from "./tools/client/requests/index.js";
 export * as tools from "./tools/index.js";
 export * from "./tools/types/index.js";
+export * from "./trafficAllocations/client/requests/index.js";
+export * as trafficAllocations from "./trafficAllocations/index.js";
+export * from "./trafficAllocations/types/index.js";
