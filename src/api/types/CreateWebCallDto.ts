@@ -8,6 +8,11 @@ export interface CreateWebCallDto {
      * direct `assistantId`. Omit to follow the latest version.
      */
     assistantVersion?: (string | null) | undefined;
+    /**
+     * This is the squad version to use for this call. Supported only with
+     * direct `squadId`. Omit to follow the latest version.
+     */
+    squadVersion?: (string | null) | undefined;
     roomDeleteOnUserLeaveEnabled?: boolean | undefined;
     /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.

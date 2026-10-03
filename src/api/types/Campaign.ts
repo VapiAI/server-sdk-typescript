@@ -22,11 +22,11 @@ export interface Campaign {
     phoneNumberId?: string | undefined;
     /** This is a list of dial entries, each specifying a phone number and the customers to call using that number. Use this when you want different phone numbers to call different sets of customers. Note: phoneNumberId and dialPlan are mutually exclusive. */
     dialPlan?: Vapi.DialPlanEntry[] | undefined;
-    /** This is the schedule plan for the campaign. Calls will start at startedAt and continue until your organization’s concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn’t be placed won’t be retried. */
+    /** This is the schedule plan for the campaign. Calls will start at startedAt and continue until your subscription's concurrency limit is reached. Any remaining calls will be retried for up to one hour as capacity becomes available. After that hour or after latestAt, whichever comes first, any calls that couldn't be placed won't be retried. */
     schedulePlan?: Vapi.SchedulePlan | undefined;
     /** These are the customers that will be called in the campaign. Required if dialPlan is not provided. Maximum of 10000 customers per campaign. */
     customers?: Vapi.CreateCustomerDto[] | undefined;
-    /** This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. Maximum of 500, and may not exceed your organization's concurrency limit. */
+    /** This is the maximum number of concurrent calls that will be made for the campaign. Defaults to 10. Maximum of 500, and may not exceed your subscription's concurrency limit. */
     maxConcurrency?: number | undefined;
     /** These are the overrides for the assistant's settings and template variables for the campaign. Use this when the campaign targets an `assistantId`. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;

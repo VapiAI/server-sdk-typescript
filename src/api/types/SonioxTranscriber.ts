@@ -24,6 +24,8 @@ export interface SonioxTranscriber {
     customVocabulary?: string[] | undefined;
     /** General context key-value pairs that guide the AI model during transcription. Helps adapt vocabulary to the correct domain, improving accuracy. Recommended: 10 or fewer pairs. Maps to Soniox context.general. */
     contextGeneral?: Vapi.SonioxContextGeneralItem[] | undefined;
+    /** Transcripts below this confidence are discarded. For a discarded final, an `assistant.transcriber.endpointedSpeechLowConfidence` hook whose range covers the confidence runs (by default `[threshold - 0.2, threshold)`); if none does, the assistant does not respond to that utterance. Confidence is the mean of the per-token scores, and a transcript with an unscored token counts as 1. When unset, nothing is discarded by this setting. */
+    confidenceThreshold?: number | undefined;
     /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
     fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

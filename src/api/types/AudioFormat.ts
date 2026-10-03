@@ -14,7 +14,7 @@ export interface AudioFormat {
      *
      * @default 'pcm_s16le'
      */
-    format: Record<string, unknown>;
+    format: Vapi.AudioFormatFormat;
     /**
      * This is the container format of the call.
      *

@@ -24,6 +24,15 @@ export interface UpdateStructuredOutputDto {
     /**
      * This is the regex pattern to match against the transcript.
      *
+     * Simulation evaluations use a canonical transcript built from recorded messages:
+     * User: and AI: dialogue, AI: tool_calls: JSON name/arguments records, and
+     * AI: tool_call_results: JSON results. System messages are excluded. These
+     * fixed labels apply even when custom artifact transcript labels are configured.
+     * Tool payloads participate in first-match and all-match extraction in event order.
+     * An empty message array falls back to the supplied transcript verbatim.
+     * Production-call extraction and call preview use their existing transcripts,
+     * so previewing the same output on a simulation's call can return a different result.
+     *
      * Only used when type is 'regex'. Supports both raw patterns (e.g. '\d+') and
      * regex literal format (e.g. '/\d+/gi'). Uses RE2 syntax for safety.
      *
@@ -34,6 +43,10 @@ export interface UpdateStructuredOutputDto {
      * - array: all matches
      */
     regex?: string;
+    /** Compliance configuration for this output. Only enable overrides if no sensitive data will be stored. */
+    compliancePlan?: Vapi.ComplianceOverride;
+    /** These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate. */
+    conditions?: Vapi.UpdateStructuredOutputDtoConditionsItem[] | null;
     /**
      * This is the model that will be used to extract the structured output.
      *
@@ -50,10 +63,6 @@ export interface UpdateStructuredOutputDto {
      * If messages or required fields are not specified, the default system and user prompts will be used.
      */
     model?: Vapi.UpdateStructuredOutputDtoModel;
-    /** Compliance configuration for this output. Only enable overrides if no sensitive data will be stored. */
-    compliancePlan?: Vapi.ComplianceOverride;
-    /** These are the conditions that gate the execution of this structured output. Every condition must pass for the structured output to run (AND semantics). When omitted or empty, no user-defined conditions gate this output. Send null to clear a previously saved gate. */
-    conditions?: Vapi.UpdateStructuredOutputDtoConditionsItem[] | null;
     /** This is the name of the structured output. */
     name?: string;
     /**

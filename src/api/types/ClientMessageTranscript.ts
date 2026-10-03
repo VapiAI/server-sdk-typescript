@@ -44,4 +44,29 @@ export interface ClientMessageTranscript {
     detectedThreats?: string[] | undefined;
     /** The original transcript before filtering (only included if content was filtered). */
     originalTranscript?: string | undefined;
+    /**
+     * The transcriber's confidence score for this transcript, in [0, 1]. Only
+     * ever set alongside `confidenceSource` — see there for why an unmarked
+     * score is never included. Set only on final user-role transcripts: each
+     * live message carries the score of the one fragment it was built from, and
+     * `artifact.messages` agrees with it per fragment. A stored message built
+     * from several consecutive fragments reports the minimum across them as
+     * 'derived', so it can differ from the individual live messages that fed
+     * it. Partials never carry a score, because nothing stored exists for a
+     * partial's score to agree with.
+     */
+    confidence?: number | undefined;
+    /**
+     * Whether `confidence` came directly from the transcriber ('provider') or
+     * was computed by Vapi ('derived').
+     *
+     * 'derived' means Vapi computed the score from the transcriber's per-word
+     * scores; the exact aggregation is provider-specific (an average, a median
+     * or a minimum, depending on the transcriber).
+     *
+     * Absent means no trustworthy score was available for this transcript:
+     * either the transcriber does not report one, or the value it reported was
+     * invalid and was dropped.
+     */
+    confidenceSource?: Vapi.ClientMessageTranscriptConfidenceSource | undefined;
 }
