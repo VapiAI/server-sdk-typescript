@@ -13,7 +13,7 @@ describe("StructuredOutputsClient", () => {
                 {
                     type: "ai",
                     regex: "regex",
-                    model: { provider: "openai", model: "gpt-5.6-sol" },
+                    model: { provider: "openai", model: "gpt-6-luna" },
                     compliancePlan: { forceStoreOnHipaaEnabled: false },
                     conditions: [
                         { type: "minMessages", count: 4 },
@@ -54,7 +54,7 @@ describe("StructuredOutputsClient", () => {
                     regex: "regex",
                     model: {
                         provider: "openai",
-                        model: "gpt-5.6-sol",
+                        model: "gpt-6-luna",
                     },
                     compliancePlan: {
                         forceStoreOnHipaaEnabled: false,
@@ -107,7 +107,7 @@ describe("StructuredOutputsClient", () => {
             model: {
                 provider: "openai",
                 messages: [{ content: null, role: "assistant" }],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -161,7 +161,7 @@ describe("StructuredOutputsClient", () => {
                         role: "assistant",
                     },
                 ],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -208,7 +208,7 @@ describe("StructuredOutputsClient", () => {
             model: {
                 provider: "openai",
                 messages: [{ content: null, role: "assistant" }],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -258,7 +258,7 @@ describe("StructuredOutputsClient", () => {
                         role: "assistant",
                     },
                 ],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -305,7 +305,7 @@ describe("StructuredOutputsClient", () => {
             model: {
                 provider: "openai",
                 messages: [{ content: null, role: "assistant" }],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -355,7 +355,7 @@ describe("StructuredOutputsClient", () => {
                         role: "assistant",
                     },
                 ],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -402,7 +402,7 @@ describe("StructuredOutputsClient", () => {
             model: {
                 provider: "openai",
                 messages: [{ content: null, role: "assistant" }],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },
@@ -454,7 +454,7 @@ describe("StructuredOutputsClient", () => {
                         role: "assistant",
                     },
                 ],
-                model: "gpt-5.6-sol",
+                model: "gpt-6-luna",
                 temperature: 1.1,
                 maxTokens: 1.1,
             },

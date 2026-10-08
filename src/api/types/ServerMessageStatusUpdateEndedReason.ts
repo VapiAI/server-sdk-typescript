@@ -28,6 +28,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     CallStartErrorEnterpriseFeatureNotAvailableRecordingConsent:
         "call.start.error-enterprise-feature-not-available-recording-consent",
     CallStartAssistantVersionErrorValidation: "call.start.assistant-version-error-validation",
+    CallStartSquadVersionErrorValidation: "call.start.squad-version-error-validation",
     AssistantNotValid: "assistant-not-valid",
     CallStartErrorVapifaultDatabaseError: "call.start.error-vapifault-database-error",
     AssistantNotFound: "assistant-not-found",
@@ -174,6 +175,7 @@ export const ServerMessageStatusUpdateEndedReason = {
     PhoneCallProviderBypassEnabledButNoCallReceived: "phone-call-provider-bypass-enabled-but-no-call-received",
     CallInProgressErrorProviderfaultTransportNeverConnected:
         "call.in-progress.error-providerfault-transport-never-connected",
+    CallStartErrorVapifaultWorkerNotAvailable: "call.start.error-vapifault-worker-not-available",
     CallInProgressErrorVapifaultWorkerNotAvailable: "call.in-progress.error-vapifault-worker-not-available",
     CallInProgressErrorVapifaultTransportNeverConnected: "call.in-progress.error-vapifault-transport-never-connected",
     CallInProgressErrorVapifaultTransportConnectedButCallNotActive:
@@ -697,6 +699,12 @@ export const ServerMessageStatusUpdateEndedReason = {
         "call.in-progress.error-vapifault-eleven-labs-blocked-voice-potentially-against-terms-of-service-and-awaiting-verification",
     CallInProgressErrorProviderfaultElevenLabsSystemBusyAndRequestedUpgrade:
         "call.in-progress.error-providerfault-eleven-labs-system-busy-and-requested-upgrade",
+    CallInProgressErrorProviderfaultElevenLabsBlockedConcurrentRequestsAndRequestedUpgrade:
+        "call.in-progress.error-providerfault-eleven-labs-blocked-concurrent-requests-and-requested-upgrade",
+    CallInProgressErrorProviderfaultElevenLabsVoiceDisabledByOwner:
+        "call.in-progress.error-providerfault-eleven-labs-voice-disabled-by-owner",
+    CallInProgressErrorProviderfaultElevenLabsVapiVoiceDisabledByOwner:
+        "call.in-progress.error-providerfault-eleven-labs-vapi-voice-disabled-by-owner",
     CallInProgressErrorProviderfaultElevenLabs500ServerError:
         "call.in-progress.error-providerfault-eleven-labs-500-server-error",
     CallInProgressErrorProviderfaultElevenLabs503ServerError:
@@ -792,6 +800,8 @@ export const ServerMessageStatusUpdateEndedReason = {
         "call.in-progress.error-providerfault-outbound-sip-408-request-timeout",
     CallInProgressErrorProviderfaultOutboundSip480TemporarilyUnavailable:
         "call.in-progress.error-providerfault-outbound-sip-480-temporarily-unavailable",
+    SipOutboundUnallocatedNumber: "sip-outbound-unallocated-number",
+    SipOutboundCarrierReleasedCall: "sip-outbound-carrier-released-call",
     CallRingingHookExecutedSay: "call.ringing.hook-executed-say",
     CallRingingHookExecutedTransfer: "call.ringing.hook-executed-transfer",
     CallEndingHookExecutedSay: "call.ending.hook-executed-say",

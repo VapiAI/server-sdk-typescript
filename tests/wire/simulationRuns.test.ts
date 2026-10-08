@@ -493,6 +493,7 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                             },
+                            latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
                         },
                         personality: {
                             name: "name",
@@ -1897,6 +1898,13 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                             },
+                            latencyExpectations: [
+                                {
+                                    metric: "turn",
+                                    aggregation: "mean",
+                                    thresholdMs: 1200,
+                                },
+                            ],
                         },
                         personality: {
                             name: "name",
@@ -3354,6 +3362,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -4783,6 +4792,13 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [
+                            {
+                                metric: "turn",
+                                aggregation: "mean",
+                                thresholdMs: 1200,
+                            },
+                        ],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -6294,6 +6310,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -7712,6 +7729,13 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [
+                            {
+                                metric: "turn",
+                                aggregation: "mean",
+                                thresholdMs: 1200,
+                            },
+                        ],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -9185,6 +9209,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -10603,6 +10628,13 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                         },
+                        latencyExpectations: [
+                            {
+                                metric: "turn",
+                                aggregation: "mean",
+                                thresholdMs: 1200,
+                            },
+                        ],
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -11659,6 +11691,16 @@ describe("SimulationRunsClient", () => {
                     ],
                     passed: true,
                     latencyMetrics: { turnCount: 1.1 },
+                    latencyEvaluations: [
+                        {
+                            metric: "turn",
+                            aggregation: "mean",
+                            thresholdMs: 1.1,
+                            sampleCount: 1.1,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
                 },
                 improvementSuggestions: {
                     analysis: "analysis",
@@ -11774,6 +11816,16 @@ describe("SimulationRunsClient", () => {
                     latencyMetrics: {
                         turnCount: 1.1,
                     },
+                    latencyEvaluations: [
+                        {
+                            metric: "turn",
+                            aggregation: "mean",
+                            thresholdMs: 1.1,
+                            sampleCount: 1.1,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
                 },
                 improvementSuggestions: {
                     analysis: "analysis",
@@ -11885,6 +11937,16 @@ describe("SimulationRunsClient", () => {
                     avgVoice: 1.1,
                     avgEndpointing: 1.1,
                 },
+                latencyEvaluations: [
+                    {
+                        metric: "turn",
+                        aggregation: "mean",
+                        thresholdMs: 1.1,
+                        sampleCount: 1.1,
+                        passed: true,
+                        required: true,
+                    },
+                ],
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12013,6 +12075,16 @@ describe("SimulationRunsClient", () => {
                     avgVoice: 1.1,
                     avgEndpointing: 1.1,
                 },
+                latencyEvaluations: [
+                    {
+                        metric: "turn",
+                        aggregation: "mean",
+                        thresholdMs: 1.1,
+                        sampleCount: 1.1,
+                        passed: true,
+                        required: true,
+                    },
+                ],
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12123,6 +12195,16 @@ describe("SimulationRunsClient", () => {
                     avgVoice: 1.1,
                     avgEndpointing: 1.1,
                 },
+                latencyEvaluations: [
+                    {
+                        metric: "turn",
+                        aggregation: "mean",
+                        thresholdMs: 1.1,
+                        sampleCount: 1.1,
+                        passed: true,
+                        required: true,
+                    },
+                ],
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12251,6 +12333,16 @@ describe("SimulationRunsClient", () => {
                     avgVoice: 1.1,
                     avgEndpointing: 1.1,
                 },
+                latencyEvaluations: [
+                    {
+                        metric: "turn",
+                        aggregation: "mean",
+                        thresholdMs: 1.1,
+                        sampleCount: 1.1,
+                        passed: true,
+                        required: true,
+                    },
+                ],
             },
             improvementSuggestions: {
                 analysis: "analysis",

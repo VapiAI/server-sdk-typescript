@@ -4,5 +4,7 @@
 export const DeepSeekModelModel = {
     DeepseekChat: "deepseek-chat",
     DeepseekReasoner: "deepseek-reasoner",
+    DeepseekFlash: "deepseek-flash",
+    DeepseekFlashThinking: "deepseek-flash-thinking",
 } as const;
 export type DeepSeekModelModel = (typeof DeepSeekModelModel)[keyof typeof DeepSeekModelModel];

@@ -37,8 +37,19 @@ export interface Call {
      * direct `assistantId`. Omit to follow the latest version.
      */
     assistantVersion?: (string | null) | undefined;
+    /**
+     * This is the squad version to use for this call. Supported only with
+     * direct `squadId`. Omit to follow the latest version.
+     */
+    squadVersion?: (string | null) | undefined;
     /** This is the transport of the call. */
     transport?: Vapi.CallTransport | undefined;
+    /**
+     * This is the phone number that will be used for the call. To use an existing number, use `phoneNumberId` instead.
+     *
+     * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
+     */
+    phoneNumber?: Vapi.TransientTwilioPhoneNumber | undefined;
     /** This is the unique identifier for the call. */
     id: string;
     /** This is the unique identifier for the org that this call belongs to. */
@@ -142,12 +153,6 @@ export interface Call {
      * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
      */
     phoneNumberId?: string | undefined;
-    /**
-     * This is the phone number that will be used for the call. To use an existing number, use `phoneNumberId` instead.
-     *
-     * Only relevant for `outboundPhoneCall` and `inboundPhoneCall` type.
-     */
-    phoneNumber?: Vapi.ImportTwilioPhoneNumberDto | undefined;
     /**
      * This is the customer that will be called. To call a transient customer , use `customer` instead.
      *

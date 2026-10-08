@@ -10,7 +10,8 @@ export interface OpenAiVoice {
     cachingEnabled?: boolean | undefined;
     /**
      * This is the provider-specific ID that will be used.
-     * Please note that ash, ballad, coral, sage, and verse may only be used with realtime or GPT-Live models.
+     * Voice availability depends on the selected model.
+     * quartz, ripple, vesper, willow, stone, gleam, meridian, bossa, tempo, beacon, delta, cinder are only supported with GPT-Live models.
      */
     voiceId: Vapi.OpenAiVoiceId;
     /** This is the model that will be used for text-to-speech. */

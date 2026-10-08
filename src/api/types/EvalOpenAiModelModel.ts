@@ -7,6 +7,7 @@
  * This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
  */
 export const EvalOpenAiModelModel = {
+    Gpt6Luna: "gpt-6-luna",
     Gpt56Sol: "gpt-5.6-sol",
     Gpt56Terra: "gpt-5.6-terra",
     Gpt56Luna: "gpt-5.6-luna",

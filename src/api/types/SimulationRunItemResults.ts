@@ -5,8 +5,13 @@ import type * as Vapi from "../index.js";
 export interface SimulationRunItemResults {
     /** This is the list of results from structured output evaluations. */
     evaluations: Vapi.StructuredOutputEvaluationResult[];
-    /** This indicates whether all required evaluations passed. */
+    /** This indicates whether all required, non-skipped structured output evaluations and latency expectations passed. */
     passed: boolean;
     /** This contains the latency metrics collected from the call. */
     latencyMetrics?: Vapi.LatencyMetrics | undefined;
+    /**
+     * This is the list of results from the scenario's latency expectations.
+     * Absent when the scenario has no latency expectations.
+     */
+    latencyEvaluations?: Vapi.LatencyEvaluationResult[] | undefined;
 }

@@ -4,6 +4,10 @@
  * Language-model cost for a call, including model, token usage, and amount.
  */
 export interface ModelCost {
+    /** Provider-reported billable duration in seconds. Currently supplied for GPT-Live; omitted for token-billed models. */
+    seconds?: number | undefined;
+    /** Whether the reported usage is complete. False means the cost reflects missing or partial usage and may understate provider spend. Omitted when the provider integration does not report completeness. */
+    usageComplete?: boolean | undefined;
     /**
      * This is the model that was used during the call.
      *
