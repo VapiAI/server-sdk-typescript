@@ -1,3 +1,49 @@
+## [3.0.0] - 2026-10-08
+### Breaking Changes
+- **`ToolPinnedConflictResponseDtoError`** has been removed entirely; update any imports or references to this type. The `error` field has also been removed from **`ToolPinnedConflictResponseDto`** — callers reading `dto.error` must be updated to use `dto.message` instead.
+- **`EvalControllerGetRunsPaginatedRequestSortBy`** and **`GetEvalRunPaginatedDtoSortBy`** no longer include `"duration"` or `"cost"` values; update any code passing those sort values to use `"createdAt"` instead.
+
+### Added
+- **`simulationControllerGetConcurrency()`** on `SimulationsClient` — returns the organization's simulation concurrency limit, active simulation count, and remaining capacity as `SimulationConcurrencyResponse`.
+- **`OpenAiReasoner`**, **`OpenAiSpeaker`**, **`TrafficAllocation`** family, **`SquadVersion`** family, **`LatencyEvaluationResult`** / **`LatencyExpectation`** family, **`OrgLimitsResponseDto`**, **`FilePaginatedResponse`**, **`TranscriptWordConfidence`**, **`TransientTwilioPhoneNumber`**, and many more new exported types.
+- **`ForbiddenError` (403)** is now thrown as a typed `Vapi.ForbiddenError` by all `EvalClient` methods instead of a generic `VapiError`.
+
+### Changed
+- **`EvalControllerGetRunsPaginatedRequest`** gains a new optional `search` field for case-insensitive name filtering; field ordering has also been adjusted (no functional impact for named-property callers).
+
+### Breaking Changes
+- **`Call.phoneNumber`** — type changed from `ImportTwilioPhoneNumberDto` to `TransientTwilioPhoneNumber`; update any code that constructs or reads this field to use `TransientTwilioPhoneNumber`.
+- **`AudioFormat.format`** — type changed from `Record<string, unknown>` to `AudioFormatFormat`; replace raw object literals with the new typed enum value.
+- **`ListFilesRequest.purpose`** — changed from a required `string` to an optional `ListFilesRequestPurpose` enum; callers that passed a plain string must switch to the enum, and the parameter may now be omitted entirely.
+
+### Added
+- **`AssemblyAiTranscriberSpeechModel.Universal36Pro`** — new `universal-3-6-pro` speech model for AssemblyAI, now the most accurate voice-agent model; `agentContextAutoUpdateEnabled` field added to `AssemblyAiTranscriber` to auto-send assistant speech as context each turn.
+- **`DeepgramVoiceModel.Flux`** — new Flux model for Deepgram voices, with new `speed` and `expressivity` fields on `DeepgramVoice`.
+- **`AnthropicBedrockModel.fallbackModels`** — optional same-provider Bedrock fallback model list tried when the primary model fails.
+- **`Call.squadVersion`** and **`AssistantActivation.squadVersion`** — new optional fields for pinning or recording the squad version governing a call.
+- **`ToolsClient.update`** — now throws a typed `ConflictError` on HTTP 409 responses instead of a generic `VapiError`.
+
+### Added
+- **`client.trafficAllocations`** — new `TrafficAllocationsClient` (beta) for managing assistant traffic splits, with methods to list allocations paginated, create a new allocation, retrieve the latest allocation, and fetch a single allocation by id.
+- **`ForbiddenError`** — new error class thrown (HTTP 403) when a traffic allocation endpoint is called by an organization without beta access.
+- **`modelDeprecations`** — new optional read-only field on `Assistant`, `AssistantDraft`, and `AssistantVersion` surfaces model deprecation notices with replacement recommendations.
+- **`CreateCallDto.squadVersion`** — new optional field for pinning a specific squad version when creating a call via a direct `squadId`.
+- **New enum types and values** — `ListFilesRequestPurpose`, `AnthropicBedrockModelFallbackModelsItem`, `AudioFormatFormat`, `CreateTrafficAllocationDtoAllocationIntent`, and additional language codes on `AssemblyAiTranscriberLanguageCodesItem`.
+
+### Added
+- **`LatencyExpectation`** and related types (`LatencyExpectationMetric`, `LatencyExpectationAggregation`) — define per-turn latency SLA ceilings for voice simulations; attach via the new `latencyExpectations` field on `CreateScenarioDto`.
+- **`ClientInboundMessageAppendContext`** and `AppendContext` variant on `ClientInboundMessageMessage` — inject commentary, thinking, or instructions into a live call in real time.
+- **Traffic allocation types** (`CreateTrafficAllocationTargetDto`, `GetTrafficAllocationLatestDto`, `GetTrafficAllocationPaginatedDto`) — support assistant-version A/B traffic splitting.
+- **`OpenAiReasoner`** and **`OpenAiModelServiceTier`** — configure GPT-Live delegated reasoning and fast/auto/default service tiers; new model values `gpt-6-luna` and `gpt-live-1` added to `OpenAiModelModel`.
+- **New voice and model enum values** across `DeepgramVoiceId`, `FallbackDeepgramVoiceId` (36 voices each), `FallbackOpenAiVoiceIdEnum` (17 voices), `ElevenLabsVoiceModel`/`FallbackElevenLabsVoiceModel` (`eleven_v4_turbo`), `RimeAiVoiceModel` (`coda`, `mistv3`), and `DeepSeekModelModel` (`deepseek-flash`, `deepseek-flash-thinking`).
+- See full changelog for all changes
+
+### Added
+- **`TranscriptWordConfidence`** — new interface exposing per-word timing, confidence score, punctuation, language, and speaker attribution from the transcriber.
+- **`UserMessageMetadata`** and **`UserMessageConfidenceSource`** — new types that attach word-level confidence metadata and confidence source (`"provider"` or `"derived"`) to user messages.
+- **`TransientTwilioPhoneNumber`** — new interface (plus `TransientTwilioPhoneNumberFallbackDestination` and `TransientTwilioPhoneNumberHooksItem`) for configuring a Twilio phone number transiently without persisting it in Vapi.
+- **New enum values** added: `HipaaSpecial` on `UpdateUserRoleDtoRoleZero`, `SquadVersion` on `VersionPinReferenceSourceType`, and `Gpt6Luna` on `WorkflowOpenAiModelModel`.
+
 ## [2.0.1] - 2026-08-26
 
 ## 2.0.0 - 2026-06-24
