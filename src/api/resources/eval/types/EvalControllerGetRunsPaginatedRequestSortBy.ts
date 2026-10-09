@@ -2,8 +2,6 @@
 
 export const EvalControllerGetRunsPaginatedRequestSortBy = {
     CreatedAt: "createdAt",
-    Duration: "duration",
-    Cost: "cost",
 } as const;
 export type EvalControllerGetRunsPaginatedRequestSortBy =
     (typeof EvalControllerGetRunsPaginatedRequestSortBy)[keyof typeof EvalControllerGetRunsPaginatedRequestSortBy];

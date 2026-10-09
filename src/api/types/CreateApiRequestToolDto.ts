@@ -3,7 +3,7 @@
 import type * as Vapi from "../index.js";
 
 /**
- * Configuration used to create a reusable tool that sends HTTP requests to a configured API and can authenticate, retry failures, and extract variables from responses.
+ * Configuration for a reusable tool that sends HTTP requests to an API and supports authentication and response variable extraction.
  */
 export interface CreateApiRequestToolDto {
     /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
@@ -36,11 +36,7 @@ export interface CreateApiRequestToolDto {
     body?: Vapi.JsonSchema | undefined;
     /** These are the headers to send with the request. */
     headers?: Vapi.JsonSchema | undefined;
-    /**
-     * This is the backoff plan if the request fails. Defaults to undefined (the request will not be retried).
-     *
-     * @default undefined (the request will not be retried)
-     */
+    /** A backoff plan can be saved on an API Request Tool, but API Request Tools do not currently retry after a non-2xx response or a timeout. */
     backoffPlan?: Vapi.BackoffPlan | undefined;
     /**
      * This is the plan to extract variables from the tool's response. These will be accessible during the call and stored in `call.artifact.variableValues` after the call.

@@ -10,16 +10,28 @@ export interface FallbackDeepgramVoice {
     cachingEnabled?: boolean | undefined;
     /** This is the provider-specific ID that will be used. */
     voiceId: Vapi.FallbackDeepgramVoiceId;
-    /** This is the model that will be used. Defaults to 'aura-2' when not specified. */
+    /** This is the model that will be used. Defaults to 'aura' when not specified. */
     model?: Vapi.FallbackDeepgramVoiceModel | undefined;
     /**
      * If set to true, this will add mip_opt_out=true as a query parameter of all API requests. See https://developers.deepgram.com/docs/the-deepgram-model-improvement-partnership-program#want-to-opt-out
      *
-     * This will only be used if you are using your own Deepgram API key.
+     * This only applies to your own Deepgram API key. Requests on Vapi's key always opt out, whatever this is set to.
      *
      * @default false
      */
     mipOptOut?: boolean | undefined;
+    /**
+     * This is the speed multiplier that will be used. Aura-2 accepts 0.7 to 1.5; Flux accepts 0.5 to 1.5 in steps of 0.05. Aura does not support speed.
+     *
+     * @default 1
+     */
+    speed?: number | undefined;
+    /**
+     * This is the expressivity level for Flux voices, from -2 (flat) to 2 (lively). Deepgram marks this control as beta and may retune the scale. Aura and Aura-2 do not support it.
+     *
+     * @default 0
+     */
+    expressivity?: number | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan | undefined;
 }

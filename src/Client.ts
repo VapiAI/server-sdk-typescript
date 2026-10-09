@@ -22,6 +22,7 @@ import { SimulationsClient } from "./api/resources/simulations/client/Client.js"
 import { SquadsClient } from "./api/resources/squads/client/Client.js";
 import { StructuredOutputsClient } from "./api/resources/structuredOutputs/client/Client.js";
 import { ToolsClient } from "./api/resources/tools/client/Client.js";
+import { TrafficAllocationsClient } from "./api/resources/trafficAllocations/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient.js";
 import * as core from "./core/index.js";
@@ -40,6 +41,7 @@ export class VapiClient {
     protected _chats: ChatsClient | undefined;
     protected _campaigns: CampaignsClient | undefined;
     protected _sessions: SessionsClient | undefined;
+    protected _trafficAllocations: TrafficAllocationsClient | undefined;
     protected _phoneNumbers: PhoneNumbersClient | undefined;
     protected _tools: ToolsClient | undefined;
     protected _files: FilesClient | undefined;
@@ -83,6 +85,10 @@ export class VapiClient {
 
     public get sessions(): SessionsClient {
         return (this._sessions ??= new SessionsClient(this._options));
+    }
+
+    public get trafficAllocations(): TrafficAllocationsClient {
+        return (this._trafficAllocations ??= new TrafficAllocationsClient(this._options));
     }
 
     public get phoneNumbers(): PhoneNumbersClient {

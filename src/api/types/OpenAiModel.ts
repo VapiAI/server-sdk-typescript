@@ -29,8 +29,13 @@ export interface OpenAiModel {
     toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
+    /** Configuration for the GPT-Live speaker. */
+    speaker?: Vapi.OpenAiSpeaker | undefined;
+    /** Configuration for the reasoner supporting the GPT-Live speaker. */
+    reasoner?: Vapi.OpenAiReasoner | undefined;
     /**
      * This is the OpenAI model that will be used.
+     * For GPT-Live configuration and supported settings, see https://docs.vapi.ai/gpt-live/overview.
      *
      * When using Vapi OpenAI or your own Azure Credentials, you have the option to specify the region for the selected model. This shouldn't be specified unless you have a specific reason to do so. Vapi will automatically find the fastest region that make sense.
      * This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
@@ -69,6 +74,18 @@ export interface OpenAiModel {
      */
     promptCacheKey?: string | undefined;
     /**
+     * This is the OpenAI service tier used for chat completions requests.
+     *
+     * - `fast`: OpenAI's fast processing tier (renamed from `priority` on 2026-07-30; both values are accepted and billed identically) — up to ~2.5x faster inference at 2x the standard token rates. OpenAI may silently downgrade a fast request to standard processing under ramp limits; when that happens the response reports the served tier and the request is billed at standard rates.
+     * - `auto`: uses the service tier configured for the OpenAI project.
+     * - `default`: standard processing and billing.
+     *
+     * Only applies to models that support fast processing: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5. Ignored for other models.
+     *
+     * @default undefined (uses the service tier configured for the OpenAI project)
+     */
+    serviceTier?: Vapi.OpenAiModelServiceTier | undefined;
+    /**
      * Reasoning effort for reasoning-capable OpenAI models.
      * For `gpt-realtime-2`: forwarded to V2 stream's session.update as `reasoning.effort`.
      * For non-realtime OpenAI models, model-aware validation limits newly public
@@ -77,7 +94,7 @@ export interface OpenAiModel {
     reasoningEffort?: Vapi.OpenAiModelReasoningEffort | undefined;
     /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
-    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. */
+    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna no cap is applied unless you set one, because reasoning uses output tokens and a small cap can leave the reply empty. */
     maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.

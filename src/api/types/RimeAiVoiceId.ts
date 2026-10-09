@@ -7,7 +7,7 @@ import type * as Vapi from "../index.js";
  */
 export type RimeAiVoiceId =
     /**
-     * Popular Rime AI voices across mist, mistv2, and arcana models. Any valid Rime AI voice ID is accepted, not just these suggestions. */
+     * Popular Rime AI voices across mist, mistv2, mistv3, arcana, and coda models. Any valid Rime AI voice ID is accepted, not just these suggestions. */
     | Vapi.RimeAiVoiceIdEnum
     /**
      * Any valid Rime AI voice ID. See https://docs.rime.ai/docs/voices for the full catalog. */

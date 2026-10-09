@@ -485,6 +485,7 @@ describe("SimulationScenariosClient", () => {
                     },
                 },
                 toolMocks: [{ toolName: "toolName" }],
+                latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
                 path: "path",
             },
         ];
@@ -1113,6 +1114,13 @@ describe("SimulationScenariosClient", () => {
                         toolName: "toolName",
                     },
                 ],
+                latencyExpectations: [
+                    {
+                        metric: "turn",
+                        aggregation: "mean",
+                        thresholdMs: 1200,
+                    },
+                ],
                 path: "path",
             },
         ]);
@@ -1190,6 +1198,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -1647,6 +1656,7 @@ describe("SimulationScenariosClient", () => {
                 keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
+            latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
             path: "path",
         };
 
@@ -1753,6 +1763,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -2367,6 +2378,14 @@ describe("SimulationScenariosClient", () => {
                     enabled: true,
                 },
             ],
+            latencyExpectations: [
+                {
+                    metric: "turn",
+                    aggregation: "mean",
+                    thresholdMs: 1200,
+                    required: true,
+                },
+            ],
             path: "path",
         });
     });
@@ -2439,6 +2458,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -2896,6 +2916,7 @@ describe("SimulationScenariosClient", () => {
                 keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
+            latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
             path: "path",
         };
 
@@ -2994,6 +3015,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -3608,6 +3630,14 @@ describe("SimulationScenariosClient", () => {
                     enabled: true,
                 },
             ],
+            latencyExpectations: [
+                {
+                    metric: "turn",
+                    aggregation: "mean",
+                    thresholdMs: 1200,
+                    required: true,
+                },
+            ],
             path: "path",
         });
     });
@@ -3680,6 +3710,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -4137,6 +4168,7 @@ describe("SimulationScenariosClient", () => {
                 keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
+            latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
             path: "path",
         };
 
@@ -4235,6 +4267,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -4849,6 +4882,14 @@ describe("SimulationScenariosClient", () => {
                     enabled: true,
                 },
             ],
+            latencyExpectations: [
+                {
+                    metric: "turn",
+                    aggregation: "mean",
+                    thresholdMs: 1200,
+                    required: true,
+                },
+            ],
             path: "path",
         });
     });
@@ -4942,6 +4983,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -5399,6 +5441,7 @@ describe("SimulationScenariosClient", () => {
                 keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
+            latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
             path: "path",
         };
 
@@ -5498,6 +5541,7 @@ describe("SimulationScenariosClient", () => {
                     mode: "max_accuracy",
                     prompt: "prompt",
                     agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
                     languageCodes: ["en"],
                     speechModel: "universal-streaming-english",
                     realtimeUrl: "realtimeUrl",
@@ -6110,6 +6154,14 @@ describe("SimulationScenariosClient", () => {
                     toolName: "toolName",
                     result: "result",
                     enabled: true,
+                },
+            ],
+            latencyExpectations: [
+                {
+                    metric: "turn",
+                    aggregation: "mean",
+                    thresholdMs: 1200,
+                    required: true,
                 },
             ],
             path: "path",

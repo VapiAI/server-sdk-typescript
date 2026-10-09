@@ -26,6 +26,11 @@ export interface UpdateScenarioDto {
     targetOverrides?: Vapi.AssistantOverrides;
     toolMocks?: Vapi.ScenarioToolMock[];
     /**
+     * Latency ceilings for voice simulations. Omit to leave unchanged; send an
+     * empty array to remove all latency expectations.
+     */
+    latencyExpectations?: Vapi.LatencyExpectation[];
+    /**
      * Optional folder path for organizing scenarios.
      * Supports up to 3 levels (e.g., "dept/feature/variant").
      * Set to null to remove from folder.

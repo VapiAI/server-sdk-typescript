@@ -2531,6 +2531,265 @@ await client.sessions.update({
 </dl>
 </details>
 
+## TrafficAllocations
+<details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerFindAllPaginated</a>({ ...params }) -> Vapi.TrafficAllocationPaginatedResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The append-only history of an assistant's allocations, newest first. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.trafficAllocations.trafficAllocationControllerFindAllPaginated();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.TrafficAllocationControllerFindAllPaginatedRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrafficAllocationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerCreate</a>({ ...params }) -> Vapi.TrafficAllocation</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new traffic allocation for an assistant, replacing the one currently in effect. To start or adjust a split, send targets naming published versions (such as "v7") with percentages totaling 100; allocationIntent is inferred as 'explicit'. To stop splitting and send every call to the newest published version, send allocationIntent 'follow-latest' with no targets field; stopping always names its intent, so a dropped targets field can never end a split by accident. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.trafficAllocations.trafficAllocationControllerCreate({
+    assistantId: "assistantId"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.CreateTrafficAllocationDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrafficAllocationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerLatestGet</a>({ ...params }) -> Vapi.TrafficAllocationLatestResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The allocation currently in effect for the assistant, with its targets. The response carries no allocation field when traffic splitting has never been configured. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.trafficAllocations.trafficAllocationControllerLatestGet({
+    assistantId: "assistantId"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.TrafficAllocationControllerLatestGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrafficAllocationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerFindOne</a>({ ...params }) -> Vapi.TrafficAllocation</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a single allocation by id, including its targets and actor attribution. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.trafficAllocations.trafficAllocationControllerFindOne({
+    id: "id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.TrafficAllocationControllerFindOneRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrafficAllocationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PhoneNumbers
 <details><summary><code>client.phoneNumbers.<a href="/src/api/resources/phoneNumbers/client/Client.ts">list</a>({ ...params }) -> Vapi.ListPhoneNumbersResponseItem[]</code></summary>
 <dl>
@@ -3279,9 +3538,7 @@ Returns files uploaded to the authenticated organization.
 <dd>
 
 ```typescript
-await client.files.list({
-    purpose: "purpose"
-});
+await client.files.list();
 
 ```
 </dd>
@@ -6182,6 +6439,61 @@ await client.simulations.simulationControllerCreate({
 </dl>
 </details>
 
+<details><summary><code>client.simulations.<a href="/src/api/resources/simulations/client/Client.ts">simulationControllerGetConcurrency</a>() -> Vapi.SimulationConcurrencyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the organization's simulation concurrency limit, the number of active simulations, and how many more can start.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.simulations.simulationControllerGetConcurrency();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `SimulationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.simulations.<a href="/src/api/resources/simulations/client/Client.ts">simulationControllerFindOne</a>({ ...params }) -> Vapi.Simulation</code></summary>
 <dl>
 <dd>
@@ -6361,61 +6673,6 @@ await client.simulations.simulationControllerUpdate({
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SimulationsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.simulations.<a href="/src/api/resources/simulations/client/Client.ts">simulationControllerGetConcurrency</a>() -> Vapi.SimulationConcurrencyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the organization's simulation concurrency limit, the number of active simulations, and how many more can start.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.simulations.simulationControllerGetConcurrency();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
 
 <dl>
 <dd>

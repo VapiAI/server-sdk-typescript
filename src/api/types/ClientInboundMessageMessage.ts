@@ -7,6 +7,7 @@ import type * as Vapi from "../index.js";
  */
 export type ClientInboundMessageMessage =
     | Vapi.ClientInboundMessageMessage.AddMessage
+    | Vapi.ClientInboundMessageMessage.AppendContext
     | Vapi.ClientInboundMessageMessage.Control
     | Vapi.ClientInboundMessageMessage.Say
     | Vapi.ClientInboundMessageMessage.EndCall
@@ -16,6 +17,10 @@ export type ClientInboundMessageMessage =
 export namespace ClientInboundMessageMessage {
     export interface AddMessage extends Vapi.ClientInboundMessageAddMessage {
         type: "add-message";
+    }
+
+    export interface AppendContext extends Vapi.ClientInboundMessageAppendContext {
+        type: "append-context";
     }
 
     export interface Control extends Vapi.ClientInboundMessageControl {

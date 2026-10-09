@@ -242,6 +242,60 @@ export class SimulationsClient {
     }
 
     /**
+     * Returns the organization's simulation concurrency limit, the number of active simulations, and how many more can start.
+     *
+     * @param {SimulationsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.simulations.simulationControllerGetConcurrency()
+     */
+    public simulationControllerGetConcurrency(
+        requestOptions?: SimulationsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.SimulationConcurrencyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__simulationControllerGetConcurrency(requestOptions));
+    }
+
+    private async __simulationControllerGetConcurrency(
+        requestOptions?: SimulationsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.SimulationConcurrencyResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "eval/simulation/concurrency",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.SimulationConcurrencyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.VapiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval/simulation/concurrency");
+    }
+
+    /**
      * Returns the specified simulation.
      *
      * @param {Vapi.SimulationControllerFindOneRequest} request
@@ -422,59 +476,5 @@ export class SimulationsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/eval/simulation/{id}");
-    }
-
-    /**
-     * Returns the organization's simulation concurrency limit, the number of active simulations, and how many more can start.
-     *
-     * @param {SimulationsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.simulations.simulationControllerGetConcurrency()
-     */
-    public simulationControllerGetConcurrency(
-        requestOptions?: SimulationsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.SimulationConcurrencyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__simulationControllerGetConcurrency(requestOptions));
-    }
-
-    private async __simulationControllerGetConcurrency(
-        requestOptions?: SimulationsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.SimulationConcurrencyResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.VapiEnvironment.Default,
-                "eval/simulation/concurrency",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: requestOptions?.queryParams,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Vapi.SimulationConcurrencyResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/eval/simulation/concurrency");
     }
 }

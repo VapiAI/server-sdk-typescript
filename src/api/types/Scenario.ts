@@ -27,6 +27,14 @@ export interface Scenario {
     /** Scenario-level tool call mocks to use during simulations. */
     toolMocks?: Vapi.ScenarioToolMock[] | undefined;
     /**
+     * Latency ceilings for voice simulations. Each expectation aggregates the
+     * target call's per-turn latencies and fails the simulation (when required)
+     * if the aggregated value exceeds its threshold. Skipped for chat simulations
+     * and GPT Live targets; on any other voice simulation, a metric that no turn
+     * measured fails.
+     */
+    latencyExpectations?: Vapi.LatencyExpectation[] | undefined;
+    /**
      * Optional folder path for organizing scenarios.
      * Supports up to 3 levels (e.g., "dept/feature/variant").
      * Maps to GitOps resource folder structure.
