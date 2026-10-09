@@ -1,3 +1,14 @@
+## [4.0.0] - 2026-10-09
+### Breaking Changes
+- **`StructuredOutputControllerRunResponseZero`** has been renamed to **`StructuredOutputControllerRunResponseOne`**; update all imports and references to use the new name.
+- **`GhlToolType`** and **`UpdateCodeToolDtoType`** enums have been removed; the discriminant `type` field is now carried by the enclosing union variant (`Ghl` / `Code`) rather than on the base interface.
+- **`GhlTool.type`** and **`UpdateCodeToolDto.type`** fields have been removed from those interfaces; remove any code that reads or sets these fields directly.
+- **`CreateTrieveCredentialDto`**, **`CreateTrieveKnowledgeBaseDto`**, **`TrieveKnowledgeBase`**, **`TrieveKnowledgeBaseImport`**, and **`UpdateTrieveKnowledgeBaseDto`** have been removed from the SDK; remove any imports or usages of these types.
+
+### Added
+- **`CreateToolsRequest.Code`** and **`UpdateToolsRequestBody.Code`** — new `"code"` discriminated union variants (backed by `CreateCodeToolDto` / `UpdateCodeToolDto`) for creating and updating code tools.
+- **`CreateToolsResponse.Ghl`**, **`DeleteToolsResponse.Ghl`**, **`GetToolsResponse.Ghl`**, **`ListToolsResponseItem.Ghl`**, and **`UpdateToolsResponse.Ghl`** — new `"ghl"` discriminated union variants (backed by `GhlTool`) in all tool response unions.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.
