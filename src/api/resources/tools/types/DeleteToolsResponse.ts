@@ -26,7 +26,8 @@ export type DeleteToolsResponse =
     | Vapi.DeleteToolsResponse.GohighlevelContactCreate
     | Vapi.DeleteToolsResponse.GohighlevelContactGet
     | Vapi.DeleteToolsResponse.SipRequest
-    | Vapi.DeleteToolsResponse.Voicemail;
+    | Vapi.DeleteToolsResponse.Voicemail
+    | Vapi.DeleteToolsResponse.Ghl;
 
 export namespace DeleteToolsResponse {
     export interface ApiRequest extends Vapi.ApiRequestTool {
@@ -125,6 +126,10 @@ export namespace DeleteToolsResponse {
         type: "voicemail";
     }
 
+    export interface Ghl extends Vapi.GhlTool {
+        type: "ghl";
+    }
+
     export type Response =
         | Vapi.DeleteToolsResponse.ApiRequest
         | Vapi.DeleteToolsResponse.Code
@@ -149,5 +154,6 @@ export namespace DeleteToolsResponse {
         | Vapi.DeleteToolsResponse.GohighlevelContactCreate
         | Vapi.DeleteToolsResponse.GohighlevelContactGet
         | Vapi.DeleteToolsResponse.SipRequest
-        | Vapi.DeleteToolsResponse.Voicemail;
+        | Vapi.DeleteToolsResponse.Voicemail
+        | Vapi.DeleteToolsResponse.Ghl;
 }

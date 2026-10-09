@@ -3,5 +3,5 @@
 import type * as Vapi from "../../../index.js";
 
 export type StructuredOutputControllerRunResponse =
-    | Vapi.StructuredOutputControllerRunResponseZero
-    | Vapi.StructuredOutputRerunResponse;
+    | Vapi.StructuredOutputRerunResponse
+    | Vapi.StructuredOutputControllerRunResponseOne;
