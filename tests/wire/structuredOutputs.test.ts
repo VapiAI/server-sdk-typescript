@@ -495,9 +495,7 @@ describe("StructuredOutputsClient", () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = { callIds: ["callIds"] };
-        const rawResponseBody = {
-            skipped: { key: { name: "name", unmetCondition: { type: "minMessages", count: 4 } } },
-        };
+        const rawResponseBody = { workflowId: "workflowId", message: "message" };
 
         server
             .mockEndpoint()
@@ -512,15 +510,8 @@ describe("StructuredOutputsClient", () => {
             callIds: ["callIds"],
         });
         expect(response).toEqual({
-            skipped: {
-                key: {
-                    name: "name",
-                    unmetCondition: {
-                        type: "minMessages",
-                        count: 4,
-                    },
-                },
-            },
+            workflowId: "workflowId",
+            message: "message",
         });
     });
 });

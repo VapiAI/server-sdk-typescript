@@ -26,7 +26,8 @@ export type UpdateToolsResponse =
     | Vapi.UpdateToolsResponse.GohighlevelContactCreate
     | Vapi.UpdateToolsResponse.GohighlevelContactGet
     | Vapi.UpdateToolsResponse.SipRequest
-    | Vapi.UpdateToolsResponse.Voicemail;
+    | Vapi.UpdateToolsResponse.Voicemail
+    | Vapi.UpdateToolsResponse.Ghl;
 
 export namespace UpdateToolsResponse {
     export interface ApiRequest extends Vapi.ApiRequestTool {
@@ -125,6 +126,10 @@ export namespace UpdateToolsResponse {
         type: "voicemail";
     }
 
+    export interface Ghl extends Vapi.GhlTool {
+        type: "ghl";
+    }
+
     export type Response =
         | Vapi.UpdateToolsResponse.ApiRequest
         | Vapi.UpdateToolsResponse.Code
@@ -149,5 +154,6 @@ export namespace UpdateToolsResponse {
         | Vapi.UpdateToolsResponse.GohighlevelContactCreate
         | Vapi.UpdateToolsResponse.GohighlevelContactGet
         | Vapi.UpdateToolsResponse.SipRequest
-        | Vapi.UpdateToolsResponse.Voicemail;
+        | Vapi.UpdateToolsResponse.Voicemail
+        | Vapi.UpdateToolsResponse.Ghl;
 }

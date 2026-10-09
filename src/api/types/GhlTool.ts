@@ -6,8 +6,6 @@ export interface GhlTool {
     latestVersion?: (string | null) | undefined;
     /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.GhlToolMessagesItem[] | undefined;
-    /** The type of tool. "ghl" for GHL tool. */
-    type: Vapi.GhlToolType;
     /** This is the unique identifier for the tool. */
     id: string;
     /** This is the unique identifier for the organization that this tool belongs to. */
