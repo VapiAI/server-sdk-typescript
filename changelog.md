@@ -1,3 +1,18 @@
+## [4.0.0] - 2026-10-16
+### Breaking Changes
+- See full changelog for all changes — no symbol-level breaking changes were identified in the diff; confirm with maintainers whether the MAJOR bump reflects internal contract changes not captured here.
+
+### Added
+- **`AnthropicModel.reasoningEffort`** and **`AnthropicBedrockModel.reasoningEffort`** — new optional fields to control adaptive thinking effort for `claude-haiku-5-5`, accepting values from `none` to `max`.
+- **`baselineVersion`** — new optional display-only field added to all tool interfaces (`McpTool`, `OutputTool`, `QueryTool`, `SipRequestTool`, `SlackSendMessageTool`, `SmsTool`, `TextEditorTool`, `TransferCallTool`, `VoicemailTool`, `GhlTool`) returning the baseline label before a version is stored.
+- **`ModelCostServiceTierBreakdown`** — new interface reporting per-OpenAI-service-tier cost and token counts, attached as the optional `serviceTierBreakdown` array on `ModelCost`.
+- **`UserWithRole`**, **`UserWithRoleRole`**, and **`UserWithRoleRoleZero`** — new exported types representing an org member with their role and optional last-active timestamp.
+- **`{{messagesWithConfidence}}` template variable** — now supported in structured output Liquid templates across all workflow model types and `StructuredOutput`/`CreateStructuredOutputDto`.
+- **New model enum values** — `ClaudeHaiku55` added to `WorkflowAnthropicModelModel` and `WorkflowAnthropicBedrockModelModel`; `Gemini38Flash` added to `WorkflowGoogleModelModel`.
+
+### Changed
+- **`OpenAiModelServiceTier`** — documentation updated to clarify that `priority` is the legacy alias for `fast`, `auto` is the effective default when unset, and Fast mode billing is per-model and only charged when OpenAI confirms the request was served in Fast mode.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.
