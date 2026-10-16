@@ -26,7 +26,8 @@ export type CreateToolsResponse =
     | Vapi.CreateToolsResponse.GohighlevelContactCreate
     | Vapi.CreateToolsResponse.GohighlevelContactGet
     | Vapi.CreateToolsResponse.SipRequest
-    | Vapi.CreateToolsResponse.Voicemail;
+    | Vapi.CreateToolsResponse.Voicemail
+    | Vapi.CreateToolsResponse.Ghl;
 
 export namespace CreateToolsResponse {
     export interface ApiRequest extends Vapi.ApiRequestTool {
@@ -125,6 +126,36 @@ export namespace CreateToolsResponse {
         type: "voicemail";
     }
 
+    export interface Ghl extends Vapi.GhlTool {
+        type: "ghl";
+    }
+
+    export type Request =
+        | Vapi.CreateToolsResponse.ApiRequest
+        | Vapi.CreateToolsResponse.Code
+        | Vapi.CreateToolsResponse.Dtmf
+        | Vapi.CreateToolsResponse.EndCall
+        | Vapi.CreateToolsResponse.Function
+        | Vapi.CreateToolsResponse.KnowledgeBase
+        | Vapi.CreateToolsResponse.TransferCall
+        | Vapi.CreateToolsResponse.Handoff
+        | Vapi.CreateToolsResponse.Bash
+        | Vapi.CreateToolsResponse.Computer
+        | Vapi.CreateToolsResponse.TextEditor
+        | Vapi.CreateToolsResponse.Query
+        | Vapi.CreateToolsResponse.GoogleCalendarEventCreate
+        | Vapi.CreateToolsResponse.GoogleSheetsRowAppend
+        | Vapi.CreateToolsResponse.GoogleCalendarAvailabilityCheck
+        | Vapi.CreateToolsResponse.SlackMessageSend
+        | Vapi.CreateToolsResponse.Sms
+        | Vapi.CreateToolsResponse.Mcp
+        | Vapi.CreateToolsResponse.GohighlevelCalendarAvailabilityCheck
+        | Vapi.CreateToolsResponse.GohighlevelCalendarEventCreate
+        | Vapi.CreateToolsResponse.GohighlevelContactCreate
+        | Vapi.CreateToolsResponse.GohighlevelContactGet
+        | Vapi.CreateToolsResponse.SipRequest
+        | Vapi.CreateToolsResponse.Voicemail
+        | Vapi.CreateToolsResponse.Ghl;
     export type Response =
         | Vapi.CreateToolsResponse.ApiRequest
         | Vapi.CreateToolsResponse.Code
@@ -149,5 +180,6 @@ export namespace CreateToolsResponse {
         | Vapi.CreateToolsResponse.GohighlevelContactCreate
         | Vapi.CreateToolsResponse.GohighlevelContactGet
         | Vapi.CreateToolsResponse.SipRequest
-        | Vapi.CreateToolsResponse.Voicemail;
+        | Vapi.CreateToolsResponse.Voicemail
+        | Vapi.CreateToolsResponse.Ghl;
 }

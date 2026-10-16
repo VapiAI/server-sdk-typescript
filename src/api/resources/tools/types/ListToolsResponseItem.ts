@@ -26,7 +26,8 @@ export type ListToolsResponseItem =
     | Vapi.ListToolsResponseItem.GohighlevelContactCreate
     | Vapi.ListToolsResponseItem.GohighlevelContactGet
     | Vapi.ListToolsResponseItem.SipRequest
-    | Vapi.ListToolsResponseItem.Voicemail;
+    | Vapi.ListToolsResponseItem.Voicemail
+    | Vapi.ListToolsResponseItem.Ghl;
 
 export namespace ListToolsResponseItem {
     export interface ApiRequest extends Vapi.ApiRequestTool {
@@ -125,6 +126,36 @@ export namespace ListToolsResponseItem {
         type: "voicemail";
     }
 
+    export interface Ghl extends Vapi.GhlTool {
+        type: "ghl";
+    }
+
+    export type Request =
+        | Vapi.ListToolsResponseItem.ApiRequest
+        | Vapi.ListToolsResponseItem.Code
+        | Vapi.ListToolsResponseItem.Dtmf
+        | Vapi.ListToolsResponseItem.EndCall
+        | Vapi.ListToolsResponseItem.Function
+        | Vapi.ListToolsResponseItem.KnowledgeBase
+        | Vapi.ListToolsResponseItem.TransferCall
+        | Vapi.ListToolsResponseItem.Handoff
+        | Vapi.ListToolsResponseItem.Bash
+        | Vapi.ListToolsResponseItem.Computer
+        | Vapi.ListToolsResponseItem.TextEditor
+        | Vapi.ListToolsResponseItem.Query
+        | Vapi.ListToolsResponseItem.GoogleCalendarEventCreate
+        | Vapi.ListToolsResponseItem.GoogleSheetsRowAppend
+        | Vapi.ListToolsResponseItem.GoogleCalendarAvailabilityCheck
+        | Vapi.ListToolsResponseItem.SlackMessageSend
+        | Vapi.ListToolsResponseItem.Sms
+        | Vapi.ListToolsResponseItem.Mcp
+        | Vapi.ListToolsResponseItem.GohighlevelCalendarAvailabilityCheck
+        | Vapi.ListToolsResponseItem.GohighlevelCalendarEventCreate
+        | Vapi.ListToolsResponseItem.GohighlevelContactCreate
+        | Vapi.ListToolsResponseItem.GohighlevelContactGet
+        | Vapi.ListToolsResponseItem.SipRequest
+        | Vapi.ListToolsResponseItem.Voicemail
+        | Vapi.ListToolsResponseItem.Ghl;
     export type Response =
         | Vapi.ListToolsResponseItem.ApiRequest
         | Vapi.ListToolsResponseItem.Code
@@ -149,5 +180,6 @@ export namespace ListToolsResponseItem {
         | Vapi.ListToolsResponseItem.GohighlevelContactCreate
         | Vapi.ListToolsResponseItem.GohighlevelContactGet
         | Vapi.ListToolsResponseItem.SipRequest
-        | Vapi.ListToolsResponseItem.Voicemail;
+        | Vapi.ListToolsResponseItem.Voicemail
+        | Vapi.ListToolsResponseItem.Ghl;
 }

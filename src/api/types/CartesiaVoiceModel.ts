@@ -4,6 +4,8 @@
 export const CartesiaVoiceModel = {
     Sonic35: "sonic-3.5",
     Sonic3520260504: "sonic-3.5-2026-05-04",
+    Sonic36: "sonic-3.6",
+    Sonic3620260827: "sonic-3.6-2026-08-27",
     Sonic3: "sonic-3",
     Sonic320260112: "sonic-3-2026-01-12",
     Sonic320251027: "sonic-3-2025-10-27",
