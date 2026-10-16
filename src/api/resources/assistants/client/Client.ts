@@ -364,6 +364,8 @@ export class AssistantsClient {
      * @param {Vapi.UpdateAssistantDto} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Vapi.ConflictError}
+     *
      * @example
      *     await client.assistants.update({
      *         id: "id"
@@ -411,11 +413,16 @@ export class AssistantsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/assistant/{id}");

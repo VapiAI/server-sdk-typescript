@@ -2,7 +2,7 @@
 
 import type * as Vapi from "../../../index.js";
 
-export interface StructuredOutputControllerRunResponseZero {
+export interface StructuredOutputControllerRunResponseOne {
     /**
      * These are the structured outputs whose conditions gated them, keyed by
      * structured output id. Absent when nothing was skipped. An entry here means
