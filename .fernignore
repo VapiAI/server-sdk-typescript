@@ -1,6 +1,9 @@
 # Specify files that shouldn't be modified by Fern
 
 .github/workflows/sdk-release-pr-notification.yml
+.github/workflows/ci.yml
+.github/scripts/validate-release.cjs
+.github/scripts/validate-release.test.cjs
 README.md
 changelog.md
 .fern/replay.lock
