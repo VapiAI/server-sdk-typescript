@@ -7,6 +7,8 @@ import type * as Vapi from "../index.js";
  */
 export interface HandoffTool {
     latestVersion?: (string | null) | undefined;
+    /** Display-only baseline label returned by the tool list before a version is stored. Fetch version history to initialize it before using it as a pin. */
+    baselineVersion?: (string | null) | undefined;
     /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.HandoffToolMessagesItem[] | undefined;
     /** This is the default local tool result message used when no runtime handoff result override is returned. */

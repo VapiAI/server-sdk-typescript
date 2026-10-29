@@ -74,15 +74,16 @@ export interface OpenAiModel {
      */
     promptCacheKey?: string | undefined;
     /**
-     * This is the OpenAI service tier used for chat completions requests.
+     * This is the OpenAI service tier to request.
      *
-     * - `fast`: OpenAI's fast processing tier (renamed from `priority` on 2026-07-30; both values are accepted and billed identically) — up to ~2.5x faster inference at 2x the standard token rates. OpenAI may silently downgrade a fast request to standard processing under ramp limits; when that happens the response reports the served tier and the request is billed at standard rates.
-     * - `auto`: uses the service tier configured for the OpenAI project.
-     * - `default`: standard processing and billing.
+     * - `fast`: requests Fast mode, which gives faster responses at a higher per-token rate. How much faster depends on the model.
+     * - `priority`: the old name for `fast`, accepted and billed the same.
+     * - `default`: standard processing.
+     * - `auto`: the default when unset. On Vapi's OpenAI keys this is standard processing; on your own OpenAI key, OpenAI applies your project's default tier.
      *
-     * Only applies to models that support fast processing: gpt-5.6-sol, gpt-5.6-terra, gpt-5.6-luna, gpt-5.5. Ignored for other models.
+     * OpenAI sets Fast mode rates per model, and they are not a fixed multiple of the standard rates. Vapi bills them only when OpenAI reports that it served the request in Fast mode. Otherwise the request is billed at standard rates, for example when Fast mode isn't available for the model on Vapi, OpenAI downgrades the request, or the request runs on Azure OpenAI.
      *
-     * @default undefined (uses the service tier configured for the OpenAI project)
+     * Supported models and their Fast mode rates: https://docs.vapi.ai/providers/model/openai
      */
     serviceTier?: Vapi.OpenAiModelServiceTier | undefined;
     /**
@@ -94,7 +95,7 @@ export interface OpenAiModel {
     reasoningEffort?: Vapi.OpenAiModelReasoningEffort | undefined;
     /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
-    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna no cap is applied unless you set one, because reasoning uses output tokens and a small cap can leave the reply empty. */
+    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna and claude-haiku-5-5 no cap is applied unless you set one (claude-haiku-5-5 sends its 128,000-token maximum), because reasoning uses output tokens and a small cap can leave the reply empty. */
     maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.
