@@ -100,6 +100,7 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -598,6 +599,7 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -1155,6 +1157,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -1668,6 +1671,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -2306,6 +2310,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -2814,6 +2819,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -3426,6 +3432,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -3934,6 +3941,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -4467,7 +4475,7 @@ describe("AssistantsClient", () => {
         }).rejects.toThrow(Vapi.ConflictError);
     });
 
-    test("update", async () => {
+    test("update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -4561,6 +4569,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -5076,6 +5085,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -5592,5 +5602,27 @@ describe("AssistantsClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         });
+    });
+
+    test("update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/assistant/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.assistants.update({
+                id: "id",
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
     });
 });

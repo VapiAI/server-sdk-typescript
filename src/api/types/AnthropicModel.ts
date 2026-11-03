@@ -32,6 +32,12 @@ export interface AnthropicModel {
     /** The specific Anthropic/Claude model that will be used. */
     model: Vapi.AnthropicModelModel;
     /**
+     * Reasoning effort for claude-haiku-5-5. `none` turns thinking off. `low` to `max`
+     * use adaptive thinking at that effort; higher effort can add latency before the
+     * model speaks. Unset means `none`. Rejected for every other model.
+     */
+    reasoningEffort?: Vapi.AnthropicModelReasoningEffort | undefined;
+    /**
      * Optional configuration for Anthropic's thinking feature.
      * Only applicable for claude-3-7-sonnet-20250219 model.
      * If provided, maxTokens must be greater than thinking.budgetTokens.
@@ -39,7 +45,7 @@ export interface AnthropicModel {
     thinking?: Vapi.AnthropicThinkingConfig | undefined;
     /** This is the temperature that will be used for calls. Default is 0.5. */
     temperature?: number | undefined;
-    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna no cap is applied unless you set one, because reasoning uses output tokens and a small cap can leave the reply empty. */
+    /** This is the max number of tokens that the assistant will be allowed to generate in each turn of the conversation. Default is 250. On gpt-6-luna and claude-haiku-5-5 no cap is applied unless you set one (claude-haiku-5-5 sends its 128,000-token maximum), because reasoning uses output tokens and a small cap can leave the reply empty. */
     maxTokens?: number | undefined;
     /**
      * This determines whether we detect user's emotion while they speak and send it as an additional info to model.

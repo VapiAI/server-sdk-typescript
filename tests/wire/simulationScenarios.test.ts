@@ -1275,6 +1275,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -1877,6 +1878,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -2535,6 +2537,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -3129,6 +3132,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -3787,6 +3791,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -4381,6 +4386,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -5060,6 +5066,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -5655,6 +5662,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,

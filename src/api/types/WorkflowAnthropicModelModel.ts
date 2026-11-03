@@ -17,6 +17,7 @@ export const WorkflowAnthropicModelModel = {
     ClaudeSonnet46: "claude-sonnet-4-6",
     ClaudeSonnet5: "claude-sonnet-5",
     ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
+    ClaudeHaiku55: "claude-haiku-5-5",
 } as const;
 export type WorkflowAnthropicModelModel =
     (typeof WorkflowAnthropicModelModel)[keyof typeof WorkflowAnthropicModelModel];

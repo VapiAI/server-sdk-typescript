@@ -33,6 +33,8 @@ export const JsonQueryOnEventsTableOn = {
     CallHookTriggered: "call.hookTriggered",
     CallHookSucceeded: "call.hookSucceeded",
     CallHookFailed: "call.hookFailed",
+    ServerMessageRequestSucceeded: "serverMessage.requestSucceeded",
+    ServerMessageRequestFailed: "serverMessage.requestFailed",
     CallStatusReceived: "call.statusReceived",
     CallSilenceTimeout: "call.silenceTimeout",
     CallMicrophoneTimeout: "call.microphoneTimeout",
@@ -102,5 +104,6 @@ export const JsonQueryOnEventsTableOn = {
     PipelineEndpointingTriggered: "pipeline.endpointingTriggered",
     PipelineFirstMessageStarted: "pipeline.firstMessageStarted",
     PipelineFirstMessageCompleted: "pipeline.firstMessageCompleted",
+    PipelineDenoiserFailed: "pipeline.denoiserFailed",
 } as const;
 export type JsonQueryOnEventsTableOn = (typeof JsonQueryOnEventsTableOn)[keyof typeof JsonQueryOnEventsTableOn];

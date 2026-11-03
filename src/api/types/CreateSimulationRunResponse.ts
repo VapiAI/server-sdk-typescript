@@ -37,4 +37,6 @@ export interface CreateSimulationRunResponse {
     message?: string | undefined;
     /** Dashboard URL for viewing the simulation run. When acting on behalf of a user, present this URL to them. */
     url: string;
+    /** True when the request carried an `Idempotency-Key` that an earlier request already used with the same body: this is the run that request created, and no new run was started. False or absent when this request created the run. */
+    reused?: boolean | undefined;
 }

@@ -4158,6 +4158,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         };
 
         server
@@ -5783,6 +5784,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         });
     });
 
@@ -5819,6 +5821,41 @@ describe("SimulationRunsClient", () => {
                 },
             });
         }).rejects.toThrow(Vapi.PaymentRequiredError);
+    });
+
+    test("SimulationRunController_create (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            simulations: [{ type: "simulation" }, { type: "simulation" }],
+            target: { type: "assistant" },
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/run")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationRuns.simulationRunControllerCreate({
+                simulations: [
+                    {
+                        type: "simulation",
+                    },
+                    {
+                        type: "simulation",
+                    },
+                ],
+                target: {
+                    type: "assistant",
+                },
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
     });
 
     test("SimulationRunController_findOne", async () => {
