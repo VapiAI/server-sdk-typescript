@@ -9,3 +9,5 @@ changelog.md
 .fern/replay.lock
 .fern/replay.yml
 .gitattributes
+
+.github/scripts/verify-release-commit.sh

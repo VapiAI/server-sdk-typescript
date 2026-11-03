@@ -69,3 +69,83 @@ test("package job validates the release before installing or building", () => {
     assert.ok(validation < packageJob.indexOf("run: pnpm build"));
     assert.ok(validation < packageJob.indexOf("npm pack"));
 });
+
+function gitFixture(run) {
+    const cwd = mkdtempSync(join(tmpdir(), "sdk-release-history-"));
+    const env = {
+        ...process.env,
+        GIT_AUTHOR_NAME: "Release test", GIT_AUTHOR_EMAIL: "test@example.com",
+        GIT_COMMITTER_NAME: "Release test", GIT_COMMITTER_EMAIL: "test@example.com",
+    };
+    const git = (...args) => {
+        const result = spawnSync("git", args, { cwd, env, encoding: "utf8" });
+        assert.equal(result.status, 0, result.stderr);
+        return result.stdout.trim();
+    };
+    try {
+        git("init", "--initial-branch=main");
+        git("commit", "--allow-empty", "-m", "Approved release");
+        const approved = git("rev-parse", "HEAD");
+        git("update-ref", "refs/remotes/origin/main", approved);
+        Object.assign(env, { GITHUB_REF: "refs/tags/v3.0.0", GITHUB_REF_NAME: "v3.0.0", GITHUB_SHA: approved });
+        const guard = () => spawnSync("bash", [resolve(__dirname, "verify-release-commit.sh")], { cwd, env, encoding: "utf8" });
+        run({ git, guard, env, approved });
+    } finally {
+        rmSync(cwd, { recursive: true, force: true });
+    }
+}
+
+test("allows a release commit on main, including an older approved commit", () => {
+    gitFixture(({ git, guard, approved }) => {
+        assert.equal(guard().status, 0);
+        git("commit", "--allow-empty", "-m", "Newer approved commit");
+        git("update-ref", "refs/remotes/origin/main", git("rev-parse", "HEAD"));
+        git("checkout", "--detach", approved);
+        assert.equal(guard().status, 0);
+    });
+});
+
+test("resolves annotated tag objects to their approved commit", () => {
+    gitFixture(({ git, guard, env }) => {
+        git("tag", "-a", "v3.0.0", "-m", "Release");
+        env.GITHUB_SHA = git("rev-parse", "v3.0.0");
+        assert.equal(guard().status, 0);
+    });
+});
+
+test("rejects an unmerged release commit", () => {
+    gitFixture(({ git, guard, env }) => {
+        git("checkout", "-b", "unapproved");
+        git("commit", "--allow-empty", "-m", "Unreviewed change");
+        env.GITHUB_SHA = git("rev-parse", "HEAD");
+        const result = guard();
+        assert.equal(result.status, 1);
+        assert.match(result.stdout, /must already be merged/);
+    });
+});
+
+test("rejects a checkout that differs from the release event", () => {
+    gitFixture(({ git, guard }) => {
+        git("commit", "--allow-empty", "-m", "Different checkout");
+        const result = guard();
+        assert.equal(result.status, 1);
+        assert.match(result.stdout, /does not match/);
+    });
+});
+
+test("fails closed when main or the event commit is missing", () => {
+    gitFixture(({ git, guard, env }) => {
+        git("update-ref", "-d", "refs/remotes/origin/main");
+        assert.notEqual(guard().status, 0);
+        delete env.GITHUB_SHA;
+        assert.equal(guard().status, 1);
+    });
+});
+
+test("rejects branch refs masquerading as release tags", () => {
+    gitFixture(({ guard, env }) => {
+        env.GITHUB_REF = "refs/heads/refs/tags/v3.0.0";
+        env.GITHUB_REF_NAME = "refs/tags/v3.0.0";
+        assert.equal(guard().status, 1);
+    });
+});
