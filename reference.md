@@ -126,57 +126,6 @@ await client.assistants.create({});
 </dl>
 </details>
 
-<details><summary><code>client.assistants.<a href="/src/api/resources/assistants/client/Client.ts">assistantControllerValidateBackgroundSoundUrl</a>({ ...params }) -> Vapi.BackgroundSoundUrlValidationResult</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.assistants.assistantControllerValidateBackgroundSoundUrl({
-    url: "https://example.com/my-sound.mp3"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Vapi.ValidateBackgroundSoundUrlDto` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AssistantsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.assistants.<a href="/src/api/resources/assistants/client/Client.ts">get</a>({ ...params }) -> Vapi.Assistant</code></summary>
 <dl>
 <dd>
@@ -2544,7 +2493,7 @@ await client.sessions.update({
 <dl>
 <dd>
 
-The append-only history of an assistant's allocations, newest first. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+The append-only history of an assistant's allocations, newest first.
 </dd>
 </dl>
 </dd>
@@ -2607,7 +2556,7 @@ await client.trafficAllocations.trafficAllocationControllerFindAllPaginated();
 <dl>
 <dd>
 
-Creates a new traffic allocation for an assistant, replacing the one currently in effect. To start or adjust a split, send targets naming published versions (such as "v7") with percentages totaling 100; allocationIntent is inferred as 'explicit'. To stop splitting and send every call to the newest published version, send allocationIntent 'follow-latest' with no targets field; stopping always names its intent, so a dropped targets field can never end a split by accident. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+Creates a new traffic allocation for an assistant, replacing the one currently in effect. To start or adjust a split, send targets naming published versions (such as "v7") with percentages totaling 100; allocationIntent is inferred as 'explicit'. To stop splitting and send every call to the newest published version, send allocationIntent 'follow-latest' with no targets field; stopping always names its intent, so a dropped targets field can never end a split by accident.
 </dd>
 </dl>
 </dd>
@@ -2672,7 +2621,7 @@ await client.trafficAllocations.trafficAllocationControllerCreate({
 <dl>
 <dd>
 
-The allocation currently in effect for the assistant, with its targets. The response carries no allocation field when traffic splitting has never been configured. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+The allocation currently in effect for the assistant, with its targets. The response carries no allocation field when traffic splitting has never been configured.
 </dd>
 </dl>
 </dd>
@@ -2725,6 +2674,73 @@ await client.trafficAllocations.trafficAllocationControllerLatestGet({
 </dl>
 </details>
 
+<details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerMetricsGet</a>({ ...params }) -> Vapi.TrafficTabMetricsDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Per-assistant-version call metrics over a time window: call counts, configured vs actual traffic share, duration, cost per minute, latency, ended reasons, a bucketed timeseries, and optional structured output aggregations. Calls with no assistant version are reported as an 'unversioned' row.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.trafficAllocations.trafficAllocationControllerMetricsGet({
+    assistantId: "assistantId",
+    from: "2024-01-15T09:30:00Z",
+    to: "2024-01-15T09:30:00Z"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.TrafficAllocationControllerMetricsGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrafficAllocationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.trafficAllocations.<a href="/src/api/resources/trafficAllocations/client/Client.ts">trafficAllocationControllerFindOne</a>({ ...params }) -> Vapi.TrafficAllocation</code></summary>
 <dl>
 <dd>
@@ -2737,7 +2753,7 @@ await client.trafficAllocations.trafficAllocationControllerLatestGet({
 <dl>
 <dd>
 
-Returns a single allocation by id, including its targets and actor attribution. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+Returns a single allocation by id, including its targets and actor attribution.
 </dd>
 </dl>
 </dd>
@@ -5606,7 +5622,7 @@ await client.simulationRuns.simulationRunControllerCancelGroup({
 </dl>
 </details>
 
-<details><summary><code>client.simulationRuns.<a href="/src/api/resources/simulationRuns/client/Client.ts">simulationRunControllerFindItems</a>({ ...params }) -> Vapi.SimulationRunItem[]</code></summary>
+<details><summary><code>client.simulationRuns.<a href="/src/api/resources/simulationRuns/client/Client.ts">simulationRunControllerFindItems</a>({ ...params }) -> Vapi.SimulationRunControllerFindItemsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5871,7 +5887,7 @@ await client.simulationRuns.simulationRunControllerGenerateSuggestions({
 </details>
 
 ## SimulationSuites
-<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationSuiteControllerFindAll</a>({ ...params }) -> Vapi.SimulationSuite[]</code></summary>
+<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationSuiteControllerFindAll</a>({ ...params }) -> Vapi.SimulationSuiteControllerFindAllResponse</code></summary>
 <dl>
 <dd>
 
@@ -6246,8 +6262,7 @@ await client.simulationSuites.simulationSuiteControllerUpdate({
 </dl>
 </details>
 
-## Simulations
-<details><summary><code>client.simulations.<a href="/src/api/resources/simulations/client/Client.ts">simulationGenerateControllerGenerate</a>({ ...params }) -> Vapi.GenerateScenariosResponse</code></summary>
+<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationOnboardingControllerRequirementsDraft</a>({ ...params }) -> Vapi.SimulationOnboardingRequirementsDraftDto</code></summary>
 <dl>
 <dd>
 
@@ -6259,7 +6274,11 @@ await client.simulationSuites.simulationSuiteControllerUpdate({
 <dl>
 <dd>
 
-Generates scenarios for an assistant or squad by analyzing its configuration with AI.
+Generate draft test requirements from an assistant's prompt, tools, and handoff configuration. The response includes numbered requirements describing expected behavior and open questions about behavior that needs clarification. Use this endpoint before generating a simulation suite.
+
+Review the requirements and resolve any open questions. To revise a draft, send it as `previousDraft` together with natural-language `feedback` describing the changes or answers. Once the requirements are ready, pass them to `POST /eval/simulation/onboarding/suite`.
+
+Requests can take up to 2 minutes. Each organization can draft requirements 60 times per UTC day, shared with the dashboard. A 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED` response means the daily limit has been reached. Wait until the limit resets at 00:00 UTC before retrying.
 </dd>
 </dl>
 </dd>
@@ -6274,7 +6293,9 @@ Generates scenarios for an assistant or squad by analyzing its configuration wit
 <dd>
 
 ```typescript
-await client.simulations.simulationGenerateControllerGenerate();
+await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+    assistantId: "assistantId"
+});
 
 ```
 </dd>
@@ -6290,7 +6311,7 @@ await client.simulations.simulationGenerateControllerGenerate();
 <dl>
 <dd>
 
-**request:** `Vapi.GenerateScenariosDto` 
+**request:** `Vapi.SimulationOnboardingRequirementsCreateDto` 
     
 </dd>
 </dl>
@@ -6298,7 +6319,7 @@ await client.simulations.simulationGenerateControllerGenerate();
 <dl>
 <dd>
 
-**requestOptions:** `SimulationsClient.RequestOptions` 
+**requestOptions:** `SimulationSuitesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6310,6 +6331,160 @@ await client.simulations.simulationGenerateControllerGenerate();
 </dl>
 </details>
 
+<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationOnboardingControllerSuiteCreate</a>({ ...params }) -> Vapi.SimulationOnboardingSuiteViewDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate and save a simulation suite from reviewed test requirements, and assign it to an assistant. First draft requirements with `POST /eval/simulation/onboarding/requirements`. The response includes the saved suite, its simulations, and requirement coverage, including any gaps.
+
+Requests can take up to 3 minutes. Set a client timeout of at least 200 seconds.
+
+Use a unique `idempotencyKey` for each suite generation request. Retrying with the same key does not create a duplicate suite:
+- On a timeout or a 5xx (502, 504, 524), retry with the same key. You get the saved suite, a 409 while it is still generating, or a fresh generation if the first one never saved.
+- On a 409 `SIMULATION_ONBOARDING_GENERATION_IN_PROGRESS`, the first request is still generating. Wait `Retry-After` seconds (15) and retry with the same key.
+- On a 409 `SIMULATION_ONBOARDING_IDEMPOTENCY_KEY_REUSED`, the key was used for a different assistant or requirements. Send a new key.
+
+Review the generated simulations and coverage gaps. Revise the suite with `PATCH /eval/simulation/onboarding/suite/{suiteId}`, then run it with `POST /eval/simulation/run`.
+
+Each organization can generate 20 suites per UTC day, shared with the dashboard, and 2 at a time. A retry that returns a saved suite does not count toward these limits. On a 429 `SIMULATION_ONBOARDING_CONCURRENCY_LIMITED`, wait `Retry-After` seconds (30) before retrying. On a 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED`, wait until the daily limit resets at 00:00 UTC before retrying.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+    assistantId: "assistantId",
+    idempotencyKey: "idempotencyKey",
+    requirements: [{
+            id: "id",
+            text: "text"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.SimulationOnboardingSuiteCreateDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SimulationSuitesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.simulationSuites.<a href="/src/api/resources/simulationSuites/client/Client.ts">simulationOnboardingControllerSuiteUpdate</a>({ ...params }) -> Vapi.SimulationOnboardingSuiteViewDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revise a suite created by `POST /eval/simulation/onboarding/suite`. Remove simulations, rewrite scenarios using natural-language instructions, or set `retryFailed` to regenerate scenarios that failed or exceeded generation limits. The response includes the updated suite and requirement coverage.
+
+Requests can take up to 2 minutes.
+
+Send a new `patchKey` for each edit. Replaying an applied key changes nothing and returns the current suite, with `failedEditSimulationIds` listing the simulations that edit could not rewrite, so retry a timeout or a 5xx with the same key. A suite remembers its last 50 keys, so never reuse one.
+
+Each organization can make 60 edits per UTC day, shared with the dashboard. Requests that only remove simulations and replays of applied edits do not count toward this limit. On a 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED`, wait until the daily limit resets at 00:00 UTC before retrying.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+    suiteId: "suiteId",
+    patchKey: "patchKey"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.SimulationOnboardingSuiteUpdateDto` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SimulationSuitesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Simulations
 <details><summary><code>client.simulations.<a href="/src/api/resources/simulations/client/Client.ts">simulationControllerFindAll</a>({ ...params }) -> Vapi.Simulation[]</code></summary>
 <dl>
 <dd>
@@ -8365,6 +8540,306 @@ await client.observabilityScorecard.scorecardControllerCreate({
 <dd>
 
 **requestOptions:** `ObservabilityScorecardClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GuardrailRules
+<details><summary><code>client.guardrailRules.<a href="/src/api/resources/guardrailRules/client/Client.ts">guardrailRulesControllerList</a>({ ...params }) -> Vapi.GuardrailRule[]</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailRules.guardrailRulesControllerList();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailRulesControllerListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailRulesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardrailRules.<a href="/src/api/resources/guardrailRules/client/Client.ts">guardrailRulesControllerPaginated</a>({ ...params }) -> Vapi.GuardrailRulesPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailRules.guardrailRulesControllerPaginated();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailRulesControllerPaginatedRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailRulesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardrailRules.<a href="/src/api/resources/guardrailRules/client/Client.ts">guardrailRulesControllerFind</a>({ ...params }) -> Vapi.GuardrailRule</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailRules.guardrailRulesControllerFind({
+    id: "id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailRulesControllerFindRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailRulesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GuardrailPacks
+<details><summary><code>client.guardrailPacks.<a href="/src/api/resources/guardrailPacks/client/Client.ts">guardrailPacksControllerList</a>({ ...params }) -> Vapi.GuardrailPack[]</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailPacks.guardrailPacksControllerList();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailPacksControllerListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailPacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardrailPacks.<a href="/src/api/resources/guardrailPacks/client/Client.ts">guardrailPacksControllerPaginated</a>({ ...params }) -> Vapi.GuardrailPacksPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailPacks.guardrailPacksControllerPaginated();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailPacksControllerPaginatedRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailPacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardrailPacks.<a href="/src/api/resources/guardrailPacks/client/Client.ts">guardrailPacksControllerFind</a>({ ...params }) -> Vapi.GuardrailPack</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardrailPacks.guardrailPacksControllerFind({
+    id: "id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Vapi.GuardrailPacksControllerFindRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GuardrailPacksClient.RequestOptions` 
     
 </dd>
 </dl>

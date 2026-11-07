@@ -26,7 +26,7 @@ export interface ServerMessageResponseAssistantRequest {
      * - Squad, use `squad`
      * - Workflow, use `workflow`
      */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /** These are the overrides for the `assistant` or `assistantId`'s settings and template variables. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /**

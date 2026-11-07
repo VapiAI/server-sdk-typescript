@@ -13,4 +13,6 @@ export interface StructuredOutputCostBreakdown {
     completionTokens: number;
     /** This is the number of cached prompt tokens used to evaluate this structured output. This is a subset of `promptTokens`, not an addition to it. */
     cachedPromptTokens?: number | undefined;
+    /** This is the number of reasoning tokens the model generated for this structured output. This is a subset of `completionTokens`, not an addition to it: reasoning tokens are already billed at the output-token rate, so this is for visibility only and does not affect `cost`. */
+    reasoningTokens?: number | undefined;
 }

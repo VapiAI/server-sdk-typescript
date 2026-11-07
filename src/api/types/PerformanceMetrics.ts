@@ -6,11 +6,20 @@ import type * as Vapi from "../index.js";
  * Call performance measurements, including per-turn and average provider, endpointing, transport, and interruption metrics.
  */
 export interface PerformanceMetrics {
-    /** These are the individual latencies for each turn. */
+    /**
+     * These are the individual latencies for each turn, in milliseconds, measured on Vapi's servers without network or playback time.
+     * A turn is recorded only when the assistant replies to the user. A first message the assistant speaks first is not recorded; with `assistant-waits-for-user` it is recorded, with `endpointingLatency` 0. A component that was not measured on a turn is 0.
+     */
     turnLatencies?: Vapi.TurnLatency[] | undefined;
-    /** This is the average latency for the model to output the first token. */
+    /**
+     * This is the average `modelLatency` across `turnLatencies`, in milliseconds.
+     * Turns that recorded 0 because the model latency was not measured are included in the average.
+     */
     modelLatencyAverage?: number | undefined;
-    /** This is the average latency for the text to speech. */
+    /**
+     * This is the average `voiceLatency` across `turnLatencies`, in milliseconds.
+     * Turns that recorded 0 because the voice latency was not measured are included in the average.
+     */
     voiceLatencyAverage?: number | undefined;
     /** This is the average latency for the transcriber. */
     transcriberLatencyAverage?: number | undefined;

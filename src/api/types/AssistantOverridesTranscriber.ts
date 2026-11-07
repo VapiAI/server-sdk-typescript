@@ -19,6 +19,7 @@ export type AssistantOverridesTranscriber =
     | Vapi.AssistantOverridesTranscriber.Cartesia
     | Vapi.AssistantOverridesTranscriber.Soniox
     | Vapi.AssistantOverridesTranscriber.Xai
+    | Vapi.AssistantOverridesTranscriber.Reson8
     | Vapi.AssistantOverridesTranscriber.Vapi;
 
 export namespace AssistantOverridesTranscriber {
@@ -72,6 +73,10 @@ export namespace AssistantOverridesTranscriber {
 
     export interface Xai extends Vapi.XaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.Reson8Transcriber {
+        provider: "reson8";
     }
 
     export interface Vapi extends Vapi.VapiTranscriber {

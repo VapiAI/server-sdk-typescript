@@ -23,6 +23,8 @@ export interface SimulationRun {
     updatedAt: string;
     /** Aggregate counts of the run's items by status. */
     itemCounts?: Vapi.SimulationRunItemCounts | undefined;
+    /** Generate directly attached target structured outputs. Default false. Enabled extraction may incur additional model charges. */
+    includeTargetStructuredOutputs?: boolean | undefined;
     /** The simulations and suites included in the run. */
     simulations: Vapi.SimulationRunSimulationsItem[];
     /** The assistant or squad the run was tested against. */

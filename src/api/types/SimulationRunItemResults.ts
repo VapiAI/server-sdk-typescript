@@ -3,6 +3,12 @@
 import type * as Vapi from "../index.js";
 
 export interface SimulationRunItemResults {
+    /** Retention-permitted target extraction values, present only when enabled. */
+    structuredOutputs?: Record<string, Vapi.SimulationRunItemResultsStructuredOutputsValue> | undefined;
+    /** Condition-gated outputs or audio outputs unsupported by chat. */
+    skippedStructuredOutputs?: Record<string, Vapi.SimulationRunItemResultsSkippedStructuredOutputsValue> | undefined;
+    /** Sanitized diagnostic; optional target extraction never changes pass/fail. */
+    structuredOutputError?: string | undefined;
     /** This is the list of results from structured output evaluations. */
     evaluations: Vapi.StructuredOutputEvaluationResult[];
     /** This indicates whether all required, non-skipped structured output evaluations and latency expectations passed. */
