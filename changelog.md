@@ -1,3 +1,21 @@
+## [4.0.0] - 2026-11-07
+### Breaking Changes
+- **`UpdateLineInsightFromCallTableDtoQueriesItem`**, **`UpdatePieInsightFromCallTableDtoQueriesItem`**, **`UpdateTextInsightFromCallTableDtoQueriesItem`** — `JsonQueryOnEventsTable` added as a new union variant; callers with exhaustive discriminated-union switches must add a handler for this variant.
+
+### Added
+- **`client.guardrailPacks`** and **`client.guardrailRules`** — two new top-level clients for browsing guardrail packs and rules, each exposing `list`, `paginated`, and `find` methods; all supporting request types and sort enums are exported from the top-level index.
+- **`Reson8Transcriber`** / **`Reson8Credential`** — new Reson8 speech-to-text provider with configurable model, language, keyterms, and turn-probability thresholds; `reson8` variant added to `ConversationNodeTranscriber` and `TransferAssistantTranscriber` unions.
+- **`CallHealthDashboard*` type family** — 40+ new interfaces and enums for monitoring assistant goal performance, issue tracking, call availability, triage actions, coverage reporting, and paginated series data.
+- **`SimulationOnboarding*`** and **`TrafficTab*` type families** — new interfaces and enums supporting AI-assisted simulation suite generation and per-version assistant traffic analytics.
+- See full changelog for all changes
+
+### Changed
+- **`WorkflowOpenAiModel.reasoningEffort`** — new optional field (`WorkflowOpenAiModelReasoningEffort`) to control reasoning token effort during structured output extraction.
+- **`{{messagesWithConfidence}}` template variable** — documented across all Workflow model types as a new LiquidJS variable for text extraction that includes transcription confidence data.
+- **New enum values** added across several types including `CartesiaVoiceModel`, `CartesiaVoiceLanguage`, `OpenAiVoiceIdEnum`, `GoogleModelModel`, `CallEndedReason`, `ServerMessageStatusUpdateEndedReason`, `SubscriptionStatus`, and `TransferAssistantBackgroundSoundZero`.
+- **`baselineVersion`** optional field added to all tool interfaces (`CodeTool`, `ComputerTool`, `SipRequestTool`, `SlackSendMessageTool`, `SmsTool`, `TextEditorTool`, `TransferCallTool`).
+- **`TurnLatency`** fields — JSDoc expanded with precise millisecond-level definitions clarifying what each latency interval measures.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.
