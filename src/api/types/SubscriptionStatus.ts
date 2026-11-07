@@ -7,5 +7,6 @@
 export const SubscriptionStatus = {
     Active: "active",
     Frozen: "frozen",
+    Blocked: "blocked",
 } as const;
 export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus];

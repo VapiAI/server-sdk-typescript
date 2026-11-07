@@ -8,6 +8,8 @@ import { CampaignsClient } from "./api/resources/campaigns/client/Client.js";
 import { ChatsClient } from "./api/resources/chats/client/Client.js";
 import { EvalClient } from "./api/resources/eval/client/Client.js";
 import { FilesClient } from "./api/resources/files/client/Client.js";
+import { GuardrailPacksClient } from "./api/resources/guardrailPacks/client/Client.js";
+import { GuardrailRulesClient } from "./api/resources/guardrailRules/client/Client.js";
 import { InsightClient } from "./api/resources/insight/client/Client.js";
 import { KnowledgeBasesV2Client } from "./api/resources/knowledgeBasesV2/client/Client.js";
 import { ObservabilityScorecardClient } from "./api/resources/observabilityScorecard/client/Client.js";
@@ -56,6 +58,8 @@ export class VapiClient {
     protected _board: BoardClient | undefined;
     protected _eval: EvalClient | undefined;
     protected _observabilityScorecard: ObservabilityScorecardClient | undefined;
+    protected _guardrailRules: GuardrailRulesClient | undefined;
+    protected _guardrailPacks: GuardrailPacksClient | undefined;
     protected _providerResources: ProviderResourcesClient | undefined;
     protected _analytics: AnalyticsClient | undefined;
 
@@ -145,6 +149,14 @@ export class VapiClient {
 
     public get observabilityScorecard(): ObservabilityScorecardClient {
         return (this._observabilityScorecard ??= new ObservabilityScorecardClient(this._options));
+    }
+
+    public get guardrailRules(): GuardrailRulesClient {
+        return (this._guardrailRules ??= new GuardrailRulesClient(this._options));
+    }
+
+    public get guardrailPacks(): GuardrailPacksClient {
+        return (this._guardrailPacks ??= new GuardrailPacksClient(this._options));
     }
 
     public get providerResources(): ProviderResourcesClient {

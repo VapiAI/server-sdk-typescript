@@ -162,76 +162,6 @@ export class AssistantsClient {
     }
 
     /**
-     * @param {Vapi.ValidateBackgroundSoundUrlDto} request
-     * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.assistants.assistantControllerValidateBackgroundSoundUrl({
-     *         url: "https://example.com/my-sound.mp3"
-     *     })
-     */
-    public assistantControllerValidateBackgroundSoundUrl(
-        request: Vapi.ValidateBackgroundSoundUrlDto,
-        requestOptions?: AssistantsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.BackgroundSoundUrlValidationResult> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__assistantControllerValidateBackgroundSoundUrl(request, requestOptions),
-        );
-    }
-
-    private async __assistantControllerValidateBackgroundSoundUrl(
-        request: Vapi.ValidateBackgroundSoundUrlDto,
-        requestOptions?: AssistantsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.BackgroundSoundUrlValidationResult>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.VapiEnvironment.Default,
-                "assistant/background-sound/validate",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Vapi.BackgroundSoundUrlValidationResult,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/assistant/background-sound/validate",
-        );
-    }
-
-    /**
      * Returns the assistant identified by its ID.
      *
      * @param {Vapi.GetAssistantsRequest} request
@@ -364,6 +294,8 @@ export class AssistantsClient {
      * @param {Vapi.UpdateAssistantDto} request
      * @param {AssistantsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Vapi.ConflictError}
+     *
      * @example
      *     await client.assistants.update({
      *         id: "id"
@@ -411,11 +343,16 @@ export class AssistantsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VapiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/assistant/{id}");

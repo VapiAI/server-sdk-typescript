@@ -1,6 +1,6 @@
 {
     "name": "@vapi-ai/server-sdk",
-    "version": "3.0.0",
+    "version": "0.0.0-fern-placeholder",
     "private": false,
     "repository": {
         "type": "git",
@@ -252,6 +252,28 @@
                 "default": "./dist/cjs/api/resources/observabilityScorecard/exports.js"
             },
             "default": "./dist/cjs/api/resources/observabilityScorecard/exports.js"
+        },
+        "./guardrailRules": {
+            "import": {
+                "types": "./dist/esm/api/resources/guardrailRules/exports.d.mts",
+                "default": "./dist/esm/api/resources/guardrailRules/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/guardrailRules/exports.d.ts",
+                "default": "./dist/cjs/api/resources/guardrailRules/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/guardrailRules/exports.js"
+        },
+        "./guardrailPacks": {
+            "import": {
+                "types": "./dist/esm/api/resources/guardrailPacks/exports.d.mts",
+                "default": "./dist/esm/api/resources/guardrailPacks/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/guardrailPacks/exports.d.ts",
+                "default": "./dist/cjs/api/resources/guardrailPacks/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/guardrailPacks/exports.js"
         },
         "./providerResources": {
             "import": {

@@ -2,7 +2,7 @@
 
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { mergeHeaders } from "../../../../core/headers.js";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
@@ -43,6 +43,7 @@ export class SimulationRunsClient {
         requestOptions?: SimulationRunsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.SimulationRunControllerFindAllResponse>> {
         const {
+            suiteId,
             status,
             filterStatus,
             targetType,
@@ -61,6 +62,7 @@ export class SimulationRunsClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            suiteId,
             status: status != null ? status : undefined,
             filterStatus: filterStatus != null ? filterStatus : undefined,
             targetType: targetType != null ? targetType : undefined,
@@ -125,6 +127,7 @@ export class SimulationRunsClient {
      * @param {SimulationRunsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Vapi.PaymentRequiredError}
+     * @throws {@link Vapi.ConflictError}
      *
      * @example
      *     await client.simulationRuns.simulationRunControllerCreate({
@@ -147,10 +150,12 @@ export class SimulationRunsClient {
         request: Vapi.CreateSimulationRunDto,
         requestOptions?: SimulationRunsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Vapi.CreateSimulationRunResponse>> {
+        const { "Idempotency-Key": idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
+            mergeOnlyDefinedHeaders({ "Idempotency-Key": idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -165,7 +170,7 @@ export class SimulationRunsClient {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: request,
+            body: _body,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -183,6 +188,8 @@ export class SimulationRunsClient {
                         _response.error.body as Vapi.SimulationRunPaymentRequiredResponse,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.VapiError({
                         statusCode: _response.error.statusCode,
@@ -329,14 +336,14 @@ export class SimulationRunsClient {
     public simulationRunControllerFindItems(
         request: Vapi.SimulationRunControllerFindItemsRequest,
         requestOptions?: SimulationRunsClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.SimulationRunItem[]> {
+    ): core.HttpResponsePromise<Vapi.SimulationRunControllerFindItemsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__simulationRunControllerFindItems(request, requestOptions));
     }
 
     private async __simulationRunControllerFindItems(
         request: Vapi.SimulationRunControllerFindItemsRequest,
         requestOptions?: SimulationRunsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.SimulationRunItem[]>> {
+    ): Promise<core.WithRawResponse<Vapi.SimulationRunControllerFindItemsResponse>> {
         const {
             id,
             simulationId,
@@ -395,7 +402,10 @@ export class SimulationRunsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.SimulationRunItem[], rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as Vapi.SimulationRunControllerFindItemsResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

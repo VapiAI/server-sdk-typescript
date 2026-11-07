@@ -19,7 +19,6 @@ export type CreateAssistantDraftDtoVoice =
     | Vapi.CreateAssistantDraftDtoVoice.Wellsaid
     | Vapi.CreateAssistantDraftDtoVoice.RimeAi
     | Vapi.CreateAssistantDraftDtoVoice.SmallestAi
-    | Vapi.CreateAssistantDraftDtoVoice.Tavus
     | Vapi.CreateAssistantDraftDtoVoice.Vapi
     | Vapi.CreateAssistantDraftDtoVoice.Sesame
     | Vapi.CreateAssistantDraftDtoVoice.Inworld
@@ -78,10 +77,6 @@ export namespace CreateAssistantDraftDtoVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

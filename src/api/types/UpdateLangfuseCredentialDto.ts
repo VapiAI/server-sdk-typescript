@@ -10,6 +10,8 @@ export interface UpdateLangfuseCredentialDto {
     apiKey?: string | undefined;
     /** The host URL for Langfuse project. Eg: https://cloud.langfuse.com */
     apiUrl?: string | undefined;
+    /** The semver version of your Langfuse server, e.g. 3.63.0, as its /api/public/health endpoint reports it. Optional. */
+    serverVersion?: string | undefined;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;
 }

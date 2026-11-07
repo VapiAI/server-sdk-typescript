@@ -25,7 +25,8 @@ export type UpdateToolsRequestBody =
     | Vapi.UpdateToolsRequestBody.GohighlevelContactCreate
     | Vapi.UpdateToolsRequestBody.GohighlevelContactGet
     | Vapi.UpdateToolsRequestBody.SipRequest
-    | Vapi.UpdateToolsRequestBody.Voicemail;
+    | Vapi.UpdateToolsRequestBody.Voicemail
+    | Vapi.UpdateToolsRequestBody.Code;
 
 export namespace UpdateToolsRequestBody {
     export interface ApiRequest extends Vapi.UpdateApiRequestToolDto {
@@ -120,6 +121,10 @@ export namespace UpdateToolsRequestBody {
         type: "voicemail";
     }
 
+    export interface Code extends Vapi.UpdateCodeToolDto {
+        type: "code";
+    }
+
     export type Response =
         | Vapi.UpdateToolsRequestBody.ApiRequest
         | Vapi.UpdateToolsRequestBody.Dtmf
@@ -143,5 +148,6 @@ export namespace UpdateToolsRequestBody {
         | Vapi.UpdateToolsRequestBody.GohighlevelContactCreate
         | Vapi.UpdateToolsRequestBody.GohighlevelContactGet
         | Vapi.UpdateToolsRequestBody.SipRequest
-        | Vapi.UpdateToolsRequestBody.Voicemail;
+        | Vapi.UpdateToolsRequestBody.Voicemail
+        | Vapi.UpdateToolsRequestBody.Code;
 }

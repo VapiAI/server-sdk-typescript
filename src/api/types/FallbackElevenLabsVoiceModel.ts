@@ -10,6 +10,7 @@ export const FallbackElevenLabsVoiceModel = {
     ElevenMonolingualV1: "eleven_monolingual_v1",
     ElevenV3: "eleven_v3",
     ElevenV4Turbo: "eleven_v4_turbo",
+    ElevenV3Conversational: "eleven_v3_conversational",
 } as const;
 export type FallbackElevenLabsVoiceModel =
     (typeof FallbackElevenLabsVoiceModel)[keyof typeof FallbackElevenLabsVoiceModel];

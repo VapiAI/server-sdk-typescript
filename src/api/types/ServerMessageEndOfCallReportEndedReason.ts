@@ -2,6 +2,13 @@
 
 /** This is the reason the call ended. This can also be found at `call.endedReason` on GET /call/:id. */
 export const ServerMessageEndOfCallReportEndedReason = {
+    CallInProgressErrorVapifaultGuardrailEvaluationFailed:
+        "call.in-progress.error-vapifault-guardrail-evaluation-failed",
+    CallInProgressErrorVapifaultGuardrailPlaybackTimeout: "call.in-progress.error-vapifault-guardrail-playback-timeout",
+    CallInProgressGuardrailBlocked: "call.in-progress.guardrail-blocked",
+    CallInProgressErrorVapifaultCallStartFailed: "call.in-progress.error-vapifault-call-start-failed",
+    CallInProgressErrorVapifaultAssistantHandoffStartFailed:
+        "call.in-progress.error-vapifault-assistant-handoff-start-failed",
     CallStartErrorNeitherAssistantNorServerSet: "call-start-error-neither-assistant-nor-server-set",
     AssistantRequestFailed: "assistant-request-failed",
     AssistantRequestReturnedError: "assistant-request-returned-error",
@@ -164,6 +171,19 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallInProgressErrorVapifaultXaiTranscriberServerError:
         "call.in-progress.error-vapifault-xai-transcriber-server-error",
     CallInProgressErrorVapifaultXaiTranscriberFailed: "call.in-progress.error-vapifault-xai-transcriber-failed",
+    PipelineErrorReson8TranscriberAuthFailed: "pipeline-error-reson8-transcriber-auth-failed",
+    PipelineErrorReson8TranscriberRateLimited: "pipeline-error-reson8-transcriber-rate-limited",
+    PipelineErrorReson8TranscriberInvalidConfig: "pipeline-error-reson8-transcriber-invalid-config",
+    PipelineErrorReson8TranscriberClosed: "pipeline-error-reson8-transcriber-closed",
+    PipelineErrorReson8TranscriberFailed: "pipeline-error-reson8-transcriber-failed",
+    CallInProgressErrorVapifaultReson8TranscriberAuthFailed:
+        "call.in-progress.error-vapifault-reson8-transcriber-auth-failed",
+    CallInProgressErrorVapifaultReson8TranscriberRateLimited:
+        "call.in-progress.error-vapifault-reson8-transcriber-rate-limited",
+    CallInProgressErrorVapifaultReson8TranscriberInvalidConfig:
+        "call.in-progress.error-vapifault-reson8-transcriber-invalid-config",
+    CallInProgressErrorVapifaultReson8TranscriberClosed: "call.in-progress.error-vapifault-reson8-transcriber-closed",
+    CallInProgressErrorVapifaultReson8TranscriberFailed: "call.in-progress.error-vapifault-reson8-transcriber-failed",
     PipelineErrorCartesiaTranscriberFailed: "pipeline-error-cartesia-transcriber-failed",
     CallInProgressErrorVapifaultCartesiaTranscriberFailed:
         "call.in-progress.error-vapifault-cartesia-transcriber-failed",
@@ -625,6 +645,8 @@ export const ServerMessageEndOfCallReportEndedReason = {
     CallInProgressErrorVapifaultCartesiaRequestedPayment: "call.in-progress.error-vapifault-cartesia-requested-payment",
     CallInProgressErrorProviderfaultCartesia500ServerError:
         "call.in-progress.error-providerfault-cartesia-500-server-error",
+    CallInProgressErrorProviderfaultCartesia502ServerError:
+        "call.in-progress.error-providerfault-cartesia-502-server-error",
     CallInProgressErrorProviderfaultCartesia503ServerError:
         "call.in-progress.error-providerfault-cartesia-503-server-error",
     CallInProgressErrorProviderfaultCartesia522ServerError:
@@ -658,6 +680,7 @@ export const ServerMessageEndOfCallReportEndedReason = {
     PipelineErrorElevenLabsMaxCharacterLimitExceeded: "pipeline-error-eleven-labs-max-character-limit-exceeded",
     PipelineErrorElevenLabsBlockedVoicePotentiallyAgainstTermsOfServiceAndAwaitingVerification:
         "pipeline-error-eleven-labs-blocked-voice-potentially-against-terms-of-service-and-awaiting-verification",
+    PipelineErrorElevenLabsUnsupportedModel: "pipeline-error-eleven-labs-unsupported-model",
     PipelineErrorElevenLabs500ServerError: "pipeline-error-eleven-labs-500-server-error",
     PipelineErrorElevenLabs503ServerError: "pipeline-error-eleven-labs-503-server-error",
     CallInProgressErrorVapifaultElevenLabsVoiceNotFound: "call.in-progress.error-vapifault-eleven-labs-voice-not-found",
@@ -697,6 +720,8 @@ export const ServerMessageEndOfCallReportEndedReason = {
         "call.in-progress.error-vapifault-eleven-labs-max-character-limit-exceeded",
     CallInProgressErrorVapifaultElevenLabsBlockedVoicePotentiallyAgainstTermsOfServiceAndAwaitingVerification:
         "call.in-progress.error-vapifault-eleven-labs-blocked-voice-potentially-against-terms-of-service-and-awaiting-verification",
+    CallInProgressErrorVapifaultElevenLabsUnsupportedModel:
+        "call.in-progress.error-vapifault-eleven-labs-unsupported-model",
     CallInProgressErrorProviderfaultElevenLabsSystemBusyAndRequestedUpgrade:
         "call.in-progress.error-providerfault-eleven-labs-system-busy-and-requested-upgrade",
     CallInProgressErrorProviderfaultElevenLabsBlockedConcurrentRequestsAndRequestedUpgrade:

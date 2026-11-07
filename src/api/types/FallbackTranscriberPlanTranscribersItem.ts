@@ -15,7 +15,8 @@ export type FallbackTranscriberPlanTranscribersItem =
     | Vapi.FallbackTranscriberPlanTranscribersItem.Openai
     | Vapi.FallbackTranscriberPlanTranscribersItem.Cartesia
     | Vapi.FallbackTranscriberPlanTranscribersItem.Soniox
-    | Vapi.FallbackTranscriberPlanTranscribersItem.Xai;
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Xai
+    | Vapi.FallbackTranscriberPlanTranscribersItem.Reson8;
 
 export namespace FallbackTranscriberPlanTranscribersItem {
     export interface AssemblyAi extends Vapi.FallbackAssemblyAiTranscriber {
@@ -68,5 +69,9 @@ export namespace FallbackTranscriberPlanTranscribersItem {
 
     export interface Xai extends Vapi.FallbackXaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.FallbackReson8Transcriber {
+        provider: "reson8";
     }
 }

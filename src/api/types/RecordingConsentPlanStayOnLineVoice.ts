@@ -20,7 +20,6 @@ export type RecordingConsentPlanStayOnLineVoice =
     | Vapi.RecordingConsentPlanStayOnLineVoice.Wellsaid
     | Vapi.RecordingConsentPlanStayOnLineVoice.RimeAi
     | Vapi.RecordingConsentPlanStayOnLineVoice.SmallestAi
-    | Vapi.RecordingConsentPlanStayOnLineVoice.Tavus
     | Vapi.RecordingConsentPlanStayOnLineVoice.Vapi
     | Vapi.RecordingConsentPlanStayOnLineVoice.Sesame
     | Vapi.RecordingConsentPlanStayOnLineVoice.Inworld
@@ -79,10 +78,6 @@ export namespace RecordingConsentPlanStayOnLineVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

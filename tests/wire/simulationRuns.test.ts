@@ -30,6 +30,7 @@ describe("SimulationRunsClient", () => {
                     distinctSimulationTotal: 1.1,
                     distinctSimulationFailed: 1.1,
                 },
+                includeTargetStructuredOutputs: true,
                 simulations: [
                     {
                         type: "simulation",
@@ -1307,6 +1308,7 @@ describe("SimulationRunsClient", () => {
                     distinctSimulationTotal: 1.1,
                     distinctSimulationFailed: 1.1,
                 },
+                includeTargetStructuredOutputs: true,
                 simulations: [
                     {
                         type: "simulation",
@@ -2897,6 +2899,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -4158,6 +4161,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         };
 
         server
@@ -4199,6 +4203,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -5783,6 +5788,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         });
     });
 
@@ -5821,6 +5827,41 @@ describe("SimulationRunsClient", () => {
         }).rejects.toThrow(Vapi.PaymentRequiredError);
     });
 
+    test("SimulationRunController_create (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            simulations: [{ type: "simulation" }, { type: "simulation" }],
+            target: { type: "assistant" },
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/run")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationRuns.simulationRunControllerCreate({
+                simulations: [
+                    {
+                        type: "simulation",
+                    },
+                    {
+                        type: "simulation",
+                    },
+                ],
+                target: {
+                    type: "assistant",
+                },
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
+    });
+
     test("SimulationRunController_findOne", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -5845,6 +5886,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -7136,6 +7178,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -8744,6 +8787,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -10035,6 +10079,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -11678,6 +11723,9 @@ describe("SimulationRunsClient", () => {
                     hooks: { key: "value" },
                 },
                 results: {
+                    structuredOutputs: { key: { name: "name", result: null } },
+                    skippedStructuredOutputs: { key: { name: "name" } },
+                    structuredOutputError: "structuredOutputError",
                     evaluations: [
                         {
                             structuredOutputId: "structuredOutputId",
@@ -11709,7 +11757,7 @@ describe("SimulationRunsClient", () => {
                     scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                     suggestedSystemPrompt: "suggestedSystemPrompt",
                 },
-                configurations: { transport: { provider: "vapi.websocket" } },
+                configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
             },
         ];
 
@@ -11801,6 +11849,18 @@ describe("SimulationRunsClient", () => {
                     },
                 },
                 results: {
+                    structuredOutputs: {
+                        key: {
+                            name: "name",
+                            result: null,
+                        },
+                    },
+                    skippedStructuredOutputs: {
+                        key: {
+                            name: "name",
+                        },
+                    },
+                    structuredOutputError: "structuredOutputError",
                     evaluations: [
                         {
                             structuredOutputId: "structuredOutputId",
@@ -11850,6 +11910,7 @@ describe("SimulationRunsClient", () => {
                     suggestedSystemPrompt: "suggestedSystemPrompt",
                 },
                 configurations: {
+                    includeTargetStructuredOutputs: true,
                     transport: {
                         provider: "vapi.websocket",
                     },
@@ -11917,6 +11978,9 @@ describe("SimulationRunsClient", () => {
                 hooks: { key: "value" },
             },
             results: {
+                structuredOutputs: { key: { name: "name", result: null } },
+                skippedStructuredOutputs: { key: { name: "name" } },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -11955,7 +12019,7 @@ describe("SimulationRunsClient", () => {
                 scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
-            configurations: { transport: { provider: "vapi.websocket" } },
+            configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
         };
 
         server
@@ -12055,6 +12119,18 @@ describe("SimulationRunsClient", () => {
                 },
             },
             results: {
+                structuredOutputs: {
+                    key: {
+                        name: "name",
+                        result: null,
+                    },
+                },
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                    },
+                },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12109,6 +12185,7 @@ describe("SimulationRunsClient", () => {
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
             configurations: {
+                includeTargetStructuredOutputs: true,
                 transport: {
                     provider: "vapi.websocket",
                 },
@@ -12175,6 +12252,9 @@ describe("SimulationRunsClient", () => {
                 hooks: { key: "value" },
             },
             results: {
+                structuredOutputs: { key: { name: "name", result: null } },
+                skippedStructuredOutputs: { key: { name: "name" } },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12213,7 +12293,7 @@ describe("SimulationRunsClient", () => {
                 scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
-            configurations: { transport: { provider: "vapi.websocket" } },
+            configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
         };
 
         server
@@ -12313,6 +12393,18 @@ describe("SimulationRunsClient", () => {
                 },
             },
             results: {
+                structuredOutputs: {
+                    key: {
+                        name: "name",
+                        result: null,
+                    },
+                },
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                    },
+                },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12367,6 +12459,7 @@ describe("SimulationRunsClient", () => {
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
             configurations: {
+                includeTargetStructuredOutputs: true,
                 transport: {
                     provider: "vapi.websocket",
                 },

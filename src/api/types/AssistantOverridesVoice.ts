@@ -19,7 +19,6 @@ export type AssistantOverridesVoice =
     | Vapi.AssistantOverridesVoice.Wellsaid
     | Vapi.AssistantOverridesVoice.RimeAi
     | Vapi.AssistantOverridesVoice.SmallestAi
-    | Vapi.AssistantOverridesVoice.Tavus
     | Vapi.AssistantOverridesVoice.Vapi
     | Vapi.AssistantOverridesVoice.Sesame
     | Vapi.AssistantOverridesVoice.Inworld
@@ -78,10 +77,6 @@ export namespace AssistantOverridesVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {
