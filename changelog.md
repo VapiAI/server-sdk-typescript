@@ -1,3 +1,15 @@
+## [4.0.0] - 2026-11-13
+### Added
+- **Call Health Dashboard types** — a full suite of new interfaces and enums (`CallHealthDashboardAssistantOverviewDto`, `CallHealthDashboardIssueSummaryDto`, `CallHealthDashboardCoverageDto`, and 35+ related types) for querying assistant goal performance, issue tracking, triage actions, and call availability.
+- **`TransientAssistantDto`** — new interface and related types for configuring an assistant transiently without persisting it to the database.
+- **`TrafficTabMetricsDto`** and related types — expose per-version call analytics including timeseries, latency stats, and structured output breakdowns for the traffic tab.
+- **Reson8 provider support** — `ConversationNodeTranscriber.Reson8`, `TransferAssistantTranscriber.Reson8`, and `WorkflowUserEditableCredentialsItem.Reson8` added across transcriber and credentials unions; corresponding `CallEndedReason` error values included.
+- **New `CartesiaVoiceModel` variants and `CartesiaVoiceLanguage` values** — `Sonic36` and `Sonic3620260827` model variants added; `Or` (Odia) and `Ur` (Urdu) language codes added.
+- **New `CallEndedReason` values** — guardrail evaluation failed/blocked/playback-timeout, call-start failed, assistant-handoff-start failed, Cartesia 502, and ElevenLabs unsupported-model reasons added.
+- **`TransferAssistantHooksItem`** — new union type for hooks on the operator leg of `warm-transfer-experimental` transfers; `hooks` and `assistantHooksInheritEnabled` fields added to `TransferAssistant`.
+- **`baselineVersion` field** — optional display-only baseline label added to `CodeTool`, `ComputerTool`, and `TransferCallTool`.
+- **New background sound values** — `WhiteNoise`, `City`, `Crowd`, and `Farm` added to `TransferAssistantBackgroundSoundZero` and `WorkflowUserEditableBackgroundSoundZero`.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.

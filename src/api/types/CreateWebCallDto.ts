@@ -15,6 +15,21 @@ export interface CreateWebCallDto {
     squadVersion?: (string | null) | undefined;
     roomDeleteOnUserLeaveEnabled?: boolean | undefined;
     /**
+     * This determines who starts the video recording. Only applies when video
+     * recording is enabled (`artifactPlan.videoRecordingEnabled`).
+     *
+     * - `client`: the web client starts the recording when it joins.
+     * - `server`: Vapi starts the recording once when the user first joins, so a
+     *   weak client connection can't stop it from starting. The returned
+     *   `transport.callToken` doesn't start the recording, and the client should
+     *   not start it either. If Vapi can't set up the server-side start, no token
+     *   is returned. If the start itself fails, the client is told during the
+     *   call.
+     *
+     * Defaults to `client`.
+     */
+    videoRecordingStartMode?: Vapi.CreateWebCallDtoVideoRecordingStartMode | undefined;
+    /**
      * This is the assistant ID that will be used for the call. To use a transient assistant, use `assistant` instead.
      *
      * To start a call with:
@@ -31,7 +46,7 @@ export interface CreateWebCallDto {
      * - Squad, use `squad`
      * - Workflow, use `workflow`
      */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /** These are the overrides for the `assistant` or `assistantId`'s settings and template variables. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /**

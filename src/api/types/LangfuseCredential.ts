@@ -10,6 +10,8 @@ export interface LangfuseCredential {
     apiKey: string;
     /** The host URL for Langfuse project. Eg: https://cloud.langfuse.com */
     apiUrl: string;
+    /** The semver version of your Langfuse server, e.g. 3.63.0, as its /api/public/health endpoint reports it. Optional. */
+    serverVersion?: string | undefined;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */

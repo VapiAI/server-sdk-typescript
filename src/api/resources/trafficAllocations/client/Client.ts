@@ -23,9 +23,7 @@ export class TrafficAllocationsClient {
     }
 
     /**
-     * @beta This endpoint is in pre-release and may change.
-     *
-     * The append-only history of an assistant's allocations, newest first. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+     * The append-only history of an assistant's allocations, newest first.
      *
      * @param {Vapi.TrafficAllocationControllerFindAllPaginatedRequest} request
      * @param {TrafficAllocationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -101,9 +99,7 @@ export class TrafficAllocationsClient {
     }
 
     /**
-     * @beta This endpoint is in pre-release and may change.
-     *
-     * Creates a new traffic allocation for an assistant, replacing the one currently in effect. To start or adjust a split, send targets naming published versions (such as "v7") with percentages totaling 100; allocationIntent is inferred as 'explicit'. To stop splitting and send every call to the newest published version, send allocationIntent 'follow-latest' with no targets field; stopping always names its intent, so a dropped targets field can never end a split by accident. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+     * Creates a new traffic allocation for an assistant, replacing the one currently in effect. To start or adjust a split, send targets naming published versions (such as "v7") with percentages totaling 100; allocationIntent is inferred as 'explicit'. To stop splitting and send every call to the newest published version, send allocationIntent 'follow-latest' with no targets field; stopping always names its intent, so a dropped targets field can never end a split by accident.
      *
      * @param {Vapi.CreateTrafficAllocationDto} request
      * @param {TrafficAllocationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -181,9 +177,7 @@ export class TrafficAllocationsClient {
     }
 
     /**
-     * @beta This endpoint is in pre-release and may change.
-     *
-     * The allocation currently in effect for the assistant, with its targets. The response carries no allocation field when traffic splitting has never been configured. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+     * The allocation currently in effect for the assistant, with its targets. The response carries no allocation field when traffic splitting has never been configured.
      *
      * @param {Vapi.TrafficAllocationControllerLatestGetRequest} request
      * @param {TrafficAllocationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -261,9 +255,88 @@ export class TrafficAllocationsClient {
     }
 
     /**
-     * @beta This endpoint is in pre-release and may change.
+     * Per-assistant-version call metrics over a time window: call counts, configured vs actual traffic share, duration, cost per minute, latency, ended reasons, a bucketed timeseries, and optional structured output aggregations. Calls with no assistant version are reported as an 'unversioned' row.
      *
-     * Returns a single allocation by id, including its targets and actor attribution. Traffic splitting is in beta, rolling out to select organizations; requests from organizations without access receive a 403.
+     * @param {Vapi.TrafficAllocationControllerMetricsGetRequest} request
+     * @param {TrafficAllocationsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.BadRequestError}
+     * @throws {@link Vapi.ForbiddenError}
+     *
+     * @example
+     *     await client.trafficAllocations.trafficAllocationControllerMetricsGet({
+     *         assistantId: "assistantId",
+     *         from: "2024-01-15T09:30:00Z",
+     *         to: "2024-01-15T09:30:00Z"
+     *     })
+     */
+    public trafficAllocationControllerMetricsGet(
+        request: Vapi.TrafficAllocationControllerMetricsGetRequest,
+        requestOptions?: TrafficAllocationsClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.TrafficTabMetricsDto> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__trafficAllocationControllerMetricsGet(request, requestOptions),
+        );
+    }
+
+    private async __trafficAllocationControllerMetricsGet(
+        request: Vapi.TrafficAllocationControllerMetricsGetRequest,
+        requestOptions?: TrafficAllocationsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.TrafficTabMetricsDto>> {
+        const { assistantId, from: from_, to, bucket, structuredOutputIds } = request;
+        const _queryParams: Record<string, unknown> = {
+            assistantId,
+            from: from_,
+            to,
+            bucket: bucket != null ? bucket : undefined,
+            structuredOutputIds,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "traffic-allocations/metrics",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Vapi.TrafficTabMetricsDto, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/traffic-allocations/metrics");
+    }
+
+    /**
+     * Returns a single allocation by id, including its targets and actor attribution.
      *
      * @param {Vapi.TrafficAllocationControllerFindOneRequest} request
      * @param {TrafficAllocationsClient.RequestOptions} requestOptions - Request-specific configuration.

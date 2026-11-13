@@ -13,11 +13,12 @@ export interface ModelDeprecationNotice {
     provider: string;
     /** Model name as stored on the slot. */
     model: string;
-    /** Day the model became deprecated, `YYYY-MM-DD` in UTC. */
+    /** Registry effective deprecation day, `YYYY-MM-DD` in UTC. */
     deprecationDate: string;
     /**
-     * Day the model is or was retired, `YYYY-MM-DD` in UTC. On and after this
-     * day Vapi no longer runs the model as configured.
+     * Registry effective retirement day, `YYYY-MM-DD` in UTC. An observation
+     * may use an internal effective day; this field establishes neither an
+     * announced vendor shutdown nor automatic replacement eligibility.
      */
     retirementDate: string;
     /** Whether a replacement can be recommended for this configuration. */

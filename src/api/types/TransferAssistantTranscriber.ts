@@ -19,6 +19,7 @@ export type TransferAssistantTranscriber =
     | Vapi.TransferAssistantTranscriber.Cartesia
     | Vapi.TransferAssistantTranscriber.Soniox
     | Vapi.TransferAssistantTranscriber.Xai
+    | Vapi.TransferAssistantTranscriber.Reson8
     | Vapi.TransferAssistantTranscriber.Vapi;
 
 export namespace TransferAssistantTranscriber {
@@ -72,6 +73,10 @@ export namespace TransferAssistantTranscriber {
 
     export interface Xai extends Vapi.XaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.Reson8Transcriber {
+        provider: "reson8";
     }
 
     export interface Vapi extends Vapi.VapiTranscriber {

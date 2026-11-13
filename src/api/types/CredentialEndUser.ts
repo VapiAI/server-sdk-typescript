@@ -3,6 +3,6 @@
 export interface CredentialEndUser {
     endUserEmail?: (string | null) | undefined;
     endUserId: string;
-    organizationId: string;
+    organizationId?: string | undefined;
     tags?: Record<string, unknown> | undefined;
 }

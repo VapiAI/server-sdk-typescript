@@ -17,7 +17,7 @@ export interface SquadMemberDto {
     /** This is the assistant that will be used for the call. To use a transient assistant, use `assistant` instead. */
     assistantId?: (string | null) | undefined;
     /** This is the assistant that will be used for the call. To use an existing assistant, use `assistantId` instead. */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /** This can be used to override the assistant's settings and provide values for it's template variables. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
 }

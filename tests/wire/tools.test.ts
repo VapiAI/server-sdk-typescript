@@ -13,6 +13,7 @@ describe("ToolsClient", () => {
             {
                 type: "apiRequest",
                 latestVersion: "latestVersion",
+                baselineVersion: "baselineVersion",
                 messages: [{ type: "request-start", blocking: false }],
                 name: "name",
                 method: "POST",
@@ -70,6 +71,7 @@ describe("ToolsClient", () => {
             {
                 type: "apiRequest",
                 latestVersion: "latestVersion",
+                baselineVersion: "baselineVersion",
                 messages: [
                     {
                         type: "request-start",
@@ -165,6 +167,7 @@ describe("ToolsClient", () => {
         const rawResponseBody = {
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -250,6 +253,7 @@ describe("ToolsClient", () => {
         expect(response).toEqual({
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -365,6 +369,7 @@ describe("ToolsClient", () => {
         const rawResponseBody = {
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -441,6 +446,7 @@ describe("ToolsClient", () => {
         expect(response).toEqual({
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -556,6 +562,7 @@ describe("ToolsClient", () => {
         const rawResponseBody = {
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -632,6 +639,7 @@ describe("ToolsClient", () => {
         expect(response).toEqual({
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -762,6 +770,7 @@ describe("ToolsClient", () => {
         const rawResponseBody = {
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",
@@ -848,6 +857,7 @@ describe("ToolsClient", () => {
         expect(response).toEqual({
             type: "apiRequest",
             latestVersion: "latestVersion",
+            baselineVersion: "baselineVersion",
             messages: [
                 {
                     type: "request-start",

@@ -5,6 +5,8 @@ export const LatencyEvaluationResultMetric = {
     Turn: "turn",
     Model: "model",
     Voice: "voice",
+    Transcriber: "transcriber",
+    Endpointing: "endpointing",
 } as const;
 export type LatencyEvaluationResultMetric =
     (typeof LatencyEvaluationResultMetric)[keyof typeof LatencyEvaluationResultMetric];
