@@ -50,6 +50,7 @@ export type UpdateAssistantDraftDtoCredentialsItem =
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.Mistral
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.Speechmatics
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.Soniox
+    | Vapi.UpdateAssistantDraftDtoCredentialsItem.Reson8
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleSheetsOauth2Authorization
@@ -250,6 +251,10 @@ export namespace UpdateAssistantDraftDtoCredentialsItem {
         provider: "soniox";
     }
 
+    export interface Reson8 extends Vapi.CreateReson8CredentialDto {
+        provider: "reson8";
+    }
+
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
         provider: "google.calendar.oauth2-client";
     }
@@ -339,6 +344,7 @@ export namespace UpdateAssistantDraftDtoCredentialsItem {
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.Mistral
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.Speechmatics
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.Soniox
+        | Vapi.UpdateAssistantDraftDtoCredentialsItem.Reson8
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleCalendarOauth2Client
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleCalendarOauth2Authorization
         | Vapi.UpdateAssistantDraftDtoCredentialsItem.GoogleSheetsOauth2Authorization

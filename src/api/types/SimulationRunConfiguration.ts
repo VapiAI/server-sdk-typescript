@@ -3,6 +3,8 @@
 import type * as Vapi from "../index.js";
 
 export interface SimulationRunConfiguration {
+    /** Generate directly attached target structured outputs. Default false. Enabled extraction may incur additional model charges. */
+    includeTargetStructuredOutputs?: boolean | undefined;
     /** Transport configuration for the simulation run */
     transport?: Vapi.SimulationRunTransportConfiguration | undefined;
 }

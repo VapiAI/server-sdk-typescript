@@ -19,7 +19,6 @@ export type TransferAssistantVoice =
     | Vapi.TransferAssistantVoice.Wellsaid
     | Vapi.TransferAssistantVoice.RimeAi
     | Vapi.TransferAssistantVoice.SmallestAi
-    | Vapi.TransferAssistantVoice.Tavus
     | Vapi.TransferAssistantVoice.Vapi
     | Vapi.TransferAssistantVoice.Sesame
     | Vapi.TransferAssistantVoice.Inworld
@@ -78,10 +77,6 @@ export namespace TransferAssistantVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

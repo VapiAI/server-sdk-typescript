@@ -3,6 +3,10 @@
 export const UpdateWorkflowDtoBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type UpdateWorkflowDtoBackgroundSoundZero =
     (typeof UpdateWorkflowDtoBackgroundSoundZero)[keyof typeof UpdateWorkflowDtoBackgroundSoundZero];

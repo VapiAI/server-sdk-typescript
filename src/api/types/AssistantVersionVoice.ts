@@ -19,7 +19,6 @@ export type AssistantVersionVoice =
     | Vapi.AssistantVersionVoice.Wellsaid
     | Vapi.AssistantVersionVoice.RimeAi
     | Vapi.AssistantVersionVoice.SmallestAi
-    | Vapi.AssistantVersionVoice.Tavus
     | Vapi.AssistantVersionVoice.Vapi
     | Vapi.AssistantVersionVoice.Sesame
     | Vapi.AssistantVersionVoice.Inworld
@@ -78,10 +77,6 @@ export namespace AssistantVersionVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

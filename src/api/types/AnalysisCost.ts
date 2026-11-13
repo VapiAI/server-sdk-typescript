@@ -16,6 +16,8 @@ export interface AnalysisCost {
     completionTokens: number;
     /** This is the number of cached prompt tokens used in the analysis. This is only applicable to certain providers (e.g., OpenAI, Azure OpenAI) that support prompt caching. Cached tokens are billed at a discounted rate. */
     cachedPromptTokens?: number | undefined;
+    /** This is the number of reasoning tokens generated in the analysis, reported only by reasoning models (e.g., GPT-5) on providers that report them. This is a subset of `completionTokens`, not an addition to it: reasoning tokens are already billed at the output-token rate, so this is for visibility only and does not affect `cost`. */
+    reasoningTokens?: number | undefined;
     /**
      * This is the per-structured-output breakdown of this cost. The `cost`, `promptTokens`, `completionTokens` and `cachedPromptTokens` above are the sums of these rows.
      *

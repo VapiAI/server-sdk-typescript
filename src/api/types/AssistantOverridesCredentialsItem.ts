@@ -50,6 +50,7 @@ export type AssistantOverridesCredentialsItem =
     | Vapi.AssistantOverridesCredentialsItem.Mistral
     | Vapi.AssistantOverridesCredentialsItem.Speechmatics
     | Vapi.AssistantOverridesCredentialsItem.Soniox
+    | Vapi.AssistantOverridesCredentialsItem.Reson8
     | Vapi.AssistantOverridesCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.AssistantOverridesCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.AssistantOverridesCredentialsItem.GoogleSheetsOauth2Authorization
@@ -250,6 +251,10 @@ export namespace AssistantOverridesCredentialsItem {
         provider: "soniox";
     }
 
+    export interface Reson8 extends Vapi.CreateReson8CredentialDto {
+        provider: "reson8";
+    }
+
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
         provider: "google.calendar.oauth2-client";
     }
@@ -339,6 +344,7 @@ export namespace AssistantOverridesCredentialsItem {
         | Vapi.AssistantOverridesCredentialsItem.Mistral
         | Vapi.AssistantOverridesCredentialsItem.Speechmatics
         | Vapi.AssistantOverridesCredentialsItem.Soniox
+        | Vapi.AssistantOverridesCredentialsItem.Reson8
         | Vapi.AssistantOverridesCredentialsItem.GoogleCalendarOauth2Client
         | Vapi.AssistantOverridesCredentialsItem.GoogleCalendarOauth2Authorization
         | Vapi.AssistantOverridesCredentialsItem.GoogleSheetsOauth2Authorization
