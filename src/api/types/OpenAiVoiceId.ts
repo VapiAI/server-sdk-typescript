@@ -4,7 +4,6 @@ import type * as Vapi from "../index.js";
 
 /**
  * This is the provider-specific ID that will be used.
- * Voice availability depends on the selected model.
- * quartz, ripple, vesper, willow, stone, gleam, meridian, bossa, tempo, beacon, delta, cinder are only supported with GPT-Live models.
+ * Voice availability depends on the selected model: voices offered only by GPT-Live are rejected for other models.
  */
 export type OpenAiVoiceId = Vapi.OpenAiVoiceIdEnum | string;

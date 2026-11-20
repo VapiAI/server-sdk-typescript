@@ -6,5 +6,5 @@ export interface SimulationRunTargetAssistant {
     /** ID of an existing assistant to test against. Cannot be combined with inline assistant. */
     assistantId?: string | undefined;
     /** Inline assistant configuration to test against. Cannot be combined with assistantId. */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
 }

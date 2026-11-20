@@ -8,7 +8,7 @@ export interface TesterPlan {
      *
      * Make sure to write a detailed system prompt for a test assistant, and use the {{test.script}} variable to access the test script.
      */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /**
      * Pass an assistant id that can be access
      *

@@ -7,7 +7,7 @@ import type * as Vapi from "../index.js";
  */
 export interface EvalRunTargetAssistant {
     /** This is the transient assistant that will be run against the eval */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /** This is the overrides that will be applied to the assistant. */
     assistantOverrides?: Vapi.AssistantOverrides | undefined;
     /** This is the id of the assistant that will be run against the eval */

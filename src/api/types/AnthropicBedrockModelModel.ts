@@ -16,6 +16,8 @@ export const AnthropicBedrockModelModel = {
     ClaudeSonnet4520250929: "claude-sonnet-4-5-20250929",
     ClaudeSonnet46: "claude-sonnet-4-6",
     ClaudeHaiku4520251001: "claude-haiku-4-5-20251001",
+    ClaudeHaiku55: "claude-haiku-5-5",
+    GlobalAnthropicClaudeSonnet46: "global.anthropic.claude-sonnet-4-6",
     GlobalAnthropicClaudeHaiku4520251001V10: "global.anthropic.claude-haiku-4-5-20251001-v1:0",
 } as const;
 export type AnthropicBedrockModelModel = (typeof AnthropicBedrockModelModel)[keyof typeof AnthropicBedrockModelModel];

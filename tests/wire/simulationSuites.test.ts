@@ -321,4 +321,966 @@ describe("SimulationSuitesClient", () => {
             ],
         });
     });
+
+    test("SimulationOnboardingController_requirementsDraft (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = {
+            version: 1.1,
+            changeNote: "changeNote",
+            sources: ["sources"],
+            requirements: [{ id: "id", text: "text", tag: "assumption", note: "note" }],
+            openQuestions: [{ id: "id", text: "text", why: "why" }],
+        };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+            assistantId: "assistantId",
+        });
+        expect(response).toEqual({
+            version: 1.1,
+            changeNote: "changeNote",
+            sources: ["sources"],
+            requirements: [
+                {
+                    id: "id",
+                    text: "text",
+                    tag: "assumption",
+                    note: "note",
+                },
+            ],
+            openQuestions: [
+                {
+                    id: "id",
+                    text: "text",
+                    why: "why",
+                },
+            ],
+        });
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.BadRequestError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.ForbiddenError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.NotFoundError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { code: "SIMULATION_ONBOARDING_GENERATION_IN_PROGRESS", message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.TooManyRequestsError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(502)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.BadGatewayError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.ServiceUnavailableError);
+    });
+
+    test("SimulationOnboardingController_requirementsDraft (8)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { assistantId: "assistantId" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/requirements")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(504)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+                assistantId: "assistantId",
+            });
+        }).rejects.toThrow(Vapi.GatewayTimeoutError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "idempotencyKey",
+            requirements: [{ id: "id", text: "text" }],
+        };
+        const rawResponseBody = {
+            suite: { id: "id", name: "name" },
+            assistantId: "assistantId",
+            simulations: [
+                {
+                    id: "id",
+                    scenarioId: "scenarioId",
+                    name: "name",
+                    personalityName: "personalityName",
+                    successCriteria: ["successCriteria"],
+                    requirementIds: ["requirementIds"],
+                    mockedTools: ["mockedTools"],
+                },
+            ],
+            coverage: {
+                covered: 1.1,
+                total: 1.1,
+                gaps: [{ requirementId: "requirementId", reason: "not-testable" }],
+                retryable: 1.1,
+            },
+            requirements: [{ id: "id", text: "text", tag: "assumption", note: "note" }],
+            docs: { bestPractices: "bestPractices", toolMocks: "toolMocks" },
+            reused: true,
+            failedEditSimulationIds: ["failedEditSimulationIds"],
+            toolGaps: [
+                {
+                    toolName: "toolName",
+                    assistantName: "assistantName",
+                    reason: "dynamic-handoff",
+                    destinationNames: ["destinationNames"],
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+            assistantId: "assistantId",
+            idempotencyKey: "idempotencyKey",
+            requirements: [
+                {
+                    id: "id",
+                    text: "text",
+                },
+            ],
+        });
+        expect(response).toEqual({
+            suite: {
+                id: "id",
+                name: "name",
+            },
+            assistantId: "assistantId",
+            simulations: [
+                {
+                    id: "id",
+                    scenarioId: "scenarioId",
+                    name: "name",
+                    personalityName: "personalityName",
+                    successCriteria: ["successCriteria"],
+                    requirementIds: ["requirementIds"],
+                    mockedTools: ["mockedTools"],
+                },
+            ],
+            coverage: {
+                covered: 1.1,
+                total: 1.1,
+                gaps: [
+                    {
+                        requirementId: "requirementId",
+                        reason: "not-testable",
+                    },
+                ],
+                retryable: 1.1,
+            },
+            requirements: [
+                {
+                    id: "id",
+                    text: "text",
+                    tag: "assumption",
+                    note: "note",
+                },
+            ],
+            docs: {
+                bestPractices: "bestPractices",
+                toolMocks: "toolMocks",
+            },
+            reused: true,
+            failedEditSimulationIds: ["failedEditSimulationIds"],
+            toolGaps: [
+                {
+                    toolName: "toolName",
+                    assistantName: "assistantName",
+                    reason: "dynamic-handoff",
+                    destinationNames: ["destinationNames"],
+                },
+            ],
+        });
+    });
+
+    test("SimulationOnboardingController_suiteCreate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.BadRequestError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.ForbiddenError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.NotFoundError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.UnprocessableEntityError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { code: "SIMULATION_ONBOARDING_GENERATION_IN_PROGRESS", message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.TooManyRequestsError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (8)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(502)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.BadGatewayError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (9)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.ServiceUnavailableError);
+    });
+
+    test("SimulationOnboardingController_suiteCreate (10)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            assistantId: "assistantId",
+            idempotencyKey: "x",
+            requirements: [
+                { id: "id", text: "text" },
+                { id: "id", text: "text" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/onboarding/suite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(504)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+                assistantId: "assistantId",
+                idempotencyKey: "x",
+                requirements: [
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                    {
+                        id: "id",
+                        text: "text",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Vapi.GatewayTimeoutError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "patchKey" };
+        const rawResponseBody = {
+            suite: { id: "id", name: "name" },
+            assistantId: "assistantId",
+            simulations: [
+                {
+                    id: "id",
+                    scenarioId: "scenarioId",
+                    name: "name",
+                    personalityName: "personalityName",
+                    successCriteria: ["successCriteria"],
+                    requirementIds: ["requirementIds"],
+                    mockedTools: ["mockedTools"],
+                },
+            ],
+            coverage: {
+                covered: 1.1,
+                total: 1.1,
+                gaps: [{ requirementId: "requirementId", reason: "not-testable" }],
+                retryable: 1.1,
+            },
+            requirements: [{ id: "id", text: "text", tag: "assumption", note: "note" }],
+            docs: { bestPractices: "bestPractices", toolMocks: "toolMocks" },
+            reused: true,
+            failedEditSimulationIds: ["failedEditSimulationIds"],
+            toolGaps: [
+                {
+                    toolName: "toolName",
+                    assistantName: "assistantName",
+                    reason: "dynamic-handoff",
+                    destinationNames: ["destinationNames"],
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+            suiteId: "suiteId",
+            patchKey: "patchKey",
+        });
+        expect(response).toEqual({
+            suite: {
+                id: "id",
+                name: "name",
+            },
+            assistantId: "assistantId",
+            simulations: [
+                {
+                    id: "id",
+                    scenarioId: "scenarioId",
+                    name: "name",
+                    personalityName: "personalityName",
+                    successCriteria: ["successCriteria"],
+                    requirementIds: ["requirementIds"],
+                    mockedTools: ["mockedTools"],
+                },
+            ],
+            coverage: {
+                covered: 1.1,
+                total: 1.1,
+                gaps: [
+                    {
+                        requirementId: "requirementId",
+                        reason: "not-testable",
+                    },
+                ],
+                retryable: 1.1,
+            },
+            requirements: [
+                {
+                    id: "id",
+                    text: "text",
+                    tag: "assumption",
+                    note: "note",
+                },
+            ],
+            docs: {
+                bestPractices: "bestPractices",
+                toolMocks: "toolMocks",
+            },
+            reused: true,
+            failedEditSimulationIds: ["failedEditSimulationIds"],
+            toolGaps: [
+                {
+                    toolName: "toolName",
+                    assistantName: "assistantName",
+                    reason: "dynamic-handoff",
+                    destinationNames: ["destinationNames"],
+                },
+            ],
+        });
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.BadRequestError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.ForbiddenError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.NotFoundError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.UnprocessableEntityError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { code: "SIMULATION_ONBOARDING_GENERATION_IN_PROGRESS", message: "message" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.TooManyRequestsError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(502)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.BadGatewayError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (8)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.ServiceUnavailableError);
+    });
+
+    test("SimulationOnboardingController_suiteUpdate (9)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = { patchKey: "x" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/eval/simulation/onboarding/suite/suiteId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(504)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+                suiteId: "suiteId",
+                patchKey: "x",
+            });
+        }).rejects.toThrow(Vapi.GatewayTimeoutError);
+    });
 });

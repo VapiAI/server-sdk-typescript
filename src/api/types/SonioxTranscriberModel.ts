@@ -4,5 +4,6 @@
 export const SonioxTranscriberModel = {
     SttRtV4: "stt-rt-v4",
     SttRtV5: "stt-rt-v5",
+    SttRtV6: "stt-rt-v6",
 } as const;
 export type SonioxTranscriberModel = (typeof SonioxTranscriberModel)[keyof typeof SonioxTranscriberModel];

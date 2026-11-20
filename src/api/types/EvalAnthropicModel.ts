@@ -9,7 +9,14 @@ export interface EvalAnthropicModel {
     /** This is the specific model that will be used. */
     model: Vapi.EvalAnthropicModelModel;
     /**
+     * Reasoning effort for the judge on claude-haiku-5-5. `none` turns thinking
+     * off. `low` to `max` let the judge think before it submits its verdict.
+     * Unset means `none`. Rejected for every other model.
+     */
+    reasoningEffort?: Vapi.EvalAnthropicModelReasoningEffort | undefined;
+    /**
      * This is the optional configuration for Anthropic's thinking feature.
+     * claude-haiku-5-5 uses `reasoningEffort` instead.
      *
      * - If provided, `maxTokens` must be greater than `thinking.budgetTokens`.
      */

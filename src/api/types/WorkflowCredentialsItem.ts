@@ -50,6 +50,7 @@ export type WorkflowCredentialsItem =
     | Vapi.WorkflowCredentialsItem.Mistral
     | Vapi.WorkflowCredentialsItem.Speechmatics
     | Vapi.WorkflowCredentialsItem.Soniox
+    | Vapi.WorkflowCredentialsItem.Reson8
     | Vapi.WorkflowCredentialsItem.GoogleCalendarOauth2Client
     | Vapi.WorkflowCredentialsItem.GoogleCalendarOauth2Authorization
     | Vapi.WorkflowCredentialsItem.GoogleSheetsOauth2Authorization
@@ -250,6 +251,10 @@ export namespace WorkflowCredentialsItem {
         provider: "soniox";
     }
 
+    export interface Reson8 extends Vapi.CreateReson8CredentialDto {
+        provider: "reson8";
+    }
+
     export interface GoogleCalendarOauth2Client extends Vapi.CreateGoogleCalendarOAuth2ClientCredentialDto {
         provider: "google.calendar.oauth2-client";
     }
@@ -339,6 +344,7 @@ export namespace WorkflowCredentialsItem {
         | Vapi.WorkflowCredentialsItem.Mistral
         | Vapi.WorkflowCredentialsItem.Speechmatics
         | Vapi.WorkflowCredentialsItem.Soniox
+        | Vapi.WorkflowCredentialsItem.Reson8
         | Vapi.WorkflowCredentialsItem.GoogleCalendarOauth2Client
         | Vapi.WorkflowCredentialsItem.GoogleCalendarOauth2Authorization
         | Vapi.WorkflowCredentialsItem.GoogleSheetsOauth2Authorization

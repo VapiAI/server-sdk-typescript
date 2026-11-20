@@ -2,6 +2,7 @@
 
 /** This is the Google model that will be used. */
 export const GoogleModelModel = {
+    Gemini38Flash: "gemini-3.8-flash",
     Gemini35Flash: "gemini-3.5-flash",
     Gemini31FlashLite: "gemini-3.1-flash-lite",
     Gemini3FlashPreview: "gemini-3-flash-preview",

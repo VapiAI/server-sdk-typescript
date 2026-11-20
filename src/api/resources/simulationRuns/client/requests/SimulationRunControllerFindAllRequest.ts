@@ -7,6 +7,8 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface SimulationRunControllerFindAllRequest {
+    /** Filter by simulation suite ids */
+    suiteId?: string | string[];
     /** Filter by status */
     status?: Vapi.SimulationRunControllerFindAllRequestStatus;
     /** Filter by aggregate run result status */

@@ -15,7 +15,7 @@ export interface HandoffDestinationAssistant {
     /** This is the assistant id to transfer the call to. You must provide either assistantName or assistantId. */
     assistantId?: string | undefined;
     /** This is a transient assistant to transfer the call to. You may provide a transient assistant in the response  `handoff-destination-request` in a dynamic handoff. */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /** This is the variable extraction plan for the handoff tool. */
     variableExtractionPlan?: Vapi.VariableExtractionPlan | undefined;
     /** These are the assistant overrides to apply to the destination assistant. */

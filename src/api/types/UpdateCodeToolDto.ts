@@ -5,8 +5,6 @@ import type * as Vapi from "../index.js";
 export interface UpdateCodeToolDto {
     /** Messages spoken while the tool is running. Multiple request-start messages are variants. For request-response-delayed, same timing means variants and different timings mean staged updates. */
     messages?: Vapi.UpdateCodeToolDtoMessagesItem[] | undefined;
-    /** The type of tool. "code" for Code tool. */
-    type?: Vapi.UpdateCodeToolDtoType | undefined;
     /**
      * This determines if the tool is async.
      *

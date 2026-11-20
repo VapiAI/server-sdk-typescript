@@ -6,7 +6,7 @@ export interface CreatePersonalityDto {
     /** The display name of the personality, for example `Impatient customer`. */
     name: string;
     /** The assistant configuration for the AI tester: the model, voice, and system prompt that determine how the AI tester behaves during the conversation. */
-    assistant: Vapi.CreateAssistantDto;
+    assistant: Vapi.TransientAssistantDto;
     /**
      * Optional folder path for organizing personalities.
      * Supports up to 3 levels (e.g., "dept/feature/variant").

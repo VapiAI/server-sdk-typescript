@@ -3,6 +3,10 @@
 export const AssistantOverridesBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type AssistantOverridesBackgroundSoundZero =
     (typeof AssistantOverridesBackgroundSoundZero)[keyof typeof AssistantOverridesBackgroundSoundZero];
