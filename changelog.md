@@ -1,3 +1,20 @@
+## [4.0.0] - 2026-11-20
+### Breaking Changes
+- **`AssistantsClient.assistantControllerValidateBackgroundSoundUrl`** — method removed; call the API directly or remove the call until a replacement is available.
+- **`StructuredOutputControllerRunResponseZero`** — renamed to `StructuredOutputControllerRunResponseOne`; update all imports and type references accordingly.
+- **`simulationSuiteControllerFindAll`** — now returns `SimulationSuiteControllerFindAllResponse` instead of `SimulationSuite[]`; update any code that types or destructures the response as an array.
+
+### Added
+- **`SimulationSuitesClient` onboarding methods** — `simulationOnboardingControllerRequirementsDraft`, `simulationOnboardingControllerSuiteCreate`, and `simulationOnboardingControllerSuiteUpdate` added for AI-driven simulation suite generation and revision.
+- **`CallHealthDashboard*` type family** — 40+ new interfaces and enums for querying assistant goal performance, issue tracking, daily series, and call health coverage analytics.
+- **`SimulationOnboarding*` and `TrafficTab*` type families** — new interfaces for AI-generated simulation onboarding/requirement drafts and per-version call traffic metrics, latency, and cost breakdowns.
+- **`TransientAssistantDto`** and related discriminated unions — new interface for configuring an assistant inline on a call without persisting it, with full transcriber, model, voice, hooks, and credential support.
+- **New `CallEndedReason` values** — guardrail events, Reson8 transcriber errors, ElevenLabs unsupported model, and Cartesia 502 server error variants added for more precise error attribution.
+
+### Changed
+- **`AssistantsClient.update`** — now throws a typed `Vapi.ConflictError` on HTTP 409 responses instead of a generic `VapiError`.
+- **Tool types and `TransferAssistant`** — `baselineVersion` field added to all tool types; `TransferAssistant` gains `hooks`, `assistantHooksInheritEnabled`, Reson8 transcriber support, and new background sound values; `Ghl` and `Code` tool variants added to request/response types.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.
