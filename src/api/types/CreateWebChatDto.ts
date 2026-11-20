@@ -6,7 +6,7 @@ export interface CreateWebChatDto {
     /** This is the assistant ID to use for this chat. To use a transient assistant, use `assistant` instead. */
     assistantId?: string | undefined;
     /** This is the transient assistant configuration for this chat. To use an existing assistant, use `assistantId` instead. */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /**
      * This is the ID of the session that will be used for the chat.
      * If provided, the conversation will continue from the previous state.

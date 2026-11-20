@@ -7,6 +7,10 @@ import type * as Vapi from "../../../../index.js";
  *     {}
  */
 export interface SimulationSuiteControllerFindAllRequest {
+    /** Filter by any assigned assistant ID. Supplying both assistant and squad filters requires both to match. */
+    assistantId?: string | string[];
+    /** Filter by any assigned squad ID. Supplying both assistant and squad filters requires both to match. */
+    squadId?: string | string[];
     /** Search by simulation suite name */
     name?: string;
     /** This is the page number to return. Defaults to 1. */

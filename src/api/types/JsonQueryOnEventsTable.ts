@@ -15,6 +15,8 @@ export interface JsonQueryOnEventsTable {
     table: Vapi.JsonQueryOnEventsTableTable;
     /** The event type to query */
     on: Vapi.JsonQueryOnEventsTableOn;
+    /** The structured output an evaluation monitor tracks, as artifact.structuredOutputs[OutputID] */
+    column?: string | undefined;
     /**
      * This is the operation to perform on matching events.
      * - "count": Returns the raw count of matching events

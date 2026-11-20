@@ -54,6 +54,14 @@ export interface FallbackDeepgramTranscriber {
      */
     confidenceThreshold?: number | undefined;
     /**
+     * Controls whether Vapi filters user transcripts that repeat text from the
+     * assistant's recent transcript. Disable this only when legitimate caller
+     * responses are being mistaken for assistant audio feedback.
+     *
+     * @default true
+     */
+    feedbackFilterEnabled?: boolean | undefined;
+    /**
      * End-of-turn confidence required to finish a turn. Only used with Flux models.
      *
      * @default 0.7

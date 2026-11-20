@@ -19,6 +19,7 @@ export type CreateAssistantDtoTranscriber =
     | Vapi.CreateAssistantDtoTranscriber.Cartesia
     | Vapi.CreateAssistantDtoTranscriber.Soniox
     | Vapi.CreateAssistantDtoTranscriber.Xai
+    | Vapi.CreateAssistantDtoTranscriber.Reson8
     | Vapi.CreateAssistantDtoTranscriber.Vapi;
 
 export namespace CreateAssistantDtoTranscriber {
@@ -72,6 +73,10 @@ export namespace CreateAssistantDtoTranscriber {
 
     export interface Xai extends Vapi.XaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.Reson8Transcriber {
+        provider: "reson8";
     }
 
     export interface Vapi extends Vapi.VapiTranscriber {

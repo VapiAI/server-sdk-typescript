@@ -1,4 +1,7 @@
 export type { CreateSimulationSuiteDto } from "./CreateSimulationSuiteDto.js";
+export type { SimulationOnboardingRequirementsCreateDto } from "./SimulationOnboardingRequirementsCreateDto.js";
+export type { SimulationOnboardingSuiteCreateDto } from "./SimulationOnboardingSuiteCreateDto.js";
+export type { SimulationOnboardingSuiteUpdateDto } from "./SimulationOnboardingSuiteUpdateDto.js";
 export type { SimulationSuiteControllerDuplicateRequest } from "./SimulationSuiteControllerDuplicateRequest.js";
 export type { SimulationSuiteControllerFindAllRequest } from "./SimulationSuiteControllerFindAllRequest.js";
 export type { SimulationSuiteControllerFindOneRequest } from "./SimulationSuiteControllerFindOneRequest.js";

@@ -9,3 +9,4 @@ export * from "./SimulationRunControllerFindAllResponse.js";
 export * from "./SimulationRunControllerFindItemsRequestSortBy.js";
 export * from "./SimulationRunControllerFindItemsRequestSortOrder.js";
 export * from "./SimulationRunControllerFindItemsRequestStatus.js";
+export * from "./SimulationRunControllerFindItemsResponse.js";

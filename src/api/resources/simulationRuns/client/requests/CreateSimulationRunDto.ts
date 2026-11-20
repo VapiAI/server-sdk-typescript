@@ -14,6 +14,10 @@ import type * as Vapi from "../../../../index.js";
  *     }
  */
 export interface CreateSimulationRunDto {
+    /** Makes the request safe to retry. A retry with the same key and the same body returns the run the first request created, with `reused: true`, instead of starting another. Reusing a key with a different body returns 409. Up to 255 printable ASCII characters, scoped to your organization; a key stays bound to its run while the run exists. */
+    "Idempotency-Key"?: string;
+    /** Generate directly attached target structured outputs. Default false. Enabled extraction may incur additional model charges. */
+    includeTargetStructuredOutputs?: boolean;
     /** Array of simulations and/or suites to run */
     simulations: Vapi.CreateSimulationRunDtoSimulationsItem[];
     /** Target to test against */

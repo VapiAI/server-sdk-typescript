@@ -19,7 +19,7 @@ export interface CreateSessionDto {
      * This is the assistant configuration for this session. Use this when creating a new assistant configuration.
      * If assistantId is provided, this will be ignored.
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.TransientAssistantDto;
     /**
      * These are the overrides for the assistant configuration.
      * Use this to provide variable values and other overrides when using assistantId.

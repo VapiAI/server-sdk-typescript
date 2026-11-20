@@ -34,15 +34,17 @@ export class SimulationSuitesClient {
     public simulationSuiteControllerFindAll(
         request: Vapi.SimulationSuiteControllerFindAllRequest = {},
         requestOptions?: SimulationSuitesClient.RequestOptions,
-    ): core.HttpResponsePromise<Vapi.SimulationSuite[]> {
+    ): core.HttpResponsePromise<Vapi.SimulationSuiteControllerFindAllResponse> {
         return core.HttpResponsePromise.fromPromise(this.__simulationSuiteControllerFindAll(request, requestOptions));
     }
 
     private async __simulationSuiteControllerFindAll(
         request: Vapi.SimulationSuiteControllerFindAllRequest = {},
         requestOptions?: SimulationSuitesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Vapi.SimulationSuite[]>> {
+    ): Promise<core.WithRawResponse<Vapi.SimulationSuiteControllerFindAllResponse>> {
         const {
+            assistantId,
+            squadId,
             name,
             page,
             sortOrder,
@@ -58,6 +60,8 @@ export class SimulationSuitesClient {
             updatedAtLe,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            assistantId,
+            squadId,
             name,
             page,
             sortOrder: sortOrder != null ? sortOrder : undefined,
@@ -95,7 +99,10 @@ export class SimulationSuitesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Vapi.SimulationSuite[], rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as Vapi.SimulationSuiteControllerFindAllResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -431,5 +438,342 @@ export class SimulationSuitesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/eval/simulation/suite/{id}");
+    }
+
+    /**
+     * Generate draft test requirements from an assistant's prompt, tools, and handoff configuration. The response includes numbered requirements describing expected behavior and open questions about behavior that needs clarification. Use this endpoint before generating a simulation suite.
+     *
+     * Review the requirements and resolve any open questions. To revise a draft, send it as `previousDraft` together with natural-language `feedback` describing the changes or answers. Once the requirements are ready, pass them to `POST /eval/simulation/onboarding/suite`.
+     *
+     * Requests can take up to 2 minutes. Each organization can draft requirements 60 times per UTC day, shared with the dashboard. A 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED` response means the daily limit has been reached. Wait until the limit resets at 00:00 UTC before retrying.
+     *
+     * @param {Vapi.SimulationOnboardingRequirementsCreateDto} request
+     * @param {SimulationSuitesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.BadRequestError}
+     * @throws {@link Vapi.ForbiddenError}
+     * @throws {@link Vapi.NotFoundError}
+     * @throws {@link Vapi.TooManyRequestsError}
+     * @throws {@link Vapi.BadGatewayError}
+     * @throws {@link Vapi.ServiceUnavailableError}
+     * @throws {@link Vapi.GatewayTimeoutError}
+     *
+     * @example
+     *     await client.simulationSuites.simulationOnboardingControllerRequirementsDraft({
+     *         assistantId: "assistantId"
+     *     })
+     */
+    public simulationOnboardingControllerRequirementsDraft(
+        request: Vapi.SimulationOnboardingRequirementsCreateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.SimulationOnboardingRequirementsDraftDto> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__simulationOnboardingControllerRequirementsDraft(request, requestOptions),
+        );
+    }
+
+    private async __simulationOnboardingControllerRequirementsDraft(
+        request: Vapi.SimulationOnboardingRequirementsCreateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.SimulationOnboardingRequirementsDraftDto>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "eval/simulation/onboarding/requirements",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.SimulationOnboardingRequirementsDraftDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 429:
+                    throw new Vapi.TooManyRequestsError(
+                        _response.error.body as Vapi.SimulationOnboardingErrorDto,
+                        _response.rawResponse,
+                    );
+                case 502:
+                    throw new Vapi.BadGatewayError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Vapi.ServiceUnavailableError(_response.error.body as unknown, _response.rawResponse);
+                case 504:
+                    throw new Vapi.GatewayTimeoutError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/eval/simulation/onboarding/requirements",
+        );
+    }
+
+    /**
+     * Generate and save a simulation suite from reviewed test requirements, and assign it to an assistant. First draft requirements with `POST /eval/simulation/onboarding/requirements`. The response includes the saved suite, its simulations, and requirement coverage, including any gaps.
+     *
+     * Requests can take up to 3 minutes. Set a client timeout of at least 200 seconds.
+     *
+     * Use a unique `idempotencyKey` for each suite generation request. Retrying with the same key does not create a duplicate suite:
+     * - On a timeout or a 5xx (502, 504, 524), retry with the same key. You get the saved suite, a 409 while it is still generating, or a fresh generation if the first one never saved.
+     * - On a 409 `SIMULATION_ONBOARDING_GENERATION_IN_PROGRESS`, the first request is still generating. Wait `Retry-After` seconds (15) and retry with the same key.
+     * - On a 409 `SIMULATION_ONBOARDING_IDEMPOTENCY_KEY_REUSED`, the key was used for a different assistant or requirements. Send a new key.
+     *
+     * Review the generated simulations and coverage gaps. Revise the suite with `PATCH /eval/simulation/onboarding/suite/{suiteId}`, then run it with `POST /eval/simulation/run`.
+     *
+     * Each organization can generate 20 suites per UTC day, shared with the dashboard, and 2 at a time. A retry that returns a saved suite does not count toward these limits. On a 429 `SIMULATION_ONBOARDING_CONCURRENCY_LIMITED`, wait `Retry-After` seconds (30) before retrying. On a 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED`, wait until the daily limit resets at 00:00 UTC before retrying.
+     *
+     * @param {Vapi.SimulationOnboardingSuiteCreateDto} request
+     * @param {SimulationSuitesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.BadRequestError}
+     * @throws {@link Vapi.ForbiddenError}
+     * @throws {@link Vapi.NotFoundError}
+     * @throws {@link Vapi.ConflictError}
+     * @throws {@link Vapi.UnprocessableEntityError}
+     * @throws {@link Vapi.TooManyRequestsError}
+     * @throws {@link Vapi.BadGatewayError}
+     * @throws {@link Vapi.ServiceUnavailableError}
+     * @throws {@link Vapi.GatewayTimeoutError}
+     *
+     * @example
+     *     await client.simulationSuites.simulationOnboardingControllerSuiteCreate({
+     *         assistantId: "assistantId",
+     *         idempotencyKey: "idempotencyKey",
+     *         requirements: [{
+     *                 id: "id",
+     *                 text: "text"
+     *             }]
+     *     })
+     */
+    public simulationOnboardingControllerSuiteCreate(
+        request: Vapi.SimulationOnboardingSuiteCreateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.SimulationOnboardingSuiteViewDto> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__simulationOnboardingControllerSuiteCreate(request, requestOptions),
+        );
+    }
+
+    private async __simulationOnboardingControllerSuiteCreate(
+        request: Vapi.SimulationOnboardingSuiteCreateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.SimulationOnboardingSuiteViewDto>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                "eval/simulation/onboarding/suite",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.SimulationOnboardingSuiteViewDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 409:
+                    throw new Vapi.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                case 422:
+                    throw new Vapi.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
+                case 429:
+                    throw new Vapi.TooManyRequestsError(
+                        _response.error.body as Vapi.SimulationOnboardingErrorDto,
+                        _response.rawResponse,
+                    );
+                case 502:
+                    throw new Vapi.BadGatewayError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Vapi.ServiceUnavailableError(_response.error.body as unknown, _response.rawResponse);
+                case 504:
+                    throw new Vapi.GatewayTimeoutError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/eval/simulation/onboarding/suite",
+        );
+    }
+
+    /**
+     * Revise a suite created by `POST /eval/simulation/onboarding/suite`. Remove simulations, rewrite scenarios using natural-language instructions, or set `retryFailed` to regenerate scenarios that failed or exceeded generation limits. The response includes the updated suite and requirement coverage.
+     *
+     * Requests can take up to 2 minutes.
+     *
+     * Send a new `patchKey` for each edit. Replaying an applied key changes nothing and returns the current suite, with `failedEditSimulationIds` listing the simulations that edit could not rewrite, so retry a timeout or a 5xx with the same key. A suite remembers its last 50 keys, so never reuse one.
+     *
+     * Each organization can make 60 edits per UTC day, shared with the dashboard. Requests that only remove simulations and replays of applied edits do not count toward this limit. On a 429 `SIMULATION_ONBOARDING_QUOTA_EXCEEDED`, wait until the daily limit resets at 00:00 UTC before retrying.
+     *
+     * @param {Vapi.SimulationOnboardingSuiteUpdateDto} request
+     * @param {SimulationSuitesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vapi.BadRequestError}
+     * @throws {@link Vapi.ForbiddenError}
+     * @throws {@link Vapi.NotFoundError}
+     * @throws {@link Vapi.UnprocessableEntityError}
+     * @throws {@link Vapi.TooManyRequestsError}
+     * @throws {@link Vapi.BadGatewayError}
+     * @throws {@link Vapi.ServiceUnavailableError}
+     * @throws {@link Vapi.GatewayTimeoutError}
+     *
+     * @example
+     *     await client.simulationSuites.simulationOnboardingControllerSuiteUpdate({
+     *         suiteId: "suiteId",
+     *         patchKey: "patchKey"
+     *     })
+     */
+    public simulationOnboardingControllerSuiteUpdate(
+        request: Vapi.SimulationOnboardingSuiteUpdateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): core.HttpResponsePromise<Vapi.SimulationOnboardingSuiteViewDto> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__simulationOnboardingControllerSuiteUpdate(request, requestOptions),
+        );
+    }
+
+    private async __simulationOnboardingControllerSuiteUpdate(
+        request: Vapi.SimulationOnboardingSuiteUpdateDto,
+        requestOptions?: SimulationSuitesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Vapi.SimulationOnboardingSuiteViewDto>> {
+        const { suiteId, ..._body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VapiEnvironment.Default,
+                `eval/simulation/onboarding/suite/${core.url.encodePathParam(suiteId)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Vapi.SimulationOnboardingSuiteViewDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vapi.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new Vapi.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vapi.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 422:
+                    throw new Vapi.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
+                case 429:
+                    throw new Vapi.TooManyRequestsError(
+                        _response.error.body as Vapi.SimulationOnboardingErrorDto,
+                        _response.rawResponse,
+                    );
+                case 502:
+                    throw new Vapi.BadGatewayError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Vapi.ServiceUnavailableError(_response.error.body as unknown, _response.rawResponse);
+                case 504:
+                    throw new Vapi.GatewayTimeoutError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VapiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/eval/simulation/onboarding/suite/{suiteId}",
+        );
     }
 }

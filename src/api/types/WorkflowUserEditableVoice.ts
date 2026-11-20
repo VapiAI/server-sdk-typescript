@@ -21,7 +21,6 @@ export type WorkflowUserEditableVoice =
     | Vapi.WorkflowUserEditableVoice.Wellsaid
     | Vapi.WorkflowUserEditableVoice.RimeAi
     | Vapi.WorkflowUserEditableVoice.SmallestAi
-    | Vapi.WorkflowUserEditableVoice.Tavus
     | Vapi.WorkflowUserEditableVoice.Vapi
     | Vapi.WorkflowUserEditableVoice.Sesame
     | Vapi.WorkflowUserEditableVoice.Inworld
@@ -80,10 +79,6 @@ export namespace WorkflowUserEditableVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

@@ -29,6 +29,7 @@ export const FallbackCartesiaVoiceLanguage = {
     Ms: "ms",
     Nl: "nl",
     No: "no",
+    Or: "or",
     Pa: "pa",
     Pl: "pl",
     Pt: "pt",
@@ -42,6 +43,7 @@ export const FallbackCartesiaVoiceLanguage = {
     Tl: "tl",
     Tr: "tr",
     Uk: "uk",
+    Ur: "ur",
     Vi: "vi",
     Zh: "zh",
 } as const;

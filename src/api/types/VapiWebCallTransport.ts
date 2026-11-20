@@ -19,6 +19,10 @@ export interface VapiWebCallTransport {
      * recording automatically server-side, which is more reliable than the
      * client starting it after joining. Set by the server; only present when
      * video recording is enabled.
+     *
+     * With `videoRecordingStartMode: 'server'`, joining with the token doesn't
+     * start the recording: Vapi starts it once the user joins, and the client
+     * must not start it either.
      */
     callToken?: string | undefined;
     /** This is the URL of the web call. */

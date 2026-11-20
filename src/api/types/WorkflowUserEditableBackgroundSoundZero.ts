@@ -3,6 +3,10 @@
 export const WorkflowUserEditableBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type WorkflowUserEditableBackgroundSoundZero =
     (typeof WorkflowUserEditableBackgroundSoundZero)[keyof typeof WorkflowUserEditableBackgroundSoundZero];

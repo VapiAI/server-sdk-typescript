@@ -121,4 +121,17 @@ export interface Subscription {
      * on file, or invoiced.
      */
     billingCollectionMethod?: (Vapi.SubscriptionBillingCollectionMethod | null) | undefined;
+    /**
+     * This is when the current or most recent demo on this subscription started,
+     * either when Vapi created the account as a demo or when Vapi made an
+     * existing pay-as-you-go account one. Not set if it was never a demo.
+     */
+    demoStartedAt?: (string | null) | undefined;
+    /**
+     * This is when that demo ended, by an upgrade or by Vapi. Not set while the
+     * demo is active, and cleared when an ended demo starts again. A demo is
+     * active while `demoStartedAt` is set, this is not, and the subscription is
+     * pay-as-you-go.
+     */
+    demoEndedAt?: (string | null) | undefined;
 }

@@ -3,6 +3,10 @@
 export const TransferAssistantBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type TransferAssistantBackgroundSoundZero =
     (typeof TransferAssistantBackgroundSoundZero)[keyof typeof TransferAssistantBackgroundSoundZero];

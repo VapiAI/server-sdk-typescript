@@ -8,8 +8,8 @@ import type * as Vapi from "../index.js";
 export interface SipTrunkOutboundAuthenticationPlan {
     /** This is not returned in the API. */
     authPassword?: string | undefined;
+    /** This can be used to configure if SIP register is required by the SIP trunk. On creation, omission disables registration. On update, omission preserves it; null disables it. */
+    sipRegisterPlan?: (Vapi.SipTrunkOutboundSipRegisterPlan | null) | undefined;
     /** Username used to authenticate outbound SIP requests. */
     authUsername?: string | undefined;
-    /** This can be used to configure if SIP register is required by the SIP trunk. If not provided, no SIP registration will be attempted. */
-    sipRegisterPlan?: Vapi.SipTrunkOutboundSipRegisterPlan | undefined;
 }

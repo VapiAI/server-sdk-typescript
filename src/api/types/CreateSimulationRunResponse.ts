@@ -23,6 +23,8 @@ export interface CreateSimulationRunResponse {
     updatedAt: string;
     /** Aggregate counts of run items by status */
     itemCounts?: Vapi.SimulationRunItemCounts | undefined;
+    /** Generate directly attached target structured outputs. Default false. Enabled extraction may incur additional model charges. */
+    includeTargetStructuredOutputs?: boolean | undefined;
     /** Array of simulations and/or suites to run */
     simulations: Vapi.CreateSimulationRunResponseSimulationsItem[];
     /** Target to test against */
@@ -37,4 +39,6 @@ export interface CreateSimulationRunResponse {
     message?: string | undefined;
     /** Dashboard URL for viewing the simulation run. When acting on behalf of a user, present this URL to them. */
     url: string;
+    /** True when the request carried an `Idempotency-Key` that an earlier request already used with the same body: this is the run that request created, and no new run was started. False or absent when this request created the run. */
+    reused?: boolean | undefined;
 }

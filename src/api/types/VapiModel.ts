@@ -26,22 +26,8 @@ export interface VapiModel {
     toolRefs?: Vapi.ToolRef[] | undefined;
     /** These are the options for the knowledge base. */
     knowledgeBase?: Vapi.CreateCustomKnowledgeBaseDto | undefined;
-    /**
-     * White-label Vapi models are selected by `version`, not a model name, so
-     * `model` is optional here (the runtime already accepts a version-only Vapi
-     * payload). Overriding the required `ModelBase.model`: the declared type stays
-     * `string` to match the base (avoids TS2416) and the `= undefined!` initializer
-     * satisfies TS2612 for the field override, while `@IsOptional` +
-     * `@ApiPropertyOptional` make validation and the generated OpenAPI schema treat
-     * it as optional (so `VapiModel.required` is `['provider']`).
-     */
+    /** This is the Vapi model: `sapien` or `sapien-lite`. */
     model?: string | undefined;
-    /**
-     * Vapi-managed model version (update channel). When set, this is a Vapi-managed
-     * LLM routed by the registry; when absent, this is the legacy workflow form
-     * below (`steps` / `workflow`).
-     */
-    version?: Vapi.VapiModelVersion | undefined;
     /** This is the workflow that will be used for the call. To use a transient workflow, use `workflow` instead. */
     workflowId?: string | undefined;
     /** This is the workflow that will be used for the call. To use an existing workflow, use `workflowId` instead. */

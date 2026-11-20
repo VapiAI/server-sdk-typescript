@@ -4,6 +4,7 @@
 export const FallbackSonioxTranscriberModel = {
     SttRtV4: "stt-rt-v4",
     SttRtV5: "stt-rt-v5",
+    SttRtV6: "stt-rt-v6",
 } as const;
 export type FallbackSonioxTranscriberModel =
     (typeof FallbackSonioxTranscriberModel)[keyof typeof FallbackSonioxTranscriberModel];
