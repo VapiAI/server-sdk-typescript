@@ -12,27 +12,27 @@ export interface ElevenLabsVoice {
     voiceId: Vapi.ElevenLabsVoiceId;
     /** Defines the stability for voice settings. */
     stability?: number | undefined;
-    /** Defines the similarity boost for voice settings. Ignored by `eleven_v4_turbo`. */
+    /** Defines the similarity boost for voice settings. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     similarityBoost?: number | undefined;
-    /** Defines the style for voice settings. Ignored by `eleven_v4_turbo`. */
+    /** Defines the style for voice settings. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     style?: number | undefined;
-    /** Defines the use speaker boost for voice settings. Ignored by `eleven_v4_turbo`. */
+    /** Defines the use speaker boost for voice settings. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     useSpeakerBoost?: boolean | undefined;
-    /** Defines the speed for voice settings. Ignored by `eleven_v4_turbo`. */
+    /** Defines the speed for voice settings. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     speed?: number | undefined;
-    /** Defines the optimize streaming latency for voice settings. Defaults to 3. Ignored by `eleven_v4_turbo`. */
+    /** Defines the optimize streaming latency for voice settings. Defaults to 3. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     optimizeStreamingLatency?: number | undefined;
     /**
-     * This enables the use of https://elevenlabs.io/docs/speech-synthesis/prompting#pronunciation. Defaults to false to save latency. Ignored by `eleven_v4_turbo`.
+     * This enables the use of https://elevenlabs.io/docs/speech-synthesis/prompting#pronunciation. Defaults to false to save latency. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`.
      *
      * @default false
      */
     enableSsmlParsing?: boolean | undefined;
-    /** Defines the auto mode for voice settings. Defaults to false. Ignored by `eleven_v4_turbo`. */
+    /** Defines the auto mode for voice settings. Defaults to false. Ignored by `eleven_v4_turbo` and `eleven_v3_conversational`. */
     autoMode?: boolean | undefined;
     /** This is the model that will be used. Defaults to 'eleven_turbo_v2' if not specified. */
     model?: Vapi.ElevenLabsVoiceModel | undefined;
-    /** This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5, Flash v2.5 and v4 Turbo support language enforcement; other models ignore it. */
+    /** This is the language (ISO 639-1) that is enforced for the model. Currently only Turbo v2.5, Flash v2.5 and the Text to Dialogue models support language enforcement; other models ignore it. */
     language?: string | undefined;
     /** This is the plan for chunking the model output before it is sent to the voice provider. */
     chunkPlan?: Vapi.ChunkPlan | undefined;

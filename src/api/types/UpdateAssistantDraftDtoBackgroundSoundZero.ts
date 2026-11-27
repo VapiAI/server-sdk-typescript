@@ -3,6 +3,10 @@
 export const UpdateAssistantDraftDtoBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type UpdateAssistantDraftDtoBackgroundSoundZero =
     (typeof UpdateAssistantDraftDtoBackgroundSoundZero)[keyof typeof UpdateAssistantDraftDtoBackgroundSoundZero];

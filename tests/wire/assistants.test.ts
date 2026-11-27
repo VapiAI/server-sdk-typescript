@@ -100,6 +100,7 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -330,6 +331,7 @@ describe("AssistantsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -459,7 +461,13 @@ describe("AssistantsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
                 id: "id",
                 orgId: "orgId",
                 createdAt: "2024-01-15T09:30:00Z",
@@ -598,6 +606,7 @@ describe("AssistantsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -875,6 +884,9 @@ describe("AssistantsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -1049,9 +1061,11 @@ describe("AssistantsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
                 id: "id",
                 orgId: "orgId",
@@ -1155,6 +1169,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -1299,6 +1314,14 @@ describe("AssistantsClient", () => {
                     replacementModel: "gpt-5",
                 },
             ],
+            fallbackWarnings: [
+                {
+                    code: "fallback-voices-empty",
+                    slot: "voice.fallbackPlan.voices[0]",
+                    message:
+                        "Fallback voice 1 uses the same provider as the primary (11labs), so an outage there takes down both.",
+                },
+            ],
             name: "name",
             voicemailMessage: "voicemailMessage",
             endCallMessage: "endCallMessage",
@@ -1378,7 +1401,7 @@ describe("AssistantsClient", () => {
             },
             metadata: { key: "value" },
             backgroundSpeechDenoisingPlan: {
-                smartDenoisingPlan: { enabled: true },
+                smartDenoisingPlan: { enabled: true, intensity: 100 },
                 fourierDenoisingPlan: {
                     enabled: true,
                     mediaDetectionEnabled: true,
@@ -1524,7 +1547,13 @@ describe("AssistantsClient", () => {
                     excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                 },
             },
-            keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+            keypadInputPlan: {
+                variableName: "variableName",
+                enabled: true,
+                timeoutSeconds: 1.1,
+                delimiters: "#",
+                triggerResponseEnabled: true,
+            },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -1668,6 +1697,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -1875,6 +1905,14 @@ describe("AssistantsClient", () => {
                     replacementModel: "gpt-5",
                 },
             ],
+            fallbackWarnings: [
+                {
+                    code: "fallback-voices-empty",
+                    slot: "voice.fallbackPlan.voices[0]",
+                    message:
+                        "Fallback voice 1 uses the same provider as the primary (11labs), so an outage there takes down both.",
+                },
+            ],
             name: "name",
             voicemailMessage: "voicemailMessage",
             endCallMessage: "endCallMessage",
@@ -1964,6 +2002,7 @@ describe("AssistantsClient", () => {
             backgroundSpeechDenoisingPlan: {
                 smartDenoisingPlan: {
                     enabled: true,
+                    intensity: 100,
                 },
                 fourierDenoisingPlan: {
                     enabled: true,
@@ -2175,40 +2214,16 @@ describe("AssistantsClient", () => {
                 },
             },
             keypadInputPlan: {
+                variableName: "variableName",
                 enabled: true,
                 timeoutSeconds: 1.1,
                 delimiters: "#",
+                triggerResponseEnabled: true,
             },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-        });
-    });
-
-    test("AssistantController_validateBackgroundSoundUrl", async () => {
-        const server = mockServerPool.createServer();
-        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = { url: "https://example.com/my-sound.mp3" };
-        const rawResponseBody = { valid: true, reason: "invalid-url", status: 1.1, contentType: "contentType" };
-
-        server
-            .mockEndpoint()
-            .post("/assistant/background-sound/validate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.assistants.assistantControllerValidateBackgroundSoundUrl({
-            url: "https://example.com/my-sound.mp3",
-        });
-        expect(response).toEqual({
-            valid: true,
-            reason: "invalid-url",
-            status: 1.1,
-            contentType: "contentType",
         });
     });
 
@@ -2306,6 +2321,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -2529,7 +2545,7 @@ describe("AssistantsClient", () => {
             },
             metadata: { key: "value" },
             backgroundSpeechDenoisingPlan: {
-                smartDenoisingPlan: { enabled: true },
+                smartDenoisingPlan: { enabled: true, intensity: 100 },
                 fourierDenoisingPlan: {
                     enabled: true,
                     mediaDetectionEnabled: true,
@@ -2675,7 +2691,13 @@ describe("AssistantsClient", () => {
                     excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                 },
             },
-            keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+            keypadInputPlan: {
+                variableName: "variableName",
+                enabled: true,
+                timeoutSeconds: 1.1,
+                delimiters: "#",
+                triggerResponseEnabled: true,
+            },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -2814,6 +2836,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -3110,6 +3133,7 @@ describe("AssistantsClient", () => {
             backgroundSpeechDenoisingPlan: {
                 smartDenoisingPlan: {
                     enabled: true,
+                    intensity: 100,
                 },
                 fourierDenoisingPlan: {
                     enabled: true,
@@ -3321,9 +3345,11 @@ describe("AssistantsClient", () => {
                 },
             },
             keypadInputPlan: {
+                variableName: "variableName",
                 enabled: true,
                 timeoutSeconds: 1.1,
                 delimiters: "#",
+                triggerResponseEnabled: true,
             },
             id: "id",
             orgId: "orgId",
@@ -3426,6 +3452,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -3649,7 +3676,7 @@ describe("AssistantsClient", () => {
             },
             metadata: { key: "value" },
             backgroundSpeechDenoisingPlan: {
-                smartDenoisingPlan: { enabled: true },
+                smartDenoisingPlan: { enabled: true, intensity: 100 },
                 fourierDenoisingPlan: {
                     enabled: true,
                     mediaDetectionEnabled: true,
@@ -3795,7 +3822,13 @@ describe("AssistantsClient", () => {
                     excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                 },
             },
-            keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+            keypadInputPlan: {
+                variableName: "variableName",
+                enabled: true,
+                timeoutSeconds: 1.1,
+                delimiters: "#",
+                triggerResponseEnabled: true,
+            },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -3934,6 +3967,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -4230,6 +4264,7 @@ describe("AssistantsClient", () => {
             backgroundSpeechDenoisingPlan: {
                 smartDenoisingPlan: {
                     enabled: true,
+                    intensity: 100,
                 },
                 fourierDenoisingPlan: {
                     enabled: true,
@@ -4441,9 +4476,11 @@ describe("AssistantsClient", () => {
                 },
             },
             keypadInputPlan: {
+                variableName: "variableName",
                 enabled: true,
                 timeoutSeconds: 1.1,
                 delimiters: "#",
+                triggerResponseEnabled: true,
             },
             id: "id",
             orgId: "orgId",
@@ -4467,7 +4504,7 @@ describe("AssistantsClient", () => {
         }).rejects.toThrow(Vapi.ConflictError);
     });
 
-    test("update", async () => {
+    test("update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -4561,6 +4598,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: { type: "enabled", budgetTokens: 1.1 },
                 temperature: 1.1,
                 maxTokens: 1.1,
@@ -4705,6 +4743,14 @@ describe("AssistantsClient", () => {
                     replacementModel: "gpt-5",
                 },
             ],
+            fallbackWarnings: [
+                {
+                    code: "fallback-voices-empty",
+                    slot: "voice.fallbackPlan.voices[0]",
+                    message:
+                        "Fallback voice 1 uses the same provider as the primary (11labs), so an outage there takes down both.",
+                },
+            ],
             name: "name",
             voicemailMessage: "voicemailMessage",
             endCallMessage: "endCallMessage",
@@ -4784,7 +4830,7 @@ describe("AssistantsClient", () => {
             },
             metadata: { key: "value" },
             backgroundSpeechDenoisingPlan: {
-                smartDenoisingPlan: { enabled: true },
+                smartDenoisingPlan: { enabled: true, intensity: 100 },
                 fourierDenoisingPlan: {
                     enabled: true,
                     mediaDetectionEnabled: true,
@@ -4930,7 +4976,13 @@ describe("AssistantsClient", () => {
                     excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                 },
             },
-            keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+            keypadInputPlan: {
+                variableName: "variableName",
+                enabled: true,
+                timeoutSeconds: 1.1,
+                delimiters: "#",
+                triggerResponseEnabled: true,
+            },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
@@ -5076,6 +5128,7 @@ describe("AssistantsClient", () => {
                     },
                 },
                 model: "claude-3-opus-20240229",
+                reasoningEffort: "none",
                 thinking: {
                     type: "enabled",
                     budgetTokens: 1.1,
@@ -5283,6 +5336,14 @@ describe("AssistantsClient", () => {
                     replacementModel: "gpt-5",
                 },
             ],
+            fallbackWarnings: [
+                {
+                    code: "fallback-voices-empty",
+                    slot: "voice.fallbackPlan.voices[0]",
+                    message:
+                        "Fallback voice 1 uses the same provider as the primary (11labs), so an outage there takes down both.",
+                },
+            ],
             name: "name",
             voicemailMessage: "voicemailMessage",
             endCallMessage: "endCallMessage",
@@ -5372,6 +5433,7 @@ describe("AssistantsClient", () => {
             backgroundSpeechDenoisingPlan: {
                 smartDenoisingPlan: {
                     enabled: true,
+                    intensity: 100,
                 },
                 fourierDenoisingPlan: {
                     enabled: true,
@@ -5583,14 +5645,38 @@ describe("AssistantsClient", () => {
                 },
             },
             keypadInputPlan: {
+                variableName: "variableName",
                 enabled: true,
                 timeoutSeconds: 1.1,
                 delimiters: "#",
+                triggerResponseEnabled: true,
             },
             id: "id",
             orgId: "orgId",
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         });
+    });
+
+    test("update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/assistant/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.assistants.update({
+                id: "id",
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
     });
 });

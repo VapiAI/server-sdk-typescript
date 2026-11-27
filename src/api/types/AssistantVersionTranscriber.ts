@@ -19,6 +19,7 @@ export type AssistantVersionTranscriber =
     | Vapi.AssistantVersionTranscriber.Cartesia
     | Vapi.AssistantVersionTranscriber.Soniox
     | Vapi.AssistantVersionTranscriber.Xai
+    | Vapi.AssistantVersionTranscriber.Reson8
     | Vapi.AssistantVersionTranscriber.Vapi;
 
 export namespace AssistantVersionTranscriber {
@@ -72,6 +73,10 @@ export namespace AssistantVersionTranscriber {
 
     export interface Xai extends Vapi.XaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.Reson8Transcriber {
+        provider: "reson8";
     }
 
     export interface Vapi extends Vapi.VapiTranscriber {

@@ -16,7 +16,6 @@ export type FallbackPlanVoicesItem =
     | Vapi.FallbackPlanVoicesItem.Wellsaid
     | Vapi.FallbackPlanVoicesItem.RimeAi
     | Vapi.FallbackPlanVoicesItem.SmallestAi
-    | Vapi.FallbackPlanVoicesItem.Tavus
     | Vapi.FallbackPlanVoicesItem.Neuphonic
     | Vapi.FallbackPlanVoicesItem.Sesame
     | Vapi.FallbackPlanVoicesItem.Inworld
@@ -74,10 +73,6 @@ export namespace FallbackPlanVoicesItem {
 
     export interface SmallestAi extends Vapi.FallbackSmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.FallbackTavusVoice {
-        provider: "tavus";
     }
 
     export interface Neuphonic extends Vapi.FallbackNeuphonicVoice {

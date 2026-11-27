@@ -706,6 +706,7 @@ describe("EvalClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -823,28 +824,6 @@ describe("EvalClient", () => {
                     },
                 },
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -1030,6 +1009,28 @@ describe("EvalClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -1131,6 +1132,7 @@ describe("EvalClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -1648,6 +1650,9 @@ describe("EvalClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -1789,28 +1794,6 @@ describe("EvalClient", () => {
                     },
                 },
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -2060,6 +2043,28 @@ describe("EvalClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -2188,6 +2193,9 @@ describe("EvalClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -2674,6 +2682,7 @@ describe("EvalClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -2791,28 +2800,6 @@ describe("EvalClient", () => {
                     },
                 },
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -2998,6 +2985,28 @@ describe("EvalClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -3099,6 +3108,7 @@ describe("EvalClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -3616,6 +3626,9 @@ describe("EvalClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -3757,28 +3770,6 @@ describe("EvalClient", () => {
                     },
                 },
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -4028,6 +4019,28 @@ describe("EvalClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -4156,6 +4169,9 @@ describe("EvalClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -4635,6 +4651,7 @@ describe("EvalClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -4751,28 +4768,6 @@ describe("EvalClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -4954,6 +4949,28 @@ describe("EvalClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -5049,6 +5066,7 @@ describe("EvalClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -5565,6 +5583,9 @@ describe("EvalClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -5705,28 +5726,6 @@ describe("EvalClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -5969,6 +5968,28 @@ describe("EvalClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -6087,6 +6108,9 @@ describe("EvalClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,

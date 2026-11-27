@@ -8,8 +8,12 @@ import type * as Vapi from "../index.js";
 export interface ElevenLabsTranscriber {
     /** This is the model that will be used for the transcription. */
     model?: Vapi.ElevenLabsTranscriberModel | undefined;
-    /** This is the language that will be used for the transcription. */
+    /** Language for transcription. `multi` enables automatic code-switching on scribe_v3_live. */
     language?: Vapi.ElevenLabsTranscriberLanguage | undefined;
+    /** Language detection hints for scribe_v3_live. Duplicates are removed; [] explicitly clears inherited hints. */
+    languages?: Vapi.ElevenLabsTranscriberLanguagesItem[] | undefined;
+    /** Words or phrases to bias the transcription towards, such as product names. Supported on scribe_v2 (up to 100 terms of 50 characters each) and scribe_v2_realtime or scribe_v3_live (up to 50 terms of 20 characters each). Each term has at most 5 words and none of `< > { } [ ] \`. Adds ElevenLabs' keyterm prompting rate to the transcriber cost. */
+    keyterms?: string[] | undefined;
     /** This is the number of seconds of silence before VAD commits (0.3-3.0). */
     silenceThresholdSeconds?: number | undefined;
     /** This is the VAD sensitivity (0.1-0.9, lower indicates more sensitive). */

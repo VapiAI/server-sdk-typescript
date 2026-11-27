@@ -4,5 +4,6 @@ export const ElevenLabsTranscriberModel = {
     ScribeV1: "scribe_v1",
     ScribeV2: "scribe_v2",
     ScribeV2Realtime: "scribe_v2_realtime",
+    ScribeV3Live: "scribe_v3_live",
 } as const;
 export type ElevenLabsTranscriberModel = (typeof ElevenLabsTranscriberModel)[keyof typeof ElevenLabsTranscriberModel];

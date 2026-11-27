@@ -7,6 +7,7 @@
  * This is helpful when you are required to comply with Data Residency rules. Learn more about Azure regions here https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/.
  */
 export const EvalOpenAiModelModel = {
+    Gpt61Terra: "gpt-6.1-terra",
     Gpt6Luna: "gpt-6-luna",
     Gpt56Sol: "gpt-5.6-sol",
     Gpt56Terra: "gpt-5.6-terra",
@@ -158,5 +159,7 @@ export const EvalOpenAiModelModel = {
     Gpt41Australiaeast: "gpt-4.1:australiaeast",
     Gpt4OAustraliaeast: "gpt-4o:australiaeast",
     Gpt54MiniAustraliaeast: "gpt-5.4-mini:australiaeast",
+    Gpt56LunaAustraliaeast: "gpt-5.6-luna:australiaeast",
+    Gpt6LunaAustraliaeast: "gpt-6-luna:australiaeast",
 } as const;
 export type EvalOpenAiModelModel = (typeof EvalOpenAiModelModel)[keyof typeof EvalOpenAiModelModel];

@@ -11,7 +11,8 @@ export interface FallbackAssemblyAiTranscriber {
     /**
      * Transcripts below this confidence threshold will be discarded.
      *
-     * @default 0.4
+     * Defaults to 0.4 for legacy streaming models. Universal Pro models do not
+     * filter by confidence unless this field is explicitly set.
      */
     confidenceThreshold?: number | undefined;
     /**

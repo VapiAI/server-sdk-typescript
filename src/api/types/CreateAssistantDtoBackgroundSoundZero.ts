@@ -3,6 +3,10 @@
 export const CreateAssistantDtoBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type CreateAssistantDtoBackgroundSoundZero =
     (typeof CreateAssistantDtoBackgroundSoundZero)[keyof typeof CreateAssistantDtoBackgroundSoundZero];

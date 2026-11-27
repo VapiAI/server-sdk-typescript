@@ -92,11 +92,6 @@ export interface Artifact {
      * authentication. Expires at `presignedUrlsExpiresAt`.
      */
     presignedLogUrl?: string | undefined;
-    /**
-     * This is when the presigned URLs above expire, as an ISO 8601 timestamp.
-     * The raw `*Url` fields remain the stable identifiers and do not expire.
-     * Presigned URLs are regenerated per response and per webhook delivery, so
-     * values differ across retries.
-     */
+    /** This is when the presigned URLs above expire, as an ISO 8601 timestamp. The raw `*Url` fields remain the stable identifiers and do not expire. Presigned URLs are generated for each API response and each server message. Retries of the same server message carry the same URLs. */
     presignedUrlsExpiresAt?: string | undefined;
 }

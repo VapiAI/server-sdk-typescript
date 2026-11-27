@@ -21,7 +21,6 @@ export type ConversationNodeVoice =
     | Vapi.ConversationNodeVoice.Wellsaid
     | Vapi.ConversationNodeVoice.RimeAi
     | Vapi.ConversationNodeVoice.SmallestAi
-    | Vapi.ConversationNodeVoice.Tavus
     | Vapi.ConversationNodeVoice.Vapi
     | Vapi.ConversationNodeVoice.Sesame
     | Vapi.ConversationNodeVoice.Inworld
@@ -80,10 +79,6 @@ export namespace ConversationNodeVoice {
 
     export interface SmallestAi extends Vapi.SmallestAiVoice {
         provider: "smallest-ai";
-    }
-
-    export interface Tavus extends Vapi.TavusVoice {
-        provider: "tavus";
     }
 
     export interface Vapi extends Vapi.VapiVoice {

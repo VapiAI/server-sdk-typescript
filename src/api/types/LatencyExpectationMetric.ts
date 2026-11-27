@@ -5,10 +5,16 @@
  * - turn: total time from the end of user speech to the start of assistant speech
  * - model: LLM time to first token
  * - voice: TTS time to first audio
+ * - transcriber: time from the end of user speech to the transcript's words being known
+ * - endpointing: time from the transcript's words being known to deciding the user finished their turn
+ *
+ * Turns where a component was not measured are left out of that metric.
  */
 export const LatencyExpectationMetric = {
     Turn: "turn",
     Model: "model",
     Voice: "voice",
+    Transcriber: "transcriber",
+    Endpointing: "endpointing",
 } as const;
 export type LatencyExpectationMetric = (typeof LatencyExpectationMetric)[keyof typeof LatencyExpectationMetric];

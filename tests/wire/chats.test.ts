@@ -281,6 +281,7 @@ describe("ChatsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -397,28 +398,6 @@ describe("ChatsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -600,6 +579,28 @@ describe("ChatsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -695,6 +696,7 @@ describe("ChatsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -1087,6 +1089,7 @@ describe("ChatsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: { intensity: 100 },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -1203,28 +1206,6 @@ describe("ChatsClient", () => {
                                     },
                                 },
                                 assistantOverrides: {
-                                    transcriber: {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                        fallbackPlan: {
-                                            transcribers: [
-                                                {
-                                                    provider: "assembly-ai",
-                                                    confidenceThreshold: 0.4,
-                                                    formatTurns: true,
-                                                    endOfTurnConfidenceThreshold: 0.7,
-                                                    minEndOfTurnSilenceWhenConfident: 160,
-                                                    maxTurnSilence: 400,
-                                                    vadAssistedEndpointingEnabled: true,
-                                                },
-                                            ],
-                                        },
-                                    },
                                     model: {
                                         provider: "anthropic",
                                         tools: [
@@ -1406,6 +1387,28 @@ describe("ChatsClient", () => {
                                             ],
                                         },
                                     ],
+                                    transcriber: {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                        fallbackPlan: {
+                                            transcribers: [
+                                                {
+                                                    provider: "assembly-ai",
+                                                    confidenceThreshold: 0.4,
+                                                    formatTurns: true,
+                                                    endOfTurnConfidenceThreshold: 0.7,
+                                                    minEndOfTurnSilenceWhenConfident: 160,
+                                                    maxTurnSilence: 400,
+                                                    vadAssistedEndpointingEnabled: true,
+                                                },
+                                            ],
+                                        },
+                                    },
                                     "tools:append": [
                                         {
                                             type: "apiRequest",
@@ -1504,6 +1507,7 @@ describe("ChatsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: { intensity: 100 },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -1622,28 +1626,6 @@ describe("ChatsClient", () => {
                             },
                         ],
                         membersOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -1825,6 +1807,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -1920,6 +1924,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -2412,6 +2417,9 @@ describe("ChatsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -2552,28 +2560,6 @@ describe("ChatsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -2816,6 +2802,28 @@ describe("ChatsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -2934,6 +2942,9 @@ describe("ChatsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -3419,6 +3430,9 @@ describe("ChatsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: {
+                                            intensity: 100,
+                                        },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -3559,28 +3573,6 @@ describe("ChatsClient", () => {
                                     },
                                 },
                                 assistantOverrides: {
-                                    transcriber: {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                        fallbackPlan: {
-                                            transcribers: [
-                                                {
-                                                    provider: "assembly-ai",
-                                                    confidenceThreshold: 0.4,
-                                                    formatTurns: true,
-                                                    endOfTurnConfidenceThreshold: 0.7,
-                                                    minEndOfTurnSilenceWhenConfident: 160,
-                                                    maxTurnSilence: 400,
-                                                    vadAssistedEndpointingEnabled: true,
-                                                },
-                                            ],
-                                        },
-                                    },
                                     model: {
                                         provider: "anthropic",
                                         tools: [
@@ -3823,6 +3815,28 @@ describe("ChatsClient", () => {
                                             ],
                                         },
                                     ],
+                                    transcriber: {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                        fallbackPlan: {
+                                            transcribers: [
+                                                {
+                                                    provider: "assembly-ai",
+                                                    confidenceThreshold: 0.4,
+                                                    formatTurns: true,
+                                                    endOfTurnConfidenceThreshold: 0.7,
+                                                    minEndOfTurnSilenceWhenConfident: 160,
+                                                    maxTurnSilence: 400,
+                                                    vadAssistedEndpointingEnabled: true,
+                                                },
+                                            ],
+                                        },
+                                    },
                                     "tools:append": [
                                         {
                                             type: "apiRequest",
@@ -3941,6 +3955,9 @@ describe("ChatsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: {
+                                            intensity: 100,
+                                        },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -4083,28 +4100,6 @@ describe("ChatsClient", () => {
                             },
                         ],
                         membersOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -4347,6 +4342,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -4465,6 +4482,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -4755,6 +4775,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -4973,6 +4994,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -5102,43 +5124,15 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -5194,6 +5188,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -5340,6 +5335,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -5443,6 +5472,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -5572,7 +5602,13 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -5849,6 +5885,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -5965,28 +6002,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -6168,6 +6183,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -6263,6 +6300,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -6381,28 +6419,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -6588,6 +6604,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -6689,6 +6727,7 @@ describe("ChatsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -6827,6 +6866,7 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -6974,6 +7014,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -7239,6 +7280,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -7413,46 +7457,14 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -7545,6 +7557,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -7730,6 +7743,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -7860,6 +7907,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -8034,9 +8084,11 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -8386,6 +8438,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -8526,28 +8581,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -8790,6 +8823,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -8908,6 +8963,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -9050,28 +9108,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -9321,6 +9357,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -9449,6 +9507,9 @@ describe("ChatsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -9627,6 +9688,13 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -9730,6 +9798,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -9948,6 +10017,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -10077,43 +10147,15 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -10169,6 +10211,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -10315,6 +10358,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -10418,6 +10495,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -10547,7 +10625,13 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -10824,6 +10908,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -10940,28 +11025,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -11143,6 +11206,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -11238,6 +11323,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -11356,28 +11442,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -11563,6 +11627,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -11664,6 +11750,7 @@ describe("ChatsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -11802,6 +11889,7 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -11942,6 +12030,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -12207,6 +12296,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -12381,46 +12473,14 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -12513,6 +12573,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -12698,6 +12759,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -12828,6 +12923,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -13002,9 +13100,11 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -13354,6 +13454,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -13494,28 +13597,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -13758,6 +13839,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -13876,6 +13979,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -14018,28 +14124,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -14289,6 +14373,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -14417,6 +14523,9 @@ describe("ChatsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -14595,6 +14704,13 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -14698,6 +14814,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -14916,6 +15033,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -15045,43 +15163,15 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -15137,6 +15227,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -15283,6 +15374,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -15386,6 +15511,7 @@ describe("ChatsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -15515,7 +15641,13 @@ describe("ChatsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -15792,6 +15924,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -15908,28 +16041,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -16111,6 +16222,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -16206,6 +16339,7 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -16324,28 +16458,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -16531,6 +16643,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -16632,6 +16766,7 @@ describe("ChatsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -16770,6 +16905,7 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -16910,6 +17046,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -17175,6 +17312,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -17349,46 +17489,14 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -17481,6 +17589,7 @@ describe("ChatsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -17666,6 +17775,40 @@ describe("ChatsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -17796,6 +17939,9 @@ describe("ChatsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -17970,9 +18116,11 @@ describe("ChatsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -18322,6 +18470,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -18462,28 +18613,6 @@ describe("ChatsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -18726,6 +18855,28 @@ describe("ChatsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -18844,6 +18995,9 @@ describe("ChatsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -18986,28 +19140,6 @@ describe("ChatsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -19257,6 +19389,28 @@ describe("ChatsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -19385,6 +19539,9 @@ describe("ChatsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -19563,6 +19720,13 @@ describe("ChatsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],

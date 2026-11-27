@@ -10,11 +10,7 @@ export interface BackoffPlan {
      * @default fixed
      */
     type: Record<string, unknown>;
-    /**
-     * This is the maximum number of retries to attempt if the request fails. Defaults to 0 (no retries).
-     *
-     * @default 0
-     */
+    /** Total number of attempts, including the first request. For example, `3` sends the request up to 3 times. Values of `0` and `1` both send it once, with no retries. Defaults to 0. */
     maxRetries: number;
     /** Base delay in seconds. For fixed backoff, this is the delay between retries. For exponential backoff, this is the initial delay. */
     baseDelaySeconds: number;

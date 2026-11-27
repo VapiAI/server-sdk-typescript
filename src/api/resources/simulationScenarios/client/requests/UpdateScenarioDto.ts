@@ -16,8 +16,9 @@ export interface UpdateScenarioDto {
     /** This is the script/instructions for the tester to follow during the simulation. */
     instructions?: string;
     /**
-     * This is the structured output-based evaluation plan for the simulation.
-     * Each item defines a structured output to extract and evaluate against an expected value.
+     * This is the evaluation plan for the simulation.
+     * Each item defines a structured output to extract, or with `transcriptReplay` a built-in metric, and evaluates it
+     * against an expected value.
      */
     evaluations?: Vapi.EvaluationPlanItem[];
     /** Hooks to run on simulation lifecycle events */
@@ -30,6 +31,13 @@ export interface UpdateScenarioDto {
      * empty array to remove all latency expectations.
      */
     latencyExpectations?: Vapi.LatencyExpectation[];
+    /**
+     * Transcript replay settings. Omit to leave unchanged; send null to turn the
+     * scenario back into a normal simulation, which then needs instructions and
+     * at least one evaluation. Turning a scenario into a replay needs
+     * `evaluations: []` in the same request.
+     */
+    transcriptReplay?: Vapi.TranscriptReplay | null;
     /**
      * Optional folder path for organizing scenarios.
      * Supports up to 3 levels (e.g., "dept/feature/variant").

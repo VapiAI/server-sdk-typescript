@@ -294,6 +294,7 @@ describe("SimulationPersonalitiesClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -780,6 +781,9 @@ describe("SimulationPersonalitiesClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -1025,6 +1029,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -1243,6 +1248,7 @@ describe("SimulationPersonalitiesClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -1372,7 +1378,13 @@ describe("SimulationPersonalitiesClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             path: "path",
         };
@@ -1523,6 +1535,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -1788,6 +1801,9 @@ describe("SimulationPersonalitiesClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -1962,9 +1978,11 @@ describe("SimulationPersonalitiesClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             path: "path",
@@ -2071,6 +2089,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -2289,6 +2308,7 @@ describe("SimulationPersonalitiesClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -2418,7 +2438,13 @@ describe("SimulationPersonalitiesClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             path: "path",
         };
@@ -2567,6 +2593,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -2832,6 +2859,9 @@ describe("SimulationPersonalitiesClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -3006,9 +3036,11 @@ describe("SimulationPersonalitiesClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             path: "path",
@@ -3115,6 +3147,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -3333,6 +3366,7 @@ describe("SimulationPersonalitiesClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -3462,7 +3496,13 @@ describe("SimulationPersonalitiesClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             path: "path",
         };
@@ -3611,6 +3651,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -3876,6 +3917,9 @@ describe("SimulationPersonalitiesClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -4050,9 +4094,11 @@ describe("SimulationPersonalitiesClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             path: "path",
@@ -4180,6 +4226,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -4398,6 +4445,7 @@ describe("SimulationPersonalitiesClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -4527,7 +4575,13 @@ describe("SimulationPersonalitiesClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             path: "path",
         };
@@ -4677,6 +4731,7 @@ describe("SimulationPersonalitiesClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -4942,6 +4997,9 @@ describe("SimulationPersonalitiesClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -5116,9 +5174,11 @@ describe("SimulationPersonalitiesClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             path: "path",

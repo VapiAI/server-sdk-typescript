@@ -333,6 +333,169 @@ describe("TrafficAllocationsClient", () => {
         }).rejects.toThrow(Vapi.ForbiddenError);
     });
 
+    test("TrafficAllocationController_metricsGet (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            window: { from: "from", to: "to", bucket: "hour" },
+            totalCalls: 1.1,
+            currentAllocation: {
+                id: "id",
+                orgId: "orgId",
+                assistantId: "assistantId",
+                allocationIntent: "follow-latest",
+                createdAt: "2024-01-15T09:30:00Z",
+                actorType: "user",
+                actorId: "actorId",
+                actorEmail: "actorEmail",
+                description: "description",
+                targets: [{ assistantVersion: "assistantVersion", position: 1.1, percentage: 1.1 }],
+            },
+            versions: [
+                {
+                    assistantVersionId: "assistantVersionId",
+                    assistantVersionLabel: "assistantVersionLabel",
+                    unversioned: true,
+                    calls: 1.1,
+                    configuredPercentage: 1.1,
+                    actualPercentage: 1.1,
+                    durationSeconds: {},
+                    costPerMinute: { breakdown: {} },
+                    latencyMs: { model: {}, voice: {}, transcriber: {}, turn: {} },
+                    endedReasons: [{ reason: "reason", count: 1.1 }],
+                    timeseries: [{ bucketStart: "bucketStart", calls: 1.1 }],
+                    structuredOutputs: [{ structuredOutputId: "structuredOutputId", type: "number", present: 1.1 }],
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/traffic-allocations/metrics")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.trafficAllocations.trafficAllocationControllerMetricsGet({
+            assistantId: "assistantId",
+            from: "2024-01-15T09:30:00Z",
+            to: "2024-01-15T09:30:00Z",
+        });
+        expect(response).toEqual({
+            window: {
+                from: "from",
+                to: "to",
+                bucket: "hour",
+            },
+            totalCalls: 1.1,
+            currentAllocation: {
+                id: "id",
+                orgId: "orgId",
+                assistantId: "assistantId",
+                allocationIntent: "follow-latest",
+                createdAt: "2024-01-15T09:30:00Z",
+                actorType: "user",
+                actorId: "actorId",
+                actorEmail: "actorEmail",
+                description: "description",
+                targets: [
+                    {
+                        assistantVersion: "assistantVersion",
+                        position: 1.1,
+                        percentage: 1.1,
+                    },
+                ],
+            },
+            versions: [
+                {
+                    assistantVersionId: "assistantVersionId",
+                    assistantVersionLabel: "assistantVersionLabel",
+                    unversioned: true,
+                    calls: 1.1,
+                    configuredPercentage: 1.1,
+                    actualPercentage: 1.1,
+                    durationSeconds: {},
+                    costPerMinute: {
+                        breakdown: {},
+                    },
+                    latencyMs: {
+                        model: {},
+                        voice: {},
+                        transcriber: {},
+                        turn: {},
+                    },
+                    endedReasons: [
+                        {
+                            reason: "reason",
+                            count: 1.1,
+                        },
+                    ],
+                    timeseries: [
+                        {
+                            bucketStart: "bucketStart",
+                            calls: 1.1,
+                        },
+                    ],
+                    structuredOutputs: [
+                        {
+                            structuredOutputId: "structuredOutputId",
+                            type: "number",
+                            present: 1.1,
+                        },
+                    ],
+                },
+            ],
+        });
+    });
+
+    test("TrafficAllocationController_metricsGet (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/traffic-allocations/metrics")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.trafficAllocations.trafficAllocationControllerMetricsGet({
+                assistantId: "assistantId",
+                from: "2024-01-15T09:30:00Z",
+                to: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Vapi.BadRequestError);
+    });
+
+    test("TrafficAllocationController_metricsGet (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/traffic-allocations/metrics")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.trafficAllocations.trafficAllocationControllerMetricsGet({
+                assistantId: "assistantId",
+                from: "2024-01-15T09:30:00Z",
+                to: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Vapi.ForbiddenError);
+    });
+
     test("TrafficAllocationController_findOne (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });

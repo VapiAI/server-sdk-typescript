@@ -30,6 +30,7 @@ describe("SimulationRunsClient", () => {
                     distinctSimulationTotal: 1.1,
                     distinctSimulationFailed: 1.1,
                 },
+                includeTargetStructuredOutputs: true,
                 simulations: [
                     {
                         type: "simulation",
@@ -80,28 +81,6 @@ describe("SimulationRunsClient", () => {
                                 },
                             ],
                             targetOverrides: {
-                                transcriber: {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                    fallbackPlan: {
-                                        transcribers: [
-                                            {
-                                                provider: "assembly-ai",
-                                                confidenceThreshold: 0.4,
-                                                formatTurns: true,
-                                                endOfTurnConfidenceThreshold: 0.7,
-                                                minEndOfTurnSilenceWhenConfident: 160,
-                                                maxTurnSilence: 400,
-                                                vadAssistedEndpointingEnabled: true,
-                                            },
-                                        ],
-                                    },
-                                },
                                 model: {
                                     provider: "anthropic",
                                     tools: [
@@ -283,6 +262,28 @@ describe("SimulationRunsClient", () => {
                                         ],
                                     },
                                 ],
+                                transcriber: {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                    fallbackPlan: {
+                                        transcribers: [
+                                            {
+                                                provider: "assembly-ai",
+                                                confidenceThreshold: 0.4,
+                                                formatTurns: true,
+                                                endOfTurnConfidenceThreshold: 0.7,
+                                                minEndOfTurnSilenceWhenConfident: 160,
+                                                maxTurnSilence: 400,
+                                                vadAssistedEndpointingEnabled: true,
+                                            },
+                                        ],
+                                    },
+                                },
                                 "tools:append": [
                                     {
                                         type: "apiRequest",
@@ -378,6 +379,7 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                                 backgroundSpeechDenoisingPlan: {
+                                    smartDenoisingPlan: { intensity: 100 },
                                     fourierDenoisingPlan: {
                                         mediaDetectionEnabled: true,
                                         staticThreshold: -35,
@@ -494,6 +496,10 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
+                            transcriptReplay: {
+                                recordingUrl: "https://example.com/recordings/call-123.wav",
+                                answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                            },
                         },
                         personality: {
                             name: "name",
@@ -766,6 +772,7 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                                 backgroundSpeechDenoisingPlan: {
+                                    smartDenoisingPlan: { intensity: 100 },
                                     fourierDenoisingPlan: {
                                         mediaDetectionEnabled: true,
                                         staticThreshold: -35,
@@ -1156,6 +1163,7 @@ describe("SimulationRunsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -1307,6 +1315,7 @@ describe("SimulationRunsClient", () => {
                     distinctSimulationTotal: 1.1,
                     distinctSimulationFailed: 1.1,
                 },
+                includeTargetStructuredOutputs: true,
                 simulations: [
                     {
                         type: "simulation",
@@ -1377,28 +1386,6 @@ describe("SimulationRunsClient", () => {
                                 },
                             ],
                             targetOverrides: {
-                                transcriber: {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                    fallbackPlan: {
-                                        transcribers: [
-                                            {
-                                                provider: "assembly-ai",
-                                                confidenceThreshold: 0.4,
-                                                formatTurns: true,
-                                                endOfTurnConfidenceThreshold: 0.7,
-                                                minEndOfTurnSilenceWhenConfident: 160,
-                                                maxTurnSilence: 400,
-                                                vadAssistedEndpointingEnabled: true,
-                                            },
-                                        ],
-                                    },
-                                },
                                 model: {
                                     provider: "anthropic",
                                     tools: [
@@ -1641,6 +1628,28 @@ describe("SimulationRunsClient", () => {
                                         ],
                                     },
                                 ],
+                                transcriber: {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                    fallbackPlan: {
+                                        transcribers: [
+                                            {
+                                                provider: "assembly-ai",
+                                                confidenceThreshold: 0.4,
+                                                formatTurns: true,
+                                                endOfTurnConfidenceThreshold: 0.7,
+                                                minEndOfTurnSilenceWhenConfident: 160,
+                                                maxTurnSilence: 400,
+                                                vadAssistedEndpointingEnabled: true,
+                                            },
+                                        ],
+                                    },
+                                },
                                 "tools:append": [
                                     {
                                         type: "apiRequest",
@@ -1759,6 +1768,9 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                                 backgroundSpeechDenoisingPlan: {
+                                    smartDenoisingPlan: {
+                                        intensity: 100,
+                                    },
                                     fourierDenoisingPlan: {
                                         mediaDetectionEnabled: true,
                                         staticThreshold: -35,
@@ -1905,6 +1917,17 @@ describe("SimulationRunsClient", () => {
                                     thresholdMs: 1200,
                                 },
                             ],
+                            transcriptReplay: {
+                                recordingUrl: "https://example.com/recordings/call-123.wav",
+                                answerKey: {
+                                    transcript: "transcript",
+                                    keyValues: [
+                                        {
+                                            value: "lisinopril",
+                                        },
+                                    ],
+                                },
+                            },
                         },
                         personality: {
                             name: "name",
@@ -2244,6 +2267,9 @@ describe("SimulationRunsClient", () => {
                                     },
                                 },
                                 backgroundSpeechDenoisingPlan: {
+                                    smartDenoisingPlan: {
+                                        intensity: 100,
+                                    },
                                     fourierDenoisingPlan: {
                                         mediaDetectionEnabled: true,
                                         staticThreshold: -35,
@@ -2725,6 +2751,9 @@ describe("SimulationRunsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -2897,6 +2926,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -2949,28 +2979,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -3152,6 +3160,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -3247,6 +3277,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -3363,6 +3394,10 @@ describe("SimulationRunsClient", () => {
                             },
                         },
                         latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -3636,6 +3671,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -4036,6 +4072,7 @@ describe("SimulationRunsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -4158,6 +4195,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         };
 
         server
@@ -4199,6 +4237,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -4271,28 +4310,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -4535,6 +4552,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -4653,6 +4692,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -4799,6 +4841,17 @@ describe("SimulationRunsClient", () => {
                                 thresholdMs: 1200,
                             },
                         ],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: {
+                                transcript: "transcript",
+                                keyValues: [
+                                    {
+                                        value: "lisinopril",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -5139,6 +5192,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -5635,6 +5691,9 @@ describe("SimulationRunsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -5783,6 +5842,7 @@ describe("SimulationRunsClient", () => {
             simulationRunItemIds: ["simulationRunItemIds"],
             message: "message",
             url: "url",
+            reused: true,
         });
     });
 
@@ -5821,6 +5881,41 @@ describe("SimulationRunsClient", () => {
         }).rejects.toThrow(Vapi.PaymentRequiredError);
     });
 
+    test("SimulationRunController_create (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            simulations: [{ type: "simulation" }, { type: "simulation" }],
+            target: { type: "assistant" },
+        };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/eval/simulation/run")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.simulationRuns.simulationRunControllerCreate({
+                simulations: [
+                    {
+                        type: "simulation",
+                    },
+                    {
+                        type: "simulation",
+                    },
+                ],
+                target: {
+                    type: "assistant",
+                },
+            });
+        }).rejects.toThrow(Vapi.ConflictError);
+    });
+
     test("SimulationRunController_findOne", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -5845,6 +5940,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -5897,28 +5993,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -6100,6 +6174,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -6195,6 +6291,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -6311,6 +6408,10 @@ describe("SimulationRunsClient", () => {
                             },
                         },
                         latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -6584,6 +6685,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -6984,6 +7086,7 @@ describe("SimulationRunsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -7136,6 +7239,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -7208,28 +7312,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -7472,6 +7554,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -7590,6 +7694,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -7736,6 +7843,17 @@ describe("SimulationRunsClient", () => {
                                 thresholdMs: 1200,
                             },
                         ],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: {
+                                transcript: "transcript",
+                                keyValues: [
+                                    {
+                                        value: "lisinopril",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -8076,6 +8194,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -8572,6 +8693,9 @@ describe("SimulationRunsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -8744,6 +8868,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -8796,28 +8921,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -8999,6 +9102,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -9094,6 +9219,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -9210,6 +9336,10 @@ describe("SimulationRunsClient", () => {
                             },
                         },
                         latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -9483,6 +9613,7 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -9883,6 +10014,7 @@ describe("SimulationRunsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -10035,6 +10167,7 @@ describe("SimulationRunsClient", () => {
                 distinctSimulationTotal: 1.1,
                 distinctSimulationFailed: 1.1,
             },
+            includeTargetStructuredOutputs: true,
             simulations: [
                 {
                     type: "simulation",
@@ -10107,28 +10240,6 @@ describe("SimulationRunsClient", () => {
                             },
                         ],
                         targetOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -10371,6 +10482,28 @@ describe("SimulationRunsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -10489,6 +10622,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -10635,6 +10771,17 @@ describe("SimulationRunsClient", () => {
                                 thresholdMs: 1200,
                             },
                         ],
+                        transcriptReplay: {
+                            recordingUrl: "https://example.com/recordings/call-123.wav",
+                            answerKey: {
+                                transcript: "transcript",
+                                keyValues: [
+                                    {
+                                        value: "lisinopril",
+                                    },
+                                ],
+                            },
+                        },
                     },
                     personalityId: "personalityId",
                     personality: {
@@ -10975,6 +11122,9 @@ describe("SimulationRunsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -11471,6 +11621,9 @@ describe("SimulationRunsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -11678,6 +11831,9 @@ describe("SimulationRunsClient", () => {
                     hooks: { key: "value" },
                 },
                 results: {
+                    structuredOutputs: { key: { name: "name", result: null } },
+                    skippedStructuredOutputs: { key: { name: "name" } },
+                    structuredOutputError: "structuredOutputError",
                     evaluations: [
                         {
                             structuredOutputId: "structuredOutputId",
@@ -11701,6 +11857,28 @@ describe("SimulationRunsClient", () => {
                             required: true,
                         },
                     ],
+                    transcriptEvaluation: {
+                        wer: null,
+                        hits: 1.1,
+                        substitutions: 1.1,
+                        deletions: 1.1,
+                        insertions: 1.1,
+                        referenceWordCount: 1.1,
+                        hypothesisWordCount: 1.1,
+                        keyValues: [{ index: 1.1, verdict: "exact", required: true }],
+                        evaluations: [
+                            {
+                                index: 1.1,
+                                metric: "wer",
+                                comparator: "=",
+                                expectedValue: 1.1,
+                                actualValue: null,
+                                passed: true,
+                                required: true,
+                            },
+                        ],
+                        passed: true,
+                    },
                 },
                 improvementSuggestions: {
                     analysis: "analysis",
@@ -11709,7 +11887,7 @@ describe("SimulationRunsClient", () => {
                     scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                     suggestedSystemPrompt: "suggestedSystemPrompt",
                 },
-                configurations: { transport: { provider: "vapi.websocket" } },
+                configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
             },
         ];
 
@@ -11801,6 +11979,18 @@ describe("SimulationRunsClient", () => {
                     },
                 },
                 results: {
+                    structuredOutputs: {
+                        key: {
+                            name: "name",
+                            result: null,
+                        },
+                    },
+                    skippedStructuredOutputs: {
+                        key: {
+                            name: "name",
+                        },
+                    },
+                    structuredOutputError: "structuredOutputError",
                     evaluations: [
                         {
                             structuredOutputId: "structuredOutputId",
@@ -11826,6 +12016,34 @@ describe("SimulationRunsClient", () => {
                             required: true,
                         },
                     ],
+                    transcriptEvaluation: {
+                        wer: null,
+                        hits: 1.1,
+                        substitutions: 1.1,
+                        deletions: 1.1,
+                        insertions: 1.1,
+                        referenceWordCount: 1.1,
+                        hypothesisWordCount: 1.1,
+                        keyValues: [
+                            {
+                                index: 1.1,
+                                verdict: "exact",
+                                required: true,
+                            },
+                        ],
+                        evaluations: [
+                            {
+                                index: 1.1,
+                                metric: "wer",
+                                comparator: "=",
+                                expectedValue: 1.1,
+                                actualValue: null,
+                                passed: true,
+                                required: true,
+                            },
+                        ],
+                        passed: true,
+                    },
                 },
                 improvementSuggestions: {
                     analysis: "analysis",
@@ -11850,6 +12068,7 @@ describe("SimulationRunsClient", () => {
                     suggestedSystemPrompt: "suggestedSystemPrompt",
                 },
                 configurations: {
+                    includeTargetStructuredOutputs: true,
                     transport: {
                         provider: "vapi.websocket",
                     },
@@ -11917,6 +12136,9 @@ describe("SimulationRunsClient", () => {
                 hooks: { key: "value" },
             },
             results: {
+                structuredOutputs: { key: { name: "name", result: null } },
+                skippedStructuredOutputs: { key: { name: "name" } },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -11947,6 +12169,28 @@ describe("SimulationRunsClient", () => {
                         required: true,
                     },
                 ],
+                transcriptEvaluation: {
+                    wer: 1.1,
+                    hits: 1.1,
+                    substitutions: 1.1,
+                    deletions: 1.1,
+                    insertions: 1.1,
+                    referenceWordCount: 1.1,
+                    hypothesisWordCount: 1.1,
+                    keyValues: [{ index: 1.1, verdict: "exact", required: true }],
+                    evaluations: [
+                        {
+                            index: 1.1,
+                            metric: "wer",
+                            comparator: "=",
+                            expectedValue: 1.1,
+                            actualValue: null,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
+                    passed: true,
+                },
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -11955,7 +12199,7 @@ describe("SimulationRunsClient", () => {
                 scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
-            configurations: { transport: { provider: "vapi.websocket" } },
+            configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
         };
 
         server
@@ -12055,6 +12299,18 @@ describe("SimulationRunsClient", () => {
                 },
             },
             results: {
+                structuredOutputs: {
+                    key: {
+                        name: "name",
+                        result: null,
+                    },
+                },
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                    },
+                },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12085,6 +12341,34 @@ describe("SimulationRunsClient", () => {
                         required: true,
                     },
                 ],
+                transcriptEvaluation: {
+                    wer: 1.1,
+                    hits: 1.1,
+                    substitutions: 1.1,
+                    deletions: 1.1,
+                    insertions: 1.1,
+                    referenceWordCount: 1.1,
+                    hypothesisWordCount: 1.1,
+                    keyValues: [
+                        {
+                            index: 1.1,
+                            verdict: "exact",
+                            required: true,
+                        },
+                    ],
+                    evaluations: [
+                        {
+                            index: 1.1,
+                            metric: "wer",
+                            comparator: "=",
+                            expectedValue: 1.1,
+                            actualValue: null,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
+                    passed: true,
+                },
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12109,6 +12393,7 @@ describe("SimulationRunsClient", () => {
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
             configurations: {
+                includeTargetStructuredOutputs: true,
                 transport: {
                     provider: "vapi.websocket",
                 },
@@ -12175,6 +12460,9 @@ describe("SimulationRunsClient", () => {
                 hooks: { key: "value" },
             },
             results: {
+                structuredOutputs: { key: { name: "name", result: null } },
+                skippedStructuredOutputs: { key: { name: "name" } },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12205,6 +12493,28 @@ describe("SimulationRunsClient", () => {
                         required: true,
                     },
                 ],
+                transcriptEvaluation: {
+                    wer: 1.1,
+                    hits: 1.1,
+                    substitutions: 1.1,
+                    deletions: 1.1,
+                    insertions: 1.1,
+                    referenceWordCount: 1.1,
+                    hypothesisWordCount: 1.1,
+                    keyValues: [{ index: 1.1, verdict: "exact", required: true }],
+                    evaluations: [
+                        {
+                            index: 1.1,
+                            metric: "wer",
+                            comparator: "=",
+                            expectedValue: 1.1,
+                            actualValue: null,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
+                    passed: true,
+                },
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12213,7 +12523,7 @@ describe("SimulationRunsClient", () => {
                 scenarioSuggestions: [{ issue: "issue", suggestion: "suggestion" }],
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
-            configurations: { transport: { provider: "vapi.websocket" } },
+            configurations: { includeTargetStructuredOutputs: true, transport: { provider: "vapi.websocket" } },
         };
 
         server
@@ -12313,6 +12623,18 @@ describe("SimulationRunsClient", () => {
                 },
             },
             results: {
+                structuredOutputs: {
+                    key: {
+                        name: "name",
+                        result: null,
+                    },
+                },
+                skippedStructuredOutputs: {
+                    key: {
+                        name: "name",
+                    },
+                },
+                structuredOutputError: "structuredOutputError",
                 evaluations: [
                     {
                         structuredOutputId: "structuredOutputId",
@@ -12343,6 +12665,34 @@ describe("SimulationRunsClient", () => {
                         required: true,
                     },
                 ],
+                transcriptEvaluation: {
+                    wer: 1.1,
+                    hits: 1.1,
+                    substitutions: 1.1,
+                    deletions: 1.1,
+                    insertions: 1.1,
+                    referenceWordCount: 1.1,
+                    hypothesisWordCount: 1.1,
+                    keyValues: [
+                        {
+                            index: 1.1,
+                            verdict: "exact",
+                            required: true,
+                        },
+                    ],
+                    evaluations: [
+                        {
+                            index: 1.1,
+                            metric: "wer",
+                            comparator: "=",
+                            expectedValue: 1.1,
+                            actualValue: null,
+                            passed: true,
+                            required: true,
+                        },
+                    ],
+                    passed: true,
+                },
             },
             improvementSuggestions: {
                 analysis: "analysis",
@@ -12367,6 +12717,7 @@ describe("SimulationRunsClient", () => {
                 suggestedSystemPrompt: "suggestedSystemPrompt",
             },
             configurations: {
+                includeTargetStructuredOutputs: true,
                 transport: {
                     provider: "vapi.websocket",
                 },
