@@ -295,6 +295,7 @@ describe("SquadsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -411,28 +412,6 @@ describe("SquadsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -614,6 +593,28 @@ describe("SquadsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -709,6 +710,7 @@ describe("SquadsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -827,28 +829,6 @@ describe("SquadsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -1034,6 +1014,28 @@ describe("SquadsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -1135,6 +1137,7 @@ describe("SquadsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -1620,6 +1623,9 @@ describe("SquadsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -1760,28 +1766,6 @@ describe("SquadsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -2024,6 +2008,28 @@ describe("SquadsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -2142,6 +2148,9 @@ describe("SquadsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -2284,28 +2293,6 @@ describe("SquadsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -2555,6 +2542,28 @@ describe("SquadsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -2683,6 +2692,9 @@ describe("SquadsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -3123,6 +3135,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -3239,28 +3252,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -3442,6 +3433,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -3537,6 +3550,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -3655,40 +3669,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -3744,6 +3724,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -3890,6 +3871,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -3993,6 +4008,7 @@ describe("SquadsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -4122,7 +4138,13 @@ describe("SquadsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             id: "id",
             orgId: "orgId",
@@ -4502,6 +4524,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -4642,28 +4667,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -4906,6 +4909,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -5024,6 +5049,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -5166,40 +5194,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -5292,6 +5286,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -5477,6 +5472,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -5607,6 +5636,9 @@ describe("SquadsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -5781,9 +5813,11 @@ describe("SquadsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             id: "id",
@@ -6085,6 +6119,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -6201,28 +6236,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -6404,6 +6417,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -6499,6 +6534,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -6617,40 +6653,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -6706,6 +6708,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -6852,6 +6855,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -6955,6 +6992,7 @@ describe("SquadsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -7084,7 +7122,13 @@ describe("SquadsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             id: "id",
             orgId: "orgId",
@@ -7457,6 +7501,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -7597,28 +7644,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -7861,6 +7886,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -7979,6 +8026,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -8121,40 +8171,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -8247,6 +8263,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -8432,6 +8449,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -8562,6 +8613,9 @@ describe("SquadsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -8736,9 +8790,11 @@ describe("SquadsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             id: "id",
@@ -9040,6 +9096,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -9156,28 +9213,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -9359,6 +9394,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -9454,6 +9511,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -9572,40 +9630,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -9661,6 +9685,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -9807,6 +9832,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -9910,6 +9969,7 @@ describe("SquadsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -10039,7 +10099,13 @@ describe("SquadsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             id: "id",
             orgId: "orgId",
@@ -10412,6 +10478,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -10552,28 +10621,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -10816,6 +10863,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -10934,6 +11003,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -11076,40 +11148,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -11202,6 +11240,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -11387,6 +11426,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -11517,6 +11590,9 @@ describe("SquadsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -11691,9 +11767,11 @@ describe("SquadsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             id: "id",
@@ -11995,6 +12073,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -12111,28 +12190,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -12314,6 +12371,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -12409,6 +12488,7 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -12527,40 +12607,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -12616,6 +12662,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -12762,6 +12809,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -12865,6 +12946,7 @@ describe("SquadsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -12994,7 +13076,13 @@ describe("SquadsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             id: "id",
             orgId: "orgId",
@@ -13375,6 +13463,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -13515,28 +13606,6 @@ describe("SquadsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -13779,6 +13848,28 @@ describe("SquadsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -13897,6 +13988,9 @@ describe("SquadsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -14039,40 +14133,6 @@ describe("SquadsClient", () => {
                 },
             ],
             membersOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -14165,6 +14225,7 @@ describe("SquadsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -14350,6 +14411,40 @@ describe("SquadsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -14480,6 +14575,9 @@ describe("SquadsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -14654,9 +14752,11 @@ describe("SquadsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             id: "id",

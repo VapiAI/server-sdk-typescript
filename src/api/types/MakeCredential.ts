@@ -6,10 +6,10 @@ export interface MakeCredential {
     provider: Vapi.MakeCredentialProvider;
     /** Team ID */
     teamId: string;
-    /** Region of your application. For example: eu1, eu2, us1, us2 */
-    region: string;
     /** This is not returned in the API. */
     apiKey: string;
+    /** Region of your application. For example: eu1, eu2, us1, us2 */
+    region: string;
     /** This is the unique identifier for the credential. */
     id: string;
     /** This is the unique identifier for the org that this credential belongs to. */

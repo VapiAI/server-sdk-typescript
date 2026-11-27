@@ -34,6 +34,7 @@ export interface CreateWorkflowDto {
     observabilityPlan?: Vapi.LangfuseObservabilityPlan | undefined;
     /**
      * This is the background sound in the call. Default for phone calls is 'office' and default for web calls is 'off'.
+     * Bundled sounds: 'office', 'white-noise', 'city', 'crowd' and 'farm'. GPT Live assistants don't play 'office'.
      * You can also provide a custom sound by providing a URL to an audio file.
      */
     backgroundSound?: Vapi.CreateWorkflowDtoBackgroundSound | undefined;

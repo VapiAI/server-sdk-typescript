@@ -21,6 +21,7 @@ export type ConversationNodeTranscriber =
     | Vapi.ConversationNodeTranscriber.Cartesia
     | Vapi.ConversationNodeTranscriber.Soniox
     | Vapi.ConversationNodeTranscriber.Xai
+    | Vapi.ConversationNodeTranscriber.Reson8
     | Vapi.ConversationNodeTranscriber.Vapi;
 
 export namespace ConversationNodeTranscriber {
@@ -74,6 +75,10 @@ export namespace ConversationNodeTranscriber {
 
     export interface Xai extends Vapi.XaiTranscriber {
         provider: "xai";
+    }
+
+    export interface Reson8 extends Vapi.Reson8Transcriber {
+        provider: "reson8";
     }
 
     export interface Vapi extends Vapi.VapiTranscriber {

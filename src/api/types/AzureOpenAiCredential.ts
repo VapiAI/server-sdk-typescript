@@ -20,5 +20,7 @@ export interface AzureOpenAiCredential {
     updatedAt: string;
     /** This is the name of credential. This is just for your reference. */
     name?: string | undefined;
+    /** These are the names of your Azure deployments, one entry for every model in `models`. Omit the field when every deployment is named after its model; once it has any entry, a model with no entry is rejected, so a deployment named after its model takes `{ "model": "<model>", "name": "<model>" }`. Requests use the first of the org's keys that matches the region (on a live call, also the model), so an org holding two keys for the same region and model should pin `credentialIds` on its assistants. */
+    deployments?: Vapi.AzureOpenAiDeployment[] | undefined;
     openAIEndpoint: string;
 }

@@ -3,6 +3,10 @@
 export const AssistantVersionBackgroundSoundZero = {
     Off: "off",
     Office: "office",
+    WhiteNoise: "white-noise",
+    City: "city",
+    Crowd: "crowd",
+    Farm: "farm",
 } as const;
 export type AssistantVersionBackgroundSoundZero =
     (typeof AssistantVersionBackgroundSoundZero)[keyof typeof AssistantVersionBackgroundSoundZero];

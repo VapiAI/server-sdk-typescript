@@ -13,12 +13,9 @@ export interface Scenario {
     updatedAt: string;
     /** This is the name of the scenario. */
     name: string;
-    /** This is the script/instructions for the tester to follow during the simulation. */
+    /** This is the script/instructions for the tester to follow during the simulation. Optional when `transcriptReplay` is set, which has no tester. */
     instructions: string;
-    /**
-     * This is the structured output-based evaluation plan for the simulation.
-     * Each item defines a structured output to extract and evaluate against an expected value.
-     */
+    /** This is the evaluation plan for the simulation. At least one is required. With `transcriptReplay`, only `metric` evaluations are allowed, and none are required. */
     evaluations: Vapi.EvaluationPlanItem[];
     /** Hooks to run on simulation lifecycle events */
     hooks?: Vapi.ScenarioHooksItem[] | undefined;
@@ -34,6 +31,12 @@ export interface Scenario {
      * measured fails.
      */
     latencyExpectations?: Vapi.LatencyExpectation[] | undefined;
+    /**
+     * This turns the scenario into a transcription test: a recording is streamed
+     * into the target's call in place of a simulated caller, and the target's
+     * transcript is scored against an answer key.
+     */
+    transcriptReplay?: (Vapi.TranscriptReplay | null) | undefined;
     /**
      * Optional folder path for organizing scenarios.
      * Supports up to 3 levels (e.g., "dept/feature/variant").

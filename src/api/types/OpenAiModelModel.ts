@@ -10,6 +10,7 @@
  * @default undefined
  */
 export const OpenAiModelModel = {
+    Gpt61Terra: "gpt-6.1-terra",
     Gpt6Luna: "gpt-6-luna",
     Gpt56Sol: "gpt-5.6-sol",
     Gpt56Terra: "gpt-5.6-terra",
@@ -167,6 +168,8 @@ export const OpenAiModelModel = {
     Gpt41Australiaeast: "gpt-4.1:australiaeast",
     Gpt4OAustraliaeast: "gpt-4o:australiaeast",
     Gpt54MiniAustraliaeast: "gpt-5.4-mini:australiaeast",
+    Gpt56LunaAustraliaeast: "gpt-5.6-luna:australiaeast",
+    Gpt6LunaAustraliaeast: "gpt-6-luna:australiaeast",
     GptLive1: "gpt-live-1",
 } as const;
 export type OpenAiModelModel = (typeof OpenAiModelModel)[keyof typeof OpenAiModelModel];

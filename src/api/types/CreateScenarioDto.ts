@@ -24,6 +24,12 @@ export interface CreateScenarioDto {
      */
     latencyExpectations?: Vapi.LatencyExpectation[] | undefined;
     /**
+     * This turns the scenario into a transcription test: a recording is streamed
+     * into the target's call in place of a simulated caller, and the target's
+     * transcript is scored against an answer key.
+     */
+    transcriptReplay?: (Vapi.TranscriptReplay | null) | undefined;
+    /**
      * Optional folder path for organizing scenarios.
      * Supports up to 3 levels (e.g., "dept/feature/variant").
      * Maps to GitOps resource folder structure.

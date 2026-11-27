@@ -20,7 +20,7 @@ export interface Personality {
      * This is the full assistant configuration for this personality.
      * It defines the tester's voice, model, behavior via system prompt, and other settings.
      */
-    assistant: Vapi.CreateAssistantDto;
+    assistant: Vapi.TransientAssistantDto;
     /**
      * Optional folder path for organizing personalities.
      * Supports up to 3 levels (e.g., "dept/feature/variant").

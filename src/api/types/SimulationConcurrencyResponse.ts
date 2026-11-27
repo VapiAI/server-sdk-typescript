@@ -8,6 +8,8 @@ export interface SimulationConcurrencyResponse {
     activeSimulations: number;
     /** Number of voice simulations that can start now (available call slots / 2) */
     availableToStart: number;
+    /** Max chat simulations that can run at once. A count of simulations, not call slots: chat simulations use none. */
+    chatConcurrencyLimit: number;
     createdAt: string | null;
     updatedAt: string | null;
     /** True if org is using platform default concurrency limit */

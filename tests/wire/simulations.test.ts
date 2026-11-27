@@ -4,38 +4,6 @@ import { VapiClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("SimulationsClient", () => {
-    test("SimulationGenerateController_generate", async () => {
-        const server = mockServerPool.createServer();
-        const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = {
-            scenarios: [{ name: "name", instructions: "instructions", category: "happy_path", reasoning: "reasoning" }],
-            coverageNotes: "coverageNotes",
-        };
-
-        server
-            .mockEndpoint()
-            .post("/eval/simulation/scenario/generate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.simulations.simulationGenerateControllerGenerate();
-        expect(response).toEqual({
-            scenarios: [
-                {
-                    name: "name",
-                    instructions: "instructions",
-                    category: "happy_path",
-                    reasoning: "reasoning",
-                },
-            ],
-            coverageNotes: "coverageNotes",
-        });
-    });
-
     test("SimulationController_findAll", async () => {
         const server = mockServerPool.createServer();
         const client = new VapiClient({ maxRetries: 0, token: "test", environment: server.baseUrl });
@@ -119,6 +87,7 @@ describe("SimulationsClient", () => {
             concurrencyLimit: 1.1,
             activeSimulations: 1.1,
             availableToStart: 1.1,
+            chatConcurrencyLimit: 1.1,
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             isDefault: true,
@@ -138,6 +107,7 @@ describe("SimulationsClient", () => {
             concurrencyLimit: 1.1,
             activeSimulations: 1.1,
             availableToStart: 1.1,
+            chatConcurrencyLimit: 1.1,
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             isDefault: true,

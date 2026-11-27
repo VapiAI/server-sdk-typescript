@@ -1,3 +1,18 @@
+## [4.0.0] - 2026-11-27
+### Breaking Changes
+- **`VapiModel.version`** — the `version` field (type `VapiModelVersion`) has been removed from `VapiModel`; replace any reads or writes of this field with the `model` field using `"sapien"` or `"sapien-lite"`.
+
+### Added
+- **`AssistantSaveResponse`** — new interface (plus supporting discriminated union types `AssistantSaveResponseTranscriber`, `AssistantSaveResponseModel`, `AssistantSaveResponseCredentialsItem`, `AssistantSaveResponseVoice`, and related enums) representing the response body returned by assistant create, update, and replace endpoints.
+- **`Reson8Transcriber`** — new transcriber provider variant added to `AssistantTranscriber`, `AssistantVersionTranscriber`, `TransferAssistantTranscriber`, and `WorkflowUserEditableTranscriber`, along with corresponding `CallEndedReason` pipeline-error codes.
+- **`CallHealthDashboard*` types** — ~30 new interfaces and enums forming a complete Call Health Dashboard API surface, including `CallHealthDashboardAssistantOverviewDto`, `CallHealthDashboardGoalCallDto`, and `CallHealthDashboardCoverageDto`.
+- **`TransientAssistantDto`** and **`TranscriptReplay`** — new interfaces for configuring a transient (non-persisted) assistant on a call and for replaying recorded calls against an answer key for transcript-based evaluations.
+- **New enum values and fields across several types** — `AzureOpenAiDeployment`/`AzureOpenAiDeploymentModel` added to `AzureOpenAiCredential`; new bundled sound values (`white-noise`, `city`, `crowd`, `farm`) across background-sound enums; new `CallEndedReason` codes; `TurnLatency.unmeasured`, `WorkflowOpenAiModel.reasoningEffort`, and `TransferCallTool.baselineVersion` optional fields added.
+
+### Changed
+- **`{{messagesWithConfidence}}` template variable** — all `Workflow*Model` structured output extraction prompts now document a `{{messagesWithConfidence}}` LiquidJS variable that includes transcription confidence data; `{{messages}}` now omits transcription-confidence fields in structured outputs.
+- **`UpdateLineInsightFromCallTableDtoQueriesItem`** and related insight-update union types — `JsonQueryOnEventsTable` is now a valid variant, enabling event-table queries in insight updates.
+
 ## [3.0.0] - 2026-10-08
 ### Breaking Changes
 - **`ToolPinnedConflictResponseDtoError`** and the standalone **`ToolPinnedConflictResponseDto.error`** field have been removed from the SDK. The API still returns `error: "tool_pinned"` in pinned-tool HTTP 409 responses. After validating or narrowing the error body, use **`Vapi.ConflictErrorBody`** or **`Vapi.ConflictErrorBody.ToolPinned`** to read its `error` discriminator. Replace the removed constant with the literal `"tool_pinned"`. The `message` field contains the human-readable reason and does not replace the discriminator.

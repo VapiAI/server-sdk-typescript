@@ -46,7 +46,7 @@ export interface CreateCallDto {
      * - Squad, use `squad`
      * - Workflow, use `workflow`
      */
-    assistant?: Vapi.CreateAssistantDto;
+    assistant?: Vapi.TransientAssistantDto;
     /** These are the overrides for the `assistant` or `assistantId`'s settings and template variables. */
     assistantOverrides?: Vapi.AssistantOverrides;
     /**

@@ -6,10 +6,23 @@ import type * as Vapi from "../index.js";
  * Configuration for transcribing speech during assistant conversations with OpenAI, including model, language, and fallback settings.
  */
 export interface OpenAiTranscriber {
-    /** This is the model that will be used for the transcription. */
+    /**
+     * This is the model that will be used for the transcription.
+     * Digit formatting can differ by model: `gpt-transcribe` may write spoken digit strings as words (for example, "four seven two"), where `gpt-4o-transcribe` and `gpt-4o-mini-transcribe` may write them as digits ("472"). Do not rely on either format.
+     */
     model: Vapi.OpenAiTranscriberModel;
     /** This is the language that will be set for the transcription. */
     language?: Vapi.OpenAiTranscriberLanguage | undefined;
+    /**
+     * These are words and phrases the model should recognize, such as names, brands, and product terms.
+     * Supported only by `gpt-transcribe`. Each keyword is one line and must not contain `<` or `>`. Maximum 16,384 keywords.
+     */
+    keywords?: string[] | undefined;
+    /**
+     * This is free-text context for the transcription, such as the topic of the call or the expected vocabulary.
+     * Maximum length: 8,192 characters for `gpt-transcribe`, and 1,024 characters for `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`.
+     */
+    prompt?: string | undefined;
     /** This is the plan for transcriber provider fallbacks in the event that the primary transcriber provider fails. */
     fallbackPlan?: Vapi.FallbackTranscriberPlan | undefined;
 }

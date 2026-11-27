@@ -292,6 +292,7 @@ describe("SessionsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -408,28 +409,6 @@ describe("SessionsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -611,6 +590,28 @@ describe("SessionsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -706,6 +707,7 @@ describe("SessionsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: { intensity: 100 },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -1098,6 +1100,7 @@ describe("SessionsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: { intensity: 100 },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -1214,28 +1217,6 @@ describe("SessionsClient", () => {
                                     },
                                 },
                                 assistantOverrides: {
-                                    transcriber: {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                        fallbackPlan: {
-                                            transcribers: [
-                                                {
-                                                    provider: "assembly-ai",
-                                                    confidenceThreshold: 0.4,
-                                                    formatTurns: true,
-                                                    endOfTurnConfidenceThreshold: 0.7,
-                                                    minEndOfTurnSilenceWhenConfident: 160,
-                                                    maxTurnSilence: 400,
-                                                    vadAssistedEndpointingEnabled: true,
-                                                },
-                                            ],
-                                        },
-                                    },
                                     model: {
                                         provider: "anthropic",
                                         tools: [
@@ -1417,6 +1398,28 @@ describe("SessionsClient", () => {
                                             ],
                                         },
                                     ],
+                                    transcriber: {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                        fallbackPlan: {
+                                            transcribers: [
+                                                {
+                                                    provider: "assembly-ai",
+                                                    confidenceThreshold: 0.4,
+                                                    formatTurns: true,
+                                                    endOfTurnConfidenceThreshold: 0.7,
+                                                    minEndOfTurnSilenceWhenConfident: 160,
+                                                    maxTurnSilence: 400,
+                                                    vadAssistedEndpointingEnabled: true,
+                                                },
+                                            ],
+                                        },
+                                    },
                                     "tools:append": [
                                         {
                                             type: "apiRequest",
@@ -1515,6 +1518,7 @@ describe("SessionsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: { intensity: 100 },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -1633,28 +1637,6 @@ describe("SessionsClient", () => {
                             },
                         ],
                         membersOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -1836,6 +1818,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -1931,6 +1935,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -2050,28 +2055,6 @@ describe("SessionsClient", () => {
                     messages: [{ role: "role", message: "message", time: 1.1, secondsFromStart: 1.1 }],
                     customer: {
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -2253,6 +2236,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -2348,6 +2353,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -2464,28 +2470,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         squadOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -2667,6 +2651,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -2762,6 +2768,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -3281,6 +3288,9 @@ describe("SessionsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -3421,28 +3431,6 @@ describe("SessionsClient", () => {
                         },
                     },
                     assistantOverrides: {
-                        transcriber: {
-                            provider: "assembly-ai",
-                            confidenceThreshold: 0.4,
-                            formatTurns: true,
-                            endOfTurnConfidenceThreshold: 0.7,
-                            minEndOfTurnSilenceWhenConfident: 160,
-                            maxTurnSilence: 400,
-                            vadAssistedEndpointingEnabled: true,
-                            fallbackPlan: {
-                                transcribers: [
-                                    {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                    },
-                                ],
-                            },
-                        },
                         model: {
                             provider: "anthropic",
                             tools: [
@@ -3685,6 +3673,28 @@ describe("SessionsClient", () => {
                                 ],
                             },
                         ],
+                        transcriber: {
+                            provider: "assembly-ai",
+                            confidenceThreshold: 0.4,
+                            formatTurns: true,
+                            endOfTurnConfidenceThreshold: 0.7,
+                            minEndOfTurnSilenceWhenConfident: 160,
+                            maxTurnSilence: 400,
+                            vadAssistedEndpointingEnabled: true,
+                            fallbackPlan: {
+                                transcribers: [
+                                    {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                    },
+                                ],
+                            },
+                        },
                         "tools:append": [
                             {
                                 type: "apiRequest",
@@ -3803,6 +3813,9 @@ describe("SessionsClient", () => {
                             },
                         },
                         backgroundSpeechDenoisingPlan: {
+                            smartDenoisingPlan: {
+                                intensity: 100,
+                            },
                             fourierDenoisingPlan: {
                                 mediaDetectionEnabled: true,
                                 staticThreshold: -35,
@@ -4288,6 +4301,9 @@ describe("SessionsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: {
+                                            intensity: 100,
+                                        },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -4428,28 +4444,6 @@ describe("SessionsClient", () => {
                                     },
                                 },
                                 assistantOverrides: {
-                                    transcriber: {
-                                        provider: "assembly-ai",
-                                        confidenceThreshold: 0.4,
-                                        formatTurns: true,
-                                        endOfTurnConfidenceThreshold: 0.7,
-                                        minEndOfTurnSilenceWhenConfident: 160,
-                                        maxTurnSilence: 400,
-                                        vadAssistedEndpointingEnabled: true,
-                                        fallbackPlan: {
-                                            transcribers: [
-                                                {
-                                                    provider: "assembly-ai",
-                                                    confidenceThreshold: 0.4,
-                                                    formatTurns: true,
-                                                    endOfTurnConfidenceThreshold: 0.7,
-                                                    minEndOfTurnSilenceWhenConfident: 160,
-                                                    maxTurnSilence: 400,
-                                                    vadAssistedEndpointingEnabled: true,
-                                                },
-                                            ],
-                                        },
-                                    },
                                     model: {
                                         provider: "anthropic",
                                         tools: [
@@ -4692,6 +4686,28 @@ describe("SessionsClient", () => {
                                             ],
                                         },
                                     ],
+                                    transcriber: {
+                                        provider: "assembly-ai",
+                                        confidenceThreshold: 0.4,
+                                        formatTurns: true,
+                                        endOfTurnConfidenceThreshold: 0.7,
+                                        minEndOfTurnSilenceWhenConfident: 160,
+                                        maxTurnSilence: 400,
+                                        vadAssistedEndpointingEnabled: true,
+                                        fallbackPlan: {
+                                            transcribers: [
+                                                {
+                                                    provider: "assembly-ai",
+                                                    confidenceThreshold: 0.4,
+                                                    formatTurns: true,
+                                                    endOfTurnConfidenceThreshold: 0.7,
+                                                    minEndOfTurnSilenceWhenConfident: 160,
+                                                    maxTurnSilence: 400,
+                                                    vadAssistedEndpointingEnabled: true,
+                                                },
+                                            ],
+                                        },
+                                    },
                                     "tools:append": [
                                         {
                                             type: "apiRequest",
@@ -4810,6 +4826,9 @@ describe("SessionsClient", () => {
                                         },
                                     },
                                     backgroundSpeechDenoisingPlan: {
+                                        smartDenoisingPlan: {
+                                            intensity: 100,
+                                        },
                                         fourierDenoisingPlan: {
                                             mediaDetectionEnabled: true,
                                             staticThreshold: -35,
@@ -4952,28 +4971,6 @@ describe("SessionsClient", () => {
                             },
                         ],
                         membersOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -5216,6 +5213,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -5334,6 +5353,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -5484,28 +5506,6 @@ describe("SessionsClient", () => {
                     ],
                     customer: {
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -5748,6 +5748,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -5866,6 +5888,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -6006,28 +6031,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         squadOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -6270,6 +6273,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -6388,6 +6413,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -6597,6 +6625,7 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -6694,6 +6723,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -6912,6 +6942,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -7041,43 +7072,15 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -7133,6 +7136,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -7279,6 +7283,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -7382,6 +7420,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -7511,7 +7550,13 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -7788,6 +7833,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -7904,28 +7950,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -8107,6 +8131,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -8202,6 +8248,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -8320,28 +8367,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -8527,6 +8552,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -8628,6 +8675,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -8750,28 +8798,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -8957,6 +8983,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -9058,6 +9106,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -9175,28 +9224,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -9382,6 +9409,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -9483,6 +9532,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -9668,6 +9718,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
@@ -9711,6 +9762,13 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -9845,6 +9903,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -10110,6 +10169,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -10284,46 +10346,14 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -10416,6 +10446,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -10601,6 +10632,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -10731,6 +10796,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -10905,9 +10973,11 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -11257,6 +11327,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -11397,28 +11470,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -11661,6 +11712,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -11779,6 +11852,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -11921,28 +11997,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -12192,6 +12246,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -12320,6 +12396,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -12473,28 +12552,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -12744,6 +12801,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -12872,6 +12951,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -13013,28 +13095,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -13284,6 +13344,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -13412,6 +13494,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -13687,6 +13772,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: {
                     key: "value",
@@ -13727,6 +13813,7 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -13824,6 +13911,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -14042,6 +14130,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -14171,43 +14260,15 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -14263,6 +14324,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -14409,6 +14471,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -14512,6 +14608,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -14641,7 +14738,13 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -14918,6 +15021,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -15034,28 +15138,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -15237,6 +15319,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -15332,6 +15436,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -15450,28 +15555,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -15657,6 +15740,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -15758,6 +15863,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -15880,28 +15986,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -16087,6 +16171,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -16188,6 +16294,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -16305,28 +16412,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -16512,6 +16597,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -16613,6 +16720,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -16798,6 +16906,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
@@ -16836,6 +16945,13 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -16970,6 +17086,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -17235,6 +17352,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -17409,46 +17529,14 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -17541,6 +17629,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -17726,6 +17815,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -17856,6 +17979,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -18030,9 +18156,11 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -18382,6 +18510,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -18522,28 +18653,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -18786,6 +18895,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -18904,6 +19035,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -19046,28 +19180,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -19317,6 +19429,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -19445,6 +19579,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -19598,28 +19735,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -19869,6 +19984,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -19997,6 +20134,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -20138,28 +20278,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -20409,6 +20527,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -20537,6 +20677,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -20812,6 +20955,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: {
                     key: "value",
@@ -20852,6 +20996,7 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -20949,6 +21094,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -21167,6 +21313,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -21296,43 +21443,15 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -21388,6 +21507,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -21534,6 +21654,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -21637,6 +21791,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -21766,7 +21921,13 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -22043,6 +22204,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -22159,28 +22321,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -22362,6 +22502,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -22457,6 +22619,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -22575,28 +22738,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -22782,6 +22923,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -22883,6 +23046,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -23005,28 +23169,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -23212,6 +23354,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -23313,6 +23477,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -23430,28 +23595,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -23637,6 +23780,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -23738,6 +23903,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -23923,6 +24089,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
@@ -23961,6 +24128,13 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -24095,6 +24269,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -24360,6 +24535,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -24534,46 +24712,14 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -24666,6 +24812,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -24851,6 +24998,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -24981,6 +25162,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -25155,9 +25339,11 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -25507,6 +25693,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -25647,28 +25836,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -25911,6 +26078,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -26029,6 +26218,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -26171,28 +26363,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -26442,6 +26612,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -26570,6 +26762,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -26723,28 +26918,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -26994,6 +27167,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -27122,6 +27317,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -27263,28 +27461,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -27534,6 +27710,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -27662,6 +27860,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -27937,6 +28138,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: {
                     key: "value",
@@ -27977,6 +28179,7 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [{ cost: 1.1, promptTokens: 1.1, completionTokens: 1.1 }],
                     cost: 1.1,
                 },
             ],
@@ -28074,6 +28277,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -28292,6 +28496,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -28421,43 +28626,15 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -28513,6 +28690,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -28659,6 +28837,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -28762,6 +28974,7 @@ describe("SessionsClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -28891,7 +29104,13 @@ describe("SessionsClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             squadId: "squadId",
             squad: {
@@ -29168,6 +29387,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -29284,28 +29504,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -29487,6 +29685,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -29582,6 +29802,7 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: { intensity: 100 },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -29700,28 +29921,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -29907,6 +30106,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -30008,6 +30229,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -30130,28 +30352,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -30337,6 +30537,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -30438,6 +30660,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -30555,28 +30778,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -30762,6 +30963,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -30863,6 +31086,7 @@ describe("SessionsClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -31048,6 +31272,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: { key: "value" },
                 scorecards: { key: "value" },
@@ -31093,6 +31318,13 @@ describe("SessionsClient", () => {
                     completionTokens: 1.1,
                     cachedPromptTokens: 1.1,
                     reasoningTokens: 1.1,
+                    serviceTierBreakdown: [
+                        {
+                            cost: 1.1,
+                            promptTokens: 1.1,
+                            completionTokens: 1.1,
+                        },
+                    ],
                     cost: 1.1,
                 },
             ],
@@ -31227,6 +31459,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -31492,6 +31725,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -31666,46 +31902,14 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             assistantOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -31798,6 +32002,7 @@ describe("SessionsClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -31983,6 +32188,40 @@ describe("SessionsClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -32113,6 +32352,9 @@ describe("SessionsClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -32287,9 +32529,11 @@ describe("SessionsClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             squadId: "squadId",
@@ -32639,6 +32883,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -32779,28 +33026,6 @@ describe("SessionsClient", () => {
                             },
                         },
                         assistantOverrides: {
-                            transcriber: {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                                fallbackPlan: {
-                                    transcribers: [
-                                        {
-                                            provider: "assembly-ai",
-                                            confidenceThreshold: 0.4,
-                                            formatTurns: true,
-                                            endOfTurnConfidenceThreshold: 0.7,
-                                            minEndOfTurnSilenceWhenConfident: 160,
-                                            maxTurnSilence: 400,
-                                            vadAssistedEndpointingEnabled: true,
-                                        },
-                                    ],
-                                },
-                            },
                             model: {
                                 provider: "anthropic",
                                 tools: [
@@ -33043,6 +33268,28 @@ describe("SessionsClient", () => {
                                     ],
                                 },
                             ],
+                            transcriber: {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                                fallbackPlan: {
+                                    transcribers: [
+                                        {
+                                            provider: "assembly-ai",
+                                            confidenceThreshold: 0.4,
+                                            formatTurns: true,
+                                            endOfTurnConfidenceThreshold: 0.7,
+                                            minEndOfTurnSilenceWhenConfident: 160,
+                                            maxTurnSilence: 400,
+                                            vadAssistedEndpointingEnabled: true,
+                                        },
+                                    ],
+                                },
+                            },
                             "tools:append": [
                                 {
                                     type: "apiRequest",
@@ -33161,6 +33408,9 @@ describe("SessionsClient", () => {
                                 },
                             },
                             backgroundSpeechDenoisingPlan: {
+                                smartDenoisingPlan: {
+                                    intensity: 100,
+                                },
                                 fourierDenoisingPlan: {
                                     mediaDetectionEnabled: true,
                                     staticThreshold: -35,
@@ -33303,28 +33553,6 @@ describe("SessionsClient", () => {
                     },
                 ],
                 membersOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -33574,6 +33802,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -33702,6 +33952,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -33855,28 +34108,6 @@ describe("SessionsClient", () => {
                 numberE164CheckEnabled: true,
                 extension: "extension",
                 assistantOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -34126,6 +34357,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -34254,6 +34507,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -34395,28 +34651,6 @@ describe("SessionsClient", () => {
                     },
                 },
                 squadOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -34666,6 +34900,28 @@ describe("SessionsClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -34794,6 +35050,9 @@ describe("SessionsClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -35069,6 +35328,7 @@ describe("SessionsClient", () => {
                     toTransportLatencyAverage: 1.1,
                     numUserInterrupted: 1.1,
                     numAssistantInterrupted: 1.1,
+                    turnLatencyUnmeasuredTracked: true,
                 },
                 structuredOutputs: {
                     key: "value",

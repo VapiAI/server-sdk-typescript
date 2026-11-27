@@ -60,28 +60,6 @@ describe("SimulationScenariosClient", () => {
                     },
                 ],
                 targetOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -267,6 +245,28 @@ describe("SimulationScenariosClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -368,6 +368,7 @@ describe("SimulationScenariosClient", () => {
                     },
                     metadata: { key: "value" },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: { intensity: 100 },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -486,6 +487,11 @@ describe("SimulationScenariosClient", () => {
                 },
                 toolMocks: [{ toolName: "toolName" }],
                 latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200 }],
+                transcriptReplay: {
+                    recordingUrl: "https://example.com/recordings/call-123.wav",
+                    answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                    answerKeyUrl: "answerKeyUrl",
+                },
                 path: "path",
             },
         ];
@@ -570,28 +576,6 @@ describe("SimulationScenariosClient", () => {
                     },
                 ],
                 targetOverrides: {
-                    transcriber: {
-                        provider: "assembly-ai",
-                        confidenceThreshold: 0.4,
-                        formatTurns: true,
-                        endOfTurnConfidenceThreshold: 0.7,
-                        minEndOfTurnSilenceWhenConfident: 160,
-                        maxTurnSilence: 400,
-                        vadAssistedEndpointingEnabled: true,
-                        fallbackPlan: {
-                            transcribers: [
-                                {
-                                    provider: "assembly-ai",
-                                    confidenceThreshold: 0.4,
-                                    formatTurns: true,
-                                    endOfTurnConfidenceThreshold: 0.7,
-                                    minEndOfTurnSilenceWhenConfident: 160,
-                                    maxTurnSilence: 400,
-                                    vadAssistedEndpointingEnabled: true,
-                                },
-                            ],
-                        },
-                    },
                     model: {
                         provider: "anthropic",
                         tools: [
@@ -841,6 +825,28 @@ describe("SimulationScenariosClient", () => {
                             ],
                         },
                     ],
+                    transcriber: {
+                        provider: "assembly-ai",
+                        confidenceThreshold: 0.4,
+                        formatTurns: true,
+                        endOfTurnConfidenceThreshold: 0.7,
+                        minEndOfTurnSilenceWhenConfident: 160,
+                        maxTurnSilence: 400,
+                        vadAssistedEndpointingEnabled: true,
+                        fallbackPlan: {
+                            transcribers: [
+                                {
+                                    provider: "assembly-ai",
+                                    confidenceThreshold: 0.4,
+                                    formatTurns: true,
+                                    endOfTurnConfidenceThreshold: 0.7,
+                                    minEndOfTurnSilenceWhenConfident: 160,
+                                    maxTurnSilence: 400,
+                                    vadAssistedEndpointingEnabled: true,
+                                },
+                            ],
+                        },
+                    },
                     "tools:append": [
                         {
                             type: "apiRequest",
@@ -969,6 +975,9 @@ describe("SimulationScenariosClient", () => {
                         key: "value",
                     },
                     backgroundSpeechDenoisingPlan: {
+                        smartDenoisingPlan: {
+                            intensity: 100,
+                        },
                         fourierDenoisingPlan: {
                             mediaDetectionEnabled: true,
                             staticThreshold: -35,
@@ -1121,6 +1130,18 @@ describe("SimulationScenariosClient", () => {
                         thresholdMs: 1200,
                     },
                 ],
+                transcriptReplay: {
+                    recordingUrl: "https://example.com/recordings/call-123.wav",
+                    answerKey: {
+                        transcript: "transcript",
+                        keyValues: [
+                            {
+                                value: "lisinopril",
+                            },
+                        ],
+                    },
+                    answerKeyUrl: "answerKeyUrl",
+                },
                 path: "path",
             },
         ]);
@@ -1153,6 +1174,7 @@ describe("SimulationScenariosClient", () => {
                         name: "name",
                         schema: { type: "string" },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -1186,40 +1208,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -1275,6 +1263,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -1421,6 +1410,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -1524,6 +1547,7 @@ describe("SimulationScenariosClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -1653,10 +1677,21 @@ describe("SimulationScenariosClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
             latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         };
 
@@ -1708,6 +1743,7 @@ describe("SimulationScenariosClient", () => {
                             type: "string",
                         },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -1751,40 +1787,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -1877,6 +1879,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -2062,6 +2065,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -2192,6 +2229,9 @@ describe("SimulationScenariosClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -2366,9 +2406,11 @@ describe("SimulationScenariosClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             toolMocks: [
@@ -2386,6 +2428,18 @@ describe("SimulationScenariosClient", () => {
                     required: true,
                 },
             ],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: {
+                    transcript: "transcript",
+                    keyValues: [
+                        {
+                            value: "lisinopril",
+                        },
+                    ],
+                },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         });
     });
@@ -2413,6 +2467,7 @@ describe("SimulationScenariosClient", () => {
                         name: "name",
                         schema: { type: "string" },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -2446,40 +2501,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -2535,6 +2556,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -2681,6 +2703,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -2784,6 +2840,7 @@ describe("SimulationScenariosClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -2913,10 +2970,21 @@ describe("SimulationScenariosClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
             latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         };
 
@@ -2960,6 +3028,7 @@ describe("SimulationScenariosClient", () => {
                             type: "string",
                         },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -3003,40 +3072,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -3129,6 +3164,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -3314,6 +3350,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -3444,6 +3514,9 @@ describe("SimulationScenariosClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -3618,9 +3691,11 @@ describe("SimulationScenariosClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             toolMocks: [
@@ -3638,6 +3713,18 @@ describe("SimulationScenariosClient", () => {
                     required: true,
                 },
             ],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: {
+                    transcript: "transcript",
+                    keyValues: [
+                        {
+                            value: "lisinopril",
+                        },
+                    ],
+                },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         });
     });
@@ -3665,6 +3752,7 @@ describe("SimulationScenariosClient", () => {
                         name: "name",
                         schema: { type: "string" },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -3698,40 +3786,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -3787,6 +3841,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -3933,6 +3988,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -4036,6 +4125,7 @@ describe("SimulationScenariosClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -4165,10 +4255,21 @@ describe("SimulationScenariosClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
             latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         };
 
@@ -4212,6 +4313,7 @@ describe("SimulationScenariosClient", () => {
                             type: "string",
                         },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -4255,40 +4357,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -4381,6 +4449,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -4566,6 +4635,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -4696,6 +4799,9 @@ describe("SimulationScenariosClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -4870,9 +4976,11 @@ describe("SimulationScenariosClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             toolMocks: [
@@ -4890,6 +4998,18 @@ describe("SimulationScenariosClient", () => {
                     required: true,
                 },
             ],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: {
+                    transcript: "transcript",
+                    keyValues: [
+                        {
+                            value: "lisinopril",
+                        },
+                    ],
+                },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         });
     });
@@ -4938,6 +5058,7 @@ describe("SimulationScenariosClient", () => {
                         name: "name",
                         schema: { type: "string" },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -4971,40 +5092,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [{ content: null, role: "assistant" }],
@@ -5060,6 +5147,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: { type: "enabled", budgetTokens: 1.1 },
                     temperature: 1.1,
                     maxTokens: 1.1,
@@ -5206,6 +5294,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -5309,6 +5431,7 @@ describe("SimulationScenariosClient", () => {
                 },
                 metadata: { key: "value" },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: { intensity: 100 },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -5438,10 +5561,21 @@ describe("SimulationScenariosClient", () => {
                         excludedStatusCodes: [{ key: "value" }, { key: "value" }, { key: "value" }, { key: "value" }],
                     },
                 },
-                keypadInputPlan: { enabled: true, timeoutSeconds: 1.1, delimiters: "#" },
+                keypadInputPlan: {
+                    variableName: "variableName",
+                    enabled: true,
+                    timeoutSeconds: 1.1,
+                    delimiters: "#",
+                    triggerResponseEnabled: true,
+                },
             },
             toolMocks: [{ toolName: "toolName", result: "result", enabled: true }],
             latencyExpectations: [{ metric: "turn", aggregation: "mean", thresholdMs: 1200, required: true }],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: { transcript: "transcript", keyValues: [{ value: "lisinopril" }] },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         };
 
@@ -5486,6 +5620,7 @@ describe("SimulationScenariosClient", () => {
                             type: "string",
                         },
                     },
+                    metric: "wer",
                     path: "contact.auth_started",
                     comparator: "=",
                     value: 1.1,
@@ -5529,40 +5664,6 @@ describe("SimulationScenariosClient", () => {
                 },
             ],
             targetOverrides: {
-                transcriber: {
-                    provider: "assembly-ai",
-                    language: "multi",
-                    confidenceThreshold: 0.4,
-                    formatTurns: true,
-                    endOfTurnConfidenceThreshold: 0.7,
-                    minEndOfTurnSilenceWhenConfident: 160,
-                    maxTurnSilence: 400,
-                    vadAssistedEndpointingEnabled: true,
-                    mode: "max_accuracy",
-                    prompt: "prompt",
-                    agentContext: "agentContext",
-                    agentContextAutoUpdateEnabled: true,
-                    languageCodes: ["en"],
-                    speechModel: "universal-streaming-english",
-                    realtimeUrl: "realtimeUrl",
-                    wordBoost: ["wordBoost"],
-                    keytermsPrompt: ["keytermsPrompt"],
-                    endUtteranceSilenceThreshold: 1.1,
-                    disablePartialTranscripts: true,
-                    fallbackPlan: {
-                        transcribers: [
-                            {
-                                provider: "assembly-ai",
-                                confidenceThreshold: 0.4,
-                                formatTurns: true,
-                                endOfTurnConfidenceThreshold: 0.7,
-                                minEndOfTurnSilenceWhenConfident: 160,
-                                maxTurnSilence: 400,
-                                vadAssistedEndpointingEnabled: true,
-                            },
-                        ],
-                    },
-                },
                 model: {
                     provider: "anthropic",
                     messages: [
@@ -5655,6 +5756,7 @@ describe("SimulationScenariosClient", () => {
                         },
                     },
                     model: "claude-3-opus-20240229",
+                    reasoningEffort: "none",
                     thinking: {
                         type: "enabled",
                         budgetTokens: 1.1,
@@ -5840,6 +5942,40 @@ describe("SimulationScenariosClient", () => {
                         ],
                     },
                 ],
+                transcriber: {
+                    provider: "assembly-ai",
+                    language: "multi",
+                    confidenceThreshold: 0.4,
+                    formatTurns: true,
+                    endOfTurnConfidenceThreshold: 0.7,
+                    minEndOfTurnSilenceWhenConfident: 160,
+                    maxTurnSilence: 400,
+                    vadAssistedEndpointingEnabled: true,
+                    mode: "max_accuracy",
+                    prompt: "prompt",
+                    agentContext: "agentContext",
+                    agentContextAutoUpdateEnabled: true,
+                    languageCodes: ["en"],
+                    speechModel: "universal-streaming-english",
+                    realtimeUrl: "realtimeUrl",
+                    wordBoost: ["wordBoost"],
+                    keytermsPrompt: ["keytermsPrompt"],
+                    endUtteranceSilenceThreshold: 1.1,
+                    disablePartialTranscripts: true,
+                    fallbackPlan: {
+                        transcribers: [
+                            {
+                                provider: "assembly-ai",
+                                confidenceThreshold: 0.4,
+                                formatTurns: true,
+                                endOfTurnConfidenceThreshold: 0.7,
+                                minEndOfTurnSilenceWhenConfident: 160,
+                                maxTurnSilence: 400,
+                                vadAssistedEndpointingEnabled: true,
+                            },
+                        ],
+                    },
+                },
                 "tools:append": [
                     {
                         type: "apiRequest",
@@ -5970,6 +6106,9 @@ describe("SimulationScenariosClient", () => {
                     key: "value",
                 },
                 backgroundSpeechDenoisingPlan: {
+                    smartDenoisingPlan: {
+                        intensity: 100,
+                    },
                     fourierDenoisingPlan: {
                         mediaDetectionEnabled: true,
                         staticThreshold: -35,
@@ -6144,9 +6283,11 @@ describe("SimulationScenariosClient", () => {
                     },
                 },
                 keypadInputPlan: {
+                    variableName: "variableName",
                     enabled: true,
                     timeoutSeconds: 1.1,
                     delimiters: "#",
+                    triggerResponseEnabled: true,
                 },
             },
             toolMocks: [
@@ -6164,6 +6305,18 @@ describe("SimulationScenariosClient", () => {
                     required: true,
                 },
             ],
+            transcriptReplay: {
+                recordingUrl: "https://example.com/recordings/call-123.wav",
+                answerKey: {
+                    transcript: "transcript",
+                    keyValues: [
+                        {
+                            value: "lisinopril",
+                        },
+                    ],
+                },
+                answerKeyUrl: "answerKeyUrl",
+            },
             path: "path",
         });
     });

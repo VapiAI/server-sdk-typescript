@@ -6,7 +6,7 @@ export interface Chat {
     /** This is the assistant that will be used for the chat. To use an existing assistant, use `assistantId` instead. */
     assistantId?: string | undefined;
     /** This is the assistant that will be used for the chat. To use an existing assistant, use `assistantId` instead. */
-    assistant?: Vapi.CreateAssistantDto | undefined;
+    assistant?: Vapi.TransientAssistantDto | undefined;
     /**
      * These are the variable values that will be used to replace template variables in the assistant messages.
      * Only variable substitution is supported in chat contexts - other assistant properties cannot be overridden.
